@@ -1,0 +1,8 @@
+
+This is to check merging of two files
+This is line 2
+This is line 3
+This is line 4 from sample branch
+this is line 5
+
+This is a new line added from Ruchi's system
