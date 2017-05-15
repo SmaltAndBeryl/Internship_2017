@@ -30,7 +30,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/home").setViewName("index");
         registry.addViewController("/logoffUser").setViewName("logoffUser");
         registry.addViewController("/login").setViewName("login");
-        
+                
     }
     
     
