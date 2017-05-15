@@ -1,0 +1,18 @@
+<html>
+<body>
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
+	<script src="http://code.highcharts.com/highcharts-more.js"></script>
+	<script src="poc/pieChartDirective.js"></script>
+	<script src="poc/app.js"></script>
+	<script src="poc/pieChartConfig.js"></script>
+	
+	<div ng-app="skillIndia">
+		<div ng-controller="MyCtrl">
+			<div class="hc-pie" items="limitedIdeas"></div>
+		</div>
+	</div>
+</body>
+</html>
