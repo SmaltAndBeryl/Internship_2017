@@ -1,18 +1,34 @@
-<html>
-<body>
-	<script
-		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="http://code.highcharts.com/highcharts-more.js"></script>
-	<script src="http://code.highcharts.com/highcharts-more.js"></script>
-	<script src="poc/pieChartDirective.js"></script>
-	<script src="poc/app.js"></script>
-	<script src="poc/pieChartConfig.js"></script>
-	
-	<div ng-app="skillIndia">
-		<div ng-controller="MyCtrl">
-			<div class="hc-pie" items="limitedIdeas"></div>
+<html ng-app="skillIndia" lang="en">
+<head>
+
+
+<link rel="stylesheet" href="/webjars/bootstrap/3.1.1/css/bootstrap.css"
+	media="screen"></link>
+<script src="/webjars/angularjs/1.4.3/angular.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="//code.highcharts.com/maps/modules/map.js"></script>
+<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/mapdata/countries/in/custom/in-all-disputed.js"></script>
+
+
+
+<script src="poc/pieChartConfig.js"></script>
+<script src="poc/pieChartDirective.js"></script>
+<script src="poc/app.js"></script>
+
+
+
+
+</head>
+<body  ng-controller="MyCtrl">
+
+
+
+
+
+	<div >
+		<div class="hc-pie" items="limitedIdeas"></div>
 		</div>
-	</div>
 </body>
 </html>

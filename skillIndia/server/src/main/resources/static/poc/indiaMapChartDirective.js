@@ -1,10 +1,11 @@
 var app =angular.module('skillIndia');
-  app.directive('hcPie', function (pieChartConfig) {
+
+  app.directive('mapChart', function (indiaMapChartConfig) {
   return {
     restrict: 'C',
     replace: true,
     scope: {
-      items: '='
+    	data: '='
     },
     controller: function ($scope, $element, $attrs) {
       console.log(2);
@@ -16,10 +17,10 @@ var app =angular.module('skillIndia');
       console.log(pieChartConfig);
       scope.chartConfig = pieChartConfig;
       scope.chartConfig.chart.renderTo =  attrs.id;
-      scope.chartConfig.chart.data= scope.items;
+      scope.chartConfig.chart.data= scope.data;
       
       var chart = new Highcharts.Chart(scope.chartConfig);
-      scope.$watch("items", function (newValue) {
+      scope.$watch("data", function (newValue) {
         chart.series[0].setData(newValue, true);
       }, true);
       

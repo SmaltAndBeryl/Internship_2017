@@ -1,3 +1,4 @@
+var app =angular.module('skillIndia', []);
 (function(){
 	var chartConfig ={
 	        chart: {
