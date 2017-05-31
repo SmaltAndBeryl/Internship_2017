@@ -1,0 +1,84 @@
+There will total 3 screens available
+
+1. Batch - it will consists of 2 parts
+   Upper part will have this main query where WHERE paramters will have some values
+
+
+SELECT
+.....
+FROM
+scgj.batch b
+LEFT OUTER JOIN scgj.trainingPartner as tp ON tp.bactchId = b.batchId
+LEFT OUTER JOIN scgj.agency as agcy ON agcy.batchId = b.batchId
+LEFT OUTER JOIN scgj.center as cntr ON cntr.centerId = b.centerId
+LEFT OUTER JOIN scgj.contactInfomation as tpInfo ON tpInfo.contactInfoId= tp.contactInfoId
+LEFT OUTER JOIN scgj.contactInfomation as cadInfo ON cadInfo.contactInfoId= cad.contactInfoId
+LEFT OUTER JOIN scgj.address as tpAddr ON tpAddr.addressId=tp.addressId
+WHERE
+1. TP State 
+2. Assement Date
+3. Batch assement Date
+4. Assement Center State.
+5. Batch Id
+6. TP ID
+7. Assement Center Name.
+8. Is result Upload
+
+......
+
+ Lower part will have candidates information. It will change on selection of batch Ids
+
+ SELECT
+ ......
+ FROM
+ scgj.candidate cad
+ WHERE cad.batchId in 
+
+Now, select columns will be static which will define a grid and there will be pre-defined columns list for search which will be dynamically added to where clause.
+Like batchId, totalPass greater than =, trading Parternal's state, Agency's state. 
+Search parameters will be covering their most of the scenarios.
+
+
+2. TrainingPartner - it will consists of 2 parts:
+    Upper part will be trainingPartner information
+    
+SELECT
+.....
+from 
+scgj.traningPartner as tp
+LEFT OUTER JOIN scgj.tpApplication as tpApp ON tpApp.tradingPartnerId = tp.tradingPartnerId
+WHERE
+1. State
+2. checkbox for Batch running
+
+
+The search citeria will have some pre-defined criterias.
+
+Lower part will have Batch information based on TP ID
+
+select 
+....
+from tpManagement as tpM
+LEFT OUTER JOIN scgj.contactInfomation as tpInfo ON tpInfo.contactInfoId= tpM.contactInfoId
+LEFT OUTER JOIN scgj.address as tpAddr ON tpAddr.addressId=tpM.addressId
+where tpm.tradingPartnerId = tpm.tradingPartnerId
+
+
+
+
+3. Agency - single tab with agency information
+   Input criteria can be Agency Id 
+
+select 
+......
+from 
+scj.agency agcy 
+
+
+
+
+
+
+
+
+
