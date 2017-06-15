@@ -18,4 +18,8 @@ public class PasswordUtils {
 		
 	}
 	
+	public static void main(String[] args) {
+		System.out.println(encrypt("skillIndia","ScGjApp123$$"));
+	}
+	
 }
