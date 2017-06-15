@@ -1,9 +1,4 @@
-/*
- * Copyright (c) Wellington Management Company, LLP. 280 Congress Street, Boston, MA 02210, U.S.A. All Rights Reserved. This
- * software is the confidential and proprietary information of Wellington Management Company LLP. You shall not disclose such
- * confidential information and shall use it only in accordance with the terms of the license agreement you entered into with
- * Wellington Management.
- */
+
 package com.skill.India.common;
 
 import java.sql.SQLException;
