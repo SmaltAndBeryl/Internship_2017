@@ -1,2 +1,6 @@
 user:
- selectSql: >
+ selectSql: > 
+   select * from user
+   
+ updateSql: >
+  update  

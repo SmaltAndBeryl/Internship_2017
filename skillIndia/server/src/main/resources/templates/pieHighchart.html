@@ -15,6 +15,9 @@
 
 <script src="poc/pieChartConfig.js"></script>
 <script src="poc/pieChartDirective.js"></script>
+<script src="poc/indiaMapConfig.js"></script>
+<script src="poc/indiaMapChartDirective.js"></script>
+
 <script src="poc/app.js"></script>
 
 
@@ -23,12 +26,11 @@
 </head>
 <body  ng-controller="MyCtrl">
 
-
-
-
-
-	<div >
-		<div class="hc-pie" items="limitedIdeas"></div>
+	 <div >
+		<div id ="container1" class="hc-pie" items="limitedIdeas"></div>
+		</div>
+ 		<div >
+		<div id ="container2" class="map-chart" data="mapData"></div>
 		</div>
 </body>
 </html>

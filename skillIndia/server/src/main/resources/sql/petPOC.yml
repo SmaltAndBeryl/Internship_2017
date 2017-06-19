@@ -1,0 +1,10 @@
+pet:
+ selectSql: > 
+   select * 
+    from pet
+ 
+ insertSql: >
+  insert into persons (lastName, FirstName, Age) 
+   values (:lastName, :firstName, :age)
+  
+     
