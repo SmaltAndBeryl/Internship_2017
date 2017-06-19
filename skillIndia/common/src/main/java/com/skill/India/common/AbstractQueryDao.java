@@ -25,6 +25,8 @@ public abstract class AbstractQueryDao {
 	public void setJdbcTemplate(DataSource applicationDataSource) {
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(
 				applicationDataSource);
+		
+		
 	}
 
 }
