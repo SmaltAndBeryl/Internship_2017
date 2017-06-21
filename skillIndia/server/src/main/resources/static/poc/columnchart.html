@@ -1,0 +1,66 @@
+
+<html>
+<head>
+    <meta charset="utf-8" />
+
+        <style>
+        body{
+            margin-top: 30px;
+            margin-left:40px;
+        }
+    </style>
+             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>     
+    
+    <script type="text/javascript">
+        $(function () {
+                var processed_json = new Array();   
+                $.getJSON('/high_charts/High_charts/text.json', function(data) {                                                                                                                 for (i = 0; i < data.length; i++){
+                        processed_json.push([data[i].key, data[i].value]);
+                    }
+                 
+                    // draw chart
+                    $('#container').highcharts({
+                    chart: {
+                        type: "column"
+                    },
+                    title: {
+                        text: "Top 5 States "
+                    },
+                    xAxis: {
+                        type: 'category',
+                        allowDecimals: false,
+                        title: {
+                            text: "States"
+                        }
+                    },
+                    yAxis: {
+                        title: {
+                            text: "Total Training Centres"
+                        }
+                    },
+                        credits: {
+            enabled: false
+        },
+                    series: [{
+                        name: 'Training Centres',
+                        data: processed_json
+                    }]
+                }); 
+                                                                                    
+                                                                                    
+                                                                              
+                                                                                    
+                                                                                    
+            });
+        });
+    </script>
+</head>
+<body>
+   <div style="width: 900px">
+    </div>
+    <div id="container" style="height: 300px;width:300px"></div>
+    <div id="container1" style="height: 300px;width:300px"></div>
+   
+</body>
+</html>
