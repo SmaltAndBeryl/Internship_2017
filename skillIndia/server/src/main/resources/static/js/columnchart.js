@@ -1,7 +1,8 @@
         $(function () {
+           
                 var processed_json = new Array();   
             
-      $.getJSON('http://localhost/high_charts/data.json', function(data) {                                                  
+      $.getJSON('/topStates', function(data) {                                                  
           for (i = 0; i < data.length; i++){
                         processed_json.push([data[i].key, data[i].value]);
                     }
