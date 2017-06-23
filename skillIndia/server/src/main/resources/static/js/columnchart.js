@@ -13,7 +13,7 @@
                         type: "column"
                     },
                     title: {
-                        text: ""
+                        text: "Top States"
                     },
                     xAxis: {
                         type: 'category',
