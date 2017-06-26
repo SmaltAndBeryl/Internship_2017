@@ -1,0 +1,20 @@
+let:
+ selectSqlCandidatesEnrolled: > 
+  select SUM(totalCandidatesInBatch)
+   from batch
+    
+ selectSqlCandidatesAccessed: > 
+  select (SUM(totalPass) + SUM(totalFail))
+   from batch
+
+ selectSqlCandidatesCertify: > 
+  select SUM(totalCertify)
+   from batch  
+    
+ selectSqlTrainingPartners: > 
+  select COUNT(trainingPartnerId)
+   from batch  
+    
+ selectSqlTrainingCenters: > 
+  select COUNT(centerId)
+   from batch
