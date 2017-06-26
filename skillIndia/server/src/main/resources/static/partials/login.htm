@@ -1,0 +1,227 @@
+<!doctype html>
+<html ng-app="myangularapp" ng-controller="myangularController">
+<head>
+ <title>SCGJ Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+   <link rel="stylesheet" href="style.css" important/>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js">
+    </script>
+    
+     <script>
+        
+        function mouseoverPass(obj) {
+  var obj = document.getElementById('myPassword');
+  obj.type = "text";
+}
+function mouseoutPass(obj) {
+  var obj = document.getElementById('myPassword');
+  obj.type = "password";
+}
+        </script>
+    </head>
+   
+   <body background="SkillSonics-India-738x400 (1).jpg"> 
+       
+
+<div class="container">
+    	<div class="row">
+			<div class="col-md-2 col-md-offset-3">
+                <div class="row panel-body"></div>
+				<div class="panel panel-login">
+                    <div class="logo"><img src="SCGJ%20logo.png" height="100px" width="250px"></div>
+                    	<div class="panel-heading">
+                            <hr/>
+                            
+						<div class="row panel-body">
+							<div class="col-xs-1">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-1 col-xs-offset-1">
+								<a href="#" id="register-form-link">SignUp</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="" method="post" role="form" style="display: block;">
+									<div class="form-group">
+                                        <input type="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Email ID" value=""></>
+									</div>
+                        <div class="form-group input-group">
+    <input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password">
+									</div>						
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+                                                
+							<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control button" value="LOGIN">
+											</div>
+										</div>
+									</div>
+									
+								</form>
+                                
+                                
+                                
+                                
+                                
+<form id="register-form" action="" method="post" role="form" style="display: none;">
+								<div class="form-group col-xs-6">
+        <input type="text" name="organizationname" id="organizationname" tabindex="1" class="form-control" placeholder="Organization Name" value="">
+    </div>
+    <div class="form-group col-xs-6">
+       <input type="text" name="spocname" id="spocname" tabindex="2" class="form-control" placeholder="SPOC Name">
+    </div>
+    <div class="form-group col-xs-6">
+       <input type="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Email Id" value="">
+    </div>
+    <div class="form-group col-xs-6 row input-group">
+<!--       <input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"><i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i>-->
+        
+    <span><input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"></span><span class="input-group-addon">   <i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i> </span>                                 
+									
+    </div>
+    
+    
+    
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control button" value="SIGNUP">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+<!--
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script>
+        
+    //Create a module and create a controller for angular
+        var myangularapp = angular.module("myangularapp", []);
+myangularapp.controller("myangularController", function($scope,$http) {
+       
+        
+    $scope.login = function (){
+     alert('test3');
+    
+        $scope.username;
+        $scope.password1;
+        
+        $http.post('http://localhost/loginangulartutorial2/webservices/login.php', { username: $scope.username,
+       password: $scope.password1,
+             }).then(function(response) {
+        alert('hi i am working');
+        //alert(JSON.stringify(response));
+        alert(response.data[0].status);
+            if(response.data[0].status == 1){
+                window.location.href = 'http://joelwebsites.com';
+            }
+            
+    }, function errorCallback(response) {
+            alert('error');
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
+    }
+    
+});
+    
+    
+    
+    </script>
+    
+    
+    
+  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+    
+    $(function() {
+
+    $('#login-form-link').click(function(e) {
+		$("#login-form").delay(100).fadeIn(100);
+ 		$("#register-form").fadeOut(100);
+		$('#register-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+		$("#password").password('toggle');
+
+	});
+	$('#register-form-link').click(function(e) {
+		$("#register-form").delay(100).fadeIn(100);
+ 		$("#login-form").fadeOut(100);
+		$('#login-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+
+});
+
+        function login(){
+        //login code here
+    var username = $('#username').val();
+    var password = $('#password1').val();
+            
+    alert(username+'hi i am the username login');
+        alert(password+'hi i am the password login');
+            
+        alert('login function is called!');
+       var url = 'http://localhost/logintutorial/webservices/login.php?username='+username+'&password='+password;
+            
+            alert(url);
+            console.log(url);
+            $.post(url,
+    function(data, status){
+                
+                alert(JSON.stringify(data));
+                var status = data[0].status;
+                
+                if(status == 1){
+                    //this is the sucess code
+                    window.location.href = 'http://joelwebsites.com';
+                }
+                
+                if(status != 1){
+                    alert('login failed');
+                }
+                alert(status+'i am the status test');
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+        
+        }
+        function register(){
+    var email = $('#email').val();
+    var username = $('#username').val();
+    var confirmpassword =$('#confirm-password').val();
+      
+            
+            $.post("http://localhost/logintutorial/webservices/register.php",
+    {
+        password: confirmpassword,
+        email: email,
+        username: username
+    },
+    function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+        }
+        
+    </script>
+-->
+-->
+    
+    </body>
+
+</html>
