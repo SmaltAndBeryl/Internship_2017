@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Roboto" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+
+    <script type="text/javascript" src="/js/index.js"></script>
+    <!-- <script src="/release/ui-grid.js"></script>
+    <script src="/release/ui-grid.css"></script> -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.js"></script> -->
+    <!-- <script type="text/javascript" src="/js/angular-cache.js"></script>
+    <script type="text/javascript" src="/js/angular-cache.js.map"></script> -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-sanitize.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-touch.js"></script>
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/angular2.sfx.dev.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/google-maps-api.js"></script>
+    <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="/js/lodash.underscore.min.js"></script>
+    <script type="text/javascript" src="/js/ng-grid-1.3.2.js"></script>
+    <script type="text/javascript" src="/js/ng-modal.js"></script> -->
+    <!-- <script type="text/javascript" src="/js/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="/js/ui-grid-stable.min.js"></script> -->
+  </head>
+  <header class="one-edge-shadow">
+    <div class="leftContent">
+      <img src="/images/SCGJLogo.png" alt="" class="image-0">
+    </div>
+
+    <div class="rightContent">
+      <div class="logout-wrapper">
+
+        <div class="username" ng-controller="username-ctrl">
+          <h2 class="username"><b>{{ username }}</b></h2>
+        </div>
+
+        <div class="logoutButton">
+          <div class="logout-icon-text-wrap">
+            <div class="icon-wrap">
+              <img class="logout-icon" src="/icons/logout.png" alt="">
+            </div>
+
+            <div class="text-wrap">
+              <h5 class="logoutText">Logout</h5>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <body>
+    <!-- <a href="#!/dashboard">Dashboard</a> -->
+    <div class="mainContent">
+
+      <div class="sidebar">
+
+        <a href="#!/dashboard" class="side-link">
+          <img src="/icons/dashboard.png" class="icons" alt="icon">
+          Dashboard
+        </a>
+
+        <hr>
+
+        <a href="#!/manage-registrations" class="side-link">
+          <img src="/icons/registrations.png" class="icons" alt="icon">
+          Manage Registration
+        </a>
+
+        <hr>
+
+        <a href="#!/import" class="side-link">
+          <img src="/icons/import.png" class="icons" alt="icon">
+          Import
+        </a>
+
+        <hr>
+
+        <a href="#!/faq" class="side-link">
+          <img src="/icons/faq.png" class="icons" alt="icon">
+          FAQ's
+        </a>
+
+        <hr>
+
+        <a href="#!/batch-assignment" class="side-link">
+          <img src="/icons/batch.png" class="icons" alt="icon">
+          Batch Assignment
+        </a>
+
+        <hr>
+
+
+        <!-- <a href="/dashboard.html">dashboard</a> -->
+
+        <!-- <div class="bar-wrapper" href>
+          <div class="icon">
+            <img src="/icons/dashboard.png" class="icons" alt="">
+          </div>
+          <div class="text">
+            <a href="#!/dashboard">
+              <img src="/icons/dashboard.png" class="icons" alt="">
+              Dashboard
+            </a>
+          </div>
+
+        </div>
+
+        <hr>
+        <div class="bar-wrapper">
+          <div class="icon">
+            <img src="/icons/registrations.png" class="icons" alt="">
+          </div>
+          <div class="text">
+            <a href="#!/manage-registrations">Manage Registrations</a>
+          </div>
+        </div>
+
+        <hr> -->
+        <!-- <div class="bar-wrapper">
+          <div class="icon">
+            <img src="/icons/import.png" class="icons" alt="">
+          </div>
+          <div class="text">
+            <a href="#!/import">Import</a>
+          </div>
+        </div>
+
+        <hr>
+        <div class="bar-wrapper">
+          <div class="icon">
+            <img src="/icons/faq.png" class="icons" alt="">
+          </div>
+          <div class="text">
+            <a href="#!/faq">FAQ's</a>
+          </div>
+        </div>
+
+        <hr>
+        <div class="bar-wrapper">
+          <div class="icon">
+            <img src="/icons/batch.png" class="icons" alt="">
+          </div>
+          <div class="text">
+            <a href="#!/batch-assignment">Batch Assignment</a>
+          </div>
+        </div> -->
+        <!-- <hr> -->
+      </div>
+
+      <div id="Content">
+
+        <div ng-view style="height:833px;">
+
+        </div>
+        <!-- Tables -->
+      </div>
+    </div>
+
+
+    <div class="logoBar">
+      <div class="image-wrap">
+        <img src="/images/SkillMinistryLogo.png" alt="" class="image-1">
+
+
+        <img src="/images/SkillIndiaLogo.png" alt="" class="image-2">
+
+
+        <img src="/images/NSDCLogo.png" alt="" class="image-3">
+
+
+        <img src="/images/MNRELogo.png" alt="" class="image-4">
+      </div>
+    </div>
+  </body>
+
+
+  <footer>
+    <div class="upperFooter">
+      <div class="link-wrapper">
+        <a href="http://sscgj.in/about-us/" class="link">About Us</a><span class="vert-bars"> | </span>
+        <a href="" class="link">Industry Connect</a> <span class="vert-bars"> | </span>
+        <a href="http://sscgj.in/operational-standards/" class="link">National Standards</a><span class="vert-bars"> | </span>
+        <a href="http://sscgj.in/affiliation/" class="link">Affliation</a><span class="vert-bars"> | </span>
+        <a href="http://sscgj.in/publications/" class="link">Publications</a><span class="vert-bars"> | </span>
+        <a href="http://sscgj.in/state-linkages/" class="link">State Linkages</a>
+      </div>
+
+    </div>
+
+    <div class="lowerFooter">
+      <h5 class="copyright">Copyright &copy 2017 sscgj.in - All Rights Reserved.</h5>
+    </div>
+  </footer>
