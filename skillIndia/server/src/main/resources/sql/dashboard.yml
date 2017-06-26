@@ -7,7 +7,7 @@ let:
   select (SUM(totalPass) + SUM(totalFail))
    from batch
 
- selectSqlCandidatesCertify: > 
+ selectSqlCandidatesCertified: > 
   select SUM(totalCertify)
    from batch  
     
