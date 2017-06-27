@@ -3,6 +3,7 @@ package com.skill.India.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ public class LoginController {
 		private LoginService loginService;
 	
 	@RequestMapping("/loginurl")
-	public Collection<LoginDto> getLoginDto(String userName, String passWord) 
+	public Collection<LoginDto> getLoginDto(@RequestBody String userName, String passWord) 
 	{
 //		String userName="bhaskar@gmail.com";
 //		String passWord="123abc";
