@@ -7,10 +7,10 @@ public class DownloadExcelDto extends BaseDto {
 	
 	private final String CSVLocation;
 	
-	public DownloadExcelDto(String CSV_Location)
+	public DownloadExcelDto(String CSVLocation)
 	{
 		super();
-		this.CSVLocation=CSV_Location;
+		this.CSVLocation=CSVLocation;
 	}
 	
 	public String getCSV_Location() {
