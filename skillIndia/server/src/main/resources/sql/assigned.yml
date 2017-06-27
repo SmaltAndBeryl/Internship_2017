@@ -1,0 +1,4 @@
+assigned:
+ selectSql: >
+   select  serial_no,batch_id,total_candidates,job_role,batch_end_date,assessment_date,recommended_ab,assigned_ab
+    from assigned_batches2
