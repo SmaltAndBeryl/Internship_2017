@@ -1,0 +1,76 @@
+.mainwrap {
+  width: 1280px;
+  height: 1200px;
+  margin: 24px;
+  background-color: #ECF0F1;
+}
+.welcome {
+  width: 400px;
+  height: 60px;
+  font-family: Calibri;
+  font-size: 32px;
+  line-height: 1.58;
+  padding: 36px;
+  text-align: left;
+  color: #000000;
+}
+.appstboxwrap {
+  width: 1178px;
+  height: 152px;
+  margin-left: 51px;
+  margin-right: 51px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+}
+.appst {
+  width: 220px;
+  height: 30px;
+  font-family: Calibri;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+  text-align: left;
+  color: #676a6c;
+}
+.prsntbtchboxwrap {
+  width: 1178px;
+  height: 248px;
+  margin-left: 51px;
+  margin-right: 51px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+}
+.presentbatch {
+  width: 200px;
+  height: 30px;
+  font-family: Calibri;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+  text-align: left;
+  color: #676a6c;
+}
+.pstbtchboxwrap {
+  width: 1178px;
+  height: 248px;
+  margin-left: 51px;
+  margin-right: 51px;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+}
+.pastbatch {
+  width: 200px;
+  height: 30px;
+  font-family: Calibri;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+  text-align: left;
+  color: #676a6c;
+}
