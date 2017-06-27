@@ -1,0 +1,3 @@
+import:
+ selectSql: > 
+  select CSVLocation from import
