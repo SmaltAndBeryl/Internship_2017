@@ -1,0 +1,6 @@
+comment:
+ insertSql: >
+  insert into comment (CommentId,Comment,applicationId,flag) 
+   values (:commentID, :comment, :applicationID ,:flag)
+  
+     
