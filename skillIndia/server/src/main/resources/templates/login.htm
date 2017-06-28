@@ -4,7 +4,7 @@
  <title>SCGJ Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-   <link rel="stylesheet" href="/css/login.css" important/>
+   <link rel="stylesheet" href="css/login.css"/>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.min.js">
@@ -12,35 +12,35 @@
     
      <script>
         
-        function mouseoverPass(obj) {
-  var obj = document.getElementById('myPassword');
-  obj.type = "text";
-}
-function mouseoutPass(obj) {
-  var obj = document.getElementById('myPassword');
-  obj.type = "password";
-}
-        </script>
-    </head>
-   
-   <body background="SkillSonics-India-738x400 (1).jpg"> 
-       
+     function mouseoverPass(obj) {
+		var obj = document.getElementById('myPassword');
+  		obj.type = "text";
+	 }
 
+     
+     function mouseoutPass(obj) {
+  		var obj = document.getElementById('myPassword');
+  		obj.type = "password";
+}
+      </script>
+</head>
+   
+<body background="images/skill.jpg"> 
 <div class="container">
     	<div class="row">
 			<div class="col-md-2 col-md-offset-3">
                 <div class="row panel-body"></div>
 				<div class="panel panel-login">
-                    <div class="logo"><img src="SCGJ%20logo.png" height="100px" width="250px"></div>
+                    <div class="logo"><img src="../images/council.png" height="100px" width="250px"></div>
                     	<div class="panel-heading">
-                            <hr/>
+                            <hr style="border:0;border-bottom: 2px dotted #ccc;background: white;margin-left: 6px; margin-right:6px;">
                             
 						<div class="row panel-body">
 							<div class="col-xs-1">
 								<a href="#" class="active" id="login-form-link">Login</a>
 							</div>
-							<div class="col-xs-1 col-xs-offset-1">
-								<a href="#" id="register-form-link">SignUp</a>
+							<div class="col-xs-3 col-xs-offset-1">
+								<a href="#" id="register-form-link">Sign Up</a>
 							</div>
 						</div>
 					</div>
@@ -84,10 +84,7 @@ function mouseoutPass(obj) {
         
     <span><input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"></span><span class="input-group-addon">   <i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i> </span>                                 
 									
-    </div>
-    
-    
-    
+    </div>    
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -104,6 +101,8 @@ function mouseoutPass(obj) {
 		</div>
 	</div>
     
+
+
 <!--
        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script>
@@ -219,9 +218,6 @@ myangularapp.controller("myangularController", function($scope,$http) {
         }
         
     </script>
--->
--->
-    
+-->    
     </body>
-
 </html>
