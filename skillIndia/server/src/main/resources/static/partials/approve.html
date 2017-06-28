@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>
+    <script src="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.js"></script>
+    <link rel="stylesheet" href="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.css" type="text/css" />
+    <link rel="stylesheet" href="../css/approve.css" type="text/css" />
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div class="table">
+      <h3 class="manage">Manage Registration</h3>
+      <div class="table-wrap">
+        <h4 class="title">Approve/Reject Forms</h4>
+        <div ng-controller="MainCtrl as Main">
+          <div ui-grid="gridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/approve.js"></script>
+
+
+  </body>
+</html>
