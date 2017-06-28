@@ -41,9 +41,9 @@ public class DashboardService  {
 	private List<DashboardDto> dashboardDto=Arrays.asList(
 	new DashboardDto("Delhi",125),
 	new DashboardDto("Bihar", 1010),
-	new DashboardDto("Chennai",145),
-	new DashboardDto("Mumbai", 10),
-	new DashboardDto("Bikaner",300)
+	new DashboardDto("Haryana",656),
+	new DashboardDto("Telangana", 741),
+	new DashboardDto("Madhya Pradesh",100)
 	);
 public List<DashboardDto> getStates(){
 return dashboardDto;
