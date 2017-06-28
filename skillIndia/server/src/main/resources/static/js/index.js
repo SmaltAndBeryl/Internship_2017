@@ -10,28 +10,28 @@ myApp.controller('username-ctrl', function($scope) {
 myApp.config(function($routeProvider) {
   $routeProvider
   .when('/',{
-    templateUrl: '../partials/main.html',
+    templateUrl: 'partials/main.html',
     // controller: 'mainController'
   })
 
   .when('/dashboard',{
-    templateUrl: '../partials/main.html',
+    templateUrl: 'partials/main.html',
     // controller: 'dashController'
   })
   .when("/manage-registrations", {
-    templateUrl: "../partials/manage.html",
+    templateUrl: "partials/manage.html",
     // controller: 'manageController'
   })
   .when("/import", {
-    templateUrl: "../partials/import.html",
+    templateUrl: "partials/import.html",
     // controller: 'importController'
   })
   .when("/faq", {
-    templateUrl: "../partials/faq.html",
+    templateUrl: "partials/faq.html",
     // controller: 'faqController'
   })
   .when("/batch-assignment", {
-    templateUrl: "../partials/batch.html",
+    templateUrl: "partials/batch.html",
     // controller: 'batchController'
   });
 });
