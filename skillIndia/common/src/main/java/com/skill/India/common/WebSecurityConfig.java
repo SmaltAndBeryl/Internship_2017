@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class WebSecurityConfig  extends WebSecurityConfigurerAdapter{
 
 	@Autowired
@@ -30,6 +30,6 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter{
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		auth.userDetailsService(userDetailsService).passwordEncoder(encoder)
-				.and().jdbcAuthentication().dataSource(dataSource.applicationDataSource());
+		.and().jdbcAuthentication().dataSource(dataSource.applicationDataSource());
 	}
 }
