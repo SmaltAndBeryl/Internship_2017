@@ -1,0 +1,113 @@
+<!doctype html>
+<html ng-app="myAngularApp">
+<head>
+ <title>SCGJ Login</title>
+ 
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/login.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/controllers/loginctrl.js"></script>
+    
+     <script>
+        
+        function mouseoverPass(obj) {
+  var obj = document.getElementById('myPassword');
+  obj.type = "text";
+}
+function mouseoutPass(obj) {
+  var obj = document.getElementById('myPassword');
+  obj.type = "password";
+}
+        </script>
+        
+    </head>
+   
+   <body background="images/SkillSonics-India-738x400 (1).jpg" ng-controller="loginCtrl"> 
+       
+
+<div class="container">
+    	<div class="row">
+			<div class="col-md-2 col-md-offset-3">
+                <div class="row panel-body"></div>
+				<div class="panel panel-login">
+                   <div class="logo"><img src="images/SCGJlogo.png" height="100px" width="250px"/>
+                    </div>
+                    	<div class="panel-heading">
+                            <hr/>
+                            
+						<div class="row panel-body">
+							<div class="col-xs-1">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-1 col-xs-offset-1">
+								<a href="#" id="register-form-link">SignUp</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" action="" method="post" role="form" style="display: block;">
+									<div class="form-group">
+                                        <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Email ID" value="" ng-model="userName"/>
+									</div>
+                        <div class="form-group input-group">
+    <input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password" ng-model="password"/>
+									</div>						
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+                                                
+							<input type="button" name="login-submit" id="login-submit" tabindex="4" class="form-control button" value="LOGIN" ng-click="login()" />
+											</div>
+										</div>
+									</div>
+									
+								</form>
+                                
+                                
+                                
+                                
+                                
+<form id="register-form" action="" method="post" role="form" style="display: none;">
+								<div class="form-group col-xs-6">
+        <input type="text" name="organizationname" id="organizationname" tabindex="1" class="form-control" placeholder="Organization Name" value=""/>
+    </div>
+    <div class="form-group col-xs-6">
+       <input type="text" name="spocname" id="spocname" tabindex="2" class="form-control" placeholder="SPOC Name"/>
+    </div>
+    <div class="form-group col-xs-6">
+       <input type="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Email Id" value=""/>
+    </div>
+    <div class="form-group col-xs-6 row input-group">
+<!--  <input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"><i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i>-->
+        
+ <span><input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"/></span><span class="input-group-addon">   <i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i> </span>                                 
+									
+    </div>
+    
+    
+    
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control button" value="SIGNUP"/>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    </body>
+
+</html>
