@@ -1,0 +1,4 @@
+ShowInterest:
+ insertSql:
+  insert into ShowInterest (batch_ID,time_stamp)
+   values (:batch_id,:time_stamp) 
