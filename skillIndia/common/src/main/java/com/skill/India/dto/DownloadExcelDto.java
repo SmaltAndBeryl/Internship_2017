@@ -13,7 +13,7 @@ public class DownloadExcelDto extends BaseDto {
 		this.CSVLocation=CSVLocation;
 	}
 	
-	public String getCSV_Location() {
+	public String getCSVLocation() {
         return CSVLocation;
         
     }
