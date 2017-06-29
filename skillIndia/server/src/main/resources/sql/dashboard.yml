@@ -1,20 +1,36 @@
-let:
- selectSqlCandidatesEnrolled: > 
+dashboard:
+ selectSqlTotalCandidatesEnrolled: > 
   select SUM(totalCandidatesInBatch)
    from batch
     
- selectSqlCandidatesAccessed: > 
+ selectSqlTotalCandidatesAccessed: > 
   select (SUM(totalPass) + SUM(totalFail))
    from batch
 
- selectSqlCandidatesCertified: > 
+ selectSqlTotalCandidatesCertified: > 
   select SUM(totalCertify)
    from batch  
     
- selectSqlTrainingPartners: > 
+ selectSqlTotalTrainingPartners: > 
   select COUNT(trainingPartnerId)
    from batch  
     
- selectSqlTrainingCenters: > 
+ selectSqlTotalTrainingCentersInIndia: > 
   select COUNT(centerId)
    from batch
+   
+ selectSqlTotalBatchesAccordingToJobRole: > 
+  select COUNT(batchId) as BATCHES,jobRole,jobRoleCode 
+   from batches group by jobRole order by 1;  
+   
+ selectSqlTopStatesWithMaxTrainingCenters: >
+  Select State,Count(State) as TrainingCentres 
+   from trainingcenter group by State order by 2 desc limit 5;
+
+ selectSqlTotalCandidatesTrainedWithModeInLastThreeYears: >
+  Select YEAR(batchEndDate) AS YEARS,SUM(totalCertify) as totalCertified,modes 
+   from batch where batchType='Non Star'group by 1,modes HAVING YEARS BETWEEN YEAR(CURDATE())-2 AND YEAR(CURDATE()) order by 1,3;
+ 
+ selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears: >
+  select Year(batchEndDate) AS YEARS,batchType,(SUM(totalPass)+SUM(totalFail)) AS TRAINED 
+   from batch group by 1,batchType HAVING YEARS BETWEEN YEAR(CURDATE())-2 AND YEAR(CURDATE())  order by 1,2 desc;  

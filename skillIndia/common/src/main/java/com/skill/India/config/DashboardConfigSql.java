@@ -5,76 +5,154 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@ConfigurationProperties(prefix="let",locations="classpath:sql/dashboard.yml")
+@ConfigurationProperties(prefix="dashboard",locations="classpath:sql/dashboard.yml")
 public class DashboardConfigSql {
 	
-	private String selectSqlCandidatesEnrolled;
-	private String selectSqlCandidatesAccessed;
-	private String selectSqlCandidatesCertified;
-	private String selectSqlTrainingPartners;
-	private String selectSqlTrainingCenters;
-//	private String selectSql6;
-	/**
-	 * @return the selectSqlCandidatesEnrolled
-	 */
-	public String getSelectSqlCandidatesEnrolled() {
-		return selectSqlCandidatesEnrolled;
-	}
-	/**
-	 * @param selectSqlCandidatesEnrolled the selectSqlCandidatesEnrolled to set
-	 */
-	public void setSelectSqlCandidatesEnrolled(String selectSqlCandidatesEnrolled) {
-		this.selectSqlCandidatesEnrolled = selectSqlCandidatesEnrolled;
-	}
-	/**
-	 * @return the selectSqlCandidatesAccessed
-	 */
-	public String getSelectSqlCandidatesAccessed() {
-		return selectSqlCandidatesAccessed;
-	}
-	/**
-	 * @param selectSqlCandidatesAccessed the selectSqlCandidatesAccessed to set
-	 */
-	public void setSelectSqlCandidatesAccessed(String selectSqlCandidatesAccessed) {
-		this.selectSqlCandidatesAccessed = selectSqlCandidatesAccessed;
-	}
-	/**
-	 * @return the selectSqlCandidatesCertified
-	 */
-	public String getSelectSqlCandidatesCertified() {
-		return selectSqlCandidatesCertified;
-	}
-	/**
-	 * @param selectSqlCandidatesCertified the selectSqlCandidatesCertified to set
-	 */
-	public void setSelectSqlCandidatesCertified(String selectSqlCandidatesCertified) {
-		this.selectSqlCandidatesCertified = selectSqlCandidatesCertified;
-	}
-	/**
-	 * @return the selectSqlTrainingPartners
-	 */
-	public String getSelectSqlTrainingPartners() {
-		return selectSqlTrainingPartners;
-	}
-	/**
-	 * @param selectSqlTrainingPartners the selectSqlTrainingPartners to set
-	 */
-	public void setSelectSqlTrainingPartners(String selectSqlTrainingPartners) {
-		this.selectSqlTrainingPartners = selectSqlTrainingPartners;
-	}
-	/**
-	 * @return the selectSqlTrainingCenters
-	 */
-	public String getSelectSqlTrainingCenters() {
-		return selectSqlTrainingCenters;
-	}
-	/**
-	 * @param selectSqlTrainingCenters the selectSqlTrainingCenters to set
-	 */
-	public void setSelectSqlTrainingCenters(String selectSqlTrainingCenters) {
-		this.selectSqlTrainingCenters = selectSqlTrainingCenters;
-	}
-		
+	private String	selectSqlTotalCandidatesEnrolled;
 	
-		
+	private String	selectSqlTotalCandidatesAccessed;
+	
+	private String	selectSqlTotalCandidatesCertified;
+	
+	private String	selectSqlTotalTrainingPartners;
+	
+	private String	selectSqlTotalTrainingCentersInIndia;
+	
+	private String	selectSqlTotalBatchesAccordingToJobRole;
+	
+	private String	selectSqlTopStatesWithMaxTrainingCenters;
+	
+	private String	selectSqlTotalCandidatesTrainedWithModeInLastThreeYears;
+	
+	private String	selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears;
+
+	/**
+	 * @return the selectSqlTotalCandidatesEnrolled
+	 */
+	public String getSelectSqlTotalCandidatesEnrolled() {
+		return selectSqlTotalCandidatesEnrolled;
+	}
+
+	/**
+	 * @param selectSqlTotalCandidatesEnrolled the selectSqlTotalCandidatesEnrolled to set
+	 */
+	public void setSelectSqlTotalCandidatesEnrolled(String selectSqlTotalCandidatesEnrolled) {
+		this.selectSqlTotalCandidatesEnrolled = selectSqlTotalCandidatesEnrolled;
+	}
+
+	/**
+	 * @return the selectSqlTotalCandidatesAccessed
+	 */
+	public String getSelectSqlTotalCandidatesAccessed() {
+		return selectSqlTotalCandidatesAccessed;
+	}
+
+	/**
+	 * @param selectSqlTotalCandidatesAccessed the selectSqlTotalCandidatesAccessed to set
+	 */
+	public void setSelectSqlTotalCandidatesAccessed(String selectSqlTotalCandidatesAccessed) {
+		this.selectSqlTotalCandidatesAccessed = selectSqlTotalCandidatesAccessed;
+	}
+
+	/**
+	 * @return the selectSqlTotalCandidatesCertified
+	 */
+	public String getSelectSqlTotalCandidatesCertified() {
+		return selectSqlTotalCandidatesCertified;
+	}
+
+	/**
+	 * @param selectSqlTotalCandidatesCertified the selectSqlTotalCandidatesCertified to set
+	 */
+	public void setSelectSqlTotalCandidatesCertified(String selectSqlTotalCandidatesCertified) {
+		this.selectSqlTotalCandidatesCertified = selectSqlTotalCandidatesCertified;
+	}
+
+	/**
+	 * @return the selectSqlTotalTrainingPartners
+	 */
+	public String getSelectSqlTotalTrainingPartners() {
+		return selectSqlTotalTrainingPartners;
+	}
+
+	/**
+	 * @param selectSqlTotalTrainingPartners the selectSqlTotalTrainingPartners to set
+	 */
+	public void setSelectSqlTotalTrainingPartners(String selectSqlTotalTrainingPartners) {
+		this.selectSqlTotalTrainingPartners = selectSqlTotalTrainingPartners;
+	}
+
+	/**
+	 * @return the selectSqlTotalTrainingCentersInIndia
+	 */
+	public String getSelectSqlTotalTrainingCentersInIndia() {
+		return selectSqlTotalTrainingCentersInIndia;
+	}
+
+	/**
+	 * @param selectSqlTotalTrainingCentersInIndia the selectSqlTotalTrainingCentersInIndia to set
+	 */
+	public void setSelectSqlTotalTrainingCentersInIndia(String selectSqlTotalTrainingCentersInIndia) {
+		this.selectSqlTotalTrainingCentersInIndia = selectSqlTotalTrainingCentersInIndia;
+	}
+
+	/**
+	 * @return the selectSqlTotalBatchesAccordingToJobRole
+	 */
+	public String getSelectSqlTotalBatchesAccordingToJobRole() {
+		return selectSqlTotalBatchesAccordingToJobRole;
+	}
+
+	/**
+	 * @param selectSqlTotalBatchesAccordingToJobRole the selectSqlTotalBatchesAccordingToJobRole to set
+	 */
+	public void setSelectSqlTotalBatchesAccordingToJobRole(String selectSqlTotalBatchesAccordingToJobRole) {
+		this.selectSqlTotalBatchesAccordingToJobRole = selectSqlTotalBatchesAccordingToJobRole;
+	}
+
+	/**
+	 * @return the selectSqlTopStatesWithMaxTrainingCenters
+	 */
+	public String getSelectSqlTopStatesWithMaxTrainingCenters() {
+		return selectSqlTopStatesWithMaxTrainingCenters;
+	}
+
+	/**
+	 * @param selectSqlTopStatesWithMaxTrainingCenters the selectSqlTopStatesWithMaxTrainingCenters to set
+	 */
+	public void setSelectSqlTopStatesWithMaxTrainingCenters(String selectSqlTopStatesWithMaxTrainingCenters) {
+		this.selectSqlTopStatesWithMaxTrainingCenters = selectSqlTopStatesWithMaxTrainingCenters;
+	}
+
+	/**
+	 * @return the selectSqlTotalCandidatesTrainedWithModeInLastThreeYears
+	 */
+	public String getSelectSqlTotalCandidatesTrainedWithModeInLastThreeYears() {
+		return selectSqlTotalCandidatesTrainedWithModeInLastThreeYears;
+	}
+
+	/**
+	 * @param selectSqlTotalCandidatesTrainedWithModeInLastThreeYears the selectSqlTotalCandidatesTrainedWithModeInLastThreeYears to set
+	 */
+	public void setSelectSqlTotalCandidatesTrainedWithModeInLastThreeYears(
+			String selectSqlTotalCandidatesTrainedWithModeInLastThreeYears) {
+		this.selectSqlTotalCandidatesTrainedWithModeInLastThreeYears = selectSqlTotalCandidatesTrainedWithModeInLastThreeYears;
+	}
+
+	/**
+	 * @return the selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears
+	 */
+	public String getSelectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
+		return selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears;
+	}
+
+	/**
+	 * @param selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears the selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears to set
+	 */
+	public void setSelectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears(
+			String selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears) {
+		this.selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears = selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears;
+	}
+	
+	
 }

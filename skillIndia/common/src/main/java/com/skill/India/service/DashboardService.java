@@ -1,14 +1,20 @@
 package com.skill.India.service;
 
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skill.India.dao.DashboardDao;
-import com.skill.India.dto.DashboardDto;
+import com.skill.India.dao.DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDao;
+import com.skill.India.dao.DashboardPanelsDao;
+import com.skill.India.dao.DashboardTotalBatchesAccordingToJobRoleDao;
+import com.skill.India.dao.DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDao;
+import com.skill.India.dao.DashboardTopStatesWithMaxTrainingCentersDao;
+import com.skill.India.dto.DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto;
+import com.skill.India.dto.DashboardTotalBatchesAccordingToJobRoleDto;
+import com.skill.India.dto.DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto;
+import com.skill.India.dto.DashboardTopStatesWithMaxTrainingCentersDto;
 
 
  
@@ -17,36 +23,59 @@ import com.skill.India.dto.DashboardDto;
 public class DashboardService  {
 
 	@Autowired
-	private DashboardDao dashboardDao;
+	private DashboardPanelsDao dashboardPanelsDao;
 	
-	public Integer getCandidatesEnrolled() {
-		 return dashboardDao.getTotalCandidateEnrolled();
+	@Autowired 
+	DashboardTotalBatchesAccordingToJobRoleDao dashboardPieChartDao;
+	
+	@Autowired
+	DashboardTopStatesWithMaxTrainingCentersDao dashboardTopStatesDao;
+	
+	@Autowired
+	DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDao dashboardStackedColumnChartDao;
+	
+	@Autowired
+	DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDao dashboardColumnChartDao;
+	
+	
+	public Integer getTotalCandidatesEnrolled() {
+		 return dashboardPanelsDao.getTotalCandidateEnrolled();
 	}
 	
-	public Integer getCandidatesAccessed() {
-		 return dashboardDao.getTotalCandidateAccessed();
+	public Integer getTotalCandidatesAccessed() {
+		 return dashboardPanelsDao.getTotalCandidateAccessed();
 	}
 	
-	public Integer getCandidatesCertified() {
-		 return dashboardDao.getTotalCandidateCertified();
+	public Integer getTotalCandidatesCertified() {
+		 return dashboardPanelsDao.getTotalCandidateCertified();
 	}
 	
-	public Integer getTrainingCenters() {
-		 return dashboardDao.getTotalTrainingCenter();
+	public Integer getTotalTrainingCentersInIndia() {
+		 return dashboardPanelsDao.getTotalTrainingCentersInIndia();
 	}
 	
-	public Integer getTrainingPartners() {
-		 return dashboardDao.getTotalTrainingPartners();
+	public Integer getTotalTrainingPartners() {
+		 return dashboardPanelsDao.getTotalTrainingPartners();
 	}
-	private List<DashboardDto> dashboardDto=Arrays.asList(
-	new DashboardDto("Delhi",125),
-	new DashboardDto("Bihar", 1010),
-	new DashboardDto("Haryana",656),
-	new DashboardDto("Telangana", 741),
-	new DashboardDto("Madhya Pradesh",100)
-	);
-public List<DashboardDto> getStates(){
-return dashboardDto;
+	
+	public Collection<DashboardTotalBatchesAccordingToJobRoleDto> getTotalBatchesAccordingToJobRole() {
+		return dashboardPieChartDao.getTotalBatchesAccordingToJobRole();
+	}
+	
+	
+public Collection<DashboardTopStatesWithMaxTrainingCentersDto> getTopStatesWithMaxTrainingCenters() {
+	
+	return dashboardTopStatesDao.getTopStatesWithMaxTrainingCenters();
+}
+
+public Collection<DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto> getTotalCandidatesCertifiedWithModeInLastThreeYears() {
+	
+	return dashboardStackedColumnChartDao.getTotalCandidatesCertifiedWithModeInLastThreeYears();
+	
+}
+
+public Collection<DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto> getTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
+	return dashboardColumnChartDao.getTotalCandidatesTrainedWithBatchTypeInLastThreeYears();
 }
 
 
