@@ -1,0 +1,4 @@
+approve:
+ updateSql: >
+  update approve SET app_state= 'draft' where app_id=1;
+  
