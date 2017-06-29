@@ -11,12 +11,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 public class WebSecurityConfig  extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	ApplicationDatasource dataSource;
 	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
 //		http.authorizeRequests().antMatchers("/", "/home").permitAll()
 //				.anyRequest().authenticated().and().formLogin()
 //				.loginPage("/login").permitAll().and().logout().permitAll();
