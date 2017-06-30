@@ -1,5 +1,6 @@
 package com.skill.India.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,15 @@ import com.skill.India.dto.DownloadExcelDto;
 public class DownloadExcelService {
 	@Autowired
 	private DownloadExcelDao updateDao;
-	public Collection<DownloadExcelDto> getUpdateRowMapper(){
-		return updateDao.getUpateRowMapper() ;
+	public String getUpdateRowMapper(){
+	Collection<DownloadExcelDto> dtoobj= updateDao.getUpateRowMapper() ;
+	for(DownloadExcelDto x:dtoobj)
+		
+	{
+		String abc=x.getCSVLocation();
+	}
+	
+	
+	return "success";
 	}
 }
