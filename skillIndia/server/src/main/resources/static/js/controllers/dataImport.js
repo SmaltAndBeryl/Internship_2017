@@ -8,19 +8,19 @@ app.controller('MainCtrl', ['$scope', '$location','$http', '$log', function ($sc
 						enableVerticalScrollbar:0};
 
   $scope.gridOptions.columnDefs = [
-    { name:'S No' , cellClass:'sno'},
-    { name:'file name', cellClass:'fname'},
-    { name:'type', cellClass:'type'},
-    { name:'date', cellClass:'date'},
-    { name:'uploaded by', cellClass:'uby'},
-   { name: 'view uploaded by',cellClass:'vub',cellTemplate: '<img src="images/CSVDownloadIcon.png" ng-click=grid.appScope.myfunction()>' }
+    { name:'S No' , width:45,cellClass:'sno',headerCellClass:'layer'},
+    { name:'File Name',width:132, cellClass:'fname',headerCellClass:'File-Name'},
+    { name:'Type',width:236, cellClass:'type',headerCellClass:'Type'},
+    { name:'Date',width:150, cellClass:'date',headerCellClass:'Date '},
+    { name:'Uploaded By',width:210, cellClass:'uby',headerCellClass:'Uploaded-By'},
+   { name: 'View Uploaded File',width:165,cellClass:'vub', headerCellClass:'View-Uploaded-File',cellTemplate: '<img src="img.png" ng-click=grid.appScope.myfunction()>' }
   ];
 	
 	
  $scope.myfunction = function() 
-  {  location.href = 'http://www.google.com';
+  {  location.href = 'http://localhost:8080/DownloadExcel';
 };
-  $http.get('https://cdn.rawgit.com/angular-ui/ui-grid.info/gh-pages/data/500_complex.json')
+  $http.get('data.json')
     .success(function(data) {
       $scope.gridOptions.data = data;
     });
