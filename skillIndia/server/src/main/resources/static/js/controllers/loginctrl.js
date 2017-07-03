@@ -1,25 +1,26 @@
+'use strict';
+
 var app = angular.module('myAngularApp', []);
 app.controller('loginCtrl',
 				['$scope', '$http', 
-				 	function($scope, $http){
-					
-							var formModel = {
-												userName : $scope.userName,
-												password : $scope.password
-											};
+				 	function($scope, $http){							
 					
 							$scope.login = function(){
-						
-											console.log("click is working");
-											//var parseJSON = JSON.parse(formModel);
-											//console.log(formModel.data);
-											$http.post('/loginUrl', formModel)
-											.then(function(response)
+								console.log(angular.toJson($scope.user));
+								var loginControllerURI = "/loginUrl";
+								console.log(loginControllerURI);
+										console.log("click is working");
+											$http({
+												url : loginControllerURI,
+												method : "POST",
+												data : angular.toJson($scope.user),
+												headers : {
+															'Content-type': ''
+															}
+												
+												}).then(function(response)
 													{
-													console.log(response.status);
-													},function()
-													{
-														
+												     console.log(response);
 													});
 													}
 						}
