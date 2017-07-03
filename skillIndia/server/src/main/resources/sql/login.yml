@@ -1,4 +1,4 @@
 login:
  selectSql: > 
    select applicationId,user_role,user_status 
-    from User inner join Application where User.userId=:userName and User.password=:passWord
+    from User inner join Application where User.userId=:userId and User.password=:password
