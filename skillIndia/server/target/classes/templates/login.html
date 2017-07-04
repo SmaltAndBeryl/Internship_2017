@@ -19,7 +19,7 @@
   var obj = document.getElementById('myPassword');
   obj.type = "text";
 }
-        function mouseoutPass(obj) {
+function mouseoutPass(obj) {
   var obj = document.getElementById('myPassword');
   obj.type = "password";
 }
@@ -27,7 +27,7 @@
         
     </head>
    
-   <body background="images/LoginBackgroundImage.jpg" > 
+   <body background="images/LoginBackgroundImage.jpg" ng-controller="loginCtrl"> 
        
 
 <div class="container">
@@ -55,51 +55,45 @@
 							 <form data-toggle="validator" role="form">
 							 
 								<form id="login-form" action="" method="post" role="form" style="display: block;">
-								
 									<div class="form-group input-group">
 									
-                                      <input type="email" name="username" id="username" tabindex="1" data-error="Invalid Email" class="form-control" placeholder="Email ID" value="" />
-                                        <div class="help-block with-errors"> </div>
+                                      <input type="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Email ID" value="" ng-model="userName"/>
+                                        <div class="help-block with-errors"> 
                                         <span class=" input-group-addon" style="background-color:white;
                                         border:none;
-                                        border-bottom:0px solid #ccc; "> 
+                                        border-bottom:1px solid #ccc;"> 
                          <i id="bt" class="fa fa-user" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i>
                              </span>
-                             </div>
-                        <div class="form-group input-group" > 
-							<input type="password" data-minlength="6" name="password" id="myPassword" tabindex="2" data-error="Minimum  6 Characters" class="form-control" placeholder="Password" ng-model="password"/>
+                                        </div>
+                                        </div>
+                        <div class="form-group input-group">
+    <input type="password" data-minlength="6" name="password" id="myPassword" tabindex="2" data-error="Minimum  6 Characters" class="form-control" placeholder="Password" ng-model="password"/>
      							 <div class="help-block with-errors"></div>
                                         <span class="input-group-addon" style="background-color:white;
                                         border:none;
-                                        border-bottom:0px solid #ccc ;">   
+                                        border-bottom:1px solid #ccc;">   
 
                                      <i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i> 
                                         </span>   
-                                   
+    
 									</div>						
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
                                                 
-<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control button" value="LOGIN" ng-click="login"/>
+							<input type="button" name="login-submit" id="login-submit" tabindex="4" class="form-control button" value="LOGIN" ng-click="login()" />
 											</div>
 										</div>
 									</div>
 									
 								</form>
-                         
-                             </form>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
-                                </div>
+                                </form>
                                 
                                 
                                 
                                 
-<!-- <form id="register-form" action="" method="post" role="form" style="display: none;">
+                                
+<form id="register-form" action="" method="post" role="form" style="display: none;">
 								<div class="form-group col-xs-6">
         <input type="text" name="organizationname" id="organizationname" tabindex="1" class="form-control" placeholder="Organization Name" value=""/>
     </div>
@@ -110,7 +104,7 @@
        <input type="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Email Id" value=""/>
     </div>
     <div class="form-group col-xs-6 row input-group">
-
+<!--  <input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"><i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i>-->
         
  <span><input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"/></span><span class="input-group-addon">   <i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i> </span>                                 
 									
@@ -132,7 +126,7 @@
 				</div>
 			</div>
 		</div>
-	 -->
+	
     
     </body>
 
