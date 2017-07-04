@@ -3,8 +3,7 @@ package com.skill.India.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CommentDto {
-	@JsonProperty
-	private Integer commentID;
+	
 	@JsonProperty
 	private  String comment;
 	@JsonProperty
@@ -13,10 +12,10 @@ public class CommentDto {
 	private  boolean flag;
 	
 	
-	public CommentDto(Integer commentID, String comment , int applicationID,
+	public CommentDto( String comment , int applicationID,
 			boolean flag) {
 		super();
-		this.commentID = commentID;
+		//this.commentID = commentID;
 		this.comment = comment;
 		this.applicationID = applicationID;
 		this.flag = flag;
@@ -33,9 +32,9 @@ public class CommentDto {
 	/**
 	 * @return the commentID
 	 */
-	public Integer getCommentID() {
-		return commentID;
-	}
+	//public Integer getCommentID() {
+		//return commentID;
+	//}
 
 	/**
 	 * @return the comment

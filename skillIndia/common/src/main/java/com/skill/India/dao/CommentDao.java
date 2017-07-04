@@ -17,8 +17,7 @@ import com.skill.India.dto.CommentDto;
 		public CommentConfigSql config;
 		
 			public int insertComment(CommentDto comment) {
-			Map<String, Object> parameters = new HashMap<>();
-			parameters.put("commentID",comment.getCommentID());
+			Map<String, Object> parameters = new HashMap<>();			
 			parameters.put("comment",comment.getComment());
 			parameters.put("applicationID",comment.getApplicationID());
 			parameters.put("flag",comment.isFlag());
