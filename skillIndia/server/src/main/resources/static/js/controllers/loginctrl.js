@@ -3,7 +3,7 @@
 var app = angular.module('myAngularApp', []);
 app.controller('loginCtrl',
 				['$scope', '$http', 
-				 	function($scope, $http){							
+				 	function($scope, $http){
 					
 							$scope.login = function(){
 								console.log(angular.toJson($scope.user));
@@ -15,7 +15,7 @@ app.controller('loginCtrl',
 												method : "POST",
 												data : angular.toJson($scope.user),
 												headers : {
-															'Content-type': ''
+															'Content-type': 'application/json'
 															}
 												
 												}).then(function(response)
