@@ -167,16 +167,60 @@
 			<version>2.3</version>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>net.sf.jasperreports</groupId> -->
-<!-- 			<artifactId>jasperreports</artifactId> -->
-<!-- 			<version>6.3.0</version> -->
-<!-- 		</dependency> -->
+		<!--<dependency>-->
+			<!--<groupId>net.sf.jasperreports</groupId>-->
+			<!--<artifactId>jasperreports</artifactId>-->
+			<!--<version>6.1.0</version>-->
+		<!--</dependency>-->
+
 		<dependency>
 			<groupId>net.sourceforge.nekohtml</groupId>
 			<artifactId>nekohtml</artifactId>
 			
 		</dependency>
+
+		<!--Dynamic Jasper is a JasperReport API-->
+		<dependency>
+			<groupId>ar.com.fdvs</groupId>
+			<artifactId>DynamicJasper</artifactId>
+			<version>5.1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-googlecharts</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-core</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.dynamicreports/dynamicreports -->
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.dynamicreports/dynamicreports-adhoc -->
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-adhoc</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/net.sourceforge.dynamicreports/dynamicreports-parent -->
+		<dependency>
+			<groupId>net.sourceforge.dynamicreports</groupId>
+			<artifactId>dynamicreports-parent</artifactId>
+			<version>5.0.0</version>
+			<type>pom</type>
+		</dependency>
+
 	</dependencies>
 	<modules>
 		<module>common</module>
