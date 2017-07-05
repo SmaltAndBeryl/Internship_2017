@@ -6,50 +6,42 @@ public class LoginDto extends BaseDto{
 private static final long serialVersionUID = 1L;
 	
 	private final int applicationId; 
-	private final String user_role;
-	private final String user_status;
-	
-	
+	private final String userRole;
+	private final String userStatus;
 
 	
-	public LoginDto(int applicationId, String user_role, String user_status) 
-	{
-		super();
-		this.applicationId = applicationId;
-		this.user_role = user_role;
-		this.user_status = user_status;
-		
-		
-	}
-
-
-
-
-
-
-
-
-	public String getUser_role() {
-		return user_role;
-	}
-
-
-
-
-	public String getUser_status() {
-		return user_status;
-	}
-
-
-
-
-
-
-
-
+	/**
+	 * @return the applicationId
+	 */
 	public int getApplicationId() {
 		return applicationId;
 	}
+	/**
+	 * @return the userRole
+	 */
+	public String getUserRole() {
+		return userRole;
+	}
+	/**
+	 * @return the userStatus
+	 */
+	public String getUserStatus() {
+		return userStatus;
+	}
+	/**
+	 * @param applicationId
+	 * @param userRole
+	 * @param userStatus
+	 */
+	public LoginDto(int applicationId, String userRole, String userStatus) {
+		super();
+		this.applicationId = applicationId;
+		this.userRole = userRole;
+		this.userStatus = userStatus;
+	}
+	
+	
+	
 	
 	
 }
