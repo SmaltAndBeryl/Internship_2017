@@ -1,0 +1,80 @@
+body{
+        background-color: #EDF1F2;
+    }
+
+.accordian
+     {
+    	width:100%;
+     }   
+    
+.Rectangle
+	{
+		width: 971px;
+		height: 68px;
+		background-color: #fffefe;
+		box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+	}
+        
+h3
+	{
+        width: 59px;
+  		height: 17px;
+		font-family: ProximaNova;
+		font-size: 24px;
+		line-height: 1.58;
+		text-align: left;
+		color: #000000;
+            
+	}
+            
+.FAQ1
+	{
+		width: 457px;
+		height: 31px;
+		font-family: OpenSans;
+		font-size: 14px;
+		text-align: left;
+		color: #676a6c;
+		color: var(--slate-grey);
+	}       
+
+
+.left
+	{
+		float:left;
+		width:70%;
+	}
+
+.center 
+	{
+		display: inline-block;
+/*    margin:0 auto;*/
+/*     float:center;*/
+		width:20%;
+		line-height: 55px;
+    }
+
+.right
+	{
+		display: inline-block;
+		float:right;
+		width:10%;
+		text-align: center;
+		line-height: 55px;
+   
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
