@@ -1,0 +1,4 @@
+trainingPartnerBatches:
+ selectSql: > 
+   select * 
+    from tp

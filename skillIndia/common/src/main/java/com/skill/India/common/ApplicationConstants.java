@@ -17,4 +17,8 @@ public abstract class ApplicationConstants {
 	public static String errorComment; 
 	
 	public static String successComment;
+	
+	//public static String trainingPartnerPastbatchesKey;
+	
+	//public static String trainingPartnerPresentBatchesKey;
 }
