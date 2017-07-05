@@ -41,8 +41,8 @@ public class TrainingPartnerBatchesService {
 			}
 		 
 			HashMap<String, ArrayList<TrainingPartnerBatchesDto>> hmap= new HashMap<String, ArrayList<TrainingPartnerBatchesDto>>();
-			hmap.put("Past Batches" ,pastBatches);
-			hmap.put("Present Batches", presentBatches);
+			hmap.put("PastBatches" ,pastBatches);
+			hmap.put("PresentBatches", presentBatches);
 			return hmap;
 	
 	}
