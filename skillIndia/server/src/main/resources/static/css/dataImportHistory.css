@@ -1,52 +1,69 @@
+.grid {
+  width: 933px;
+  height: 328px;
+  margin-left: 21px;
+}
 *{
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
 }
 
-.table{
-  background-color: whitesmoke;
-  height: 140%;
+.background{
+background-color: #ECF0F1;
+width:1018px;
+height:833px; 
+	}
+	
+.import{
+  width: 66px;
+  height: 20px;
+  margin-left: 21px;
+  padding-top: 33px;
+  padding-bottom: 28px;
+  font-size: 24px;
+  line-height: 1.58;
+  text-align: left;
+  color: #000000;
 }
-
-.manage{
-	padding-top: 25px;
-	margin-left: 26px;
+.upload{ 
+	width: 976px;
+  height: 91px;
+  margin-left: 21px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
 }
-
-.title{
-	padding-top: 20px;
-	color: grey;
+.historytable{
+  width: 976px;
+  height: 420px; 
+  margin-left: 21px;
+  margin-top: 8px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1); 
 }
-
-
-.table-wrap{
-  background-color: white;
-  margin: 25px;
-  padding: 0px 30px; 
-  /*width: 500px;*/
-}
-
-.grid {
-  /*padding: 30px 20px;*/
-  width: auto;
-  height: auto;
-}
-.grid-align {
-    text-align: center;
+.title{ 
+ width: 98px;
+  height: 15px;
+  font-size: 14px;
+  padding-top: 31px;
+  padding-left: 25px;
+  font-weight: 600;
+  text-align: left;
+  color: #676a6c;
+  color: (--slate-grey);
+	
 }
 .sno{width: 45px;
   height: 246px;
-	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
   font-family: OpenSans;
   font-size: 13px;
   text-align: left;
   color: #676a6c;
-  color: var(--slate-grey);}
+  color:(--slate-grey);}
   
-.fname{width: 132px;
-  height: 36px;
+.fname{width: 43px;
+  height: 11px;
 	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -54,7 +71,7 @@
   font-size: 13px;
   text-align: left;
   color: #676a6c;
-  color: var(--slate-grey);}
+  color:(--slate-grey);}
   
 .type{width: 236px;
   height: 36px;
@@ -65,7 +82,7 @@
   font-size: 13px;
   text-align: left;
   color: #676a6c;
-  color: var(--slate-grey);}
+  color:(--slate-grey);}
   
 .date{width: 150px;
   height: 36px;
@@ -76,7 +93,7 @@
   font-size: 13px;
   text-align: left;
   color: #676a6c;
-  color: var(--slate-grey);}
+  color: (--slate-grey);}
   
 .uby{width: 210px;
   height: 36px;
@@ -87,7 +104,7 @@
   font-size: 13px;
   text-align: left;
   color: #676a6c;
-  color: var(--slate-grey);
+  color:(--slate-grey);
   }
   
   .vub{width: 165px;
@@ -99,6 +116,7 @@
 	object-position: bottom;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
+   color:(--slate-grey);
   cursor: pointer;
   }
   .layer {
@@ -165,6 +183,14 @@
   color: var(--slate-grey);
 }
  
+.certificate{ 
+   width: 976px;
+  height: 150px; 
+  margin-left: 21px;
+  margin-top: 20px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1); 
+  
 }
   
 
