@@ -1,14 +1,14 @@
 package com.skill.India.dto;
 
 public class LoginReceiveDataDto {
-public String userName;
+public String userId;
 public String password;
 
-public String getUserName() {
-	return userName;
+public String getUserId() {
+	return userId;
 }
-public void setUserName(String userName) {
-	this.userName = userName;
+public void setUserName(String userId) {
+	this.userId = userId;
 }
 public String getPassword() {
 	return password;
