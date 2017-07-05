@@ -152,5 +152,8 @@ body {
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
-.
+#password + .glyphicon {
+    cursor: pointer;
+    pointer-events: all;
+}
 
