@@ -18,17 +18,58 @@ public class LoginService {
 	@Autowired
 	private LoginDao loginDao;
 
-	public Collection<LoginDto> checkUser(LoginReceiveDataDto loginReceiveDataDTO)
+
+	public int checkUser(LoginReceiveDataDto loginReceiveDataDto)
 	{
-		LOGGER.info(loginReceiveDataDTO.getUserName(),loginReceiveDataDTO.getPassword());
-		return loginDao.getLoginRowMapper(loginReceiveDataDTO.userName, loginReceiveDataDTO.password);
+		LOGGER.info(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
 		
-		//return new Collection<LoginDto>();
+		Collection<LoginDto> loginDto = loginDao.getLoginRowMapper(loginReceiveDataDto.userId, loginReceiveDataDto.password);
+		
+	//collection object
+		for(LoginDto a: loginDto)
+		{
+			if(a.getApplicationId()==0||a.getUserRole()==""||a.getUserStatus()=="")
+			{
+				return 0;
+			}
+			else if(a.getUserStatus()=="Draft")
+			{
+				if(a.getUserRole()=="TP")
+				{
+					return 1;
+				}
+				else
+				{
+					return 2;
+				}
+				
+			}
+			else
+			{
+				if(a.getUserRole()=="TP")
+				{
+					return 3;
+					//HomePage Training Partner
+				}
+				else if(a.getUserRole()=="AB") 
+				{
+					return 4;
+					//HomePage Assessment Body
+				}
+				else 
+				{
+					return 5;
+					//DashBoard SCGJ;
+				}
+				
+			}
+		}
+		return 0;
 	}
+}	
 	
 	
-	
-}
+
 
 
 
