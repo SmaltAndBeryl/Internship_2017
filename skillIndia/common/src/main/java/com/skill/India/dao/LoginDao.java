@@ -45,14 +45,24 @@ public class LoginDao extends AbstractTransactionalDao {
 		@Override
 		public LoginDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
-			int applicationId = resultSet.getInt("applicationId");
-//			String password = resultSet.getString("password");
-			String user_role = resultSet.getString("user_role");
-			String user_status = resultSet.getString("user_status");
-
-			return new LoginDto(applicationId, user_role, user_status);
+			
+			try 
+			{
+					int applicationId = resultSet.getInt("applicationId");
+					String userRole = resultSet.getString("user_role");
+					String userStatus = resultSet.getString("user_status");
+					return new LoginDto(applicationId, userRole, userStatus);
+			}
+			catch(Exception e)
+			{
+				int applicationId=0000; 
+				String userRole="";
+				String userStatus=""; 
+				return new LoginDto(applicationId, userRole, userStatus);
+			}
+			
 		}
-
-
-	}
+	
+	
+}
 }
