@@ -1,31 +1,29 @@
 body {
-    padding-top:40px;
-    padding-left:196px;
+    padding-top:90px;
+    padding-left:160px;
     background-repeat: no-repeat;
-    width: 90%;
-    background-size: 120%;
+    width: 100%;
+    background-size: 130%;
 }
 .panel-login {
-    width: 500px;
-    border-top-right-radius: 0;
-    border-top-left-radius : 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-     
-    
-	 -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+   border-color: #ccc;
+   width:420px;
+   height:450px;
+/*
+	-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 	-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
 	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-} 
+*/
+}
 
 .panel-login>.panel-heading {
 	color: #00415d;
-    background-color: #fff;
+    	background-color: #fff;
 	border-color: #fff;
-	text-align:left;
+	text-align:center;
 }
 .logo{
-    margin-left: 23%;
+    margin-left: 19%;
     height: 70px;
 }
 
@@ -46,6 +44,7 @@ body {
 .panel-login>.panel-heading a.active{
 	color: black;
 	font-size: 15px;
+    border-bottom: 3px #29B6D4 solid;
 }
 /*
 .panel-login>.panel-heading hr{
@@ -62,27 +61,17 @@ body {
 */
 .panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
 	background: transparent;
-	margin-left: 21px;
-    border: 0px;
-    border-bottom-right-radius: 1px;
-    border-bottom-left-radius: 1px;
-    border-bottom: 1px solid #CCC;
+    border: 1px;
+    border-bottom: 1.2px solid #CCC;
 	height: 45px;
-    width: 450px;
 	-webkit-box-shadow: none;
-	padding:  25px;
-	
-	font-size: 12px;
+	padding: 25px 25px;
+    border-bottom-left-radius: 1px;
+	border-bottom-right-radius: 1px;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+	font-size: 10px;
 } 
-
-.input-group-addon{
-	background-color:white;
-    border:none;
-    position: absolute;
-    right: 3px;
-    top: 13px;
-    border-bottom:0px solid #CCC; 
-}
 
 
 .panel-login input:hover,
@@ -94,26 +83,18 @@ body {
 	border-color: cornflowerblue;
 }
 .button {
-    margin-top: 25px;
-    margin-left: 7px;
-	background-color: #29B6D4;
+    margin-top: 20px;
+	background-color: #59B2E0;
 	outline: none;
 	color: #fff;
-	font-size: 15px;
-	height: 55px;
-	width: 200px;
-
+	font-size: 14px;
+	height: auto;
 	font-weight: normal;
 	padding: 14px 0;
 	text-transform: uppercase;
 	border-color: #59B2E6;
 }
-.list-unstyled{
-	padding-left:42px;
-	    list-style-type: none;
-    list-style-position: initial;
-    list-style-image: initial;
-}
+,
 /*
 . button:focus {
 	color: blue;
@@ -152,8 +133,14 @@ body {
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+<<<<<<< .mine
+*/
+||||||| .r251
+.
+=======
 #password + .glyphicon {
     cursor: pointer;
     pointer-events: all;
 }
+>>>>>>> .r305
 
