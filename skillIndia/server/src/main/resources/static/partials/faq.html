@@ -14,70 +14,53 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    
     <link rel="stylesheet" type="text/css" href="css/FAQ.css" />
-    
-    
-    
-    
     <link rel="stylesheet" href="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     
-    
-    
 <!--    <link rel="stylesheet" href="../css/approve.css" type="text/css" />-->
    
-<link rel="stylesheet" type="text/css" href="css/approve.css" />
+<link rel="stylesheet" type="text/css" href="css/FAQgrid.css" />
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>
     <script src="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.js"></script>
+    
+        <script type="text/javascript" src="js/FAQ.js"></script>
    
 </head>
 <body>
 
-	<div class="container">
+	<div class="container" ng-controller="FAQScreenController">
 
 
     <h3>FAQ's</h3>
-    <br/>
-    
-		<div class="container accordian">
-        
+		<div class="container accordian">        
        		<div class="left Rectangle">
-            
-               <h4 class="panel-title panel-heading">
-                   <p class="FAQ1"> How many candidates we have trained/assessed/certified in particular scheme (PMKVY/Non-PMKVY)?</p>
-               </h4>
+            <ul>
+            <li class="panel-title panel-heading FAQ1">How many candidates we have trained/assessed/certified in particular scheme (PMKVY/Non-PMKVY)?</li>
+            </ul>
         	</div>
-    <div class="center Rectangle">
-    <select>
- 		<option value="" disabled selected>Select</option>
- 		<option value="PMKVY">PMKVY</option>
- 		<option value="Non-PMKVY">Non-PMKVY</option>
-    </select>
-   </div>
+    		<div class="center Rectangle">
+    			<select ng-model="selectedScheme" ng-options="scheme for scheme in schemeDropDownOptions"></select>
+   			</div>
    		 <div class="right Rectangle">          
-         		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-         		<span class="glyphicon glyphicon-plus"></span></a>
+         		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" >
+         		<span class="glyphicon glyphicon-plus" ng-click="getDataOfScheme()"></span></a>
    		 </div>
 		</div>
             <div id="collapseOne" class="panel-collapse collapse" >
                 <div class="panel-body">
-                    
-                    
-    <div class="table">
-      <h6 class="manage">PMKVY/Non-PMKVY</h6>
-      <div class="table-wrap">
-        <div ng-controller="MainCtrl as Main">
-          <div ui-grid="gridOptions"  ui-grid-edit ui-grid-cellNav class="grid">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script type="text/javascript" src="js/FAQ.js"></script>
-                </div>
-            </div>
+    				<div class="table">
+   						 <div ng-bind="selectedScheme">
+							<h6  class="manage"></h6>
+						</div>
+      					<div class="table-wrap">
+        					<div ng-controller="FAQScreenController as FAQ">
+          						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid">
+          						</div>
+        					</div>
+      					</div>
+    				</div>
+   			</div>
+		 </div>
 	</div>
-        
-        
-
 </body>
 </html>
