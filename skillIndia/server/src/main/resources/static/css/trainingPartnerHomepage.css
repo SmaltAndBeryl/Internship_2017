@@ -1,7 +1,6 @@
 .container {
-  width: 1280px;
+  width: 100%;
   height: 1200px;
-  margin: 24px;
   background-color: #ECF0F1;
 }
 .welcome {
@@ -15,7 +14,7 @@
   color: #000000;
 }
 .applicationStatusBoxwrap {
-  width: 1178px;
+  
   height: 152px;
   margin-left: 51px;
   margin-right: 51px;
@@ -36,7 +35,7 @@ padding: 10px;
 
 }
 .presentBatchesBoxwrap {
-  width: 1178px;
+  
   height: 248px;
   margin-left: 51px;
   margin-right: 51px;
@@ -56,7 +55,7 @@ padding: 10px;
   color: #676a6c;
 }
 .pastBatchesBoxwrap {
-  width: 1178px;
+  
   height: 248px;
   margin-left: 51px;
   margin-right: 51px;
@@ -77,7 +76,7 @@ padding: 10px;
 }
 .grid
 {
-	width:1178px;
+	width:100%;
 	height:200px;
 	
 }
