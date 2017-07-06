@@ -2,7 +2,7 @@ package com.skill.India.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +21,7 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
     public String userRedirectPage;
+    @Autowired
 	private SignUpService signUpService;
     
     
@@ -52,21 +53,18 @@ public class LoginController {
       {
     	  userRedirectPage= "pieHighchart";
       }
-		System.out.println(loginReceiveDataDto.userId);
-		System.out.println(loginReceiveDataDto.password);
 		return userRedirectPage;
 		
 		
 		
 	}	
 	
-	@RequestMapping(value="/signup", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/signup", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto){
-		
-		return signUpService.signUp(signUpReceiveDataDto);
-
+			
+	return signUpService.signUp(signUpReceiveDataDto);
 	
-		
+
 	}
 	 
 

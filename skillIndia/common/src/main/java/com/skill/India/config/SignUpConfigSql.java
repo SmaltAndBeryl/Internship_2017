@@ -48,6 +48,15 @@ public class SignUpConfigSql {
 		return getSql;
 	}
 
+	/**
+	 * @param getSql the getSql to set
+	 */
+	public void setGetSql(String getSql) {
+		this.getSql = getSql;
+	}
+
+	
+
 	
 
 }
