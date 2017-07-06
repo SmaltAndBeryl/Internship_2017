@@ -1,0 +1,24 @@
+DataImport:
+ selectSql: >
+  select * from user 
+   
+ insertSql: >
+   insert into assessmentAgency (agencyID,agencyName) 
+    values (:agencyID,:agencyName) 
+
+ agencyIDExistsForAssessor: >
+   select exists (select * from assessmentAgency 
+    where agencyID=:agencyID)  
+ 
+ assessorIDExistsForAssessor: >
+   select exists (select * from assessor
+    where assessorID=:assessorID)
+ 
+ insertIntoAssessorSql: >  
+   insert into assessor (assessorID,assessorName,district,state,agencyID)
+    values (:assessorID,:assessorName,:district,:state,:agencyID)
+    
+ updateIntoAssessorSql: >
+   update assessor set assessorName=:assessorName,district=:district,state=:state,agencyID=:agencyID
+    where assessorID=:assessorID
+        
