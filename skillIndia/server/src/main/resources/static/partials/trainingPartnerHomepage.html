@@ -1,26 +1,37 @@
 <!Doctype html>
 <head>
 <title>Training Partner</title>
-<link href="src/main/resources/static/css/trainingPartnerHomepage.css" type="text/css" rel="stylesheet">
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>
+    <script src="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.js"></script>
+    <link rel="stylesheet" href="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.css" type="text/css" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="/css/trainingPartnerHomepage.css" type="text/css" rel="stylesheet">
+
+<script src="/js/controllers/trainingPartnerHomepage.js"></script>
 </head>
-<body>
+<body ng-app="app">
 <div class="container">
 	<div class="welcome"> Welcome {Training Partner}
 	</div>
 	<div class="applicationStatusBoxwrap">
 		<div class="applicationStatusTable"> Application Status </div>
 		<div>
+		
 				<!-- enter Ui grid code here -->
 		</div>
 	</div>
 	<div class="presentBatchesBoxwrap">
 		<div class="presentBatchesTable"> Present Batch(es) </div>
 		<!-- enter Ui grid Code here -->
-		<div> </div>
+		<div ng-controller="PastCtrl"> </div>
+		<div ui-grid="gridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
 	</div>
 	<div class="pastBatchesBoxwrap">
 		<div class="pastBatchesTable"> Past Batch(es) </div>
-		<div>
+		<div ng-controller="PresentCtrl">
+		<div ui-grid="gridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
 		<!-- enter Ui grid code here -->
 		 </div>
 	</div>
