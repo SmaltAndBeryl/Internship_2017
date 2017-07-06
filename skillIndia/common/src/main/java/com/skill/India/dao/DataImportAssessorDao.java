@@ -20,13 +20,13 @@ public class DataImportAssessorDao extends AbstractTransactionalDao {
 	public int dataImportAssessorForeignKeyConstraintCheck(Map<String,Object> getRecord)
 	{
 		/*
-		 * checking for foreign key constraint on agencyID  column in Assessment Agency Table 
+		 * checking for foreign key constraint on agencyId  column in Assessment Agency Table 
 		 */
 		try{				
 		
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("agencyID",getRecord.get("agencyID"));
-		return getJdbcTemplate().queryForObject(dataImportConfigSql.getAgencyIDExistsForAssessor(), parameters,Integer.class );					
+		parameters.put("agencyId",getRecord.get("agencyId"));
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getAgencyIdExistsForAssessor(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
 		{
@@ -34,13 +34,16 @@ public class DataImportAssessorDao extends AbstractTransactionalDao {
 			return 2;
 		}
 	}
-		
+	/*
+	 * checking for primary key constraint on assessorId  column in Assessor Table 
+	 */
+	
 		public int dataImportAssessorPrimaryKeyConstraintCheck(Map<String,Object> getRecord)
 		{
 			try{							
 				Map<String, Object> parameters = new HashMap<>();
-				parameters.put("assessorID",getRecord.get("assessorID"));
-				return getJdbcTemplate().queryForObject(dataImportConfigSql.getAssessorIDExistsForAssessor(), parameters,Integer.class );					
+				parameters.put("assessorId",getRecord.get("assessorId"));
+				return getJdbcTemplate().queryForObject(dataImportConfigSql.getAssessorIdExistsForAssessor(), parameters,Integer.class );					
 			}
 				catch(Exception e)
 				{
@@ -48,17 +51,19 @@ public class DataImportAssessorDao extends AbstractTransactionalDao {
 					return 2;
 				}		
 	}	
-			
-			
-		
+				
+		/*
+		 * Inserting data in Assessor Table
+		 */
 		
 		public int insertDataInAssessor(Map<String , Object> recordToInsert)
 		{
-			return getJdbcTemplate().update(dataImportConfigSql.getInsertIntoAssessorSql(), recordToInsert);
-			
+			return getJdbcTemplate().update(dataImportConfigSql.getInsertIntoAssessorSql(), recordToInsert);	
 		}
 		
-		
+		/*
+		 * Updating data in Assessor Table
+		 */
 		public int updateDataInAssessor(Map<String , Object> recordToInsert)
 		{
 			return getJdbcTemplate().update(dataImportConfigSql.getUpdateIntoAssessorSql(), recordToInsert);

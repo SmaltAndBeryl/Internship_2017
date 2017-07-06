@@ -34,7 +34,7 @@ public class ValidateAssessorCSVService {
 		try{
 			ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
 			strategy.setType(ValidateAssessorCSVDto.class);
-			String [] assessorCSVColumns=new String[]{"assessorID","assessorName","district","state","agencyID"};
+			String [] assessorCSVColumns=new String[]{"assessorId","assessorName","district","state","agencyId"};
 		strategy.setColumnMapping(assessorCSVColumns);
 		//String assessorCSVFileName = "D:\\EclipseWorkspace\\Assessor.csv";
 		assessorCSVReader=new CSVReader(new FileReader(assessorCSVFileName),',','"',2);
@@ -50,9 +50,9 @@ public class ValidateAssessorCSVService {
 			int errorStatus=0;
 			String errorString="";
 			
-			String assessorID=assessorCSVData.getAssessorID();
+			String assessorId=assessorCSVData.getAssessorId();
 			String assessorName=assessorCSVData.getAssessorName();
-			String agencyID=assessorCSVData.getAgencyID();
+			String agencyId=assessorCSVData.getAgencyId();
 			String district=assessorCSVData.getDistrict();
 			String state=assessorCSVData.getState();
 			
@@ -61,20 +61,20 @@ public class ValidateAssessorCSVService {
 			 * Checking for Mandatory fields 
 			 */
 			
-			if(assessorID.equals("") || assessorName.equals("") || agencyID.equals(""))
+			if(assessorId.equals("") || assessorName.equals("") || agencyId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Mandatory fields cannot be Empty .";
 			}
 			
 			/*
-			 * Checking for error in assessorID column 
+			 * Checking for error in assessorId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(assessorID))
+			if(!ValidationUtils.numbersCheck(assessorId))
 			{
 				errorStatus=1;
-				errorString=errorString+ "Error in 'assessorID' column  ";
+				errorString=errorString+ "Error in 'assessorId' column  ";
 			}
 			
 			/*
@@ -107,13 +107,13 @@ public class ValidateAssessorCSVService {
 				errorString=errorString+ "Error in 'state' column  ";
 			}
 			/*
-			 * Checking for error in agencyID column 
+			 * Checking for error in agencyId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(agencyID))
+			if(!ValidationUtils.numbersCheck(agencyId))
 			{
 				errorStatus=1;
-				errorString=errorString+ "Error in 'agencyID' column  ";
+				errorString=errorString+ "Error in 'agencyId' column  ";
 			}
 			
 			if(errorStatus==1)
@@ -129,18 +129,18 @@ public class ValidateAssessorCSVService {
 				district=district.toLowerCase();
 				state=state.toLowerCase();
 				
-				record.put("assessorID",assessorID);
+				record.put("assessorId",assessorId);
 				record.put("assessorName",assessorName);
 				record.put("district",district);
 				record.put("state",state);
-				record.put("agencyID",agencyID);
+				record.put("agencyId",agencyId);
 				arrayOfRecords.add(record);
-				System.out.println(arrayOfRecords + "      " +record);
+				
 			}
 			
-			//System.out.println(arrayOfRecords);
+			
 		}
-		System.out.println(arrayOfRecords);
+		
 		if(errorExist==1)
 		{
 		assessorCSVReader.close();
@@ -148,10 +148,7 @@ public class ValidateAssessorCSVService {
 	    deleteUploadedFile.delete();
 		return errorListAllRecords;
 		}
-		
-		
-		System.out.println("                        "+arrayOfRecords);
-		
+				
 		}
 		catch(Exception e)
 		{
@@ -162,34 +159,82 @@ public class ValidateAssessorCSVService {
 			return "Error Occurred while Uploading the File";		
 		}
 			
-		//System.out.println("                  "+arrayOfRecords);
-		int statusOfForeignKey= dataImportAssessorDao.dataImportAssessorForeignKeyConstraintCheck(arrayOfRecords);
+		/*
+		 * checking for foreign key constraint on agencyId in Assessment Agency
+		 */
 		
+		try{				
+			for(Map<String, Object> getRecord:arrayOfRecords)
+				{
+				int status=dataImportAssessorDao.dataImportAssessorForeignKeyConstraintCheck(getRecord);					
+				if(status==0 || status==2)
+					{
+					throw new Exception();
+					}
+				} 	//end of for  
+			}	// end of try
+			catch(Exception e)
+			{	
+				assessorCSVReader.close();
+				File deleteUploadedFile = new File(assessorCSVFileName);
+				deleteUploadedFile.delete();
+				e.printStackTrace();
+				return "Error in agencyId column. Kindly recheck the details ."
+			+ "agencyId not found in Assessment Agency record .";
+			}
+		 
+		/*
+		 * Performing respective actions after checking foreign key constraints
+		 */
 		
-		if(statusOfForeignKey==0)
-		{
-			/*
-			 * foreign key doesn't exist in Assessment Agency record 
-			 * throw error  
-			 */		
-
-			return "Error in agencyID column. Kindly recheck the details ."
-			+ "agencyID not found in Assessment Agency record .";
-		}
-		else if(statusOfForeignKey==1)
-		{
 			// forward control to check primary key constraint 
-			return dataImportAssessorDao.dataImportAssessorPrimaryKeyConstraintCheck(arrayOfRecords);
+	
+			  try{				
+				for(Map<String, Object> getRecord:arrayOfRecords)
+				{
+					/*
+					 * checking primary key Constraint 
+					 */
+									
+				int status=dataImportAssessorDao.dataImportAssessorPrimaryKeyConstraintCheck(getRecord);
+				if(status==0)
+				{
+					/*
+					 * If primary key doesn't exists in DB then run insert query
+					 */
+					int insertDataStatus=dataImportAssessorDao.insertDataInAssessor(getRecord);
+					if(!(insertDataStatus>0))
+					{
+						throw new Exception();
+					}
+				}
+				else if(status==1)
+				{
+					/*
+					 * If primary key exists in DB then run update query
+					 */
+					int updateDataStatus=dataImportAssessorDao.updateDataInAssessor(getRecord);
+					if(!(updateDataStatus>0))
+					{
+						throw new Exception();
+					}
+				}
 				
-		}
-		else 
-		{
-			/*
-			 * Exception occurs while checking foreign key constraint 
-			 */
-			return "Error storing data in Database .Kindly try again .";
-		}
-		
-	//	return "Successfully Uploaded CSV File";
+				else
+					throw new Exception();
+				
+				}	// end of for loop 
+				
+				return "Data Successfully inserted in Database .";
+				}	// end of try
+				catch(Exception e)
+				{
+					assessorCSVReader.close();
+					File deleteUploadedFile = new File(assessorCSVFileName);
+					deleteUploadedFile.delete();
+					e.printStackTrace();
+					return "Error Inserting or Updating data in Assessor table .Kindly try again .";
+				}		
+
 	}
 }
