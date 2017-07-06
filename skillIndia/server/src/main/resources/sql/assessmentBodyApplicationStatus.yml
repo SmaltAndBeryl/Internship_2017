@@ -1,0 +1,4 @@
+assessmentBodyApplicationStatus:
+ selectSql: > 
+   select applicationID,dateOfSubmission,submittedBy,status,comment  
+    from assessmentbodyapplicationstatus
