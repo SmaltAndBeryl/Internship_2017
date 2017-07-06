@@ -91,5 +91,10 @@ public class FAQQuestionsCommonDao extends AbstractTransactionalDao{
 		Map<String, Object> parameters = new HashMap<>();
 		return getJdbcTemplate().queryForObject(fAQConfigSql.getSelectSqlCountTotalNonAssignedBatches(), parameters, Integer.class);
 	}
+	
+	public Integer getCountTotalTrainingCentresNotTakingAnyBatches() {
+		Map<String, Object> parameters = new HashMap<>();
+		return getJdbcTemplate().queryForObject(fAQConfigSql.getSelectSqlCountTotalTrainingCentresNotTakingAnyBatches(), parameters, Integer.class);
+	}
 }
 

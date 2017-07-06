@@ -100,4 +100,8 @@ public class FAQService {
 	public Integer getCountTotalNonAssignedBatches() {
 		return fAQQuestionCommonDao.getCountTotalNonAssignedBatches();
 	}
+	
+	public Integer getCountTotalTrainingCentresNotTakingAnyBatches() {
+		return fAQQuestionCommonDao.getCountTotalTrainingCentresNotTakingAnyBatches();
+	}
 }

@@ -91,4 +91,8 @@ public class FAQController {
 		return fAQService.getCountTotalNonAssignedBatches();
 	}
 	
+	@RequestMapping("/getFAQCountTotalTrainingCentresNotTakingAnyBatches")
+	public Integer getCountTotalTrainingCentresNotTakingAnyBatches(){
+		return fAQService.getCountTotalTrainingCentresNotTakingAnyBatches();
+	}
 }

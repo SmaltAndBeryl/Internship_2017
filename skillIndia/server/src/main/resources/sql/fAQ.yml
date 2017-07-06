@@ -41,4 +41,8 @@ faq:
   SELECT SUM(case when batchAssignmentDate is null then 1 else 0 end) count_nulls FROM batch;
  
  selectSqlBatchWiseCandidatesDetails: >
-  SELECT C.candidateName, C.mobileNumber, C.emailId, C.traineeAddress, T.trainingPartnerName, B.batchId, B.batchStartDate, B.batchEndDate from candidate C, batch B, trainingPartner T WHERE B.batchId = :batchId and B.batchId = C.batchId and B.trainingPartnerId = T.trainingPartnerId  
+  SELECT C.candidateName, C.mobileNumber, C.emailId, C.traineeAddress, T.trainingPartnerName, B.batchId, B.batchStartDate, B.batchEndDate from candidate C, batch B, trainingPartner T WHERE B.batchId = :batchId and B.batchId = C.batchId and B.trainingPartnerId = T.trainingPartnerId
+ 
+ selectSqlCountTotalTrainingCentresNotTakingAnyBatches: >
+  select (COUNT(distinct(T.trainingPartnerId))-count(distinct(B.trainingpartnerId))) 
+   from trainingpartner T,batch B   

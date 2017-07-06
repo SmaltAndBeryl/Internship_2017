@@ -34,6 +34,25 @@ public class FAQConfigSql {
 	private String selectSqlCountTotalNonAssignedBatches;
 	
 	private String selectSqlBatchWiseCandidatesDetails;
+	
+	private String selectSqlCountTotalTrainingCentresNotTakingAnyBatches;
+
+	
+	
+	/**
+	 * @return the selectSqlCountTotalTrainingCentresNotTakingAnyBatches
+	 */
+	public String getSelectSqlCountTotalTrainingCentresNotTakingAnyBatches() {
+		return selectSqlCountTotalTrainingCentresNotTakingAnyBatches;
+	}
+
+	/**
+	 * @param selectSqlCountTotalTrainingCentresNotTakingAnyBatches the selectSqlCountTotalTrainingCentresNotTakingAnyBatches to set
+	 */
+	public void setSelectSqlCountTotalTrainingCentresNotTakingAnyBatches(
+			String selectSqlCountTotalTrainingCentresNotTakingAnyBatches) {
+		this.selectSqlCountTotalTrainingCentresNotTakingAnyBatches = selectSqlCountTotalTrainingCentresNotTakingAnyBatches;
+	}
 
 	/**
 	 * @return the selectSqlCountTotalCandidatesTrainedAssessedCertified
