@@ -1,0 +1,4 @@
+trainingPartnerApplicationStatus:
+ selectSql: > 
+   select applicationID,dateOfSubmission,submittedBy,status,comment  
+    from trainingPartnerapplicationstatus
