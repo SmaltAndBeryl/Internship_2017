@@ -17,23 +17,16 @@ public class DataImportAssessorDao extends AbstractTransactionalDao {
 	private DataImportConfigSql dataImportConfigSql;
 	
 
-	public int dataImportAssessorForeignKeyConstraintCheck(ArrayList<Map<String,Object>> arrayOfRecords)
+	public int dataImportAssessorForeignKeyConstraintCheck(Map<String,Object> getRecord)
 	{
 		/*
 		 * checking for foreign key constraint on agencyID  column in Assessment Agency Table 
 		 */
 		try{				
-		for(Map<String, Object> x:arrayOfRecords)
-		{
+		
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("agencyID",x.get("agencyID"));
-		int status= getJdbcTemplate().queryForObject(dataImportConfigSql.getAgencyIDExistsForAssessor(), parameters,Integer.class );					
-		if(status==0)
-		{
-			return 0;
-		}
-		}	// end of for loop
-		return 1;
+		parameters.put("agencyID",getRecord.get("agencyID"));
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getAgencyIDExistsForAssessor(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
 		{
