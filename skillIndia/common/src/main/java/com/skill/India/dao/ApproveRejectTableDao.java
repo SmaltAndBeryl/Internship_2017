@@ -2,15 +2,12 @@ package com.skill.India.dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.ApproveRejectTableConfigSql;
 import com.skill.India.dto.ApproveRejectTableDto;
@@ -35,14 +32,15 @@ public class ApproveRejectTableDao extends AbstractTransactionalDao {
 		@Override
 		public ApproveRejectTableDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
-			Integer serial_no = resultSet.getInt("serial_no");
-		    String institution_name = resultSet.getString("institution_name");
-			String type = resultSet.getString("type");
+			Integer applicationId = resultSet.getInt("applicationId");
+		    String applicationState= resultSet.getString("applicationState");
+		    Boolean activeFlag = resultSet.getBoolean("activeFlag");
 			Date date = resultSet.getDate("date");
+            String userId = resultSet.getString("userId");
 
-			return new ApproveRejectTableDto(serial_no, institution_name, type, date );
+			return new ApproveRejectTableDto(applicationId, applicationState, activeFlag, date,userId);
 		}
 
-	}
-
+	
+ }
 }

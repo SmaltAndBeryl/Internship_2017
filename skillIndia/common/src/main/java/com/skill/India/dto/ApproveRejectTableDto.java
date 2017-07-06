@@ -10,40 +10,44 @@ public class ApproveRejectTableDto extends BaseDto{
 	
 	private static final long serialVersionUID = 1L;
 
-	private Integer serial_no;
+	private Integer applicationId;
 	
-	private final String institution_name ;
+	private final String applicationState ;
 
-	private final String type;
-
+	private final Boolean activeFlag;
+	
 	private final Date date;
 
+	private final String userId;
+
 	
 	
-	
-	public ApproveRejectTableDto (Integer serial_no, String institution_name, String type, Date date) {
+	public ApproveRejectTableDto (Integer applicationId, String applicationState, Boolean activeFlag, Date date,String userId) {
 		super();
-		this.serial_no = serial_no;
-		this.institution_name = institution_name;
-		this.type = type;
+		this.applicationId = applicationId;
+		this.applicationState = applicationState;
+		this.activeFlag = activeFlag;
 		this.date = date;
+		this.userId = userId;
+
 	}
 
-	public Integer getSerial_no() {
-		return serial_no;
+	public Integer getapplicationId() {
+		return applicationId;
 	}
 
-	public String getInstitution_name() {
-		return institution_name;
+	public String getapplicationState() {
+		return applicationState;
 	}
 
-	public String getType() {
-		return type;
-	}
 
-	public Date getDate() {
+	public Boolean getactiveFlag() {
+		return activeFlag;
+	}
+	public 	Date getdate() {
 		return date;
 	}
-
-
+	public String getuserId() {
+		return userId;
+}
 }
