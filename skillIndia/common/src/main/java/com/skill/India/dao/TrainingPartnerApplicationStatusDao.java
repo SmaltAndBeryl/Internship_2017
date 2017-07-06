@@ -1,0 +1,63 @@
+package com.skill.India.dao;
+
+import com.skill.India.common.AbstractDatasource;
+import com.skill.India.common.AbstractTransactionalDao;
+import com.skill.India.config.TrainingPartnerApplicationStatusConfigSql;
+import com.skill.India.dto.TrainingPartnerApplicationStatusDto;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collection;
+import java.util.HashMap;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Map;
+
+@Repository
+public class TrainingPartnerApplicationStatusDao extends AbstractTransactionalDao
+{
+
+private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.class);
+	
+	
+
+    @Autowired
+    public TrainingPartnerApplicationStatusConfigSql updateConfigSql;
+
+    private static final UpdateRowSelectRowMapper ROW_MAPPER = new UpdateRowSelectRowMapper();
+    
+    
+    public Collection<TrainingPartnerApplicationStatusDto> getUpateRowMapper() {
+    	LOGGER.info("Code reached");
+        Map<String, Object> parameters = new HashMap<>();
+        //return getJdbcTemplate().query
+      
+        return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 
+        		ROW_MAPPER);       
+    }
+
+  
+
+    private static class UpdateRowSelectRowMapper implements RowMapper<TrainingPartnerApplicationStatusDto> {
+
+        @Override
+        public TrainingPartnerApplicationStatusDto mapRow(ResultSet resultSet, int rowNum)
+                throws SQLException {
+            String applicationID = resultSet.getString("applicationID");
+            String dateOfSubmission = resultSet.getString("dateOfSubmission");
+            String submittedby = resultSet.getString("submittedby");
+            String status = resultSet.getString("status");
+            String comment = resultSet.getString("comment");
+
+              
+        	return new TrainingPartnerApplicationStatusDto(applicationID, dateOfSubmission, submittedby, status, comment);
+        }
+
+    }
+}
