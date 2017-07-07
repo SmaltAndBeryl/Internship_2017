@@ -1,6 +1,5 @@
 
-       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <script>
+
         
     //Create a module and create a controller for angular
         var myangularapp = angular.module("myangularapp", []);
@@ -31,16 +30,7 @@ myangularapp.controller("myangularController", function($scope,$http) {
     }
     
 });
-    
-    
-    
-    </script>
-    
-    
-    
-  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script>
+
     
     $(function() {
 
@@ -83,7 +73,7 @@ myangularapp.controller("myangularController", function($scope,$http) {
                 var status = data[0].status;
                 
                 if(status == 1){
-                    //this is the sucess code
+                    //this is the success code
                     window.location.href = 'http://joelwebsites.com';
                 }
                 
@@ -112,7 +102,7 @@ myangularapp.controller("myangularController", function($scope,$http) {
     });
         }
         
-    </script>
+   
 
     
    
