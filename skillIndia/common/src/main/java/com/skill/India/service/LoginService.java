@@ -2,6 +2,7 @@ package com.skill.India.service;
 
 import java.util.Collection;
 
+import org.codehaus.groovy.classgen.ReturnAdder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,55 +18,29 @@ public class LoginService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginService.class);
 	@Autowired
 	private LoginDao loginDao;
+	private int userExistenceValidation;
+	
+	private LoginDto loginDto;
 
 
-	public int checkUser(LoginReceiveDataDto loginReceiveDataDto)
+	public LoginDto checkUser(LoginReceiveDataDto loginReceiveDataDto)
 	{
 		LOGGER.info(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
 		
-		Collection<LoginDto> loginDto = loginDao.getLoginRowMapper(loginReceiveDataDto.userId, loginReceiveDataDto.password);
+		userExistenceValidation=loginDao.userExistence(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
 		
-	//collection object
-		for(LoginDto a: loginDto)
-		{
-			if(a.getApplicationId()==0||a.getUserRole()==""||a.getUserStatus()=="")
-			{
-				return 0;
-			}
-			else if(a.getUserStatus()=="Draft")
-			{
-				if(a.getUserRole()=="TP")
-				{
-					return 1;
-				}
-				else
-				{
-					return 2;
-				}
-				
-			}
-			else
-			{
-				if(a.getUserRole()=="TP")
-				{
-					return 3;
-					//HomePage Training Partner
-				}
-				else if(a.getUserRole()=="AB") 
-				{
-					return 4;
-					//HomePage Assessment Body
-				}
-				else 
-				{
-					return 5;
-					//DashBoard SCGJ;
-				}
-				
-			}
+		if(userExistenceValidation==0){
+		
+		return loginDao.getLoginRowMapper(loginReceiveDataDto.userId, loginReceiveDataDto.password);
 		}
-		return 0;
+	
+		else{
+			loginDto= new LoginDto(0, null, null);
+			
+		}
+		return loginDto;
 	}
+	
 }	
 	
 	

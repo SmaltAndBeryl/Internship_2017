@@ -29,14 +29,22 @@ public class LoginDao extends AbstractTransactionalDao {
 	
 	private static final LoginRowSelectRowMapper ROW_MAPPER = new LoginRowSelectRowMapper();
 	
-	public Collection<LoginDto> getLoginRowMapper(String userName, String passWord) {
+	
+	public Integer userExistence(String userId, String password){
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("userId", userId);
+		parameters.put("passWord", password);
+		return getJdbcTemplate().queryForObject(loginconfig.getCheckUserSql(), parameters, Integer.class);
+		
+	}
+	
+	public LoginDto getLoginRowMapper(String userName, String password) {
 		LOGGER.info("Code Reached");
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("userName", userName);
-		parameters.put("passWord", passWord);
+		parameters.put("password", password);
 	
-		return getJdbcTemplate().query(loginconfig.getSelectSql(), parameters,
-				ROW_MAPPER); //query for multiple rows from database
+		return getJdbcTemplate().queryForObject(loginconfig.getSelectSql(), parameters, ROW_MAPPER); //query for multiple rows from database
 	}
 	
 	
@@ -45,21 +53,12 @@ public class LoginDao extends AbstractTransactionalDao {
 		@Override
 		public LoginDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
-			
-			try 
-			{
 					int applicationId = resultSet.getInt("applicationId");
-					String userRole = resultSet.getString("user_role");
-					String userStatus = resultSet.getString("user_status");
+					String userRole = resultSet.getString("userRole");
+					String userStatus = resultSet.getString("userStatus");
 					return new LoginDto(applicationId, userRole, userStatus);
-			}
-			catch(Exception e)
-			{
-				int applicationId=0000; 
-				String userRole="";
-				String userStatus=""; 
-				return new LoginDto(applicationId, userRole, userStatus);
-			}
+			
+			
 			
 		}
 	

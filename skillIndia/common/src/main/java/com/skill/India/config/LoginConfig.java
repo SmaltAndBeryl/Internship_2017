@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 public class LoginConfig {
 
 	private String selectSql;
+	private String checkUserSql;
 
 	public String getSelectSql() {
 		return selectSql;
@@ -16,6 +17,20 @@ public class LoginConfig {
 
 	public void setSelectSql(String selectSql) {
 		this.selectSql = selectSql;
+	}
+
+	/**
+	 * @return the checkUserSql
+	 */
+	public String getCheckUserSql() {
+		return checkUserSql;
+	}
+
+	/**
+	 * @param checkUserSql the checkUserSql to set
+	 */
+	public void setCheckUserSql(String checkUserSql) {
+		this.checkUserSql = checkUserSql;
 	}
 	
 
