@@ -6,13 +6,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.dto.LoginDto;
 import com.skill.India.dto.LoginReceiveDataDto;
+import com.skill.India.dto.ProfileCreationDataPopulateDto;
 import com.skill.India.dto.SignUpInsertedUserDto;
 import com.skill.India.dto.SignUpReceiveDataDto;
 import com.skill.India.service.LoginService;
+import com.skill.India.service.ProfileCreationDataPopulateService;
 import com.skill.India.service.SignUpService;
 
 
@@ -25,6 +28,9 @@ public class LoginController {
     @Autowired
 	private SignUpService signUpService;
     
+    @Autowired
+    private ProfileCreationDataPopulateService profileCreationDataPopulateService;
+    
     
 	@RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
@@ -34,13 +40,25 @@ public class LoginController {
 		
 	}	
 	
-	@PostMapping(value="/signup", consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/signup", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto){
 			
 	return signUpService.signUp(signUpReceiveDataDto);
 	
 
 	}
+	
+	@RequestMapping(value="/profileCreationDataPopulate", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ProfileCreationDataPopulateDto profileCreationDataPopulate(@RequestParam ("userId") String userId){	
+	
+
+		return profileCreationDataPopulateService.getDataToPopulate(userId);
+		
+	}
+	
+	
+	
+	
 	 
 
 	
