@@ -1,11 +1,11 @@
 package com.skill.India.dto;
 
 public class ValidateAssessorCSVDto {
-	private String assessorID;
+	private String assessorId;
 	private String assessorName;
 	private String district;
 	private String state;
-	private String agencyID;
+	private String agencyId;
 	/**
 	 * @return the district
 	 */
@@ -33,16 +33,16 @@ public class ValidateAssessorCSVDto {
 	
 
 	/**
-	 * @return the assessorID
+	 * @return the assessorId
 	 */
-	public String getAssessorID() {
-		return assessorID;
+	public String getAssessorId() {
+		return assessorId;
 	}
 	/**
-	 * @param assessorID the assessorID to set
+	 * @param assessorId the assessorId to set
 	 */
-	public void setAssessorID(String assessorID) {
-		this.assessorID = assessorID;
+	public void setAssessorId(String assessorId) {
+		this.assessorId = assessorId;
 	}
 	/**
 	 * @return the assessorName
@@ -57,16 +57,16 @@ public class ValidateAssessorCSVDto {
 		this.assessorName = assessorName;
 	}
 	/**
-	 * @return the agencyID
+	 * @return the agencyId
 	 */
-	public String getAgencyID() {
-		return agencyID;
+	public String getAgencyId() {
+		return agencyId;
 	}
 	/**
-	 * @param agencyID the agencyID to set
+	 * @param agencyId the agencyId to set
 	 */
-	public void setAgencyID(String agencyID) {
-		this.agencyID = agencyID;
+	public void setAgencyId(String agencyId) {
+		this.agencyId = agencyId;
 	}
 
 
