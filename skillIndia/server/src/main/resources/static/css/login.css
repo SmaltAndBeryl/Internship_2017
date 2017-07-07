@@ -117,3 +117,14 @@ body {
   right: 5px;
   top: 5px;
 }
+
+.toggler-ico {
+  border: none;
+  background: none;
+  padding: 0;
+  width: 15px;
+    
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
