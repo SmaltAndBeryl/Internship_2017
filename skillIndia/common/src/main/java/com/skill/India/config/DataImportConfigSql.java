@@ -7,14 +7,76 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix="DataImport",locations="classpath:sql/DataImport.yml")
 public class DataImportConfigSql {
+	
 		private String selectSql;
 		private String insertSql;
-		private String agencyIDExistsForAssessor;
+		private String agencyIdExistsForAssessor;
 		private String insertIntoAssessorSql;
-		private String assessorIDExistsForAssessor;
+		private String assessorIdExistsForAssessor;
 		private String updateIntoAssessorSql;
+		private String batchIdemployerIdExistsForCandidate;
+		private String candidateDeatilsIdExistsForCandidate;
+		private String insertIntoCandidateSql;
+		private String updateIntoCandidateSql;
 		
-		
+		/**
+		 * @return the candidateDeatilsIdExistsForCandidate
+		 */
+		public String getCandidateDeatilsIdExistsForCandidate() {
+			return candidateDeatilsIdExistsForCandidate;
+		}
+
+		/**
+		 * @param candidateDeatilsIdExistsForCandidate the candidateDeatilsIdExistsForCandidate to set
+		 */
+		public void setCandidateDeatilsIdExistsForCandidate(
+				String candidateDeatilsIdExistsForCandidate) {
+			this.candidateDeatilsIdExistsForCandidate = candidateDeatilsIdExistsForCandidate;
+		}
+
+		/**
+		 * @return the insertIntoCandidateSql
+		 */
+		public String getInsertIntoCandidateSql() {
+			return insertIntoCandidateSql;
+		}
+
+		/**
+		 * @param insertIntoCandidateSql the insertIntoCandidateSql to set
+		 */
+		public void setInsertIntoCandidateSql(String insertIntoCandidateSql) {
+			this.insertIntoCandidateSql = insertIntoCandidateSql;
+		}
+
+		/**
+		 * @return the updateIntoCandidateSql
+		 */
+		public String getUpdateIntoCandidateSql() {
+			return updateIntoCandidateSql;
+		}
+
+		/**
+		 * @param updateIntoCandidateSql the updateIntoCandidateSql to set
+		 */
+		public void setUpdateIntoCandidateSql(String updateIntoCandidateSql) {
+			this.updateIntoCandidateSql = updateIntoCandidateSql;
+		}
+
+		/**
+		 * @return the batchIdemployerIdExistsForCandidate
+		 */
+		public String getBatchIdemployerIdExistsForCandidate() {
+			return batchIdemployerIdExistsForCandidate;
+		}
+
+		/**
+		 * @param batchIdemployerIdExistsForCandidate the batchIdemployerIdExistsForCandidate to set
+		 */
+		public void setBatchIdemployerIdExistsForCandidate(
+				String batchIdemployerIdExistsForCandidate) {
+			this.batchIdemployerIdExistsForCandidate = batchIdemployerIdExistsForCandidate;
+		}
+
 		/**
 		 * @return the updateIntoAssessorSql
 		 */
@@ -30,17 +92,17 @@ public class DataImportConfigSql {
 		}
 
 		/**
-		 * @return the assessorIDExistsForAssessor
+		 * @return the assessorIdExistsForAssessor
 		 */
-		public String getAssessorIDExistsForAssessor() {
-			return assessorIDExistsForAssessor;
+		public String getAssessorIdExistsForAssessor() {
+			return assessorIdExistsForAssessor;
 		}
 
 		/**
-		 * @param assessorIDExistsForAssessor the assessorIDExistsForAssessor to set
+		 * @param assessorIdExistsForAssessor the assessorIdExistsForAssessor to set
 		 */
-		public void setAssessorIDExistsForAssessor(String assessorIDExistsForAssessor) {
-			this.assessorIDExistsForAssessor = assessorIDExistsForAssessor;
+		public void setAssessorIdExistsForAssessor(String assessorIdExistsForAssessor) {
+			this.assessorIdExistsForAssessor = assessorIdExistsForAssessor;
 		}
 
 		/**
@@ -58,17 +120,17 @@ public class DataImportConfigSql {
 		}
 
 		/**
-		 * @return the selectAgencyIDFromAssessor
+		 * @return the selectAgencyIdFromAssessor
 		 */
-		public String getAgencyIDExistsForAssessor() {
-			return agencyIDExistsForAssessor;
+		public String getAgencyIdExistsForAssessor() {
+			return agencyIdExistsForAssessor;
 		}
 
 		/**
-		 * @param selectAgencyIDFromAssessor the selectAgencyIDFromAssessor to set
+		 * @param selectAgencyIdFromAssessor the selectAgencyIdFromAssessor to set
 		 */
-		public void setAgencyIDExistsForAssessor(String agencyIDExistsForAssessor) {
-			this.agencyIDExistsForAssessor = agencyIDExistsForAssessor;
+		public void setAgencyIdExistsForAssessor(String agencyIdExistsForAssessor) {
+			this.agencyIdExistsForAssessor = agencyIdExistsForAssessor;
 		}
 
 		public String getSelectSql()
