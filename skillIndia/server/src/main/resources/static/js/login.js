@@ -31,6 +31,26 @@ myangularapp.controller("myangularController", function($scope,$http) {
     
 });
 
+
+console.log("File reached");
+
+
+var open = 'glyphicon-eye-open';
+var close = 'glyphicon-eye-close';
+var ele = document.getElementById('password');
+
+document.getElementById('toggleBtn').onclick = function() {
+	if( this.classList.contains(open) ) {
+  	ele.type="text";
+    this.classList.remove(open);
+    this.className += ' '+close;
+  } else {
+  	ele.type="password";
+    this.classList.remove(close);
+    this.className += ' '+open;
+  }
+}
+
     
     $(function() {
 
@@ -103,6 +123,8 @@ myangularapp.controller("myangularController", function($scope,$http) {
         }
         
    
+        
+       
 
     
    
