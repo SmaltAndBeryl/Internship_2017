@@ -11,13 +11,13 @@ faq:
   SELECT COUNT(batchId) FROM batch B, centre C WHERE B.centreId = C.centreId and C.state = :state;
    
  selectSqlCountTrainingCentresConductingTraining: >
-  SELECT COUNT(batchId) FROM batch B, trainingPartner T WHERE B.trainingPartnerId = T.trainingPartnerId and B.batchStartDate <= CurDate() and B.batchEndDate > CurDate()
+  select count(distinct(centreId)) from batch where batchEndDate>now() and batchStartDate<=now()
   
  selectSqlCountOfCandidatesAssessmentUpcomingForAMonth: >
-  SELECT SUM(totalCandidatesInbatch) FROM batch where Year(assessmentDate) >= Year(CurDate()) and Month(assessmentDate) = :month
+  SELECT SUM(totalCandidatesInbatch) FROM batch where Year(assessmentDate) >= Year(CurDate()) and assessmentDate>=Curdate() and Month(assessmentDate) = :month
   
  selectSqlNameOfAgencyToWhichABatchIsAssigned: >
-  SELECT agencyName FROM agency A, batch B WHERE A.agencyId = B.agencyId and batchId = :batchId and B.assessmentDate >= CurDate()
+  SELECT agencyName FROM agency A, batch B WHERE A.agencyId = B.agencyId and batchId = :batchId
   
  selectSqlCountTotalOfBatchesAssignedToAAssessmentAgency: >
   SELECT COUNT(batchId) FROM batch B, agency A WHERE B.agencyId = A.agencyId and A.agencyName = :agencyName
@@ -38,7 +38,7 @@ faq:
   SELECT COUNT(batchId) FROM batch WHERE resultApproved = 'Pending';
   
  selectSqlCountTotalNonAssignedBatches: >
-  SELECT SUM(case when batchAssignmentDate is null then 1 else 0 end) count_nulls FROM batch;
+  SELECT SUM(case when batchAssignmentDate is null then 1 else 0 end) AS count_nulls FROM batch;
  
  selectSqlBatchWiseCandidatesDetails: >
   SELECT C.candidateName, C.mobileNumber, C.emailId, C.traineeAddress, T.trainingPartnerName, B.batchId, B.batchStartDate, B.batchEndDate from candidate C, batch B, trainingPartner T WHERE B.batchId = :batchId and B.batchId = C.batchId and B.trainingPartnerId = T.trainingPartnerId

@@ -19,55 +19,55 @@ class DashboardController {
 	@Autowired
 	private DashboardService dashboardService;
 	
-	@RequestMapping("/getTotalCandidatesEnrolled")
+	@RequestMapping("/getDashboardTotalCandidatesEnrolled")
 	public Integer getTotalCandidatesEnrolled() {
 		
 		return dashboardService.getTotalCandidatesEnrolled();
 	}
 	
-	@RequestMapping("/getTotalCandidatesAccessed")
+	@RequestMapping("/getDashboardTotalCandidatesAccessed")
 	public Integer getTotalCandidatesAccessed() {
 		
 		return dashboardService.getTotalCandidatesAccessed();
 	}
 	
-	@RequestMapping("/getTotalCandidatesCertified")
+	@RequestMapping("/getDashboardTotalCandidatesCertified")
 	public Integer getTotalCandidatesCertified() {
 		
 		return dashboardService.getTotalCandidatesCertified();
 	}
 	
-	@RequestMapping("/getTotalTrainingPartners")
+	@RequestMapping("/getDashboardTotalTrainingPartners")
 	public Integer getTotalTrainingPartners() {
 		
 		return dashboardService.getTotalTrainingPartners();
 	}
 	
-	@RequestMapping("/getTotalTrainingCentersInIndia")
+	@RequestMapping("/getDashboardTotalTrainingCentersInIndia")
 	public Integer getTotalTrainingCentersInIndia() {
 		
 		return dashboardService.getTotalTrainingCentersInIndia();
 	}
 	
-	@RequestMapping("/getTotalBatchesAccordingToJobRole")
+	@RequestMapping("/getDashboardTotalBatchesAccordingToJobRole")
 	public Collection<DashboardTotalBatchesAccordingToJobRoleDto> getTotalBatchesAccordingToJobRole() {
 		return dashboardService.getTotalBatchesAccordingToJobRole();
 	}
 		
-	@RequestMapping("/getTotalCandidatesTrainedWithBatchTypeInLastThreeYears")
+	@RequestMapping("/getDashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYears")
 	public Collection<DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto> getTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
 		return dashboardService.getTotalCandidatesTrainedWithBatchTypeInLastThreeYears();
 	}
 
 
-	@RequestMapping("/getTotalCandidatesCertifiedWithModeInLastThreeYears")
+	@RequestMapping("/getDashboardTotalCandidatesCertifiedWithModeInLastThreeYears")
 	public Collection<DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto> getTotalCandidatesCertifiedWithModeInLastThreeYears() {
 		return dashboardService.getTotalCandidatesCertifiedWithModeInLastThreeYears();
 		
 	}
 	
 	
-	@RequestMapping("/getTopStatesWithMaxTrainingCenters")
+	@RequestMapping("/getDashboardTopStatesWithMaxTrainingCenters")
 	public Collection<DashboardTopStatesWithMaxTrainingCentersDto> getTopStatesWithMaxTrainingCenters() {
 		return dashboardService.getTopStatesWithMaxTrainingCenters();
 	}
