@@ -10,4 +10,9 @@ public class ColumnChartController {
 	  public  String user() {
 	    return "columnchart";   //returns template for columnchart
 	  }
+	
+	@RequestMapping("/dashboard")
+	  public String dashboard() {
+		return "Dashboard";
+	}
 }
