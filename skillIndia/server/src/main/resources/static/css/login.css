@@ -101,9 +101,19 @@ body {
 	border-color: #1CA347;
 }
 
-#password + .glyphicon {
-    cursor: pointer;
-    pointer-events: all;
+.wrapper {
+  position: relative;
+  width: 174px;
+  margin-bottom: 20px;
 }
 
-
+.toggler-ico {
+  border: none;
+  background: none;
+  padding: 0;
+  width: 15px;
+    
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
