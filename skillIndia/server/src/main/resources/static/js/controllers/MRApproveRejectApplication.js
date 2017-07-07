@@ -33,7 +33,7 @@ refresh();
     };
   
   function refresh() {
-    $http.get('poc/data.json')
+    $http.get('')
     .success(function (data) {
       $scope.gridOptions.data = data;
     });
