@@ -15,7 +15,7 @@ app.controller('MainCtrl', ['$scope', '$http', '$location', function ($scope, $h
 	},
     { name: 'status' ,	displayName:'Status',	cellClass:'Prostokt-2-kopia-2-copy-13',	headerCellClass:'Status',	width:185,
 	},
-    { name:'Action',	cellClass: 'Prostokt-2-kopia-2-copy-14',	width:76,	headerCellClass: 'Action-copy',	cellTemplate:'<span class="edit"></span><img src="icon/indexpageIcons/edit.png" ng-click=grid.appScope.myfunction()>',paddingTop:10,
+    { name:	'Action',	cellClass: 'Prostokt-2-kopia-2-copy-14',	width:76,	headerCellClass: 'Action-copy', ,cellTemplate:'<span class="edit"></span><img src="icon/indexpageIcons/edit1.png" ng-click=grid.appScope.myfunction()>',paddingTop:10,
     },
     { name: 'comment' ,	displayName:'Comment',	cellClass:'Prostokt-2-kopia-2-copy-15',	headerCellClass:'Comment',	width:201,
 	}
