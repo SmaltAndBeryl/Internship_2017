@@ -51,6 +51,22 @@ document.getElementById('toggleBtn').onclick = function() {
   }
 }
 
+var open = 'glyphicon-eye-open';
+var close = 'glyphicon-eye-close';
+var el = document.getElementById('mypassword');
+
+document.getElementById('toggleBt').onclick = function() {
+	if( this.classList.contains(open) ) {
+  	el.type="text";
+    this.classList.remove(open);
+    this.className += ' '+close;
+  } else {
+  	el.type="password";
+    this.classList.remove(close);
+    this.className += ' '+open;
+  }
+}
+
     
     $(function() {
 
