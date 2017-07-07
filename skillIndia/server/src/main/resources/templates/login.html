@@ -15,7 +15,9 @@
     <!-- login controller -->
     <script src="js/controllers/loginctrl.js"></script>
     <!-- JS for validations -->
-    <script src="js/loginPassword.js" type="text/javascript"></script>
+   
+    <script src="js/login.js" type="text/javascript"></script>
+    <script src="js/loginPassword.js" type="></script>
     
     <!-- show password icon -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hideshowpassword/2.0.8/hideShowPassword.min.js"></script>
@@ -23,9 +25,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <!-- CSS file for login screen -->
     <link rel="stylesheet" href="css/login.css">
+    <script>
+        
+        function mouseoverPass(obj) {
+  var obj = document.getElementById('password');
+  obj.type = "text";
+}
+function mouseoutPass(obj) {
+  var obj = document.getElementById('password');
+  obj.type = "password";
+}
+        </script>
     </head>
    
-   <body background="images/BackgroundImage.jpg" ng-controller="loginCtrl"> 
+   <body background="images/LoginBackgroundImage.jpg" ng-controller="loginCtrl"> 
    
        <div class="container">
     	<div class="row">
@@ -64,7 +77,7 @@
                              </div>
                         <div class="form-group input-group">
                        
-							<input type="password" data-minlength="6" name="password" id="password" tabindex="2" data-error="password should be of minimum 6 character" class="form-control"  placeholder="Password" ng-model="user.password"/>
+							<input type="password" data-minlength="6" name="password" id="password" tabindex="2" data-error="Minimum 6 Character" class="form-control"  placeholder="Password" ng-model="user.password"/>
      							 <div class="help-block with-errors"></div>
                                         <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">   
                                      <i class="glyphicon glyphicon-eye-open form-control-feedback"></i> 
@@ -86,7 +99,7 @@
                                 
                                 
                                 
-<form id="register-form" action="" method="post" role="form" style="display: none;">
+<form id="register-form" action="" method="post" role="form" style="display: none;"data-toggle="validator">
 								<div class="form-group col-xs-6">
         <input type="text" name="organizationname" id="organizationname" tabindex="1" class="form-control" placeholder="Organization Name" value="">
     </div>
@@ -94,19 +107,25 @@
        <input type="text" name="spocname" id="spocname" tabindex="2" class="form-control" placeholder="SPOC Name">
     </div>
     <div class="form-group col-xs-6">
-       <input type="email" name="username" id="username" tabindex="1" class="form-control" placeholder="Email Id" value="">
+       <input type="email" name="userId" id="userId" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value=" " ng-model="user.userId"/>
+                                        <div class="help-block with-errors"> </div>
+                                        <span class=" input-group-addon" style="background-color:white;
+                                        border:none;
+                                        border-bottom:0px solid #ccc; "> 
+                         
+                             </span>
     </div>
-    <div class="form-group col-xs-6 row input-group" id="pass">
-<!--       <input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"><i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i>-->
-        
-    <span><input type="password" name="password" id="myPassword" tabindex="2" class="form-control" placeholder="Password"></span><span class="input-group-addon">   <i id="bt" class="fa fa-eye" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></i> </span>                                 
-									
-    </div>
+    <div class="form-group input-group">
+                       
+							<input type="password" data-minlength="6" name="password" id="password" tabindex="2" data-error="Minimum 6 Character" class="form-control"  placeholder="Password" ng-model="user.password"/>
+     							 <div class="help-block with-errors"></div>
+                                        <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">   
+                                     <i class="glyphicon glyphicon-eye-open form-control-feedback"></i> 
+                                        </span>   
+                                   
+									</div>						
 
-    
-    
-    
-									<div class="form-group">
+<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
 												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control button" value="SIGNUP">
@@ -120,127 +139,6 @@
            </div>
        </div>
        
-                    
-						
-					
-    
-
-       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-    <script>
-        
-    //Create a module and create a controller for angular
-        var myangularapp = angular.module("myangularapp", []);
-myangularapp.controller("myangularController", function($scope,$http) {
-       
-        
-    $scope.login = function (){
-     alert('test3');
-    
-        $scope.username;
-        $scope.password1;
-        
-        $http.post('http://localhost/loginangulartutorial2/webservices/login.php', { username: $scope.username,
-       password: $scope.password1,
-             }).then(function(response) {
-        alert('hi i am working');
-        //alert(JSON.stringify(response));
-        alert(response.data[0].status);
-            if(response.data[0].status == 1){
-                window.location.href = 'http://joelwebsites.com';
-            }
-            
-    }, function errorCallback(response) {
-            alert('error');
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-  });
-    }
-    
-});
-    
-    
-    
-    </script>
-    
-    
-    
-  <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script>
-    
-    $(function() {
-
-    $('#login-form-link').click(function(e) {
-		$("#login-form").delay(100).fadeIn(100);
- 		$("#register-form").fadeOut(100);
-		$('#register-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-		$('#password').password('toggle');
-
-	});
-	$('#register-form-link').click(function(e) {
-		$("#register-form").delay(100).fadeIn(100);
- 		$("#login-form").fadeOut(100);
-		$('#login-form-link').removeClass('active');
-		$(this).addClass('active');
-		e.preventDefault();
-	});
-
-});
-
-        function login(){
-        //login code here
-    var username = $('#username').val();
-    var password = $('#password1').val();
-            
-    alert(username+'hi i am the username login');
-        alert(password+'hi i am the password login');
-            
-        alert('login function is called!');
-       var url = 'http://localhost/logintutorial/webservices/login.php?username='+username+'&password='+password;
-            
-            alert(url);
-            console.log(url);
-            $.post(url,
-    function(data, status){
-                
-                alert(JSON.stringify(data));
-                var status = data[0].status;
-                
-                if(status == 1){
-                    //this is the sucess code
-                    window.location.href = 'http://joelwebsites.com';
-                }
-                
-                if(status != 1){
-                    alert('login failed');
-                }
-                alert(status+'i am the status test');
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-        
-        }
-        function register(){
-    var email = $('#email').val();
-    var username = $('#username').val();
-    var confirmpassword =$('#confirm-password').val();
-      
-            
-            $.post("http://localhost/logintutorial/webservices/register.php",
-    {
-        password: confirmpassword,
-        email: email,
-        username: username
-    },
-    function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-        }
-        
-    </script>
-
-
-    </body>
+   </body>
 
 </html>
