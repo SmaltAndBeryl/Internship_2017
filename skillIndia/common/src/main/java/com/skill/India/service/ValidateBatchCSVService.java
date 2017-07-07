@@ -1,9 +1,20 @@
 package com.skill.India.service;
-
+/*
+ * Author 		: Ruchit Jain
+ * Description  : For Batch .CSV Uploaded by user, This file :
+ * 				 1) Checks for mandatory fields of Batch sheet
+ * 				 2) Validates the data inserted in it by the user
+ * 				 3) Checks for foreign key,primary key constraint	 	
+ */
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import au.com.bytecode.opencsv.CSVReader;
@@ -11,19 +22,26 @@ import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
 
 import com.skill.India.common.ValidationUtils;
+import com.skill.India.dao.DataImportBatchDao;
 import com.skill.India.dto.ValidateBatchCSVDto;
 
 @Service
 public class ValidateBatchCSVService {
 
-	public static String validateBatchCSV(String BatchCSVFileName){
+	@Autowired
+	private DataImportBatchDao dataImportBatchDao;
+	
+	public String validateBatchCSV(String BatchCSVFileName) throws IOException{
 		CSVReader BatchCSVReader=null;
-		
+		/*
+		 * Create Array List to store the data of csv read (in Hashmap's) 
+		 */
+		ArrayList<Map<String,Object>> arrayOfRecords=new ArrayList<Map<String,Object>>();
 		try{
-			ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
-			strategy.setType(ValidateBatchCSVDto.class);
-			String [] BatchCSVColumns=new String[]{"batchID","batchName","batchType",
-					"trainingPartnerID","centreID","trainerID","totalCandidatesInBatch","batchMode","batchStartDate","batchEndDate","jobRole","jobRoleCode","maximumMarksTheory","maximumMarksPractical","level","resultApproved","resultApprovedOnDate","totalPass","totalFail","totalNotAppeared","totalCertified","certificateDownloaded","batchAssignmentDate","assessmentDate","agencyID","assessorID"};
+		ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
+		strategy.setType(ValidateBatchCSVDto.class);
+		String [] BatchCSVColumns=new String[]{"batchId","batchName","batchType",
+					"trainingPartnerId","centreId","trainerId","totalCandidatesInBatch","batchMode","batchStartDate","batchEndDate","jobRole","jobRoleCode","maximumMarksTheory","maximumMarksPractical","level","resultApproved","resultApprovedOnDate","totalPass","totalFail","totalNotAppeared","totalCertified","certificateDownloaded","batchAssignmentDate","assessmentDate","agencyId","assessorId"};
 		strategy.setColumnMapping(BatchCSVColumns);
 		//String BatchCSVFileName = "D:\\EclipseWorkspace\\Batch.csv";
 		BatchCSVReader=new CSVReader(new FileReader(BatchCSVFileName),',','"',2);
@@ -34,16 +52,20 @@ public class ValidateBatchCSVService {
 		String errorListAllRecords="";
 		for(ValidateBatchCSVDto BatchCSVData :BatchCSVDataList)
 		{
+			/*
+			 *  Map to store data of each row of csv read and then added to arraylist
+			 */
+			Map<String ,Object> record=new HashMap<String, Object>();
 			recordCount++;
 			int errorStatus=0;
 			String errorString="";
 			
-			String batchID=BatchCSVData.getBatchID();
+			String batchId=BatchCSVData.getBatchId();
 			String batchName=BatchCSVData.getBatchName();
 			String batchType=BatchCSVData.getBatchType();
-			String trainingPartnerID=BatchCSVData.getTrainingPartnerID();
-			String centreID=BatchCSVData.getCentreID();
-			String trainerID=BatchCSVData.getTrainerID();
+			String trainingPartnerId=BatchCSVData.getTrainingPartnerId();
+			String centreId=BatchCSVData.getCentreId();
+			String trainerId=BatchCSVData.getTrainerId();
 			String totalCandidatesInBatch=BatchCSVData.getTotalCandidatesInBatch();
 			String batchMode=BatchCSVData.getBatchMode();
 			String batchStartDate=BatchCSVData.getBatchStartDate();
@@ -62,11 +84,11 @@ public class ValidateBatchCSVService {
 			String certificateDownloaded=BatchCSVData.getCertificateDownloaded();
 			String batchAssignmentDate=BatchCSVData.getBatchAssignmentDate();
 			String assessmentDate=BatchCSVData.getAssessmentDate();
-			String agencyID=BatchCSVData.getAgencyID();
-			String assessorID=BatchCSVData.getAssessorID();
+			String agencyId=BatchCSVData.getAgencyId();
+			String assessorId=BatchCSVData.getAssessorId();
 			
-			if(batchID.equals("") || batchName.equals("") || batchType.equals("") || 
-			trainingPartnerID.equals("") || centreID.equals("") || trainerID.equals("")
+			if(batchId.equals("") || batchName.equals("") || batchType.equals("") || 
+			trainingPartnerId.equals("") || centreId.equals("") || trainerId.equals("")
 			|| totalCandidatesInBatch.equals("") || batchMode.equals("") || 
 			batchStartDate.equals("") || jobRole.equals("") || jobRoleCode.equals("") || 
 			level.equals("") || certificateDownloaded.equals("")
@@ -77,13 +99,13 @@ public class ValidateBatchCSVService {
 			}
 			
 			/*
-			 * Checking for error in batchID column
+			 * Checking for error in batchId column
 			 */
 			
-			if(!ValidationUtils.numbersCheck(batchID))
+			if(!ValidationUtils.numbersCheck(batchId))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'batchID' column ";
+				errorString=errorString +"Error in 'batchId' column ";
 			}
 			
 			
@@ -98,34 +120,34 @@ public class ValidateBatchCSVService {
 			}
 			
 			/*
-			 * Checking for error in trainingPartnerID column
+			 * Checking for error in trainingPartnerId column
 			 */
 			
 			
-			if(!ValidationUtils.numbersCheck(trainingPartnerID))
+			if(!ValidationUtils.numbersCheck(trainingPartnerId))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'trainingPartnerID' column ";
+				errorString=errorString +"Error in 'trainingPartnerId' column ";
 			}
 			
 			/*
-			 * Checking for error in centreID column
+			 * Checking for error in centreId column
 			 */
 			
-			if(!ValidationUtils.numbersCheck(centreID))
+			if(!ValidationUtils.numbersCheck(centreId))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'centreID' column ";
+				errorString=errorString +"Error in 'centreId' column ";
 			}
 			
 			/*
-			 * Checking for error in trainerID column
+			 * Checking for error in trainerId column
 			 */
 			
-			if(!ValidationUtils.numbersCheck(trainerID))
+			if(!ValidationUtils.numbersCheck(trainerId))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'trainerID' column ";
+				errorString=errorString +"Error in 'trainerId' column ";
 			}
 			
 			/*
@@ -299,23 +321,23 @@ public class ValidateBatchCSVService {
 			}
 			
 			/*
-			 * Checking for error in agencyID column
+			 * Checking for error in agencyId column
 			 */
 			
-			if(!(ValidationUtils.numbersCheck(agencyID) || agencyID.equals("")))
+			if(!(ValidationUtils.numbersCheck(agencyId) || agencyId.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'agencyID' column ";
+				errorString=errorString + "Error in 'agencyId' column ";
 			}
 			
 			/*
-			 * Checking for error in assessorID column
+			 * Checking for error in assessorId column
 			 */
 			
-			if(!(ValidationUtils.numbersCheck(assessorID) || assessorID.equals("")))
+			if(!(ValidationUtils.numbersCheck(assessorId) || assessorId.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'assessorID' column ";
+				errorString=errorString + "Error in 'assessorId' column ";
 			}
 			
 			if(errorStatus==1)
@@ -324,12 +346,107 @@ public class ValidateBatchCSVService {
 				errorString="Error in Record "+recordCount + "." + errorString;
 				errorListAllRecords=errorListAllRecords+errorString;	
 			}
-		
-			if(errorStatus==1)
+			else 
 			{
-				errorExist=1;
-				errorString="Error in Record "+recordCount + "." + errorString;
-				errorListAllRecords=errorListAllRecords+errorString;	
+				/*
+				 * Keeping database consistent by inserting only lowercase values in it
+				 */
+				
+				batchName=batchName.toLowerCase();
+				batchType=batchType.toLowerCase();
+				batchMode=batchMode.toLowerCase();
+				jobRole=jobRole.toLowerCase();
+				jobRoleCode=jobRoleCode.toLowerCase();
+				
+				/*
+				 * Setting value of empty fields 
+				 */
+				
+				if(batchEndDate.equals(""))
+				{
+					batchEndDate="1900-01-00";
+				}	
+				if(maximumMarksTheory.equals(""))
+				{
+					maximumMarksTheory="0";
+				}
+				if(maximumMarksPractical.equals(""))
+				{
+					maximumMarksPractical="0";
+				}
+				if(resultApproved.equals(""))
+				{
+					resultApproved="unknown";
+				}
+				if(resultApprovedOnDate.equals(""))
+				{
+					resultApprovedOnDate="1900-01-00";
+				}
+				if(totalPass.equals(""))
+				{
+					totalPass="0";
+				}
+				if(totalFail.equals(""))
+				{
+					totalFail="0";
+				}
+				if(totalNotAppeared.equals(""))
+				{
+					totalNotAppeared="0";
+				}
+				if(totalCertified.equals(""))
+				{
+					totalCertified="0";
+				}
+				if(batchAssignmentDate.equals(""))
+				{
+					batchAssignmentDate="1900-01-00";
+				}
+				if(assessmentDate.equals(""))
+				{
+					assessmentDate="1900-01-00";
+				}
+				if(agencyId.equals(""))
+				{
+					agencyId="0";
+				}
+				if(assessorId.equals(""))
+				{
+					assessorId="0";
+				}
+				
+				/*
+				 * setting values in HashMap
+				 */
+				
+				record.put("batchId",batchId);
+				record.put("batchName",batchName);
+				record.put("batchType",batchType);
+				record.put("trainingPartnerId",trainingPartnerId);
+				record.put("centreId",centreId);
+				record.put("trainerId",trainerId);
+				record.put("totalCandidatesInBatch",totalCandidatesInBatch);
+				record.put("batchMode",batchMode);
+				record.put("batchStartDate",batchStartDate);
+				record.put("batchEndDate",batchEndDate);
+				record.put("jobRole",jobRole);
+				record.put("jobRoleCode",jobRoleCode);
+				record.put("maximumMarksTheory",maximumMarksTheory);
+				record.put("maximumMarksPractical",maximumMarksPractical);
+				record.put("level",level);
+				record.put("resultApproved",resultApproved);
+				record.put("resultApprovedOnDate",resultApprovedOnDate);
+				record.put("totalPass",totalPass);
+				record.put("totalFail",totalFail);
+				record.put("totalNotAppeared",totalNotAppeared);
+				record.put("totalCertified",totalCertified);
+				record.put("certificateDownloaded",certificateDownloaded);
+				record.put("batchAssignmentDate",batchAssignmentDate);
+				record.put("assessmentDate",assessmentDate);
+				record.put("agencyId",agencyId);
+				record.put("assessorId",assessorId);
+				
+				arrayOfRecords.add(record);
 			}
 			
 		}
@@ -345,12 +462,89 @@ public class ValidateBatchCSVService {
 		}
 		catch(Exception e)
 		{
+			BatchCSVReader.close();
+			File deleteUploadedFile = new File(BatchCSVFileName);
+			deleteUploadedFile.delete();
 			e.printStackTrace();
 			return "Error parsing Batch CSV File. Kindly try again. ";
 		}
 		
-		return "File Successfully Uploaded";
 		
+		/*
+		 * Checking for foreign key constraint trainerId,centreId,trainerId,assessorId,agencyId
+		 */
 		
-}
+		try{				
+			for(Map<String, Object> getRecord:arrayOfRecords)
+				{	
+				int status=dataImportBatchDao.dataImportBatchForeignKeyConstraintCheck(getRecord);
+				if(status==0 || status==2)
+				{
+				throw new Exception();	
+				}
+				
+				} 	//end of for  
+			}	// end of try
+			catch(Exception e)
+			{	
+				BatchCSVReader.close();
+				File deleteUploadedFile = new File(BatchCSVFileName);
+				deleteUploadedFile.delete();
+				e.printStackTrace();
+				return "Error in trainerId or trainingPartnerId or centreId or agencyId or AssessorId, column. Kindly recheck the details ."
+			+ "either trainerId not found in Trainers record or trainingPartnerId not found in Training Partners record or centreId not found "
+			+ "in Centres record or agencyId not found in Agency record or assessorId not found in Assessor record .";
+			}
+		 
+		
+		/*
+		 * Checking primary key Constraints and performing respective actions  
+		 */
+		
+			  try{				
+				for(Map<String, Object> getRecord:arrayOfRecords)
+				{			
+				int status=dataImportBatchDao.dataImportBatchPrimaryKeyConstraintCheck(getRecord);
+				if(status==0)
+				{
+					/*
+					 * If primary key doesn't exists in DB then run insert query
+					 */
+					int insertDataStatus=dataImportBatchDao.insertDataInBatch(getRecord);
+					if(!(insertDataStatus>0))
+					{
+						throw new Exception();
+					}
+				}
+				else if(status==1)
+				{
+					/*
+					 * If primary key exists in DB then run update query
+					 */
+					int updateDataStatus=dataImportBatchDao.updateDataInBatch(getRecord);
+					if(!(updateDataStatus>0))
+					{
+						throw new Exception();
+					}
+				}
+				
+				else
+					throw new Exception();
+					
+				}	// end of for loop 
+				
+				BatchCSVReader.close();
+				return "Data Successfully inserted in Database .";
+				
+			  }	// end of try
+				catch(Exception e)
+				{
+					BatchCSVReader.close();
+					File deleteUploadedFile = new File(BatchCSVFileName);
+					deleteUploadedFile.delete();
+					e.printStackTrace();
+					return "Error Inserting or Updating data .Kindly try again .";
+				}		
+	
+	}
 }

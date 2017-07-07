@@ -1,20 +1,38 @@
 package com.skill.India.dto;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DTO for agency 
+ */
+
 public class ValidateAssessmentAgencyCSVDto {
 
-	private String agencyID;
+	private String agencyId;
 	private String agencyName;
+	private String applicationId;
 	/**
-	 * @return the agencyID
+	 * @return the applicationId
 	 */
-	public String getAgencyID() {
-		return agencyID;
+	public String getApplicationId() {
+		return applicationId;
 	}
 	/**
-	 * @param agencyID the agencyID to set
+	 * @param applicationId the applicationId to set
 	 */
-	public void setAgencyID(String agencyID) {
-		this.agencyID = agencyID;
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId;
+	}
+	/**
+	 * @return the agencyId
+	 */
+	public String getAgencyId() {
+		return agencyId;
+	}
+	/**
+	 * @param agencyId the agencyId to set
+	 */
+	public void setAgencyId(String agencyId) {
+		this.agencyId = agencyId;
 	}
 	/**
 	 * @return the agencyName

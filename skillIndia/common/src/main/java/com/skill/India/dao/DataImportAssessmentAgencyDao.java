@@ -1,6 +1,10 @@
 package com.skill.India.dao;
 
-import java.util.ArrayList;
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DAO for Agency 
+ */
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,21 +19,61 @@ public class DataImportAssessmentAgencyDao extends AbstractTransactionalDao {
 	@Autowired
 	private DataImportConfigSql dataImportConfigSql;
 
-	public String dataImportAssessmentAgency(ArrayList<Map<String,Object>> arrayOfRecords){
+	public int dataImportAssessmentAgencyForeignKeyConstraintCheck(Map<String,Object> getRecord)
+	{
+		/*
+		 * checking for foreign key constraint on batchId,employerId  column in Batch,Employer Table 
+		 */
+		try{				
 		
-		System.out.println("In dao");
-		try{
-		for(Map<String,Object> x:arrayOfRecords)
-		{
-			System.out.println("In for" + x+dataImportConfigSql.getInsertSql() );
-			int status=getJdbcTemplate().update(dataImportConfigSql.getInsertSql(), x);
-			System.out.println("In for" + status);
-		}
-		}
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("applicationId",getRecord.get("applicationId"));
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getApplicationIdExistsForAgency(), parameters,Integer.class );					
+		}	// end of try
 		catch(Exception e)
 		{
 			e.printStackTrace();
+			return 2;
 		}
-		return "Record Inserted";
 	}
+	
+	/*
+	 * checking for primary key constraint for agencyId in Assessment Agency
+	 */
+	
+	public int dataImportAssessmentAgencyPrimaryKeyConstraintCheck(Map<String,Object> getRecord)
+	{
+		try{							
+			Map<String, Object> parameters = new HashMap<>();
+			parameters.put("agencyId",getRecord.get("agencyId"));
+			return getJdbcTemplate().queryForObject(dataImportConfigSql.getAgencyIdExistsForAgency(), parameters,Integer.class );					
+		}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				return 2;
+			}		
+}	
+		
+	/*
+	 * Inserting data in Assessment Agency Table
+	 */
+	
+	public int insertDataInAssessmentAgency(Map<String , Object> recordToInsert)
+	{
+		return getJdbcTemplate().update(dataImportConfigSql.getInsertIntoAgencySql(), recordToInsert);	
+	}
+	
+	/*
+	 * Updating data in Assessment Agency
+	 */
+	
+	public int updateDataInAssessmentAgency(Map<String , Object> recordToInsert)
+	{
+		return getJdbcTemplate().update(dataImportConfigSql.getUpdateIntoAgencySql(), recordToInsert);
+	}
+	
+	
+	
+	
 }

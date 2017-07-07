@@ -1,5 +1,11 @@
 package com.skill.India.service;
-
+/*
+ * Author 		: Ruchit Jain
+ * Description  : For Assessor .CSV Uploaded by user, This file :
+ * 				 1) Checks for mandatory fields of Assessor sheet
+ * 				 2) Validates the data inserted in it by the user
+ * 				 3) Checks for foreign key,primary key constraint	
+ */
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -29,12 +35,14 @@ public class ValidateAssessorCSVService {
 	
 	public String validateAssessorCSV(String assessorCSVFileName) throws IOException{
 		CSVReader assessorCSVReader=null;
-		
+		/*
+		 * Create Array List to store the data of csv read (in Hashmap's)
+		 */
 		ArrayList<Map<String,Object>> arrayOfRecords=new ArrayList<Map<String,Object>>();
 		try{
-			ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
-			strategy.setType(ValidateAssessorCSVDto.class);
-			String [] assessorCSVColumns=new String[]{"assessorId","assessorName","district","state","agencyId"};
+		ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
+		strategy.setType(ValidateAssessorCSVDto.class);
+		String [] assessorCSVColumns=new String[]{"assessorId","assessorName","district","state","agencyId"};
 		strategy.setColumnMapping(assessorCSVColumns);
 		//String assessorCSVFileName = "D:\\EclipseWorkspace\\Assessor.csv";
 		assessorCSVReader=new CSVReader(new FileReader(assessorCSVFileName),',','"',2);
@@ -45,7 +53,11 @@ public class ValidateAssessorCSVService {
 		String errorListAllRecords="";
 		for(ValidateAssessorCSVDto assessorCSVData :assessorCSVDataList)
 		{
+			/*
+			 * Map to store data of each row of csv read and then added to arraylist
+			 */
 			Map<String ,Object> record=new HashMap<String, Object>();
+			
 			recordCount++;
 			int errorStatus=0;
 			String errorString="";
@@ -120,8 +132,7 @@ public class ValidateAssessorCSVService {
 			{
 				errorExist=1;
 				errorString="Error in Record "+recordCount + "." + errorString;
-				errorListAllRecords=errorListAllRecords+errorString;
-				
+				errorListAllRecords=errorListAllRecords+errorString;	
 			}
 			else 
 			{
@@ -136,9 +147,7 @@ public class ValidateAssessorCSVService {
 				record.put("agencyId",agencyId);
 				arrayOfRecords.add(record);
 				
-			}
-			
-			
+			}			
 		}
 		
 		if(errorExist==1)
@@ -182,20 +191,14 @@ public class ValidateAssessorCSVService {
 				return "Error in agencyId column. Kindly recheck the details ."
 			+ "agencyId not found in Assessment Agency record .";
 			}
-		 
+
 		/*
-		 * Performing respective actions after checking foreign key constraints
+		 * Checking primary key Constraint and performing respective actions 
 		 */
-		
-			// forward control to check primary key constraint 
-	
+			
 			  try{				
 				for(Map<String, Object> getRecord:arrayOfRecords)
-				{
-					/*
-					 * checking primary key Constraint 
-					 */
-									
+				{			
 				int status=dataImportAssessorDao.dataImportAssessorPrimaryKeyConstraintCheck(getRecord);
 				if(status==0)
 				{
@@ -224,7 +227,7 @@ public class ValidateAssessorCSVService {
 					throw new Exception();
 				
 				}	// end of for loop 
-				
+				assessorCSVReader.close();
 				return "Data Successfully inserted in Database .";
 				}	// end of try
 				catch(Exception e)

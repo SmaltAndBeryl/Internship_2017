@@ -1,9 +1,15 @@
 package com.skill.India.dto;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DTO for Candidate 
+ */
+
+
 
 public class ValidateCandidateCSVDto {
 	
-	public String candidateDetailsID;
+	public String candidateDetailsId;
 	public String candidateName;
 	public String enrollmentNumber;
 	public String gender;
@@ -11,7 +17,7 @@ public class ValidateCandidateCSVDto {
 	public String nameOfFatherOrHusband;
 	public String aadharNumber;
 	public String mobileNumber;
-	public String emailID;
+	public String emailId;
 	public String educationLevel;
 	public String traineeAddress;
 	public String traineePINCode;
@@ -22,18 +28,18 @@ public class ValidateCandidateCSVDto {
 	public String placementStatus;
 	public String dateOfJoining;
 	public String employmentType;
-	public String batchID;
-	public String employerID;
+	public String batchId;
+	public String employerId;
 	
 	
-	public String getCandidateDetailsID() {
-		return candidateDetailsID;
+	public String getCandidateDetailsId() {
+		return candidateDetailsId;
 	}
 	/**
-	 * @param candidateDetailsID the candidateDetailsID to set
+	 * @param candidateDetailsId the candidateDetailsId to set
 	 */
-	public void setCandidateDetailsID(String candidateDetailsID) {
-		this.candidateDetailsID = candidateDetailsID;
+	public void setCandidateDetailsId(String candidateDetailsId) {
+		this.candidateDetailsId = candidateDetailsId;
 	}
 	/**
 	 * @return the candidateName
@@ -120,16 +126,16 @@ public class ValidateCandidateCSVDto {
 		this.mobileNumber = mobileNumber;
 	}
 	/**
-	 * @return the emailID
+	 * @return the emailId
 	 */
-	public String getEmailID() {
-		return emailID;
+	public String getEmailId() {
+		return emailId;
 	}
 	/**
-	 * @param emailID the emailID to set
+	 * @param emailId the emailId to set
 	 */
-	public void setEmailID(String emailID) {
-		this.emailID = emailID;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 	/**
 	 * @return the educationLevel
@@ -252,28 +258,28 @@ public class ValidateCandidateCSVDto {
 		this.employmentType = employmentType;
 	}
 	/**
-	 * @return the batchID
+	 * @return the batchId
 	 */
-	public String getBatchID() {
-		return batchID;
+	public String getBatchId() {
+		return batchId;
 	}
 	/**
-	 * @param batchID the batchID to set
+	 * @param batchId the batchId to set
 	 */
-	public void setBatchID(String batchID) {
-		this.batchID = batchID;
+	public void setBatchId(String batchId) {
+		this.batchId = batchId;
 	}
 	/**
-	 * @return the employerID
+	 * @return the employerId
 	 */
-	public String getEmployerID() {
-		return employerID;
+	public String getEmployerId() {
+		return employerId;
 	}
 	/**
-	 * @param employerID the employerID to set
+	 * @param employerId the employerId to set
 	 */
-	public void setEmployerID(String employerID) {
-		this.employerID = employerID;
+	public void setEmployerId(String employerId) {
+		this.employerId = employerId;
 	}
 	
 	

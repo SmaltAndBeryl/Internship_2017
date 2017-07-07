@@ -1,23 +1,29 @@
 package com.skill.India.dto;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DTO for Employer 
+ */
+
+
 public class ValidateEmployerCSVDto {
 	
-	private String employerID;
+	private String employerId;
 	private String employerName;
 	private String locationOfEmployer;
 	private String locationOfEmployerDistrict;
 	private String locationOfEmployerState;
 	/**
-	 * @return the employerID
+	 * @return the employerId
 	 */
-	public String getEmployerID() {
-		return employerID;
+	public String getEmployerId() {
+		return employerId;
 	}
 	/**
-	 * @param employerID the employerID to set
+	 * @param employerId the employerId to set
 	 */
-	public void setEmployerID(String employerID) {
-		this.employerID = employerID;
+	public void setEmployerId(String employerId) {
+		this.employerId = employerId;
 	}
 	/**
 	 * @return the employerName

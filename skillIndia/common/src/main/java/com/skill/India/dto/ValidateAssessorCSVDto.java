@@ -1,5 +1,11 @@
 package com.skill.India.dto;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DTO for Assessor 
+ */
+
+
 public class ValidateAssessorCSVDto {
 	private String assessorId;
 	private String assessorName;

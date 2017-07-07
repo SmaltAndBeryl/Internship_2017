@@ -1,14 +1,27 @@
 package com.skill.India.service;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : For Candidate .CSV Uploaded by user, This file :
+ * 				 1) Checks for mandatory fields of Candidate sheet
+ * 				 2) Validates the data inserted in it by the user
+ * 				 3) Checks for foreign key,primary key constraint	 	
+ */
+
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skill.India.common.ValidationUtils;
+import com.skill.India.dao.DataImportCandidateDao;
 import com.skill.India.dto.ValidateCandidateCSVDto;
 
 import au.com.bytecode.opencsv.CSVReader;
@@ -18,14 +31,19 @@ import au.com.bytecode.opencsv.bean.CsvToBean;
 @Service 
 public class ValidateCandidateCSVService {
 	
+	@Autowired
+	private DataImportCandidateDao dataImportCandidateDao;
 	
-	public static String validateCandidateCSV(String CandidateCSVFileName) throws IOException{
+	public String validateCandidateCSV(String CandidateCSVFileName) throws IOException{
 		CSVReader CandidateCSVReader=null;
-
+		/*
+		 * Create Array List to store the data of csv read (in Hashmap's) 
+		 */
+		ArrayList<Map<String,Object>> arrayOfRecords=new ArrayList<Map<String,Object>>();
 		try{
-			ColumnPositionMappingStrategy<ValidateCandidateCSVDto> strategy=new ColumnPositionMappingStrategy<ValidateCandidateCSVDto>();
-			strategy.setType(ValidateCandidateCSVDto.class);
-			String [] CandidateCSVColumns=new String[]{"candidateDetailsID","candidateName","enrollmentNumber","gender","dateOfBirth","nameOfFatherOrHusband","aadharNumber","mobileNumber","emailID","educationLevel","traineeAddress","traineePINCode","marksObtainedTheory","marksObtainedPractical","result","certified","placementStatus","dateOfJoining","employmentType","batchID","employerID"};
+		ColumnPositionMappingStrategy<ValidateCandidateCSVDto> strategy=new ColumnPositionMappingStrategy<ValidateCandidateCSVDto>();
+		strategy.setType(ValidateCandidateCSVDto.class);
+		String [] CandidateCSVColumns=new String[]{"candidateDetailsId","candidateName","enrollmentNumber","gender","dateOfBirth","nameOfFatherOrHusband","aadharNumber","mobileNumber","emailId","educationLevel","traineeAddress","traineePINCode","marksObtainedTheory","marksObtainedPractical","result","certified","placementStatus","dateOfJoining","employmentType","batchId","employerId"};
 		strategy.setColumnMapping(CandidateCSVColumns);
 		//String CandidateCSVFileName = "D:\\EclipseWorkspace\\Candidate.csv";
 		CandidateCSVReader=new CSVReader(new FileReader(CandidateCSVFileName),',','"',2);
@@ -36,11 +54,16 @@ public class ValidateCandidateCSVService {
 		String errorListAllRecords="";
 		for(ValidateCandidateCSVDto CandidateCSVData :CandidateCSVDataList)
 		{
+			/*
+			 *  Map to store data of each row of csv read and then added to arraylist
+			 */
+			Map<String ,Object> record=new HashMap<String, Object>();
+			
 			recordCount++;
 			int errorStatus=0;
 			String errorString="";
 					
-			String candidateDetailsID=CandidateCSVData.getCandidateDetailsID();
+			String candidateDetailsId=CandidateCSVData.getCandidateDetailsId();
 			String candidateName=CandidateCSVData.getCandidateName();
 		    String enrollmentNumber=CandidateCSVData.getEnrollmentNumber();
 			String gender=CandidateCSVData.getGender();
@@ -48,7 +71,7 @@ public class ValidateCandidateCSVService {
 		    String nameOfFatherOrHusband=CandidateCSVData.getNameOfFatherOrHusband();
 			String aadharNumber=CandidateCSVData.getAadharNumber();
 			String mobileNumber=CandidateCSVData.getMobileNumber();
-			String emailID=CandidateCSVData.getEmailID();
+			String emailId=CandidateCSVData.getEmailId();
 			String educationLevel=CandidateCSVData.getEducationLevel();
 			String traineeAddress=CandidateCSVData.getTraineeAddress();
 			String traineePINCode=CandidateCSVData.getTraineePINCode();
@@ -59,34 +82,33 @@ public class ValidateCandidateCSVService {
 			String placementStatus=CandidateCSVData.getPlacementStatus();
 			String dateOfJoining=CandidateCSVData.getDateOfJoining();
 			String employmentType=CandidateCSVData.getEmploymentType();
-			String batchID=CandidateCSVData.getBatchID();
-			String employerID=CandidateCSVData.getEmployerID();
-			
-			
-			
+			String batchId=CandidateCSVData.getBatchId();
+			String employerId=CandidateCSVData.getEmployerId();
+	
 			/*
 			 * Validating empty fields 
 			 */
 			
-			if(candidateDetailsID.equals("") || candidateName.equals("") || enrollmentNumber.equals("") || 
+			if(candidateDetailsId.equals("") || candidateName.equals("") || enrollmentNumber.equals("") || 
 				gender.equals("") || dateOfBirth.equals("") || nameOfFatherOrHusband.equals("") || 
-				emailID.equals("") || educationLevel.equals("") || traineeAddress.equals("") ||  
-				traineePINCode.equals("") || batchID.equals("") || result.equals("") || certified.equals("") 
-				||  placementStatus.equals(""))
+				emailId.equals("") || educationLevel.equals("") || traineeAddress.equals("") ||  
+				traineePINCode.equals("") || batchId.equals("") || result.equals("") || certified.equals("") 
+				||  placementStatus.equals("") || batchId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+"Mandatory Fields cant be empty .";			
 			}
-										
+			
+			
 			/*
 			 * No validation done on Trainee Address & Education Level 
 			 */
 		
 		
 			/*
-			 * Checking for error in candidateDetailsID column
+			 * Checking for error in candidateDetailsId column
 			 */
-			if(!ValidationUtils.numbersCheck(candidateDetailsID))
+			if(!ValidationUtils.numbersCheck(candidateDetailsId))
 			{
 				errorStatus=1;
 				errorString=errorString+"Error in  'candidateDetailsId' column .";
@@ -148,13 +170,13 @@ public class ValidateCandidateCSVService {
 			}
 		
 			/*
-			 * Checking for error in emailID column
+			 * Checking for error in emailId column
 			 */
 			
-			if(!ValidationUtils.emailCheck(emailID))
+			if(!ValidationUtils.emailCheck(emailId))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in  'emailID' column .";
+				errorString=errorString + "Error in  'emailId' column .";
 			}
 		
 			/*
@@ -230,21 +252,21 @@ public class ValidateCandidateCSVService {
 			}
 			
 			/*
-			 * Checking for error in batchID column
+			 * Checking for error in batchId column
 			 */
-			if(!(ValidationUtils.numbersCheck(batchID) || batchID.equals("")))
+			if(!(ValidationUtils.numbersCheck(batchId) || batchId.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "\nError in  'batchID' column .";
+				errorString=errorString + "\nError in  'batchId' column .";
 			}
 			
 			/*
-			 * Checking for error in employerID column
+			 * Checking for error in employerId column
 			 */
-			if(!(ValidationUtils.numbersCheck(employerID) || employerID.equals("")))
+			if(!(ValidationUtils.numbersCheck(employerId) || employerId.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "\nError in  'employerID' column .";
+				errorString=errorString + "\nError in  'employerId' column .";
 			}
 			
 			
@@ -254,6 +276,83 @@ public class ValidateCandidateCSVService {
 				errorString="Error in Record "+recordCount + "." + errorString;
 				errorListAllRecords=errorListAllRecords+errorString;
 				
+			}
+			else 
+			{
+				/*
+				 * Keeping database consistent by inserting only lowercase values in it
+				 */
+			 candidateName=candidateName.toLowerCase();
+			 enrollmentNumber=enrollmentNumber.toLowerCase();
+			 gender=gender.toLowerCase();
+			 nameOfFatherOrHusband=nameOfFatherOrHusband.toLowerCase();
+			 emailId=emailId.toLowerCase();
+			 educationLevel=educationLevel.toLowerCase();
+			 traineeAddress=traineeAddress.toLowerCase();
+			 result=result.toLowerCase();
+			 certified=certified.toLowerCase();
+			 placementStatus=placementStatus.toLowerCase();
+			 employmentType=employmentType.toLowerCase();
+			 
+			 /*
+			  * Setting some default values in fields which were not filled by user 
+			  */
+			 if(aadharNumber.equals(""))
+			 {
+				 aadharNumber="0";
+			 }
+			 if(mobileNumber.equals(""))
+			 {
+				 mobileNumber="0";
+			 }
+			 if(marksObtainedTheory.equals(""))
+			 {
+				 marksObtainedTheory="0";
+			 }
+			 if(marksObtainedPractical.equals(""))
+			 {
+				 marksObtainedPractical="0";
+			 }
+			 if(dateOfJoining.equals(""))
+			 {
+				 dateOfJoining="1900-01-00";
+			 }
+			 if(employmentType.equals(""))
+			 {
+				 employmentType="unknown";
+			 }
+			 if(employerId.equals(""))
+			 {
+				 employerId="0";
+			 }
+			 
+			 /*
+			  * Inserting row wise data in HashMap
+			  */
+			 
+			 record.put("candidateDetailsId", candidateDetailsId);
+			 record.put("candidateName",candidateName);
+			 record.put("enrollmentNumber",enrollmentNumber);
+			 record.put("gender",gender);
+			 record.put("dateOfBirth",dateOfBirth);
+			 record.put("nameOfFatherOrHusband",nameOfFatherOrHusband);
+			 record.put("aadharNumber",aadharNumber);
+			 record.put("mobileNumber",mobileNumber);
+			 record.put("emailId",emailId);
+			 record.put("educationLevel",educationLevel);
+			 record.put("traineeAddress",traineeAddress);
+			 record.put("traineePINCode",traineePINCode);
+			 record.put("marksObtainedTheory",marksObtainedTheory);
+			 record.put("marksObtainedPractical",marksObtainedPractical);
+			 record.put("result",result);
+			 record.put("certified",certified);
+			 record.put("placementStatus",placementStatus);
+			 record.put("dateOfJoining",dateOfJoining);
+			 record.put("employmentType",employmentType);
+			 record.put("batchId",batchId);
+			 record.put("employerId",employerId);
+			 
+			 arrayOfRecords.add(record);
 			}
 			
 		}
@@ -273,13 +372,81 @@ public class ValidateCandidateCSVService {
 			File deleteUploadedFile = new File(CandidateCSVFileName);
 			deleteUploadedFile.delete();
 			e.printStackTrace();
-			return "Error Occurred while Uploading the File";
+			return "Error parsing Batch CSV File. Kindly try again. ";
 			
 		}
 		
+		/*
+		 * Checking for foreign key constraint of batchId & employerId
+		 */
 		
-		
-		return "File successfully Uploaded";
+		try{				
+			for(Map<String, Object> getRecord:arrayOfRecords)
+				{	
+				int status=dataImportCandidateDao.dataImportCandidateForeignKeyConstraintCheck(getRecord);
+				if(status==0 || status==2)
+				{
+				throw new Exception();	
+				}
+				
+				} 	//end of for  
+			}	// end of try
+			catch(Exception e)
+			{	
+				CandidateCSVReader.close();
+				File deleteUploadedFile = new File(CandidateCSVFileName);
+				deleteUploadedFile.delete();
+				e.printStackTrace();
+				return "Error in batchId or employerId column. Kindly recheck the details ."
+			+ "either batchId not found in Batches record or employerId not found in Employer record .";
+			}
+	
+		/*
+		 * Checking primary key Constraint and performing respective actions 
+		 */
+			  try{				
+				for(Map<String, Object> getRecord:arrayOfRecords)
+				{					
+				int status=dataImportCandidateDao.dataImportCandidatePrimaryKeyConstraintCheck(getRecord);
+				if(status==0)
+				{
+					/*
+					 * If primary key doesn't exists in DB then run insert query
+					 */
+					int insertDataStatus=dataImportCandidateDao.insertDataInCandidate(getRecord);
+					if(!(insertDataStatus>0))
+					{
+						throw new Exception();
+					}
+				}
+				else if(status==1)
+				{
+					/*
+					 * If primary key exists in DB then run update query
+					 */
+					int updateDataStatus=dataImportCandidateDao.updateDataInCandidate(getRecord);
+					if(!(updateDataStatus>0))
+					{
+						throw new Exception();
+					}
+				}
+				
+				else
+					throw new Exception();
+					
+				}	// end of for loop 
+				CandidateCSVReader.close();
+				return "Data Successfully inserted in Database .";
+				}	// end of try
+				catch(Exception e)
+				{
+					CandidateCSVReader.close();
+					File deleteUploadedFile = new File(CandidateCSVFileName);
+					deleteUploadedFile.delete();
+					e.printStackTrace();
+					return "Error Inserting or Updating data .Kindly try again .";
+				}		
+			
 	}
 	
 }

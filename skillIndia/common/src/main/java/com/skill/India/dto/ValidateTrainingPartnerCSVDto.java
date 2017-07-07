@@ -1,32 +1,37 @@
 package com.skill.India.dto;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DTO for Training Partner 
+ */
+
 public class ValidateTrainingPartnerCSVDto {
-	private String trainingPartnerID;
-	private String applicationID;
+	private String trainingPartnerId;
+	private String applicationId;
 	private String trainingPartnerName;
 	/**
-	 * @return the trainingPartnerID
+	 * @return the trainingPartnerId
 	 */
-	public String getTrainingPartnerID() {
-		return trainingPartnerID;
+	public String getTrainingPartnerId() {
+		return trainingPartnerId;
 	}
 	/**
-	 * @param trainingPartnerID the trainingPartnerID to set
+	 * @param trainingPartnerId the trainingPartnerId to set
 	 */
-	public void setTrainingPartnerID(String trainingPartnerID) {
-		this.trainingPartnerID = trainingPartnerID;
+	public void setTrainingPartnerId(String trainingPartnerId) {
+		this.trainingPartnerId = trainingPartnerId;
 	}
 	/**
-	 * @return the originalApplicationID
+	 * @return the originalApplicationId
 	 */
-	public String getApplicationID() {
-		return applicationID;
+	public String getApplicationId() {
+		return applicationId;
 	}
 	/**
-	 * @param originalApplicationID the originalApplicationID to set
+	 * @param originalApplicationId the originalApplicationId to set
 	 */
-	public void setApplicationID(String applicationID) {
-		this.applicationID = applicationID;
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId;
 	}
 	/**
 	 * @return the trainingPartnerName

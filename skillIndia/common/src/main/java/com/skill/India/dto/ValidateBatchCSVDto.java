@@ -1,12 +1,18 @@
 package com.skill.India.dto;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DTO for Batch 
+ */
+
+
 public class ValidateBatchCSVDto {
-	private String batchID;
+	private String batchId;
 	private String batchName;
 	private String batchType;
-	private String trainingPartnerID;
-	private String centreID;
-	private String trainerID;
+	private String trainingPartnerId;
+	private String centreId;
+	private String trainerId;
 	private String totalCandidatesInBatch;
 	private String batchMode;
 	private String batchStartDate;
@@ -25,21 +31,21 @@ public class ValidateBatchCSVDto {
 	private String certificateDownloaded;
 	private String batchAssignmentDate;
 	private String assessmentDate;
-	private String agencyID;
-	private String assessorID;
+	private String agencyId;
+	private String assessorId;
 	
 	
 	/**
-	 * @return the batchID
+	 * @return the batchId
 	 */
-	public String getBatchID() {
-		return batchID;
+	public String getBatchId() {
+		return batchId;
 	}
 	/**
-	 * @param batchID the batchID to set
+	 * @param batchId the batchId to set
 	 */
-	public void setBatchID(String batchID) {
-		this.batchID = batchID;
+	public void setBatchId(String batchId) {
+		this.batchId = batchId;
 	}
 	/**
 	 * @return the batchName
@@ -66,40 +72,40 @@ public class ValidateBatchCSVDto {
 		this.batchType = batchType;
 	}
 	/**
-	 * @return the trainingPartnerID
+	 * @return the trainingPartnerId
 	 */
-	public String getTrainingPartnerID() {
-		return trainingPartnerID;
+	public String getTrainingPartnerId() {
+		return trainingPartnerId;
 	}
 	/**
-	 * @param trainingPartnerID the trainingPartnerID to set
+	 * @param trainingPartnerId the trainingPartnerId to set
 	 */
-	public void setTrainingPartnerID(String trainingPartnerID) {
-		this.trainingPartnerID = trainingPartnerID;
+	public void setTrainingPartnerId(String trainingPartnerId) {
+		this.trainingPartnerId = trainingPartnerId;
 	}
 	/**
-	 * @return the centreID
+	 * @return the centreId
 	 */
-	public String getCentreID() {
-		return centreID;
+	public String getCentreId() {
+		return centreId;
 	}
 	/**
-	 * @param centreID the centreID to set
+	 * @param centreId the centreId to set
 	 */
-	public void setCentreID(String centreID) {
-		this.centreID = centreID;
+	public void setCentreId(String centreId) {
+		this.centreId = centreId;
 	}
 	/**
-	 * @return the trainerID
+	 * @return the trainerId
 	 */
-	public String getTrainerID() {
-		return trainerID;
+	public String getTrainerId() {
+		return trainerId;
 	}
 	/**
-	 * @param trainerID the trainerID to set
+	 * @param trainerId the trainerId to set
 	 */
-	public void setTrainerID(String trainerID) {
-		this.trainerID = trainerID;
+	public void setTrainerId(String trainerId) {
+		this.trainerId = trainerId;
 	}
 	/**
 	 * @return the totalCandidatesInBatch
@@ -318,28 +324,28 @@ public class ValidateBatchCSVDto {
 		this.assessmentDate = assessmentDate;
 	}
 	/**
-	 * @return the agencyID
+	 * @return the agencyId
 	 */
-	public String getAgencyID() {
-		return agencyID;
+	public String getAgencyId() {
+		return agencyId;
 	}
 	/**
-	 * @param agencyID the agencyID to set
+	 * @param agencyId the agencyId to set
 	 */
-	public void setAgencyID(String agencyID) {
-		this.agencyID = agencyID;
+	public void setAgencyId(String agencyId) {
+		this.agencyId = agencyId;
 	}
 	/**
-	 * @return the assessorID
+	 * @return the assessorId
 	 */
-	public String getAssessorID() {
-		return assessorID;
+	public String getAssessorId() {
+		return assessorId;
 	}
 	/**
-	 * @param assessorID the assessorID to set
+	 * @param assessorId the assessorId to set
 	 */
-	public void setAssessorID(String assessorID) {
-		this.assessorID = assessorID;
+	public void setAssessorId(String assessorId) {
+		this.assessorId = assessorId;
 	}
 	
 	

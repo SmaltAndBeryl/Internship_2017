@@ -1,4 +1,10 @@
 package com.skill.India.service;
+/*
+ * Author 		: Ruchit Jain
+ * Description  : This file maps the columns of uploaded csv by user with the type of sheet
+ * 				  selected by him/her .
+ */
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -49,17 +55,17 @@ public class CheckTypeOfCSVService {
 	            switch (type){
 	            	case "Candidate" :
 	            
-	            	if(columns[0].equals("candidateDetailsID") && columns[1].equals("candidateName") && 
+	            	if(columns[0].equals("candidateDetailsId") && columns[1].equals("candidateName") && 
 							columns[2].equals("enrollmentNumber") && columns[3].equals("gender")
 							&& columns[4].equals("dateOfBirth") && columns[5].equals("nameOfFatherOrHusband") && 
 							columns[6].equals("aadharNumber") && columns[7].equals("mobileNumber")
-							&& columns[8].equals("emailID") && columns[9].equals("educationLevel")
+							&& columns[8].equals("emailId") && columns[9].equals("educationLevel")
 							&& columns[10].equals("traineeAddress") && columns[11].equals("traineePINCode") && 
 							columns[12].equals("marksObtainedTheory") && columns[13].equals("marksObtainedPractical")
 							&& columns[14].equals("result") && columns[15].equals("certified") &&
 							columns[16].equals("placementStatus") && columns[17].equals("dateOfJoining") &&
-							columns[18].equals("employmentType") && columns[19].equals("batchID") &&
-							columns[20].equals("employerID") )
+							columns[18].equals("employmentType") && columns[19].equals("batchId") &&
+							columns[20].equals("employerId") )
 	            	{
 	            		readColumnsOfCsv.close();
 	            	return validateCandidateCSVService.validateCandidateCSV(pathOfUploadedFile); 
@@ -68,9 +74,9 @@ public class CheckTypeOfCSVService {
 	            	
 				case "Batch":
 				
-					if(columns[0].equals("batchesID") && columns[1].equals("batchName") && 
-						columns[2].equals("batchType") && columns[3].equals("trainingPartnerID")
-						&& columns[4].equals("centreID") && columns[5].equals("trainerID") && 
+					if(columns[0].equals("batchId") && columns[1].equals("batchName") && 
+						columns[2].equals("batchType") && columns[3].equals("trainingPartnerId")
+						&& columns[4].equals("centreId") && columns[5].equals("trainerId") && 
 						columns[6].equals("totalCandidatesInBatch") && columns[7].equals("batchMode")
 						&& columns[8].equals("batchStartDate") && columns[9].equals("batchEndDate")
 						&& columns[10].equals("jobRole") && columns[11].equals("jobRoleCode") && 
@@ -80,7 +86,7 @@ public class CheckTypeOfCSVService {
 						columns[18].equals("totalFail") && columns[19].equals("totalNotAppeared") &&
 						columns[20].equals("totalCertified") && columns[21].equals("certificateDownloaded")
 						&& columns[22].equals("batchAssignmentDate") && columns[23].equals("assessmentDate")
-						&& columns[24].equals("agencyID") && columns[25].equals("assessorID"))
+						&& columns[24].equals("agencyId") && columns[25].equals("assessorId"))
 					{
 						readColumnsOfCsv.close();
 						return validateBatchCSVService.validateBatchCSV(pathOfUploadedFile);
@@ -91,7 +97,7 @@ public class CheckTypeOfCSVService {
 
 				case "Training Partner":
 				
-					if(columns[0].equals("trainingPartnerID") && columns[1].equals("applicationID") && 
+					if(columns[0].equals("trainingPartnerId") && columns[1].equals("applicationId") && 
 							columns[2].equals("trainingPartnerName"))
 					{
 						readColumnsOfCsv.close();
@@ -101,10 +107,10 @@ public class CheckTypeOfCSVService {
 					
 				case "Centre":
 				
-					if(columns[0].equals("centreID") && columns[1].equals("centreName") && 
+					if(columns[0].equals("centreId") && columns[1].equals("centreName") && 
 							columns[2].equals("centrePOCContactName")&& columns[3].equals("centreAddress")
 							&& columns[4].equals("district") && columns[5].equals("state") && 
-							columns[6].equals("trainingPartnerID"))
+							columns[6].equals("trainingPartnerId"))
 					{
 						readColumnsOfCsv.close();
 						return validateCentreCSVService.validateCentreCSV(pathOfUploadedFile);
@@ -113,8 +119,8 @@ public class CheckTypeOfCSVService {
 					
 				case "Trainer":
 				
-					if(columns[0].equals("trainerID") && columns[1].equals("trainerName") && 
-							columns[2].equals("designation")&& columns[3].equals("trainingPartnerID"))
+					if(columns[0].equals("trainerId") && columns[1].equals("trainerName") && 
+							columns[2].equals("designation")&& columns[3].equals("trainingPartnerId"))
 					{
 						readColumnsOfCsv.close();
 						return validateTrainerCSVService.validateTrainerCSV(pathOfUploadedFile);
@@ -125,17 +131,16 @@ public class CheckTypeOfCSVService {
 					
 				case "Assessment Agency":
 					System.out.println("In agency switch");
-					if(columns[0].equals("agencyID") && columns[1].equals("agencyName"))
+					if(columns[0].equals("agencyId") && columns[1].equals("applicationId") && columns[2].equals("agencyName"))
 					{
 						readColumnsOfCsv.close();
-						System.out.println("In if");
 						return validateAssessmentAgencyCSVService.validateAssessmentAgencyCSV(pathOfUploadedFile);
 					}
 					
 				case "Assessor":
 				
-					if(columns[0].equals("assessorID") && columns[1].equals("assessorName") && columns[2].equals("district") && 
-							columns[3].equals("state")&& columns[4].equals("agencyID"))
+					if(columns[0].equals("assessorId") && columns[1].equals("assessorName") && columns[2].equals("district") && 
+							columns[3].equals("state")&& columns[4].equals("agencyId"))
 					{
 						readColumnsOfCsv.close();
 						return validateAssessorCSVService.validateAssessorCSV(pathOfUploadedFile);
@@ -144,7 +149,7 @@ public class CheckTypeOfCSVService {
 				
 				case "Employer":
 				
-					if(columns[0].equals("employerID") && columns[1].equals("employerName") && 
+					if(columns[0].equals("employerId") && columns[1].equals("employerName") && 
 							columns[2].equals("locationOfEmployer")&& columns[3].equals("locationOfEmployerDistrict")
 							&& columns[4].equals("locationOfEmployerState"))
 					{

@@ -1,5 +1,10 @@
 package com.skill.India.service;
-
+/*
+ * Author 		: Ruchit Jain
+ * Description  : This file stores the uploaded csv on local machine whose path is 
+ * 				  hard coded (name of file is changed, timestamp appended). 
+ * 
+ */
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,26 +21,14 @@ public class SaveUploadedFileService {
 	private CheckTypeOfCSVService checkTypeOfService;
 
 	public String saveUploadedFile(MultipartFile file,String type)
-	{
-		/*
-		 * Referred http://www.mkyong.com/spring-boot/spring-boot-file-upload-example/
-		 */
-		
-		
-		/*
-		 * Hard-code the path of file here		
-		 */
-		
+	{	 
 		String UPLOADED_FOLDER = "D://EclipseWorkspace//";
 		
-        
 		if (file.isEmpty()) {
             return "Uploaded file is empty. Kindly upload a valid file";
         }
-
-      
+		
 		try {
-
 			Timestamp timeStamp=new Timestamp(System.currentTimeMillis());
 	           int seconds=timeStamp.getSeconds();
 	           int minutes=timeStamp.getMinutes();
@@ -48,7 +41,7 @@ public class SaveUploadedFileService {
 	           
 	           byte[] bytes = file.getBytes();
 	           
-	           String[] fileNameArray={fileNameReceived.substring(0, indexOfDot),
+	       String[] fileNameArray={fileNameReceived.substring(0, indexOfDot),
         		   fileNameReceived.substring(indexOfDot)};
 	                  
            String fileNameToBeSaved=fileNameArray[0]+"-"+ year+ "-" + month + "-" + day + 
@@ -66,24 +59,16 @@ public class SaveUploadedFileService {
         	   return "Error Saving file on Local Machine.Try Again later ";
            }
            
-           System.out.println("In save uploaded file ");
            return checkTypeOfService.checkTypeOfCSV(type, pathOfUploadedFile);
         
-
            /* for saving a message in session or on server side
            redirectAttributes.addFlashAttribute("message",
            "You successfully uploaded '" + file.getOriginalFilename() + "'");
 			*/
-           /*
            
-           // CODE TO DELETE THE FILE 
-           File file1 = new File(UPLOADED_FOLDER +fileNameToBeSaved);
-           file1.delete();
-           
-           */
        } 
       catch (Exception e) {
-       //    e.printStackTrace();
+           e.printStackTrace();
            return "Error uploading CSV File. Kindly try again.";
        }
     

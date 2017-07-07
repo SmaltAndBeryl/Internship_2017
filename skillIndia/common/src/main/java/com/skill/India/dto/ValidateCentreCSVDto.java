@@ -1,24 +1,30 @@
 package com.skill.India.dto;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DTO for Centre 
+ */
+
+
 public class ValidateCentreCSVDto {
-		private String centreID; 
+		private String centreId; 
 		private String centreName;
 		private String centrePOCContactname;
 		private String centreAddress;
 		private String district;
 		private String state;
-		private String trainingPartnerID;
+		private String trainingPartnerId;
 		/**
-		 * @return the centreID
+		 * @return the centreId
 		 */
-		public String getCentreID() {
-			return centreID;
+		public String getCentreId() {
+			return centreId;
 		}
 		/**
-		 * @param centreID the centreID to set
+		 * @param centreId the centreId to set
 		 */
-		public void setCentreID(String centreID) {
-			this.centreID = centreID;
+		public void setCentreId(String centreId) {
+			this.centreId = centreId;
 		}
 		/**
 		 * @return the centreName
@@ -81,16 +87,16 @@ public class ValidateCentreCSVDto {
 			this.state = state;
 		}
 		/**
-		 * @return the trainingPartnerID
+		 * @return the trainingPartnerId
 		 */
-		public String getTrainingPartnerID() {
-			return trainingPartnerID;
+		public String getTrainingPartnerId() {
+			return trainingPartnerId;
 		}
 		/**
-		 * @param trainingPartnerID the trainingPartnerID to set
+		 * @param trainingPartnerId the trainingPartnerId to set
 		 */
-		public void setTrainingPartnerID(String trainingPartnerID) {
-			this.trainingPartnerID = trainingPartnerID;
+		public void setTrainingPartnerId(String trainingPartnerId) {
+			this.trainingPartnerId = trainingPartnerId;
 		}
 
 		

@@ -1,5 +1,11 @@
 package com.skill.India.service;
-
+/*
+ * Author 		: Ruchit Jain
+ * Description  : For Agency .CSV Uploaded by user, This file :
+ * 				 1) Checks for mandatory fields of Agency sheet
+ * 				 2) Validates the data inserted in it by the user
+ * 				 3) Checks for foreign key,primary key constraint	 	
+ */
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,55 +34,64 @@ public class ValidateAssessmentAgencyCSVService {
 	
 	public String validateAssessmentAgencyCSV(String assessmentAgencyCSVFileName) throws IOException{
 		CSVReader assessmentAgencyCSVReader=null;
-		System.out.println("In service");
-		Map<String,Object> record=new HashMap<String, Object>();
+		/*
+		 *Create Array List to store the data of csv read (in Hashmap's) 
+		 */
 		ArrayList<Map<String,Object>> arrayOfRecords= new ArrayList<Map<String,Object>>();
 		try{
-			System.out.println("In try of service");
-			ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
-			strategy.setType(ValidateAssessmentAgencyCSVDto.class);
-			String [] assessmentAgencyCSVColumns=new String[]{"agencyID","agencyName"};
+		ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
+		strategy.setType(ValidateAssessmentAgencyCSVDto.class);
+		String [] assessmentAgencyCSVColumns=new String[]{"agencyId","applicationId","agencyName"};
 		strategy.setColumnMapping(assessmentAgencyCSVColumns);
-		System.out.println("In try of after column mapping service");
 	//	String assessmentAgencyCSVFileName = "D:\\EclipseWorkspace\\Assessment_Agency.csv";
 		assessmentAgencyCSVReader=new CSVReader(new FileReader(assessmentAgencyCSVFileName),',','"',2);
 		CsvToBean<ValidateAssessmentAgencyCSVDto> assessmentAgencyCSVToBean=new CsvToBean<ValidateAssessmentAgencyCSVDto>();
 		List<ValidateAssessmentAgencyCSVDto> assessmentAgencyCSVDataList= assessmentAgencyCSVToBean.parse(strategy,assessmentAgencyCSVReader);
 		int recordCount=0;
 		int errorExist=0;
-		String errorListAllRecords="";
-		System.out.println("In try of service before for");
+		String errorListAllRecords="";	
 		for(ValidateAssessmentAgencyCSVDto assessmentAgencyCSVData :assessmentAgencyCSVDataList)
 		{
+			/*
+			 * Map to store data of each row of csv read and then added to arraylist
+			 */
+			Map<String,Object> record=new HashMap<String, Object>();
 			recordCount++;
 			int errorStatus=0;
 			String errorString="";
 			
-			String agencyID=assessmentAgencyCSVData.getAgencyID();
+			String agencyId=assessmentAgencyCSVData.getAgencyId();
 			String agencyName=assessmentAgencyCSVData.getAgencyName();
-			
+			String applicationId=assessmentAgencyCSVData.getApplicationId();
 			/*
 			 * Checking for Mandatory fields 
 			 */
 			
-			System.out.println("In try of service in for");
-			
-			if(agencyID.equals("") || agencyName.equals(""))
+			if(agencyId.equals("") || agencyName.equals("") || applicationId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString + "Mandatory fields cannot be Empty ";	
 			}
 			
 			/*
-			 * Checking for error in agencyID column 
+			 * Checking for error in agencyId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(agencyID))
+			if(!ValidationUtils.numbersCheck(agencyId))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'agencyID' column ";
+				errorString=errorString + "Error in 'agencyId' column ";
 			}
 			
+			/*
+			 * checking for error in applicationId column 
+			 */
+			
+			if(!(ValidationUtils.numbersCheck(applicationId)))
+			{
+				errorStatus=1;
+				errorString=errorString + "Error in 'aapplicationId' column ";
+			}
 			/*
 			 * Checking for error in agencyName column 
 			 */
@@ -98,8 +113,10 @@ public class ValidateAssessmentAgencyCSVService {
 			{
 				agencyName=agencyName.toLowerCase();
 				
-				record.put("agencyID",agencyID);
+				record.put("agencyId",agencyId);
 				record.put("agencyName",agencyName);
+				record.put("applicationId",applicationId);
+				
 				arrayOfRecords.add(record);
 			}
 		}  // end of for 
@@ -115,13 +132,7 @@ public class ValidateAssessmentAgencyCSVService {
 			deleteUploadedFile.delete();
 			return errorListAllRecords;
 			}
-		else
-		{
-		  return dataImportAssessmentAgencyDao.dataImportAssessmentAgency(arrayOfRecords);
-		}
-		
-		} // end of try 
-		
+		} // end of try 	
 		catch(Exception e)
 		{
 			assessmentAgencyCSVReader.close();
@@ -131,6 +142,77 @@ public class ValidateAssessmentAgencyCSVService {
 			return "Error Occurred while Uploading the File";
 		}
 		
-		//return "Successfully Uploaded CSV File";
+		/*
+		 * Checking for foreign key constraint of applicationId
+		 */
+		
+		try{				
+			for(Map<String, Object> getRecord:arrayOfRecords)
+				{	
+				int status=dataImportAssessmentAgencyDao.dataImportAssessmentAgencyForeignKeyConstraintCheck(getRecord);
+				if(status==0 || status==2)
+				{
+				throw new Exception();	
+				}
+				
+				} 	//end of for  
+			}	// end of try
+			catch(Exception e)
+			{	
+				assessmentAgencyCSVReader.close();
+				File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
+				deleteUploadedFile.delete();
+				e.printStackTrace();
+				return "Error in applicationId column. Kindly recheck the details ."
+			+ "applicationId not found in  Applications record .";
+			}
+		 
+		/*
+		 * Checking primary key Constraint and performing respective actions
+		 */
+		
+			  try{				
+				for(Map<String, Object> getRecord:arrayOfRecords)
+				{				
+				int status=dataImportAssessmentAgencyDao.dataImportAssessmentAgencyPrimaryKeyConstraintCheck(getRecord);
+				if(status==0)
+				{
+					/*
+					 * If primary key doesn't exists in DB then run insert query
+					 */
+					int insertDataStatus=dataImportAssessmentAgencyDao.insertDataInAssessmentAgency(getRecord);
+					if(!(insertDataStatus>0))
+					{
+						throw new Exception();
+					}
+				}
+				else if(status==1)
+				{
+					/*
+					 * If primary key exists in DB then run update query
+					 */
+					int updateDataStatus=dataImportAssessmentAgencyDao.updateDataInAssessmentAgency(getRecord);
+					if(!(updateDataStatus>0))
+					{
+						throw new Exception();
+					}
+				}
+				
+				else
+					throw new Exception();
+					
+				}	// end of for loop 
+				
+				return "Data Successfully inserted in Database .";
+				}	// end of try
+				catch(Exception e)
+				{
+					assessmentAgencyCSVReader.close();
+					File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
+					deleteUploadedFile.delete();
+					e.printStackTrace();
+					return "Error Inserting or Updating data .Kindly try again .";
+				}		
+	
 	}
 }

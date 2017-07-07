@@ -1,5 +1,11 @@
 package com.skill.India.dao;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DAO for Assessor 
+ */
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

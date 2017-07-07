@@ -1,21 +1,27 @@
 package com.skill.India.dto;
 
+/*
+ * Author 		: Ruchit Jain
+ * Description  : DTO for Trainer
+ */
+
+
 public class ValidateTrainerCSVDto {
-	private String trainerID;
+	private String trainerId;
 	private String trainerName;
 	private String designation;
-	private String trainingPartnerID;
+	private String trainingPartnerId;
 	/**
-	 * @return the trainerID
+	 * @return the trainerId
 	 */
-	public String getTrainerID() {
-		return trainerID;
+	public String getTrainerId() {
+		return trainerId;
 	}
 	/**
-	 * @param trainerID the trainerID to set
+	 * @param trainerId the trainerId to set
 	 */
-	public void setTrainerID(String trainerID) {
-		this.trainerID = trainerID;
+	public void setTrainerId(String trainerId) {
+		this.trainerId = trainerId;
 	}
 	/**
 	 * @return the trainerName
@@ -42,16 +48,16 @@ public class ValidateTrainerCSVDto {
 		this.designation = designation;
 	}
 	/**
-	 * @return the trainingPartnerID
+	 * @return the trainingPartnerId
 	 */
-	public String getTrainingPartnerID() {
-		return trainingPartnerID;
+	public String getTrainingPartnerId() {
+		return trainingPartnerId;
 	}
 	/**
-	 * @param trainingPartnerID the trainingPartnerID to set
+	 * @param trainingPartnerId the trainingPartnerId to set
 	 */
-	public void setTrainingPartnerID(String trainingPartnerID) {
-		this.trainingPartnerID = trainingPartnerID;
+	public void setTrainingPartnerId(String trainingPartnerId) {
+		this.trainingPartnerId = trainingPartnerId;
 	}
 	
 	
