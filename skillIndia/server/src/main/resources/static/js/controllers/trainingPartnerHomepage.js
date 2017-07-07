@@ -14,14 +14,14 @@ app.controller('PresentCtrl',['$scope','$http', function($scope,$http){
 		enableVerticalScrollbar:0,
 			
 		columnDefs:[
-			{name:'batchId',displayname:'Batch ID', cellClass:'bId',  headerCellClass:'Batch-Id' },
+			{name:'batchId',displayname:'Batch ID', cellClass:'bId',  headerCellClass:'Batch-Id'},
 			{name:'completionDate', displayname:'Completion Date', cellClass:'cDate',  headerCellClass:'Comp-Date'},
 			{name:'instructorName', displayname:'Instructor Name', cellClass:'iName', headerCellClass:'Ins-Name'},
 			{name:'noOfCandidates', displayname:'Number of Candidates', cellClass:'no-Candidates', headerCellClass:'Candidates'}
 			]			 		            			            	
 	};
 			
-			 $http.get("192.168.4.120:8080/trainingPartnerPastBatches")
+			 $http.get("/trainingPartnerPastBatches")
 			    .success(function (data) {
 			      $scope.gridOptions.data= data;
 			    })
