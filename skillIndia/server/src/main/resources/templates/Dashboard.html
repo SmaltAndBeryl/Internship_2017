@@ -1,6 +1,9 @@
-<html>
+<html ng-app="app">
 <head>
     <title>Dashboard</title>
+<!-- JS Controller for Panels -->
+ <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+<script src="js/controllers/panelController.js"></script>
     <!--CSS For Open Sans font family  -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
@@ -14,54 +17,66 @@
 
 <!-- CSS and JS scripts for training partner home page -->
 <link href="css/Dashboard.css" type="text/css" rel="stylesheet">
+
 </head>
 
     <body>
 <div class="container">
-   <div class="pannelWrap">
+   <div class="panelWrap">
        <div class="text">Candidate's Information</div>
        <div class="row upper-panel">
            <div class="col-sm-2">
-             <div class="panel panel-default">
-                 <div class="panel-body">
-                     <div><!--Insert Controller here --></div>
+             <div class="panel">
+                 <div class="panel-body" style="background-color:#F6AB3D;">
+                     <div class="Enrolled" ng-controller="firstCtrl">
+                    <b>{{number}}</b>
+                                     </div>
                  </div>
-                <div class="panel-footer">TOTAL CANDIDATES ENROLLED</div>
+ <div class="panel-footer" style="background-color:#E18806;">TOTAL CANDIDATES ENROLLED</div>
              </div>
             </div>
            
         <div class="col-sm-2">
              <div class="panel panel-default">
-                 <div class="panel-body">
-                     <div><!--Insert Controller here --></div>
+                 <div class="panel-body" style="background-color:#A3C3E7;">
+                     <div class="Assessed" ng-controller="secondCtrl">
+                     <b>{{number}}</b>
+                     </div>
                  </div>
-                <div class="panel-footer">TOTAL CANDIDATES ASSESED</div>
+                <div class="panel-footer" style="background-color:#7BA9DC;">TOTAL CANDIDATES ASSESSED</div>
              </div>
             </div>   
         <div class="col-sm-2">
              <div class="panel panel-default">
-                 <div class="panel-body">
-                     <div><!--Insert Controller here --></div>
+                 <div class="panel-body"style="background-color:#ACCAE9;">
+                     <div class="Certified" ng-controller="thirdCtrl">
+                     <b>{{number}}</b>
+                     </div>
                  </div>
-                <div class="panel-footer">TOTAL CANDIDATES CERTIFIED</div>
+                <div class="panel-footer" style="background-color:#A0C1B4;">TOTAL CANDIDATES CERTIFIED</div>
              </div>
             </div>      
            
            <div class="col-sm-2">
              <div class="panel panel-default">
-                 <div class="panel-body">
-                    <div><!--Insert Controller here --></div>
+                 <div class="panel-body" style="background-color:#57C5D9;">
+                    <div class="TotalTC" class="TotalTC" ng-controller="fourthCtrl">
+                    <b>{{number}} </b>
+                    </div>
                  </div>
-                <div class="panel-footer">TOTAL TRAINING CENTRES</div>
+                <div class="panel-footer" style="background-color:#2DABC1;">TOTAL TRAINING CENTRES</div>
              </div>
             </div>   
            
            <div class="col-sm-2">
              <div class="panel panel-default">
-                 <div class="panel-body"><div>
-                     <!--Insert Controller here --></div>
+                 <div class="panel-body"style="background-color:#BCD43A;">
+                 <div class="TotalTP" ng-controller="fifthCtrl">
+                    <b>{{number}}</b>
+                      
+                     </div>
                  </div>
-                <div class="panel-footer">TOTAL TRAINING PARTNERS</div>
+                <div class="panel-footer"style="background-color:#A6C118;">TOTAL TRAINING PARTNERS</div>
              </div>
             </div>   
            
