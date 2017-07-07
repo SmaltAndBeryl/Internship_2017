@@ -4,7 +4,7 @@
 /* height: 1113px */
  background-color:#E5E9EA;
     }
-.pannelWrap
+.panelWrap
 {
 
     background-color:#fffefe;
@@ -17,27 +17,28 @@
         font-size:x-small; 
         font-family: sans-serif;
         margin-left: 30px;
-        font-weight: 200;
+        font-weight: 100;
     
     
 }
 .panel-footer {
-  padding: 0px 12px;
-  font-family: sans-serif;
-  font-size:xx-small;
-  font-weight: bold;
+     padding: 2px 4px;
+    font-family: sans-serif;
+    font-size: inherit;
+    font-weight: 700;
+    color: white;
 }
 .panel-body {
-    padding: 27px;
+    padding: 20px;
 }
 .text{
-    font-size: larger;
+    font-size: Medium;
     padding-top: 20px;
     margin-left: 29px;
    font-family:sans-serif;
     margin-bottom: 15px;
     color:#7C818A;
-    font-weight: normal;
+    font-weight: Inherent;
     
 }
 .upper-panel{
@@ -51,8 +52,8 @@
 }
 .chartsWrap{
  font-family:sans-serif;
-    font-size: smaller;
-      margin:22px 32px 21px 22px;
+   /* font-size: smaller;*/
+     margin:22px 32px 21px 22px;
     background-color:#EAEEEF;
 }
 .col-sm-4
@@ -66,6 +67,37 @@
 .panel-header{
        font-family: sans-serif;
        color:#7C818A;
-       font-size: large;
-     font-weight: 300;
+       font-size: 14px;
+     font-weight:100;
+	 padding:10px;
+}
+.Enrolled
+{
+	font-size: x-large;
+    font-family: inherit;
+    color: white;
+}
+.Assessed{
+	font-size: x-large;
+    font-family: inherit;
+    color: white;
+}
+.Certified
+{
+	font-size: x-large;
+    font-family: inherit;
+    color: white;
+}
+.TotalTC{
+	font-size: x-large;
+    font-family: inherit;
+    color: white;
+	
+}
+
+.TotalTP
+{
+	font-size: x-large;
+    font-family: inherit;
+    color: white;
 }
