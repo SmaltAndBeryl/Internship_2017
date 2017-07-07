@@ -15,9 +15,9 @@ refresh();
       	{ name: 'Institution name | Location', displayName: 'Institution Name', width: 190 ,cellClass:'fname',headerCellClass:'Institution-Name' },
 		{ name: 'Type',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
 		{ name: 'Date', displayName: 'Date',width:100,cellClass:'layer',headerCellClass:'Institution-Name'},
-		{ name: 'View Application', displayName:'View', cellTemplate:'<img src="pdf.png" ng-click=grid.appScope.myfunction()>',headerCellClass:'Institution-Name', cellClass:'va',width:120},
+		{ name: 'View Application', displayName:'View', cellTemplate:'<img src="icon/indexPageIcons/pdf.png" ng-click=grid.appScope.myfunction()>',headerCellClass:'Institution-Name', cellClass:'va',width:120},
 		{ name: 'Comments', displayName:'Comments' ,enableCellEdit: true, width:180,headerCellClass:'Institution-Name',cellClass:'va'},
-        { name: 'Action', displayName:'Action' , cellTemplate: '<label><img src="edit.png" ng-click=grid.appScope.myfunction()>&nbsp; &nbsp; &nbsp<img src="tick.png" ng-click=grid.appScope.myfunction1()>  &nbsp; &nbsp; <img src="close.png" ng-click=grid.appScope.myfunction2()></label>',headerCellClass:'Institution-Name',cellClass:'va'}
+        { name: 'Action', displayName:'Action' , cellTemplate: '<label><img src="icon/indexPageIcons/edit.png" ng-click=grid.appScope.myfunction()>&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.myfunction1()>  &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.myfunction2()></label>',headerCellClass:'Institution-Name',cellClass:'va'}
 		
     ]
   };
@@ -33,7 +33,7 @@ refresh();
     };
   
   function refresh() {
-    $http.get('')
+    $http.get('poc/data.json')
     .success(function (data) {
       $scope.gridOptions.data = data;
     });
