@@ -28,18 +28,19 @@
 </head>
 <body>
 
-	<div class="container" ng-controller="FAQScreenController">
+	
 
 
     <h3>FAQ's</h3>
+    <div class="container mainBody" ng-controller="FAQTotalCandidatesTrainedAssessedCertifiedController">
 		<div class="container accordian">        
        		<div class="left Rectangle">
             <ul>
-            <li class="panel-title panel-heading FAQ1">How many candidates we have trained/assessed/certified in particular scheme (PMKVY/Non-PMKVY)?</li>
+            <li class="panel-title panel-heading FAQ1">How many candidate’s we have trained/assessed/certified so far overall (across all the scemes)</li>
             </ul>
         	</div>
     		<div class="center Rectangle">
-    			<select ng-model="selectedScheme" ng-options="scheme for scheme in schemeDropDownOptions"></select>
+
    			</div>
    		 <div class="right Rectangle">          
          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" >
@@ -53,7 +54,7 @@
 							<h6  class="manage"></h6>
 						</div>
       					<div class="table-wrap">
-        					<div ng-controller="FAQScreenController as FAQ">
+        					<div ng-controller="FAQTotalCandidatesTrainedAssessedCertifiedController as FAQ">
           						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid">
           						</div>
         					</div>
@@ -62,5 +63,77 @@
    			</div>
 		 </div>
 	</div>
+	
+	
+	<div class="container mainBody " ng-controller="FAQCountOfTotalTrainingCentresConductingTrainingController">
+		<div class="container accordian">        
+       		<div class="left Rectangle">
+            <ul>
+            <li class="panel-title panel-heading FAQ1">How many candidates we have trained/assessed/certified in particular scheme (PMKVY/Non-PMKVY)</li>
+            </ul>
+        	</div>
+    		<div class="center Rectangle">
+    			<select ng-model="selectedScheme" ng-options="scheme for scheme in schemeDropDownOptions"></select>
+   			</div>
+   		 <div class="right Rectangle">          
+         		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" >
+         		<span class="glyphicon glyphicon-plus" ng-click="getDataOfScheme()"></span></a>
+   		 </div>
+		</div>
+            <div id="collapsetwo" class="panel-collapse collapse" >
+                <div class="panel-body">
+    				<div class="table">
+   						 <div ng-bind="selectedScheme">
+							<h6  class="manage"></h6>
+						</div>
+      					<div class="table-wrap">
+        					<div>
+        						<div ng-controller="FAQCountOfTotalTrainingCentresConductingTrainingController as FAQ">
+          						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid">
+          						</div>
+          						</div>
+        					</div>
+      					</div>
+    				</div>
+   			</div>
+		 </div>
+	</div>
+	
+	
+	
+	
+	<div class="container mainBody " ng-controller="FAQScreenController3">
+		<div class="container accordian">        
+       		<div class="left Rectangle">
+            <ul>
+            <li class="panel-title panel-heading FAQ1">How much training is going on in state XYZ</li>
+            </ul>
+        	</div>
+    		<div class="center Rectangle">
+    			<select ng-model="selectedState" ng-options="state for state in stateDropDownOptions"></select>
+   			</div>
+   		 <div class="right Rectangle">          
+         		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsethree" >
+         		<span class="glyphicon glyphicon-plus" ng-click="getDataOfState()"></span></a>
+   		 </div>
+		</div>
+            <div id="collapsethree" class="panel-collapse collapse" >
+                <div class="panel-body">
+    				<div class="table">
+   						 <div ng-bind="selectedState">
+							<h6  class="manage"></h6>
+						</div>
+<!--       					<div class="table-wrap">   -->
+<!--         					<div>   -->
+<!--           						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid">-->
+ <!--          						</div>-->
+  <!--       					</div>-->
+ <!--      					</div>        -->
+    				</div>
+   			</div>
+		 </div>
+	</div>
+
+	
 </body>
 </html>
