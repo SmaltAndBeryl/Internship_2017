@@ -3,9 +3,11 @@ package com.skill.India.POC;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
 public class StatusController {
-	@RequestMapping("/status")  
+	@RequestMapping("/statusTp")  
 	  public  String user() {
-	    return "AbApplicationStatus";
+	    return "TpApplicationStatus";
 	  }
+	
 }
