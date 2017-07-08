@@ -27,7 +27,7 @@ import com.skill.India.service.ApproveRejectTableService;
 		return approveRejectService.getUpdateRowMapper();
 		}
 		
-		 @RequestMapping(value= "/setManageRegistrationComment",method=RequestMethod.POST, consumes=MediaType.ALL_VALUE)
+		 @RequestMapping(value= "/setManageRegistrationsComment",method=RequestMethod.POST, consumes=MediaType.ALL_VALUE)
 		 public @ResponseBody  String setComment(@RequestBody CommentDto commentDto, ApproveRejectTableService commentService){
 			 
 			

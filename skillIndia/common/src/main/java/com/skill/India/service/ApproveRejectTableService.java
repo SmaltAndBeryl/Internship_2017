@@ -1,11 +1,14 @@
 package com.skill.India.service;
 
 import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.skill.India.dao.ApproveRejectTableDao;
 import com.skill.India.dao.CommentDao;
-import com.skill.India.dao.ManageRegistrationAcceptDao;
+
+import com.skill.India.dao.ManageRegistrationDao;
 import com.skill.India.dto.ApproveRejectTableDto;
 import com.skill.India.dto.CommentDto;
 
@@ -22,7 +25,7 @@ public class ApproveRejectTableService {
 	private CommentDao commentDao;
 	
 	@Autowired
-	private ManageRegistrationAcceptDao ManageRegistrationAcceptDao;
+	private ManageRegistrationDao ManageRegistrationAcceptDao;
 	
 	
 	public Collection<ApproveRejectTableDto> getUpdateRowMapper(){

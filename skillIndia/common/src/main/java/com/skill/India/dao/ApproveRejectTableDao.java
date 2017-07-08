@@ -35,10 +35,10 @@ public class ApproveRejectTableDao extends AbstractTransactionalDao {
 			Integer applicationId = resultSet.getInt("applicationId");
 		    String applicationState= resultSet.getString("applicationState");
 		    Boolean activeFlag = resultSet.getBoolean("activeFlag");
-			Date date = resultSet.getDate("date");
+			Date dateOfSubmission = resultSet.getDate("dateOfSubmission");
             String userId = resultSet.getString("userId");
 
-			return new ApproveRejectTableDto(applicationId, applicationState, activeFlag, date,userId);
+			return new ApproveRejectTableDto(applicationId, applicationState, activeFlag, dateOfSubmission,userId);
 		}
 
 	
