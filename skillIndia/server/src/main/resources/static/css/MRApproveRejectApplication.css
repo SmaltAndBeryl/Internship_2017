@@ -1,28 +1,31 @@
 .grid {
   /*padding: 30px 20px;*/
-  width: auto;
-  height: auto;
+  width: 100%;
+
 }
 
 *{
   font-family: 'Open Sans', sans-serif;
-  font-weight: normal;
+
 }
 
 .table{
   background-color: whitesmoke;
-  height: 140%;
+  height: 100%;
 }
 .manage{
-	padding-top: 25px;
+	padding-top: 23px;
 	margin-left: 26px;
+	font-size: 18px;
 }
 .orient1{
     align-items: stretch;
     object-position: left;
 }
 .title{
-	padding-top: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 13px;
 	color: grey;
 }
 
