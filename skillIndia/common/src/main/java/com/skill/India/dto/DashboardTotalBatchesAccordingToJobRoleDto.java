@@ -6,7 +6,7 @@ public class DashboardTotalBatchesAccordingToJobRoleDto {
 	
 	private final String jobRole;
 	
-	private final Integer jobRoleCode;
+	private final String jobRoleCode;
 
 	/**
 	 * @return the batches
@@ -25,7 +25,7 @@ public class DashboardTotalBatchesAccordingToJobRoleDto {
 	/**
 	 * @return the jobRoleCode
 	 */
-	public Integer getJobRoleCode() {
+	public String getJobRoleCode() {
 		return jobRoleCode;
 	}
 
@@ -34,7 +34,7 @@ public class DashboardTotalBatchesAccordingToJobRoleDto {
 	 * @param jobRole
 	 * @param jobRoleCode
 	 */
-	public DashboardTotalBatchesAccordingToJobRoleDto(Integer batches, String jobRole, Integer jobRoleCode) {
+	public DashboardTotalBatchesAccordingToJobRoleDto(Integer batches, String jobRole, String jobRoleCode) {
 		super();
 		this.batches = batches;
 		this.jobRole = jobRole;

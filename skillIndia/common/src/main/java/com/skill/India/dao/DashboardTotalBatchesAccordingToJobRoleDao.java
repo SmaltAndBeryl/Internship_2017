@@ -35,7 +35,7 @@ public class DashboardTotalBatchesAccordingToJobRoleDao extends AbstractTransact
 		public DashboardTotalBatchesAccordingToJobRoleDto mapRow(ResultSet resultSet, int rowNum)throws SQLException {
 			Integer batches = resultSet.getInt("BATCHES");
 			String jobRole = resultSet.getString("jobRole");
-			Integer jobRoleCode = resultSet.getInt("jobRoleCode");
+			String jobRoleCode = resultSet.getString("jobRoleCode");
 			
 			return new DashboardTotalBatchesAccordingToJobRoleDto(batches, jobRole, jobRoleCode);
 		}
