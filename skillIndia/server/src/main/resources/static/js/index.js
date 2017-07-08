@@ -2,11 +2,12 @@
 
 // URL Routing
 
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'faq', 'imp', 'manage', 'dashboard']);
+//
+//myApp.controller('username-ctrl', function($scope) {
+//  $scope.username = "Alkesh Srivastava";
+//});
 
-myApp.controller('username-ctrl', function($scope) {
-  $scope.username = "Alkesh Srivastava";
-});
 myApp.config(function($routeProvider) {
   $routeProvider
   .when('/',{
@@ -15,20 +16,22 @@ myApp.config(function($routeProvider) {
   })
 
   .when('/dashboard',{
-    templateUrl: 'partials/main.html',
-    // controller: 'dashController'
+    //templateUrl: 'partials/main.html',
+    templateUrl : 'partials/dashboard.html'
+    controller: 'dashboardController'
   })
   .when("/manage-registrations", {
-    templateUrl: "partials/manage.html",
-    // controller: 'manageController'
+    //templateUrl: "partials/manage.html",
+    templateUrl: "partials/MRApproveRejectApplication.html",
+    controller: 'manageController'
   })
   .when("/import", {
     templateUrl: "partials/import.html",
-    // controller: 'importController'
+    controller: 'importController'
   })
   .when("/faq", {
-    templateUrl: "partials/faq.html",
-    // controller: 'faqController'
+    templateUrl: "partials/faq2.html",
+    controller: 'faqController'
   })
   .when("/batch-assignment", {
     templateUrl: "partials/batch.html",
