@@ -144,4 +144,12 @@ DataImport:
    
    
    
+ userIdExistsForCSVUploaded: >
+   select exists (select * from user
+    where userId=:userId) 
    
+ insertIntoCSVUploaded: >
+   insert into csvuploaded (csvType,csvName,csvUploadDate,csvUploadUserId)
+    values (:csvType,:csvName,:csvUploadDate,:csvUploadUserId)
+    
+      
