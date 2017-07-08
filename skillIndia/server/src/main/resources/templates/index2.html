@@ -3,33 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Page</title>
+    <title>SCGJ | Skill Council for Green Jobs</title>
     <link rel="stylesheet" href="css/main.css">
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Roboto" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.6.5/angular-touch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/controllers/faqController.js"></script>
+    <script type="text/javascript" src="js/controllers/importController.js"></script>
+
+    <script text="text/javascript" src="js/controllers/MRApproveRejectApplication.js"></script>
+    <script text="text/javascript" src="js/controllers/panelController.js"></script>
+    <!--Include your JS files here-->
+
 
     <script type="text/javascript" src="js/index.js"></script>
-    <script src="/release/ui-grid.js"></script>
-    <script src="/release/ui-grid.css"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.js"></script> -->
-    <!-- <script type="text/javascript" src="/js/angular-cache.js"></script>
-    <script type="text/javascript" src="/js/angular-cache.js.map"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-route.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-sanitize.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-touch.js"></script>
-    <script type="text/javascript" src="/js/angular.min.js"></script>
-    <script type="text/javascript" src="/js/angular2.sfx.dev.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/google-maps-api.js"></script>
-    <script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="/js/lodash.underscore.min.js"></script>
-    <script type="text/javascript" src="/js/ng-grid-1.3.2.js"></script>
-    <script type="text/javascript" src="/js/ng-modal.js"></script> -->
-    <!-- <script type="text/javascript" src="/js/ui-bootstrap.js"></script>
-    <script type="text/javascript" src="/js/ui-grid-stable.min.js"></script> -->
+
   </head>
   <header class="one-edge-shadow">
     <div class="leftContent">
@@ -39,9 +35,9 @@
     <div class="rightContent">
       <div class="logout-wrapper">
 
-        <div class="username" ng-controller="username-ctrl">
-          <h2 class="username"><b>{{ username }}</b></h2>
-        </div>
+        <!--<div class="username" ng-controller="username-ctrl">-->
+          <!--<h2 class="username"><b>{{ username }}</b></h2>-->
+        <!--</div>-->
 
         <div class="logoutButton">
           <div class="logout-icon-text-wrap">
@@ -105,7 +101,7 @@
 
       </div>
 
-      <div id="Content">
+      <div class="Content">
 
         <div ng-view style="height:833px;">
 
