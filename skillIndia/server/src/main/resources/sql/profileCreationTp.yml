@@ -1,0 +1,7 @@
+profileCreation:
+ insertSqlOfProfileCreation: > 
+  insert into trainingpartnerregistration (trainingPartnerName,emailId,mobileNumber,firstName,lastName) 
+  values (:trainingPartnerName,:emailId,:mobileNumber,:firstName,:lastName)
+  
+ checkSqlOfProfileCreation: >
+  SELECT EXISTS(SELECT * FROM trainingpartnerregistration WHERE emailId=:emailId)
