@@ -1,7 +1,19 @@
-var app = angular.module('app', ['ui.grid', 'ui.grid.edit', 'ui.grid.cellNav']);
+//var app = angular.module('app', ['ui.grid', 'ui.grid.edit', 'ui.grid.cellNav']);
 
-app.controller('MainCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
-refresh();
+var manage = angular
+                    .module('manage', [
+                        'ui.grid',
+                        'ui.grid.edit',
+                        'ui.grid.cellNav'
+                    ]);
+
+//app.controller('MainCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
+manage.controller('manageController', manageController);
+
+manageController.$inject = ['$scope', '$location', '$http'];
+
+function manageController($scope, $location, $http){
+  //refresh();
 	
   $scope.gridOptions = {
 	  enableGridMenus : false,  
@@ -11,31 +23,32 @@ refresh();
 	  enableColumnMenus : false,
     
 	  columnDefs: [
-		{ name: 'applicationId', displayName: 'Serial No', cellClass:'sno',headerCellClass:'Institution-Name',width:80},
-      	{ name: 'applicationState', displayName: 'Institution Name', width: 190 ,cellClass:'fname',headerCellClass:'Institution-Name' },
+		{ name: 'applicationId', displayName: 'Serial No', cellClass:'sno',headerCellClass:'Institution-Name'},
+      	{ name: 'applicationState', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
 		{ name: 'activeFlag',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
-		{ name: 'dateOfSubmission', displayName: 'Date',width:100,cellClass:'layer',headerCellClass:'Institution-Name'},
+		{ name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'},
 		{ name: 'userId', displayName:'View', cellTemplate:'<img src="icon/indexPageIcons/pdf.png" ng-click=grid.appScope.myfunction()>',headerCellClass:'Institution-Name', cellClass:'va',width:120},
-		{ name: 'Comments', displayName:'Comments' ,enableCellEdit: true, width:180,headerCellClass:'Institution-Name',cellClass:'va'},
+		{ name: 'Comments', displayName:'Comments' ,enableCellEdit: true,headerCellClass:'Institution-Name',cellClass:'va'},
         { name: 'Action', displayName:'Action' , cellTemplate: '<label><img src="icon/indexPageIcons/edit.png" ng-click=grid.appScope.myfunction()>&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.myfunction1()>  &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.myfunction2()></label>',headerCellClass:'Institution-Name',cellClass:'va'}
 		
     ]
   };
-    $scope.myfunction = function()
-    {
+    $scope.myfunction = function(){
         location.href = 'http://www.google.com';
     };
-     $scope.myfunction1 = function() 
-  {  location.href = 'http://www.google.com';
-};
-    $scope.myfunction2 = function()
-    {location.href = 'http://www.facebook.com';
+
+    $scope.myfunction1 = function(){
+        location.href = 'http://www.google.com';
+    };
+
+    $scope.myfunction2 = function(){
+        location.href = 'http://www.facebook.com';
     };
   
-  function refresh() {
+
     $http.get('/approve')
-    .success(function (data) {
-      $scope.gridOptions.data = data;
+      .then(function(response){
+        $scope.gridOptions.data = response.data;
     });
-  }
-}]);
+//  }
+}
