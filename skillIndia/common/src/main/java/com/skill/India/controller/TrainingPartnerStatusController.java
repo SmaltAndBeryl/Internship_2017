@@ -18,7 +18,7 @@ public class TrainingPartnerStatusController
 	private TrainingPartnerApplicationStatusService trainingPartnerApplicationStatusService;
 			
 	@RequestMapping("/trainingPartnerApplicationStatus")
-	public Collection<TrainingPartnerApplicationStatusDto> getrainingPartnerApplicationStatusDto () {
+	public Collection<TrainingPartnerApplicationStatusDto> gettrainingPartnerApplicationStatusDto () {
 	       return trainingPartnerApplicationStatusService.getUpdateRowMapper();
 	}
 
