@@ -1,0 +1,10 @@
+signUp:
+ insertSql: >
+   insert into user (organizationName,spocName,userId,password,userRole,userStatus)
+    values (:organizationName,:spocName,:userId,:password,:userRole,"temp")
+    
+ checkSql: >
+   SELECT EXISTS(SELECT * FROM user WHERE userId=:userId and organizationName=:organizationName)
+   
+ getSql: >
+   select userId,organizationName,spocName from user where id=:id
