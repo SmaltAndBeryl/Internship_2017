@@ -8,7 +8,7 @@ faq:
    FROM batch WHERE batchType = :batchType
 
  selectSqlCountTotalTrainingCentresInAState: >
-  SELECT COUNT(batchId) FROM batch B, centre C WHERE B.centreId = C.centreId and C.state = :state;
+  SELECT COUNT(centreId) FROM centre C WHERE state = :state;
    
  selectSqlCountTrainingCentresConductingTraining: >
   select count(distinct(centreId)) from batch where batchEndDate>now() and batchStartDate<=now()
