@@ -13,10 +13,10 @@ $scope.gridOptions = {
       enableHorizontalScrollbar:0,
 	  
 columnDefs:[
-	  { name: 'serialNo',           displayName: 'S.No.',              cellClass:'sno',  headerCellClass:'layer', width: 55},
+	  { name: 'SNo',           displayName: '#',              cellClass:'sno',  headerCellClass:'layer', width: 55, cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' },
       { name: 'csvname',            displayName: 'File Name',          cellClass:'fname',headerCellClass:'File-Name', width: 132},
 	  { name: 'csvtype',            displayName: 'Type',               cellClass:'type', headerCellClass:'Type', width: 221},
-	  { name: 'csv_Upload_Date',    displayName: 'Date',               cellClass:'date', headerCellClass:'Date', width: 150},
+	  { name: 'csv_Upload_Date',    displayName: 'Date',               cellClass:'date', headerCellClass:'Date', width: 150, cellFilter: 'date:\'dd/MM/yyyy\''},
 	  { name: 'csv_Upload_UserId',  displayName: 'Uploaded By',        cellClass:'uby',  headerCellClass:'Uploaded-By', width: 210},
 	  { name: 'View Uploaded File', displayName: 'View Uploaded File', cellClass:'vub',  headerCellClass:'View-Uploaded-File', cellTemplate: '<img src="/images/CSVDownloadIcon.png" ng-click=grid.appScope.myfunction()>', width: 165}
 	       ]
