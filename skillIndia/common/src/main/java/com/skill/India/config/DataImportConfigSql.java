@@ -83,7 +83,43 @@ public class DataImportConfigSql {
 		private String updateIntoTrainingPartner;
 		
 		
+		/*
+		 * For csvuploaded
+		 */
 		
+		private String userIdExistsForCSVUploaded;;
+		private String insertIntoCSVUploaded;
+		
+		
+		
+		/**
+		 * @return the userIdExistsForCSVUploaded
+		 */
+		public String getUserIdExistsForCSVUploaded() {
+			return userIdExistsForCSVUploaded;
+		}
+
+		/**
+		 * @param userIdExistsForCSVUploaded the userIdExistsForCSVUploaded to set
+		 */
+		public void setUserIdExistsForCSVUploaded(String userIdExistsForCSVUploaded) {
+			this.userIdExistsForCSVUploaded = userIdExistsForCSVUploaded;
+		}
+
+		/**
+		 * @return the insertIntoCSVUploaded
+		 */
+		public String getInsertIntoCSVUploaded() {
+			return insertIntoCSVUploaded;
+		}
+
+		/**
+		 * @param insertIntoCSVUploaded the insertIntoCSVUploaded to set
+		 */
+		public void setInsertIntoCSVUploaded(String insertIntoCSVUploaded) {
+			this.insertIntoCSVUploaded = insertIntoCSVUploaded;
+		}
+
 		/**
 		 * @return the applicationIdExistsForTrainingPartner
 		 */

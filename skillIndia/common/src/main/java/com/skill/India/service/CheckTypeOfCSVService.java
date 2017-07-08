@@ -40,7 +40,7 @@ public class CheckTypeOfCSVService {
 	private ValidateEmployerCSVService validateEmployerCSVService;
 	
 	
-	   public String checkTypeOfCSV(String type,String pathOfUploadedFile) {
+	   public String checkTypeOfCSV(String type,String pathOfUploadedFile,String userId,String fileNameToBeSaved) {
 
 	        String line = "";
 	        String cvsSplitBy = ",";
@@ -68,7 +68,7 @@ public class CheckTypeOfCSVService {
 							columns[20].equals("employerId") )
 	            	{
 	            		readColumnsOfCsv.close();
-	            	return validateCandidateCSVService.validateCandidateCSV(pathOfUploadedFile); 
+	            	return validateCandidateCSVService.validateCandidateCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved); 
 	            	}
 		        	break;
 	            	
@@ -89,7 +89,7 @@ public class CheckTypeOfCSVService {
 						&& columns[24].equals("agencyId") && columns[25].equals("assessorId"))
 					{
 						readColumnsOfCsv.close();
-						return validateBatchCSVService.validateBatchCSV(pathOfUploadedFile);
+						return validateBatchCSVService.validateBatchCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved);
 					}
 						
 						
@@ -101,7 +101,7 @@ public class CheckTypeOfCSVService {
 							columns[2].equals("trainingPartnerName"))
 					{
 						readColumnsOfCsv.close();
-						return validateTrainingPartnerCSVService.validateTrainingPartnerCSV(pathOfUploadedFile);
+						return validateTrainingPartnerCSVService.validateTrainingPartnerCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved);
 					}
 					break;
 					
@@ -113,7 +113,7 @@ public class CheckTypeOfCSVService {
 							columns[6].equals("trainingPartnerId"))
 					{
 						readColumnsOfCsv.close();
-						return validateCentreCSVService.validateCentreCSV(pathOfUploadedFile);
+						return validateCentreCSVService.validateCentreCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved);
 					}
 					break;
 					
@@ -123,7 +123,7 @@ public class CheckTypeOfCSVService {
 							columns[2].equals("designation")&& columns[3].equals("trainingPartnerId"))
 					{
 						readColumnsOfCsv.close();
-						return validateTrainerCSVService.validateTrainerCSV(pathOfUploadedFile);
+						return validateTrainerCSVService.validateTrainerCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved);
 					}
 					
 					break;	
@@ -134,7 +134,7 @@ public class CheckTypeOfCSVService {
 					if(columns[0].equals("agencyId") && columns[1].equals("applicationId") && columns[2].equals("agencyName"))
 					{
 						readColumnsOfCsv.close();
-						return validateAssessmentAgencyCSVService.validateAssessmentAgencyCSV(pathOfUploadedFile);
+						return validateAssessmentAgencyCSVService.validateAssessmentAgencyCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved);
 					}
 					
 				case "Assessor":
@@ -143,7 +143,7 @@ public class CheckTypeOfCSVService {
 							columns[3].equals("state")&& columns[4].equals("agencyId"))
 					{
 						readColumnsOfCsv.close();
-						return validateAssessorCSVService.validateAssessorCSV(pathOfUploadedFile);
+						return validateAssessorCSVService.validateAssessorCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved);
 					}
 					break;	
 				
@@ -154,7 +154,7 @@ public class CheckTypeOfCSVService {
 							&& columns[4].equals("locationOfEmployerState"))
 					{
 						readColumnsOfCsv.close();
-						return validateEmployerCSVService.validateEmployerCSV(pathOfUploadedFile);
+						return validateEmployerCSVService.validateEmployerCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved);
 					}
 					break;	
 					

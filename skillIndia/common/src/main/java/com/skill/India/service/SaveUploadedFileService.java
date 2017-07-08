@@ -20,7 +20,7 @@ public class SaveUploadedFileService {
 	@Autowired
 	private CheckTypeOfCSVService checkTypeOfService;
 
-	public String saveUploadedFile(MultipartFile file,String type)
+	public String saveUploadedFile(MultipartFile file,String type,String userId)
 	{	 
 		String UPLOADED_FOLDER = "D://EclipseWorkspace//";
 		
@@ -59,7 +59,7 @@ public class SaveUploadedFileService {
         	   return "Error Saving file on Local Machine.Try Again later ";
            }
            
-           return checkTypeOfService.checkTypeOfCSV(type, pathOfUploadedFile);
+           return checkTypeOfService.checkTypeOfCSV(type,pathOfUploadedFile,userId,fileNameToBeSaved);
         
            /* for saving a message in session or on server side
            redirectAttributes.addFlashAttribute("message",

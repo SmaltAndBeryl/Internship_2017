@@ -12,6 +12,7 @@ package com.skill.India.service;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ import au.com.bytecode.opencsv.bean.ColumnPositionMappingStrategy;
 import au.com.bytecode.opencsv.bean.CsvToBean;
 
 import com.skill.India.common.ValidationUtils;
+import com.skill.India.dao.DataImportCSVUploadTableDao;
 import com.skill.India.dao.DataImportTrainingPartnerDao;
 import com.skill.India.dto.ValidateTrainingPartnerCSVDto;
 
@@ -34,7 +36,10 @@ public class ValidateTrainingPartnerCSVService {
 	@Autowired
 	private DataImportTrainingPartnerDao dataImportTrainingPartnerDao;
 	
-	public String validateTrainingPartnerCSV(String trainingPartnerCSVFileName) throws IOException{
+	@Autowired
+	private DataImportCSVUploadTableDao dataImportCSVUploadTableDao;
+	
+	public String validateTrainingPartnerCSV(String trainingPartnerCSVFileName,String type,String userId,String fileNameToBeSaved) throws IOException{
 		CSVReader trainingPartnerCSVReader=null;
 		/*
 		 * Create Array List to store the data of csv read (in Hashmap's) 
@@ -215,6 +220,39 @@ public class ValidateTrainingPartnerCSVService {
 					
 				}	// end of for loop 
 				trainingPartnerCSVReader.close();
+				
+				/*
+				 * Inserting data in csvUploaded  Table
+				 */		
+				Date date=new Date(System.currentTimeMillis());
+				
+				Map<String,Object> uploadedFileInfo= new HashMap<String, Object>();
+				
+				uploadedFileInfo.put("csvType",type);
+				uploadedFileInfo.put("csvName",fileNameToBeSaved);
+				uploadedFileInfo.put("csvUploadDate",date);
+				uploadedFileInfo.put("csvUploadUserId",userId);
+				
+				/*
+				 * Checking for valid UserId (Foreign key constraint)
+				 */
+				
+				int status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
+				if(status==0 || status==2)
+				{
+				File deleteUploadedFile = new File(trainingPartnerCSVFileName);
+				deleteUploadedFile.delete();	
+				return "Invalid User Id . Action Aborted";	
+				}
+				
+				int insertDataStatus=dataImportCSVUploadTableDao.insertDataInCSVUpload(uploadedFileInfo);
+				if(!(insertDataStatus>0))
+				{
+				File deleteUploadedFile = new File(trainingPartnerCSVFileName);
+				deleteUploadedFile.delete();
+				return "Some Error occured while inserting data in csvUploaded By details table . Kindly try again ."; 
+				}
+				
 				return "Data Successfully inserted in Database .";
 				
 			  }	// end of try
