@@ -96,7 +96,7 @@ header{
 /*Sidebar Styles*/
 .sidebar{
   /*height: 500px;*/
-  width: 25%;
+  width: 22%;
   background-color: #1fb1cb
 }
 
@@ -131,9 +131,9 @@ hr{
 }
 
 
-#Content{
+.Content{
   /*height: 500px;*/
-  width: 80%;
+  max-width: 78%;
   background-color: lightgrey;
 }
 
