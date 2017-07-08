@@ -1,4 +1,4 @@
 approveReject:
  selectSql: > 
-   select serial_no,institution_name,type,date
-    from mrtable
+   select applicationId,applicationState,activeFlag,dateOfSubmission,userId
+    from application
