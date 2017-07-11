@@ -1,20 +1,40 @@
 package com.skill.India.dto;
 
-public class LoginReceiveDataDto {
-public String userId;
-public String password;
+import com.skill.India.common.BaseDto;
+
+public class LoginReceiveDataDto extends BaseDto {
+
+	
+	private static final long serialVersionUID = 1L;
+	public String userId;
+	public String password;
 
 public String getUserId() {
 	return userId;
 }
-public void setUserName(String userId) {
-	this.userId = userId;
-}
+
 public String getPassword() {
 	return password;
 }
-public void setPassword(String password) {
+
+/**
+ * @param userId
+ * @param password
+ */
+public LoginReceiveDataDto(String userId, String password) {
+	super();
+	this.userId = userId;
 	this.password = password;
 }
+
+/**
+ * 
+ */
+public LoginReceiveDataDto() {
+	super();
+}
+
+
+
 
 }

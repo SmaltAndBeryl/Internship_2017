@@ -33,9 +33,12 @@ public class LoginController {
     
     
 	@RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
+	public int getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
 	{	
-      return loginService.checkUser(loginReceiveDataDto);
+		
+		System.out.println(loginReceiveDataDto.password+loginReceiveDataDto.userId);
+		
+	 return loginService.checkUser(loginReceiveDataDto);
       
 		
 	}	
@@ -48,7 +51,7 @@ public class LoginController {
 
 	}
 	
-	@RequestMapping(value="/profileCreationDataPopulate", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/profileCreationDataPopulate", method=RequestMethod.POST)
 	public ProfileCreationDataPopulateDto profileCreationDataPopulate(@RequestParam ("userId") String userId){	
 	
 

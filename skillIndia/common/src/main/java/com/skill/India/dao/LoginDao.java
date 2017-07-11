@@ -31,20 +31,20 @@ public class LoginDao extends AbstractTransactionalDao {
 	
 	
 	public Integer userExistence(String userId, String password){
+		System.out.println(userId+" " +password);
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("userId", userId);
-		parameters.put("passWord", password);
+		parameters.put("password", password);
 		return getJdbcTemplate().queryForObject(loginconfig.getCheckUserSql(), parameters, Integer.class);
 		
 	}
 	
-	public LoginDto getLoginRowMapper(String userName, String password) {
+	public Collection<LoginDto> getLoginRowMapper(String userId, String password) {
 		LOGGER.info("Code Reached");
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("userName", userName);
+		parameters.put("userId", userId);
 		parameters.put("password", password);
-	
-		return getJdbcTemplate().queryForObject(loginconfig.getSelectSql(), parameters, ROW_MAPPER); //query for multiple rows from database
+		return getJdbcTemplate().query(loginconfig.getSelectSql(),parameters, ROW_MAPPER);//query for multiple rows from database
 	}
 	
 	

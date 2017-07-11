@@ -2,8 +2,8 @@
 
 var app = angular.module('myAngularApp', []);
 app.controller('loginCtrl',
-				['$scope', '$http', 
-				 	function($scope, $http){
+				['$scope', '$http','$window', 
+				 	function($scope, $http, $window){							
 					
 							$scope.login = function(){
 								console.log(angular.toJson($scope.user));
@@ -20,7 +20,12 @@ app.controller('loginCtrl',
 												
 												}).then(function(response)
 													{
-												     console.log(response);
+												     console.log(response.data);
+												     var db=response.data;
+												     if(db==1)
+												     $window.alert('User is authenticated');
+												     else
+												    	 $window.alert('Unauthorised user'); 
 													});
 													}
 						}

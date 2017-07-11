@@ -19,26 +19,35 @@ public class LoginService {
 	@Autowired
 	private LoginDao loginDao;
 	private int userExistenceValidation;
-	
+	private int response;
 	private LoginDto loginDto;
 
 
-	public LoginDto checkUser(LoginReceiveDataDto loginReceiveDataDto)
+	public int checkUser(LoginReceiveDataDto loginReceiveDataDto)
 	{
+		System.out.println(loginReceiveDataDto.password+loginReceiveDataDto.userId);
 		LOGGER.info(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
 		
 		userExistenceValidation=loginDao.userExistence(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
 		
-		if(userExistenceValidation==0){
-		
-		return loginDao.getLoginRowMapper(loginReceiveDataDto.userId, loginReceiveDataDto.password);
+		if(userExistenceValidation==1){
+			System.out.println(userExistenceValidation);
+			Collection<LoginDto> login=loginDao.getLoginRowMapper(loginReceiveDataDto.getUserId(), loginReceiveDataDto.getPassword());
+			System.out.println(login);
+			for(LoginDto l:login)
+			{
+				//System.out.println(l.getApplicationId()+ l.getUserRole() + l.getUserStatus());
+				
+				response=1;
+			}
 		}
 	
 		else{
+			System.out.println(userExistenceValidation);
 			loginDto= new LoginDto(0, null, null);
-			
+			response=0;
 		}
-		return loginDto;
+		return response;
 	}
 	
 }	
