@@ -1,4 +1,3 @@
 trainingPartnerBatches:
- selectSql: > 
-   select * 
-    from tp
+ selectSqlOfBatches: > 
+   select distinct B.batchId,B.batchEndDate,T.trainerName,B.totalCandidatesInBatch from batch AS B,trainer AS T where B.trainerId=T.trainerId and batchStartDate<curdate();
