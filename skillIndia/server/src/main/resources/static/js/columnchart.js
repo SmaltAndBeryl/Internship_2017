@@ -2,7 +2,7 @@
            
                 var processed_json = new Array();   
             
-      $.getJSON('/getTopStatesWithMaxTrainingCenters', function(data) {                                                  
+      $.getJSON('/getDashboardTopStatesWithMaxTrainingCenters', function(data) {                                                  
           for (i = 0; i < data.length; i++){
                         processed_json.push([data[i].state, data[i].trainingCenters]);
                     }
