@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html ng-app="app">
+<!--<!DOCTYPE html>-->
+<!--<html ng-app="app">-->
 <head>
     <meta charset="utf-8" />
 <!--    <title>Bootstrap FAQ Template | PrepBootstrap</title>-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
    
     <link rel="stylesheet" type="text/css" href="css/FAQ.css" />
     <link rel="stylesheet" href="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.css" type="text/css" />
@@ -19,27 +19,16 @@
     
 <!--    <link rel="stylesheet" href="../css/approve.css" type="text/css" />-->
    
-<link rel="stylesheet" type="text/css" href="css/FAQgrid.css" />
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>
-    <script src="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="css/FAQgrid.css" />-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>-->
+    <!--<script src="//cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.js"></script>-->
     
-        <script type="text/javascript" src="js/FAQ.js"></script>
+
    
 </head>
-<body>
-
-	
-
-
     <h3>FAQ's</h3>
-    
-    
-   <!--QUESTION 1  --> 
-    
-    
-    
-    
-    <div class="container mainBody" ng-controller="FAQTotalCandidatesTrainedAssessedCertifiedController">
+
+    <div class="container mainBody" ng-controller="faqController">
 		<div class="container accordian">        
        		<div class="left Rectangle">
             <ul>
@@ -61,7 +50,7 @@
 							<h6  class="manage"></h6>
 						</div>
       					<div class="table-wrap">
-        					<div ng-controller="FAQTotalCandidatesTrainedAssessedCertifiedController as FAQ">
+        					<div ng-controller="faqController">
           						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid">
           						</div>
         					</div>
@@ -71,52 +60,11 @@
 		 </div>
 	</div>
 	
-	
-	
-	 <!--QUESTION 2  --> 
-	
-	
-<!--  	<div class="container mainBody" ng-controller="FAQTotalCandidatesTrainedAssessedCertifiedSchemeWiseController">
-		<div class="container accordian">        
-       		<div class="left Rectangle">
-            <ul>
-            <li class="panel-title panel-heading FAQ1">How many candidates we have trained/assessed/certified in particular scheme (PMKVY/Non-PMKVY)</li>
-            </ul>
-        	</div>
-        	
-    		<div class="center Rectangle">
-    			<!--  <input type="text" name="fname" rows="1" style="width:50%;line-height:initial" /> -->
-    		<!-- 	<select  ng-model="selectedScheme" ng-options="scheme for scheme in schemeDropDownOptions"></select>
-   			</div>
-   		 <div class="right Rectangle">          
-         		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" >
-         		<span class="glyphicon glyphicon-plus" ng-click="getDataOfScheme()"></span></a>
-   		 </div>
-		</div>
-            <div id="collapsetwo" class="panel-collapse collapse" >
-                <div class="panel-body">
-    				<div class="well" style="font-weight:bold;">
-    			<center> <b>{{selectedScheme}}={{scheme}}</b></center>	
-    				</div>
-      					<!-- <div class="table-wrap">
-        					<div>
-        						<div ng-controller="FAQTotalCandidatesTrainedAssessedCertifiedSchemeWiseController as FAQ">
-          						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid">
-          						</div>
-          						</div>
-        					</div>
-      					</div>
-    				</div>
-   			</div>
-		 </div>
-	</div>-->
-	
-	
-	
+
 	 <!--QUESTION 3  --> 
 	
 	
-	<div class="container mainBody" ng-controller="FAQTotalTrainingCentresInAStateController">
+	<div class="container mainBody" ng-controller="faqController">
 		<div class="container accordian">        
        		<div class="left Rectangle">
             <ul>
@@ -141,14 +89,9 @@
    			</div>
 		 </div>
 	</div>
+
 	
-	
-	
-	 <!--QUESTION 4  --> 
-	
-	
-	
-	<div class="container mainBody" ng-controller="FAQCountOfTotalTrainingCentresConductingTrainingController">
+	<div class="container mainBody" ng-controller="faqController">
 		<div class="container accordian">        
        		<div class="left Rectangle">
             <ul>
@@ -174,78 +117,5 @@
 		 
 		 </div>
 	</div>
-	
-	
-	
-	 <!--QUESTION 5  --> 
-	
-	
-<!-- 	<div class="container mainBody" ng-controller="FAQCountOfCandidatesAssessmentUpcomingForAMonthController">
-		<div class="container accordian">        
-       		<div class="left Rectangle">
-            <ul>
-            <li class="panel-title panel-heading FAQ1">For how many candidates assessment is upcoming for the month of “abc”</li>
-            </ul>
-        	</div>
-    		<div class="center Rectangle">
-    			<select ng-model="selectedMonth" ng-options= "month for month in monthDropDownOptions"></select>
-   			</div>
-   		 <div class="right Rectangle">          
-         		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefive" >
-         		<span class="glyphicon glyphicon-plus" ng-click="getMonth()"></span></a>
-   		 </div>
-		</div>
-            <div id="collapsefive" class="panel-collapse collapse" >
-                <div class="panel-body">
-    				
-    				<div class="well" style="font-weight:bold;">
-    			<center> <b>{{selectedMonth}}={{number}}</b></center>	
-    				</div>
-    				
-   			</div>
-		 
-		 </div>
-	</div>
-	-->
-	
-	
-	 <!--QUESTION 6  --> 
-	
-	
-	<!-- 
-	
-	<div class="container mainBody" ng-controller="FAQCountTotalNumberOfBatchesInAParticularStateController">
-		<div class="container accordian">        
-       		<div class="left Rectangle">
-            <ul>
-            <li class="panel-title panel-heading FAQ1">How many training centres we have in state “X”</li>
-            </ul>
-        	</div>
-    		<div class="center Rectangle">
-    			<select ng-model="selectedState" ng-options= "state for state in stateDropDownOptions"></select>
-   			</div>
-   		 <div class="right Rectangle">          
-         		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsesix" >
-         		<span class="glyphicon glyphicon-plus" ng-click="getState()"></span></a>
-   		 </div>
-		</div>
-            <div id="collapsesix" class="panel-collapse collapse" >
-                <div class="panel-body">
-    				
-    				<div class="well" style="font-weight:bold;">
-    			<center> <b>{{selectedState}}={{number}}</b></center>	
-    				</div>
-    				
-   			</div>
-		 
-		 </div>
-	</div>
-	-->
-	
-		
-	
-	
 
-	
-</body>
-</html>
+	<script type="text/javascript" src="js/FAQ.js"></script>
