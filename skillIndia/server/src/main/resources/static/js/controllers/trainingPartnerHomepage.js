@@ -2,7 +2,7 @@ var app = angular.module('app', [ 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav','
 
 
 	 
-app.controller('PresentCtrl',['$scope','$http', function($scope,$http){
+app.controller('presentCtrl',['$scope','$http', function($scope,$http){
 	$scope.gridOptions={
 		enableSorting: false,
 		enableGridMenus:false,  
@@ -10,20 +10,18 @@ app.controller('PresentCtrl',['$scope','$http', function($scope,$http){
 		enableFiltering: false,
 		enableCellEdit : false,
 		enableColumnMenus : false,
-		enableHorizontalScrollbar:0,
-		enableVerticalScrollbar:0,
-			
+	
 		columnDefs:[
-			{name:'batchId',displayname:'Batch ID', cellClass:'bId',  headerCellClass:'Batch-Id'},
-			{name:'completionDate', displayname:'Completion Date', cellClass:'cDate',  headerCellClass:'Comp-Date'},
-			{name:'instructorName', displayname:'Instructor Name', cellClass:'iName', headerCellClass:'Ins-Name'},
-			{name:'noOfCandidates', displayname:'Number of Candidates', cellClass:'no-Candidates', headerCellClass:'Candidates'}
+			{name:'batchId', displayname:'Batch ID', cellClass:'bId',  headerCellClass:'batchId'},
+			{name:'completionDate', displayname:'Completion Date', cellClass:'cDate',  headerCellClass:'compDate'},
+			{name:'instructorName', displayname:'Instructor Name', cellClass:'iName', headerCellClass:'insName'},
+			{name:'noOfCandidates', displayname:'Number of Candidates', cellClass:'no-Candidates', headerCellClass:'candidates'}
 			]			 		            			            	
 	};
 			
 			 $http.get("/trainingPartnerPastBatches")
 			    .success(function (data) {
-			      $scope.gridOptions.data= data;
+			      $scope.gridOptions.data= data.PresentBatches;
 			    })
 		}]);
     
@@ -31,7 +29,7 @@ app.controller('PresentCtrl',['$scope','$http', function($scope,$http){
     
     
     
-    app.controller('PastCtrl',['$scope','$http', function($scope,$http){
+    app.controller('pastCtrl',['$scope','$http', function($scope,$http){
 		
 		$scope.gridOptions={
 				enableSorting: false,
@@ -40,19 +38,18 @@ app.controller('PresentCtrl',['$scope','$http', function($scope,$http){
 			    enableFiltering: false,
 			    enableCellEdit : false,
 			    enableColumnMenus : false,
-			    enableHorizontalScrollbar:0,
-			    enableVerticalScrollbar:0,
+			    
 		columnDefs:[
-		{name:'batchId',displayname:'Batch ID', cellClass:'bId',  headerCellClass:'Batch-Id' },
-		{name:'completionDate', displayname:'Completion Date', cellClass:'cDate',  headerCellClass:'Comp-Date'},
-		{name:'instructorName', displayname:'Instructor Name', cellClass:'iName', headerCellClass:'Ins-Name'},
-		{name:'noOfCandidates', displayname:'Number of Candidates', cellClass:'no-Candidates', headerCellClass:'Candidates'},
-		{name:'Display', displayName: 'Download Certificate', cellClass:'dowCer',  headerCellClass:'down-cer', cellTemplate: '<img src="/images/CSVDownloadIcon.png" ng-click=grid.appScope.myfunction()>', width: 165}
+		{name:'batchId',displayname:'Batch ID', cellClass:'bId',  headerCellClass:'batchId' },
+		{name:'completionDate', displayname:'Completion Date', cellClass:'cDate',  headerCellClass:'compDate'},
+		{name:'instructorName', displayname:'Instructor Name', cellClass:'iName', headerCellClass:'insName'},
+		{name:'noOfCandidates', displayname:'Number of Candidates', cellClass:'noCandidates', headerCellClass:'candidates'},
+		{name:'Display', displayName: 'Download Certificate', cellClass:'download',  headerCellClass:'downCer', cellTemplate: '<img src="" ng-click=grid.appScope.myfunction()>'}
 		]			 		            			            	
 		};
 		
-		 $http.get("192.168.4.120:8080/trainingPartnerPastBatches")
+		 $http.get("/trainingPartnerPastBatches")
 		    .success(function (data) {
-		      $scope.gridOptions.data= data;
+		      $scope.gridOptions.data= data.PastBatches;
 		    })
 	}]);
