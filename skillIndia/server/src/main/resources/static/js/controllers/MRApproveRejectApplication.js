@@ -23,7 +23,7 @@ function manageController($scope, $location, $http){
 	  enableColumnMenus : false,
     
 	  columnDefs: [
-		{ name: 'applicationId', displayName: 'Serial No', cellClass:'sno',headerCellClass:'Institution-Name'},
+		{ name: 'applicationId', displayName: '#', cellClass:'sno',headerCellClass:'Institution-Name', width: 30},
       	{ name: 'applicationState', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
 		{ name: 'activeFlag',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
 		{ name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'},
@@ -38,10 +38,12 @@ function manageController($scope, $location, $http){
     };
 
     $scope.myfunction1 = function(){
+        alert("Your comment has been logged..!");
         location.href = 'http://www.google.com';
     };
 
     $scope.myfunction2 = function(){
+        alert("Your comment has been discarded..!");
         location.href = 'http://www.facebook.com';
     };
   
