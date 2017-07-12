@@ -8,17 +8,17 @@ public class AssessmentBodyApplicationStatusDto extends BaseDto {
 
 	    private final String applicationID;
 	    private final String dateOfSubmission;
-	    private final String submittedby;
-	    private final String status;
+	    private final String assessmentAgencyName;
+	    private final String applicationState;
 	    private final String comment;
 	    	    
 	    
-	    public AssessmentBodyApplicationStatusDto(String applicationID, String dateOfSubmission, String submittedby, String status, String comment) {
+	    public AssessmentBodyApplicationStatusDto(String applicationID, String dateOfSubmission, String assessmentAgencyName, String applicationState, String comment) {
 	        super();
 	        this.applicationID = applicationID;
 	        this.dateOfSubmission = dateOfSubmission;
-	        this.submittedby = submittedby;
-	        this.status = status;
+	        this.assessmentAgencyName = assessmentAgencyName;
+	        this.applicationState = applicationState;
 	        this.comment = comment;
 	        
 	        
@@ -34,13 +34,13 @@ public class AssessmentBodyApplicationStatusDto extends BaseDto {
 	        return dateOfSubmission;
 	    }
 	    
-	    public String getSubmittedby() {
-	        return submittedby;
+	    public String getassessmentAgencyName() {
+	        return assessmentAgencyName;
 	    }
 	    
 	   	    
-	    public String getStatus() {
-	        return status;
+	    public String getapplicationState() {
+	        return applicationState;
 	    }
 	    
 	    public String getComment() {

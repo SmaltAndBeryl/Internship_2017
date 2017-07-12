@@ -8,17 +8,17 @@ public class TrainingPartnerApplicationStatusDto extends BaseDto
 
     private final String applicationID;
     private final String dateOfSubmission;
-    private final String submittedby;
-    private final String status;
+    private final String trainingPartnerName;
+    private final String applicationState;
     private final String comment;
     	    
     
-    public TrainingPartnerApplicationStatusDto(String applicationID, String dateOfSubmission, String submittedby, String status, String comment) {
+    public TrainingPartnerApplicationStatusDto(String applicationID, String dateOfSubmission, String trainingPartnerName, String applicationState, String comment) {
         super();
         this.applicationID = applicationID;
         this.dateOfSubmission = dateOfSubmission;
-        this.submittedby = submittedby;
-        this.status = status;
+        this.trainingPartnerName = trainingPartnerName;
+        this.applicationState = applicationState;
         this.comment = comment;
         
         
@@ -34,13 +34,13 @@ public class TrainingPartnerApplicationStatusDto extends BaseDto
         return dateOfSubmission;
     }
     
-    public String getSubmittedby() {
-        return submittedby;
+    public String gettrainingPartnerName() {
+        return trainingPartnerName;
     }
     
    	    
-    public String getStatus() {
-        return status;
+    public String getapplicationState() {
+        return applicationState;
     }
     
     public String getComment() {
