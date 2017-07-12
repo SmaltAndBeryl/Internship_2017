@@ -51,12 +51,12 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.
                 throws SQLException {
             String applicationID = resultSet.getString("applicationID");
             String dateOfSubmission = resultSet.getString("dateOfSubmission");
-            String submittedby = resultSet.getString("submittedby");
-            String status = resultSet.getString("status");
+            String trainingPartnerName = resultSet.getString("trainingPartnerName");
+            String applicationState = resultSet.getString("applicationState");
             String comment = resultSet.getString("comment");
 
               
-        	return new TrainingPartnerApplicationStatusDto(applicationID, dateOfSubmission, submittedby, status, comment);
+        	return new TrainingPartnerApplicationStatusDto(applicationID, dateOfSubmission,trainingPartnerName,applicationState, comment);
         }
 
     }
