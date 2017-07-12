@@ -46,7 +46,7 @@ public class ValidateBatchCSVService {
 		ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
 		strategy.setType(ValidateBatchCSVDto.class);
 		String [] BatchCSVColumns=new String[]{"batchId","batchName","batchType",
-					"trainingPartnerId","centreId","trainerId","totalCandidatesInBatch","batchMode","batchStartDate","batchEndDate","jobRole","jobRoleCode","maximumMarksTheory","maximumMarksPractical","level","resultApproved","resultApprovedOnDate","totalPass","totalFail","totalNotAppeared","totalCertified","certificateDownloaded","batchAssignmentDate","assessmentDate","agencyId","assessorId"};
+					"trainingPartnerId","centreId","trainerId","totalCandidatesInBatch","batchMode","batchStartDate","batchEndDate","jobRole","jobRoleCode","maximumMarksTheory","maximumMarksPractical","level","resultApproved","resultApprovedOnDate","totalPass","totalFail","totalNotAppeared","totalCertified","batchAssignmentDate","assessmentDate","agencyId","assessorId"};
 		strategy.setColumnMapping(BatchCSVColumns);
 		//String BatchCSVFileName = "D:\\EclipseWorkspace\\Batch.csv";
 		BatchCSVReader=new CSVReader(new FileReader(BatchCSVFileName),',','"',2);
@@ -86,123 +86,132 @@ public class ValidateBatchCSVService {
 			String totalFail=BatchCSVData.getTotalFail();
 			String totalNotAppeared=BatchCSVData.getTotalNotAppeared();
 			String totalCertified=BatchCSVData.getTotalCertified();
-			String certificateDownloaded=BatchCSVData.getCertificateDownloaded();
 			String batchAssignmentDate=BatchCSVData.getBatchAssignmentDate();
 			String assessmentDate=BatchCSVData.getAssessmentDate();
 			String agencyId=BatchCSVData.getAgencyId();
 			String assessorId=BatchCSVData.getAssessorId();
 			
-			if(batchId.equals("") || batchName.equals("") || batchType.equals("") || 
-			trainingPartnerId.equals("") || centreId.equals("") || trainerId.equals("")
-			|| totalCandidatesInBatch.equals("") || batchMode.equals("") || 
-			batchStartDate.equals("") || jobRole.equals("") || jobRoleCode.equals("") || 
-			level.equals("") || certificateDownloaded.equals("")
-			) 
-			{
-				errorStatus=1;
-				errorString=errorString+"Mandatory Fields cant be empty";
-			}
 			
 			/*
 			 * Checking for error in batchId column
 			 */
 			
-			if(!ValidationUtils.numbersCheck(batchId))
+			if(!ValidationUtils.numbersCheck(batchId) || batchId.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'batchId' column ";
+				errorString=errorString +"Error in 'batchId' column .";
 			}
+			
+			/*
+			 * Checking for error in batchName column
+			 */
+			
+			if(batchName.equals(""))
+			{
+				errorStatus=1;
+				errorString=errorString+"Error in 'batchName' column .";
+			} 
 			
 			
 			/*
 			 * Checking for error in batchType column
 			 */
 			
-			if(ValidationUtils.numbersCheck(batchType))
+			if(ValidationUtils.numbersCheck(batchType) || batchName.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'batchType' column ";
+				errorString=errorString +"Error in 'batchType' column .";
 			}
 			
+	
 			/*
 			 * Checking for error in trainingPartnerId column
 			 */
 			
 			
-			if(!ValidationUtils.numbersCheck(trainingPartnerId))
+			if(!ValidationUtils.numbersCheck(trainingPartnerId) || trainingPartnerId.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'trainingPartnerId' column ";
+				errorString=errorString +"Error in 'trainingPartnerId' column .";
 			}
 			
 			/*
 			 * Checking for error in centreId column
 			 */
 			
-			if(!ValidationUtils.numbersCheck(centreId))
+			if(!ValidationUtils.numbersCheck(centreId) || centreId.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'centreId' column ";
+				errorString=errorString +"Error in 'centreId' column .";
 			}
 			
 			/*
 			 * Checking for error in trainerId column
 			 */
 			
-			if(!ValidationUtils.numbersCheck(trainerId))
+			if(!ValidationUtils.numbersCheck(trainerId) || trainerId.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'trainerId' column ";
+				errorString=errorString +"Error in 'trainerId' column .";
 			}
 			
 			/*
 			 * Checking for error in totalCandidatesInBatch column
 			 */
 			
-			if(!ValidationUtils.numbersCheck(totalCandidatesInBatch))
+			if(!ValidationUtils.numbersCheck(totalCandidatesInBatch) || totalCandidatesInBatch.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString +"Error in 'totalCandidatesInBatch' column ";
+				errorString=errorString +"Error in 'totalCandidatesInBatch' column .";
 			}
 			
 			/*
 			 * Checking for error in batchMode column
 			 */
 			
-			if(ValidationUtils.numbersCheck(batchMode))
+			if(ValidationUtils.numbersCheck(batchMode) || batchMode.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'batchMode' column ";
+				errorString=errorString + "Error in 'batchMode' column .";
 			}
 			
 			/*
 			 * Checking for error in batchStartDate column
 			 */
 			
-			if(!ValidationUtils.dateFormatCheck(batchStartDate))
+			if(!ValidationUtils.dateFormatCheck(batchStartDate) || batchStartDate.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'batchStartDate' column ";
+				errorString=errorString + "Error in 'batchStartDate' column .";
 			}
 			
 			/*
 			 * Checking for error in batchEndDate column
 			 */
 			
-			if(!(ValidationUtils.dateFormatCheck(batchEndDate) || batchEndDate.equals("")))
+			if(!ValidationUtils.dateFormatCheck(batchEndDate) || batchEndDate.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'batchEndDate' column ";
+				errorString=errorString + "Error in 'batchEndDate' column .";
 			}
 			
 			/*
 			 * Checking for error in jobRole column
 			 */
 			
-			if(ValidationUtils.numbersCheck(jobRole))
+			if(ValidationUtils.numbersCheck(jobRole) || jobRole.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'jobRole' column ";
+				errorString=errorString + "Error in 'jobRole' column .";
+			}
+			/*
+			 * Checking for error in jobRoleCode column
+			 */
+			
+			if(jobRoleCode.equals(""))
+			{
+				errorStatus=1;
+				errorString=errorString + "Error in 'jobRoleCode' column .";
 			}
 			
 			/*
@@ -212,7 +221,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.numbersWithDecimalCheck(maximumMarksTheory) || maximumMarksTheory.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'maximunMarksTheory' column ";
+				errorString=errorString + "Error in 'maximunMarksTheory' column .";
 			}
 			
 			/*
@@ -222,7 +231,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.numbersWithDecimalCheck(maximumMarksPractical) || maximumMarksPractical.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'maximumMarksPractical' column ";
+				errorString=errorString + "Error in 'maximumMarksPractical' column .";
 			}
 			
 			/*
@@ -232,7 +241,7 @@ public class ValidateBatchCSVService {
 			if(!ValidationUtils.numbersCheck(level))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'level' column ";
+				errorString=errorString + "Error in 'level' column .";
 			}
 			
 			/*
@@ -242,7 +251,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.lettersCheck(resultApproved) || resultApproved.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'resultApproved' column ";
+				errorString=errorString + "Error in 'resultApproved' column .";
 			}
 			
 			/*
@@ -252,7 +261,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.dateFormatCheck(resultApprovedOnDate) || resultApprovedOnDate.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'resultApprovedOndate' column ";
+				errorString=errorString + "Error in 'resultApprovedOndate' column .";
 			}
 			
 			/*
@@ -262,7 +271,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.numbersCheck(totalPass) || totalPass.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'totalPass' column ";
+				errorString=errorString + "Error in 'totalPass' column .";
 			}
 			
 			/*
@@ -272,7 +281,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.numbersCheck(totalFail) || totalFail.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'totalFail' column ";
+				errorString=errorString + "Error in 'totalFail' column .";
 			}
 			
 			/*
@@ -282,7 +291,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.numbersCheck(totalNotAppeared) || totalNotAppeared.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'totalNotAppeared' column ";
+				errorString=errorString + "Error in 'totalNotAppeared' column .";
 			}
 			
 			/*
@@ -292,17 +301,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.numbersCheck(totalCertified) || totalCertified.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'totalCertified' column ";
-			}
-			
-			/*
-			 * Checking for error in certificateDownloaded column
-			 */
-			
-			if(!ValidationUtils.lettersCheck(certificateDownloaded))
-			{
-				errorStatus=1;
-				errorString=errorString + "Error in 'certificateDownloaded' column ";
+				errorString=errorString + "Error in 'totalCertified' column .";
 			}
 			
 			/*
@@ -312,17 +311,17 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.dateFormatCheck(batchAssignmentDate) || batchAssignmentDate.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'batchAssignmentDate' column ";
+				errorString=errorString + "Error in 'batchAssignmentDate' column .";
 			}
 			
 			/*
 			 * Checking for error in assessmentDate column
 			 */
 			
-			if(!(ValidationUtils.dateFormatCheck(assessmentDate) || assessmentDate.equals("")))
+			if(!ValidationUtils.dateFormatCheck(assessmentDate) || assessmentDate.equals(""))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'assessmentDate' column ";
+				errorString=errorString + "Error in 'assessmentDate' column .";
 			}
 			
 			/*
@@ -332,7 +331,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.numbersCheck(agencyId) || agencyId.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'agencyId' column ";
+				errorString=errorString + "Error in 'agencyId' column .";
 			}
 			
 			/*
@@ -342,7 +341,7 @@ public class ValidateBatchCSVService {
 			if(!(ValidationUtils.numbersCheck(assessorId) || assessorId.equals("")))
 			{
 				errorStatus=1;
-				errorString=errorString + "Error in 'assessorId' column ";
+				errorString=errorString + "Error in 'assessorId' column .";
 			}
 			
 			if(errorStatus==1)
@@ -366,11 +365,7 @@ public class ValidateBatchCSVService {
 				/*
 				 * Setting value of empty fields 
 				 */
-				
-				if(batchEndDate.equals(""))
-				{
-					batchEndDate="1900-01-00";
-				}	
+					
 				if(maximumMarksTheory.equals(""))
 				{
 					maximumMarksTheory="0";
@@ -407,10 +402,6 @@ public class ValidateBatchCSVService {
 				{
 					batchAssignmentDate="1900-01-00";
 				}
-				if(assessmentDate.equals(""))
-				{
-					assessmentDate="1900-01-00";
-				}
 				if(agencyId.equals(""))
 				{
 					agencyId="0";
@@ -432,22 +423,21 @@ public class ValidateBatchCSVService {
 				record.put("trainerId",trainerId);
 				record.put("totalCandidatesInBatch",totalCandidatesInBatch);
 				record.put("batchMode",batchMode);
-				record.put("batchStartDate",batchStartDate);
-				record.put("batchEndDate",batchEndDate);
+				record.put("batchStartDate",ValidationUtils.convertUtilToSqlDate(batchStartDate));
+				record.put("batchEndDate",ValidationUtils.convertUtilToSqlDate(batchEndDate));
 				record.put("jobRole",jobRole);
 				record.put("jobRoleCode",jobRoleCode);
 				record.put("maximumMarksTheory",maximumMarksTheory);
 				record.put("maximumMarksPractical",maximumMarksPractical);
 				record.put("level",level);
 				record.put("resultApproved",resultApproved);
-				record.put("resultApprovedOnDate",resultApprovedOnDate);
+				record.put("resultApprovedOnDate",ValidationUtils.convertUtilToSqlDate(resultApprovedOnDate));
 				record.put("totalPass",totalPass);
 				record.put("totalFail",totalFail);
 				record.put("totalNotAppeared",totalNotAppeared);
 				record.put("totalCertified",totalCertified);
-				record.put("certificateDownloaded",certificateDownloaded);
-				record.put("batchAssignmentDate",batchAssignmentDate);
-				record.put("assessmentDate",assessmentDate);
+				record.put("batchAssignmentDate",ValidationUtils.convertUtilToSqlDate(batchAssignmentDate));
+				record.put("assessmentDate",ValidationUtils.convertUtilToSqlDate(assessmentDate));
 				record.put("agencyId",agencyId);
 				record.put("assessorId",assessorId);
 				
@@ -479,28 +469,82 @@ public class ValidateBatchCSVService {
 		 * Checking for foreign key constraint trainerId,centreId,trainerId,assessorId,agencyId
 		 */
 		
-		try{				
+			
+			int recordCount=0;
+			int status=0;
+			int errorExist=0;
+			String errorListAllRecords="";
+	
+		try{
 			for(Map<String, Object> getRecord:arrayOfRecords)
-				{	
-				int status=dataImportBatchDao.dataImportBatchForeignKeyConstraintCheck(getRecord);
+			{	
+				String errorString="";
+				int errorStatus=0;
+				recordCount++;
+				
+				status=dataImportBatchDao.dataImportBatchTrainingPartnerIdCheck(getRecord);
 				if(status==0 || status==2)
 				{
-				throw new Exception();	
+					errorStatus=1;
+					errorString=errorString+ "trainingPartnerId key mismatch .";
 				}
 				
-				} 	//end of for  
-			}	// end of try
-			catch(Exception e)
-			{	
+				status=dataImportBatchDao.dataImportBatchCentreIdCheck(getRecord);
+				if(status==0 || status==2)
+				{
+					errorStatus=1;
+					errorString=errorString+ "centreId key mismatch .";
+				}
+				
+				status=dataImportBatchDao.dataImportBatchTrainerIdCheck(getRecord);
+				if(status==0 || status==2)
+				{
+					errorStatus=1;
+					errorString=errorString+ "trainerId key mismatch .";
+				}
+					
+				status=dataImportBatchDao.dataImportBatchAgencyIdCheck(getRecord);
+				if(status==0 || status==2)
+				{
+					errorStatus=1;
+					errorString=errorString+ "agencyId key mismatch .";
+				}
+				
+				status=dataImportBatchDao.dataImportBatchAssessorIdCheck(getRecord);
+				if(status==0 || status==2)
+				{
+					errorStatus=1;
+					errorString=errorString+ "assessorId key mismatch .";
+				}
+				
+				
+				if(errorStatus==1)
+				{
+					errorExist=1;
+					errorString="Error in Record "+recordCount + "." + errorString;
+					errorListAllRecords=errorListAllRecords+errorString;	
+				}
+				
+			}
+			if(errorExist==1)
+			{
 				BatchCSVReader.close();
 				File deleteUploadedFile = new File(BatchCSVFileName);
-				deleteUploadedFile.delete();
-				e.printStackTrace();
-				return "Error in trainerId or trainingPartnerId or centreId or agencyId or AssessorId, column. Kindly recheck the details ."
-			+ "either trainerId not found in Trainers record or trainingPartnerId not found in Training Partners record or centreId not found "
-			+ "in Centres record or agencyId not found in Agency record or assessorId not found in Assessor record .";
+			    deleteUploadedFile.delete();
+				return errorListAllRecords;
 			}
-		 
+			
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			File deleteUploadedFile = new File(BatchCSVFileName);
+		    deleteUploadedFile.delete();
+			return "Error checking Foreign key constraint . Kindly try again .";
+			
+		}
+		
 		
 		/*
 		 * Checking primary key Constraints and performing respective actions  
@@ -509,7 +553,7 @@ public class ValidateBatchCSVService {
 			  try{				
 				for(Map<String, Object> getRecord:arrayOfRecords)
 				{			
-				int status=dataImportBatchDao.dataImportBatchPrimaryKeyConstraintCheck(getRecord);
+			    status=dataImportBatchDao.dataImportBatchPrimaryKeyConstraintCheck(getRecord);
 				if(status==0)
 				{
 					/*
@@ -556,7 +600,7 @@ public class ValidateBatchCSVService {
 				 * Checking for valid UserId (Foreign key constraint)
 				 */
 				
-				int status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
+				status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
 				if(status==0 || status==2)
 				{
 				File deleteUploadedFile = new File(BatchCSVFileName);

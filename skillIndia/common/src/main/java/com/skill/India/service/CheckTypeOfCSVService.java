@@ -84,9 +84,9 @@ public class CheckTypeOfCSVService {
 						&& columns[14].equals("level") && columns[15].equals("resultApproved") &&
 						columns[16].equals("resultApprovedOnDate") && columns[17].equals("totalPass") &&
 						columns[18].equals("totalFail") && columns[19].equals("totalNotAppeared") &&
-						columns[20].equals("totalCertified") && columns[21].equals("certificateDownloaded")
-						&& columns[22].equals("batchAssignmentDate") && columns[23].equals("assessmentDate")
-						&& columns[24].equals("agencyId") && columns[25].equals("assessorId"))
+						columns[20].equals("totalCertified")
+						&& columns[21].equals("batchAssignmentDate") && columns[22].equals("assessmentDate")
+						&& columns[23].equals("agencyId") && columns[24].equals("assessorId"))
 					{
 						readColumnsOfCsv.close();
 						return validateBatchCSVService.validateBatchCSV(pathOfUploadedFile,type,userId,fileNameToBeSaved);

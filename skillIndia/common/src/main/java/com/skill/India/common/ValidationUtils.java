@@ -1,5 +1,8 @@
 package com.skill.India.common;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 
 public class ValidationUtils {
 
@@ -53,7 +56,7 @@ public class ValidationUtils {
 	
 	public static boolean dateFormatCheck(String date)
 	{
-		return date.matches("((19|20)\\d\\d)-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])");	
+		return date.matches("(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[012])-((19|20)\\d\\d)");	
 	}
 	
 	/*
@@ -74,8 +77,16 @@ public class ValidationUtils {
 		return pincode.matches("^\\+?[0-9]{6}$");
 	}
 	
+	/*
+	 * For converting java.util Date dd-mm-yyyy to Sql Date format yyyy-mm-dd
+	 */
 	
-	
+	public static String convertUtilToSqlDate(String date) throws ParseException
+	{
+		java.util.Date initDate = new SimpleDateFormat("dd-mm-yyyy").parse(date);
+	    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+	    return formatter.format(initDate);
+	}
 	
 	
 	

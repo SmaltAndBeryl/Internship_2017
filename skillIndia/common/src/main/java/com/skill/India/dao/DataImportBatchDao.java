@@ -20,20 +20,12 @@ public class DataImportBatchDao extends AbstractTransactionalDao {
 	@Autowired
 	private DataImportConfigSql dataImportConfigSql;
 	
-	public int dataImportBatchForeignKeyConstraintCheck(Map<String,Object> getRecord)
+	public int dataImportBatchTrainingPartnerIdCheck(Map<String,Object> getRecord)
 	{
-		/*
-		 * checking for foreign key constraint on batchId,employerId  column in Batch,Employer Table 
-		 */
 		try{				
-		
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("trainingPartnerId",getRecord.get("trainingPartnerId"));
-		parameters.put("centreId",getRecord.get("centreId"));
-		parameters.put("trainerId",getRecord.get("trainerId"));
-		parameters.put("agencyId",getRecord.get("agencyId"));
-		parameters.put("assessorId",getRecord.get("assessorId"));
-		return getJdbcTemplate().queryForObject(dataImportConfigSql.getForeignKeysExistsForBatch(), parameters,Integer.class );					
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getTrainingPartnerIdExistsForBatch(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
 		{
@@ -41,6 +33,66 @@ public class DataImportBatchDao extends AbstractTransactionalDao {
 			return 2;
 		}
 	}
+	
+	
+	public int dataImportBatchCentreIdCheck(Map<String,Object> getRecord)
+	{
+		try{				
+		
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("centreId",getRecord.get("centreId"));
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getCentreIdExistsForBatch(), parameters,Integer.class );					
+		}	// end of try
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 2;
+		}
+	}
+	
+	public int dataImportBatchTrainerIdCheck(Map<String,Object> getRecord)
+	{
+		try{				
+		
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("trainerId",getRecord.get("trainerId"));
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getTrainerIdExistsForBatch(), parameters,Integer.class );					
+		}	// end of try
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 2;
+		}
+	}
+	
+	public int dataImportBatchAgencyIdCheck(Map<String,Object> getRecord)
+	{
+		try{					
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("agencyId",getRecord.get("agencyId"));
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getAgencyIdExistsForBatch(), parameters,Integer.class );					
+		}	// end of try
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 2;
+		}
+	}
+	
+	public int dataImportBatchAssessorIdCheck(Map<String,Object> getRecord)
+	{
+		try{					
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("assessorId",getRecord.get("assessorId"));
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getAssessorIdExistsForBatch(), parameters,Integer.class );					
+		}	// end of try
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 2;
+		}
+	}
+	
 	
 	/*
 	 * checking for primary key constraint for candidateDetailsId in Candidate Table

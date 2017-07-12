@@ -33,7 +33,11 @@ public class DataImportConfigSql {
 		 * For Batch
 		 */
 		
-		private String foreignKeysExistsForBatch;
+		private String trainingPartnerIdExistsForBatch;
+		private String centreIdExistsForBatch;
+		private String trainerIdExistsForBatch;
+		private String agencyIdExistsForBatch;
+		private String assessorIdExistsForBatch;
 		private String batchIdExistsForBatch;
 		private String insertIntoBatchSql;
 		private String updateIntoBatchSql;
@@ -90,8 +94,134 @@ public class DataImportConfigSql {
 		private String userIdExistsForCSVUploaded;;
 		private String insertIntoCSVUploaded;
 		
+		/*
+		 * For Certificate
+		 */
+		
+		private String userIdBatchIdExistsForCertificate;
+		private String insertIntoCertificate;
+		private String batchInfoUsingBatchId;
 		
 		
+		
+		
+		
+		
+		
+		/**
+		 * @return the trainingPartnerIdExistsForBatch
+		 */
+		public String getTrainingPartnerIdExistsForBatch() {
+			return trainingPartnerIdExistsForBatch;
+		}
+
+		/**
+		 * @param trainingPartnerIdExistsForBatch the trainingPartnerIdExistsForBatch to set
+		 */
+		public void setTrainingPartnerIdExistsForBatch(
+				String trainingPartnerIdExistsForBatch) {
+			this.trainingPartnerIdExistsForBatch = trainingPartnerIdExistsForBatch;
+		}
+
+		/**
+		 * @return the centreIdExistsForBatch
+		 */
+		public String getCentreIdExistsForBatch() {
+			return centreIdExistsForBatch;
+		}
+
+		/**
+		 * @param centreIdExistsForBatch the centreIdExistsForBatch to set
+		 */
+		public void setCentreIdExistsForBatch(String centreIdExistsForBatch) {
+			this.centreIdExistsForBatch = centreIdExistsForBatch;
+		}
+
+		/**
+		 * @return the trainerIdExistsForBatch
+		 */
+		public String getTrainerIdExistsForBatch() {
+			return trainerIdExistsForBatch;
+		}
+
+		/**
+		 * @param trainerIdExistsForBatch the trainerIdExistsForBatch to set
+		 */
+		public void setTrainerIdExistsForBatch(String trainerIdExistsForBatch) {
+			this.trainerIdExistsForBatch = trainerIdExistsForBatch;
+		}
+
+		/**
+		 * @return the agencyIdExistsForBatch
+		 */
+		public String getAgencyIdExistsForBatch() {
+			return agencyIdExistsForBatch;
+		}
+
+		/**
+		 * @param agencyIdExistsForBatch the agencyIdExistsForBatch to set
+		 */
+		public void setAgencyIdExistsForBatch(String agencyIdExistsForBatch) {
+			this.agencyIdExistsForBatch = agencyIdExistsForBatch;
+		}
+
+		/**
+		 * @return the assessorIdExistsForBatch
+		 */
+		public String getAssessorIdExistsForBatch() {
+			return assessorIdExistsForBatch;
+		}
+
+		/**
+		 * @param assessorIdExistsForBatch the assessorIdExistsForBatch to set
+		 */
+		public void setAssessorIdExistsForBatch(String assessorIdExistsForBatch) {
+			this.assessorIdExistsForBatch = assessorIdExistsForBatch;
+		}
+
+		/**
+		 * @return the batchInfoUsingBatchId
+		 */
+		public String getBatchInfoUsingBatchId() {
+			return batchInfoUsingBatchId;
+		}
+
+		/**
+		 * @param batchInfoUsingBatchId the batchInfoUsingBatchId to set
+		 */
+		public void setBatchInfoUsingBatchId(String batchInfoUsingBatchId) {
+			this.batchInfoUsingBatchId = batchInfoUsingBatchId;
+		}
+
+		/**
+		 * @return the userIdBatchIdExistsForCertificate
+		 */
+		public String getUserIdBatchIdExistsForCertificate() {
+			return userIdBatchIdExistsForCertificate;
+		}
+
+		/**
+		 * @param userIdBatchIdExistsForCertificate the userIdBatchIdExistsForCertificate to set
+		 */
+		public void setUserIdBatchIdExistsForCertificate(
+				String userIdBatchIdExistsForCertificate) {
+			this.userIdBatchIdExistsForCertificate = userIdBatchIdExistsForCertificate;
+		}
+
+		/**
+		 * @return the insertIntoCertificate
+		 */
+		public String getInsertIntoCertificate() {
+			return insertIntoCertificate;
+		}
+
+		/**
+		 * @param insertIntoCertificate the insertIntoCertificate to set
+		 */
+		public void setInsertIntoCertificate(String insertIntoCertificate) {
+			this.insertIntoCertificate = insertIntoCertificate;
+		}
+
 		/**
 		 * @return the userIdExistsForCSVUploaded
 		 */
@@ -389,20 +519,6 @@ public class DataImportConfigSql {
 		 */
 		public void setUpdateIntoAgencySql(String updateIntoAgencySql) {
 			this.updateIntoAgencySql = updateIntoAgencySql;
-		}
-
-		/**
-		 * @return the foreignKeysExistsForBatch
-		 */
-		public String getForeignKeysExistsForBatch() {
-			return foreignKeysExistsForBatch;
-		}
-
-		/**
-		 * @param foreignKeysExistsForBatch the foreignKeysExistsForBatch to set
-		 */
-		public void setForeignKeysExistsForBatch(String foreignKeysExistsForBatch) {
-			this.foreignKeysExistsForBatch = foreignKeysExistsForBatch;
 		}
 
 		/**

@@ -97,7 +97,7 @@ public class ValidateCandidateCSVService {
 			if(candidateDetailsId.equals("") || candidateName.equals("") || enrollmentNumber.equals("") || 
 				gender.equals("") || dateOfBirth.equals("") || nameOfFatherOrHusband.equals("") || 
 				emailId.equals("") || educationLevel.equals("") || traineeAddress.equals("") ||  
-				traineePINCode.equals("") || batchId.equals("") || result.equals("") || certified.equals("") 
+				traineePINCode.equals("") || result.equals("") || certified.equals("") 
 				||  placementStatus.equals("") || batchId.equals(""))
 			{
 				errorStatus=1;
