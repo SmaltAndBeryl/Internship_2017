@@ -35,21 +35,36 @@ DataImport:
     where candidateDetailsId=:candidateDetailsId          
  
  
+ trainingPartnerIdExistsForBatch: >
+   select exists (select * from trainingpartner 
+    where trainingPartnerId=:trainingPartnerId)
+    
+ centreIdExistsForBatch: >
+   select exists (select * from centre 
+    where centreId=:centreId)
  
- foreignKeysExistsForBatch: >
-   select exists (select * from trainingpartner as TP,centre as C,trainer as T,agency as A,assessor
-    where TP.trainingPartnerId=:trainingPartnerId and C.centreId=:centreId and T.trainerId=:trainerId and A.agencyId=:agencyId and assessor.assessorId=:assessorId)
+ trainerIdExistsForBatch: >
+   select exists (select * from trainer 
+    where trainerId=:trainerId)   
  
+ agencyIdExistsForBatch: >
+    select exists (select * from agency 
+    where agencyId=:agencyId)
+    
+ assessorIdExistsForBatch: >   
+    select exists (select * from assessor 
+    where assessorId=:assessorId)
+     
  batchIdExistsForBatch: >
    select exists (select * from batch
     where batchId=:batchId)
     
  insertIntoBatchSql: >
-   insert into batch (batchId,batchName,batchType,trainingPartnerId,centreId,trainerId,totalCandidatesInBatch,batchMode,batchStartDate,batchEndDate,jobRole,jobRoleCode,maximumMarksTheory,maximumMarksPractical,level,resultApproved,resultApprovedOnDate,totalPass,totalFail,totalNotAppeared,totalCertified,certificateDownloaded,batchAssignmentDate,assessmentDate,agencyId,assessorId)
-    values (:batchId,:batchName,:batchType,:trainingPartnerId,:centreId,:trainerId,:totalCandidatesInBatch,:batchMode,:batchStartDate,:batchEndDate,:jobRole,:jobRoleCode,:maximumMarksTheory,:maximumMarksPractical,:level,:resultApproved,:resultApprovedOnDate,:totalPass,:totalFail,:totalNotAppeared,:totalCertified,:certificateDownloaded,:batchAssignmentDate,:assessmentDate,:agencyId,:assessorId)   
+   insert into batch (batchId,batchName,batchType,trainingPartnerId,centreId,trainerId,totalCandidatesInBatch,batchMode,batchStartDate,batchEndDate,jobRole,jobRoleCode,maximumMarksTheory,maximumMarksPractical,level,resultApproved,resultApprovedOnDate,totalPass,totalFail,totalNotAppeared,totalCertified,batchAssignmentDate,assessmentDate,agencyId,assessorId)
+    values (:batchId,:batchName,:batchType,:trainingPartnerId,:centreId,:trainerId,:totalCandidatesInBatch,:batchMode,:batchStartDate,:batchEndDate,:jobRole,:jobRoleCode,:maximumMarksTheory,:maximumMarksPractical,:level,:resultApproved,:resultApprovedOnDate,:totalPass,:totalFail,:totalNotAppeared,:totalCertified,:batchAssignmentDate,:assessmentDate,:agencyId,:assessorId)   
  
  updateIntoBatchSql: >
-   update batch set batchName=:batchName,batchType=:batchType,trainingPartnerId=:trainingPartnerId,centreId=:centreId,trainerId=:trainerId,totalCandidatesInBatch=:totalCandidatesInBatch,batchMode=:batchMode,batchStartDate=:batchStartDate,batchEndDate=:batchEndDate,jobRole=:jobRole,jobRoleCode=:jobRoleCode,maximumMarksTheory=:maximumMarksTheory,maximumMarksPractical=:maximumMarksPractical,level=:level,resultApproved=:resultApproved,resultApprovedOnDate=:resultApprovedOnDate,totalPass=:totalPass,totalFail=:totalFail,totalNotAppeared=:totalNotAppeared,totalCertified=:totalCertified,certificateDownloaded=:certificateDownloaded,batchAssignmentDate=:batchAssignmentDate,assessmentDate=:assessmentDate,agencyId=:agencyId,assessorId=:assessorId
+   update batch set batchName=:batchName,batchType=:batchType,trainingPartnerId=:trainingPartnerId,centreId=:centreId,trainerId=:trainerId,totalCandidatesInBatch=:totalCandidatesInBatch,batchMode=:batchMode,batchStartDate=:batchStartDate,batchEndDate=:batchEndDate,jobRole=:jobRole,jobRoleCode=:jobRoleCode,maximumMarksTheory=:maximumMarksTheory,maximumMarksPractical=:maximumMarksPractical,level=:level,resultApproved=:resultApproved,resultApprovedOnDate=:resultApprovedOnDate,totalPass=:totalPass,totalFail=:totalFail,totalNotAppeared=:totalNotAppeared,totalCertified=:totalCertified,batchAssignmentDate=:batchAssignmentDate,assessmentDate=:assessmentDate,agencyId=:agencyId,assessorId=:assessorId
     where batchId=:batchId
     
     
@@ -152,4 +167,18 @@ DataImport:
    insert into csvuploaded (csvType,csvName,csvUploadDate,csvUploadUserId)
     values (:csvType,:csvName,:csvUploadDate,:csvUploadUserId)
     
-      
+    
+    
+ userIdBatchIdExistsForCertificate: >
+   select exists (select * from user,batch
+    where userId=:userId and batchId=:batchId)
+    
+ insertIntoCertificate: >
+   insert into certificate (certificateName,certificateUploadDate,batchId,userId)
+    values (:certificateName,:certificateUploadDate,:batchId,:userId)   
+    
+ batchInfoUsingBatchId: >
+   select batch.batchName,batch.batchStartDate,batch.batchEndDate,trainingpartner.trainingPartnerName from batch 
+    inner join trainingpartner on batch.trainingPartnerId=trainingpartner.trainingPartnerId where batchId=:batchId
+        
+        
