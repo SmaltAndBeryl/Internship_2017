@@ -33,7 +33,7 @@ public class FAQBatchWiseCandidateDetailsDao extends AbstractTransactionalDao {
 	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(Integer batchId) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("batchId", batchId);
-		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlBatchWiseCandidatesDetails(), parameters,ROW_MAPPER );
+		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlBatchWiseCandidatesDetails(), parameters,ROW_MAPPER);
 	}
 
 	private static class BatchWiseCandidateDetailsDaoRowMapper implements RowMapper<FAQBatchWiseCandidateDetailsDto> {
