@@ -1,0 +1,6 @@
+batchAssignmentSearch:
+ selectSqlInformationOfTheBatchId: > 
+  select distinct 
+   batch.batchId,centre.state,batch.batchEndDate,batch.assessmentDate,assessor.assessorName from
+    batch,centre,assessor where centre.centreId=batch.centreId and  
+     batch.assessorId=assessor.assessorId and batch.batchId =:batchId   
