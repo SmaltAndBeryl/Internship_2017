@@ -3,30 +3,21 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
 }
-.Rectangle-7-copy-11 {
+.MainDivision {
   width: 1178px;
   height: 152px;
   background-color:White;
 
 }
 .grid {
-  width: 1138px;
+ margin-left:21px;
+	margin-right:24px;
   height: 75px;
   background-color: none;
   border: none;
-  padding-left: 21px;
-  padding-top: 12px;
 }
-.applicationbox:{
-	
-	 width: 1178px;
-  height: 152px;
-  background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
-}
-
 .title{
-width: 122px;
+
   height: 15px;
   font-size: 14px;
   padding-top: 31px;
@@ -38,7 +29,7 @@ width: 122px;
 	
 }
 .Application-ID {
-  width: 84px;
+  
   height: 36px;
   font-family: OpenSans;
   font-size: 13px;
@@ -49,7 +40,7 @@ width: 122px;
   padding-top:5px;
 }
 .Date-of-Submission {
-  width: 116px;
+  
   height: 36px;
   font-family: OpenSans;
   font-size: 13px;
@@ -60,7 +51,7 @@ width: 122px;
   padding-top:5px;
 }
 .Submitted-By {
-  width: 82px;
+  
   height: 36px;
   font-family: OpenSans;
   font-size: 13px;
@@ -71,7 +62,7 @@ width: 122px;
   padding-top:5px;
 }
 .Action-copy {
-  width: 38px;
+  
   height: 36px;
   font-family: OpenSans;
   font-size: 13px;
@@ -83,7 +74,7 @@ width: 122px;
   padding-top:5px;
 }
 .Status {
-  width: 38px;
+ 
   height: 36px;
   font-family: OpenSans;
   font-size: 13px;
@@ -94,7 +85,6 @@ width: 122px;
   padding-top:5px;
 }
 .Comment {
-  width: 60px;
   height: 36px;
   font-family: OpenSans;
   font-size: 13px;
@@ -106,7 +96,7 @@ width: 122px;
   border:1px;
 }
 .Prostokt-2-kopia-2-copy-10 {
-  width: 260px;
+  
   height: 76px;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -114,7 +104,7 @@ width: 122px;
   margin-top:-2px;
 }
 .Prostokt-2-kopia-2-copy-11 {
-  width: 208px;
+  
   height: 76px;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -122,7 +112,7 @@ width: 122px;
   margin-top:-2px;
 }
 .Prostokt-2-kopia-2-copy-12 {
-  width: 208px;
+  
   height: 76px;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -130,7 +120,7 @@ width: 122px;
   margin-top:-2px;
 }
 .Prostokt-2-kopia-2-copy-13 {
-  width: 185px;
+  
   height: 76px;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -139,7 +129,7 @@ width: 122px;
   color: Red;
 }
 .Prostokt-2-kopia-2-copy-14 {
-  width: 76px;
+  
   height: 76px;
 	padding-top: 7px;
 	text-align: center;
@@ -153,7 +143,7 @@ width: 122px;
   margin-top:-2px;
 }
 .Prostokt-2-kopia-2-copy-15 {
-  width: 201px;
+  
   height: 76px;
   background-color: White;
   border: solid 1px #e7e7e7;
@@ -257,4 +247,16 @@ width: 122px;
 .ui-grid-header .ui-grid-vertical-bar {
   top: 0;
   bottom: 0;
+}
+.Rectangle-7-copy-116 {
+  margin-left:50px;
+  margin-right:52px;
+  height: 152px;
+  background-color: Red;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+}
+}
+.ui-grid-render-container
+{
+	margin-right: 17px;
 }
