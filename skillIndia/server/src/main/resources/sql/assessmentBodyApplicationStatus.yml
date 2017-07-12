@@ -1,4 +1,4 @@
 assessmentBodyApplicationStatus:
  selectSql: > 
-   select applicationID,dateOfSubmission,submittedBy,status,comment  
-    from assessmentbodyapplicationstatus
+   select application.applicationId,application.dateOfSubmission,assessmentagencyregistration.assessmentAgencyName,application.applicationState,applicationcomments.comment 
+    from application INNER JOIN applicationcomments ON application.applicationId=applicationcomments.applicationId INNER JOIN assessmentagencyregistration ON application.applicationId=assessmentagencyregistration.applicationId;
