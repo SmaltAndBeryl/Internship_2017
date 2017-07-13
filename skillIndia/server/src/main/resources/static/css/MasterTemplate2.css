@@ -94,7 +94,9 @@ header{
 #Content{
   /*height: 500px;*/
   width: 100%;
-  background-color: lightgrey;
+  background-color: #ECF0F1;
+  margin-left:25px;
+  margin-right:25px;
 }
 
 .logoBar{
