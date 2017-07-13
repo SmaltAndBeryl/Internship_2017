@@ -4,5 +4,5 @@ nonAssignedBatches:
    FROM batch,centre WHERE batch.centreId=centre.centreId;
 
  updateSqlNonAssignedBatches: >
-  UPDATE batchassignment SET responseType="Proposed"
-   WHERE batchId = 1;
+  UPDATE batchassignment SET responseType="ResponseBack"
+   WHERE batchId = :batchId;

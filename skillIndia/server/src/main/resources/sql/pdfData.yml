@@ -1,0 +1,3 @@
+pdfData:
+ selectSql: >
+  SELECT * from city;
