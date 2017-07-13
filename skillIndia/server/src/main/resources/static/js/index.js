@@ -2,7 +2,7 @@
 
 // URL Routing
 
-var myApp = angular.module('myApp', ['ngRoute', 'faq', 'imp', 'manage', 'dashboard', 'batch']);
+var myApp = angular.module('myApp', ['ngRoute', 'faq', 'imp','manage', 'dashboard']);
 //
 //myApp.controller('username-ctrl', function($scope) {
 //  $scope.username = "Alkesh Srivastava";
@@ -27,7 +27,7 @@ myApp.config(function($routeProvider) {
     controller: 'manageController'
   })
   .when("/import", {
-    templateUrl: "partials/import.html",
+    templateUrl: "partials/dataImportHistory.html",
     controller: 'importController'
   })
   .when("/faq", {

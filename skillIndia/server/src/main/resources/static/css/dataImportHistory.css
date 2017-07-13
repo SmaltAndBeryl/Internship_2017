@@ -1,113 +1,110 @@
-.grid {
-  width: 933px;
-  height: 328px;
-  margin-left: 21px;
-}
-*{
-  font-family: 'Open Sans', sans-serif;
-  font-weight: normal;
+.container
+{
+ width:auto;
+ background-color:#ECF0F1;
+    }
+.grid{
+	margin-left: 20px;
+   margin-right: 20px;
+   height: 340px;
 }
 
-.background{
-background-color: #ECF0F1;
-width:1018px;
-height:833px; 
-	}
-	
+
 .import{
   width: 66px;
   height: 20px;
-  margin-left: 21px;
-  padding-top: 33px;
+  margin-left: 26px;
+  padding-top: 23px;
   padding-bottom: 28px;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 1.58;
   text-align: left;
   color: #000000;
 }
 .upload{ 
-	width: 976px;
   height: 91px;
   margin-left: 21px;
+   margin-right: 21px;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
 }
 .historytable{
-  width: 976px;
   height: 420px; 
   margin-left: 21px;
-  margin-top: 8px;
+   margin-right: 21px;
+  margin-top: 10px;
+  margin-bottom:10px;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1); 
 }
 .title{ 
- width: 98px;
   height: 15px;
   font-size: 14px;
-  padding-top: 31px;
-  padding-left: 25px;
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-bottom: 15px;
   font-weight: 600;
   text-align: left;
   color: #676a6c;
-  color: (--slate-grey);
 	
 }
-.sno{width: 45px;
+
+
+.sno{
   height: 246px;
-  background-color: #ffffff;
+  background-color:#fffefe;
   border: solid 1px #e7e7e7;
-  font-family: OpenSans;
+
   font-size: 13px;
   text-align: left;
   color: #676a6c;
   color:(--slate-grey);}
   
-.fname{width: 43px;
+.fname{
   height: 11px;
 	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
-  font-family: OpenSans;
+ 
   font-size: 13px;
   text-align: left;
   color: #676a6c;
   color:(--slate-grey);}
   
-.type{width: 236px;
+.type{
   height: 36px;
 	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
-  font-family: OpenSans;
+ 
   font-size: 13px;
   text-align: left;
   color: #676a6c;
   color:(--slate-grey);}
   
-.date{width: 150px;
+.date{
   height: 36px;
 	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
-  font-family: OpenSans;
+
   font-size: 13px;
   text-align: left;
   color: #676a6c;
   color: (--slate-grey);}
   
-.uby{width: 210px;
+.uby{
   height: 36px;
 	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
-  font-family: OpenSans;
   font-size: 13px;
   text-align: left;
   color: #676a6c;
   color:(--slate-grey);
   }
   
-  .vub{width: 165px;
+  .vub{
   height: 36px;
 	padding-top: 7px;
 	text-align: center;
@@ -120,9 +117,9 @@ height:833px;
   cursor: pointer;
   }
   .layer {
-    width: 9px;
+  
   height: 10px;
-  font-family: OpenSans;
+
   font-size: 13px;
   font-weight: bold;
   text-align: left;
@@ -130,9 +127,9 @@ height:833px;
   color: var(--slate-grey);
  
 }.File-Name {
-    width: 64px;
+   
   height: 11px;
-  font-family: OpenSans;
+ 
   font-size: 13px;
   font-weight: bold;
   text-align: left;
@@ -141,9 +138,9 @@ height:833px;
  
 }
 .Type {
-  width: 31px;
+  
   height: 13px;
-  font-family: OpenSans;
+  
   font-size: 13px;
   font-weight: bold;
   text-align: left;
@@ -151,9 +148,9 @@ height:833px;
   color: var(--slate-grey);
 }
 .Date {
-  width: 30px;
+
   height: 11px;
-  font-family: OpenSans;
+
   font-size: 13px;
   font-weight: bold;
   text-align: left;
@@ -162,9 +159,9 @@ height:833px;
   
 }
 .Uploaded-By {
-  width: 81px;
+
   height: 13px;
-  font-family: OpenSans;
+
   font-size: 13px;
   font-weight: bold;
   text-align: left;
@@ -173,9 +170,9 @@ height:833px;
  
 }
 .View-Uploaded-File {
-   width: 123px;
+
   height: 13px;
-  font-family: OpenSans;
+
   font-size: 13px;
   font-weight: bold;
   text-align: left;
@@ -184,14 +181,41 @@ height:833px;
 }
  
 .certificate{ 
-   width: 976px;
   height: 150px; 
   margin-left: 21px;
-  margin-top: 20px;
+   margin-right: 21px;
+  margin-top: 10px;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1); 
   
 }
+.Search-Batch-ID {
+  height: 12px;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+    margin-left: 24px;
+}
+.text{
+    width:270px;
+    height:30px;
+    margin-top:18px;
+    margin-left:10px;
+    border: 1px solid #ccc;
+    border-radius: 1px;
+}
+.button{
+    font-size:10pt;
+    width:76px; 
+    height:34px;
+    color:white;
+    background-color:#1ab394;
+    border:0px solid #336600;
+    border-radius:4px;
+    padding:4px;
+   margin-left:10px;
+} 
   
 
 #ui-grid-twbs #ui-grid-twbs .form-horizontal .form-group:before,
@@ -237,16 +261,16 @@ height:833px;
 }
 .ui-grid-header-cell:not(:last-child) .ui-grid-vertical-bar,
 .ui-grid-cell:not(:last-child) .ui-grid-vertical-bar {
-  width: 1px;
+  width: 0.5px;
 }
 .ui-grid-scrollbar-placeholder {
   background-color: transparent;
 }
 .ui-grid-header-cell:not(:last-child) .ui-grid-vertical-bar {
-  background-color: #d4d4d4;
+  background-color: #ffffff;
 }
 .ui-grid-cell:not(:last-child) .ui-grid-vertical-bar {
-  background-color: #d4d4d4;
+  background-color: #ffffff;
 }
 .ui-grid-header-cell:last-child .ui-grid-vertical-bar {
   right: -1px;
@@ -280,7 +304,7 @@ height:833px;
   border: 0;
 }
 .ui-grid-top-panel-background {
-  background: #f3f3f3;
+  background: #ffffff;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(1, #eeeeee));
   background: -ms-linear-gradient(bottom, #eeeeee, #eeeeee);
   background: -moz-linear-gradient(center bottom, #eeeeee 0%, #eeeeee 100%);
@@ -288,14 +312,14 @@ height:833px;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eeeeee', endColorstr='#eeeeee', GradientType=0);
 }
 .ui-grid-header {
-  border-bottom: 1px solid #d4d4d4;
+  border-bottom: 1px solid #ffffff;
   box-sizing: border-box;
 }
 .ui-grid-top-panel {
   position: relative;
   overflow: hidden;
   font-weight: bold;
-  background: #f3f3f3;
+  background: #ffffff;
   background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eeeeee), color-stop(1, #eeeeee));
   background: -ms-linear-gradient(bottom, #eeeeee, #eeeeee);
   background: -moz-linear-gradient(center bottom, #eeeeee 0%, #eeeeee 100%);
