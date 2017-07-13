@@ -1,0 +1,8 @@
+nonAssignedBatches:
+ selectSqlNonAssignedBatches: >
+  SELECT batch.batchID,centre.state,batch.batchEndDate,batch.assessmentDate
+   FROM batch,centre WHERE batch.centreId=centre.centreId;
+
+ updateSqlNonAssignedBatches: >
+  UPDATE batchassignment SET responseType="Proposed"
+   WHERE batchId = 1;
