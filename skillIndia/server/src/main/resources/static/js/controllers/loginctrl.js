@@ -1,9 +1,9 @@
 'use strict';
 
-var app = angular.module('myAngularApp', []);
-app.controller('loginCtrl',
+var newApp = angular.module('hello', []);
+newApp.controller('loginCtrl',
 				['$scope', '$http','$window', 
-				 	function($scope, $http, $window){							
+				 	function($scope, $http,){							
 					
 							$scope.login = function(){
 								console.log(angular.toJson($scope.user));
@@ -21,12 +21,58 @@ app.controller('loginCtrl',
 												}).then(function(response)
 													{
 												     console.log(response.data);
-												     var db=response.data;
-												     if(db==1)
-												     $window.alert('User is authenticated');
-												     else
-												    	 $window.alert('Unauthorised user'); 
+//												     console.log(response.data);
+//												    if(response.data.userStatus="draft")
+//														window.location = "http://localhost:8080/populateData";
+//												    else
+//												    	window.location = "http://localhost:8080/popup";
+////												     if(db==1)
+//												     $window.alert('User is authenticated');
+//												     else
+												    // $window.location.href = next.redirectTo;
+//												    	 $window.alert('Unauthorised user'); 
 													});
 													}
+							
+							
 						}
+						
+				]);
+
+
+
+
+newApp.controller('signupCtrl',
+				['$scope', '$http','$window', 
+				 	function($scope, $http){							
+					
+					$scope.signup = function(){
+						console.log(angular.toJson($scope.user));
+						var signupControllerURI = "/signup";
+						console.log(signupControllerURI);
+						
+								console.log("click is working");
+									$http({
+										url : signupControllerURI,
+										method : "POST",
+										data : angular.toJson($scope.newUser),
+										headers : {
+													'Content-type': 'application/json'
+													}
+										
+										}).then(function(signUpResponse)
+											{
+										   console.log(signUpResponse.organizationName);
+//										    if(userId==null) 
+//											window.location = "http://localhost:8080/loginPage";
+//										    else{
+//										    	if($scope.newUser.userRole=="TP")
+//													window.location = "http://localhost:8080/popup";
+//										    	else
+//													window.location = "http://localhost:8080/popup";
+
+										    
+											});
+											}
+				}
 				]);
