@@ -8,9 +8,9 @@ public class SignUpReceiveDataDto extends BaseDto {
 	
 	
 	public String organizationName;
-	public String spocName;
+	public String sPOCName;
 	public String userId;
-	public String password;
+	public String mypassword;
 	public String userRole;
 	/**
 	 * @return the organizationName
@@ -22,8 +22,8 @@ public class SignUpReceiveDataDto extends BaseDto {
 	/**
 	 * @return the spocName
 	 */
-	public String getSpocName() {
-		return spocName;
+	public String getSPOCName() {
+		return sPOCName;
 	}
 	
 	/**
@@ -40,18 +40,18 @@ public class SignUpReceiveDataDto extends BaseDto {
 	
 	/**
 	 * @param organizationName
-	 * @param spocName
+	 * @param sPOCName
 	 * @param userId
 	 * @param password
 	 * @param userRole
 	 */
-	public SignUpReceiveDataDto(String organizationName, String spocName,
+	public SignUpReceiveDataDto(String organizationName, String sPOCName,
 			String userId, String password, String userRole) {
 		super();
 		this.organizationName = organizationName;
-		this.spocName = spocName;
+		this.sPOCName = sPOCName;
 		this.userId = userId;
-		this.password = password;
+		this.mypassword = password;
 		this.userRole = userRole;
 	}
 	/**

@@ -8,14 +8,14 @@ public class SignUpInsertedUserDto extends BaseDto{
 	
 	private String userId;
 	private String organizationName;
-	private String spocName;
+	private String sPOCName;
 	
 	public SignUpInsertedUserDto(String userId, String organizationName,
-			String spocName) {
+			String sPOCName) {
 		super();
 		this.userId = userId;
 		this.organizationName = organizationName;
-		this.spocName = spocName;
+		this.sPOCName = sPOCName;
 		// TODO Auto-generated constructor stub
 	}
 	/**
@@ -33,8 +33,8 @@ public class SignUpInsertedUserDto extends BaseDto{
 	/**
 	 * @return the spocName
 	 */
-	public String getSpocName() {
-		return spocName;
+	public String getSPOCName() {
+		return sPOCName;
 	}
 	
 

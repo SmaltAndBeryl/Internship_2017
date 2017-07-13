@@ -1,5 +1,7 @@
 package com.skill.India.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,6 @@ public class SignUpService {
 	
 	@Autowired
 	private SignUpDao signUpDao;
-
-	
 	private SignUpInsertedUserDto signUpInsertedUserDto;
 	
 	
@@ -23,15 +23,18 @@ public class SignUpService {
 	private int id;
 
 	public SignUpInsertedUserDto signUp(SignUpReceiveDataDto signUpReceiveDataDto){
-		
-	//	System.out.println(signUpReceiveDataDto.getOrganizationName()+ signUpReceiveDataDto);
-		
+				
 		userExistStatus=signUpDao.checkUserExistence(signUpReceiveDataDto.userId,signUpReceiveDataDto.organizationName);
 		if(userExistStatus==0)
 		{
-			id = signUpDao.insertSignUpData(signUpReceiveDataDto.organizationName,signUpReceiveDataDto.spocName,signUpReceiveDataDto.userId,signUpReceiveDataDto.password,signUpReceiveDataDto.userRole);
+			id = signUpDao.insertSignUpData(signUpReceiveDataDto.organizationName,signUpReceiveDataDto.sPOCName,signUpReceiveDataDto.userId,signUpReceiveDataDto.mypassword,signUpReceiveDataDto.userRole);
 			
-			return signUpDao.getUserData(id);
+			Collection<SignUpInsertedUserDto> signUp= signUpDao.getUserData(id);
+			
+			for(SignUpInsertedUserDto s: signUp)
+			{
+				return s;
+			}
 			
 		}
 		else

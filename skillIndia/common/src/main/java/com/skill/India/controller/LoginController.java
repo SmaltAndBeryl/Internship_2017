@@ -26,28 +26,26 @@ public class LoginController {
 	private LoginService loginService;
     public String userRedirectPage;
     @Autowired
-	private SignUpService signUpService;
-    
+	private SignUpService signUpService;    
     @Autowired
     private ProfileCreationDataPopulateService profileCreationDataPopulateService;
     
+    private SignUpInsertedUserDto signUpInsertedUserDto;
+    
     
 	@RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-	public int getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
-	{	
-		
-		System.out.println(loginReceiveDataDto.password+loginReceiveDataDto.userId);
-		
-	 return loginService.checkUser(loginReceiveDataDto);
-      
+	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
+	{			
+		return loginService.checkUser(loginReceiveDataDto);
+	   
 		
 	}	
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto){
 			
-	return signUpService.signUp(signUpReceiveDataDto);
-	
+	 return signUpService.signUp(signUpReceiveDataDto);
+	  
 
 	}
 	
@@ -58,12 +56,4 @@ public class LoginController {
 		return profileCreationDataPopulateService.getDataToPopulate(userId);
 		
 	}
-	
-	
-	
-	
-	 
-
-	
-
 }
