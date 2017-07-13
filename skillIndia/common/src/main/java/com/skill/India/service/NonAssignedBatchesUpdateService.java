@@ -12,7 +12,7 @@ public class NonAssignedBatchesUpdateService {
     @Autowired
     private NonAssignedBatchesUpdateDao updateDao;
 
-    public int putUpdateBatches(){
-        return updateDao.putUpdateBatches();
+    public int putUpdateBatches(String batchId){
+        return updateDao.putUpdateBatches(batchId);
     }
 }

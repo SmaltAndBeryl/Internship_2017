@@ -16,10 +16,12 @@ import java.util.Map;
 public class NonAssignedBatchesUpdateDao extends AbstractTransactionalDao{
     @Autowired
     public NonAssignedBatchesConfigSql batchesConfigSql;
+    //String from = "DAO";
 
-    public int putUpdateBatches(){
+    public int putUpdateBatches(String from){
+
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("batchId","Alkesh");
+        parameters.put("batchId",from);
         return getJdbcTemplate().update(batchesConfigSql.getUpdateSqlNonAssignedBatches(),parameters);
     }
 }
