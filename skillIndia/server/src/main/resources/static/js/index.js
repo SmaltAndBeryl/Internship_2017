@@ -2,7 +2,8 @@
 
 // URL Routing
 
-var myApp = angular.module('myApp', ['ngRoute', 'faq', 'imp','manage', 'dashboard']);
+var myApp = angular.module('myApp', ['ngRoute', 'faq', 'imp', 'manage', 'dashboard', 'batch' ]);
+
 //
 //myApp.controller('username-ctrl', function($scope) {
 //  $scope.username = "Alkesh Srivastava";
