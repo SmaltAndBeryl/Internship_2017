@@ -1,4 +1,14 @@
-	<div class="welcome"> Welcome</div>
+<!-- <div class="welcome"> Welcome</div>
+		<div ng-controller="presentController"> Present Batch(es) 
+		<div ui-grid="presentGridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
+	</div>
+		<div ng-controller="presentController"> Past Batch(es) 
+		
+		<div ui-grid="pastGridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
+		</div>
+		<!-- enter Ui grid code here -->
+ -->	
+ 	<div class="welcome"> Welcome</div>
 	<div class="presentBatchesBoxwrap">
 		<div class="presentBatchesTable"> Present Batch(es) </div>
 		
@@ -9,8 +19,9 @@
 	
 	<div class="pastBatchesBoxwrap">
 		<div class="pastBatchesTable"> Past Batch(es) </div>
-		<div ng-controller="pastController">
+		<div ng-controller="presentController">
 		<div ui-grid="pastGridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
 		<!-- enter Ui grid code here -->
 		 </div>
 	</div>
+ 
