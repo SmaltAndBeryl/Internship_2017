@@ -40,7 +40,7 @@ public class TrainingPartnerbatchesDao extends AbstractTransactionalDao {
         Map<String, Object> parameters = new HashMap<>();
         //return getJdbcTemplate().query
       
-        return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 
+        return getJdbcTemplate().query(updateConfigSql.getSelectSqlOfBatches(), parameters, 
         		ROW_MAPPER); 
     }
 
@@ -51,10 +51,10 @@ public class TrainingPartnerbatchesDao extends AbstractTransactionalDao {
         @Override
         public TrainingPartnerBatchesDto mapRow(ResultSet resultSet, int rowNum)
                 throws SQLException {
-            String batchId = resultSet.getString("batch_id");
-            Date completionDate = resultSet.getDate("completion_date");
-            String instructorName = resultSet.getString("instructor_name");
-            Integer noOfCandidates = resultSet.getInt("no_of_candidates");
+            String batchId = resultSet.getString("batchId");
+            Date completionDate = resultSet.getDate("batchEndDate");
+            String instructorName = resultSet.getString("trainerName");
+            Integer noOfCandidates = resultSet.getInt("totalCandidatesInBatch");
 
             
         	return new TrainingPartnerBatchesDto(batchId, completionDate, instructorName, noOfCandidates);
