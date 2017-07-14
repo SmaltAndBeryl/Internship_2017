@@ -5,17 +5,17 @@ import com.skill.India.common.BaseDto;
 public class LoginDto extends BaseDto{
 private static final long serialVersionUID = 1L;
 	
-	private final int applicationId; 
+	private final String userId; 
 	private final String userRole;
 	private final String userStatus;
 
-	
 	/**
-	 * @return the applicationId
+	 * @return the userId
 	 */
-	public int getApplicationId() {
-		return applicationId;
+	public String getUserId() {
+		return userId;
 	}
+
 	/**
 	 * @return the userRole
 	 */
@@ -29,16 +29,17 @@ private static final long serialVersionUID = 1L;
 		return userStatus;
 	}
 	/**
-	 * @param applicationId
+	 * @param userId
 	 * @param userRole
 	 * @param userStatus
 	 */
-	public LoginDto(int applicationId, String userRole, String userStatus) {
+	public LoginDto(String userId, String userRole, String userStatus) {
 		super();
-		this.applicationId = applicationId;
+		this.userId = userId;
 		this.userRole = userRole;
 		this.userStatus = userStatus;
 	}
+	
 	
 	
 	

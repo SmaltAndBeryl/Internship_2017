@@ -46,12 +46,12 @@ public class SignUpReceiveDataDto extends BaseDto {
 	 * @param userRole
 	 */
 	public SignUpReceiveDataDto(String organizationName, String sPOCName,
-			String userId, String password, String userRole) {
+			String userId, String mypassword, String userRole) {
 		super();
 		this.organizationName = organizationName;
 		this.sPOCName = sPOCName;
 		this.userId = userId;
-		this.mypassword = password;
+		this.mypassword = mypassword;
 		this.userRole = userRole;
 	}
 	/**

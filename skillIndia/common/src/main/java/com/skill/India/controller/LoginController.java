@@ -2,20 +2,16 @@ package com.skill.India.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.dto.LoginDto;
 import com.skill.India.dto.LoginReceiveDataDto;
-import com.skill.India.dto.ProfileCreationDataPopulateDto;
 import com.skill.India.dto.SignUpInsertedUserDto;
 import com.skill.India.dto.SignUpReceiveDataDto;
 import com.skill.India.service.LoginService;
-import com.skill.India.service.ProfileCreationDataPopulateService;
 import com.skill.India.service.SignUpService;
 
 
@@ -27,13 +23,9 @@ public class LoginController {
     public String userRedirectPage;
     @Autowired
 	private SignUpService signUpService;    
-    @Autowired
-    private ProfileCreationDataPopulateService profileCreationDataPopulateService;
+   
     
-    private SignUpInsertedUserDto signUpInsertedUserDto;
-    
-    
-	@RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
 	{			
 		return loginService.checkUser(loginReceiveDataDto);
@@ -46,14 +38,6 @@ public class LoginController {
 			
 	 return signUpService.signUp(signUpReceiveDataDto);
 	  
-
 	}
 	
-	@RequestMapping(value="/profileCreationDataPopulate", method=RequestMethod.POST)
-	public ProfileCreationDataPopulateDto profileCreationDataPopulate(@RequestParam ("userId") String userId){	
-	
-
-		return profileCreationDataPopulateService.getDataToPopulate(userId);
-		
-	}
 }

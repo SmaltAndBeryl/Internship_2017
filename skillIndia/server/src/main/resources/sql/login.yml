@@ -1,7 +1,7 @@
 login:
  selectSql: > 
-   select applicationId,userRole,userStatus 
-    from user inner join application where user.userId=:userId and user.password=:password
+   select userId,userRole,userStatus 
+    from user where userId=:userId and password=:password
     
  checkUserSql: >
    SELECT EXISTS(SELECT * FROM user WHERE userId=:userId and password=:password)

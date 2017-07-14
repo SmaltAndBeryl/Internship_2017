@@ -31,7 +31,6 @@ public class LoginDao extends AbstractTransactionalDao {
 	
 	
 	public Integer userExistence(String userId, String password){
-		System.out.println(userId+" " +password);
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("userId", userId);
 		parameters.put("password", password);
@@ -53,10 +52,10 @@ public class LoginDao extends AbstractTransactionalDao {
 		@Override
 		public LoginDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
-					int applicationId = resultSet.getInt("applicationId");
+			        String userId = resultSet.getString("userId");
 					String userRole = resultSet.getString("userRole");
 					String userStatus = resultSet.getString("userStatus");
-					return new LoginDto(applicationId, userRole, userStatus);
+					return new LoginDto(userId, userRole, userStatus);
 			
 			
 			
