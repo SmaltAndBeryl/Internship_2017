@@ -1,4 +1,3 @@
-
 .welcome {
   width: 280px;
   height: 22px;
@@ -12,7 +11,7 @@
 
 .presentBatchesBoxwrap {
   
-  height: 248px;
+  height: auto;
   margin-left: 51px;
   margin-right: 51px;
   margin-top: 220px;
@@ -27,13 +26,13 @@
   font-family: OpenSans;
   font-size: 14px;
   font-weight: 600;
-padding: 10px;
+ padding: 10px;
   text-align: left;
   color: #676a6c;
 }
 .pastBatchesBoxwrap {
   
-  height: 248px;
+  height: auto;
   margin-left: 51px;
   margin-right: 51px;
   margin-top: 24px;
@@ -62,11 +61,12 @@ padding: 10px;
 
  .ui-grid-header-cell-wrapper {
  	height: auto;
+ 	
  }
 .download {
 	text-align: center;
 	vertical-align: middle;
-  cursor: pointer;
+      cursor: pointer;
 }
 
-
+ 
