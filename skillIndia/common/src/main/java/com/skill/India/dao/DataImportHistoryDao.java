@@ -33,13 +33,12 @@ public class DataImportHistoryDao extends AbstractTransactionalDao{
 		@Override
 		public DataImportHistoryDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
-			Integer SerialNo = resultSet.getInt("SerialNo");
-		    String CSVname = resultSet.getString("CSVname");
-			String CSVType = resultSet.getString("CSVType");
-			Date CSV_Upload_Date = resultSet.getDate("CSV_Upload_Date");
-			String CSV_Upload_UserId = resultSet.getString("CSV_Upload_UserId");
+		    String CSVname = resultSet.getString("csvName");
+			String CSVType = resultSet.getString("csvType");
+			Date CSV_Upload_Date = resultSet.getDate("csvUploadDate");
+			String CSV_Upload_UserId = resultSet.getString("csvUploadUserId");
 
-			return new DataImportHistoryDto(SerialNo, CSVname, CSVType, CSV_Upload_Date, CSV_Upload_UserId);
+			return new DataImportHistoryDto(CSVname, CSVType, CSV_Upload_Date, CSV_Upload_UserId);
 		}
 
 	}
