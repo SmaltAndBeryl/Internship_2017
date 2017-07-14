@@ -13,7 +13,7 @@ function presentController($scope, $http){
 	    
 		$scope.presentGridOptions={
 				enableSorting: false,
-				enableGridMenus:false,  
+				enableGridMenus:false, 
 				enableSorting: false, 
 			    enableFiltering: false,
 			    enableCellEdit : false,
