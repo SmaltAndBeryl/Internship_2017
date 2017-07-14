@@ -20,12 +20,12 @@ function importController($scope, $http){
 	
 
 $scope.gridOptions = {
-	  enableGridMenus : false,  
-	  enableSorting: false, 
-	  enableFiltering: false,
-	  enableCellEdit : false,
-	  enableColumnMenus : false,
-      enableHorizontalScrollbar:0,
+///*	  enableGridMenus : false,  
+//	  enableSorting: false, 
+//	  enableFiltering: false,
+//	  enableCellEdit : false,
+//	  enableColumnMenus : false,
+//  */    enableHorizontalScrollbar:0,
 	  
 columnDefs:[
 	  { name: 'SNo',           displayName: '#',              cellClass:'sno',  headerCellClass:'layer', cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' },
@@ -33,21 +33,27 @@ columnDefs:[
 	  { name: 'csvtype',            displayName: 'Type',               cellClass:'type', headerCellClass:'Type'},
 	  { name: 'csv_Upload_Date',    displayName: 'Date',               cellClass:'date', headerCellClass:'Date', cellFilter: 'date:\'dd/MM/yyyy\''},
 	  { name: 'csv_Upload_UserId',  displayName: 'Uploaded By',        cellClass:'uby',  headerCellClass:'Uploaded-By'},
-	  { name: 'View Uploaded File', displayName: 'View Uploaded File', cellClass:'vub',  headerCellClass:'View-Uploaded-File', cellTemplate: '<img src="/images/CSVDownloadIcon.png" ng-click=grid.appScope.download()>'}
+	  { name: 'View Uploaded File', displayName: 'View Uploaded File', cellClass:'vub',  headerCellClass:'View-Uploaded-File', cellTemplate: '<img src="/images/CSVDownloadIcon.png" ng-click=grid.appScope.download(row)>'}
 	       ]
-                     };
-// $scope.myfunction = function()
-// {
-//	 location.href = 'http://localhost:8080/approve';
-// };
-$scope.download = function(){
-//	//http.get().then(function(file){ window.open(file,'_blank')});
-//	
-	 window.open("Sheets.csv", "_blank")
-	}
-  
+  };
+
+	
+  $scope.download = function(rowData){
+	  var  index = Object.values(Object.values(rowData)[1])[0];
+	  console.log("Row Data is " + index);
+	  var urldata = "/files/"+ index;
+	  window.open(urldata);
+  };
      $http.get("/importHistory")
       .then(function(response){
-       $scope.gridOptions.data = response.data;
+    	  $scope.gridOptions.data = response.data;
+    	  var obj = $scope.gridOptions.data[0].csvname;
+    	  var str = JSON.stringify(obj)
+    	  console.log(Object.values(obj)+ "     sasas    "+ str);
+
+   
     });
 }
+
+
+
