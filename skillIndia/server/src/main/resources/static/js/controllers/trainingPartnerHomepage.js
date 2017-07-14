@@ -11,7 +11,7 @@ var tpApp = angular
 
 function presentController($scope, $http){
 	    
-		$scope.gridOptions={
+		$scope.presentGridOptions={
 				enableSorting: false,
 				enableGridMenus:false,  
 				enableSorting: false, 
@@ -29,8 +29,8 @@ function presentController($scope, $http){
 	};
 		
 		 $http.get("/trainingPartnerPastBatches")
-		    .then(function (data) {
-		      $scope.gridOptions.data= data.PresentBatches;
+		    .then(function (response) {
+		      $scope.presentGridOptions.data= response.data.PresentBatches;
 		    })
 	};
 tpApp.controller('pastController', pastController);
@@ -38,7 +38,7 @@ pastController.$inject=['$scope','$http'];
 
 function pastController($scope, $http){
     
-		$scope.gridOptions={
+		$scope.pastGridOptions={
 				enableSorting: false,
 				enableGridMenus:false,  
 				enableSorting: false, 
@@ -54,11 +54,13 @@ function pastController($scope, $http){
 		{name:'noOfCandidates', displayname:'Number of Candidates', cellClass:'noCandidates', headerCellClass:'candidates'},
 		{name:'Display', displayName: 'Download Certificate', cellClass:'download',  headerCellClass:'downCer', cellTemplate: '<img src="icon/CertificateDownlad/Certificate Download.png" ng-click=grid.appScope.myfunction()>'}
 		]			 		            			            	
-	};
-		
+	
+		};
 		 $http.get("/trainingPartnerPastBatches")
-		    .then(function (data) {
-		      $scope.gridOptions.data= data.PastBatches;
+		    .then(function (response) {
+		      $scope.pastGridOptions.data= response.data.PastBatches;
 		    })
-	};
+		
+		  
+};
    
