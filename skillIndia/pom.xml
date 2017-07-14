@@ -25,7 +25,7 @@
 		<dashboard.version>1.0.0-beta-1</dashboard.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<start-class>com.skill.India.Application</start-class>
+		<start-class>com.skill.India.server.Application</start-class>
 
 		<unitils.version>3.3</unitils.version>
 		<java.version>1.8</java.version>
@@ -222,6 +222,7 @@
 		</dependency>
 
 	</dependencies>
+	
 	<modules>
 		<module>common</module>
 		<module>server</module>
