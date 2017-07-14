@@ -14,13 +14,21 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "trainingPartnerBatches", locations = "classpath:sql/trainingPartner.yml")
 public class TrainingPartnerConfigSql {
 
-	    private String selectSql;
+	    private String selectSqlOfBatches;
 
-	    public String getSelectSql() {
-	        return selectSql;
-	    }
+		/**
+		 * @return the selectSqlOfBatches
+		 */
+		public String getSelectSqlOfBatches() {
+			return selectSqlOfBatches;
+		}
 
-	    public void setSelectSql(String selectSql) {
-	        this.selectSql = selectSql;
+		/**
+		 * @param selectSqlOfBatches the selectSqlOfBatches to set
+		 */
+		public void setSelectSqlOfBatches(String selectSqlOfBatches) {
+			this.selectSqlOfBatches = selectSqlOfBatches;
+		}
+
+	     
 	    }
-}
