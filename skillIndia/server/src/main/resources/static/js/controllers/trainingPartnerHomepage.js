@@ -32,13 +32,9 @@ function presentController($scope, $http){
 		    .then(function (response) {
 		      $scope.presentGridOptions.data= response.data.PresentBatches;
 		    })
-	};
-tpApp.controller('pastController', pastController);
-pastController.$inject=['$scope','$http'];
-
-function pastController($scope, $http){
-    
-		$scope.pastGridOptions={
+		    
+		    
+		    $scope.pastGridOptions={
 				enableSorting: false,
 				enableGridMenus:false,  
 				enableSorting: false, 
@@ -60,7 +56,5 @@ function pastController($scope, $http){
 		    .then(function (response) {
 		      $scope.pastGridOptions.data= response.data.PastBatches;
 		    })
-		
-		  
-};
-   
+		    
+	};
