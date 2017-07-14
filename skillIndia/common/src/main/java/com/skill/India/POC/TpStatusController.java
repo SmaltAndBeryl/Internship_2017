@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TpStatusController {
 
-	@RequestMapping("/statusTp")  
+	@RequestMapping("/trainingPartnerHomePage")  
 	  public  String user() {
-	    return "TpApplicationStatus";
+	    return "MasterTemplate2";
 	  }
 }
