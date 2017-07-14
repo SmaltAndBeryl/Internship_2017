@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../css/dataImportHistory.css" type="text/css" />
    
    <!-- Angular controller for import history -->
-   <script src="../js/controllers/dataImportHistory.js" text="text/javascript"></script>
+   
    
   </head>
 
@@ -34,14 +34,17 @@
       <form id="Search-Batch-ID"  method="post" role="form" style="display: block;">
           <label class="title">Search Batch ID</label> 
              <input type="text" class="text" placeholder="Search..." required name='searchText'>
-             <input type="button" class="button"  value="Search">
+             <input type="button" class="button"  value="Search" ng-click="getdatOfbatch()">
       </form>
+      <div ng-controller="importController as Main">
+      <!-- <div ui-grid="gridOptions" ui-grid-auto-resize class="grid"></div> -->
+      </div>
       </div>
         <div class="historytable">
   <h5 class="title">Certificate Upload History</h5>
-   <!-- <div ng-controller="MainCtrl as Main">
-      <div ui-grid="gridOptions"  ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
-      </div> -->
+   <div ng-controller="importController as Main">
+      <div ui-grid="gridOptions" ui-grid-auto-resize class="grid"></div>
+      </div>
       </div>
 
    <!-- </body>
