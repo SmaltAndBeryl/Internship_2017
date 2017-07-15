@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- <html ng-app="app"> -->
+   <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script src="http://cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.js"></script>
+    <script src="http://ui-grid.info/release/ui-grid.js"></script>
+    <link rel="stylesheet" href="http://cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
+    <!-- CSS file for Batch Assignment -->
+  <head>
+    <link rel="stylesheet" href="css/batchAssignment.css" type="text/css" />
+  </head>
+
+
+  <!-- <body> -->
+      <div class="proposedwrap">
+        <div class="title">
+          Proposed Batch(es)
+        </div>
+        <div ng-controller="batchAssignmentController">
+       <div id="secondGrid" ui-grid="proposedBatchesBatchAssignmentGridOptions" ui-grid-selection ui-grid-cellNav class="proposedBatchesGrid"></div>
+        </div>
+      </div>
+
+      <div class="approvedwrap">
+        <div class="title">
+          Approved Batch(es)
+        </div>
+        <div ng-controller="batchAssignmentController">
+       <div id="secondGrid" ui-grid="approvedBatchesBatchAssignmentGridOptions" ui-grid-selection ui-grid-cellNav class="approvedBatchesGrid"></div>
+        </div>
+      </div>
+
+      <div class="rejectedwrap">
+        <div class="title">
+          Rejected Batch(es)
+        </div>
+        <div ng-controller="batchAssignmentController">
+       <div id="secondGrid" ui-grid="rejectedBatchesBatchAssignmentGridOptions" ui-grid-selection ui-grid-cellNav class="rejectedBatchesGrid"></div>
+        </div>
+      </div>
+
+    </div>
+    <script src="js/controllers/batchAssignment.js" text="text/javascript"></script>
+ <!-- </body> -->
+<!-- </html> -->

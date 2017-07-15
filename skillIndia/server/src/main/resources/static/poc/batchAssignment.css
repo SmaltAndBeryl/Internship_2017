@@ -1,0 +1,210 @@
+.mainwrap{
+  background-color: #ECF0F1;
+  width:1018px;
+  height: auto;
+	}
+.batchAssignment{
+  width: 250px;
+  height: 24px;
+  margin-left: 27px;
+  padding-top: 33px;
+  padding-bottom: 29px;
+  font-size: 24px;
+  line-height: 1.58;
+  text-align: left;
+  color: #000000;
+  }
+.proposedwrap{
+	width: 976px;
+  height: 281px;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+  .approvedwrap{
+	width: 976px;
+  height: 281px;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+  .rejectedwrap{
+	width: 976px;
+  height: 281px;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+.title{
+  width: auto;
+  height: 15px;
+  font-size: 14px;
+  padding-top: 31px;
+  padding-left: 25px;
+  font-weight: 600;
+  text-align: left;
+  color: #676a6c;
+  color: (--slate-grey);
+  }
+.proposedBatchesGrid {
+  width: 933px;
+  height: 100px;
+  margin-left: 21px;
+}
+.approvedBatchesGrid {
+  width: 933px;
+  height: 100px;
+  margin-left: 21px;
+}
+.rejectedBatchesGrid {
+  width: 933px;
+  height: 100px;
+  margin-left: 21px;
+}
+*{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+}
+.sno{width: 45px;
+  height: 246px;
+  background-color: #ffffff;
+  border: solid 1px #e7e7e7;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color:(--slate-grey);}
+
+.fname{width: 43px;
+  height: 11px;
+	object-position: center;
+  background-color: #ffffff;
+  border: solid 1px #e7e7e7;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color:(--slate-grey);}
+
+.type{width: 236px;
+  height: 36px;
+	object-position: center;
+  background-color: #ffffff;
+  border: solid 1px #e7e7e7;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color:(--slate-grey);}
+
+.date{width: 150px;
+  height: 36px;
+	object-position: center;
+  background-color: #ffffff;
+  border: solid 1px #e7e7e7;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: (--slate-grey);}
+
+.uby{width: 210px;
+  height: 36px;
+	object-position: center;
+  background-color: #ffffff;
+  border: solid 1px #e7e7e7;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color:(--slate-grey);
+  }
+
+  .vub{width: 165px;
+  height: 36px;
+	padding-top: 7px;
+	text-align: center;
+	vertical-align: middle;
+	object-fit: contain;
+	object-position: bottom;
+  background-color: #ffffff;
+  border: solid 1px #e7e7e7;
+   color:(--slate-grey);
+  cursor: pointer;
+  }
+  .layer {
+    width: 9px;
+  height: 10px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+
+}.File-Name {
+    width: 64px;
+  height: 11px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+
+}
+.Type {
+  width: 31px;
+  height: 13px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+}
+.Date {
+  width: 30px;
+  height: 11px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+
+}
+.Uploaded-By {
+  width: 81px;
+  height: 13px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+
+}
+.View-Uploaded-File {
+   width: 123px;
+  height: 13px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+}
+
+.certificate{
+   width: 976px;
+  height: 150px;
+  margin-left: 21px;
+  margin-top: 20px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+
+}
