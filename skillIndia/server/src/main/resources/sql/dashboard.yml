@@ -29,7 +29,7 @@ dashboard:
 
  selectSqlTotalCandidatesTrainedWithModeInLastThreeYears: >
   Select YEAR(batchEndDate) AS YEARS,SUM(totalCertified) as totalCertified,batchMode as modes
-   from batch where batchType='Non-Star'group by 1,batchMode HAVING YEARS BETWEEN YEAR(CURDATE())-2 AND YEAR(CURDATE()) order by 1,3
+   from batch where batchType='Non-PMKVY'group by 1,batchMode HAVING YEARS BETWEEN YEAR(CURDATE())-2 AND YEAR(CURDATE()) order by 1,3
    
  selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears: >
   select Year(batchEndDate) AS YEARS,batchType,(SUM(totalPass)+SUM(totalFail)) AS TRAINED 
