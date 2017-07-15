@@ -1,19 +1,44 @@
 
-<html>
+<html ng-app="app">
 <head>
- <link rel="stylesheet" type="text/css" href="css/batchAssignmentSearchBatches.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script> 
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.6.5/angular-touch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="http://ui-grid.info/release/ui-grid.js"></script>
+    <script src="js/controllers/batchAssignmentSearchBatches.js"></script>
+     <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css"> 
+      <link rel="stylesheet" type="text/css" href="css/batchAssignmentSearchBatches.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.css"></link>
+    
 </head>
 <body>
-<div class="mainwrap"> 
+ <div class="mainwrap">
 <div class="Background">
     </div>   
-    <div class="Formboxwrap"> 
+    <div class="Formboxwrap" ng-controller="MainCtrl"> 
+    
+
       <form id="Search-Batch-ID"  method="post" role="form" style="display: block;">
           <label>Search Batch ID</label> 
-             <input type="text" class="text" placeholder="Search..." required name='searchText'>
-             <input type="button" class="button"  value="Search">
-      </form>     
-    </div>
+             <input type="text" class="text" placeholder="Search..." required name='searchText' ng-model="batchAssignmentSearch"/>
+             <input type="button" class="button"  value="Search" ng-click="getDataOfBatch()"/>
+             <div>
+  
+		 <div ui-grid="gridOptions" class="grid" ui-grid-auto-resize> 
+		 <div class="ui-grid-cell-contents"></div> 
+
+<!-- <div class="batch id"></div> -->
+  </div>
+  
 </div>
-</body>
-</html>
+      </form>  
+      </div>  
+      </div> 
+      </body>
+      </html>
