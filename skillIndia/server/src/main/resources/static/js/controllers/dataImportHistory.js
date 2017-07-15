@@ -13,9 +13,9 @@ var imp = angular
  
 imp.controller('importController', importController);
 
-importController.$inject = ['$scope', '$http'];
+importController.$inject = ['$scope', '$http', 'fileUpload'];
 
-function importController($scope, $http){
+function importController($scope, $http, $fileUpload){
   //refresh();
 	
 
@@ -53,7 +53,44 @@ columnDefs:[
 
    
     });
+     $scope.optionValues = [{
+         id: 'Batch',
+         name: 'Batch'
+     },{
+         id: 'Candidate',
+         name:'Candidate'
+     },{
+         id: 'Training Partner',
+         name: 'Training Partner'
+     },{
+         id: 'Trainer',
+         name: 'Trainer'
+     },{
+         id: 'Assessment Agency',
+         name: 'Assessment Agency'
+     },{
+         id: 'Centre',
+         name: 'Centre'
+     },{
+         id: 'Employer',
+         name: 'Employer'
+    },{
+         id: 'Assessor',
+         name: 'Assessor'
+     }];
+     $scope.uploadCSV = function(){
+         
+     	var file = $scope.csvFile;
+     	var csvType = $scope.csvType;
+               
+         var uploadUrl = "/upload";
+         fileUpload.uploadFileToUrl(file, csvType, uploadUrl);
+         
+     };
+     
 }
+
+
 
 
 
