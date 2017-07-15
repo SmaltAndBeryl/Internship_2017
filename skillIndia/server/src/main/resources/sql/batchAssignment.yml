@@ -1,0 +1,19 @@
+batchAssignment:
+ selectSqlproposedBatchesBatchAssignment: >
+  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate 
+  from batch B, centre C, batchassignment A 
+  where A.responseType="Proposed" and B.centreId = C.centreId and A.batchId = B.batchId;
+
+ selectSqlapprovedBatchesBatchAssignment: >
+  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate 
+  from batch B, centre C, batchassignment A 
+  where A.responseType="Approved" and B.centreId = C.centreId and A.batchId = B.batchId;
+
+ selectSqlrejectedBatchesBatchAssignment: >
+  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate 
+  from batch B, centre C, batchassignment A 
+  where A.responseType="Rejected" and B.centreId = C.centreId and A.batchId = B.batchId;
+  
+ updateSqlBatchAssignment: >
+  UPDATE batchassignment SET responseType="Default"
+   WHERE batchId = :batchId;
