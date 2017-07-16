@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class TpStatusController {
+public class TPStatusController {
 
-	@RequestMapping("/trainingPartnerHomePage")  
+	@RequestMapping("/tPHomePage")  
 	  public  String user() {
-	    return "MasterTemplate2";
+	    return "MasterTemplate2Tp";
 	  }
 }
