@@ -1,4 +1,4 @@
 trainingPartnerApplicationStatus:
  selectSql: > 
    select application.applicationId,application.dateOfSubmission,trainingpartnerregistration.trainingPartnerName,application.applicationState,applicationcomments.comment 
-    from application INNER JOIN applicationcomments ON application.applicationId=applicationcomments.applicationId INNER JOIN trainingpartnerregistration ON application.applicationId=trainingpartnerregistration.applicationId;
+    from application INNER JOIN applicationcomments ON application.applicationId=applicationcomments.applicationId INNER JOIN trainingpartnerregistration ON application.applicationId=trainingpartnerregistration.applicationId where application.applicationId=1;
