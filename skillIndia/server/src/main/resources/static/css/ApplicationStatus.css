@@ -10,17 +10,17 @@
 
 }
 .grid {
+	margin-top:15px;
  margin-left:21px;
 	margin-right:24px;
-  height: 75px;
+  height: 68px;
   background-color: none;
-  border: none;
 }
 .title{
 
   height: 15px;
   font-size: 14px;
-  padding-top: 31px;
+  padding-top: 20px;
   padding-left: 25px;
   font-weight: 600;
   text-align: left;
@@ -95,61 +95,7 @@
   padding-top:5px;
   border:1px;
 }
-.Prostokt-2-kopia-2-copy-10 {
-  
-  height: 76px;
-  background-color: #ffffff;
-  border: solid 1px #e7e7e7;
-  padding-left:10px;
-  margin-top:-2px;
-}
-.Prostokt-2-kopia-2-copy-11 {
-  
-  height: 76px;
-  background-color: #ffffff;
-  border: solid 1px #e7e7e7;
-  padding-left:10px;
-  margin-top:-2px;
-}
-.Prostokt-2-kopia-2-copy-12 {
-  
-  height: 76px;
-  background-color: #ffffff;
-  border: solid 1px #e7e7e7;
-  padding-left:10px;
-  margin-top:-2px;
-}
-.Prostokt-2-kopia-2-copy-13 {
-  
-  height: 76px;
-  background-color: #ffffff;
-  border: solid 1px #e7e7e7;
-  padding-left:10px;
-  margin-top:-2px;
-  color: Red;
-}
-.Prostokt-2-kopia-2-copy-14 {
-  
-  height: 76px;
-	padding-top: 7px;
-	text-align: center;
-	vertical-align: middle;
-	object-fit: contain;
-	object-position: bottom;
-  background-color: #ffffff;
-  border: solid 1px #e7e7e7;
-   color:(--slate-grey);
-  cursor: pointer;
-  margin-top:-2px;
-}
-.Prostokt-2-kopia-2-copy-15 {
-  
-  height: 76px;
-  background-color: White;
-  border: solid 1px #e7e7e7;
-  padding-left:10px;
-  margin-top:-2px;
-}
+
 .edit {
   width: 13px;
   height: 13px;
@@ -248,15 +194,32 @@
   top: 0;
   bottom: 0;
 }
-.Rectangle-7-copy-116 {
-  margin-left:50px;
-  margin-right:52px;
-  height: 152px;
-  background-color: Red;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
-}
-}
 .ui-grid-render-container
 {
 	margin-right: 17px;
+}
+.Prostokt-2-kopia-2-copy-14 {
+	padding-top: 7px;
+	text-align: center;
+	vertical-align: middle;
+	object-fit: contain;
+	object-position: bottom;
+}
+.commoncell{
+	padding-left:10px;
+}
+.statuscell{
+	padding-left:10px;
+	color: Red;
+}
+.Rectangle-7-copy-11{
+	background-color: White;
+	height: 150px;
+	margin-left:50px;
+	margin-right:52px;
+	margin-top:45px;
+}
+.comment
+{
+	padding-top:5px;
 }
