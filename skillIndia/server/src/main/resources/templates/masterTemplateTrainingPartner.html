@@ -1,0 +1,93 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Template 2</title>
+    <link rel="stylesheet" href="css/MasterTemplate2.css">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet"></link>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.6.5/angular-touch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.css"></link>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.js"></script><script type="text/javascript" src="js/MasterTemplate2.js"></script>   
+     <link href="css/trainingPartnerHomepage.css" type="text/css" rel="stylesheet">
+    <script src="js/controllers/trainingPartnerHomepage.js"></script>
+    
+</head>
+<header class="one-edge-shadow">
+    <div class="leftContent">
+        <img src="images/indexPageImages/SCGJLogo.png" alt="" class="image-0">
+    </div>
+
+    <div class="rightContent">
+        <div class="logout-wrapper">
+
+            <div class="username" ng-controller="username-ctrl">
+                <h2 class="username"><b> {{ username }}</b></h2>
+            </div>
+
+            <div class="logoutButton">
+                <div class="logout-icon-text-wrap">
+                    <div class="icon-wrap">
+                        <img class="logout-icon" src="icon/indexPageIcons/logout.png" alt="">
+                    </div>
+
+                    <div class="text-wrap">
+                        <h5 class="logoutText">Logout</h5>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<body ng-app="myApp">
+
+<div class="mainContent">
+
+    <div id="Content" >
+    <!--Code for the present and past batches tables-->
+    <div ng-include="'partials/trainingPartnerHomepage.html'"></div>
+    </div>
+
+</div>
+
+
+<div class="logoBar">
+    <div class="image-wrap">
+        <img src="images/indexPageImages/SkillMinistryLogo.png" alt="" class="image-1">
+
+
+        <img src="images/indexPageImages/SkillIndiaLogo.png" alt="" class="image-2">
+
+
+        <img src="images/indexPageImages/NSDCLogo.png" alt="" class="image-3">
+
+
+        <img src="images/indexPageImages/MNRELogo.png" alt="" class="image-4">
+    </div>
+</div>
+</body>
+
+
+<footer>
+    <div class="upperFooter">
+        <div class="link-wrapper">
+            <a href="http://sscgj.in/about-us/" class="link">About Us</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/operational-standards/" class="link">National Standards</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/affiliation/" class="link">Affiliation</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/publications/" class="link">Publications</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/state-linkages/" class="link">State Linkages</a>
+        </div>
+
+    </div>
+
+    <div class="lowerFooter">
+        <h5 class="copyright">Copyright &copy 2017 sscgj.in - All Rights Reserved.</h5>
+    </div>
+</footer>
