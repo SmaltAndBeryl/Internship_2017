@@ -16,9 +16,9 @@ $(function () {
 		   year.push(data[i].years);
 	  }
 	  year = jQuery.unique(year);
-	  console.log('LENGTH OF DATA:'+data.length);
-	  console.log('TOTAL NO OF YEARS:  '+year.length)
-	 
+//	  console.log('LENGTH OF DATA:'+data.length);
+//	  console.log('TOTAL NO OF YEARS:  '+year.length)
+//	 
 	 var j=0;  
 	 for(i = 0; i < data.length; i++)
 	 {
@@ -69,13 +69,13 @@ $(function () {
 		  
 	 }
 		     
-	  console.log(year);
-	  console.log('MNRE is ' +mnreFunded);
-	  console.log('Market Mode is '+marketMode);
-	  console.log('NBC/FDC  is '+nbc);
-	  console.log('State Skill Level is '+stateSkillLevel);
-	
-	  $('#container').highcharts({
+//	  console.log(year);
+//	  console.log('MNRE is ' +mnreFunded);
+//	  console.log('Market Mode is '+marketMode);
+//	  console.log('NBC/FDC  is '+nbc);
+//	  console.log('State Skill Level is '+stateSkillLevel);
+//	
+	  $('#stackedColumnChart').highcharts({
     chart: {
         type: 'column'
     },
@@ -100,13 +100,11 @@ $(function () {
     },
     legend: {
         align: 'right',
-        x: -30,
-        verticalAlign: 'top',
-        y: 25,
-        floating: true,
+        verticalAlign: 'bottom',
+        floating: false,
         backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
         borderColor: '#CCC',
-        borderWidth: 1,
+        borderWidth: 0,
         shadow: false
     },
     tooltip: {

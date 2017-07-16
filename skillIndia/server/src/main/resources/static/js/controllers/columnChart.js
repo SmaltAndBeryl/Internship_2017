@@ -8,7 +8,7 @@ $(function () {
                     }
                  
                     // draw chart
-                    $('#container').highcharts({
+                    $('#columnChart').highcharts({
                     chart: {
                         type: "column"
                     },

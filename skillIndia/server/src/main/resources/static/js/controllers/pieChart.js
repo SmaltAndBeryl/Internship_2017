@@ -6,9 +6,9 @@ $(function () {
       $.getJSON('/getDashboardTotalBatchesAccordingToJobRole', function(data) {                                                  
           for (i = 0; i < data.length; i++){
                         processed_json.push([data[i].jobRole, data[i].batches]);
-          console.log(processed_json);
+          //console.log(processed_json);
           }
-          console.log('outside loop is' +processed_json);
+         // console.log('outside loop is' +processed_json);
           
 // Radialize the colors
 Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
@@ -26,7 +26,7 @@ Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, 
 });
 
 // Build the chart
-Highcharts.chart('container', {
+$('#pieChart').highcharts({
     chart: {
         plotBackgroundColor: null,
         plotBorderWidth: null,
@@ -63,11 +63,6 @@ Highcharts.chart('container', {
         selected: true,
 
     }]
-}); 
-                                                                    
-                                                                    
-                                                              
-                                                                    
-                                                                    
+});                                                                   
 });
 });

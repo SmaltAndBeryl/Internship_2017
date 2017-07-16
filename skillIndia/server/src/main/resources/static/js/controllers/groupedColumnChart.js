@@ -45,12 +45,12 @@ $(function () {
 	  }  
 	 
 	  
-	   $('#container').highcharts({
+	   $('#groupedColumnChart').highcharts({
 		   chart: {
 	        type: 'column'
 	    },
 	    title: {
-	        text: 'Candidates Trained'
+	        text: 'Candidates Trained under PMKVY and Non-PMKVY'
 	    },
 	    subtitle: {
 	        text: 'Source: SCGJ.in'
