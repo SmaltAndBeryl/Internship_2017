@@ -1,61 +1,49 @@
 package com.skill.India.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public class CommentDto {
 	
-	@JsonProperty
 	private  String comment;
-	@JsonProperty
-	private  int applicationID;
-	@JsonProperty
-	private  boolean flag;
-	
-	
-	public CommentDto( String comment , int applicationID,
-			boolean flag) {
-		super();
-		//this.commentID = commentID;
-		this.comment = comment;
-		this.applicationID = applicationID;
-		this.flag = flag;
-		}
-	
-	
-	
-	public CommentDto() {
-		super();
-	}
-
-
-
-	/**
-	 * @return the commentID
-	 */
-	//public Integer getCommentID() {
-		//return commentID;
-	//}
-
+	private  int applicationId;
 	/**
 	 * @return the comment
 	 */
 	public String getComment() {
 		return comment;
 	}
-
+	/**
+	 * @param comment the comment to set
+	 */
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	/**
 	 * @return the applicationId
 	 */
-	public int getApplicationID() {
-		return applicationID;
+	public int getApplicationId() {
+		return applicationId;
 	}
-
 	/**
-	 * @return the flag
+	 * @param applicationId the applicationId to set
 	 */
-	public boolean isFlag() {
-		return flag;
+	public void setApplicationId(int applicationId) {
+		this.applicationId = applicationId;
+	}
+	/**
+	 * @param comment
+	 * @param applicationId
+	 */
+	public CommentDto(String comment, int applicationId) {
+		super();
+		this.comment = comment;
+		this.applicationId = applicationId;
+	}
+	/**
+	 * 
+	 */
+	public CommentDto() {
+		super();
 	}
 	
 	
+
 }
