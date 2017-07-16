@@ -53,43 +53,16 @@
     margin-bottom: 31px;
     margin-top: 20px;
 }
-
-#first{
-    background-color: lightblue;
-    margin: 20px;
-}
-#second{
-    background-color: lavender;
-    margin: 20px;
-}
-#third{
-    background-color: peachpuff;
-    margin: 20px;
-}
-#fourth{
-    background-color: coral;
-    margin: 20px;
-}
 .chartsWrap{
  font-family:sans-serif;
    /* font-size: smaller;*/
      margin:22px 32px 21px 22px;
-    background-color: white;
+    background-color: #E5E9EA;
+    width:auto;
 }
 .col-sm-4
 {
-    width: 50%;
-}
-.chart-height{
-    height:250px;
-}
-
-.panel-header{
-       font-family: sans-serif;
-
-       font-size: 14px;
-     font-weight:100;
-	 padding:10px;
+	width:50%;	
 }
 .Enrolled
 {
