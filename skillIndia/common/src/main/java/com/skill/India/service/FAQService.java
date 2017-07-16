@@ -7,13 +7,25 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.skill.India.dao.FAQBatchWiseCandidateDetailsDao;
+import com.skill.India.dao.FAQCandidatesEnrolledAssessedCertifiedMonthWiseDao;
 import com.skill.India.dao.FAQCandidatesTrainedAssessedCertifiedDao;
 import com.skill.India.dao.FAQQuestionsCommonDao;
 import com.skill.India.dao.FAQStatusOfAParticularBatchWithIdDao;
+import com.skill.India.dao.FAQTotalBatchesWithTotalCandidatesEnrolledYearWiseDao;
+import com.skill.India.dao.FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDao;
+import com.skill.India.dao.FAQTrainingCentresNotTakingAnyBatchesDao;
 import com.skill.India.dto.FAQBatchWiseCandidateDetailsDto;
+import com.skill.India.dto.FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto;
 import com.skill.India.dto.FAQCandidatesTrainedAssessedCertifiedDto;
 import com.skill.India.dto.FAQStatusOfAParticularBatchWithIdDto;
+import com.skill.India.dto.FAQTotalBatchesWithTotalCandidatesEnrolledMonthWiseDto;
+import com.skill.India.dto.FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto;
+import com.skill.India.dto.FAQTrainingCentresNotTakingAnyBatchesDto;
 
+/**
+ * @author Aashish sharma
+ *
+ */
 @Service
 public class FAQService {
 	
@@ -24,24 +36,28 @@ public class FAQService {
 	private FAQQuestionsCommonDao fAQQuestionCommonDao;
 	
 	@Autowired
+	private FAQTotalBatchesWithTotalCandidatesEnrolledYearWiseDao fAQTotalBatchesWithTotalCandidatesEnrolledYearWiseDao;
+	
+	@Autowired
 	private FAQStatusOfAParticularBatchWithIdDao fAQStatusOfAParticularBatchWithIdDao;
 	
 	@Autowired
 	private FAQBatchWiseCandidateDetailsDao fAQBatchWiseCandidateDetailsDao;
+	
+	@Autowired
+	private FAQCandidatesEnrolledAssessedCertifiedMonthWiseDao fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao;
+	
+	@Autowired
+	private FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDao fAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDao;
+	
+	@Autowired
+	private FAQTrainingCentresNotTakingAnyBatchesDao fAQTrainingCentresNotTakingAnyBatchesDao;
 	
 	public Collection<FAQCandidatesTrainedAssessedCertifiedDto> getTotalCandidatesTrainedAssessedCertifiedDao() {
 		return fAQCandidatesTrainedAssessedCertifiedDao.getTotalCandidatesTrainedAssessedCertified();
 	}
 	
 	public Collection<FAQCandidatesTrainedAssessedCertifiedDto> getTotalCandidatesTrainedAssessedCertifiedSchemeWise(String batchType) {
-		if(batchType.equals("PMKVY"))
-		{
-			batchType="Star";
-		}
-		else
-		{
-			batchType="Non-Star";
-		}
 		return fAQCandidatesTrainedAssessedCertifiedDao.getTotalCandidatesTrainedAssessedCertifiedSchemeWise(batchType);
 	}
 	
@@ -65,20 +81,12 @@ public class FAQService {
 		return fAQQuestionCommonDao.getTotalCountOfBatchesAssignedToAAssessmentAgency(agencyName);
 	}
 	
-	public Integer getCountTotalNumberOfBatchesInAParticularState(String state) {
-		return fAQQuestionCommonDao.getCountTotalNumberOfBatchesInAParticularState(state);
+	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState(String state) {
+		return fAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDao.getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState(state);
 	}
 	
-	public Integer getTotalNumberOfBatchesInAParticularScheme(String batchType) {
-		if(batchType.equals("PMKVY"))
-		{
-			batchType="Star";
-		}
-		else
-		{
-			batchType="Non-Star";
-		}
-		return fAQQuestionCommonDao.getCountTotalNumberOfBatchesInAParticularScheme(batchType);
+	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(String state,String batchType) {
+		return fAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDao.getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(state,batchType);
 	}
 	
 	public Integer getCountTotalAssessorsOfAParticularAgencyInAParticularState(String agencyName,String state) {
@@ -101,7 +109,35 @@ public class FAQService {
 		return fAQQuestionCommonDao.getCountTotalNonAssignedBatches();
 	}
 	
-	public Integer getCountTotalTrainingCentresNotTakingAnyBatches() {
-		return fAQQuestionCommonDao.getCountTotalTrainingCentresNotTakingAnyBatches();
+	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesEnrolledMonthWise(int year) {
+		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesEnrolledMonthWise(year);
+	}
+	
+	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesAssessedMonthWise(int year) {
+		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesAssessedMonthWise(year);
+	}
+	
+	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesCertifiedMonthWise(int year) {
+		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesCertifiedMonthWise(year);
+	}
+	
+	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesEnrolledMonthAndSchemeWise(int year,String batchType) {
+		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesEnrolledMonthAndSchemeWise(year, batchType);
+	}
+	
+	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesAssessedMonthAndSchemeWise(int year,String batchType) {
+		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesAssessedMonthAndSchemeWise(year, batchType);
+	}
+	
+	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesCertifiedMonthAndSchemeWise(int year,String batchType) {
+		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesCertifiedMonthAndSchemeWise(year, batchType);
+	}
+	
+	public Collection<FAQTrainingCentresNotTakingAnyBatchesDto> getTrainingCentresNotTakingAnyBatches() {
+		return fAQTrainingCentresNotTakingAnyBatchesDao.getTotalTrainingCentresNotTakingAnyBatches();
+	}
+	
+	public Collection<FAQTotalBatchesWithTotalCandidatesEnrolledMonthWiseDto> getTotalBatchesWithTotalCandidatesEnrolledYearWise(int year) {
+		return fAQTotalBatchesWithTotalCandidatesEnrolledYearWiseDao.getTotalBatchesWithTotalCandidatesEnrolledYearWise(year);
 	}
 }

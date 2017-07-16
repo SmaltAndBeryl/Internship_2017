@@ -10,6 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.FAQConfigSql;
 
+/**
+ * @author Aashish sharma
+ *
+ */
+
 @Repository
 public class FAQQuestionsCommonDao extends AbstractTransactionalDao{
 	
@@ -63,18 +68,6 @@ public class FAQQuestionsCommonDao extends AbstractTransactionalDao{
 		
 	}
 	
-	public Integer getCountTotalNumberOfBatchesInAParticularState(String state) {
-		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("state", state);
-		return getJdbcTemplate().queryForObject(fAQConfigSql.getSelectSqlCountTotalNumberOfBatchesInAParticularState(), parameters, Integer.class);
-	}
-	
-	public Integer getCountTotalNumberOfBatchesInAParticularScheme(String batchType) {
-		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("batchType", batchType);
-		return getJdbcTemplate().queryForObject(fAQConfigSql.getSelectSqlCountTotalNumberOfBatchesInAParticularScheme(), parameters, Integer.class);
-	}
-	
 	public Integer getCountTotalAssessorsOfAParticularAgencyInAParticularState(String agencyName,String state) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("agencyName", agencyName);
@@ -92,9 +85,5 @@ public class FAQQuestionsCommonDao extends AbstractTransactionalDao{
 		return getJdbcTemplate().queryForObject(fAQConfigSql.getSelectSqlCountTotalNonAssignedBatches(), parameters, Integer.class);
 	}
 	
-	public Integer getCountTotalTrainingCentresNotTakingAnyBatches() {
-		Map<String, Object> parameters = new HashMap<>();
-		return getJdbcTemplate().queryForObject(fAQConfigSql.getSelectSqlCountTotalTrainingCentresNotTakingAnyBatches(), parameters, Integer.class);
-	}
 }
 

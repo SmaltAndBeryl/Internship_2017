@@ -5,7 +5,6 @@ package com.skill.India.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

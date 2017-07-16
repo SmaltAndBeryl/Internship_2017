@@ -2,6 +2,10 @@ package com.skill.India.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+/**
+ * @author Aashish sharma
+ *
+ */
 
 @Component
 @ConfigurationProperties(prefix="faq",locations="classpath:sql/fAQ.yml")
@@ -21,9 +25,9 @@ public class FAQConfigSql {
 	
 	private String selectSqlCountTotalOfBatchesAssignedToAAssessmentAgency;
 	
-	private String selectSqlCountTotalNumberOfBatchesInAParticularState;
+	private String selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState;
 	
-	private String selectSqlCountTotalNumberOfBatchesInAParticularScheme;
+	private String selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise;
 	
 	private String selectSqlCountTotalAssessorsOfAParticularAgencyInAParticularState;
 	
@@ -35,23 +39,141 @@ public class FAQConfigSql {
 	
 	private String selectSqlBatchWiseCandidatesDetails;
 	
-	private String selectSqlCountTotalTrainingCentresNotTakingAnyBatches;
+	private String selectSqTrainingCentresNotTakingAnyBatches;
 
+	private String selectSqlCountTotalCandidatesEnrolledMonthWise;
 	
+	private String selectSqlCountTotalCandidatesCertifiedMonthWise;
+	
+	private String selectSqlCountTotalCandidatesAssessedMonthWise;
+	
+	private String selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise;
+	
+	private String selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise;
+	
+	private String selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise;
+	
+	private String selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise;
 	
 	/**
-	 * @return the selectSqlCountTotalTrainingCentresNotTakingAnyBatches
+	 * @return the selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise
 	 */
-	public String getSelectSqlCountTotalTrainingCentresNotTakingAnyBatches() {
-		return selectSqlCountTotalTrainingCentresNotTakingAnyBatches;
+	public String getSelectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise() {
+		return selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise;
 	}
 
 	/**
-	 * @param selectSqlCountTotalTrainingCentresNotTakingAnyBatches the selectSqlCountTotalTrainingCentresNotTakingAnyBatches to set
+	 * @param selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise the selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise to set
 	 */
-	public void setSelectSqlCountTotalTrainingCentresNotTakingAnyBatches(
-			String selectSqlCountTotalTrainingCentresNotTakingAnyBatches) {
-		this.selectSqlCountTotalTrainingCentresNotTakingAnyBatches = selectSqlCountTotalTrainingCentresNotTakingAnyBatches;
+	public void setSelectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise(
+			String selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise) {
+		this.selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise = selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise;
+	}
+
+	/**
+	 * @return the selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise
+	 */
+	public String getSelectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise() {
+		return selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise;
+	}
+
+	/**
+	 * @param selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise the selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise to set
+	 */
+	public void setSelectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise(
+			String selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise) {
+		this.selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise = selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise;
+	}
+
+	/**
+	 * @return the selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise
+	 */
+	public String getSelectSqlCountTotalCandidatesAssessedMonthAndSchemeWise() {
+		return selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise;
+	}
+
+	/**
+	 * @param selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise the selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise to set
+	 */
+	public void setSelectSqlCountTotalCandidatesAssessedMonthAndSchemeWise(
+			String selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise) {
+		this.selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise = selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise;
+	}
+
+	/**
+	 * @return the selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise
+	 */
+	public String getSelectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise() {
+		return selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise;
+	}
+
+	/**
+	 * @param selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise the selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise to set
+	 */
+	public void setSelectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise(
+			String selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise) {
+		this.selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise = selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise;
+	}
+
+	/**
+	 * @return the selectSqlCountTotalCandidatesAssessedMonthWise
+	 */
+	public String getSelectSqlCountTotalCandidatesAssessedMonthWise() {
+		return selectSqlCountTotalCandidatesAssessedMonthWise;
+	}
+
+	/**
+	 * @param selectSqlCountTotalCandidatesAssessedMonthWise the selectSqlCountTotalCandidatesAssessedMonthWise to set
+	 */
+	public void setSelectSqlCountTotalCandidatesAssessedMonthWise(
+			String selectSqlCountTotalCandidatesAssessedMonthWise) {
+		this.selectSqlCountTotalCandidatesAssessedMonthWise = selectSqlCountTotalCandidatesAssessedMonthWise;
+	}
+
+	/**
+	 * @return the selectSqlCountTotalCandidatesCertifiedMonthWise
+	 */
+	public String getSelectSqlCountTotalCandidatesCertifiedMonthWise() {
+		return selectSqlCountTotalCandidatesCertifiedMonthWise;
+	}
+
+	/**
+	 * @param selectSqlCountTotalCandidatesCertifiedMonthWise the selectSqlCountTotalCandidatesCertifiedMonthWise to set
+	 */
+	public void setSelectSqlCountTotalCandidatesCertifiedMonthWise(
+			String selectSqlCountTotalCandidatesCertifiedMonthWise) {
+		this.selectSqlCountTotalCandidatesCertifiedMonthWise = selectSqlCountTotalCandidatesCertifiedMonthWise;
+	}
+
+	/**
+	 * @return the selectSqlCountTotalCandidatesEnrolledMonthWise
+	 */
+	public String getSelectSqlCountTotalCandidatesEnrolledMonthWise() {
+		return selectSqlCountTotalCandidatesEnrolledMonthWise;
+	}
+
+	/**
+	 * @param selectSqlCountTotalCandidatesEnrolledMonthWise the selectSqlCountTotalCandidatesEnrolledMonthWise to set
+	 */
+	public void setSelectSqlCountTotalCandidatesEnrolledMonthWise(
+			String selectSqlCountTotalCandidatesEnrolledMonthWise) {
+		this.selectSqlCountTotalCandidatesEnrolledMonthWise = selectSqlCountTotalCandidatesEnrolledMonthWise;
+	}
+
+
+	/**
+	 * @return the selectSqTrainingCentresNotTakingAnyBatches
+	 */
+	public String getSelectSqTrainingCentresNotTakingAnyBatches() {
+		return selectSqTrainingCentresNotTakingAnyBatches;
+	}
+
+	/**
+	 * @param selectSqTrainingCentresNotTakingAnyBatches the selectSqTrainingCentresNotTakingAnyBatches to set
+	 */
+	public void setSelectSqTrainingCentresNotTakingAnyBatches(
+			String selectSqTrainingCentresNotTakingAnyBatches) {
+		this.selectSqTrainingCentresNotTakingAnyBatches = selectSqTrainingCentresNotTakingAnyBatches;
 	}
 
 	/**
@@ -163,34 +285,36 @@ public class FAQConfigSql {
 		this.selectSqlCountTotalOfBatchesAssignedToAAssessmentAgency = selectSqlCountTotalOfBatchesAssignedToAAssessmentAgency;
 	}
 
+
 	/**
-	 * @return the selectSqlCountTotalNumberOfBatchesInAParticularState
+	 * @return the selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState
 	 */
-	public String getSelectSqlCountTotalNumberOfBatchesInAParticularState() {
-		return selectSqlCountTotalNumberOfBatchesInAParticularState;
+	public String getSelectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState() {
+		return selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState;
 	}
 
 	/**
-	 * @param selectSqlCountTotalNumberOfBatchesInAParticularState the selectSqlCountTotalNumberOfBatchesInAParticularState to set
+	 * @param selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState the selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState to set
 	 */
-	public void setSelectSqlCountTotalNumberOfBatchesInAParticularState(
-			String selectSqlCountTotalNumberOfBatchesInAParticularState) {
-		this.selectSqlCountTotalNumberOfBatchesInAParticularState = selectSqlCountTotalNumberOfBatchesInAParticularState;
+	public void setSelectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState(
+			String selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState) {
+		this.selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState = selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState;
+	}
+
+	
+	/**
+	 * @return the selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise
+	 */
+	public String getSelectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise() {
+		return selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise;
 	}
 
 	/**
-	 * @return the selectSqlCountTotalNumberOfBatchesInAParticularScheme
+	 * @param selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise the selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise to set
 	 */
-	public String getSelectSqlCountTotalNumberOfBatchesInAParticularScheme() {
-		return selectSqlCountTotalNumberOfBatchesInAParticularScheme;
-	}
-
-	/**
-	 * @param selectSqlCountTotalNumberOfBatchesInAParticularScheme the selectSqlCountTotalNumberOfBatchesInAParticularScheme to set
-	 */
-	public void setSelectSqlCountTotalNumberOfBatchesInAParticularScheme(
-			String selectSqlCountTotalNumberOfBatchesInAParticularScheme) {
-		this.selectSqlCountTotalNumberOfBatchesInAParticularScheme = selectSqlCountTotalNumberOfBatchesInAParticularScheme;
+	public void setSelectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(
+			String selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise) {
+		this.selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise = selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise;
 	}
 
 	/**

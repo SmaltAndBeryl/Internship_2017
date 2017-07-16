@@ -3,7 +3,11 @@ package com.skill.India.controller;
 
 import java.util.Collection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,57 +23,147 @@ class DashboardController {
 	@Autowired
 	private DashboardService dashboardService;
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(DashboardController.class);
+	
 	@RequestMapping("/getDashboardTotalCandidatesEnrolled")
 	public Integer getTotalCandidatesEnrolled() {
 		
-		return dashboardService.getTotalCandidatesEnrolled();
+		try
+		{
+			return dashboardService.getTotalCandidatesEnrolled();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
 	}
 	
 	@RequestMapping("/getDashboardTotalCandidatesAccessed")
 	public Integer getTotalCandidatesAccessed() {
 		
-		return dashboardService.getTotalCandidatesAccessed();
+		try
+		{
+			return dashboardService.getTotalCandidatesAccessed();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
 	}
 	
 	@RequestMapping("/getDashboardTotalCandidatesCertified")
 	public Integer getTotalCandidatesCertified() {
 		
-		return dashboardService.getTotalCandidatesCertified();
+		try
+		{
+			return dashboardService.getTotalCandidatesCertified();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
 	}
 	
 	@RequestMapping("/getDashboardTotalTrainingPartners")
 	public Integer getTotalTrainingPartners() {
 		
-		return dashboardService.getTotalTrainingPartners();
+		try
+		{
+			return dashboardService.getTotalTrainingPartners();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
 	}
 	
 	@RequestMapping("/getDashboardTotalTrainingCentersInIndia")
 	public Integer getTotalTrainingCentersInIndia() {
 		
-		return dashboardService.getTotalTrainingCentersInIndia();
+		try
+		{
+			return dashboardService.getTotalTrainingCentersInIndia();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
 	}
 	
 	@RequestMapping("/getDashboardTotalBatchesAccordingToJobRole")
 	public Collection<DashboardTotalBatchesAccordingToJobRoleDto> getTotalBatchesAccordingToJobRole() {
-		return dashboardService.getTotalBatchesAccordingToJobRole();
+		try
+		{
+			return dashboardService.getTotalBatchesAccordingToJobRole();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
 	}
 		
 	@RequestMapping("/getDashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYears")
 	public Collection<DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto> getTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
-		return dashboardService.getTotalCandidatesTrainedWithBatchTypeInLastThreeYears();
+		try
+		{
+			return dashboardService.getTotalCandidatesTrainedWithBatchTypeInLastThreeYears();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
 	}
 
 
 	@RequestMapping("/getDashboardTotalCandidatesCertifiedWithModeInLastThreeYears")
 	public Collection<DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto> getTotalCandidatesCertifiedWithModeInLastThreeYears() {
-		return dashboardService.getTotalCandidatesCertifiedWithModeInLastThreeYears();
+		try
+		{
+			return dashboardService.getTotalCandidatesCertifiedWithModeInLastThreeYears();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
 		
 	}
 	
 	
 	@RequestMapping("/getDashboardTopStatesWithMaxTrainingCenters")
 	public Collection<DashboardTopStatesWithMaxTrainingCentersDto> getTopStatesWithMaxTrainingCenters() {
-		return dashboardService.getTopStatesWithMaxTrainingCenters();
+		try
+		{
+			return dashboardService.getTopStatesWithMaxTrainingCenters();
+		}
+		catch(Exception exception)
+		{
+			LOGGER.error("ERROR: Encountered an exception.");
+			LOGGER.error("Exception is :"+exception);
+			return null;
+		}
+	}
+	
+	@ExceptionHandler(MissingServletRequestParameterException.class)
+	public void handleMissingParams(MissingServletRequestParameterException exception) {
+	    String parameterName = exception.getParameterName();
+	    LOGGER.error(parameterName + " parameter is missing");
+	    // Handling Missing Parameters Exceptions Here
 	}
 	
 }

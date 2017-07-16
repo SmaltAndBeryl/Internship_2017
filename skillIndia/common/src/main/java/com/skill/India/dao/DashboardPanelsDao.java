@@ -22,20 +22,26 @@ public class DashboardPanelsDao extends AbstractTransactionalDao{
 
     public Integer getTotalCandidateEnrolled() {
     	Map<String, Object> parameters = new HashMap<>();
-        return getJdbcTemplate().queryForObject(dashboardConfigSql.getSelectSqlTotalCandidatesEnrolled(), parameters, Integer.class);        
-        
+        Integer candidates= getJdbcTemplate().queryForObject(dashboardConfigSql.getSelectSqlTotalCandidatesEnrolled(), parameters, Integer.class);        
+        if(candidates==null)
+        	candidates=0;
+        return candidates;
     }
 
     public Integer getTotalCandidateAccessed() {
     	Map<String, Object> parameters = new HashMap<>();
-        return getJdbcTemplate().queryForObject(dashboardConfigSql.getSelectSqlTotalCandidatesAccessed(), parameters, Integer.class);        
-        
+    	Integer candidates= getJdbcTemplate().queryForObject(dashboardConfigSql.getSelectSqlTotalCandidatesAccessed(), parameters, Integer.class);        
+        if(candidates==null)
+        	candidates=0;
+        return candidates;
     }
     
     public Integer getTotalCandidateCertified() {
     	Map<String, Object> parameters = new HashMap<>();
-        return getJdbcTemplate().queryForObject(dashboardConfigSql.getSelectSqlTotalCandidatesCertified(), parameters, Integer.class);        
-        
+    	Integer candidates= getJdbcTemplate().queryForObject(dashboardConfigSql.getSelectSqlTotalCandidatesCertified(), parameters, Integer.class);        
+        if(candidates==null)
+        	candidates=0;
+        return candidates;
     }
     
     public Integer getTotalTrainingPartners() {

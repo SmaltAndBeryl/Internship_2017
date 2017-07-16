@@ -1,18 +1,42 @@
 faq: 
  selectSqlCountTotalCandidatesTrainedAssessedCertified: >
   SELECT SUM(totalCandidatesInBatch) AS candidatesEnrolled, (SUM(totalPass)+ SUM(totalFail)) AS candidatesAssessed, SUM(totalCertified) AS candidatesCertified
-   FROM batch
+   FROM batch WHERE batchStartDate <= curdate()
 
+ selectSqlCountTotalCandidatesEnrolledMonthWise: >
+  select MONTHNAME(batchStartDate) AS MONTHS,SUM(totalCandidatesInBatch) AS CANDIDATES 
+   from batch where year(batchStartDate)=:year group by MONTHS order by MONTH(batchStartDate)
+   
+ selectSqlCountTotalCandidatesAssessedMonthWise: >
+  select MONTHNAME(assessmentDate) AS MONTHS,(SUM(totalPass)+SUM(totalFail)) AS CANDIDATES 
+    from batch where year(assessmentDate)=:year group by month(assessmentDate)
+   
+ selectSqlCountTotalCandidatesCertifiedMonthWise: >
+  select MONTHNAME(resultApprovedOndate) AS MONTHS,SUM(totalCertified) AS CANDIDATES 
+   from batch where year(resultApprovedOnDate)=:year group by MONTHS order by MONTH(resultApprovedOndate)
+ 
+ selectSqlCountTotalCandidatesEnrolledMonthAndSchemeWise: >
+  select MONTHNAME(batchStartDate) AS MONTHS,SUM(totalCandidatesInBatch) AS CANDIDATES 
+   from batch where year(batchStartDate)=:year AND batchType=:batchType group by MONTHS order by MONTH(batchStartDate)
+   
+ selectSqlCountTotalCandidatesAssessedMonthAndSchemeWise: >
+  select MONTHNAME(assessmentDate) AS MONTHS,(SUM(totalPass)+SUM(totalFail)) AS CANDIDATES 
+    from batch where year(assessmentDate)=:year AND batchType=:batchType group by month(assessmentDate)
+   
+ selectSqlCountTotalCandidatesCertifiedMonthAndSchemeWise: >
+  select MONTHNAME(resultApprovedOndate) AS MONTHS,SUM(totalCertified) AS CANDIDATES 
+   from batch where year(resultApprovedOnDate)=:year AND batchType=:batchType group by MONTHS order by MONTH(resultApprovedOndate)
+  
  selectSqlTotalCandidatesTrainedAssessedCertifiedSchemeWise: >
-  SELECT SUM(totalCandidatesInBatch) AS candidatesEnrolled, (SUM(totalPass)+ SUM(totalFail)) AS candidatesAssessed, SUM(totalCertified) AS candidatesCertified 
-   FROM batch WHERE batchType = :batchType
+  SELECT SUM(totalCandidatesInBatch) AS candidatesEnrolled, (SUM(totalPass)+ SUM(totalFail)) AS candidatesAssessed, SUM(totalCertified) AS candidatesCertified
+   FROM batch WHERE batchStartDate <= curdate() AND batchType = :batchType
 
  selectSqlCountTotalTrainingCentresInAState: >
   SELECT COUNT(centreId) FROM centre C WHERE state = :state;
    
  selectSqlCountTrainingCentresConductingTraining: >
-  select count(distinct(centreId)) from batch where batchEndDate>now() and batchStartDate<=now()
-  
+  select count(distinct(centreId)) from batch where batchEndDate>curDate() and batchStartDate<=curDate()
+
  selectSqlCountOfCandidatesAssessmentUpcomingForAMonth: >
   SELECT SUM(totalCandidatesInbatch) FROM batch where Year(assessmentDate) >= Year(CurDate()) and assessmentDate>=Curdate() and Month(assessmentDate) = :month
   
@@ -22,27 +46,34 @@ faq:
  selectSqlCountTotalOfBatchesAssignedToAAssessmentAgency: >
   SELECT COUNT(batchId) FROM batch B, agency A WHERE B.agencyId = A.agencyId and A.agencyName = :agencyName
   
- selectSqlCountTotalNumberOfBatchesInAParticularState: >
-  SELECT COUNT(batchId) FROM batch B, centre C WHERE B.centreId = C.centreId and C.state = :state;
+ selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState: >
+  SELECT COUNT(batchId) AS BATCHES,SUM(totalCandidatesInBatch) AS TOTALCANDIDATES 
+   FROM batch B,centre C where B.centreId = C.centreId and B.batchStartDate<=curDate() AND B.batchEndDate>curDate() and C.state=:state
   
- selectSqlCountTotalNumberOfBatchesInAParticularScheme: >
-  SELECT COUNT(batchId) FROM batch WHERE batchType = :batchType and batchStartDate <= CurDate() and batchEndDate > CurDate();
+ selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise: >
+   SELECT COUNT(batchId) AS BATCHES,SUM(totalCandidatesInBatch) AS TOTALCANDIDATES 
+    FROM batch B,centre C where B.centreId = C.centreId and B.batchStartDate<=curDate() AND B.batchEndDate>curDate() and C.state=:state and B.batchType=:batchType
   
  selectSqlCountTotalAssessorsOfAParticularAgencyInAParticularState: >
   SELECT COUNT(assessorId) FROM assessor A, agency B WHERE A.agencyId = B.agencyId and B.agencyName=:agencyName and A.state = :state;
   
  selectSqlStatusOfAParticularBatchWithId: >
-  SELECT B.batchId, T.trainingPartnerName, B.batchStartDate, B.batchEndDate, B.assessmentDate, B.resultApproved FROM batch as B, trainingpartner as T WHERE B.batchId = :batchId and B.trainingPartnerId = T.trainingPartnerId
+  SELECT B.batchId, T.trainingPartnerName, B.batchStartDate, B.batchEndDate, B.assessmentDate, B.resultApproved 
+   FROM batch as B, trainingpartner as T WHERE B.batchId = :batchId and B.trainingPartnerId = T.trainingPartnerId
   
  selectSqlCountBatchesForWhichResultIsPending: >
   SELECT COUNT(batchId) FROM batch WHERE resultApproved = 'Pending';
   
  selectSqlCountTotalNonAssignedBatches: >
-  SELECT SUM(case when batchAssignmentDate is null then 1 else 0 end) AS count_nulls FROM batch;
+  SELECT COUNT(batchId) FROM batch where agencyId is null
  
  selectSqlBatchWiseCandidatesDetails: >
   SELECT C.candidateName, C.mobileNumber, C.emailId, C.traineeAddress, T.trainingPartnerName, B.batchId, B.batchStartDate, B.batchEndDate from candidate C, batch B, trainingPartner T WHERE B.batchId = :batchId and B.batchId = C.batchId and B.trainingPartnerId = T.trainingPartnerId
  
- selectSqlCountTotalTrainingCentresNotTakingAnyBatches: >
-  select (COUNT(distinct(T.trainingPartnerId))-count(distinct(B.trainingpartnerId))) 
-   from trainingpartner T,batch B   
+ selectSqTrainingCentresNotTakingAnyBatches: >
+  select C.centreId,C.centreName from centre C 
+   where C.centreId not in (SELECT B.centreId from batch B)
+   
+ selectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise: >
+  select monthname(batchStartDate) AS MONTH,COUNT(batchId) AS TOTALBATCHES,	SUM(totalCandidatesInBatch) AS CANDIDATESENROLLED 
+   from batch  where YEAR(batchStartDate)=:year group by month(batchStartDate)     

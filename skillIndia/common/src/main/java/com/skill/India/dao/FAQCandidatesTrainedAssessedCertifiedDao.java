@@ -43,6 +43,13 @@ public class FAQCandidatesTrainedAssessedCertifiedDao extends AbstractTransactio
 			Integer totalNoOfCandidatesAssessed = rs.getInt("candidatesAssessed");
 			Integer totalNoOfCandidatesCertified = rs.getInt("candidatesCertified");
 			
+			if(totalNoOfCandidatesAssessed==null)
+				totalNoOfCandidatesAssessed=0;
+			if(totalNoOfCandidatesCertified==null)
+				totalNoOfCandidatesCertified=0;
+			if(totalNoOfCandidatesEnrolled==null)
+				totalNoOfCandidatesEnrolled=0;
+			
 			return new FAQCandidatesTrainedAssessedCertifiedDto(totalNoOfCandidatesEnrolled, totalNoOfCandidatesAssessed, totalNoOfCandidatesCertified);
 		}
 		
