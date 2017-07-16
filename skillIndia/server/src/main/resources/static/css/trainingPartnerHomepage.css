@@ -1,17 +1,21 @@
+*{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+}
 .welcome {
-  width: 280px;
-  height: 22px;
-  font-family: ProximaNova;
-  font-size: 24px;
-  line-height: 1.58;
-  margin-left: 24px;
+   height: 36px;
+  font-family: OpenSans;
+  font-size: large;
   text-align: left;
-  color: #000000;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
 }
 
 .presentBatchesBoxwrap {
   
-  height: auto;
+  height: 275px;
   margin-left: 51px;
   margin-right: 51px;
   margin-top: 220px;
@@ -32,7 +36,7 @@
 }
 .pastBatchesBoxwrap {
   
-  height: auto;
+  height: 275px;
   margin-left: 51px;
   margin-right: 51px;
   margin-top: 24px;
@@ -51,12 +55,12 @@
   color: #676a6c;
 
 }
-.grid
-{
-	margin-left:20px;
-	margin-right:20px;
-	height:200px;
-	width:auto;	
+.grid {
+  margin-left:21px;
+  margin-right:24px;
+  background-color: none;
+  border-width: '2px';
+  height: 190px;
 }
 
  .ui-grid-header-cell-wrapper {
@@ -68,5 +72,55 @@
 	vertical-align: middle;
       cursor: pointer;
 }
+.Prostokt-2-kopia-2-copy-10 {
+  
+   height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+  font-weight: bold;
+  
+}
+.Prostokt-2-kopia-2-copy-11 {
+  
+ height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+  font-weight: bold;
+  
+}
+.Prostokt-2-kopia-2-copy-12 {
+  
+  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+  font-weight: bold;
+  }
+.Prostokt-2-kopia-2-copy-13 {
+  
+ height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+    }
 
  
