@@ -1,0 +1,8 @@
+certificateimportHistory:
+ selectSql: > 
+  select batch.batchId, batch.batchEndDate, certificate.certificateName, certificate.userId, certificate.certificateUploadDate from batch, certificate, user where batch.batchID=certificate.batchId and user.userId=certificate.userId
+
+ SearchSql: >
+  select batch.batchId, batch.batchStartDate, batch.batchEndDate, trainingpartner.trainingPartnerName from batch , trainingpartner;
+    
+ 
