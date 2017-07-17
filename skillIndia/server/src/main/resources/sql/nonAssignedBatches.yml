@@ -1,8 +1,8 @@
 nonAssignedBatches:
  selectSqlNonAssignedBatches: >
   SELECT batch.batchID,centre.state,batch.batchEndDate,batch.assessmentDate
-   FROM batch,centre WHERE batch.centreId=centre.centreId;
+   FROM batch,centre,batchassignment WHERE batch.centreId=centre.centreId AND batchassignment.responseType="default";
 
  updateSqlNonAssignedBatches: >
-  UPDATE batchassignment SET responseType="ResponseBack"
+  UPDATE batchassignment SET responseType="Proposed"
    WHERE batchId = :batchId;
