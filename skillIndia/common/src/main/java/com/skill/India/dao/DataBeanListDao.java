@@ -32,11 +32,23 @@ public class DataBeanListDao extends AbstractTransactionalDao{
     private static class PdfDataDaoRowMapper implements RowMapper<DataBeanDto>{
         @Override
         public DataBeanDto mapRow(ResultSet resultSet, int rowNum)throws SQLException{
-            String name = resultSet.getString("name");
-            String city = resultSet.getString("city");
+            String trainingPartnerName = resultSet.getString("trainingPartnerName");
+            String isNSDCfunded = resultSet.getString("isNSDCfunded");
+            String firstName = resultSet.getString("firstName");
+            String addressLine1 = resultSet.getString("addressLine1");
+            String faxNumber = resultSet.getString("faxNumber");
+            String emailDirector = resultSet.getString("emailDirector");
+            String website = resultSet.getString("website");
+            String yearOfEstablishment = resultSet.getString("yearOfEstablishment");
+            String priorExposureInSkill = resultSet.getString("priorExposureInSkill");
+            String medium = resultSet.getString("medium");
+            String selfOwnedTC = resultSet.getString("selfOwnedTC");
+            String franchiseTC = resultSet.getString("franchiseTC");
+            String PAN = resultSet.getString("PAN");
+            String TAN = resultSet.getString("TAN");
+            String turnover =resultSet.getString("turnover");
+            return new DataBeanDto(trainingPartnerName,isNSDCfunded,firstName, addressLine1, faxNumber,emailDirector,website,yearOfEstablishment,priorExposureInSkill,medium, selfOwnedTC,franchiseTC,PAN, TAN, turnover);
 
-            //return new DataBeanDto(name, city);
-            return new DataBeanDto(name,city);
         }
     }
 }
