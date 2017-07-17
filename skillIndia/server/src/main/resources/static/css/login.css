@@ -1,15 +1,26 @@
 body {
-    padding-top:120px;
-    padding-left:300px;
+    padding-top:30px;
+    padding-left:34px;
     background-repeat: no-repeat;
-    width: 100%;
-    background-size: 100%;
+    background-size: 108% 100%;
+    padding-bottom:130px;
 }
 
 .panel-login {
-   border-color: #ccc;
-   width:420px;
-   height:450px;
+    border-color: #ccc;
+    width: 550px;
+    height: 490px;
+    margin-left: 180px;
+    margin-top: 44px;
+    width: 500px;
+    border-top-right-radius: 0;
+    border-top-left-radius : 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    
+            
+} 
+    
 }
 
 .panel-login>.panel-heading {
@@ -20,12 +31,12 @@ body {
 }
 .logo{
     margin-left: 19%;
-    height: 70px;
+    height: 80px;
 }
 
 .panel-body{
-	margin-right:10px;
-	margin-left:10px;
+	margin-right:25px;
+	margin-left:25px;
 	}
 
 .panel-login>.panel-heading a{
@@ -43,7 +54,8 @@ body {
     border-bottom: 3px #29B6D4 solid;
 }
 
-.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+.panel-login input[type="text"]
+{
 	background: transparent;
     border: 1px;
     border-bottom: 1.2px solid #CCC;
@@ -54,10 +66,40 @@ body {
 	border-bottom-right-radius: 1px;
     border-top-left-radius: 1px;
     border-top-right-radius: 1px;
-	font-size: 10px;
+	font-size: 13px;
 } 
 
 
+
+
+.panel-login input[type="email"]
+{
+	background: transparent;
+    border: 1px;
+    border-bottom: 1.2px solid #CCC;
+	height: 45px;
+	-webkit-box-shadow: none;
+	padding: 25px 25px;
+    border-bottom-left-radius: 1px;
+	border-bottom-right-radius: 1px;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+	font-size: 13px;
+} 
+.panel-login input[type="password"] 
+{
+	background: transparent;
+    border: 1px;
+    border-bottom: 1.2px solid #CCC;
+	height:45px;
+	-webkit-box-shadow: none;
+	padding: 25px 25px;
+    border-bottom-left-radius: 1px;
+	border-bottom-right-radius: 1px;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+	font-size: 13px;
+} 
 .panel-login input:hover,
 .panel-login input:focus {
 	outline:none;
@@ -67,11 +109,11 @@ body {
 	border-color: cornflowerblue;
 }
 .button {
-    margin-top: 20px;
+    margin-top: 15px;
 	background-color: #59B2E0;
 	outline: none;
 	color: #fff;
-	font-size: 14px;
+	font-size: 15px;
 	height: auto;
 	font-weight: normal;
 	padding: 14px 0;
@@ -121,6 +163,24 @@ body {
   width: 15px;
     
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 9px;
+  top: 19px;
+}
+.userroleab{
+	padding:10px;
+	position:20px;
+	display:flex;
+	margin-left:10px;
+}
+.tc{
+	margin-left:20px;
+	
+}
+.tr{
+	margin-left:px;
+}
+img {
+    vertical-align: middle;
+    width: 338px;
+    height: 109px;
 }
