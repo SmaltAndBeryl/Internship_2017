@@ -15,37 +15,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.js"></script>
-
-
-
-
     <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
-    <link rel="stylesheet" href="/css/showInterest.css" type="text/css">
-
-
-
-    <script src="/js/showInterest.js"></script>
-
-
-<p id="demo"></p>
+    <link rel="stylesheet" href="css/showInterest.css" type="text/css">
+	<script src="js/controllers/showInterest.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
   </head>
 
 <body>
-  <p>
-    <h3>Upcoming Batch(es)</h3>
-    
-    
-  </p>
+<div class="mainboundary1" ng-controller="PastCtrl">
+		<h3 class="heading">Past Batch(es)</h3>
+  <div ui-grid="gridOptions" class="grid" ui-grid-auto-resize>
+  </div>
+ </div> 
+ 
+  <div class="mainboundary2" ng-controller="UpcommingCtrl">
+		<h3 class="heading">Upcoming Batch(es)</h3>
+  <div ui-grid="gridOptions" class="grid" ui-grid-auto-resize>
+  </div>
+</div>
 
-  <div ng-controller="MainCtrl">
-
-  <div ui-grid="gridOptions" class="grid" ui-grid-auto-resize></div>
-
-
-
-  <!-- <script src="main.js"></script> -->
-
+<div class="mainboundary4" ng-controller="AssignCtrl">
+		<h3 class="heading">Assigned Batch(es)</h3>
+  <div ui-grid="gridOptions" class="grid" ui-grid-auto-resize>
+  </div>
+  </div>
+  <div class="mainboundary3" ng-controller="ConfirmedCtrl">
+		<h3 class="heading">Confirmed Batch(es)</h3>
+  <div ui-grid="gridOptions" class="grid" ui-grid-auto-resize>
+  </div>
 </div>
 </body>
 </html>
