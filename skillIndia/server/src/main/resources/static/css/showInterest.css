@@ -1,4 +1,81 @@
 .grid {
-  width: 1000px;
-  height: 500px;
+  margin-left:23px;
+  margin-right:24px;
+  height: 160px;
+  margin-top:45px;
+}
+.CommonCell
+{
+	width: 50px;
+  height: 10px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  padding-left:10px;
+  padding-top:5px;
+}
+.cell
+{
+	width: 58px;
+  height: 15px;
+  font-family: OpenSans;
+  font-size: 15px;
+  text-align: left;
+  color: #676a6c;
+  padding-left:10px;
+  padding-top:5px;
+}
+.showInterest
+{
+	text-align: center;
+}
+.check
+{
+	text-align:center;
+}
+.mainboundary1
+{
+	margin-top:250px;
+	height:248px;
+	background-color:White;
+	margin-left:50px;
+	margin-right:50px;
+}
+.mainboundary2
+{
+	margin-top:50px;
+	height:248px;
+	background-color:White;
+	margin-left:50px;
+	margin-right:50px;
+}
+.heading
+{
+	padding-top:23px;
+	margin-left:23px;
+	width: 134px;
+  	height: 15px;
+  	font-family: OpenSans;
+  	font-size: 14px;
+  	font-weight: 600;
+  	text-align: left;
+  	color: #676a6c;
+}
+.mainboundary3
+{
+	margin-top:50px;
+	height:248px;
+	background-color:White;
+	margin-left:50px;
+	margin-right:50px;
+	margin-bottom:200px;
+}
+.mainboundary4
+{
+	margin-top:50px;
+	height:248px;
+	background-color:White;
+	margin-left:50px;
+	margin-right:50px;
 }
