@@ -9,12 +9,14 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.dto.ApproveRejectTableDto;
 import com.skill.India.dto.CommentDto;
 import com.skill.India.dto.ManageRegistrationApplicationDto;
+import com.skill.India.dto.MessageDto;
 import com.skill.India.service.ApproveRejectTableService;
 	
 
@@ -28,44 +30,55 @@ import com.skill.India.service.ApproveRejectTableService;
 			
 		
 		@RequestMapping("/approve")
-		public Collection<ApproveRejectTableDto> approveRejectTableDtos()
+		public Collection<ApproveRejectTableDto> approveRejectTableDtos(@RequestParam("applicationState") String applicationState)
 		{
 			LOGGER.info("Trying to get Data from Application table");
-		return approveRejectTableService.getUpdateRowMapper();
+		return approveRejectTableService.getUpdateRowMapper(applicationState);
 		}
 		
 		@RequestMapping(value="/affiliationActionOfAnApplicant",method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-		public String setAfflilationOfBody(@RequestBody ManageRegistrationApplicationDto manageRegistrationApplicationDto)
+		public @ResponseBody MessageDto setAfflilationOfBody(@RequestBody ManageRegistrationApplicationDto manageRegistrationApplicationDto)
 		{
+			MessageDto approveRegistartionMessage = new MessageDto();
 			LOGGER.info("Trying to Affilate an Applicant."); 
 			int updatedAffilationOfAApplicant=0;
-			 
+			
 				  updatedAffilationOfAApplicant = approveRejectTableService.updateAffilationOfAApplicant(manageRegistrationApplicationDto);
 				  if(updatedAffilationOfAApplicant>0)
 					{
-						return "SUCCESS: Updated Application Status Of the Applicant.";
-					}
-				  else
-				  {
-					  return "ERROR: Error Encountered while updating the changes in database.";
-				  }
 			
+					  LOGGER.info("Success");
+					  
+					  approveRegistartionMessage.setSuccessMessage("Success");
+					  
+					}
+				  else 
+				  {
+					  approveRegistartionMessage.setErrorMessage("Error");
+					  LOGGER.info("Error");
+					  
+				  }
+				  return approveRegistartionMessage;
+				 
 		 }
 		
 		 @RequestMapping(value= "/setManageRegistrationsComment",method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
-		 public @ResponseBody  String setComment(@RequestBody CommentDto commentDto){
+		 public @ResponseBody MessageDto setComment(@RequestBody CommentDto commentDto){
+			 MessageDto approveRegistartionMessage = new MessageDto();
 			 try
 			 {
-				
-				 String commentResult = approveRejectTableService.editUserApplication(commentDto.getApplicationId(), commentDto.getComment());
-				 LOGGER.info("Result of inserting comments in Database is -",commentResult);
-				 return commentResult;
+				 
+				 String commentResult =approveRejectTableService.editUserApplication(commentDto.getApplicationId(), commentDto.getComment());
+				 approveRegistartionMessage.setSuccessMessage("Changes made successfully");
+				 LOGGER.info("Result of inserting comments in Database is -"+ commentResult);
 			 }
 			 catch(Exception e)
 			 {
+				 approveRegistartionMessage.setErrorMessage("Exception inserting comments in Database");
 				 LOGGER.info("Exception in inserting comments to Database ", e);
-				 return "ERROR : Unable to update the comment for applicationId";
+				 
 			 }
+			 return approveRegistartionMessage;
 			
 		 }
 		 	 
