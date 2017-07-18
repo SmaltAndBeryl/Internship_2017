@@ -24,6 +24,7 @@ public class DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDao ext
 
 	public Collection<DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto> getTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
 		Map<String, Object> parameters = new HashMap<>();
+		
 		return getJdbcTemplate().query(config.getSelectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears(), parameters,
 				ROW_MAPPER);
 	}
