@@ -2,57 +2,85 @@
   font-family: 'Open Sans', sans-serif;
   font-weight: normal;
 }
+
 .welcome {
-   height: 36px;
-  font-family: OpenSans;
-  font-size: large;
+  margin-left: 30px;
+  margin-top: 20px;
+  padding-top: 23px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight:bold;
+  line-height: 1.58;
   text-align: left;
   color: #676a6c;
-  color: var(--slate-grey);
-  padding-left:10px;
-  padding-top:5px;
+  color: var(--slate-grey);;
+}
+
+.grid1 {
+	margin-top:15px;
+ margin-left:21px;
+	margin-right:24px;
+  height: 68px;
+  background-color: none;
+}
+.title{
+
+  height: 15px;
+  font-size: 14px;
+  padding-top: 20px;
+  padding-left: 25px;
+  font-weight: 600;
+  text-align: left;
+  color: #676a6c;
+  color: (--slate-grey);
+	
+}
+.Rectangle-7-copy-11{
+	background-color: White;
+	height: 150px;
+	margin-left:30px;
+	margin-right:30px;
+	margin-top:20px;
 }
 
 .presentBatchesBoxwrap {
   
-  height: 275px;
-  margin-left: 51px;
-  margin-right: 51px;
-  margin-top: 220px;
-  margin-bottom: 24px;
+  height: 248px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 20px;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
 
 }
 .presentBatchesTable {
-  width: 122px;
   height: 15px;
-  font-family: OpenSans;
   font-size: 14px;
+  padding-top: 20px;
+  padding-left: 25px;
   font-weight: 600;
- padding: 10px;
   text-align: left;
   color: #676a6c;
+  color: (--slate-grey);
 }
 .pastBatchesBoxwrap {
   
-  height: 275px;
-  margin-left: 51px;
-  margin-right: 51px;
-  margin-top: 24px;
-  margin-bottom: 24px;
+  height:248px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 20px;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
 }
 .pastBatchesTable {
-  width: 122px;
   height: 15px;
-  font-family: OpenSans;
   font-size: 14px;
+  padding-top: 20px;
+  padding-left: 25px;
   font-weight: 600;
-  padding: 10px;
   text-align: left;
   color: #676a6c;
+  color: (--slate-grey);
 
 }
 .grid {
@@ -122,5 +150,158 @@
   padding-left:10px;
   padding-top:5px;
     }
+.comment
+{
+	padding-top:5px;
+}
+.Prostokt-2-kopia-2-copy-14 {
+	padding-top: 7px;
+	text-align: center;
+	vertical-align: middle;
+	object-fit: contain;
+	object-position: bottom;
+}
+.commoncell{
+	padding-left:10px;
+}
+.statuscell{
+	padding-left:10px;
+	color: Red;
+}
 
+
+.MainDivision {
+  width: 1178px;
+  height: 152px;
+  background-color:White;
+
+}
+.Application-ID {
+  
+  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}
+.Date-of-Submission {
+  
+  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}
+.Submitted-By {
+  
+  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}
+.Action-copy {
+  
+  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  margin-top:8px;
+  padding-left:8px;
+  padding-top:5px;
+}
+.Status {
  
+  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}
+.Comment {
+  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+  border:1px;
+}
+
+.edit {
+  width: 13px;
+  height: 13px;
+  object-fit: contain;
+  opacity: 0.5;
+  background-color: white;
+  padding-left:28px;
+}
+.bId{
+	  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}
+
+.compDate{
+	  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}
+
+.insName{
+	  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}
+
+.candidates{
+	  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}
+.downCer{
+	  height: 36px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  padding-left:10px;
+  padding-top:5px;
+}

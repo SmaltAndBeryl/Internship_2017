@@ -3,14 +3,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Template 2</title>
     <link rel="stylesheet" href="css/MasterTemplate2.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-route.js"></script>
-    <script type="text/javascript" src="js/MasterTemplate2.js"></script>   
-    <script src="http://ui-grid.info/release/ui-grid.js"></script>
-    <link href="css/trainingPartnerHomepage.css" type="text/css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet"></link>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.6.5/angular-touch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.css"></link>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.js"></script><script type="text/javascript" src="js/MasterTemplate2.js"></script>   
+     <link href="css/trainingPartnerHomepage.css" type="text/css" rel="stylesheet">
+    <script src="js/MasterTemplate2.js"></script>
     <script src="js/controllers/trainingPartnerHomepage.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.css">
+     <link href="css/assessmentBodyHomepage.css" type="text/css" rel="stylesheet">
+    <script src="js/controllers/assessmentBodyHomepage.js"></script>
+    
 </head>
 <header class="one-edge-shadow">
     <div class="leftContent">
@@ -21,7 +27,7 @@
         <div class="logout-wrapper">
 
             <div class="username" ng-controller="username-ctrl">
-                <h2 class="username"><b> {{ username }}</b></h2>
+                <h2 class="username"><b>{{ username }}</b></h2>
             </div>
 
             <div class="logoutButton">
@@ -43,16 +49,19 @@
     </div>
 </header>
 
+
 <body ng-app="myApp">
 
 <div class="mainContent">
 
-    <div id="Content" >
-    <!--Code for the present and past batches tables-->
-    <div ng-include="'partials/trainingPartnerHomepage.html'"></div>
-    </div>
+<div class="Content" style="width: 100%; min-height: 833px;">
 
-</div>
+        <div ng-view style="min-height:833px;">
+
+        </div>
+        <!-- Tables -->
+      </div>
+    </div>
 
 
 <div class="logoBar">
