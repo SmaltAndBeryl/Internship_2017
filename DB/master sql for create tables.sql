@@ -208,16 +208,16 @@ batchAssignmentDate date,
 assessmentDate date not null,
 agencyId int(10),
 assessorId int(10),
-batchMode varchar(15) not null,
+batchMode varchar(50) not null,
 foreign key (trainingPartnerId) references trainingPartner(trainingPartnerId),
 foreign key (centreId) references centre(centreId),
 foreign key (trainerId) references trainer(trainerId),
 foreign key (agencyId) references agency(agencyId),
 foreign key (assessorId) references assessor(assessorId));
 
-/* create sql for showIntrest */
+/* create sql for showInterest */
 
-create table if not exists showIntrest(
+create table if not exists showInterest(
 showIntrestId int(10) primary key auto_increment,
 batchId int(10),
 agencyId int(10),
