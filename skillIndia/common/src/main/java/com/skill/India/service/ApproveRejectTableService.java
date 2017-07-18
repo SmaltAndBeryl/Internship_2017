@@ -27,8 +27,9 @@ public class ApproveRejectTableService {
 	
 	 private static final Logger LOGGER = LoggerFactory.getLogger(ApproveRejectTableService.class);
 	
-	public Collection<ApproveRejectTableDto> getUpdateRowMapper(){
-		return approveRejectTableDao.getUpdateRowMapper();
+	public Collection<ApproveRejectTableDto> getUpdateRowMapper(String applicationState){
+		LOGGER.info("Creating row mapper for applicationState : "  );
+		return approveRejectTableDao.getUpdateRowMapper(applicationState);
 	}
 //	
 //	public boolean setComments(CommentDto commentDto){
@@ -46,7 +47,7 @@ public class ApproveRejectTableService {
 	{
 		try
 		{
-			String applicationState="INCOMPLETE";
+			String applicationState="Incomplete";
 			System.out.println("Entered into ApproveRejectTableService:");
 			int commentsExists = manageRegistrationActionDao.checkCommentExistence(applicationId);
 			System.out.println("commentExists = " + commentsExists);
