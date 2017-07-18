@@ -15,14 +15,10 @@
     <link  rel="sylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- login controller -->
     <script src="js/controllers/loginctrl.js"></script>
-    <!-- JS for validations -->
    
-    
-    
-    
-    <!-- show password icon -->
+   <!-- show password icon -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/hideshowpassword/2.0.8/hideShowPassword.min.js"></script>
-  <!-- font awesome -->
+    <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <!-- CSS file for login screen -->
     <link rel="stylesheet" href="css/login.css">
@@ -61,7 +57,9 @@
                                 
                                 
                                 <div class="form-group input-group">
-								<input type="email" name="userId" id="userId" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value=" " ng-model="user.userId"/>
+                                <div>
+								<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="userId" id="userId" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value=" " ng-model="user.userId"/>
+								</div>
                                 <div class="help-block with-errors"> </div>
                                 <span class=" input-group-addon" style="background-color:white;
                                         border:none;
