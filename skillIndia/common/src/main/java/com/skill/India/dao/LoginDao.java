@@ -22,7 +22,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class LoginDao extends AbstractTransactionalDao {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginDao.class);
 
 	@Autowired
 	public LoginConfig loginconfig;
@@ -31,6 +31,7 @@ public class LoginDao extends AbstractTransactionalDao {
 	
 	
 	public Integer userExistence(String userId, String password){
+		LOGGER.info("Verify the existence of user");
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("userId", userId);
 		parameters.put("password", password);
@@ -38,8 +39,8 @@ public class LoginDao extends AbstractTransactionalDao {
 		
 	}
 	
-	public Collection<LoginDto> getLoginRowMapper(String userId, String password) {
-		LOGGER.info("Code Reached");
+	public Collection<LoginDto> getValidateLoginUser(String userId, String password) {
+		LOGGER.info("After successful existence, validate the user against entered credentials");
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("userId", userId);
 		parameters.put("password", password);

@@ -25,12 +25,13 @@ public class LoginService {
 
 	public LoginDto checkUser(LoginReceiveDataDto loginReceiveDataDto)
 	{
-		LOGGER.info(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
-		
+		//LOGGER.info(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
+		LOGGER.info("Application have to verify the user existence");
 	userExistenceValidation=loginDao.userExistence(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
 		
 		if(userExistenceValidation==1){
-			Collection<LoginDto> login=loginDao.getLoginRowMapper(loginReceiveDataDto.getUserId(), loginReceiveDataDto.getPassword());
+			LOGGER.info("User exist in the Record");
+			Collection<LoginDto> login=loginDao.getValidateLoginUser(loginReceiveDataDto.getUserId(), loginReceiveDataDto.getPassword());
 			for(LoginDto l:login)
 			{
 				return l;
@@ -38,6 +39,7 @@ public class LoginService {
 		}
 	
 		else{
+			LOGGER.info("Entered UserId and Password does not exist in the record");
 					loginDto = new LoginDto(null, null, null);
 			}
 		return loginDto;
