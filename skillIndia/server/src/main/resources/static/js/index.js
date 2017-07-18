@@ -12,9 +12,9 @@ var myApp = angular.module('myApp', ['ngRoute', 'faq', 'imp', 'manage', 'dashboa
 myApp.config(function($routeProvider) {
   $routeProvider
   .when('/',{
-    templateUrl: 'partials/main.html',
+    templateUrl: 'partials/Dashboard.html',
     //templateUrl: 'partials/Dashboard.html',
-    //controller: 'dashboardController'
+    controller: 'dashboardController'
   })
 
   .when('/dashboard',{
