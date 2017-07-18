@@ -16,8 +16,8 @@
 {
         font-size:x-small; 
         font-family: sans-serif;
-        margin-left: 25px;
-        font-weight: 100;
+        margin-left: 10px;
+        font-weight: 200;
     
     
 }
@@ -44,6 +44,7 @@
 .upper-panel{
 	 margin-bottom: 31px;
 	 margin-right: 6px;
+	 margin-left:6px;
     margin-top: 20px;
     display: flex;
     padding-bottom: 25px;
@@ -52,6 +53,12 @@
     display: flex;
     margin-bottom: 31px;
     margin-top: 20px;
+}
+.charts{
+	display: flex;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    width:auto;
 }
 .chartsWrap{
  font-family:sans-serif;
