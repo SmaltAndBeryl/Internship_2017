@@ -73,8 +73,7 @@ function dashboardController($scope, $http)  {
         		 		}
         		 	if(marketMode[j]==null)
         		  		{
-        		 			
-        		 		marketMode.push(null);
+        		 		 marketMode.push(null);
         		  		}
         		  	if(stateSkillLevel[j]==null)
         		  		{
@@ -221,6 +220,7 @@ function dashboardController($scope, $http)  {
 //               // console.log('outside loop is' +processed_json);
 //                
 //      // Radialize the colors
+                
                 
       Highcharts.chart('pieChart', {
         chart: {
