@@ -1,7 +1,9 @@
 package com.skill.India.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,21 +29,10 @@ public class ApproveRejectTableService {
 	
 	 private static final Logger LOGGER = LoggerFactory.getLogger(ApproveRejectTableService.class);
 	
-	public Collection<ApproveRejectTableDto> getUpdateRowMapper(String applicationState){
+	public HashMap<String, ArrayList<ApproveRejectTableDto>> getUpdateRowMapper(){
 		LOGGER.info("Creating row mapper for applicationState : "  );
-		return approveRejectTableDao.getUpdateRowMapper(applicationState);
+		return approveRejectTableDao.getUpdateRowMapper();
 	}
-//	
-//	public boolean setComments(CommentDto commentDto){
-//        
-//		int status;
-//		status =commentDao.insertComment(commentDto);
-//		if(status == 0)
-//			return false;
-//		else
-//			return true;
-//		
-//	}
 	
 	public String editUserApplication(int applicationId, String comment) throws SQLException
 	{

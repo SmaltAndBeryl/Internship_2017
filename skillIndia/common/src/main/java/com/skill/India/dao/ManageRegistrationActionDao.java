@@ -8,12 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ch.qos.logback.classic.Logger;
-
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.ApproveRejectTableConfigSql;
-import com.skill.India.controller.ApproveRejectTableController;
-import com.skill.India.dto.ManageRegistrationActionDto;
 import com.skill.India.dto.ManageRegistrationApplicationDto;
 
 @Repository
@@ -26,6 +22,7 @@ public class ManageRegistrationActionDao extends AbstractTransactionalDao {
 	/* Method to check if comments for an application Id already exists*/
 	public Integer checkCommentExistence(int applicationId)
 	{
+		
 		Map<String, Object> commentExistenceParameter = new HashMap<>();
 		commentExistenceParameter.put("applicationId", applicationId);
 		return getJdbcTemplate().queryForObject(config.getCommentExistSql(), commentExistenceParameter, Integer.class);
