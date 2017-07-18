@@ -1,38 +1,24 @@
-<!--<html ng-app="app">-->
-<!--<head>-->
-    <!--<title>Dashboard</title>-->
-<!--&lt;!&ndash; JS Controller for Panels &ndash;&gt;-->
- <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>-->
-<script src="js/controllers/panelController.js"></script>
-    <!--CSS For Open Sans font family  -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <!-- Latest compiled and minified CSS -->
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-
+<head>
 <!-- CSS and JS scripts for training partner home page -->
-<link href="css/Dashboard.css" type="text/css" rel="stylesheet">
+<link href="css/Dashboard.css" type="text/css" rel="stylesheet"></link>
 
 </head>
 
-    <body>
+ 
 <div class="container">
    <div class="panelWrap">
-       <div class="text">Candidate's Information</div>
+       <div class="text">Overall Training Information</div>
+       
        <div class="row upper-panel">
            <div class="col-sm-2">
              <div class="panel">
                  <div class="panel-body" style="background-color:#F6AB3D;">
-                     <div class="Enrolled" ng-controller="dashboardController">
+                     <div class="Enrolled" ng-controller="dashboardController" data-ng-init="init()">
                     <b>{{enrolled}}</b>
                                      </div>
                  </div>
- <div class="panel-footer" style="background-color:#E18806;">TOTAL CANDIDATES ENROLLED</div>
+ <div class="panel-footer" style="background-color:#E18806;">CANDIDATES ENROLLED</div>
              </div>
             </div>
            &nbsp; &nbsp;
@@ -43,7 +29,7 @@
                      <b>{{assessed}}</b>
                      </div>
                  </div>
-                <div class="panel-footer" style="background-color:#7BA9DC;">TOTAL CANDIDATES ASSESSED</div>
+                <div class="panel-footer" style="background-color:#7BA9DC;">CANDIDATES ASSESSED</div>
              </div>
             </div>
             &nbsp; &nbsp;
@@ -54,7 +40,7 @@
                      <b>{{certified}}</b>
                      </div>
                  </div>
-                <div class="panel-footer" style="background-color:#A0C1B4;">TOTAL CANDIDATES CERTIFIED</div>
+                <div class="panel-footer" style="background-color:#A0C1B4;">CANDIDATES CERTIFIED</div>
              </div>
             </div>
 				&nbsp; &nbsp;
@@ -65,7 +51,7 @@
                     <b>{{centre}} </b>
                     </div>
                  </div>
-                <div class="panel-footer" style="background-color:#2DABC1;">TOTAL TRAINING CENTRES</div>
+                <div class="panel-footer" style="background-color:#2DABC1;">TRAINING CENTRES</div>
              </div>
             </div>  
              		&nbsp; &nbsp;
@@ -78,33 +64,35 @@
 
                      </div>
                  </div>
-                <div class="panel-footer"style="background-color:#A6C118;">TOTAL TRAINING PARTNERS</div>
+                <div class="panel-footer"style="background-color:#A6C118;">TRAINING PARTNERS</div>
              </div>
             </div>
            
       </div>
     </div>
-    
+  
     <!-- Charts Section Starts from here-->
      
    <div class="chartsWrap">
-    <div class="row charts">
+   
+    <div class="charts">
         <div class="col-sm-4">
-        
-             <div id="pieChart"></div>
-             
-            </div>  
+             <div id="pieChart">
+             	
+             </div>
+        </div>  
            &nbsp;  &nbsp;
-    <div class="col-sm-4">
-                  <div id="groupedColumnChart">
-                   </div>
-             
+    	<div class="col-sm-4">
+                  <div id="columnChart"><div>   
             </div>   
             </div>
-    <div class="row charts">
+ 
+<!-- second row for grouped column and stacked column chart -->
+ 
+    <div class="charts"> 
         <div class="col-sm-4">
              
-                     <div id="stackedColumnChart">
+                     <div id="groupedColumnChart">
                      <!--Insert Controller here -->
                      </div>
          </div>   
@@ -112,13 +100,15 @@
 			    &nbsp; &nbsp;
 			        
     <div class="col-sm-4">
-                     <div id="columnChart">
+                     <div id="stackedColumnChart">
                     
                      </div>
                  </div>
                 
                    
         </div> 
-    </div>    
-</body>
+    </div>
+    </div>
+ </div>    
+ </div>
 </html>
