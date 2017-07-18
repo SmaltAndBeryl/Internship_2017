@@ -52,13 +52,13 @@
 	
 	<div class="panel-body">
 	<div class="row">
-    <form id="login-form" action="" method="post" role="form" style="display: block;"data-toggle="validator" ng-controller="loginCtrl">
+    <form id="login-form"  action="" method="post" role="form" style="display: block;"data-toggle="validator" ng-controller="loginCtrl">
                              
                                 
                                 
                                 <div class="form-group input-group">
                                 <div>
-								<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="userId" id="userId" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value=" " ng-model="user.userId"/>
+								<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  name="userId" id="userId"  tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID"  value=" " ng-model="user.userId" />
 								</div>
                                 <div class="help-block with-errors"> </div>
                                 <span class=" input-group-addon" style="background-color:white;
@@ -66,6 +66,7 @@
                                         border-bottom:0px solid #ccc; "> 
                                  <i id="userId" class="fa fa-user" ></i>
                                  </span>
+                                 
                                  </div>
                              
                              
@@ -76,7 +77,7 @@
      					     <div class="help-block with-errors"></div>
                              <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">   
                              <div>
-                             <button id="toggleBtn" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>
+                             <button id="toggleBtn" class="glyphicon glyphicon-eye-open  toggler-ico" type="button">&nbsp;</button>
                              </div>                                       
                              </span>   
                              </div>
@@ -100,13 +101,13 @@
     <form id="register-form" action="" method="post" role="form" style="display: none;"data-toggle="validator" ng-controller="signupCtrl">
     
     <div class="form-group col-xs-6">
-    <input type="text" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="newUser.organizationName"/>
+    <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="newUser.organizationName"/>
     </div>
     <div class="form-group col-xs-6">
-    <input type="text" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="newUser.sPOCName" >
+    <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="newUser.sPOCName" >
     </div>
     <div class="form-group col-xs-6">
-    <input type="email" name="userId" id="userId" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="newUser.userId"/>
+    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="userId" id="userId" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="newUser.userId"/>
     <div class="help-block with-errors">
     
     </div>
