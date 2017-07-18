@@ -15,7 +15,7 @@ manageController.$inject = ['$scope', '$location', '$http'];
 function manageController($scope, $location, $http){
 	$scope.messagealert= false;
   //refresh();
-       
+       //Grid for submitted application
   $scope.gridOptions = {
          enableGridMenus : false,  
          enableSorting: false, 
@@ -37,9 +37,76 @@ function manageController($scope, $location, $http){
     ]
   }; 
   
+  $http.get('/approve?applicationState=submit')
+  .then(function(response){
+    $scope.gridOptions.data = response.data;
+});
+  
+  //Grid for approved tables
+  $scope.gridOptionsApproved = {
+          enableGridMenus : false,  
+          enableSorting: false, 
+          enableFiltering: false,
+          enableCellEdit : false,
+          enableColumnMenus : false,
+     
+          columnDefs: [
+               { name: 'applicationId', displayName: '#', cellClass:'sno',headerCellClass:'Institution-Name', width: 30},
+       { name: 'applicationState', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
+               { name: 'activeFlag',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
+               { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'}                  
+               
+              ]
+   }; 
+   $http.get('/approve?applicationState=approved')
+   .then(function(response){
+     $scope.gridOptionsApproved.data = response.data;
+ });
+   
+   //Grid for Incomplete tables
+   $scope.gridOptionsIncomplete = {
+           enableGridMenus : false,  
+           enableSorting: false, 
+           enableFiltering: false,
+           enableCellEdit : false,
+           enableColumnMenus : false,
+      
+           columnDefs: [
+                { name: 'applicationId', displayName: '#', cellClass:'sno',headerCellClass:'Institution-Name', width: 30},
+        { name: 'applicationState', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
+                { name: 'activeFlag',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
+                { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'},                  
+                { name: 'Comments', displayName:'Comments' ,enableCellEdit: true,headerCellClass:'Institution-Name',cellClass:'va'}
+               ]
+    }; 
+   
+   $http.get('/approve?applicationState=incomplete')
+   .then(function(response){
+     $scope.gridOptionsIncomplete.data = response.data;
+ }); 
   
   
-  
+   
+   $scope.gridOptionsRejected = {
+           enableGridMenus : false,  
+           enableSorting: false, 
+           enableFiltering: false,
+           enableCellEdit : false,
+           enableColumnMenus : false,
+      
+           columnDefs: [
+                { name: 'applicationId', displayName: '#', cellClass:'sno',headerCellClass:'Institution-Name', width: 30},
+        { name: 'applicationState', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
+                { name: 'activeFlag',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
+                { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'}
+                ]
+    };
+    $http.get('/approve?applicationState=rejected')
+    .then(function(response){
+      $scope.gridOptionsRejected.data = response.data;
+  });
+    
+    
   //function for edit functionalities
   
     $scope.myfunctionedit = function(rowData){
@@ -69,6 +136,17 @@ function manageController($scope, $location, $http){
 							{
 								$scope.message = response.data.successMessage;
 								$scope.messagealert= true;
+								
+								$http.get('/approve?applicationState=submit')
+							    .then(function(response){
+							      $scope.gridOptions.data = response.data;
+							      $http.get('/approve?applicationState=incomplete')
+								    .then(function(response){
+								      $scope.gridOptionsIncomplete.data = response.data;
+								  })
+							  })
+								
+								
 							},
 							function(errorResponse, status)
 							{
@@ -108,11 +186,21 @@ function manageController($scope, $location, $http){
 				method : "POST",
 				data: angular.toJson(editDetailsOfApplication),
 			}).then(function(response){
+				
 				var message = response.data.successMessage;
 				console.log(response.data);
 				$scope.message = response.data.successMessage;
-				
 				$scope.messagealert= true;
+				
+				
+				$http.get('/approve?applicationState=submit')
+			    .then(function(response){
+			      $scope.gridOptions.data = response.data;
+			  })
+				$http.get('/approve?applicationState=approved')
+			    .then(function(response){
+			      $scope.gridOptionsApproved.data = response.data;
+			  })
 				
 			},
 			function(errorResponse, status)
@@ -123,6 +211,7 @@ function manageController($scope, $location, $http){
 
 			}
 			)
+			
 			
 };
 			
@@ -152,6 +241,16 @@ function manageController($scope, $location, $http){
 				$scope.message = response.data.successMessage;
 				$scope.messageAlert = true;
 				console.log(response.data.successMessage);
+				
+				$http.get('/approve?applicationState=submit')
+			    .then(function(response){
+			      $scope.gridOptions.data = response.data;
+			  })
+				$http.get('/approve?applicationState=rejected')
+			    .then(function(response){
+			      $scope.gridOptionsRejected.data = response.data;
+			  })
+			  
 			},
 			function(errorResponse, status)
 			{			
@@ -160,13 +259,7 @@ function manageController($scope, $location, $http){
 				$scope.messageAlert = true;
 			}
 			)
-};   
-    
-    
-    $http.get('/approve?applicationState=submit')
-    .then(function(response){
-      $scope.gridOptions.data = response.data;
-  });
+};
     
 //    // accepted table
 //    
@@ -177,49 +270,12 @@ function manageController($scope, $location, $http){
 //    function manageController($scope, $location, $http){
 //      //refresh();
 //           
-      $scope.gridOptionsApproved = {
-             enableGridMenus : false,  
-             enableSorting: false, 
-             enableFiltering: false,
-             enableCellEdit : false,
-             enableColumnMenus : false,
-        
-             columnDefs: [
-                  { name: 'applicationId', displayName: '#', cellClass:'sno',headerCellClass:'Institution-Name', width: 30},
-          { name: 'applicationState', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
-                  { name: 'activeFlag',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
-                  { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'}                  
-                  
-                 ]
-      }; 
-      $http.get('/approve?applicationState=approved')
-      .then(function(response){
-        $scope.gridOptionsApproved.data = response.data;
-    });
+      
       
       //for Incomplete Applications
     
       
-      $scope.gridOptionsIncomplete = {
-              enableGridMenus : false,  
-              enableSorting: false, 
-              enableFiltering: false,
-              enableCellEdit : false,
-              enableColumnMenus : false,
-         
-              columnDefs: [
-                   { name: 'applicationId', displayName: '#', cellClass:'sno',headerCellClass:'Institution-Name', width: 30},
-           { name: 'applicationState', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
-                   { name: 'activeFlag',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
-                   { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'},                  
-                   { name: 'Comments', displayName:'Comments' ,enableCellEdit: true,headerCellClass:'Institution-Name',cellClass:'va'}
-                  ]
-       }; 
-      
-      $http.get('/approve?applicationState=incomplete')
-      .then(function(response){
-        $scope.gridOptionsIncomplete.data = response.data;
-    }); 
+
 //             //rejected table     
 //              
 //                  manage.controller('manageController', manageController);
@@ -229,23 +285,6 @@ function manageController($scope, $location, $http){
 //                  function manageController($scope, $location, $http){
 //                    //refresh();
 //                         
-                    $scope.gridOptionsRejected = {
-                           enableGridMenus : false,  
-                           enableSorting: false, 
-                           enableFiltering: false,
-                           enableCellEdit : false,
-                           enableColumnMenus : false,
-                      
-                           columnDefs: [
-                                { name: 'applicationId', displayName: '#', cellClass:'sno',headerCellClass:'Institution-Name', width: 30},
-                        { name: 'applicationState', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
-                                { name: 'activeFlag',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
-                                { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'}
-                                ]
-                    };
-                    $http.get('/approve?applicationState=rejected')
-                    .then(function(response){
-                      $scope.gridOptionsRejected.data = response.data;
-                  });
+                  
                     
   }
