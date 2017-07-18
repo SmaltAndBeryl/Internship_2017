@@ -96,7 +96,7 @@ function dashboardController($scope, $http)  {
         			  	mnreFunded.push(data[i].candidatesCertified);
         			  	continue;
         			 	}
-        			 	if(mode=='market mode')
+        			 	if(mode=='market')
         			  	{
         			  		  marketMode.push(data[i].candidatesCertified);
         			  		  continue;
@@ -106,7 +106,7 @@ function dashboardController($scope, $http)  {
         			  		  stateSkillLevel.push(data[i].candidatesCertified);
         			  		  continue;
         			  	}
-        			 	if(mode=='nbc'||mode=='fdc')
+        			 	if(mode=='nbcfdc')
         			  	  {
         			  		  nbc.push(data[i].candidatesCertified);
         			  		  continue;
@@ -180,7 +180,7 @@ function dashboardController($scope, $http)  {
                 name: 'State Skill Level',
                 data: stateSkillLevel
             }, {
-                name: 'NBC/FDC',
+                name: 'NBCFDC',
                 data: nbc
             }, {
                 name: 'Market Mode',
@@ -361,8 +361,8 @@ function dashboardController($scope, $http)  {
         		  			pmkvyCandidates.push(data[i].trained);
         		  			continue;
         		  		}
-        		  	   //if(batchType=='non-pmkvy' )
-        		  		else
+        		  	   if(batchType=='non-pmkvy' )
+        		  		
         		  		{
         		  			nonPmkvyCandidates.push(data[i].trained);
         		  			continue;
