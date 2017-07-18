@@ -2,7 +2,6 @@
 <head>
 <!-- CSS and JS scripts for training partner home page -->
 <link href="css/Dashboard.css" type="text/css" rel="stylesheet"></link>
-
 </head>
 
  
@@ -10,18 +9,18 @@
    <div class="panelWrap">
        <div class="text">Overall Training Information</div>
        
-       <div class="row upper-panel">
+       <div class="upper-panel">
            <div class="col-sm-2">
              <div class="panel">
                  <div class="panel-body" style="background-color:#F6AB3D;">
-                     <div class="Enrolled" ng-controller="dashboardController" data-ng-init="init()">
+                     <div class="Enrolled" ng-controller="dashboardController" >
                     <b>{{enrolled}}</b>
                                      </div>
                  </div>
  <div class="panel-footer" style="background-color:#E18806;">CANDIDATES ENROLLED</div>
              </div>
             </div>
-           &nbsp; &nbsp;
+           
         <div class="col-sm-2">
              <div class="panel panel-default">
                  <div class="panel-body" style="background-color:#A3C3E7;">
@@ -32,18 +31,18 @@
                 <div class="panel-footer" style="background-color:#7BA9DC;">CANDIDATES ASSESSED</div>
              </div>
             </div>
-            &nbsp; &nbsp;
+            
         <div class="col-sm-2">
              <div class="panel panel-default">
-                 <div class="panel-body"style="background-color:#ACCAE9;">
+                 <div class="panel-body"style="background-color:#c68d7f;">
                      <div class="Certified" ng-controller="dashboardController">
                      <b>{{certified}}</b>
                      </div>
                  </div>
-                <div class="panel-footer" style="background-color:#A0C1B4;">CANDIDATES CERTIFIED</div>
+                <div class="panel-footer" style="background-color:#A07266;">CANDIDATES CERTIFIED</div>
              </div>
             </div>
-				&nbsp; &nbsp;
+			
            <div class="col-sm-2">
              <div class="panel panel-default">
                  <div class="panel-body" style="background-color:#57C5D9;">
@@ -54,7 +53,7 @@
                 <div class="panel-footer" style="background-color:#2DABC1;">TRAINING CENTRES</div>
              </div>
             </div>  
-             		&nbsp; &nbsp;
+             
 					
            <div class="col-sm-2">
              <div class="panel panel-default">
@@ -67,7 +66,6 @@
                 <div class="panel-footer"style="background-color:#A6C118;">TRAINING PARTNERS</div>
              </div>
             </div>
-           
       </div>
     </div>
   
