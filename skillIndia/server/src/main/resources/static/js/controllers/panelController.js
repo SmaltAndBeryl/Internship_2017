@@ -10,28 +10,28 @@ function dashboardController($scope, $http)  {
 	
 	  $http.get("/getDashboardTotalCandidatesEnrolled")
 	  .then(function(response) {
-	      $scope.enrolled = response.data;
+	      $scope.enrolled = 11100000;
 	  });
 
 	  $http.get("/getDashboardTotalCandidatesAccessed")
       	  .then(function(response) {
-      	      $scope.assessed = response.data;
+      	      $scope.assessed = 1021021212;//response.data;
       	  });
 
        $http.get("/getDashboardTotalCandidatesCertified")
              	  .then(function(response) {
-             	      $scope.certified = response.data;
+             	      $scope.certified = 465464;//response.data;
              	  });
 
 
         $http.get("/getDashboardTotalTrainingPartners")
               	  .then(function(response) {
-              	      $scope.partner = response.data;
+              	      $scope.partner = 50000;//response.data;
               	  });
 
         $http.get("/getDashboardTotalTrainingCentersInIndia")
                       	  .then(function(response) {
-                      	      $scope.centre = response.data;
+                      	      $scope.centre =654546; //response.data;
                       	  });
 
 	
@@ -55,7 +55,9 @@ function dashboardController($scope, $http)  {
         	  {
         		   year.push(data[i].years);
         	  }
-        	  year = jQuery.unique(year);
+        	 
+        	  year = jQuery.unique(year); 
+        	  
         	  console.log('LENGTH OF DATA:'+data.length);
         	  console.log('TOTAL NO OF YEARS:  '+year.length)
 //        	 
@@ -71,7 +73,8 @@ function dashboardController($scope, $http)  {
         		 		}
         		 	if(marketMode[j]==null)
         		  		{
-        		 			marketMode.push(null);
+        		 			
+        		 		marketMode.push(null);
         		  		}
         		  	if(stateSkillLevel[j]==null)
         		  		{
@@ -114,15 +117,17 @@ function dashboardController($scope, $http)  {
       			  		  paidRpl.push(data[i].candidatesCertified);
       			  		  continue;
       			  	  }
-        			 }
+        		
+        	    }
+        		 
         		  
-        	 }
-       		     
+     	 }
+     		     
 //        	  console.log(year);
-//        	  console.log('MNRE is ' +mnreFunded);
+//  	  console.log('MNRE is ' +mnreFunded);
 //        	  console.log('Market Mode is '+marketMode);
 //        	  console.log('NBC/FDC  is '+nbc);
-//       	  console.log('State Skill Level is '+stateSkillLevel);
+//      	  console.log('State Skill Level is '+stateSkillLevel);
       
        	 Highcharts.chart('stackedColumnChart', {
             chart: {
@@ -216,12 +221,16 @@ function dashboardController($scope, $http)  {
 //               // console.log('outside loop is' +processed_json);
 //                
 //      // Radialize the colors
+                
       Highcharts.chart('pieChart', {
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
             plotShadow: false,
             type: 'pie'
+        },
+        credits:{
+        	enabled:false
         },
         title: {
             text: 'Total Trainings in Each Sector'
@@ -233,11 +242,11 @@ function dashboardController($scope, $http)  {
             pie: {
                 allowPointSelect: true,
                 cursor: 'pointer',
-                size:'60%',
+                size:'50%',
                 dataLabels: {
                     enabled: true,
                     itemStyle: {
-                        font: '9pt Trebuchet MS, Verdana, sans-serif'
+                        font: '5pt sans-serif'
                     },
                     format: '<b>{point.name}</b>: {point.percentage:.0f} ',
                     style: {
