@@ -21,8 +21,9 @@ public class ApproveRejectTableDao extends AbstractTransactionalDao {
 
 	private static final ApproveRejectSelectRowMapper ROW_MAPPER = new ApproveRejectSelectRowMapper();
 
-	public Collection<ApproveRejectTableDto> getUpdateRowMapper() {
+	public Collection<ApproveRejectTableDto> getUpdateRowMapper(String applicationState) {
 		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("applicationState", applicationState);
 		return getJdbcTemplate().query(config.getSelectSql(), parameters,
 				ROW_MAPPER);
 	}
