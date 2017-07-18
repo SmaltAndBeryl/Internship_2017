@@ -10,28 +10,28 @@ function dashboardController($scope, $http)  {
 	
 	  $http.get("/getDashboardTotalCandidatesEnrolled")
 	  .then(function(response) {
-	      $scope.enrolled = 11100000;
+	      $scope.enrolled = response.data;
 	  });
 
 	  $http.get("/getDashboardTotalCandidatesAccessed")
       	  .then(function(response) {
-      	      $scope.assessed = 1021021212;//response.data;
+      	      $scope.assessed =response.data;
       	  });
 
        $http.get("/getDashboardTotalCandidatesCertified")
              	  .then(function(response) {
-             	      $scope.certified = 465464;//response.data;
+             	      $scope.certified = response.data;
              	  });
 
 
         $http.get("/getDashboardTotalTrainingPartners")
               	  .then(function(response) {
-              	      $scope.partner = 50000;//response.data;
+              	      $scope.partner = response.data;
               	  });
 
         $http.get("/getDashboardTotalTrainingCentersInIndia")
                       	  .then(function(response) {
-                      	      $scope.centre =654546; //response.data;
+                      	      $scope.centre = response.data;
                       	  });
 
 	
