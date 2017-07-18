@@ -9,8 +9,11 @@
 
     background-color:#fffefe;
     margin:22px 32px 21px 22px;
-    width:auto;
    
+}
+.panel
+{
+	width: auto;
 }
 .col-sm-2
 {
@@ -18,6 +21,7 @@
         font-family: sans-serif;
         margin-left: 10px;
         font-weight: 200;
+        text-align:center;
     
     
 }
@@ -29,7 +33,10 @@
     color: white;
 }
 .panel-body {
-    padding: 20px;
+    padding: 15px;
+    width:100px;
+    
+    
 }
 .text{
     font-size: Medium;
@@ -42,12 +49,11 @@
     
 }
 .upper-panel{
-	 margin-bottom: 31px;
-	 margin-right: 6px;
-	 margin-left:6px;
-    margin-top: 20px;
+	margin-bottom: 12px;
+    margin-left: 5px;
     display: flex;
     padding-bottom: 25px;
+  
 }
 .row{
     display: flex;
@@ -74,30 +80,35 @@
 .Enrolled
 {
 	font-size: x-large;
-    font-family: inherit;
+    font-family: sans-serif;
     color: white;
+    text-align:center;
 }
 .Assessed{
 	font-size: x-large;
-    font-family: inherit;
+    font-family: sans-serif;
     color: white;
+    text-align:center;
 }
 .Certified
 {
 	font-size: x-large;
-    font-family: inherit;
+    font-family: sans-serif;
     color: white;
+    text-align:Center;
 }
 .TotalTC{
 	font-size: x-large;
-    font-family: inherit;
+    font-family: sans-serif;
     color: white;
+    text-align:center;
 	
 }
 
 .TotalTP
 {
 	font-size: x-large;
-    font-family: inherit;
+    font-family: sans-serif;
     color: white;
+    text-align:center;
 }
