@@ -65,7 +65,7 @@ public class ManageRegistrationActionDao extends AbstractTransactionalDao {
 			Map<String, Object> parameters = new HashMap<>();
 			parameters.put("applicationState",manageRegistrationApplicationDto.getApplicationState() );
 			parameters.put("activeFlag", manageRegistrationApplicationDto.getActiveFlag());
-			parameters.put("userId",manageRegistrationApplicationDto.getUserId());
+			//parameters.put("userId",manageRegistrationApplicationDto.getUserId());
 			parameters.put("applicationId",manageRegistrationApplicationDto.getApplicationId());
 			int i= getJdbcTemplate().update(config.getUpdateSqlAction(), parameters);
 			System.out.println("I is :"+i);

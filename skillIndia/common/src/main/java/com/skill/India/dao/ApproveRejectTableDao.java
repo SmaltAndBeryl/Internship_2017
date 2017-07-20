@@ -23,13 +23,13 @@ public class ApproveRejectTableDao extends AbstractTransactionalDao {
 	public ApproveRejectTableConfigSql config;
 
 	private static final ApproveRejectSelectRowMapper ROW_MAPPER = new ApproveRejectSelectRowMapper();
-
-	ArrayList<ApproveRejectTableDto> approvedApplications = new ArrayList<ApproveRejectTableDto>();
-	ArrayList<ApproveRejectTableDto> rejectedApplications = new ArrayList<ApproveRejectTableDto>();
-	ArrayList<ApproveRejectTableDto> submittedApplications = new ArrayList<ApproveRejectTableDto>();
-	ArrayList<ApproveRejectTableDto> incompleteApplications = new ArrayList<ApproveRejectTableDto>();
 	
 	public HashMap<String, ArrayList<ApproveRejectTableDto>> getUpdateRowMapper() {
+		
+		ArrayList<ApproveRejectTableDto> approvedApplications = new ArrayList<ApproveRejectTableDto>();
+		ArrayList<ApproveRejectTableDto> rejectedApplications = new ArrayList<ApproveRejectTableDto>();
+		ArrayList<ApproveRejectTableDto> submittedApplications = new ArrayList<ApproveRejectTableDto>();
+		ArrayList<ApproveRejectTableDto> incompleteApplications = new ArrayList<ApproveRejectTableDto>();
 		Map<String, Object> parameters = new HashMap<>();
 		Collection<ApproveRejectTableDto> manageRegistrationsTable =  getJdbcTemplate().query(config.getSelectSql(), parameters,
 				ROW_MAPPER);
@@ -48,7 +48,7 @@ public class ApproveRejectTableDao extends AbstractTransactionalDao {
 				rejectedApplications.add(rowWiseData);
 				break;
 			}
-			case "submitted":
+			case "submit":
 			{
 				submittedApplications.add(rowWiseData);
 				break;
@@ -77,10 +77,10 @@ public class ApproveRejectTableDao extends AbstractTransactionalDao {
 		    String applicationState= resultSet.getString("applicationState");
 		    Boolean activeFlag = resultSet.getBoolean("activeFlag");
 			Date dateOfSubmission = resultSet.getDate("dateOfSubmission");
-            String userId = resultSet.getString("userId");
-            String organisationName = resultSet.getString("organisationName");
+            String userRole = resultSet.getString("userRole");
+            String organizationName = resultSet.getString("organizationName");
 
-			return new ApproveRejectTableDto(applicationId, applicationState, activeFlag, dateOfSubmission,userId,organisationName);
+			return new ApproveRejectTableDto(applicationId, applicationState, activeFlag, dateOfSubmission,organizationName,userRole);
 		}
 
 	
