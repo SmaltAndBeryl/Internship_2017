@@ -15,7 +15,7 @@
 <!-- <script type="text/javascript" src="../js/services/dataImportCsv.js"></script> -->
 <!--     </head> -->
 <!--     <body ng-app="myapp"> -->
-     <div>
+     <div ng-controller="importController">
         <div class = "container col-md-12" id="uploadDiv">
             <form name="myform">
             <div class="row" id="uploadDivRow">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-3" id="csvFileDiv">
                     <div class="form-group">
-                        <input type="file" name="csvFile" file-model = "csvFile" accept=".csv" class="file"/>
+                        <input type="file" id="csvFile" accept=".csv" class="file" file-model/>
                             <div class="input-group col-xs-12">
                                 <input type="text" id="csvFileName" ng-model="csvName" class="form-control input" data-error="Please enter .csv file" placeholder="Upload Excel File Here" required/>
                                     <span class="input-group-btn">

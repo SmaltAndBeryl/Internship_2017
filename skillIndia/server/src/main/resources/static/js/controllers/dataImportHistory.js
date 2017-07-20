@@ -15,34 +15,7 @@ imp.controller('importController', importController);
 importController.$inject = ['$scope', '$http', 'fileUpload'];
 
 
-
-
-
-imp.service('fileUpload', ['$http', function ($http) {
-
-}]);
-
-
-imp.directive('fileModel', ['$parse', function ($parse) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attrs) {
-            var model = $parse(attrs.fileModel);
-            var modelSetter = model.assign;
-            
-            element.bind('change', function() {
-                scope.$apply(function() {
-                    modelSetter(scope, element[0].files[0]);
-                });
-            });
-        }
-    };
-}]);
-
-
-
-
-function importController($scope, $http, $fileUpload){
+function importController($scope, $http, fileUpload){
   //refresh();
 	
 	/*
@@ -81,11 +54,12 @@ columnDefs:[
   
   $scope.uploadCSV = function(){
 
-	  console.log('file is ');
-	  console.dir(file);
-
-	  var uploadUrl = "/uploadCertificate";
-	  fileUpload.uploadFileToUrl(file, uploadUrl);
+//	  console.log('file is ');
+//	  console.dir(file);
+	  var csvType = $scope.csvType;
+	  console.log(csvType);
+	  var uploadUrl = "/upload";
+	  fileUpload.uploadFileToUrl(csvType,uploadUrl);
 	  };
   
      $http.get("/importHistory")
@@ -96,37 +70,6 @@ columnDefs:[
      /*
       * UPLOAD CSV BUTTON
       */
-     $scope.uploadFileToUrl = function (file,uploadUrl) {
-         var fd = new FormData();
-         
-//         fd.append('csvType', csvType);
-       fd.append('file', file);
-//         console.log(csvType);
-         console.log(fd);
-         
-         $http({
-         	method: 'POST',
-         	url: uploadUrl,
-             data: fd,
-             headers: {'Content-Type': undefined},
-             responseType: 'text',
-             transformRequest: angular.identity,
-             transformResponse: [function (data) {
-             	console.log(data);
-             	return data;
-             }]
-         }).then(function(response) {
-             console.log('Success: '+response.data); 
-             console.log('a= '+JSON.stringify(response.data));
-             console.log("response of success -----"+response);
-             return response.data;
-             
-         }, function errorCallback(response) {
-         	console.log("Error in receiving response from backend------" +response);
-             console.log('Error: '+response);
-          });
-         
-     }
      
      $scope.optionValues = [{
          id: 'Batch',
