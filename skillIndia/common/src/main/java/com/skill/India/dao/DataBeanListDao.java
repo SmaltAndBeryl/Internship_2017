@@ -47,6 +47,7 @@ public class DataBeanListDao extends AbstractTransactionalDao{
             String PAN = resultSet.getString("PAN");
             String TAN = resultSet.getString("TAN");
             String turnover =resultSet.getString("turnover");
+
             return new DataBeanDto(trainingPartnerName,isNSDCfunded,firstName, addressLine1, faxNumber,emailDirector,website,yearOfEstablishment,priorExposureInSkill,medium, selfOwnedTC,franchiseTC,PAN, TAN, turnover);
 
         }

@@ -24,6 +24,8 @@ public class DataBeanDto {
     private final String TAN;
     private final String turnover;
 
+
+
     public DataBeanDto(String trainingPartnerName, String isNSDCfunded, String firstName, String addressLine1, String faxNumber, String emailDirector, String website, String yearOfEstablishment, String priorExposureInSkill, String medium, String selfOwnedTC, String franchiseTC, String pan, String tan, String turnover) {
         this.trainingPartnerName = trainingPartnerName;
         this.isNSDCfunded = isNSDCfunded;
@@ -37,7 +39,7 @@ public class DataBeanDto {
         this.medium = medium;
         this.selfOwnedTC = selfOwnedTC;
         this.franchiseTC = franchiseTC;
-        //The pan and tan values have been changed
+        //The pan and tan variables have been changed
         this.PAN = pan;
         this.TAN = tan;
         this.turnover = turnover;

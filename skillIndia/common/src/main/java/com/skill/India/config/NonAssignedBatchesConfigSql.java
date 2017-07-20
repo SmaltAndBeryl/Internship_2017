@@ -12,6 +12,15 @@ public class NonAssignedBatchesConfigSql {
 
     private String selectSqlNonAssignedBatches;
     private String updateSqlNonAssignedBatches;
+    private String updateSqlProposeAgency;
+
+	public String getUpdateSqlProposeAgency() {
+		return updateSqlProposeAgency;
+	}
+
+	public void setUpdateSqlProposeAgency(String updateSqlProposeAgency) {
+		this.updateSqlProposeAgency = updateSqlProposeAgency;
+	}
 
 	public String getUpdateSqlNonAssignedBatches() {
 		return updateSqlNonAssignedBatches;
