@@ -1,4 +1,4 @@
 importHistory:
  selectSql: > 
-   select SerialNo, CSVName, CSVType, CSV_Upload_Date, CSV_Upload_UserId
-    from CSVUploaded
+   select  csvName, csvType, csvUploadDate, csvUploadUserId
+    from csvuploaded
