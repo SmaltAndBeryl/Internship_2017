@@ -14,7 +14,7 @@ public class TrainingPartnerApplicationStatusService {
 	@Autowired
 	private TrainingPartnerApplicationStatusDao updateDao;
 	
-	public Collection<TrainingPartnerApplicationStatusDto> getUpdateRowMapper(){
-		return updateDao.getUpateRowMapper() ;
+	public Collection<TrainingPartnerApplicationStatusDto> getUpdateRowMapper(int applicationId){
+		return updateDao.getUpateRowMapper(applicationId) ;
 	}
 }

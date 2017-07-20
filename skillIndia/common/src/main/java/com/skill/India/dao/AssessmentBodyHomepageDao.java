@@ -23,23 +23,33 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 
 	private static final AssessmentBodyHomepageSelectRowMapper ROW_MAPPER = new AssessmentBodyHomepageSelectRowMapper();
 	
-	public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper() {
+	public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
 		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("applicationId",applicationId);
 		return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlpastBatchesAssessmentBodyHomepage(),parameters,
 				ROW_MAPPER);
 	}	
-	public Collection<AssessmentBodyHomepageDto> getupcomingBatchesAssessmentBodyHomepageRowMapper() {
+	public Collection<AssessmentBodyHomepageDto> getupcomingBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
 		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("applicationId",applicationId);
 		return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlupcomingBatchesAssessmentBodyHomepage(),parameters,
 				ROW_MAPPER);
-	}	
-	public Collection<AssessmentBodyHomepageDto> getassignedBatchesAssessmentBodyHomepageRowMapper() {
+	}
+	public Collection<AssessmentBodyHomepageDto> getshownInterestAssessmentBodyHomepageRowMapper(int applicationId) {
 		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("applicationId",applicationId);
+		return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlShownInterestBatchesAssessmentBodyHomepage(),parameters,
+				ROW_MAPPER);
+	}
+	public Collection<AssessmentBodyHomepageDto> getassignedBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
+		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("applicationId",applicationId);
 		return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlassignedBatchesAssessmentBodyHomepage(),parameters,
 				ROW_MAPPER);
 	}	
-	public Collection<AssessmentBodyHomepageDto> getconfirmedBatchesAssessmentBodyHomepageRowMapper() {
+	public Collection<AssessmentBodyHomepageDto> getconfirmedBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
 		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("applicationId",applicationId);
 		return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlconfirmedBatchesAssessmentBodyHomepage(),parameters,
 				ROW_MAPPER);
 	}

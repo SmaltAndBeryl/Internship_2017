@@ -13,20 +13,24 @@ public class AssessmentBodyHomepageService {
 	@Autowired
 	private AssessmentBodyHomepageDao assessmentBodyHomepageDao;
 	
-	public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper(){
-		return assessmentBodyHomepageDao.getpastBatchesAssessmentBodyHomepageRowMapper();
+	public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper(int applicationId){
+		return assessmentBodyHomepageDao.getpastBatchesAssessmentBodyHomepageRowMapper(applicationId);
 	}
 	
-	public Collection<AssessmentBodyHomepageDto> getupcomingBatchesAssessmentBodyHomepageRowMapper(){
-		return assessmentBodyHomepageDao.getupcomingBatchesAssessmentBodyHomepageRowMapper();
+	public Collection<AssessmentBodyHomepageDto> getupcomingBatchesAssessmentBodyHomepageRowMapper(int applicationId){
+		return assessmentBodyHomepageDao.getupcomingBatchesAssessmentBodyHomepageRowMapper(applicationId);
 	}
 	
-	public Collection<AssessmentBodyHomepageDto> getassignedBatchesAssessmentBodyHomepageRowMapper(){
-		return assessmentBodyHomepageDao.getassignedBatchesAssessmentBodyHomepageRowMapper();
+	public Collection<AssessmentBodyHomepageDto> getshownInterestAssessmentBodyHomepageRowMapper(int applicationId){
+		return assessmentBodyHomepageDao.getshownInterestAssessmentBodyHomepageRowMapper(applicationId);
 	}
 	
-	public Collection<AssessmentBodyHomepageDto> getconfirmedBatchesAssessmentBodyHomepageRowMapper(){
-		return assessmentBodyHomepageDao.getconfirmedBatchesAssessmentBodyHomepageRowMapper();
+	public Collection<AssessmentBodyHomepageDto> getassignedBatchesAssessmentBodyHomepageRowMapper(int applicationId){
+		return assessmentBodyHomepageDao.getassignedBatchesAssessmentBodyHomepageRowMapper(applicationId);
+	}
+	
+	public Collection<AssessmentBodyHomepageDto> getconfirmedBatchesAssessmentBodyHomepageRowMapper(int applicationId){
+		return assessmentBodyHomepageDao.getconfirmedBatchesAssessmentBodyHomepageRowMapper(applicationId);
 	}
 	
 	

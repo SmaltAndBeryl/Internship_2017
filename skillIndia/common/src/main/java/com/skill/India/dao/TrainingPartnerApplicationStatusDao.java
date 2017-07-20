@@ -33,9 +33,10 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.
     private static final UpdateRowSelectRowMapper ROW_MAPPER = new UpdateRowSelectRowMapper();
     
     
-    public Collection<TrainingPartnerApplicationStatusDto> getUpateRowMapper() {
+    public Collection<TrainingPartnerApplicationStatusDto> getUpateRowMapper(int applicationId) {
     	LOGGER.info("Code reached");
         Map<String, Object> parameters = new HashMap<>();
+       parameters.put("applicationId",applicationId);
         //return getJdbcTemplate().query
       
         return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 

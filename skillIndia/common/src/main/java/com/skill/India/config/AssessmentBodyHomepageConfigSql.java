@@ -12,6 +12,8 @@ public class AssessmentBodyHomepageConfigSql {
 	
 	private String selectSqlupcomingBatchesAssessmentBodyHomepage;
 	
+	private String selectSqlShownInterestBatchesAssessmentBodyHomepage;
+	
 	private String selectSqlassignedBatchesAssessmentBodyHomepage;
 	
 	private String selectSqlconfirmedBatchesAssessmentBodyHomepage;
@@ -22,6 +24,7 @@ public class AssessmentBodyHomepageConfigSql {
 	
 	private String updateSqlrejectBatchesAssessmentBody;
 
+	
 	/**
 	 * @return the selectSqlpastBatchesAssessmentBodyHomepage
 	 */
@@ -50,6 +53,21 @@ public class AssessmentBodyHomepageConfigSql {
 	public void setSelectSqlupcomingBatchesAssessmentBodyHomepage(
 			String selectSqlupcomingBatchesAssessmentBodyHomepage) {
 		this.selectSqlupcomingBatchesAssessmentBodyHomepage = selectSqlupcomingBatchesAssessmentBodyHomepage;
+	}
+	
+	/**
+	 * @return the selectSqlShownInterestBatchesAssessmentBodyHomepage
+	 */
+	public String getSelectSqlShownInterestBatchesAssessmentBodyHomepage() {
+		return selectSqlShownInterestBatchesAssessmentBodyHomepage;
+	}
+
+	/**
+	 * @param selectSqlShownInterestBatchesAssessmentBodyHomepage the selectSqlShownInterestBatchesAssessmentBodyHomepage to set
+	 */
+	public void setSelectSqlShownInterestBatchesAssessmentBodyHomepage(
+			String selectSqlShownInterestBatchesAssessmentBodyHomepage) {
+		this.selectSqlShownInterestBatchesAssessmentBodyHomepage = selectSqlShownInterestBatchesAssessmentBodyHomepage;
 	}
 
 	/**

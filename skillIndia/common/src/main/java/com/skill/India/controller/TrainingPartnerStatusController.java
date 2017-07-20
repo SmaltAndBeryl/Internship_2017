@@ -4,8 +4,10 @@ import java.util.Collection;
 
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.dto.TrainingPartnerApplicationStatusDto;
@@ -18,8 +20,8 @@ public class TrainingPartnerStatusController
 	private TrainingPartnerApplicationStatusService trainingPartnerApplicationStatusService;
 			
 	@RequestMapping("/trainingPartnerApplicationStatus")
-	public Collection<TrainingPartnerApplicationStatusDto> gettrainingPartnerApplicationStatusDto () {
-	       return trainingPartnerApplicationStatusService.getUpdateRowMapper();
+	public Collection<TrainingPartnerApplicationStatusDto> gettrainingPartnerApplicationStatusDto (@RequestParam("applicationId")int applicationId) {
+	       return trainingPartnerApplicationStatusService.getUpdateRowMapper(applicationId);
 	}
 
 }

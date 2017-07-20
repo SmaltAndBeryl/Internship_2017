@@ -16,8 +16,8 @@ public class AssessmentBodyApplicationStatusService {
 	@Autowired
 	private AssessmentBodyApplicationStatusDao updateDao;
 	
-	public Collection<AssessmentBodyApplicationStatusDto> getUpdateRowMapper(){
-		return updateDao.getUpateRowMapper() ;
+	public Collection<AssessmentBodyApplicationStatusDto> getUpdateRowMapper(int applicationId){
+		return updateDao.getUpateRowMapper(applicationId) ;
 	}
 
 }
