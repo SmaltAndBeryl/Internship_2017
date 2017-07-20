@@ -1,30 +1,30 @@
 assessmentBodyHomepage:
  selectSqlpastBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(C.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(C.district, ' | ', C.state) as location, B.totalCandidatesInBatch
-  from batch B, trainingpartnerregistration C, trainingpartner A
-  where B.trainingPartnerId = A.trainingPartnerId and A.applicationId = C.applicationId and B.agencyId=3001 and assessmentDate<curdate();
+  from batch B, trainingpartnerregistration C, trainingpartner A, batchassignment D
+  where B.trainingPartnerId = A.trainingPartnerId and A.applicationId = C.applicationId and D.responseType="Approved" and B.agencyId=3001 and B.assessmentDate<curdate();
 
  selectSqlupcomingBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(C.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(C.district, ' | ', C.state) as location, B.totalCandidatesInBatch
-  from batch B, trainingpartnerregistration C, trainingpartner A
-  where B.trainingPartnerId = A.trainingPartnerId and A.applicationId = C.applicationId and B.agencyId=3001 and assessmentDate>curdate();
+  from batch B, trainingpartnerregistration C, trainingpartner A, batchassignment D
+  where B.trainingPartnerId = A.trainingPartnerId and A.applicationId = C.applicationId and D.responseType="Default" and assessmentDate>curdate();
 
  selectSqlassignedBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(C.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(C.district, ' | ', C.state) as location, B.totalCandidatesInBatch
   from batch B, trainingpartnerregistration C, trainingpartner A, batchassignment D
-  where B.trainingPartnerId = A.trainingPartnerId and A.applicationId = C.applicationId and B.agencyId=D.agencyId and D.responseType="Proposed" and B.agencyId=3001 and assessmentDate>curdate();
+  where B.trainingPartnerId = A.trainingPartnerId and A.applicationId = C.applicationId and B.agencyId=D.agencyId and B.batchId=D.batchId and D.responseType="Proposed" and B.agencyId=3001 and assessmentDate>curdate();
  
  selectSqlconfirmedBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(C.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(C.district, ' | ', C.state) as location, B.totalCandidatesInBatch
    from batch B, trainingpartnerregistration C, trainingpartner A, batchassignment D
-   where B.trainingPartnerId = A.trainingPartnerId and A.applicationId = C.applicationId and B.agencyId=D.agencyId and responseType="Approved" and B.agencyId=3001 and assessmentDate>curdate();
+   where B.trainingPartnerId = A.trainingPartnerId and A.applicationId = C.applicationId and B.agencyId=D.agencyId and B.batchId=D.batchId and D.responseType="Approved" and B.agencyId=3001 and assessmentDate>curdate();
 
  updateSqlShowInterest: >
   insert into showinterest(batchId,agencyId)  values (:batchId,:agencyId);
 
  updateSqlapproveBatchesAssessmentBody: >
   UPDATE batchassignment SET responseType="Approved"
-  WHERE batchId = :batchId;
+  WHERE batchId = :batchId,agencyId = :agencyId;
   
  updateSqlrejectBatchesAssessmentBody: >
   UPDATE batchassignment SET responseType="Rejected"

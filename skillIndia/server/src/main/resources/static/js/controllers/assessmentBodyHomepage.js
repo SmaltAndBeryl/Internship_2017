@@ -54,6 +54,8 @@ $http.get('/assessmentBodyApplicationStatus')
    .then(function (response) {
       $scope.gridOptions.data = response.data;
     })
+    
+    //Application status Ends
 	
 	$scope.gridOptions1 = {
 					  enableColumnMenus: false,
@@ -70,10 +72,12 @@ $http.get('/assessmentBodyApplicationStatus')
   };
 	$http.get('/getPastBatchesAssessmentBodyHomepage')
 		.then(function (response) {
-      $scope.gridOptions.data = response.data;
+      $scope.gridOptions1.data = response.data;
     })
 
 
+    //Past Batches table ends
+    
 	  $scope.gridOptions2 = {
 		   enableColumnMenus: false,
            enableSorting: false,
@@ -84,20 +88,39 @@ $http.get('/assessmentBodyApplicationStatus')
 { name:'assessmentDate',displayName:'Assessment Date',cellClass:'cell',headerCellClass:'CommonCell'},
 { name:'location',displayName:'District|State',cellClass:'cell',headerCellClass:'CommonCell'},
 { name:'totalCandidatesInBatch',displayName:'Candidates',displayName:'No. of Candidates',cellClass:'cell',headerCellClass:'CommonCell'},
-{ name:'Show Interest',cellClass:'check',headerCellClass:'CommonCell',cellTemplate: '<div><label><input type="checkbox" value="">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp<button class="btn btn-default" data-toggle="confirmation" onclick="confirmfunction2()" ng-click="grid.appScope.confirmfunction()">&#10004</button></label></div>'}
+{ name:'Show Interest',cellClass:'check',headerCellClass:'CommonCell',cellTemplate: '<div><input type="checkbox" id="myCheck" value="abc" ng-click=grid.appScope.check(row)>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.confirmfinal(row)></div>'}
 ]
 	};
 	  
 	   $http.get('/getUpcomingBatchesAssessmentBodyHomepage')
 	  .then(function (response) {
-      $scope.gridOptions.data = response.data;
+      $scope.gridOptions2.data = response.data;
     })
-	    
-	    $scope.confirmfunction = function(){
-	    console.log("Function Reached");
-	    $http.get('/ShowInterestupcomingtable').success(function(data){
-	     console.log("data populated");
-	    })
+	    var bool;
+	    $scope.check = function(rowData){
+	    console.log("Code Reached");
+	    bool = document.getElementById("myCheck").checked 
+	      if(bool == true)
+	       {
+	       console.log("getit");
+	       }
+	   }
+	   $scope.confirmfinal = function(rowData){
+		     //console.log("Function Reached");
+		     if(bool==true)
+		      {
+		      var interestid = Object.values(Object.values(rowData)[1])[0];
+		         //Code for query update
+		         var urldata = "/showInterest?batchId="+interestid+"&agencyId=3001";
+		console.log("entered");
+		         $http.post(urldata).then(function(response){
+		          
+		                 console.log("batch id for Interest is "+interestid);
+		                 //$scope.response=response.data;
+		             });
+		      
+		      console.log("you are on right track");
+		      }
 	    }
 	   
 	function confirmfunction2()
@@ -112,6 +135,7 @@ $http.get('/assessmentBodyApplicationStatus')
 	     document.getElementById("demo").innerHTML = txt;
 	}
 		
+	//Upcomming Batch table ends
 		$scope.gridOptions3 = {
 				  enableGridMenus : false,  
 				  enableSorting: false, 
@@ -125,24 +149,41 @@ $http.get('/assessmentBodyApplicationStatus')
 { name:'assessmentDate',displayName:'Assessment Date',cellClass:'cell',headerCellClass:'CommonCell'},
 { name:'location',displayName:'District|State',cellClass:'cell',headerCellClass:'CommonCell'},
 { name:'totalCandidatesInBatch',displayName:'Candidates',displayName:'No. of Candidates',cellClass:'cell',headerCellClass:'CommonCell'},
-{ name: 'Action',cellClass:'check',headerCellClass:'CommonCell',cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.myfunction1()>  &nbsp; &nbsp; &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.myfunction2()></label>' }
+{ name: 'Action',cellClass:'check',headerCellClass:'CommonCell',cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.approve(row)>  &nbsp; &nbsp; &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.reject(row)></label>' }
 	    ]};
 
-	    $scope.myfunction1 = function(){
-	        alert("Your comment has been logged..!");
-	        location.href = 'http://www.google.com';
-	    }
+		$scope.approve = function(rowData){
+	         //Extract first cell value
+	         var approveid = Object.values(Object.values(rowData)[1])[0];
 
-	    $scope.myfunction2 = function(){
-	        alert("Your comment has been discarded..!");
-	        location.href = 'http://www.facebook.com';
-	    }
+
+	         //Code for query update
+	         var urldata = "/approveAssignment?batchId="+approveid;
+
+	         $http.post(urldata).then(function(response){
+	                 console.log("batch id for Approve is "+approveid);
+	                 //$scope.response=response.data;
+	             });
+	     }
+		$scope.reject = function(rowData){
+		      var rejectid = Object.values(Object.values(rowData)[1])[0];
+
+
+		         //Code for query update
+		         var urldata = "/rejectAssignment?batchId="+rejectid;
+
+		         $http.post(urldata).then(function(response){
+		                 console.log("batch id for Approve is "+rejectid);
+		                 //$scope.response=response.data;
+		             });
+		     }
 	  
 		$http.get('/getAssignedBatchesAssessmentBodyHomepage')
 	    		.then(function (response) {
-      $scope.gridOptions.data = response.data;
+      $scope.gridOptions3.data = response.data;
 	    })
 	 
+	    //Assign Batch table ends
 	    $scope.gridOptions4 = {
 					  enableColumnMenus: false,
 		  enableSorting: false,
@@ -159,6 +200,8 @@ columnDefs : [
 };
 	$http.get('/getConfirmedBatchesAssessmentBodyHomepage')
 	.then(function (response) {
-      $scope.gridOptions.data = response.data;
+      $scope.gridOptions4.data = response.data;
     })
+    
+    //Confirmed Batch table ends
 };
