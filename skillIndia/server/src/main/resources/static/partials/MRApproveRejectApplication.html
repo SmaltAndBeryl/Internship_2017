@@ -32,12 +32,13 @@
      <h3 class="manage">Manage Registration</h3>
       <div class="table-wrap">
         <h4 class="title">Approve/Reject Forms</h4>
-        <div ng-controller="manageController">
+        <div ng-controller="manageController" class=" approveReject">
           <div  ui-grid="gridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
+          
         </div>
       </div>
-  </div>
-  <div ng-show="messagealert" ng-model="message">{{message}}</div> 
+  
+  
 
     <div class="table1">
         <h4 class="table2-wrap"> Approved Applications </h4>
@@ -60,7 +61,7 @@
             <div ui-grid="gridOptionsIncomplete" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
         </div> 
-    
+    </div>
         
    <script src="/js/MRApproveRejectApplication.js"></script>
 
