@@ -18,20 +18,20 @@ public class ApproveRejectTableDto extends BaseDto{
 	
 	private final Date dateOfSubmission;
 
-	private final String userId;
+	private String userRole;
 	
-	private final String organisationName;
+	private final String organizationName;
 
 	
 	
-	public ApproveRejectTableDto (Integer applicationId, String applicationState, Boolean activeFlag, Date dateOfSubmission,String userId, String organisationName) {
+	public ApproveRejectTableDto (Integer applicationId, String applicationState, Boolean activeFlag, Date dateOfSubmission, String organisationName, String userRole) {
 		super();
 		this.applicationId = applicationId;
 		this.applicationState = applicationState;
 		this.activeFlag = activeFlag;
-		this.dateOfSubmission = dateOfSubmission;
-		this.userId = userId;
-		this.organisationName = organisationName;
+		this.dateOfSubmission = dateOfSubmission;	
+		this.organizationName = organisationName;
+		this.userRole=userRole;
 
 	}
 
@@ -50,11 +50,13 @@ public class ApproveRejectTableDto extends BaseDto{
 	public 	Date getdateOfSubmission() {
 		return dateOfSubmission;
 	}
-	public String getuserId() {
-		return userId;
-}
+
 	public String getOrganisationName()
 	{
-		return organisationName;
+		return organizationName;
+	}
+	public String getUserRole()
+	{
+		return userRole;
 	}
 }

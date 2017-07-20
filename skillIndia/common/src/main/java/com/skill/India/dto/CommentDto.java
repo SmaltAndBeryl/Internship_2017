@@ -4,11 +4,24 @@ public class CommentDto {
 	
 	private  String comment;
 	private  int applicationId;
+	private String applicationState;
 	/**
 	 * @return the comment
 	 */
 	public String getComment() {
 		return comment;
+	}
+	/**
+	 * @return the applicationState
+	 */
+	public String getApplicationState() {
+		return applicationState;
+	}
+	/**
+	 * @param applicationState the applicationState to set
+	 */
+	public void setApplicationState(String applicationState) {
+		this.applicationState = applicationState;
 	}
 	/**
 	 * @param comment the comment to set
