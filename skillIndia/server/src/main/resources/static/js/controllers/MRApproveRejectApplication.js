@@ -4,7 +4,8 @@ var manage = angular
                     .module('manage', [
                         'ui.grid',
                         'ui.grid.edit',
-                        'ui.grid.cellNav'
+                        'ui.grid.cellNav',
+                        
                     ]);
 
 //app.controller('MainCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
@@ -13,7 +14,8 @@ manage.controller('manageController', manageController);
 manageController.$inject = ['$scope', '$location', '$http'];
 
 function manageController($scope, $location, $http){
-	$scope.messagealert= false;
+	
+		$scope.messagealert= false;
   //refresh();
        //Grid for submitted application
   $scope.gridOptions = {
@@ -32,7 +34,7 @@ function manageController($scope, $location, $http){
               { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'},
               { name: 'userId', displayName:'View Application', cellTemplate:'<img src="icon/indexPageIcons/pdf.png" ng-click=grid.appScope.myfunction()>',headerCellClass:'Institution-Name', cellClass:'va',width:120},
               { name: 'Comments', displayName:'Comments' ,enableCellEdit: true,headerCellClass:'Institution-Name',cellClass:'va'},
-        { name: 'Action', displayName:'Action' , cellTemplate: '<label><img src="icon/indexPageIcons/edit.png"  ng-click=grid.appScope.myfunctionedit(row)>&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.myfunctionapprove(row)>  &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png"  ng-click=grid.appScope.myfunctionreject(row)></label>',headerCellClass:'Institution-Name',cellClass:'va'}
+        { name: 'Action', displayName:'Action' , cellTemplate: '<label><img src="icon/indexPageIcons/edit.png"  ng-click=grid.appScope.myfunctionedit(row) ">&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.myfunctionapprove(row); >  &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png"  ng-click=grid.appScope.myfunctionreject(row) ></label>',headerCellClass:'Institution-Name',cellClass:'va'}
               
     ]
   }; 
@@ -69,8 +71,7 @@ function manageController($scope, $location, $http){
                 { name: 'applicationId', displayName: '#', cellClass:'sno',headerCellClass:'Institution-Name', width: 30},
         { name: 'organisationName', displayName: 'Institution Name' ,cellClass:'fname',headerCellClass:'Institution-Name' },
                 { name: 'userRole',displayName: 'Type' , cellClass:'Type',headerCellClass:'Institution-Name'},
-                { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'}, 
-                { name: 'Comments', displayName:'Comments' ,enableCellEdit: true,headerCellClass:'Institution-Name',cellClass:'va'}
+                { name: 'dateOfSubmission', displayName: 'Date',cellClass:'layer',headerCellClass:'Institution-Name'}
                ]
     }; 
    
@@ -90,12 +91,14 @@ function manageController($scope, $location, $http){
                 ]
     };
    
+    
     $http.get('/approve')
     .then(function(response){
       $scope.gridOptions.data = response.data.submitted;
       $scope.gridOptionsRejected.data = response.data.rejected;
       $scope.gridOptionsApproved.data = response.data.approved;
       $scope.gridOptionsIncomplete.data = response.data.incomplete;
+     
   });
     
     
@@ -103,6 +106,8 @@ function manageController($scope, $location, $http){
   
     $scope.myfunctionedit = function(rowData){
     	$scope.messagealert= false;
+  
+    	
     	var editdetailsOfApplication = {    			
     						applicationState: 'incomplete',
     						applicationId: rowData.entity.applicationId,
@@ -126,8 +131,8 @@ function manageController($scope, $location, $http){
 					}).then(
 							function(response)
 							{
-								$scope.message = response.data.successMessage;
-								$scope.messagealert= true;
+							
+								
 								 $http.get('/approve')
 						    	    .then(function(dataResponse){
 						    	      $scope.gridOptions.data = dataResponse.data.submitted;
@@ -135,12 +140,26 @@ function manageController($scope, $location, $http){
 						    	      $scope.gridOptionsRejected.data = dataResponse.data.rejected;
 						    	      $scope.gridOptionsApproved.data = dataResponse.data.approved;
 						    	      
+						    	      var message = response.data.successMessage;
+										console.log(response.data);
+										$scope.message = response.data.successMessage;
+										$scope.messagealert= true;
+										var success=$scope.message;
+										console.log('THIS IS THE RESPONSE IN THE COMMENT:'+success);	
+									    alert(success);
+										  	    
+						    	      
 						    	  })
 							},
 							function(errorResponse, status)
 							{
+								
 								$scope.message = response.data.errorMessage;
 								$scope.messagealert= true;
+								var failure=$scope.message;
+								console.log('THIS IS THE RESPONSE IN THE COMMENT:'+failure);	
+							    alert(failure);
+								
 							}
 							)
     };
@@ -176,17 +195,25 @@ function manageController($scope, $location, $http){
 				data: angular.toJson(editDetailsOfApplication),
 			}).then(function(response){
 				
-				var message = response.data.successMessage;
-				console.log(response.data);
-				$scope.message = response.data.successMessage;
-				$scope.messagealert= true;
+				
 				 $http.get('/approve')
 		    	    .then(function(dataResponse){
 		    	      $scope.gridOptions.data = dataResponse.data.submitted;
 		    	      $scope.gridOptionsApproved.data = dataResponse.data.approved;
 		    	      $scope.gridOptionsIncomplete.data = dataResponse.data.incomplete;
 		    	      $scope.gridOptionsRejected.data = dataResponse.data.rejected;	    	      
-		    	      
+		    	     
+		    	      var message = response.data.successMessage;
+						console.log(response.data);
+						$scope.message = response.data.successMessage;
+						$scope.messagelert= true;
+						var success=$scope.message;
+						console.log('THIS IS THE RESPONSE'+success);
+						
+						
+			    	    alert(success); 
+							
+						
 		    	  })
 
 				
@@ -196,6 +223,9 @@ function manageController($scope, $location, $http){
 				alert(error.data.errorMessage);
 				$scope.message = response.data.errorMessage;
 				$scope.messagealert = true;
+				var failure=$scope.message;
+				console.log('THIS IS THE RESPONSE :'+failure);	
+			    alert(failure);
 
 			}
 			)
@@ -209,6 +239,7 @@ function manageController($scope, $location, $http){
     $scope.myfunctionreject = function(rowData){
     	 alert("are you sure you want to accept this application")
     	 $scope.messagealert= false;
+    	 
     	
         
     	var rejectApplicationData = {
@@ -229,14 +260,26 @@ function manageController($scope, $location, $http){
 				$scope.message = response.data.successMessage;
 				$scope.messageAlert = true;
 				console.log(response.data.successMessage);
-				 $http.get('/approve')
+				
+				
+				
+				$http.get('/approve')
 		    	    .then(function(dataResponse){
 		    	      $scope.gridOptions.data = dataResponse.data.submitted;
 		    	      $scope.gridOptionsRejected.data = dataResponse.data.rejected;	
 		    	      $scope.gridOptionsApproved.data = dataResponse.data.approved;
 		    	      $scope.gridOptionsIncomplete.data = dataResponse.data.incomplete;
-		    	          	      
-		    	      
+		    	     	      
+		    	      var message = response.data.successMessage;
+						console.log('THIS IS THE REPOSMSEEESEESESEESE'+response.data);
+						$scope.message = response.data.successMessage;
+						$scope.messagealert= true;
+						var success=$scope.message;
+						console.log('THIS IS THE RESPONSE'+success);
+						
+			    	    alert(success);
+			    	      
+
 		    	  })
 			},
 			function(errorResponse, status)
@@ -244,34 +287,15 @@ function manageController($scope, $location, $http){
 				console.log(error.data.errorMessage);
 				$scope.message = error.data.errorMessage
 				$scope.messageAlert = true;
+				var failure=$scope.message;
+				console.log('THIS IS THE RESPONSE :'+failure);	
+			    alert(failure);
 			}
 			)
-};
-    
-//    // accepted table
-//    
-//    manage.controller('manageController', manageController);
-//
-//    manageController.$inject = ['$scope', '$location', '$http'];
-//
-//    function manageController($scope, $location, $http){
-//      //refresh();
-//           
-      
-      
-      //for Incomplete Applications
-    
-      
+    };    
+   
 
-//             //rejected table     
-//              
-//                  manage.controller('manageController', manageController);
-//
-//                  manageController.$inject = ['$scope', '$location', '$http'];
-//
-//                  function manageController($scope, $location, $http){
-//                    //refresh();
-//                         
-                  
-                    
-  }
+
+};
+
+
