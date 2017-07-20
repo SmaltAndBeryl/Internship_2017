@@ -10,60 +10,180 @@ batch.controller('batchController', batchController)
 batchController.$inject = ['$scope', '$http', '$log', '$location'];
 function batchController($scope, $http, $log, $location){
 
-// Non-Assigned Batches Grid Info
-	
-    $scope.nonAssignedBatchGridOptions = {
+    $http.get('/dropdown')
+        .then(function(response){
+            console.log("get successful")
+            $scope.genderTypes  = response.data;
+        })
+
+    $scope.gridOptions = {
+        enableGridMenus : false,
         enableSorting: false,
-        enableColumnMenus: false,
-        verticalScrollbar:0,
-        columnDefs: [
-            {name : 'batchID', displayName : 'Batch ID'},
-            {name : 'state', displayName : 'Location'},
-            {name : 'batchEndDate', displayName : 'End Date'},
-            {name : 'assessmentDate', displayName : 'Assessment Date'},
-            {name : 'recommendedAB', displayName : 'Recommended AB'},
-//          {name : 'assignedAB',
-//           displayName : 'Assigned AB',
-//           width : 80,
-//           cellTemplate : '<span><select ng-model="myColor"><option ng-repeat="name in ["alkesh","frank"]">{{name}}</option></select>'},
-            {name : 'Assign',
-             displayName: 'Assign',
-             cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.saveFunction(row)></label>'}
-            ]
+    	enableFiltering: false,
+        enableCellEdit : false,
+        enableColumnMenus : false,
+
+        columnDefs : [
+            { name : 'batchID', displayName : 'Batch ID'},
+            { name : 'state', displayName : 'Location'},
+            { name : 'batchEndDate', displayName : 'End Date'},
+            { name : 'assessmentDate', displayName : 'Assessment Date'},
+            { name : 'recommendedAB',
+              displayName : 'Suggestion',
+              enableCellEdit : true,
+              cellTemplate : 'partials/suggest.html'
+              },
+            { name : 'assignedAB',
+              displayName : 'Assigned AB',
+//               width : 80,
+              enableCellEdit: true,
+              cellTemplate : 'partials/dropdown.html'},
+
+
+            { name : 'Assign',
+              displayName: 'Assign',
+              cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.pushFunction(row)></label>'}
+        ]
     };
 
     var btc = "";
+    //Get the batches
     $http.get('/non')
         //$http.get("batch.json")
             .then(function(response){
-                $scope.nonAssignedBatchGridOptions.data = response.data;
-                //var obj = $scope.gridOptions.data[0].batchID;
-                //var str = JSON.stringify(obj);
-                //btc = str;
-                //console.log("VALUE is "+obj+" another " + str + btc);
+                console.log(response.data)
+                $scope.gridOptions.data = response.data;
             });
 
 
-$scope.show = function(){['Lancelot', 'Touchstone'];}
-    $scope.saveFunction = function(rowData){
-        alert("Button is working..!!");
+    $scope.suggestFunction = function(rowData){
+        alert("Thanks for choosing..!");
+        var batchIdFromRow = rowData.entity.batchID;
+        var agencyIdFromRow = 3001;
 
-        //Extract first cell value
-        var abj = Object.values(Object.values(rowData)[1])[0];
-        console.log("Row Data is " + abj);
+        console.log("Batch and Agency ID are " + batchIdFromRow + " " + agencyIdFromRow);
 
+        var getBatchId = "getBatchId";
+        var getAgencyId = "getAgencyId";
 
-        //Code for query update
-        var urldata = "/nonUpdate";
-
+//      Code hit to get the batchId, state and centre
         $http({
-            url : urldata,
-            method : "POST",
-            params : { batchId : abj }
-        })
-            .then(function(response){
-                console.log("Status changed to proposed.! "+ btc)
+             url : getBatchId,
+             method : "POST",
+             params : { batchId :  batchIdFromRow }
+          })
+         .then(function(response){
+             console.log("The batches are " + JSON.stringify(response.data));
+             var suggested = [];
+                     var i = 0;
+                     var nameOfAgency;
+
+                     //Parameter 1 - Code to get the show interested agencies
+                     $http({
+                         url : getAgencyId,
+                         method : "POST",
+                         params : { batchId : batchIdFromRow }
+                     })
+                         .then(function(response){
+                             for(var key in response.data){
+                                 suggested[i++] = response.data[key].agencyName;
+                             }
+
+                             // x stores the number of bodies who have shown interest
+                             var x = 0;
+
+                             for(x in suggested){
+                                 console.log("Suggested body is >> " + suggested[x]);
+                             }
+
+
+
+                             console.log("The number of bodies recommended bodies are " + x);
+
+                             //If number of bodies is greater than one then move to second parameter
+                             if(x > 1){
+                                 console.log("Multiple bodies have shown interest, moving to next parameter...")
+                                 //Move on to second parameter
+                                 $http.get('getAssessorState')
+                                     .then(function(response){
+                                     //Now allot marks on the basis of parameters
+                                         $http.get('getAgencyName')
+                                             .then(function(response){
+                                                 //initialize in a variable
+                                                 nameOfAgency = JSON.parse(response).data;
+                                                 console.log("The recommended AB is >> " + nameOfAgency);
+                                                 alert("Recommended AB >> " + nameOfAgency);
+                                             })
+                                     })
+                             }
+
+                             //If exactly one body has shown interest, then display the assessment body
+                             if(x == 1){
+
+                                 console.log("TOP RECOMMENDATION >> " + suggested[0]);
+                                 $scope.suggestedAB = suggested[0];
+                                 console.log("The scope variable is >> " + $scope.suggestedAB);
+                                 alert("Recommended AB >> " + suggested[0]);
+                                 $scope.suggestedAB = function(){
+                                     console.log("suggested AB is >> " + suggested[0]);
+                                 }
+                             }
+
+                             //If no one has shown interest, move to second parameter
+                             if(x == 0){
+                             console.log("No one has shown interest..moving to next parameters..")
+                             var req = {
+                                method : 'GET',
+                                url : 'getAssessorState',
+                                transformResponse : [function(data){
+                                    var res = data;
+                                    return data;
+                                }]
+                             }
+                             $http(req)
+                              .then(function(response){
+                              //Now allot marks on the basis of parameters
+                                  $http.get('getAgencyName')
+                                      .then(function(response){
+                                          console.log("get successful..")
+                                          //initialize in a variable
+                                          nameOfAgency = JSON.parse(response.data);
+                                          console.log("The recommended AB is >> " + nameOfAgency);
+                                          alert("Recommended AB >> " + nameOfAgency);
+                                      })
+                              })
+//                                 console.log("Sorry, no recommendation for now as no one has shown interest..!");
+                             }
+                       })
+             })
+
+    };
+
+    // Code to update the DB
+    $scope.pushFunction = function(rowData){
+
+        var batchIdFromRow = rowData.entity.batchID;
+        var agencyIdFromRow = 3001;
+        console.log("Batch and Agency ID are " + batchIdFromRow + " " + agencyIdFromRow);
+
+        // If assessment body is not set, do not update the DB
+        if(agencyIdFromRow == 0){
+            alert("Please select an assessment body first...!!");
+        }
+
+        else{
+            //Code for batches update
+            var urldata = "/nonUpdate";
+            $http({
+                url : urldata,
+                method : "POST",
+                params : {batchId : batchIdFromRow}
             })
+                .then(function(response){
+                    alert("Your response has been recorded..!")
+                    console.log("Status changed to proposed.! "+ btc)
+                })
+        }
     };
     
     // JS for search bar
@@ -94,6 +214,7 @@ $scope.show = function(){['Lancelot', 'Touchstone'];}
     	};
 
     //Other tables JS code
+    //Other tables >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     $scope.proposedBatchesBatchAssignmentGridOptions = {
     		  enableGridMenus: false,
     		  enableSorting: false,
