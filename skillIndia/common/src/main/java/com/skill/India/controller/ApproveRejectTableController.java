@@ -68,7 +68,7 @@ import com.skill.India.service.ApproveRejectTableService;
 			 try
 			 {
 				 
-				 String commentResult =approveRejectTableService.editUserApplication(commentDto.getApplicationId(), commentDto.getComment());
+				 String commentResult =approveRejectTableService.editUserApplication(commentDto.getApplicationId(), commentDto.getComment(), commentDto.getApplicationState());
 				 approveRegistartionMessage.setSuccessMessage("Changes made successfully");
 				 LOGGER.info("Result of inserting comments in Database is -"+ commentResult);
 			 }
