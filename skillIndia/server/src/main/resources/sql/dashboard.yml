@@ -32,5 +32,5 @@ dashboard:
    from batch where batchType='non-pmkvy'group by 1,batchMode HAVING YEARS BETWEEN YEAR(CURDATE())-2 AND YEAR(CURDATE()) order by 1,3
    
  selectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears: >
-  select Year(batchEndDate) AS YEARS,batchType,(SUM(totalPass)+SUM(totalFail)) AS TRAINED 
-   from batch group by 1,batchType HAVING YEARS BETWEEN YEAR(CURDATE())-2 AND YEAR(CURDATE())  order by 1,2 desc;  
+  select Year(batchEndDate) AS YEARS,batchType,SUM(totalCandidatesInBatch) AS TRAINED 
+   from batch group by 1,batchType HAVING YEARS BETWEEN YEAR(CURDATE())-2 AND YEAR(CURDATE())  order by 1,2 desc
