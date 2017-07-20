@@ -52,7 +52,7 @@ faq:
   
  selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise: >
    SELECT COUNT(batchId) AS BATCHES,SUM(totalCandidatesInBatch) AS TOTALCANDIDATES 
-    FROM batch B,centre C where B.centreId = C.centreId and B.batchStartDate<=curDate() AND B.batchEndDate>curDate() and C.state=:state and B.batchType=:batchType
+    FROM batch B where B.batchStartDate<=curDate() AND B.batchEndDate>curDate() AND B.batchType=:batchType
   
  selectSqlCountTotalAssessorsOfAParticularAgencyInAParticularState: >
   SELECT COUNT(assessorId) FROM assessor A, agency B WHERE A.agencyId = B.agencyId and B.agencyName=:agencyName and A.state = :state;
