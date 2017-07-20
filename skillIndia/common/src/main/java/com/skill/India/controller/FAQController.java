@@ -147,11 +147,11 @@ public class FAQController {
 		}
 	}
 	
-	@RequestMapping(value="/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise",method=RequestMethod.POST)
-	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountTotalNumberOfBatchesInAParticularScheme(@RequestParam("batchType") String batchType, @RequestParam("state") String state) {
+	@RequestMapping(value="/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularScheme",method=RequestMethod.POST)
+	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountTotalNumberOfBatchesInAParticularScheme(@RequestParam("batchType") String batchType) {
 		try
 		{
-			return fAQService.getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(state,batchType);
+			return fAQService.getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(batchType);
 		}
 		catch(Exception exception)
 		{
@@ -255,11 +255,11 @@ public class FAQController {
 			}
 			else if(candidates.equalsIgnoreCase("Assessed"))
 			{
-				return fAQService.getCountOfFAQCandidatesEnrolledMonthWise(year);
+				return fAQService.getCountOfFAQCandidatesAssessedMonthWise(year);
 			}
 			else if(candidates.equalsIgnoreCase("Certified"))
 			{
-				return fAQService.getCountOfFAQCandidatesEnrolledMonthWise(year);
+				return fAQService.getCountOfFAQCandidatesCertifiedMonthWise(year);
 			}
 			else
 			{

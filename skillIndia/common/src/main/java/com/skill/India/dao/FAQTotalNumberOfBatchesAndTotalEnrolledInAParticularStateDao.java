@@ -35,9 +35,8 @@ public class FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDao extend
 		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState(), parameters, ROW_MAPPER);
 	}
 	
-	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(String state,String batchType) {
+	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(String batchType) {
 		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("state", state);
 		parameters.put("batchType", batchType);
 		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(), parameters, ROW_MAPPER);
 	}
