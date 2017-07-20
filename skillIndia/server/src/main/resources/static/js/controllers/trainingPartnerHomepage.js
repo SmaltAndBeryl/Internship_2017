@@ -144,13 +144,31 @@ $http.get('/trainingPartnerApplicationStatus')
 										},
 										{ name: 'noOfCandidates' ,	displayName:'Number of Candidates',	cellClass:'Prostokt-2-kopia-2-copy-13',	headerCellClass:'candidates',
 										},
-										{name:'Display', displayName: 'Download Certificate', cellClass:'download',  headerCellClass:'downCer', cellTemplate: '<img src="icon/CertificateDownlad/Certificate Download.png" ng-click=grid.appScope.myfunction()>'}
+										{name:'Display', displayName: 'Download Certificate', cellClass:'download',  headerCellClass:'downCer', cellTemplate: '<img src="icon/CertificateDownlad/Certificate Download.png" ng-click=grid.appScope.downloadCertificate(row)>'}
 											]	
 		 };
 		 $http.get("/trainingPartnerPastBatches")
 		    .then(function (response) {
 		      $scope.pastGridOptions.data= response.data.PastBatches;
 		    })	
+		    
+		    
+		    $scope.downloadCertificate = function(rowData){ 
+			  var  fileName = rowData.entity.batchId;
+			   console.log("the row value is >>>" + rowData.entity.batchId);
+			   var urldata = "/downloadCertificate/"+ fileName;
+			 
+			   window.open(urldata);
+			};
+			
+			
+		    
+		    
+		    
+		    
+		    
+		    
+		 
 };
 	
 	
