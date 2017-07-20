@@ -41,9 +41,9 @@ public class BatchAssignmentSearchDao extends AbstractTransactionalDao{
 			String batchEndDate = resultSet.getString("batchEndDate");
 			String assessmentDate = resultSet.getString("assessmentDate");
 			Integer batchId= resultSet.getInt("batchId");
-			String assessorName = resultSet.getString("assessorName");
+			String agencyName = resultSet.getString("agencyName");
 			
-			return new BatchAssignmentSearchDto(state, batchEndDate, assessmentDate, batchId, assessorName);
+			return new BatchAssignmentSearchDto(state, batchEndDate, assessmentDate, batchId, agencyName);
 		}
 
 	}

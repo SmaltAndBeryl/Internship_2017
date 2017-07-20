@@ -13,6 +13,8 @@ public class BatchAssignmentDto {
 	private String batchEndDate;
 	
 	private String assessmentDate;
+	
+	private String agencyName;
 
 	/**
 	 * @return the batchId
@@ -70,11 +72,26 @@ public class BatchAssignmentDto {
 		this.assessmentDate = assessmentDate;
 	}
 
-	public BatchAssignmentDto(Integer batchId, String location, String batchEndDate, String assessmentDate) {
+	/**
+	 * @return the agencyName
+	 */
+	public String getAgencyName() {
+		return agencyName;
+	}
+
+	/**
+	 * @param agencyName the agencyName to set
+	 */
+	public void setAgencyName(String agencyName) {
+		this.agencyName = agencyName;
+	}
+
+	public BatchAssignmentDto(Integer batchId, String location, String batchEndDate, String assessmentDate, String agencyName) {
 		super();
 		this.batchId = batchId;
 		this.location = location;
 		this.batchEndDate = batchEndDate;
 		this.assessmentDate = assessmentDate;
+		this.agencyName = agencyName;
 	}
 }
