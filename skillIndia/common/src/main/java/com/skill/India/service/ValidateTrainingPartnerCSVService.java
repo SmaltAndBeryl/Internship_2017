@@ -72,25 +72,13 @@ public class ValidateTrainingPartnerCSVService {
 			String trainingPartnerId=trainingPartnerCSVData.getTrainingPartnerId();
 			String applicationId=trainingPartnerCSVData.getApplicationId();
 			String trainingPartnerName=trainingPartnerCSVData.getTrainingPartnerName();
-		
-			
-			/*
-			 * Checking for Mandatory fields 
-			 */
-			
-			if(trainingPartnerId.equals("") || applicationId.equals("") ||
-					trainingPartnerName.equals("")){
-				errorStatus=1;
-				errorString=errorString+"Mandatory fields cannot be Empty ";
-			}
-			
 			
 			/*
 			 * Checking for error in trainingPartnerId column 
 			 */
 			
 			
-			if(!ValidationUtils.numbersCheck(trainingPartnerId))
+			if(trainingPartnerId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'trainingPartnerId column '";
@@ -100,7 +88,7 @@ public class ValidateTrainingPartnerCSVService {
 			 * Checking for error in applicationId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(applicationId))
+			if(!ValidationUtils.numbersCheck(applicationId) || applicationId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'applicationId' column ";
@@ -110,7 +98,7 @@ public class ValidateTrainingPartnerCSVService {
 			 * Checking for error in trainingPartnerName column 
 			 */
 			
-			if(ValidationUtils.numbersCheck(trainingPartnerName))
+			if(ValidationUtils.numbersCheck(trainingPartnerName) || trainingPartnerName.equals("") )
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'trainingPartnerName' column ";
@@ -129,6 +117,7 @@ public class ValidateTrainingPartnerCSVService {
 				 */
 				
 				trainingPartnerName=trainingPartnerName.toLowerCase();
+				trainingPartnerId=trainingPartnerId.toLowerCase();
 				
 				 /*
 				  * Inserting row wise data in HashMap
@@ -161,27 +150,52 @@ public class ValidateTrainingPartnerCSVService {
 		/*
 		 * Checking for foreign key constraint of applictionId in Application record
 		 */
-		
-		try{				
-			for(Map<String, Object> getRecord:arrayOfRecords)
-				{	
-				int status=dataImportTrainingPartnerDao.dataImportTrainingPartnerForeignKeyConstraintCheck(getRecord);
-				if(status==0 || status==2)
-				{
-				throw new Exception();	
-				}
 				
-				} 	//end of for  
-			}	// end of try
-			catch(Exception e)
-			{	
-				trainingPartnerCSVReader.close();
-				File deleteUploadedFile = new File(trainingPartnerCSVFileName);
-				deleteUploadedFile.delete();
-				e.printStackTrace();
-				return "Error in applicationId column. Kindly recheck the details ."
-			+ "applicationId not found in Application record .";
+		int recordCount=0;
+		int status=0;
+		int errorExist=0;
+		String errorListAllRecords="";
+
+	try{
+		for(Map<String, Object> getRecord:arrayOfRecords)
+		{	
+			String errorString="";
+			int errorStatus=0;
+			recordCount++;
+			
+			status=dataImportTrainingPartnerDao.dataImportTrainingPartnerForeignKeyConstraintCheck(getRecord);
+			if(status==0 || status==2)
+			{
+				errorStatus=1;
+				errorString=errorString+ "applicationId key mismatch .";
 			}
+			
+			if(errorStatus==1)
+			{
+				errorExist=1;
+				errorString="Error in Record "+recordCount + "." + errorString;
+				errorListAllRecords=errorListAllRecords+errorString;	
+			}
+			
+		}
+		if(errorExist==1)
+		{
+			trainingPartnerCSVReader.close();
+			File deleteUploadedFile = new File(trainingPartnerCSVFileName);
+		    deleteUploadedFile.delete();
+			return errorListAllRecords;
+		}
+		
+		
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		File deleteUploadedFile = new File(trainingPartnerCSVFileName);
+	    deleteUploadedFile.delete();
+		return "Error checking Foreign key constraint . Kindly try again .";
+		
+	}
 		
 		/*
 		 * Checking primary key Constraints and performing respective actions  
@@ -191,7 +205,7 @@ public class ValidateTrainingPartnerCSVService {
 				for(Map<String, Object> getRecord:arrayOfRecords)
 				{
 														
-				int status=dataImportTrainingPartnerDao.dataImportTrainingPartnerPrimaryKeyConstraintCheck(getRecord);
+				status=dataImportTrainingPartnerDao.dataImportTrainingPartnerPrimaryKeyConstraintCheck(getRecord);
 				if(status==0)
 				{
 					/*
@@ -233,11 +247,12 @@ public class ValidateTrainingPartnerCSVService {
 				uploadedFileInfo.put("csvUploadDate",date);
 				uploadedFileInfo.put("csvUploadUserId",userId);
 				
+				
 				/*
 				 * Checking for valid UserId (Foreign key constraint)
 				 */
 				
-				int status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
+				status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
 				if(status==0 || status==2)
 				{
 				File deleteUploadedFile = new File(trainingPartnerCSVFileName);

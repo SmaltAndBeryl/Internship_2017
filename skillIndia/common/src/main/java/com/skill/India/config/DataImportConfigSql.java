@@ -24,7 +24,8 @@ public class DataImportConfigSql {
 		 * For Candidate
 		 */
 				
-		private String batchIdemployerIdExistsForCandidate;
+		private String batchIdExistsForCandidate;
+		private String employerIdExistsForCandidate;
 		private String candidateDeatilsIdExistsForCandidate;
 		private String insertIntoCandidateSql;
 		private String updateIntoCandidateSql;
@@ -108,6 +109,34 @@ public class DataImportConfigSql {
 		
 		
 		
+		/**
+		 * @return the batchIdExistsForCandidate
+		 */
+		public String getBatchIdExistsForCandidate() {
+			return batchIdExistsForCandidate;
+		}
+
+		/**
+		 * @param batchIdExistsForCandidate the batchIdExistsForCandidate to set
+		 */
+		public void setBatchIdExistsForCandidate(String batchIdExistsForCandidate) {
+			this.batchIdExistsForCandidate = batchIdExistsForCandidate;
+		}
+
+		/**
+		 * @return the employerIdExistsForCandidate
+		 */
+		public String getEmployerIdExistsForCandidate() {
+			return employerIdExistsForCandidate;
+		}
+
+		/**
+		 * @param employerIdExistsForCandidate the employerIdExistsForCandidate to set
+		 */
+		public void setEmployerIdExistsForCandidate(String employerIdExistsForCandidate) {
+			this.employerIdExistsForCandidate = employerIdExistsForCandidate;
+		}
+
 		/**
 		 * @return the trainingPartnerIdExistsForBatch
 		 */
@@ -605,22 +634,7 @@ public class DataImportConfigSql {
 		public void setUpdateIntoCandidateSql(String updateIntoCandidateSql) {
 			this.updateIntoCandidateSql = updateIntoCandidateSql;
 		}
-
-		/**
-		 * @return the batchIdemployerIdExistsForCandidate
-		 */
-		public String getBatchIdemployerIdExistsForCandidate() {
-			return batchIdemployerIdExistsForCandidate;
-		}
-
-		/**
-		 * @param batchIdemployerIdExistsForCandidate the batchIdemployerIdExistsForCandidate to set
-		 */
-		public void setBatchIdemployerIdExistsForCandidate(
-				String batchIdemployerIdExistsForCandidate) {
-			this.batchIdemployerIdExistsForCandidate = batchIdemployerIdExistsForCandidate;
-		}
-
+		
 		/**
 		 * @return the updateIntoAssessorSql
 		 */

@@ -20,17 +20,34 @@ public class DataImportCandidateDao extends AbstractTransactionalDao {
 	@Autowired
 	private DataImportConfigSql dataImportConfigSql;
 	
-	public int dataImportCandidateForeignKeyConstraintCheck(Map<String,Object> getRecord)
+	public int dataImportCandidateBatchIdCheck(Map<String,Object> getRecord)
 	{
 		/*
-		 * checking for foreign key constraint on batchId,employerId  column in Batch,Employer Table 
+		 * checking for foreign key constraint on batchId column in Batch Table 
 		 */
 		try{				
 		
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("batchId",getRecord.get("batchId"));
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getBatchIdExistsForCandidate(), parameters,Integer.class );					
+		}	// end of try
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return 2;
+		}
+	}
+	
+	public int dataImportCandidateEmployerIdCheck(Map<String,Object> getRecord)
+	{
+		/*
+		 * checking for foreign key constraint on batchId column in Batch Table 
+		 */
+		try{				
+		
+		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("employerId",getRecord.get("employerId"));
-		return getJdbcTemplate().queryForObject(dataImportConfigSql.getBatchIdemployerIdExistsForCandidate(), parameters,Integer.class );					
+		return getJdbcTemplate().queryForObject(dataImportConfigSql.getEmployerIdExistsForCandidate(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
 		{

@@ -129,7 +129,7 @@ public class ValidateBatchCSVService {
 			 */
 			
 			
-			if(!ValidationUtils.numbersCheck(trainingPartnerId) || trainingPartnerId.equals(""))
+			if(trainingPartnerId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString +"Error in 'trainingPartnerId' column .";
@@ -361,6 +361,7 @@ public class ValidateBatchCSVService {
 				batchMode=batchMode.toLowerCase();
 				jobRole=jobRole.toLowerCase();
 				jobRoleCode=jobRoleCode.toLowerCase();
+				trainingPartnerId=trainingPartnerId.toLowerCase();
 				
 				/*
 				 * Setting value of empty fields 
@@ -503,20 +504,24 @@ public class ValidateBatchCSVService {
 					errorString=errorString+ "trainerId key mismatch .";
 				}
 					
-				status=dataImportBatchDao.dataImportBatchAgencyIdCheck(getRecord);
+				if(!getRecord.get("agencyId").equals("0"))
+				{
+					status=dataImportBatchDao.dataImportBatchAgencyIdCheck(getRecord);
 				if(status==0 || status==2)
 				{
 					errorStatus=1;
 					errorString=errorString+ "agencyId key mismatch .";
 				}
-				
+				}
+				if(!getRecord.get("assessorId").equals("0"))
+				{
 				status=dataImportBatchDao.dataImportBatchAssessorIdCheck(getRecord);
 				if(status==0 || status==2)
 				{
 					errorStatus=1;
 					errorString=errorString+ "assessorId key mismatch .";
 				}
-				
+				}
 				
 				if(errorStatus==1)
 				{

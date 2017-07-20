@@ -91,29 +91,9 @@ public class ValidateCandidateCSVService {
 			String employerId=CandidateCSVData.getEmployerId();
 	
 			/*
-			 * Validating empty fields 
-			 */
-			
-			if(candidateDetailsId.equals("") || candidateName.equals("") || enrollmentNumber.equals("") || 
-				gender.equals("") || dateOfBirth.equals("") || nameOfFatherOrHusband.equals("") || 
-				emailId.equals("") || educationLevel.equals("") || traineeAddress.equals("") ||  
-				traineePINCode.equals("") || result.equals("") || certified.equals("") 
-				||  placementStatus.equals("") || batchId.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString+"Mandatory Fields cant be empty .";			
-			}
-			
-			
-			/*
-			 * No validation done on Trainee Address & Education Level 
-			 */
-		
-		
-			/*
 			 * Checking for error in candidateDetailsId column
 			 */
-			if(!ValidationUtils.numbersCheck(candidateDetailsId))
+			if(!ValidationUtils.numbersCheck(candidateDetailsId) || candidateDetailsId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+"Error in  'candidateDetailsId' column .";
@@ -122,17 +102,26 @@ public class ValidateCandidateCSVService {
 			/*
 			 * Checking for error in candidateName column
 			 */
-			if(ValidationUtils.numbersCheck(candidateName))
+			if(ValidationUtils.numbersCheck(candidateName) || candidateName.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+"Error in  'candidateName' column .";
+			}
+			
+			/*
+			 * Checking for error in enrollmentNumber column
+			 */
+			if(enrollmentNumber.equals(""))
+			{
+				errorStatus=1;
+				errorString=errorString +"Error in  'enrollmentNumber' column .";
 			}
 			
 			
 			/*
 			 * Checking for error in gender column
 			 */
-			if(!ValidationUtils.lettersCheck(gender))
+			if(!ValidationUtils.lettersCheck(gender) || gender.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString +"Error in  'gender' column .";
@@ -141,7 +130,7 @@ public class ValidateCandidateCSVService {
 			/*
 			 * Checking for error in dateOfBirth column
 			 */
-			if(!ValidationUtils.dateFormatCheck(dateOfBirth))
+			if(!ValidationUtils.dateFormatCheck(dateOfBirth) || dateOfBirth.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+"Error in  'dateOfBirth' column .";
@@ -150,7 +139,7 @@ public class ValidateCandidateCSVService {
 			/*
 			 * Checking for error in nameOfFatherOrHusband column
 			 */
-			if(ValidationUtils.numbersCheck(nameOfFatherOrHusband))
+			if(ValidationUtils.numbersCheck(nameOfFatherOrHusband) || nameOfFatherOrHusband.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in  'nameOfFatherOrHusband' column .";
@@ -178,16 +167,16 @@ public class ValidateCandidateCSVService {
 			 * Checking for error in emailId column
 			 */
 			
-			if(!ValidationUtils.emailCheck(emailId))
+			if(!(ValidationUtils.emailCheck(emailId) || emailId.equals("")))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in  'emailId' column .";
 			}
-		
+				
 			/*
 			 * Checking for error in traineePINCode column
 			 */
-			if(!ValidationUtils.pincodeNumberCheck(traineePINCode))
+			if(!(ValidationUtils.pincodeNumberCheck(traineePINCode) || traineePINCode.equals("")))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in  'traineePINCode' column .";
@@ -214,7 +203,7 @@ public class ValidateCandidateCSVService {
 			/*
 			 * Checking for error in result column
 			 */
-			if(!ValidationUtils.lettersCheck(result))
+			if(!(ValidationUtils.lettersCheck(result) || result.equals("")))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in  'result' column .";
@@ -223,7 +212,7 @@ public class ValidateCandidateCSVService {
 			/*
 			 * Checking for error in certified column
 			 */
-			if(!ValidationUtils.lettersCheck(certified))
+			if(!(ValidationUtils.lettersCheck(certified) || certified.equals("")))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in  'certified' column .";
@@ -232,7 +221,7 @@ public class ValidateCandidateCSVService {
 			/*
 			 * Checking for error in placementStatus column
 			 */
-			if(!ValidationUtils.lettersCheck(placementStatus))
+			if(!(ValidationUtils.lettersCheck(placementStatus) || placementStatus.equals("")))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in  'placementStatus' column .";
@@ -259,7 +248,7 @@ public class ValidateCandidateCSVService {
 			/*
 			 * Checking for error in batchId column
 			 */
-			if(!(ValidationUtils.numbersCheck(batchId) || batchId.equals("")))
+			if(!ValidationUtils.numbersCheck(batchId) || batchId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString + "\nError in  'batchId' column .";
@@ -310,6 +299,22 @@ public class ValidateCandidateCSVService {
 			 {
 				 mobileNumber="0";
 			 }
+			 if(emailId.equals(""))
+			 {
+				 emailId="unknown";
+			 }
+			 if(educationLevel.equals(""))
+			 {
+				 educationLevel="unknown";
+			 }
+			 if(traineeAddress.equals(""))
+			 {
+				 traineeAddress="unknown";
+			 }
+			 if(traineePINCode.equals(""))
+			 {
+				 traineePINCode="0";
+			 }
 			 if(marksObtainedTheory.equals(""))
 			 {
 				 marksObtainedTheory="0";
@@ -317,6 +322,18 @@ public class ValidateCandidateCSVService {
 			 if(marksObtainedPractical.equals(""))
 			 {
 				 marksObtainedPractical="0";
+			 }
+			 if(result.equals(""))
+			 {
+				 result="unknown";
+			 }
+			 if(certified.equals(""))
+			 {
+				 certified="unknown";
+			 }
+			 if(placementStatus.equals(""))
+			 {
+				 placementStatus="unknown";
 			 }
 			 if(dateOfJoining.equals(""))
 			 {
@@ -339,7 +356,7 @@ public class ValidateCandidateCSVService {
 			 record.put("candidateName",candidateName);
 			 record.put("enrollmentNumber",enrollmentNumber);
 			 record.put("gender",gender);
-			 record.put("dateOfBirth",dateOfBirth);
+			 record.put("dateOfBirth",ValidationUtils.convertUtilToSqlDate(dateOfBirth));
 			 record.put("nameOfFatherOrHusband",nameOfFatherOrHusband);
 			 record.put("aadharNumber",aadharNumber);
 			 record.put("mobileNumber",mobileNumber);
@@ -352,7 +369,7 @@ public class ValidateCandidateCSVService {
 			 record.put("result",result);
 			 record.put("certified",certified);
 			 record.put("placementStatus",placementStatus);
-			 record.put("dateOfJoining",dateOfJoining);
+			 record.put("dateOfJoining",ValidationUtils.convertUtilToSqlDate(dateOfJoining));
 			 record.put("employmentType",employmentType);
 			 record.put("batchId",batchId);
 			 record.put("employerId",employerId);
@@ -381,38 +398,75 @@ public class ValidateCandidateCSVService {
 			
 		}
 		
+		
 		/*
 		 * Checking for foreign key constraint of batchId & employerId
 		 */
-		
-		try{				
-			for(Map<String, Object> getRecord:arrayOfRecords)
-				{	
-				int status=dataImportCandidateDao.dataImportCandidateForeignKeyConstraintCheck(getRecord);
-				if(status==0 || status==2)
-				{
-				throw new Exception();	
-				}
 				
-				} 	//end of for  
-			}	// end of try
-			catch(Exception e)
-			{	
-				CandidateCSVReader.close();
-				File deleteUploadedFile = new File(CandidateCSVFileName);
-				deleteUploadedFile.delete();
-				e.printStackTrace();
-				return "Error in batchId or employerId column. Kindly recheck the details ."
-			+ "either batchId not found in Batches record or employerId not found in Employer record .";
+		int recordCount=0;
+		int status=0;
+		int errorExist=0;
+		String errorListAllRecords="";
+
+	try{
+		for(Map<String, Object> getRecord:arrayOfRecords)
+		{	
+			String errorString="";
+			int errorStatus=0;
+			recordCount++;
+			
+			status=dataImportCandidateDao.dataImportCandidateBatchIdCheck(getRecord);
+			if(status==0 || status==2)
+			{
+				errorStatus=1;
+				errorString=errorString+ "batchId key mismatch .";
 			}
+			
+			if(!getRecord.get("employerId").equals("0"))
+			{
+			status=dataImportCandidateDao.dataImportCandidateEmployerIdCheck(getRecord);
+			if(status==0 || status==2)
+			{
+				errorStatus=1;
+				errorString=errorString+ "employerId key mismatch .";
+			}
+			}
+			
+			if(errorStatus==1)
+			{
+				errorExist=1;
+				errorString="Error in Record "+recordCount + "." + errorString;
+				errorListAllRecords=errorListAllRecords+errorString;	
+			}
+			
+		}
+		if(errorExist==1)
+		{
+			CandidateCSVReader.close();
+			File deleteUploadedFile = new File(CandidateCSVFileName);
+		    deleteUploadedFile.delete();
+			return errorListAllRecords;
+		}
+		
+		
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		File deleteUploadedFile = new File(CandidateCSVFileName);
+	    deleteUploadedFile.delete();
+		return "Error checking Foreign key constraint . Kindly try again .";
+		
+	}
 	
+		
 		/*
 		 * Checking primary key Constraint and performing respective actions 
 		 */
 			  try{				
 				for(Map<String, Object> getRecord:arrayOfRecords)
 				{					
-				int status=dataImportCandidateDao.dataImportCandidatePrimaryKeyConstraintCheck(getRecord);
+			    status=dataImportCandidateDao.dataImportCandidatePrimaryKeyConstraintCheck(getRecord);
 				if(status==0)
 				{
 					/*
@@ -459,7 +513,7 @@ public class ValidateCandidateCSVService {
 						 * Checking for valid UserId (Foreign key constraint)
 						 */
 						
-						int status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
+						status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
 						if(status==0 || status==2)
 						{
 						File deleteUploadedFile = new File(CandidateCSVFileName);

@@ -69,21 +69,12 @@ public class ValidateAssessmentAgencyCSVService {
 			String agencyId=assessmentAgencyCSVData.getAgencyId();
 			String agencyName=assessmentAgencyCSVData.getAgencyName();
 			String applicationId=assessmentAgencyCSVData.getApplicationId();
-			/*
-			 * Checking for Mandatory fields 
-			 */
-			
-			if(agencyId.equals("") || agencyName.equals("") || applicationId.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString + "Mandatory fields cannot be Empty ";	
-			}
 			
 			/*
 			 * Checking for error in agencyId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(agencyId))
+			if(!ValidationUtils.numbersCheck(agencyId) || agencyId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in 'agencyId' column ";
@@ -93,7 +84,7 @@ public class ValidateAssessmentAgencyCSVService {
 			 * checking for error in applicationId column 
 			 */
 			
-			if(!(ValidationUtils.numbersCheck(applicationId)))
+			if(!(ValidationUtils.numbersCheck(applicationId)) || applicationId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in 'aapplicationId' column ";
@@ -102,7 +93,7 @@ public class ValidateAssessmentAgencyCSVService {
 			 * Checking for error in agencyName column 
 			 */
 			
-			if(ValidationUtils.numbersCheck(agencyName))
+			if(ValidationUtils.numbersCheck(agencyName) || agencyName.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in 'agencyName' column ";
@@ -152,27 +143,52 @@ public class ValidateAssessmentAgencyCSVService {
 		 * Checking for foreign key constraint of applicationId
 		 */
 		
-		try{				
-			for(Map<String, Object> getRecord:arrayOfRecords)
-				{	
-				int status=dataImportAssessmentAgencyDao.dataImportAssessmentAgencyForeignKeyConstraintCheck(getRecord);
-				if(status==0 || status==2)
-				{
-				throw new Exception();	
-				}
-				
-				} 	//end of for  
-			}	// end of try
-			catch(Exception e)
-			{	
-				assessmentAgencyCSVReader.close();
-				File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
-				deleteUploadedFile.delete();
-				e.printStackTrace();
-				return "Error in applicationId column. Kindly recheck the details ."
-			+ "applicationId not found in  Applications record .";
+		int recordCount=0;
+		int status=0;
+		int errorExist=0;
+		String errorListAllRecords="";
+
+	try{
+		for(Map<String, Object> getRecord:arrayOfRecords)
+		{	
+			String errorString="";
+			int errorStatus=0;
+			recordCount++;
+			
+			status=dataImportAssessmentAgencyDao.dataImportAssessmentAgencyForeignKeyConstraintCheck(getRecord);
+			if(status==0 || status==2)
+			{
+				errorStatus=1;
+				errorString=errorString+ "applicationId key mismatch .";
 			}
-		 
+			
+			if(errorStatus==1)
+			{
+				errorExist=1;
+				errorString="Error in Record "+recordCount + "." + errorString;
+				errorListAllRecords=errorListAllRecords+errorString;	
+			}
+			
+		}
+		if(errorExist==1)
+		{
+			assessmentAgencyCSVReader.close();
+			File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
+		    deleteUploadedFile.delete();
+			return errorListAllRecords;
+		}
+		
+		
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
+	    deleteUploadedFile.delete();
+		return "Error checking Foreign key constraint . Kindly try again .";
+		
+	}
+	
 		/*
 		 * Checking primary key Constraint and performing respective actions
 		 */
@@ -180,7 +196,7 @@ public class ValidateAssessmentAgencyCSVService {
 			  try{				
 				for(Map<String, Object> getRecord:arrayOfRecords)
 				{				
-				int status=dataImportAssessmentAgencyDao.dataImportAssessmentAgencyPrimaryKeyConstraintCheck(getRecord);
+				status=dataImportAssessmentAgencyDao.dataImportAssessmentAgencyPrimaryKeyConstraintCheck(getRecord);
 				if(status==0)
 				{
 					/*
@@ -227,14 +243,14 @@ public class ValidateAssessmentAgencyCSVService {
 				 * Checking for valid UserId (Foreign key constraint)
 				 */
 				
-				int status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
+				status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
 				if(status==0 || status==2)
 				{
 				File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
 				deleteUploadedFile.delete();	
 				return "Invalid User Id . Action Aborted";	
 				}
-				
+			
 				int insertDataStatus=dataImportCSVUploadTableDao.insertDataInCSVUpload(uploadedFileInfo);
 				if(!(insertDataStatus>0))
 				{

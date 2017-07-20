@@ -73,22 +73,11 @@ public class ValidateAssessorCSVService {
 			String district=assessorCSVData.getDistrict();
 			String state=assessorCSVData.getState();
 			
-			
-			/*
-			 * Checking for Mandatory fields 
-			 */
-			
-			if(assessorId.equals("") || assessorName.equals("") || agencyId.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString+ "Mandatory fields cannot be Empty .";
-			}
-			
 			/*
 			 * Checking for error in assessorId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(assessorId))
+			if(!ValidationUtils.numbersCheck(assessorId) || assessorId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'assessorId' column  ";
@@ -98,7 +87,7 @@ public class ValidateAssessorCSVService {
 			 * Checking for error in assessorName column 
 			 */
 			
-			if(ValidationUtils.numbersCheck(assessorName))
+			if(ValidationUtils.numbersCheck(assessorName) || assessorName.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'assessorName' column  ";
@@ -108,7 +97,7 @@ public class ValidateAssessorCSVService {
 			 * Checking for error in district column 
 			 */
 			
-			if(!ValidationUtils.lettersCheck(district))
+			if(!ValidationUtils.lettersCheck(district) || district.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'district' column  ";
@@ -118,7 +107,7 @@ public class ValidateAssessorCSVService {
 			 * Checking for error in state column 
 			 */
 			
-			if(!ValidationUtils.lettersCheck(state))
+			if(!ValidationUtils.lettersCheck(state) || state.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'state' column  ";
@@ -127,7 +116,7 @@ public class ValidateAssessorCSVService {
 			 * Checking for error in agencyId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(agencyId))
+			if(!ValidationUtils.numbersCheck(agencyId) || agencyId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'agencyId' column  ";
@@ -177,25 +166,52 @@ public class ValidateAssessorCSVService {
 		 * checking for foreign key constraint on agencyId in Assessment Agency
 		 */
 		
-		try{				
-			for(Map<String, Object> getRecord:arrayOfRecords)
-				{
-				int status=dataImportAssessorDao.dataImportAssessorForeignKeyConstraintCheck(getRecord);					
-				if(status==0 || status==2)
-					{
-					throw new Exception();
-					}
-				} 	//end of for  
-			}	// end of try
-			catch(Exception e)
-			{	
-				assessorCSVReader.close();
-				File deleteUploadedFile = new File(assessorCSVFileName);
-				deleteUploadedFile.delete();
-				e.printStackTrace();
-				return "Error in agencyId column. Kindly recheck the details ."
-			+ "agencyId not found in Assessment Agency record .";
+		int recordCount=0;
+		int status=0;
+		int errorExist=0;
+		String errorListAllRecords="";
+
+	try{
+		for(Map<String, Object> getRecord:arrayOfRecords)
+		{	
+			String errorString="";
+			int errorStatus=0;
+			recordCount++;
+			
+			status=dataImportAssessorDao.dataImportAssessorForeignKeyConstraintCheck(getRecord);
+			if(status==0 || status==2)
+			{
+				errorStatus=1;
+				errorString=errorString+ "agencyId key mismatch .";
 			}
+			
+			if(errorStatus==1)
+			{
+				errorExist=1;
+				errorString="Error in Record "+recordCount + "." + errorString;
+				errorListAllRecords=errorListAllRecords+errorString;	
+			}
+			
+		}
+		if(errorExist==1)
+		{
+			assessorCSVReader.close();
+			File deleteUploadedFile = new File(assessorCSVFileName);
+		    deleteUploadedFile.delete();
+			return errorListAllRecords;
+		}
+		
+		
+	}
+	catch(Exception e)
+	{
+		e.printStackTrace();
+		File deleteUploadedFile = new File(assessorCSVFileName);
+	    deleteUploadedFile.delete();
+		return "Error checking Foreign key constraint . Kindly try again .";
+		
+	}
+	
 
 		/*
 		 * Checking primary key Constraint and performing respective actions 
@@ -204,7 +220,7 @@ public class ValidateAssessorCSVService {
 			  try{				
 				for(Map<String, Object> getRecord:arrayOfRecords)
 				{			
-				int status=dataImportAssessorDao.dataImportAssessorPrimaryKeyConstraintCheck(getRecord);
+				status=dataImportAssessorDao.dataImportAssessorPrimaryKeyConstraintCheck(getRecord);
 				if(status==0)
 				{
 					/*
@@ -250,7 +266,7 @@ public class ValidateAssessorCSVService {
 				 * Checking for valid UserId (Foreign key constraint)
 				 */
 				
-				int status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
+				status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
 				if(status==0 || status==2)
 				{
 				File deleteUploadedFile = new File(assessorCSVFileName);

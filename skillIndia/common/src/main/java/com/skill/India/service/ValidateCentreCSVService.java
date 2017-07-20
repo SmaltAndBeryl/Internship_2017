@@ -75,24 +75,10 @@ public class ValidateCentreCSVService {
 			String trainingPartnerId=centreCSVData.getTrainingPartnerId();
 		
 			/*
-			 * Checking for Mandatory fields 
-			 */
-			
-			if(centreId.equals("") || centreName.equals("") || centrePOCContactName.equals("")
-					|| centreAddress.equals("") || district.equals("") || state.equals("") ||
-					trainingPartnerId.equals("")){
-				
-				errorStatus=1;
-				errorString=errorString+ "Mandatory fields cannot be Empty";
-			}
-			
-			
-
-			/*
 			 * Checking for error in centreId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(centreId))
+			if(!ValidationUtils.numbersCheck(centreId) ||  centreId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'centerId' column ";
@@ -102,7 +88,7 @@ public class ValidateCentreCSVService {
 			 * Checking for error in centreName column 
 			 */
 			
-			if(ValidationUtils.numbersCheck(centreName))
+			if(ValidationUtils.numbersCheck(centreName) || centreName.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'centreName' column ";
@@ -112,7 +98,7 @@ public class ValidateCentreCSVService {
 			 * Checking for error in centrePOCContactName column 
 			 */
 			
-			if(ValidationUtils.numbersCheck(centrePOCContactName))
+			if(ValidationUtils.numbersCheck(centrePOCContactName) || centrePOCContactName.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'centrePOCContactName' column ";
@@ -122,7 +108,7 @@ public class ValidateCentreCSVService {
 			 * Checking for error in district column 
 			 */
 			
-			if(!ValidationUtils.lettersCheck(district))
+			if(!ValidationUtils.lettersCheck(district) || district.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'district' column ";
@@ -132,7 +118,7 @@ public class ValidateCentreCSVService {
 			 * Checking for error in state column 
 			 */
 			
-			if(!ValidationUtils.lettersCheck(state))
+			if(!ValidationUtils.lettersCheck(state) || state.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'state' column ";
@@ -142,7 +128,7 @@ public class ValidateCentreCSVService {
 			 * Checking for error in trainingPartnerId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(trainingPartnerId))
+			if(trainingPartnerId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'trainingPartnerId' column ";
@@ -167,6 +153,7 @@ public class ValidateCentreCSVService {
 				centreAddress=centreAddress.toLowerCase();
 				district=district.toLowerCase();
 				state=state.toLowerCase();
+				trainingPartnerId=trainingPartnerId.toLowerCase();
 				
 				/*
 				  * Inserting row wise data in HashMap

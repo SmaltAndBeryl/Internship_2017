@@ -85,7 +85,7 @@ public class ValidateEmployerCSVService {
 			 * Checking for error in employerId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(employerId))
+			if(!ValidationUtils.numbersCheck(employerId) || employerId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'employerId' column ";
@@ -95,17 +95,27 @@ public class ValidateEmployerCSVService {
 			 * Checking for error in employerName column 
 			 */
 
-			if(!ValidationUtils.lettersCheck(employerName))
+			if(!ValidationUtils.lettersCheck(employerName) || employerName.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'employerName' column ";
 			}
 
 			/*
+			 * Checking for error in locationOfEmployer column 
+			 */
+
+			if(locationOfEmployer.equals(""))
+			{
+				errorStatus=1;
+				errorString=errorString+ "Error in 'locationOfEmployer' column ";
+			}
+				
+			/*
 			 * Checking for error in locationOfEmployerDistrict column 
 			 */
 
-			if(!ValidationUtils.lettersCheck(locationOfEmployerDistrict))
+			if(!ValidationUtils.lettersCheck(locationOfEmployerDistrict) || locationOfEmployerDistrict.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'locationOfEmployerDistrict' column ";
@@ -115,7 +125,7 @@ public class ValidateEmployerCSVService {
 			 * Checking for error in locationOfEmployerState column 
 			 */
 			
-			if(!ValidationUtils.lettersCheck(locationOfEmployerState))
+			if(!ValidationUtils.lettersCheck(locationOfEmployerState) || locationOfEmployerState.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'locationOfEmployerState' column ";

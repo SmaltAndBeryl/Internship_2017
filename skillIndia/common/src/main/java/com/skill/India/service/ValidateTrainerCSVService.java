@@ -70,23 +70,12 @@ public class ValidateTrainerCSVService {
 			String trainerName=trainerCSVData.getTrainerName();
 			String designation=trainerCSVData.getDesignation();
 			String trainingPartnerId=trainerCSVData.getTrainingPartnerId();
-		
-		
-			/*
-			 * Checking for Empty fields 
-			 */
-			if(trainerId.equals("") || trainerName.equals("") || designation.equals("")
-					|| trainingPartnerId.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString+ "Mandatory fields cannot be Empty ";
-			}
-			
+
 			/*
 			 * Checking for error in trainerId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(trainerId))
+			if(!ValidationUtils.numbersCheck(trainerId) || trainerId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'trainerId' column .";
@@ -96,7 +85,7 @@ public class ValidateTrainerCSVService {
 			 * Checking for error in trainerName column 
 			 */
 			
-			if(ValidationUtils.numbersCheck(trainerName))
+			if(ValidationUtils.numbersCheck(trainerName) || trainerName.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'trainerName' column .";
@@ -106,7 +95,7 @@ public class ValidateTrainerCSVService {
 			 * Checking for error in designation column 
 			 */
 			
-			if(ValidationUtils.numbersCheck(designation))
+			if(ValidationUtils.numbersCheck(designation) || designation.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'designation' column .";
@@ -116,7 +105,7 @@ public class ValidateTrainerCSVService {
 			 * Checking for error in trainingPartnerId column 
 			 */
 			
-			if(!ValidationUtils.numbersCheck(trainingPartnerId))
+			if(trainingPartnerId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+ "Error in 'trainingPartnerId' column .";
@@ -135,7 +124,7 @@ public class ValidateTrainerCSVService {
 				 */
 				trainerName=trainerName.toLowerCase();
 				designation=designation.toLowerCase();
-				
+				trainingPartnerId=trainingPartnerId.toLowerCase();
 				 /*
 				  * Inserting row wise data in HashMap
 				  */
