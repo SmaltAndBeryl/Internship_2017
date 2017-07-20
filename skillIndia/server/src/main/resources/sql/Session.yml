@@ -1,0 +1,8 @@
+Session: 
+ getUserIdPasswordRole: >
+   select userId,password,userRole from user
+    where userId=:userId
+    
+ checkUserSql: >
+   select exists(select * from user where userId=:userId)   
+    

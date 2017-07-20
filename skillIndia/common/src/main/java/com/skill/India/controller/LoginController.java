@@ -1,9 +1,17 @@
 package com.skill.India.controller;
 
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +21,6 @@ import com.skill.India.dto.LoginDto;
 import com.skill.India.dto.LoginReceiveDataDto;
 import com.skill.India.dto.SignUpInsertedUserDto;
 import com.skill.India.dto.SignUpReceiveDataDto;
-
 import com.skill.India.service.LoginService;
 import com.skill.India.service.SignUpService;
 
@@ -45,5 +52,32 @@ public class LoginController {
 	 return signUpService.signUp(signUpReceiveDataDto);
 	  
 	}
+	
+	
+	@RequestMapping("/getUserDetails")
+	public Principal user(Principal user) {
+		System.out.println("hey  : " +user);
+		return user;
+	}
+	
+	@Configuration
+	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			// @formatter:off
+			http
+				.httpBasic().and()
+				.authorizeRequests()
+					.antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll()
+					.anyRequest().authenticated()
+					.and()
+				.csrf()
+					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+			// @formatter:on
+		}
+	}
+	
+	
 	
 }
