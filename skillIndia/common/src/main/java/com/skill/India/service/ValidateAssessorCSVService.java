@@ -282,7 +282,7 @@ public class ValidateAssessorCSVService {
 				return "Some Error occured while inserting data in csvUploaded By details table . Kindly try again ."; 
 				}
 				
-				return "Data Successfully inserted in Database .";
+				return "Data Successfully inserted in Database";
 				}	// end of try
 				catch(Exception e)
 				{

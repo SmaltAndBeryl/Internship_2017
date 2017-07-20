@@ -167,7 +167,7 @@ public class CheckTypeOfCSVService {
 	            readColumnsOfCsv.close();
 	            File deleteUploadedFile = new File(pathOfUploadedFile);
 	            deleteUploadedFile.delete();	             
-	            return "Error in column mapping ..!";
+	            return "Error in column mapping!";
 	                
 	        }    // End of Try 
 	        

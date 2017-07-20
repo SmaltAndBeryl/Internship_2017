@@ -531,7 +531,7 @@ public class ValidateCandidateCSVService {
 							
 				
 				
-				return "Data Successfully inserted in Database .";
+				return "Data Successfully inserted in Database";
 				}	// end of try
 				catch(Exception e)
 				{
