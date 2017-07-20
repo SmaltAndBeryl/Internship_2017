@@ -133,7 +133,10 @@ function dashboardController($scope, $http)  {
                 type: 'column'
             },
             title: {
-                text: 'Candidates Certified Under Non-PMKVY'
+                text: 'Candidates Certified Under Non-PMKVY',
+                	style: {
+                        fontSize:'15px'
+                    }
             },
             xAxis: {
                 categories:year 
@@ -233,7 +236,10 @@ function dashboardController($scope, $http)  {
         	enabled:false
         },
         title: {
-            text: 'Total Trainings in Each Sector'
+            text: 'Total Trainings in Each Sector',
+            style: {
+                fontSize:'15px'
+            }
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.0f}</b>'
@@ -246,7 +252,7 @@ function dashboardController($scope, $http)  {
                 dataLabels: {
                     enabled: true,
                     itemStyle: {
-                        font: '5pt sans-serif'
+                        font: '3pt sans-serif'
                     },
                     format: '<b>{point.name}</b>: {point.percentage:.0f} ',
                     style: {
@@ -291,7 +297,10 @@ function dashboardController($scope, $http)  {
                     type: "column"
                 },
                 title:{
-                	text:"Top 5 States"
+                	text:"Top 5 States having maximum training centers",
+                	style: {
+                        fontSize:'15px'
+                    }
                 },
                 xAxis: {
                     type: 'category',
@@ -375,7 +384,10 @@ function dashboardController($scope, $http)  {
         	        type: 'column'
         	    },
         	    title: {
-        	        text: 'Candidates Enrolled under PMKVY and Non-PMKVY'
+        	        text: 'Candidates Enrolled under PMKVY and Non-PMKVY',
+        	        style: {
+                        fontSize:'15px'
+                    }
         	    },
         	    subtitle: {
         	        text: 'Source: SCGJ.in'
