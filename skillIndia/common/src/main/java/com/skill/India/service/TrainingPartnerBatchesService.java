@@ -21,13 +21,13 @@ public class TrainingPartnerBatchesService {
 
 	@Autowired
 	private TrainingPartnerbatchesDao trainingPartnerBatchDao;
-	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getUpdateRowMapper(){
+	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getUpdateRowMapper(int applicationId){
 		//System.out.println("LIST 1 Code reached");
 	
 		ArrayList<TrainingPartnerBatchesDto> pastBatches= new ArrayList<TrainingPartnerBatchesDto>();
 		ArrayList<TrainingPartnerBatchesDto> presentBatches= new ArrayList<TrainingPartnerBatchesDto>();
 		
-		 Collection<TrainingPartnerBatchesDto> trainingPartnerBatches= trainingPartnerBatchDao.getUpdateRowMapper();
+		 Collection<TrainingPartnerBatchesDto> trainingPartnerBatches= trainingPartnerBatchDao.getUpdateRowMapper(applicationId);
 		 
 		 for(TrainingPartnerBatchesDto rowWiseData:trainingPartnerBatches)
 			{

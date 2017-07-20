@@ -35,9 +35,10 @@ public class TrainingPartnerbatchesDao extends AbstractTransactionalDao {
     private static final UpdateRowSelectRowMapper ROW_MAPPER = new UpdateRowSelectRowMapper();
     
     
-    public Collection<TrainingPartnerBatchesDto> getUpdateRowMapper() {
+    public Collection<TrainingPartnerBatchesDto> getUpdateRowMapper(int applicationId) {
     	LOGGER.info("Code reached");
         Map<String, Object> parameters = new HashMap<>();
+        parameters.put("applicationId", applicationId);
         //return getJdbcTemplate().query
       
         return getJdbcTemplate().query(updateConfigSql.getSelectSqlOfBatches(), parameters, 
