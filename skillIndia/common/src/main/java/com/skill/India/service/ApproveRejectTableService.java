@@ -34,12 +34,10 @@ public class ApproveRejectTableService {
 		return approveRejectTableDao.getUpdateRowMapper();
 	}
 	
-	public String editUserApplication(int applicationId, String comment) throws SQLException
+	public String editUserApplication(int applicationId, String comment, String applicationState) throws SQLException
 	{
 		try
 		{
-			String applicationState="Incomplete";
-			System.out.println("Entered into ApproveRejectTableService:");
 			int commentsExists = manageRegistrationActionDao.checkCommentExistence(applicationId);
 			System.out.println("commentExists = " + commentsExists);
 			if(commentsExists == 1)
