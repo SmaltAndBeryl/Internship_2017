@@ -1,0 +1,17 @@
+algorithm:
+ getBatchIdSelectSql: >
+  SELECT batch.batchId,centre.state, centre.district
+   FROM batch,centre
+    WHERE batch.centreId=centre.centreId AND batch.batchId = :batchId;
+
+ getAgencyIdSelectSql: >
+  SELECT showinterest.batchId,showinterest.agencyId,agency.agencyName
+     FROM showinterest,agency
+      WHERE showinterest.batchId = :batchId AND showinterest.agencyId = agency.agencyId;
+
+ getAssessorIdSelectSql: >
+  SELECT assessor.state,assessor.district,agency.agencyName
+   FROM assessor,agency
+    WHERE assessor.agencyId = agency.agencyId;
+
+
