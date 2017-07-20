@@ -24,10 +24,10 @@ body {
 }
 
 .panel-login>.panel-heading {
-	color: #00415d;
-    	background-color: #fff;
-	border-color: #fff;
-	text-align:center;
+       color: #00415d;
+       background-color: #fff;
+       border-color: #fff;
+       text-align:center;
 }
 .logo{
     margin-left: 19%;
@@ -35,38 +35,38 @@ body {
 }
 
 .panel-body{
-	margin-right:25px;
-	margin-left:25px;
-	}
+       margin-right:25px;
+       margin-left:25px;
+       }
 
 .panel-login>.panel-heading a{
-	text-decoration: none;
-	color: #666;
-	font-weight: bold;
-	font-size: 15px;
-	-webkit-transition: all 0.1s linear;
-	-moz-transition: all 0.1s linear;
-	transition: all 0.1s linear;
+       text-decoration: none;
+       color: #666;
+       font-weight: bold;
+       font-size: 15px;
+       -webkit-transition: all 0.1s linear;
+       -moz-transition: all 0.1s linear;
+       transition: all 0.1s linear;
 }
 .panel-login>.panel-heading a.active{
-	color: black;
-	font-size: 15px;
+       color: black;
+       font-size: 15px;
     border-bottom: 3px #29B6D4 solid;
 }
 
 .panel-login input[type="text"]
 {
-	background: transparent;
+       background: transparent;
     border: 1px;
     border-bottom: 1.2px solid #CCC;
-	height: 45px;
-	-webkit-box-shadow: none;
-	padding: 25px 25px;
+       height: 45px;
+       -webkit-box-shadow: none;
+       padding: 25px 25px;
     border-bottom-left-radius: 1px;
-	border-bottom-right-radius: 1px;
+       border-bottom-right-radius: 1px;
     border-top-left-radius: 1px;
     border-top-right-radius: 1px;
-	font-size: 13px;
+       font-size: 13px;
 } 
 
 
@@ -74,75 +74,82 @@ body {
 
 .panel-login input[type="email"]
 {
-	background: transparent;
+       background: transparent;
     border: 1px;
     border-bottom: 1.2px solid #CCC;
-	height: 45px;
-	-webkit-box-shadow: none;
-	padding: 25px 25px;
+       height: 45px;
+       -webkit-box-shadow: none;
+       padding: 25px 25px;
     border-bottom-left-radius: 1px;
-	border-bottom-right-radius: 1px;
+       border-bottom-right-radius: 1px;
     border-top-left-radius: 1px;
     border-top-right-radius: 1px;
-	font-size: 13px;
+       font-size: 13px;
 } 
 .panel-login input[type="password"] 
 {
-	background: transparent;
+       background: transparent;
     border: 1px;
     border-bottom: 1.2px solid #CCC;
-	height:45px;
-	-webkit-box-shadow: none;
-	padding: 25px 25px;
+       height:45px;
+       -webkit-box-shadow: none;
+       padding: 25px 25px;
     border-bottom-left-radius: 1px;
-	border-bottom-right-radius: 1px;
+       border-bottom-right-radius: 1px;
     border-top-left-radius: 1px;
     border-top-right-radius: 1px;
-	font-size: 13px;
+       font-size: 13px;
+       
+       
 } 
 .panel-login input:hover,
 .panel-login input:focus {
-	outline:none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-	border-color: cornflowerblue;
+       outline:none;
+       -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+       box-shadow: none;
+       border-color: cornflowerblue;
 }
 .button {
     margin-top: 15px;
-	background-color: #59B2E0;
-	outline: none;
-	color: #fff;
-	font-size: 15px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #59B2E6;
+       background-color: #59B2E0;
+       outline: none;
+       color: #fff;
+       font-size: 15px;
+       height: auto;
+       font-weight: normal;
+       padding: 14px 0;
+       text-transform: uppercase;
+       border-color: #59B2E6;
 }
-
+.spoc-name col-xs-6{
+       margin-right:px;
+}
 .btn-register {
-	background-color: #1CB94E;
-	outline: none;
-	color: #fff;
-	font-size: 14px;
-	height: auto;
-	font-weight: normal;
-	padding: 14px 0;
-	text-transform: uppercase;
-	border-color: #1CB94A;
+       background-color: #1CB94E;
+       outline: none;
+       color: #fff;
+       font-size: 14px;
+       height: auto;
+       font-weight: normal;
+       padding: 14px 0;
+       text-transform: uppercase;
+       border-color: #1CB94A;
 }
 .btn-register:hover,
 .btn-register:focus {
-	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
+       color: #fff;
+       background-color: #1CA347;
+       border-color: #1CA347;
 }
 
 .wrapper {
   position: relative;
   width: 174px;
   margin-bottom: 20px;
+}
+#sPOCName{
+       margin-left:-14px;
 }
 
 .toggler-ico {
@@ -167,17 +174,17 @@ body {
   top: 19px;
 }
 .userroleab{
-	padding:10px;
-	position:20px;
-	display:flex;
-	margin-left:10px;
+       padding:10px;
+       position:20px;
+       display:flex;
+       margin-left:10px;
 }
 .tc{
-	margin-left:20px;
-	
+       margin-left:20px;
+       
 }
 .tr{
-	margin-left:px;
+       margin-left:px;
 }
 img {
     vertical-align: middle;
@@ -187,7 +194,7 @@ img {
 #panel-footer {
     background-color: #ECF0F1;
     line-height: 20px;
-    margin-top: 12px;
+    margin-top: -2px;
     width: 500px;
     font-size: 13px;
     margin-left:-26px;
