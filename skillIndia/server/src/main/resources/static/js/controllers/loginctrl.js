@@ -34,7 +34,7 @@ newApp.controller('loginCtrl',
 														    	window.location = "http://localhost:8080/blank?userId="+userName;
 												    									}
 												    	else if(loginAction.userStatus=="registered"){
-													    	if(loginAction.userRole=="TP")	{											    	window.location = "http://localhost:8080/index?userId="+userName;
+													    	if(loginAction.userRole=="TP")	{											    
 													    	window.location = "http://localhost:8080/trainingPartnerHomePage?userId="+userName;
 													    	}
 													    	if(loginAction.userRole=="AB"){
