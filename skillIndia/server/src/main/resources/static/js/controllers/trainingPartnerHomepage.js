@@ -126,7 +126,7 @@ $http.get('/trainingPartnerApplicationStatus')
 					]
 			};	 		            			            
 		
-		 $http.get("/trainingPartnerPastBatches")
+		 $http.get("/trainingPartnerPastBatches?applicationId=1")
 		    .then(function (response) {
 		      $scope.presentGridOptions.data= response.data.PresentBatches;
 		    })
