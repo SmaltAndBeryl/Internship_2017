@@ -186,8 +186,13 @@ img {
 }
 #panel-footer {
     background-color: #ECF0F1;
-    line-height: 15px;
-    margin-top: -11px;
-    width: 457px;
-    font-size: 10px;
+    line-height: 20px;
+    margin-top: 12px;
+    width: 500px;
+    font-size: 13px;
+    margin-left:-26px;
+    text-align: center;
+    padding-right:55px;
+    padding-left:52px;
 }
+
