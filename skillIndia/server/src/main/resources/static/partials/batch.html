@@ -1,76 +1,61 @@
 <head>
-  <link rel="stylesheet" href="css/MRApproveRejectApplication.css" type="text/css" />
-  <link rel="stylesheet" href="poc/batchAssignment.css" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="css/batchAssignmentSearchBatches.css">
+  <link rel="stylesheet" href="/poc/batchAssignment.css" type="text/css" />
 </head>
 
-<div class="table">
-  <h3 class="manage">Batch Assignment</h3>
-  <div class="table-wrap">
-    <h4 class="title">Non-Assigned Batches</h4>
+<!-- MainWrap-EntireBatchAssignment -->
+<div class="mainWrap">
+
+	<!-- BatchAssignment-Heading -->
+  <h3 class="batchAssignment">Batch Assignment</h3>
+  
+	<!-- BatchAssignment-NonAssignedBatches -->
+  <div class="nonAssignedBatchTableWrap">
+    <div class="nonAssignedBatch">Non-Assigned Batch(es)</div>
     <div ng-controller="batchController">
-      <div ui-grid="gridOptions" ui-grid-edit class="grid"></div>
+      <div ui-grid="nonAssignedBatchGridOptions" class="nonAssignedBatchesGrid"></div>
     </div>
   </div>
-</div>
-
-<div class="proposedwrap">
-  <div class="title">
-    Proposed Batch(es)
-  </div>
-  <div ng-controller="batchController">
-    <div id="secondGrid" ui-grid="proposedBatchesBatchAssignmentGridOptions" ui-grid-selection ui-grid-cellNav class="proposedBatchesGrid"></div>
-  </div>
-</div>
-
-<!--Other tables-->
-<div class="approvedwrap">
-  <div class="title">
-    Approved Batch(es)
-  </div>
-  <div ng-controller="batchController">
-    <div id="secondGrid" ui-grid="approvedBatchesBatchAssignmentGridOptions" ui-grid-selection ui-grid-cellNav class="approvedBatchesGrid"></div>
-  </div>
-</div>
-
-<div class="rejectedwrap">
-  <div class="title">
-    Rejected Batch(es)
-  </div>
-  <div ng-controller="batchController">
-    <div id="secondGrid" ui-grid="rejectedBatchesBatchAssignmentGridOptions" ui-grid-selection ui-grid-cellNav class="rejectedBatchesGrid"></div>
-  </div>
-</div>
-
-</div>
 
 
-<!--Search bar-->
-
-<div class="mainwrap">
-  <div class="Background">
-  </div>
-  <div class="Formboxwrap" ng-controller="batchController">
-
-
-    <form id="Search-Batch-ID"  method="post" role="form" style="display: block;">
-      <label>Search Batch ID</label>
-      <input type="text" class="text" placeholder="Search..." required name='searchText' ng-model="batchAssignmentSearch"/>
-      <input type="button" class="button"  value="Search" ng-click="getDataOfBatch()"/>
-      <div>
-
-        <div ui-grid="gridOptionsSearch" class="grid2" ui-grid-auto-resize>
-          <div class="ui-grid-cell-contents"></div>
-        </div>
-
+<!--BatchAssignment-Search bar-->
+<div class="searchBatchWrap">
+<div ng-controller="batchController">
+	<div method="post" role="form" style="display: block;">
+      <label class="searchBatchId">Search Batch ID</label>
+      <input type="text" class="searchBox" placeholder="Enter Batch ID" required name='searchText' ng-model="batchAssignmentSearch"/>
+      <input type="button" class="searchButton"  value="Search" ng-click="getDataOfBatch()"/>
+        <div ui-grid="searchGridOptions" class="searchBatchGrid"></div>
       </div>
-    </form>
+    </div>
+</div>
+<!-- BatchAssignment-Other Tables -->
+
+<!-- Proposed Batch(es) Table -->
+<div class="proposedWrap">
+  <div class="proposedBatch">Proposed Batch(es)</div>
+  <div ng-controller="batchController">
+    <div ui-grid="proposedBatchesBatchAssignmentGridOptions" class="proposedBatchesGrid"></div>
   </div>
 </div>
 
+<!-- Approved Batch(es) Table -->
+<div class="approvedWrap">
+  <div class="approvedBatch">Approved Batch(es)</div>
+  <div ng-controller="batchController">
+    <div ui-grid="approvedBatchesBatchAssignmentGridOptions" class="approvedBatchesGrid"></div>
+  </div>
+</div>
+
+<!-- Rejected Batch(es) Table -->
+<div class="rejectedWrap">
+  <div class="rejectedBatch">Rejected Batch(es)</div>
+  <div ng-controller="batchController">
+    <div ui-grid="rejectedBatchesBatchAssignmentGridOptions" class="rejectedBatchesGrid"></div>
+  </div>
+</div>
+
+</div>
 
 
 <!--Script Tags-->
-<script src="js/controllers/batchAssignment.js" text="text/javascript"></script>
-<script src="/js/batchController.js"></script>
-<script src="js/controllers/batchAssignmentSearchBatches.js"></script>
+<script src="/js/batchController.js" text="text/javascript"></script>

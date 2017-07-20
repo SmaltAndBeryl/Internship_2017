@@ -5,45 +5,38 @@ var batch = angular
                     'ngAnimate',
                     'ui.grid.edit'
                 ]);
-//batch.config(['$qProvider', function ($qProvider) {
-//    $qProvider.errorOnUnhandledRejections(false);
-//}]);
 
 batch.controller('batchController', batchController)
-
 batchController.$inject = ['$scope', '$http', '$log', '$location'];
-
 function batchController($scope, $http, $log, $location){
 
-//    console.log(names);
-
-    $scope.gridOptions = {
-        enableGridMenus : false,
+// Non-Assigned Batches Grid Info
+	
+    $scope.nonAssignedBatchGridOptions = {
         enableSorting: false,
-    	enableFiltering: false,
-        enableCellEdit : false,
-        enableColumnMenus : false,
-        columnDefs : [
-            { name : 'batchID', displayName : 'Batch ID'},
-            { name : 'state', displayName : 'Location'},
-            { name : 'batchEndDate', displayName : 'End Date'},
-            { name : 'assessmentDate', displayName : 'Assessment Date'},
-            { name : 'recommendedAB', displayName : 'Recommended AB'},
-//            { name : 'assignedAB',
-//               displayName : 'Assigned AB',
-//               width : 80,
-//               cellTemplate : '<span><select ng-model="myColor"><option ng-repeat="name in ["alkesh","frank"]">{{name}}</option></select>'},
-            { name : 'Assign',
-              displayName: 'Assign',
-              cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.saveFunction(row)></label>'}
-        ]
+        enableColumnMenus: false,
+        verticalScrollbar:0,
+        columnDefs: [
+            {name : 'batchID', displayName : 'Batch ID'},
+            {name : 'state', displayName : 'Location'},
+            {name : 'batchEndDate', displayName : 'End Date'},
+            {name : 'assessmentDate', displayName : 'Assessment Date'},
+            {name : 'recommendedAB', displayName : 'Recommended AB'},
+//          {name : 'assignedAB',
+//           displayName : 'Assigned AB',
+//           width : 80,
+//           cellTemplate : '<span><select ng-model="myColor"><option ng-repeat="name in ["alkesh","frank"]">{{name}}</option></select>'},
+            {name : 'Assign',
+             displayName: 'Assign',
+             cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.saveFunction(row)></label>'}
+            ]
     };
 
     var btc = "";
     $http.get('/non')
         //$http.get("batch.json")
             .then(function(response){
-                $scope.gridOptions.data = response.data;
+                $scope.nonAssignedBatchGridOptions.data = response.data;
                 //var obj = $scope.gridOptions.data[0].batchID;
                 //var str = JSON.stringify(obj);
                 //btc = str;
@@ -72,11 +65,35 @@ $scope.show = function(){['Lancelot', 'Touchstone'];}
                 console.log("Status changed to proposed.! "+ btc)
             })
     };
+    
+    // JS for search bar
+    $scope.searchGridOptions = { enableGridMenus : false,
+    		  enableSorting: false,
+    		  enableColumnMenus : false,
+    		  verticalScrollbar:0,
 
+      columnDefs : [
 
+        { name:'#' , displayName:'#'},
+        { name:'batchId' , displayName:'Batch id' , cellClass:'batch'},
+        { name:'state' , displayName:'location'},
+        { name:'batchEndDate' , displayName:'Batch End date'},
+        { name:'assessmentDate' , displayName:'Assessment Date'},
+        { name:'agencyName' ,displayName:'Proposed AB'}
+
+      ]
+    };
+
+    	$scope.getDataOfBatch = function()
+    	{
+    		$http.post('/getInformationOfTheBatchId?batchId='+$scope.batchAssignmentSearch)
+    		  .then(function (response) {
+    			  console.log("inside request method");
+    		    $scope.searchGridOptions.data = response.data;
+    		  });
+    	};
 
     //Other tables JS code
-
     $scope.proposedBatchesBatchAssignmentGridOptions = {
     		  enableGridMenus: false,
     		  enableSorting: false,
@@ -87,43 +104,41 @@ $scope.show = function(){['Lancelot', 'Touchstone'];}
     	columnDefs : [
     	{name:'serialNumber',
     	displayName: 'S.No.',
-    	//cellClass: '',
-    	//headerCellClass: '',
-    	width:73},
+    	cellClass: '',
+    	headerCellClass: ''},
         {name:'batchId',
         displayName: 'Batch ID',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:100},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'location',
         displayName: 'Location',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:150},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'batchEndDate',
         displayName: 'Batch End Date',
-        //cellClass: '',
-        //headerCellClass: '',
-        width: 140},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'assessmentDate',
         displayName: 'Assessment Date',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:150},
-        {name:'proposedAB',
+        cellClass: '',
+        headerCellClass: ''},
+        {name:'agencyName',
         displayName: 'Proposed AB',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:120},
-        {name:'propose',
-         displayName: 'Propose',
-         //cellClass: '',
-         //headerCellClass: '',
-         cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.saveFunction(row)></label>',
-         width:155}
+        cellClass: '',
+        headerCellClass: ''},
+        {name:'withdraw',
+         displayName: 'Withdraw',
+         cellClass: '',
+         headerCellClass: '',
+         cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunction(row)></label>'}
       ]
     };
-    	  $scope.approvedBatchesBatchAssignmentGridOptions = {
+    $http.get('/getProposedBatchesBatchAssignment')
+	 .then(function(response) {
+	 $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
+	});
+
+     $scope.approvedBatchesBatchAssignmentGridOptions = {
     			  enableGridMenus: false,
     			  enableSorting: false,
     			  enableColumnMenus: false,
@@ -133,43 +148,40 @@ $scope.show = function(){['Lancelot', 'Touchstone'];}
     	columnDefs : [
         { name:'serialNumber',
         displayName: 'S.No.',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:73},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'batchId',
         displayName: 'Batch ID',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:100},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'location',
         displayName: 'Location',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:150},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'batchEndDate',
         displayName: 'Batch End Date',
-        //cellClass: '',
-        //headerCellClass: '',
-        width: 140},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'assessmentDate',
         displayName: 'Assessment Date',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:150},
-        {name:'proposedAB',
+        cellClass: '',
+        headerCellClass: ''},
+        {name:'agencyName',
         displayName: 'Assigned AB',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:150},
+        cellClass: '',
+        headerCellClass: ''},
         { name:'withdraw',
         displayName: 'Withdraw',
-        //cellClass: '',
-        //headerCellClass: '',
-        cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.saveFunction(row)></label>',
-        width:155}
+        cellClass: '',
+        headerCellClass: '',
+        cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunction(row)></label>'}
       ]
     };
-    	 $scope.rejectedBatchesBatchAssignmentGridOptions = {
+     $http.get('/getApprovedBatchesBatchAssignment')
+	 .then(function(response) {
+	 $scope.approvedBatchesBatchAssignmentGridOptions.data = response.data;
+	});
+    $scope.rejectedBatchesBatchAssignmentGridOptions = {
     			  enableGridMenus: false,
     			  enableSorting: false,
     			  enableColumnMenus: false,
@@ -177,59 +189,45 @@ $scope.show = function(){['Lancelot', 'Touchstone'];}
     			  enableCellEdit: false,
 
     	columnDefs : [
-        { name:'serialNumber',
+        {name:'serialNumber',
         displayName: 'S.No.',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:73},
+        cellClass: '',
+        headerCellClass: '',
+        cellTemplate: '<div>{{row.grid.renderContainers.body.visibleRowsCache.indexOf(row)}}</div>' },
         {name:'batchId',
         displayName: 'Batch ID',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:100},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'location',
         displayName: 'Location',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:150},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'batchEndDate',
         displayName: 'Batch End Date',
-        //cellClass: '',
-        //headerCellClass: '',
-        width: 140},
+        cellClass: '',
+        headerCellClass: ''},
         {name:'assessmentDate',
         displayName: 'Assessment Date',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:150},
-        {name:'proposedAB',
+        cellClass: '',
+        headerCellClass: ''},
+        {name:'agencyName',
         displayName: 'Rejected AB',
-        //cellClass: '',
-        //headerCellClass: '',
-        width:150}
+        cellClass: '',
+        headerCellClass: ''}
       ]
     };
-    	 $http.get('/getProposedBatchesBatchAssignment')
-    	 .then(function(response) {
-    	 $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
-    	});
-
-    	 $http.get('/getApprovedBatchesBatchAssignment')
-    	 .then(function(response) {
-    	 $scope.approvedBatchesBatchAssignmentGridOptions.data = response.data;
-    	});
-
-    	 $http.get('/getRejectedBatchesBatchAssignment')
+ 
+    $http.get('/getRejectedBatchesBatchAssignment')
     	 .then(function(response) {
          $scope.rejectedBatchesBatchAssignmentGridOptions.data = response.data;
         });
 
-    	    $scope.saveFunction = function(rowData){
+    	 $scope.withdrawFunction = function(rowData){
     	        alert("You have withdrawn the assignment");
 
     	        //Extract first cell value
-    	        var abj = Object.values(Object.values(rowData)[1])[0];
-    	        console.log("Row Data is " + abj);
+    	        var withdraw = Object.values(Object.values(rowData)[1])[0];
+    	        console.log("Row Data is " + withdraw);
 
 
     	        //Code for query update
@@ -238,43 +236,11 @@ $scope.show = function(){['Lancelot', 'Touchstone'];}
     	        $http({
     	            url : urldata,
     	            method : "POST",
-    	            params : { batchId : abj }
+    	            params : { batchId : withdraw }
     	        })
     	            .then(function(response){
     	                console.log("Status changed to Default! "+ btc)
     	            });
     	    }
-
-    // JS for search bar
-    $scope.gridOptionsSearch = { enableGridMenus : false,
-    		  enableSorting: false,
-    		  enableFiltering: false,
-    		  enableCellEdit : false,
-    		  enableColumnMenus : false,
-    		  enableHideColoumn: false,
-
-      columnDefs : [
-
-        { name:'#' , displayname:'1' , height:'71' , width:'100'},
-        { name:'batchId' , displayname:'Batch id' , cellClass:'batch id' , width:'162' , height:'71' },
-        { name:'state' , displayname:'location' , width:'162' , height:'71' },
-        { name:'batchEndDate' , displayname:'Batch End date' ,  width:'163' , height:'71'},
-        { name:'assessmentDate' , dispalyname:'Assessment Date' , width:'162' , height:'71'},
-        { name:'assessorName' ,displayname:'Proposed AB',  width:'163',height:'71'},
-
-      ]
-    };
-
-    	$scope.getDataOfBatch = function()
-    	{
-    		$http.post('/getInformationOfTheBatchId?batchId='+$scope.batchAssignmentSearch)
-    		  .then(function (response) {
-    			  console.log("inside request method");
-    		    $scope.gridOptionsSearch.data = response.data;
-    		  });
-    	};
-
-
-
 }
 

@@ -1,0 +1,112 @@
+.mainWrap{
+  background-color: #ECF0F1;
+  width:1018px;
+  height: auto;
+	}
+.batchAssignment{
+  width: 250px;
+  height: 24px;
+  margin-left: 27px;
+  padding-top: 33px;
+  padding-bottom: 29px;
+  font-size: 24px;
+  line-height: 1.58;
+  text-align: left;
+  color: #000000;
+  }
+.nonAssignedBatchTableWrap{
+	width: 976px;
+  height: auto;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+.searchBatchWrap{
+	width: 976px;
+  height: auto;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  padding-top: 15px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+.proposedWrap{
+	width: 976px;
+  height: auto;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+  .approvedWrap{
+	width: 976px;
+  height: auto;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+  .rejectedWrap{
+	width: 976px;
+  height: auto;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+.nonAssignedBatchesGrid {
+  width: 923px;
+  height: 250px !important;
+  margin-left: 21px;
+}
+.searchBatchGrid {
+  width: 923px;
+  height: 70px !important;
+  margin-left: 21px;
+  margin-top: 20px;
+}
+.proposedBatchesGrid {
+  width: 923px;
+  height: 180px !important;
+  margin-left: 21px;
+  margin-bottom: 10px;
+}
+.approvedBatchesGrid {
+  width: 923px;
+  height: 180px !important;
+  margin-left: 21px;
+}
+.rejectedBatchesGrid {
+  width: 923px;
+  height: 180px !important;
+  margin-left: 21px;
+}
+.searchBatchId {
+  height: 12px;
+  font-family: OpenSans;
+  font-size: 13px;
+  text-align: left;
+  color: #676a6c;
+  color: var(--slate-grey);
+  margin-left: 50px;
+  padding-bottom: 10px;
+}
+*{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
+}
+.searchButton{
+    font-size:10pt;
+    width:76px; 
+    height:34px;
+    color:white;
+    background-color:#1ab394;
+    border:0px solid #336600;
+    padding:4px;
+}

@@ -1,18 +1,18 @@
 batchAssignment:
  selectSqlproposedBatchesBatchAssignment: >
-  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate 
-  from batch B, centre C, batchassignment A 
-  where A.responseType="Proposed" and B.centreId = C.centreId and A.batchId = B.batchId;
+  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate, D.agencyName
+  from batch B, centre C, batchassignment A, agency D
+  where A.responseType="Proposed" and B.centreId = C.centreId and A.batchId = B.batchId and A.agencyId = D.agencyId;
 
  selectSqlapprovedBatchesBatchAssignment: >
-  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate 
-  from batch B, centre C, batchassignment A 
-  where A.responseType="Approved" and B.centreId = C.centreId and A.batchId = B.batchId;
+  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate, D.agencyName
+  from batch B, centre C, batchassignment A, agency D
+  where A.responseType="Approved" and B.centreId = C.centreId and A.batchId = B.batchId and A.agencyId = D.agencyId;
 
  selectSqlrejectedBatchesBatchAssignment: >
-  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate 
-  from batch B, centre C, batchassignment A 
-  where A.responseType="Rejected" and B.centreId = C.centreId and A.batchId = B.batchId;
+  select B.batchId, CONCAT( C.district,', ', C.state) as location,B.batchEndDate,B.assessmentDate, D.agencyName
+  from batch B, centre C, batchassignment A, agency D
+  where A.responseType="Rejected" and B.centreId = C.centreId and A.batchId = B.batchId and A.agencyId = D.agencyId;
   
  updateSqlBatchAssignment: >
   UPDATE batchassignment SET responseType="Default"
