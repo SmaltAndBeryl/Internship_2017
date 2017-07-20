@@ -160,15 +160,7 @@ $http.get('/trainingPartnerApplicationStatus?applicationId=1')
 			 
 			   window.open(urldata);
 			};
-			
-			
-		    
-		    
-		    
-		    
-		    
-		    
-		 
+	 
 };
 	
 	
