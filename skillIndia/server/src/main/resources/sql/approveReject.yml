@@ -1,7 +1,6 @@
 approveReject:
  selectSql: > 
-  select appTable.applicationId,appTable.applicationState,appTable.activeFlag,appTable.dateOfSubmission,userTable.organisationName
-  from application appTable INNER JOIN user userTable where appTable.userId = userTable.userId
+  select appTable.applicationId,appTable.applicationState,appTable.activeFlag,appTable.dateOfSubmission,userTable.organizationName,userTable.userRole from application As appTable INNER JOIN user As userTable where appTable.userId = userTable.userId 
 
  commentExistSql: >
   SELECT EXISTS(SELECT * FROM applicationComments WHERE applicationId= :applicationId)
@@ -18,5 +17,5 @@ approveReject:
 
  updateSqlAction: >
   update application 
-   SET applicationState=:applicationState,activeFlag=:activeFlag,userId=:userId
+   SET applicationState=:applicationState,activeFlag=:activeFlag
     WHERE applicationId=:applicationId
