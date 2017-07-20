@@ -147,7 +147,7 @@ $http.get('/trainingPartnerApplicationStatus')
 										{name:'Display', displayName: 'Download Certificate', cellClass:'download',  headerCellClass:'downCer', cellTemplate: '<img src="icon/CertificateDownlad/Certificate Download.png" ng-click=grid.appScope.downloadCertificate(row)>'}
 											]	
 		 };
-		 $http.get("/trainingPartnerPastBatches")
+		 $http.get("/trainingPartnerPastBatches?applicationId=1")
 		    .then(function (response) {
 		      $scope.pastGridOptions.data= response.data.PastBatches;
 		    })	
