@@ -104,7 +104,7 @@ $scope.myfunction = function(rowData)
 	console.log("Click is working"+appState);
 };
 
-$http.get('/trainingPartnerApplicationStatus')
+$http.get('/trainingPartnerApplicationStatus?applicationId=1')
     .then(function (response) {
       $scope.tpAppStatus.data = response.data;
     })
@@ -126,7 +126,7 @@ $http.get('/trainingPartnerApplicationStatus')
 					]
 			};	 		            			            
 		
-		 $http.get("/trainingPartnerPastBatches?applicationId=10181")
+		 $http.get("/trainingPartnerPastBatches?applicationId=1")
 		    .then(function (response) {
 		      $scope.presentGridOptions.data= response.data.PresentBatches;
 		    })
