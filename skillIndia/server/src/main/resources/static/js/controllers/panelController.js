@@ -58,8 +58,8 @@ function dashboardController($scope, $http)  {
         	 
         	  year = jQuery.unique(year); 
         	  
-        	  console.log('LENGTH OF DATA:'+data.length);
-        	  console.log('TOTAL NO OF YEARS:  '+year.length)
+//        	  console.log('LENGTH OF DATA:'+data.length);
+//        	  console.log('TOTAL NO OF YEARS:  '+year.length)
 //        	 
         	 var j=0;  
         	 for(i = 0; i < data.length; i++)
@@ -256,7 +256,7 @@ function dashboardController($scope, $http)  {
             }
         },
         series: [{
-              name: 'Batch',
+              name: 'Total Batches',
               data: processed_json,
               sliced: true,
               selected: true,
