@@ -24,8 +24,9 @@ newApp.controller('loginCtrl',
 												     console.log(response.data);
 												     var loginAction=response.data;
 												     var userName=loginAction.userId;
-												    if(loginAction.userStatus=="null" || loginAction.userRole=="null" || loginAction.userId=="null") 
-												    	$window.alert("User not authenticated");
+												    if(loginAction.userStatus==null || loginAction.userRole==null || loginAction.userId==null) {
+												    	$window.alert("User Not Authenticated");
+												    }
 												    else{
 												    	if(loginAction.userStatus=="temp"){
 												    		if(loginAction.userRole=="TP")
@@ -34,13 +35,20 @@ newApp.controller('loginCtrl',
 														    	window.location = "http://localhost:8080/blank?userId="+userName;
 												    									}
 												    	else if(loginAction.userStatus=="registered"){
-													    	if(loginAction.userRole=="TP")	{											    
-													    	window.location = "http://localhost:8080/trainingPartnerHomePage?userId="+userName;
+													    	if(loginAction.userRole=="TP")	{	
+													    		$http.post('/userIdtoApplicationId?userId='+userName).then(function(response){
+													    			var applicationId=response.data;
+													    			window.location = "http://localhost:8080/usersHomepage#!/ab?applicationId="+applicationId;
+													    		});
+													    	
 													    	}
-													    	if(loginAction.userRole=="AB"){
-														    	window.location = "http://localhost:8080/blank?userId="+userName;
+													    	else if(loginAction.userRole=="AB"){
+													    		$http.post('/userIdtoApplicationId?userId='+userName).then(function(response){
+													    			var applicationId=response.data;
+													    			window.location = "http://localhost:8080/usersHomepage#!/tp?applicationId="+applicationId;
+													    		});
 													    	}
-													    	if(loginAction.userRole=="SCGJ"){
+													    	else if(loginAction.userRole=="SCGJ"){
 														    	window.location = "http://localhost:8080/index?userId="+userName;
 													    	}
 													    	else
@@ -90,7 +98,7 @@ newApp.controller('signupCtrl',
 									    	 if($scope.newUser.userRole=="TP"){
 									    	 window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
 									    	 }else if($scope.newUser.userRole=="AB")
-										    	 window.location ="http://localhost:8080/index?userId="+userName;
+										    	 window.location ="http://localhost:8080/profileCreationAssessmentBody?userId="+userName;
 									    	 else
 										    	 window.location = "http://localhost:8080/";
  

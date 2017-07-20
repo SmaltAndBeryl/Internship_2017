@@ -1,0 +1,4 @@
+userIdtoApplicationId:
+ selectSql: >
+   select applicationId
+    from application where userId=:userId
