@@ -17,6 +17,7 @@ import com.skill.India.dto.ApproveRejectTableDto;
 import com.skill.India.dto.CommentDto;
 import com.skill.India.dto.ManageRegistrationApplicationDto;
 import com.skill.India.dto.MessageDto;
+import com.skill.India.dto.SessionManagementDto;
 import com.skill.India.service.ApproveRejectTableService;
 	
 
@@ -25,9 +26,14 @@ import com.skill.India.service.ApproveRejectTableService;
 	{
 		
 		private static final Logger LOGGER = LoggerFactory.getLogger(ApproveRejectTableController.class);
+		
 		@Autowired
 		private ApproveRejectTableService approveRejectTableService;
-			
+		
+		@Autowired
+		private SessionManagementDto sessionManagementDto;
+		
+		String userId = sessionManagementDto.getUsername();
 		
 		@RequestMapping("/approve")
 		public HashMap<String, ArrayList<ApproveRejectTableDto>> approveRejectTableDtos()
@@ -39,6 +45,8 @@ import com.skill.India.service.ApproveRejectTableService;
 		@RequestMapping(value="/affiliationActionOfAnApplicant",method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 		public @ResponseBody MessageDto setAfflilationOfBody(@RequestBody ManageRegistrationApplicationDto manageRegistrationApplicationDto)
 		{
+			LOGGER.info("Setting the UserId For the Affilation of a Body");
+			manageRegistrationApplicationDto.setUserId(userId);
 			MessageDto approveRegistartionMessage = new MessageDto();
 			LOGGER.info("Trying to Affilate an Applicant."); 
 			int updatedAffilationOfAApplicant=0;
@@ -81,11 +89,6 @@ import com.skill.India.service.ApproveRejectTableService;
 			 return approveRegistartionMessage;
 			
 		 }
-		 	 
-		 
-		 
-		  
-		 
 	}
 		 
 	 
