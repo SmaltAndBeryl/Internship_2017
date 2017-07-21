@@ -3,30 +3,19 @@
  width:auto;
  background-color:#ECF0F1;
     }
- .grid{
-   margin-left: 20px;
+.grid{
+	margin-left: 20px;
    margin-right: 20px;
    height: 340px;
- }
- .grid1{
- margin-left: 20px;
+}
+.grid1{
+	 margin-left: 20px;
    margin-right: 20px;
  height: 55px !important;
  }
 .label{
-	margin-left:23px;
+ margin-left:23px;
 }
-.upload
-{
-  height: 15px;
-  font-size: 13px;
-  font-weight: bold;
-  text-align: left;
-  color: #676a6c;
-  color: var(--slate-grey)
-	
-}
-
 .import{
   width: 66px;
   height: 20px;
@@ -38,17 +27,14 @@
   text-align: left;
   color: #000000;
 }
-
-.historytable{
-  height: 420px; 
+.upload{ 
+  height: 91px;
   margin-left: 21px;
    margin-right: 21px;
-  margin-top: 10px;
-  margin-bottom:10px;
   background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
 }
-.historytable1{
+.historytable{
   height: 420px; 
   margin-left: 21px;
    margin-right: 21px;
@@ -109,7 +95,7 @@
   height: 246px;
   background-color:#fffefe;
   border: solid 1px #e7e7e7;
-  width: 100px;
+
   font-size: 13px;
   text-align: left;
   color: #676a6c;
@@ -174,7 +160,7 @@
   .layer {
   
   height: 10px;
-  width: 100px;
+
   font-size: 13px;
   font-weight: bold;
   text-align: left;
@@ -192,11 +178,6 @@
   color: var(--slate-grey);
  
 }
-#responseMessage
-{
-	display: inline;
-}
-
 .Type {
   
   height: 13px;
@@ -228,16 +209,6 @@
   color: #676a6c;
   color: var(--slate-grey);
  
-}
-.View-Upload {
-
-  height: 13px;
-  width: 100px;
-  font-size: 13px;
-  font-weight: bold;
-  text-align: left;
-  color: #676a6c;
-  color: var(--slate-grey);
 }
 .View-Uploaded-File {
 
@@ -285,7 +256,6 @@
     border-radius:4px;
     padding:4px;
    margin-left:10px;
-   margin-bottom:15px;
 } 
   
 
@@ -926,9 +896,9 @@ input[type="text"].ui-grid-filter-input:hover {
 }
 @font-face {
   font-family: 'ui-grid';
- /*  src: url('ui-grid.eot');
+  src: url('ui-grid.eot');
   src: url('ui-grid.eot#iefix') format('embedded-opentype'), url('ui-grid.woff') format('woff'), url('ui-grid.ttf') format('truetype'), url('ui-grid.svg?#ui-grid') format('svg');
-  */ font-weight: normal;
+  font-weight: normal;
   font-style: normal;
 }
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */

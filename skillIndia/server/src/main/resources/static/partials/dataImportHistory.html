@@ -30,39 +30,22 @@
       <div ui-grid="dataImportHistory"  ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
       </div>
       </div>
-      
-      
-      
-      <div class="certificate" ng-controller="importController"> 
-    
-
+      <div class="certificate">
       <form id="Search-Batch-ID"  method="post" role="form" style="display: block;">
-          <label class="label">Search Batch ID</label> 
-             <input type="text" class="text" placeholder="Enter Batch ID" required name='searchText' ng-model="batchId"/>
-             <input type="button" class="button"  value="Search" ng-click="getDataOfBatch()"> <p id="responseMessage">{{errorMessage}}</p>
-  	</form>
-		 <div ui-grid="searchBatch" class="grid1" ui-grid-auto-resize> 
-		 <div class="ui-grid-cell-contents"></div> 
-
-  </div>
-  
-</div>
-      </form>  
-      </div>  
-      
-      
-<!-- <div ng-controller="importController" >
-<p>{{$scope.errorMessage}}</p>
-</div>  --> 
-
-
-        <div class="historytable1">
+          <label class="title">Search Batch ID</label> 
+             <input type="text" class="text" placeholder="Search..." required name='searchText'>
+             <input type="button" class="button"  value="Search" ng-click="getdatOfbatch()">
+      </form>
+      <div ng-controller="importController as Main">
+      <div ui-grid="searchBatch" ui-grid-auto-resize class="grid1"></div> 
+      </div>
+      </div>
+        <div class="historytable">
   <h5 class="title">Certificate Upload History</h5>
-   <div ng-controller="importController">
-      <div ui-grid="certificateImportHistory" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
+   <div ng-controller="importController as Main">
+      <div ui-grid="certificateImportHistory" ui-grid-auto-resize class="grid "></div>
       </div>
       </div>
-      
-<script src="dataImportHistory.js"></script>
+
    <!-- </body>
 </html> --> 

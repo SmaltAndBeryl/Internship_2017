@@ -2,39 +2,31 @@
      {
     	width:100%;
      }   
-    
+.backfaq
+{
+ background-color:#ECF0F1;
+    }
+ 
 .Rectangle
 	{
 		width: 971px;
 		height: 68px;
 		background-color: #fffefe;
 		box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+		
 	}
         
-h3
-	{
-        width: 59px;
-  		height: 17px;
-		font-family: ProximaNova;
-		font-size: 24px;
-		line-height: 1.58;
-		text-align: left;
-		color: #000000;
-            
-	}
-            
-.FAQ1
-	{
-		width: 457px;
-		height: 31px;
-		font-family: OpenSans;
-		font-size: 14px;
-		text-align: left;
-		color: #676a6c;
-		color: var(--slate-grey);
-	}       
-
-
+.FAQs {
+  height: 20px;
+  margin-left: 26px;
+  padding-top: 23px;
+  padding-bottom: 28px;
+  font-size: 18px;
+  line-height: 1.58;
+  text-align: left;
+  color: #000000;
+}
+   
 .left
 	{
 		float:left;
@@ -60,17 +52,45 @@ h3
    
 	}
 	
+.Rectangle-7 {
+  width: 971px;
+  height: 68px;
+  background-color: #fffefe;
+  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+}	
+
+.question {
+  height: 31px;
+  font-size: 14px;
+  text-align: left;
+  color: #676a6c;
+}
+
+.rightRectangle
+	{
+		display: inline-block;
+		float:right;
+		width:950px;
+		text-align: center;
+		line-height: 55px;
+   
+	}
 
 
+.edge
+	{
+		width: 971px;
+		height: 4px;
+	
+	}
 
+.edgeFAQ
+	{
+		width:971px;
+		height: 20px;
+	}
 
-
-
-
-
-
-
-
-
-
-
+.lMargin
+	{
+		margin-left : 16px;
+	}
