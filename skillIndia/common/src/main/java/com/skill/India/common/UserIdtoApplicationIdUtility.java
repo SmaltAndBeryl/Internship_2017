@@ -11,9 +11,9 @@ public class UserIdtoApplicationIdUtility {
 	@Autowired
 	private UserIdtoApplicationIdService userIdtoApplicationIdService;
 
-	 public String getApplicationId(String userId) 
+	 public int getApplicationId(String userId) 
 		{	
-			return Integer.toString(userIdtoApplicationIdService.getApplicationId(userId));
+			return userIdtoApplicationIdService.getApplicationId(userId);
 		}	
 		
 
