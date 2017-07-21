@@ -32,20 +32,20 @@ newApp.controller('loginCtrl',
 												    		if(loginAction.userRole=="TP")
 														    	window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
 												    		else 
-														    	window.location = "http://localhost:8080/blank?userId="+userName;
+														    	window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
 												    									}
 												    	else if(loginAction.userStatus=="registered"){
 													    	if(loginAction.userRole=="TP")	{	
 													    		$http.post('/userIdtoApplicationId?userId='+userName).then(function(response){
 													    			var applicationId=response.data;
-													    			window.location = "http://localhost:8080/usersHomepage#!/ab?applicationId="+applicationId;
+													    			window.location = "http://localhost:8080/usersHomepage#!/tp?applicationId="+applicationId;
 													    		});
 													    	
 													    	}
 													    	else if(loginAction.userRole=="AB"){
 													    		$http.post('/userIdtoApplicationId?userId='+userName).then(function(response){
 													    			var applicationId=response.data;
-													    			window.location = "http://localhost:8080/usersHomepage#!/tp?applicationId="+applicationId;
+													    			window.location = "http://localhost:8080/usersHomepage#!/ab?applicationId="+applicationId;
 													    		});
 													    	}
 													    	else if(loginAction.userRole=="SCGJ"){
