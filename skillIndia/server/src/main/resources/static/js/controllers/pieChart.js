@@ -46,6 +46,7 @@ $('#pieChart').highcharts({
             dataLabels: {
                 enabled: true,
                 format: '<b>{point.name}</b>:<b>  {point.y:.0f}</b>',
+                size:"75%",
                 style: {
                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                 },
