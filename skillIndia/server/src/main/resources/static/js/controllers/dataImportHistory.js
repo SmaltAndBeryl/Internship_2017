@@ -1,4 +1,4 @@
-console.log("code reacxhed to imort.js");
+//console.log("code reacxhed to imort.js");
 //var app = angular.module('app', [ 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav','ui.grid.autoResize']);
 var imp = angular
 .module('imp', [
@@ -12,10 +12,9 @@ var imp = angular
 
 imp.controller('importController', importController);
 
-importController.$inject = ['$scope', '$http', 'fileUpload'];
+importController.$inject = ['$scope', '$http', 'fileUpload', 'zipCertificateUpload'];
 
-
-function importController($scope, $http, fileUpload){
+function importController($scope, $http, fileUpload, zipCertificateUpload){
   //refresh();
 	
 	/*
@@ -24,7 +23,7 @@ function importController($scope, $http, fileUpload){
 	
 	
 
-$scope.gridOptions = {
+	$scope.dataImportHistory = {
 	  enableGridMenus : false,  
 	  enableSorting: false, 
 	  enableFiltering: false,
@@ -47,7 +46,7 @@ columnDefs:[
 	
   $scope.download = function(rowData){
 	  var  fileName = rowData.entity.csvname;
-	  console.log("the row value is >>>" + rowData.entity.csvname);
+	  //console.log("the row value is >>>" + rowData.entity.csvname);
 	  var urldata = "/downloadCSVFile/"+ fileName;
 	  window.open(urldata);
   };
@@ -64,7 +63,7 @@ columnDefs:[
   
      $http.get("/importHistory")
       .then(function(response){
-    	  $scope.gridOptions.data = response.data;
+    	  $scope.dataImportHistory.data = response.data;
     });
      
      /*
@@ -124,7 +123,7 @@ columnDefs:[
 $scope.downloadCertificate = function(rowData){
 	
 	 var  fileName = rowData.entity.certificateName;
-	  console.log("the row value is >>>" + rowData.entity.certificateName);
+	  //console.log("the row value is >>>" + rowData.entity.certificateName);
 	  var urldata = "/downloadCertificate/"+ fileName;
 	
 	  window.open(urldata);
@@ -148,15 +147,16 @@ $scope.searchBatch = {
 	      enableHorizontalScrollbar:0,
 		  
 	      columnDefs : [
-                        
-	                    //{ name:'SNo' , 		         displayname:'SNo',					  cellClass:'batch id',	   headerCellClass:'layer' ,				 cellTemplate:"1"},
-	                    { name:'batchId' ,  		 displayname:'Batch id' , 			  cellClass:'batch id', headerCellClass:'Date'},
-	                    { name:'batchName' , 		 displayname:'Batch Name' , 	      cellClass:'batch id', headerCellClass:'Date'},
-	                    { name:'batchStartDate' , 	 displayname:'Batch Start date',	  cellClass:'date',	   headerCellClass:'Date'},
-	                    { name:'batchEndDate' ,      displayname:'Batch End date',		  cellClass:'date',	   headerCellClass:'Date'},
-	                    { name:'trainingPartnerName',displayname:'Training Partner Name', cellClass:'fname',    headerCellClass:'File-Name'},
-	                    { name: 'View Uploaded File',displayName:'Uploaded File', 		  cellClass:'vub',      headerCellClass:'View-Uploaded-File', cellTemplate:  ' <form action="/downloadCertificate/ab" method="post" enctype="multipart/form-data"><input type="file" accept=".zip" name="file" /><input type="submit" value="submit" /></form>'}
-	                  ]
+              
+              //{ name:'SNo' , 		         displayname:'SNo',					  cellClass:'batch id',	   headerCellClass:'layer' ,				 cellTemplate:"1"},
+              { name:'batchId' ,  		 displayname:'Batch id' , 			  cellClass:'batch id', headerCellClass:'upload', width:100},
+             // { name:'batchName' , 		 displayname:'Batch Name' , 	      cellClass:'batch id', headerCellClass:'Date',width:150},
+              { name:'batchStartDate' , 	 displayname:'Batch Start date',	  cellClass:'date',	   headerCellClass:'Date',width:150},
+              { name:'batchEndDate' ,      displayname:'Batch End date',		  cellClass:'date',	   headerCellClass:'Date',width:150},
+              { name:'trainingPartnerName',displayname:'Training Partner Name', cellClass:'fname',    headerCellClass:'File-Name',width:150},
+              { name:'view', displayName:'Browse file',cellClass:'fname', headerCellClass:'File-Name',width:300,  cellTemplate:  '<label> <input type="file" id="selectFile" accept=".zip" file-model/ ng-click=grid.appScope.selectLocation(row)></label>'},
+              {name:'viewNAme', displayName:'Upload File', cellClass:'fname',headerCellClass:'File-Name',width:150,   cellTemplate:  '<label> <img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.uploadCertificate(row)></label>'}
+            ]
 	  };
 
 
@@ -165,42 +165,45 @@ $scope.searchBatch = {
 	{
 		$http.post('/findBatch?batchId='+$scope.batchId)
 		.then(function(response) {
-			  console.log("inside request method");
+			  //console.log("inside ");
 			  //console.log(response.data);
 			  var err;
-			  
+			  var exists= document.getElementById("responseMessage");
 			  if(response.data[0] == null)
 				  {
-				  var exists= document.getElementById("responseMessage");
+				  
 				  exists.style.color = "Red";
 				  $scope.errorMessage="No Record Found";
-				  console.log('YE AAY ANULL');
+				  //console.log('YE AAY ANULL');
 				  }
 				  //console.log("Error");
 			  
 			  else
+				  $scope.errorMessage="";
 				  $scope.searchBatch.data = response.data;
 		  });
 	};
 	
 	
-	$scope.UploadCertificate = function(rowData){
+	$scope.uploadCertificate = function(rowData){
 		
-		var  batchId = rowData.entity.batchName;
-		//uploadCSV($scope);
-		console.log(rowData.entity.batchName);
-		$http.post('/uploadCertificate')
-		.then(function(response) {
-			
-		  });
-			
-		  console.log("the row value is >>>" + rowData.entity.batchName);
-		  var urldata = "/downloadCertificate/"+ fileName;
+		var  batchId = rowData.entity.batchId;
+		var url = '/uploadCertificate';
+		//console.log(rowData.entity.batchId);
 		
-		  window.open(urldata);
+//		$http.post('/uploadCertificate')
+//		.then(function(response) {
+//			
+//		  });
+//			
+//		  console.log("the row value is >>>" + rowData.entity.batchName);
+//		  var urldata = "/downloadCertificate/"+ fileName;
+//		
+//		  window.open(urldata);
+//	};
+	
+		zipCertificateUpload.uploadZip(batchId,url);
 	};
-	
-	
 
 }
 

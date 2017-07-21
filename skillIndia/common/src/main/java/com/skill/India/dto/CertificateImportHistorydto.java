@@ -16,6 +16,8 @@ private static final long serialVersionUID = 1L;
 	
 private final String batchID;
 
+private final Date batchEndDate ;
+ 
 private final String certificateName ;
 
 private final Date certificateUploadDate;
@@ -28,6 +30,14 @@ private final String userId;
 public String getBatchID() {
 	return batchID;
 }
+
+/**
+ * @return the batchEndDate
+ */
+public Date getBatchEndDate() {
+	return batchEndDate;
+}
+
 
 /**
  * @return the certificateName
@@ -56,10 +66,11 @@ public String getUserId() {
  * @param certificateUploadDate
  * @param userId
  */
-public CertificateImportHistorydto(String batchID, String certificateName, Date certificateUploadDate,
+public CertificateImportHistorydto(String batchID, Date batchEndDate ,String certificateName, Date certificateUploadDate,
 		String userId) {
 	super();
 	this.batchID = batchID;
+	this.batchEndDate = batchEndDate;
 	this.certificateName = certificateName;
 	this.certificateUploadDate = certificateUploadDate;
 	this.userId = userId;
