@@ -43,7 +43,7 @@ console.log("File reached");
 		$('#register-form-link').removeClass('active');
 		$(this).addClass('active');
 		e.preventDefault();
-		$('#password').password('toggle');
+		//$('#password').password('toggle');
 
 	});
 	$('#register-form-link').click(function(e) {
@@ -55,13 +55,28 @@ console.log("File reached");
 	});
 
 });
-
-        
     
-        
-   
-        
-       
-
-    
+    $(document).ready(function(){
+        $('.button').click(function(){
+             if ($('input#userId').val() == "")
+             {
+                 alert('Please fill the Email');
+             }
+         
+         
+         });
+     });
+     
+  $(document).ready(function(){
+        $('.button').click(function(){
+             if ($('input#password').val() == "")
+             {
+                 alert('Please fill the password');
+             }
+         
+         
+         });
+     });
+     
+         
    
