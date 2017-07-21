@@ -242,7 +242,8 @@ function dashboardController($scope, $http)  {
             }
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.0f}</b>'
+            pointFormat: '{series.name}: <b>{point.percentage:.0f}</b>',
+            
         },
         plotOptions: {
             pie: {
