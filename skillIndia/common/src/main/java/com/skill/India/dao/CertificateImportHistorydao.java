@@ -42,11 +42,12 @@ public class CertificateImportHistorydao extends AbstractTransactionalDao{
 		public CertificateImportHistorydto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
 		    String batchId = resultSet.getString("BatchID");
+		    Date batchEndDate = resultSet.getDate("BatchEndDate");
 			String certificateName = resultSet.getString("CertificateName");
 			Date certificateUploadDate = resultSet.getDate("CertificateUploadDate");
 			String userId = resultSet.getString("UserId");
 
-			return new CertificateImportHistorydto(batchId, certificateName, certificateUploadDate, userId);
+			return new CertificateImportHistorydto(batchId,batchEndDate, certificateName, certificateUploadDate, userId);
 		}
 
 	}
