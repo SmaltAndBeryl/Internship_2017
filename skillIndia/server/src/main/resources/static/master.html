@@ -1,0 +1,25 @@
+<div style="background-color: yellow; height: 200px; width: 200px" ng-show="authenticated">
+    <h2>
+        Welcome to Master template
+    </h2>
+    {{message}}
+
+    <button type="button" ng-click="page = 'page1'">Page 1</button>
+    <button type="button" ng-click="page = 'page2'">Page 2</button>
+    <button type="button" ng-click="page = 'page3'">Page 3</button>
+
+    <div ng-switch on="page">
+        <div ng-switch-when="page1">
+            Page 1
+            <div ng-include src="'page1.html'"></div>
+        </div>
+        <div ng-switch-when="page2">
+            Page 2
+            <div ng-include src="'page2.html'"></div>
+        </div>
+        <div ng-switch-when="page3">
+            Page 3
+            <div ng-include src="'page3.html'"></div>
+        </div>
+    </div>
+</div>
