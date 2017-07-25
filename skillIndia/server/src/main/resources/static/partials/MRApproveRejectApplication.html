@@ -26,13 +26,13 @@
    
     <link rel="stylesheet" href="css/MRApproveRejectApplication.css" type="text/css" />
 
-
+<div ng-controller="manageController">
     
       <div class="table">
      <h3 class="manage">Manage Registration</h3>
       <div class="table-wrap">
         <h4 class="title">Approve/Reject Forms</h4>
-        <div ng-controller="manageController" class=" approveReject">
+        <div class="approveReject">
           <div  ui-grid="gridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
           
         </div>
@@ -42,14 +42,14 @@
 
     <div class="table1">
         <h4 class="table2-wrap"> Approved Applications </h4>
-        <div ng-controller="manageController">
+        <div>
             <div  ui-grid="gridOptionsApproved" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
         </div> 
         <div ng-show="messagealert" ng-model="message" ng-controller="manageController">{{message}}</div>   
     <div class="table1">
         <h4 class="table2-wrap"> Rejected Applications </h4>
-        <div ng-controller="manageController">
+        <div>
             <div ui-grid="gridOptionsRejected" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
         </div>    
@@ -57,12 +57,12 @@
 
 <div class="table1">
         <h4 class="table2-wrap"> Incomplete Applications</h4>
-        <div ng-controller="manageController">
+        <div >
             <div ui-grid="gridOptionsIncomplete" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
         </div> 
     </div>
-        
+        </div>
    <script src="/js/MRApproveRejectApplication.js"></script>
 
 
