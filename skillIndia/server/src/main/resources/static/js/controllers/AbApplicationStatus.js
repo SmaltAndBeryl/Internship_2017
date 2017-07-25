@@ -27,9 +27,10 @@ app.controller('MainCtrl', ['$scope', '$http', '$location', function ($scope, $h
 
 }
 $scope.myfunction = function(rowData) 
-  {   var appState=Object.values(Object.values(rowData)[1])[3];
+  {   var appState=rowData.entity.applicationState;
   if(appState=="Incomplete"){
 	  window.location="https://www.google.co.in";
+	  //replace with $location.path();
 	  console.log("Please Edit the Form");
 	  
   }

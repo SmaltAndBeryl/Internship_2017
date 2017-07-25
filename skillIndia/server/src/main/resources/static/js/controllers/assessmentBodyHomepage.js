@@ -36,6 +36,7 @@ $scope.myfunction = function(rowData)
 {   var appState=Object.values(Object.values(rowData)[1])[3];
 if(appState=="Incomplete"){
 	  window.location="https://www.google.co.in";
+	  //$location.path();
 	  console.log("Please Edit the Form");
 	  
 }
@@ -45,7 +46,7 @@ else{
 	console.log("Click is working"+appState);
 };
 
-$http.get('/assessmentBodyApplicationStatus?applicationId=2')
+$http.get('/assessmentBodyApplicationStatus')
   .then(function (response) {
     $scope.abAppStatus.data = response.data;
   },
@@ -68,7 +69,7 @@ $http.get('/assessmentBodyApplicationStatus?applicationId=2')
 { name:'totalCandidatesInBatch',displayName:'Candidates',displayName:'No. of Candidates',cellClass:'cell',headerCellClass:'CommonCell'},
 		        	  ]
   };
-	$http.get("/getPastBatchesAssessmentBodyHomepage?applicationId=2")
+	$http.get("/getPastBatchesAssessmentBodyHomepage")
 		.then(function (response) {
       $scope.gridOptions1.data = response.data;
     },
@@ -93,7 +94,7 @@ $http.get('/assessmentBodyApplicationStatus?applicationId=2')
 ]
 	};
 	  
-	   $http.get("/getUpcomingBatchesAssessmentBodyHomepage?applicationId=2")
+	   $http.get("/getUpcomingBatchesAssessmentBodyHomepage")
 	  .then(function (response) {
       $scope.gridOptions2.data = response.data;
     })
@@ -110,6 +111,8 @@ $http.get('/assessmentBodyApplicationStatus?applicationId=2')
 		      {
 		      var interestid = Object.values(Object.values(rowData)[1])[0];
 		         var urldata = "/showInterest?batchId="+interestid+"&agencyId=3001";
+		         //remove agency Id- pick it from session
+		         //let batch id as is
 		         $http.post(urldata).then(function(response){
 		          
 		                 console.log("batch id for Interest is "+interestid);
@@ -136,7 +139,7 @@ $http.get('/assessmentBodyApplicationStatus?applicationId=2')
 { name:'totalCandidatesInBatch',displayName:'Candidates',displayName:'No. of Candidates',cellClass:'cell',headerCellClass:'CommonCell'},
 	        	  ]
 };
-$http.get("/getShownInterestBatchesAssessmentBodyHomepage?applicationId=2")
+$http.get("/getShownInterestBatchesAssessmentBodyHomepage")
 	.then(function (response) {
 $scope.gridstatus.data = response.data;
 })
@@ -161,7 +164,7 @@ $scope.gridstatus.data = response.data;
 
 		$scope.approve = function(rowData){
 	         //Extract first cell value
-	         var approveid = Object.values(Object.values(rowData)[1])[0];
+	         var approveid = rowData.entity.batchId;
 	         var urldata = "/approveAssignment?batchId="+approveid;
 
 	         $http.post(urldata).then(function(response){
@@ -169,7 +172,7 @@ $scope.gridstatus.data = response.data;
 	             });
 	     }
 		$scope.reject = function(rowData){
-		      var rejectid = Object.values(Object.values(rowData)[1])[0];
+		      var rejectid = rowData.entity.batchId;
 		         var urldata = "/rejectAssignment?batchId="+rejectid;
 
 		         $http.post(urldata).then(function(response){
@@ -177,7 +180,7 @@ $scope.gridstatus.data = response.data;
 		             });
 		     }
 	  
-		$http.get("/getAssignedBatchesAssessmentBodyHomepage?applicationId=2")
+		$http.get("/getAssignedBatchesAssessmentBodyHomepage")
 	    		.then(function (response) {
       $scope.gridOptions3.data = response.data;
 	    })
@@ -197,7 +200,7 @@ columnDefs : [
 { name:'totalCandidatesInBatch',displayName:'Candidates',displayName:'No. of Candidates',cellClass:'cell',headerCellClass:'CommonCell'},
 ]
 };
-	$http.get("/getConfirmedBatchesAssessmentBodyHomepage?applicationId=2")
+	$http.get("/getConfirmedBatchesAssessmentBodyHomepage")
 	.then(function (response) {
       $scope.gridOptions4.data = response.data;
     })

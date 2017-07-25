@@ -8,6 +8,7 @@ var statusApp = angular
 statusApp.controller('TpApplication',TpApplication);
 TpApplication.$inject=['$scope','$http','$location'];
 function TpApplication($scope, $http, $location) {
+	var applicationId=2;
 	
 	$scope.gridOptions = {
 		  enableColumnMenus: false,
@@ -47,7 +48,7 @@ $scope.myfunction = function(rowData)
 	console.log("Click is working"+appState);
 };
 
-$http.get('/trainingPartnerApplicationStatus')
+$http.post('/trainingPartnerApplicationStatus?applicationId='+applicationId')
 //$http.get('poc/Status.json')
     .then(function (response) {
       $scope.gridOptions.data = response.data;

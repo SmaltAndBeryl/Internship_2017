@@ -45,7 +45,7 @@ else{
 	console.log("Click is working"+appState);
 };
 
-$http.get('/trainingPartnerApplicationStatus?applicationId=2')
+$http.get('/trainingPartnerApplicationStatus')
 .then(function (response) {
   $scope.tpAppStatus.data = response.data;
 },
@@ -71,7 +71,7 @@ function(errorResponse){
 					]
 			};	 		            			            
 		
-		 $http.get("/trainingPartnerPastBatches?applicationId=10181")
+		 $http.get("/trainingPartnerPastBatches")
 		    .then(function (response) {
 		      $scope.presentGridOptions.data= response.data.PresentBatches;
 		    })
@@ -92,7 +92,7 @@ function(errorResponse){
 										{name:'Display', displayName: 'Download Certificate', cellClass:'download',  headerCellClass:'downCer', cellTemplate: '<img src="icon/CertificateDownlad/Certificate Download.png" ng-click=grid.appScope.downloadCertificate(row)>'}
 											]	
 		 };
-		 $http.get("/trainingPartnerPastBatches?applicationId=1")
+		 $http.get("/trainingPartnerPastBatches")
 		    .then(function (response) {
 		      $scope.pastGridOptions.data= response.data.PastBatches;
 		    })	
@@ -104,16 +104,5 @@ function(errorResponse){
 			   var urldata = "/downloadCertificate/"+ fileName;
 			 
 			   window.open(urldata);
-			};
-			
-			
-		    
-		    
-		    
-		    
-		    
-		    
-		 
+			};	 
 };
-	
-	

@@ -76,34 +76,44 @@ app.controller('UpcommingCtrl', ['$scope', '$http', '$log', function ($scope, $h
 { name:'assessmentDate',displayName:'Assessment Date',cellClass:'cell',headerCellClass:'CommonCell'},
 { name:'location',displayName:'District|State',cellClass:'cell',headerCellClass:'CommonCell'},
 { name:'totalCandidatesInBatch',displayName:'Candidates',displayName:'No. of Candidates',cellClass:'cell',headerCellClass:'CommonCell'},
-{ name:'Show Interest',cellClass:'check',headerCellClass:'CommonCell',cellTemplate: '<div><label><input type="checkbox" value="">&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp<button class="btn btn-default" data-toggle="confirmation" onclick="confirmfunction2()" ng-click="grid.appScope.confirmfunction()">&#10004</button></label></div>'}
+{ name:'Show Interest',cellClass:'check',headerCellClass:'CommonCell',cellTemplate: '<div><input type="checkbox" id="myCheck" value="abc" ng-click=grid.appScope.check(row)>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.confirmfinal(row)></div>'}
 ];
 	  
 	   $http.get('getUpcomingBatchesAssessmentBodyHomepage')
 	    .success(function(data) {
 	     $scope.gridOptions.data = data;
 	   })
-	    
-	    $scope.confirmfunction = function(){
-	    console.log("Function Reached");
-	    $http.get('/ShowInterestupcomingtable').success(function(data){
-	     console.log("data populated");
-	    })
+	    var bool;
+	   $scope.check = function(rowData){
+		    console.log("Check Reached");
+		    bool = document.getElementById("myCheck").checked 
+		    if(bool == true)
+		    	{
+		    	console.log("getit");
+		    	}
+		    
+		    }
+	   
+	    $scope.confirmfinal = function(rowData){
+	    //console.log("Function Reached");
+	    if(bool==true)
+	    	{
+	    	var interestid = Object.values(Object.values(rowData)[1])[0];
+	        //Code for query update
+	        var urldata = "/showInterest?batchId="+interestid+"&agencyId=3001";
+console.log("entered");
+	        $http.post(urldata).then(function(response){
+	        	
+	                console.log("batch id for Interest is "+interestid);
+	                //$scope.response=response.data;
+	            });
+	    	
+	    	console.log("you are on right track");
+	    	}
 	    }
 	   
 	 }]); // End of controller
 
-	function confirmfunction2()
-	{
-	  console.log("button Code reached");
-	  console.log("Cnf Function reached");
-	  
-	 if (confirm("Do you want to confirm interest?")==true)
-	     txt = "Your Interest is Confirmed!";
-	 else
-	  txt = "Your Interest is Cancel!";   
-	     document.getElementById("demo").innerHTML = txt;
-	}
 	
 	app.controller('AssignCtrl', ['$scope', '$http', function ($scope, $http) {
 		
@@ -122,17 +132,35 @@ app.controller('UpcommingCtrl', ['$scope', '$http', '$log', function ($scope, $h
 { name:'assessmentDate',displayName:'Assessment Date',cellClass:'cell',headerCellClass:'CommonCell'},
 { name:'location',displayName:'District|State',cellClass:'cell',headerCellClass:'CommonCell'},
 { name:'totalCandidatesInBatch',displayName:'Candidates',displayName:'No. of Candidates',cellClass:'cell',headerCellClass:'CommonCell'},
-{ name: 'Action',cellClass:'check',headerCellClass:'CommonCell',cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.myfunction1()>  &nbsp; &nbsp; &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.myfunction2()></label>' }
+{ name: 'Action',cellClass:'check',headerCellClass:'CommonCell',cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.approve(row)>  &nbsp; &nbsp; &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.reject(row)></label>' }
 	    ];
 
-	    $scope.myfunction1 = function(){
-	        alert("Your comment has been logged..!");
-	        location.href = 'http://www.google.com';
-	    };
+	    $scope.approve = function(rowData){
+	        //Extract first cell value
+	        var approveid = Object.values(Object.values(rowData)[1])[0];
 
-	    $scope.myfunction2 = function(){
-	        alert("Your comment has been discarded..!");
-	        location.href = 'http://www.facebook.com';
+
+	        //Code for query update
+	        var urldata = "/approveAssignment?batchId="+approveid;
+
+	        $http.post(urldata).then(function(response){
+	                console.log("batch id for Approve is "+approveid);
+	                //$scope.response=response.data;
+	            });
+	    };
+	    
+
+	    $scope.reject = function(rowData){
+	    	var rejectid = Object.values(Object.values(rowData)[1])[0];
+
+
+	        //Code for query update
+	        var urldata = "/rejectAssignment?batchId="+rejectid;
+
+	        $http.post(urldata).then(function(response){
+	                console.log("batch id for Approve is "+rejectid);
+	                //$scope.response=response.data;
+	            });
 	    };
 	  
 		$http.get('getAssignedBatchesAssessmentBodyHomepage')
