@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.skill.India.common.UserIdtoApplicationIdUtility;
+import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dao.GetUserIdPasswordAndRoleDao;
 import com.skill.India.dto.SessionManagementDto;
 
@@ -18,50 +18,27 @@ import com.skill.India.dto.SessionManagementDto;
 public class SessionManagementService implements UserDetailsService {
 
 	@Autowired
-	private GetUserIdPasswordAndRoleDao getUserIdPasswordAndRoleDao; 
-	
+	private GetUserIdPasswordAndRoleDao userIdPasswordAndRoleDao;
 
 	@Autowired
-	private UserIdtoApplicationIdUtility userIdtoApplicationIdUtility;
-	
+	private SessionUserUtility userIdtoApplicationIdUtility;
+
 	@Override
-	public UserDetails loadUserByUsername(String username)
+	public SessionManagementDto loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		String userId="";
-		String password="";
-		String userRole="";
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-		
+
 		/*
 		 * Check for user existence here
 		 */
-		
-		int status=getUserIdPasswordAndRoleDao.userExistence(userId);
-		if(status==0)
-		{
+
+		int status = userIdPasswordAndRoleDao.userExistence(username);
+		if (status == 0) {
 			authorities.add(new SimpleGrantedAuthority(null));
-			return new SessionManagementDto(null, null,authorities);
+			return new SessionManagementDto(null, null, null);
 		}
-		
-		
-		/*
-		 * If user Id exists get the ID,password and userRole from DB
-		 */
-		
-		
-		Collection<SessionManagementDto> obj=getUserIdPasswordAndRoleDao.getUserIdPasswordAndRole(username);
-		for(SessionManagementDto x:obj)
-		{
-			userId=x.getUsername();
-			password=x.getPassword();
-			userRole=x.getUserRole();
-			break;
-		}
-		
-		//String applicationId=userIdtoApplicationIdUtility.getApplicationId(userId);
-		
-		authorities.add(new SimpleGrantedAuthority(userRole));
-		return new SessionManagementDto(userId, password, authorities);
+
+		return userIdPasswordAndRoleDao.getUserIdPasswordAndRole(username);
 	}
 
 }

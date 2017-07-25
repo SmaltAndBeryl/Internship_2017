@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skill.India.common.UserIdtoApplicationIdUtility;
+import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.AssessmentBodyApplicationStatusDto;
 import com.skill.India.dto.SessionManagementDto;
 import com.skill.India.service.AssessmentBodyApplicationStatusService;
@@ -23,14 +23,7 @@ public class AssessmentBodyController {
 	private AssessmentBodyApplicationStatusService assessmentBodyApplicationStatusService;
 	
 	@Autowired
-	private SessionManagementDto sessionManagementDto;
-	
-	@Autowired
-	private UserIdtoApplicationIdUtility userIdtoApplicationIdUtility;
-	
-	String userId = sessionManagementDto.getUsername();
-	
-	int applicationId = userIdtoApplicationIdUtility.getApplicationId(userId);
+	private SessionUserUtility sessionUserUtility;
 	
 //	@RequestMapping("/assessmentBodyApplicationStatus")
 //	public Collection<AssessmentBodyApplicationStatusDto> getAssessmentBodyApplicationStatusDto (@RequestParam("applicationId")int applicationId) {
@@ -41,7 +34,10 @@ public class AssessmentBodyController {
 	@RequestMapping("/assessmentBodyApplicationStatus")
 	public Collection<AssessmentBodyApplicationStatusDto> getAssessmentBodyApplicationStatusDto() {
 	       
-		return assessmentBodyApplicationStatusService.getUpdateRowMapper(applicationId);
+		return assessmentBodyApplicationStatusService
+				.getUpdateRowMapper(sessionUserUtility
+						.getApplicationId(sessionUserUtility
+								.getSessionMangementfromSession().getUsername()));
 	}
 	
 }

@@ -31,11 +31,11 @@ public class GetUserIdPasswordAndRoleDao extends AbstractTransactionalDao {
 	private static final SessionRowMapper sessionRowMapper = new SessionRowMapper();
 	
 	
-	public  Collection<SessionManagementDto> getUserIdPasswordAndRole(String userId)
+	public  SessionManagementDto getUserIdPasswordAndRole(String userId)
 {
 	Map<String,Object> parameters=new HashMap<String, Object>();
 	parameters.put("userId",userId);
-	return getJdbcTemplate().query(sessionManagementConfigSql.getGetUserIdPasswordRole(), parameters,sessionRowMapper);
+	return getJdbcTemplate().query(sessionManagementConfigSql.getGetUserIdPasswordRole(), parameters,sessionRowMapper).iterator().next();
 }
 	
 	private static class SessionRowMapper implements RowMapper<SessionManagementDto> {

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skill.India.common.UserIdtoApplicationIdUtility;
+import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.SessionManagementDto;
 import com.skill.India.dto.TrainingPartnerBatchesDto;
 import com.skill.India.service.TrainingPartnerBatchesService;
@@ -27,14 +27,8 @@ public class TrainingPartnerController {
 	private TrainingPartnerBatchesService trainingPartnerPastTableService;
 	
 	@Autowired
-	private UserIdtoApplicationIdUtility userIdtoApplicationIdUtility;
+	private SessionUserUtility sessionUserUtility;
 	
-	@Autowired
-	private SessionManagementDto sessionManagementDto;
-
-	String userId=sessionManagementDto.getUsername();
-	
-	int applicationId = userIdtoApplicationIdUtility.getApplicationId(userId); 
 	
 //	@RequestMapping("/trainingPartnerPastBatches")
 //	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getTrainingPartnerPastTableDto (@RequestParam("applicationId")int applicationId) {
@@ -45,6 +39,8 @@ public class TrainingPartnerController {
 	@RequestMapping("/trainingPartnerPastBatches")
 	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getTrainingPartnerPastTableDto () {
 		
-			return trainingPartnerPastTableService.getUpdateRowMapper(applicationId);
+			return trainingPartnerPastTableService.getUpdateRowMapper(sessionUserUtility
+					.getApplicationId(sessionUserUtility
+							.getSessionMangementfromSession().getUsername()));
 	}
 }
