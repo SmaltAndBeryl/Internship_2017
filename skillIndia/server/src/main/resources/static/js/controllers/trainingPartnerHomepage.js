@@ -35,7 +35,7 @@ function presentController($scope, $http){
 $scope.myfunction = function(rowData) 
 {   var appState=Object.values(Object.values(rowData)[1])[3];
 if(appState=="Incomplete"){
-	  window.location="https://www.google.co.in";
+	  window.location="https://setprofilecreation";
 	  console.log("Please Edit the Form");
 	  
 }

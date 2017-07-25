@@ -30,26 +30,31 @@ newApp.controller('loginCtrl',
 												    else{
 												    	if(loginAction.userStatus=="temp"){
 												    		if(loginAction.userRole=="TP")
-														    	window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
+														    	//window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
+															window.location = "http://localhost:8080/profileCreationTrainingPartner";
 												    		else 
-														    	window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
+														    	//window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
+															window.location = "http://localhost:8080/profileCreationTrainingPartner";
 												    									}
 												    	else if(loginAction.userStatus=="registered"){
 													    	if(loginAction.userRole=="TP")	{	
 													    		$http.post('/userIdtoApplicationId?userId='+userName).then(function(response){
 													    			var applicationId=response.data;
-													    			window.location = "http://localhost:8080/usersHomepage#!/tp?applicationId="+applicationId;
+													    			//window.location = "http://localhost:8080/usersHomepage#!/tp?applicationId="+applicationId;
+																	window.location = "http://localhost:8080/usersHomepage#!/tp";
 													    		});
 													    	
 													    	}
 													    	else if(loginAction.userRole=="AB"){
 													    		$http.post('/userIdtoApplicationId?userId='+userName).then(function(response){
 													    			var applicationId=response.data;
-													    			window.location = "http://localhost:8080/usersHomepage#!/ab?applicationId="+applicationId;
+													    			//window.location = "http://localhost:8080/usersHomepage#!/ab?applicationId="+applicationId;
+																	window.location = "http://localhost:8080/usersHomepage#!/ab";
 													    		});
 													    	}
 													    	else if(loginAction.userRole=="SCGJ"){
-														    	window.location = "http://localhost:8080/index?userId="+userName;
+														    	//window.location = "http://localhost:8080/index?userId="+userName;
+																window.location = "http://localhost:8080/index";
 													    	}
 													    	else
 															{
@@ -96,9 +101,11 @@ newApp.controller('signupCtrl',
 									     else
 									    	 {
 									    	 if($scope.newUser.userRole=="TP"){
-									    	 window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
+									    	 //window.location = "http://localhost:8080/profileCreationTrainingPartner?userId="+userName;
+											 window.location = "http://localhost:8080/profileCreationTrainingPartner";
 									    	 }else if($scope.newUser.userRole=="AB")
-										    	 window.location ="http://localhost:8080/profileCreationAssessmentBody?userId="+userName;
+										    	 //window.location ="http://localhost:8080/profileCreationAssessmentBody?userId="+userName;
+											 window.location ="http://localhost:8080/profileCreationAssessmentBody";
 									    	 else
 										    	 window.location = "http://localhost:8080/";
  
