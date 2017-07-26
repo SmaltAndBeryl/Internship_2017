@@ -15,7 +15,7 @@ imp.controller('importController', importController);
 
 importController.$inject = ['$scope', '$http', 'fileUpload'];
 
-function importController($scope, $http, $fileUpload){
+function importController($scope, $http, fileUpload){
   //refresh();
 	
 
