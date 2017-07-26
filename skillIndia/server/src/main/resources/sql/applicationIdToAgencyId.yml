@@ -1,0 +1,4 @@
+applicationIdToAgencyId:
+ selectSql: >
+   select agencyId
+    from agency where applicationId=:applicationId
