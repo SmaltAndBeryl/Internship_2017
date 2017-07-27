@@ -18,10 +18,9 @@
         
 .FAQs {
   height: 20px;
-  margin-left: 26px;
-  padding-top: 23px;
-  padding-bottom: 28px;
-  font-size: 18px;
+  padding: 1em;
+  font-size: 24px;
+  font-weight:700;
   line-height: 1.58;
   text-align: left;
   color: #000000;
@@ -94,3 +93,18 @@
 	{
 		margin-left : 16px;
 	}
+/* 	change color of div */
+
+.panel-default > .panel-heading {
+    background-color:#ffffff;
+    font-size:14px;
+    font-weight:500px;
+    color:#slate-grey;
+}
+.panel-default
+{
+	background-color:#ffffff;
+}
+.ui-grid, .ui-grid-viewport {
+    height: auto !important;
+}

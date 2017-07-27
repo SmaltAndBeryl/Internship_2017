@@ -1,26 +1,8 @@
-<!-- <!DOCTYPE html> -->
-<!-- <html ng-app="app"> -->
-<!--     <meta charset="utf-8" /> -->
-<!-- <!--    <title>Bootstrap FAQ Template | PrepBootstrap</title>-->
-<!--     <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-<!-- <!-- Latest compiled and minified CSS -->
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 
-<!-- <!-- jQuery library -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-
-<!-- <!-- Latest compiled JavaScript --> 
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
    	
     
     <link rel="stylesheet" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.css" type="text/css" />
-<!--     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> -->
-    
-<!--   <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />  -->
-   
-<!-- <link rel="stylesheet" type="text/css" href="css/FAQgrid.css" /> -->
-<!--     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script> -->
-<!--     <script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/v3.0.6/ui-grid.min.js"></script> -->
+
  	<div class="backfaq">
 
 	    <h3 class="FAQs">FAQ's</h3>
@@ -30,174 +12,176 @@
 		    <div ng-controller="faqController" class = "lMargin">		    
 		    <accordion close-others="true">
 		    
-			    <!--  QUESTION 1  -->
+			    <!--  ------------------------QUESTION 1------------------  -->
 			    <accordion-group is-open="status.open">
 				<accordion-heading>
-				<div ng-click="getDataOfScheme()"> 
+				<div ng-click="getDataAcrossAllScheme()"> 
 				<div ng-click="$event.stopPropagation();">
 						How many candidates have we enrolled /assessed/certified across all the scheme since inception ?
 				</div>
 					<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
 					</div>
 					</accordion-heading>
-					<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid"></div>
+					<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
 					</accordion-group>
 				
-					<!-- QUESTION 2 -->				 
-					<accordion-group is-open="status.open">
+					<!-- -------------------------QUESTION 2 -------------------------------- -->				 
+					<accordion-group is-open="status.open2">
 					<accordion-heading>
 					<div ng-click="getDataOfScheme()"> 
 					<div ng-click="$event.stopPropagation();">
 							How many candidates have we enrolled /assessed/certified in the scheme 
 						
-						<select  ng-model="selectedScheme" ng-init = "selectedScheme = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions">&nbsp;&nbsp; </select>?</div> 
-						<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+						<select  ng-model="selectedScheme.scheme" ng-init = "selectedScheme.scheme = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions">&nbsp;&nbsp; </select>?</div> 
+						<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
 						</div>
 						</accordion-heading>
 						<div ui-grid="gridOptionsSelectedScheme" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize  class="grid"></div>
 						</accordion-group>
 						
-				<!-- QUESTION 3 -->
-				<accordion-group>
+				<!-- --------------------------------QUESTION 3------------------------------------ -->
+				<accordion-group is-open="status.open3">
 					<accordion-heading>
 						<div ng-click="getDataOfCandidatesMonthWise()">
-						<div ng-click="$event.stopPropagation();">How many candidates have we<select id="candidatetypeselect"  ng-model="candidatesSelected" ng-init = "candidatesSelected = candidatesOptions[0].id" ng-options="option.id as option.name for option in candidatesOptions"></select>across all schemes in all the months of the year <select  ng-model="year" ng-init = "year = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"></select> ?</div>
-						<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+						<div ng-click="$event.stopPropagation();">
+							How many candidates have we<select id="candidatetypeselect"  ng-model="candidatesSelected.candidate" ng-init = "candidatesSelected.candidate = candidatesOptions[0].id" ng-options="option.id as option.name for option in candidatesOptions"></select>across all schemes in all the months of the year <select  ng-model="year.selectedYear" ng-init = "year.selectedYear = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"></select> ?
+						</div>
+						<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
 						</div>
 					</accordion-heading>
-					<div ui-grid="gridOptionsSelectCandidates" ui-grid-edit ui-grid-cellNav class="grid"></div> 
+					<div ui-grid="gridOptionsSelectCandidates" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div> 
 				</accordion-group>
 				
-				<!-- QUESTION 4 -->
-				<accordion-group>
-					<accordian-heading>
-						<div ng-click="getDataOfCandidatesSchemeAndMonthWise()">
-							<div ng-click="$event.stopPropagation();">How many candidates have we&nbsp;
-							<select id="candidatetypeselect"  ng-model="candidatesSelected" ng-init = "candidatesSelected = candidatesOptions[0].id" ng-options="option.id as option.name for option in candidatesOptions"></select>            &nbsp;in the scheme&nbsp;<select id="batchSchemeSelect" ng-model="selectScheme" ng-init = "selectScheme = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions"></select>
-	             			 in all the months of the year
-	               			<select  ng-model="selectedYear" ng-init = "selectedYear = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"></select> ?
-	               			</div> 
-	               			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i> 
+				<!----------------- ---------------------QUESTION 4--------------------------------------------------------------------------- -->
+				<accordion-group is-open="status.open4">
+					<accordion-heading>
+					<div ng-click="getDataOfCandidatesSchemeAndMonthWise()">
+						<div ng-click="$event.stopPropagation();">
+							How many candidates have we <select id="candidatetypeselect"  ng-model="candidatesSelected.candidateEnrolledInMonth" ng-init = "candidatesSelected.candidateEnrolledInMonth = candidatesOptions[0].id" ng-options="option.id as option.name for option in candidatesOptions"></select> in the scheme 
+								<select  ng-model="selectedScheme.schemeForMonth" ng-init = "selectedScheme.schemeForMonth = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions"> </select> 
+								in all month of the year <select ng-model="year.selectedYearForCondidate" ng-init = "year.selectedYearForCondidate = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"></select> ?
 						</div>
-					</accordian-heading>
-					<div ui-grid="gridOptionsSelectCandidatesSchemeWise" ui-grid-edit ui-grid-cellNav class="grid"></div>
+						<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i> 
+					</div>
+					</accordion-heading>
+					<div ui-grid="gridOptionsSelectCandidatesSchemeWise" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
 				</accordion-group>
 				
 				<!-- QUESTION 5 -->
 				<accordion-group>
-					<accordian-heading>
+					<accordion-heading is-open="status.open5">
 						<div ng-click="getTotalBatchesAndAllCandidatesInAState()">
 							<div ng-click="$event.stopPropagation();">
-								List the total number of batches presently running for all training along with the total number of candidates enrolled in them, for the state <select  ng-model="selectedState" ng-init = "selectedState = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select> 
+							List the total number of batches presently running for all training along with the candidates enrolled in them, for state <select  ng-model="selectedState.state" ng-init = "selectedState.state = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select>  
 							</div>
-	               			<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i> 
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open5, 'glyphicon-plus': !status.open5}"></i>
 						</div>
-					</accordian-heading>
-					<div ui-grid="getTotalBatchesAndTotalCandidatesInState" ui-grid-edit ui-grid-cellNav class="grid"></div>
+					</accordion-heading>
+					<div ui-grid="gridTotalBatchesAndTotalCandidatesInState" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
 				</accordion-group>
 				
 				<!-- QUESTION 6 -->
-				<accordion-group>
+				<accordion-group is-open="status.open6">
 					<accordion-heading>
 						<div ng-click="getTotalBatchesAndAllCandidatesInAScheme()">
 						<div ng-click="$event.stopPropagation();">
-							List the total number of batches presently running for all training along with the total number of candidates enrolled in them, in the Scheme <select  ng-model="selectedBatchType" ng-init = "selectedBatchType = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions"></select>
+							List the total number of batches presently running for all training along with the total number of candidates enrolled in them, in the Scheme <select  ng-model="selectedScheme.selectedBatchType" ng-init = "selectedScheme.selectedBatchType = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions"></select>
 						</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open6, 'glyphicon-plus': !status.open6}"></i>
 						</div>
 					</accordion-heading>
-					<div ui-grid="getTotalBatchesAndTotalCandidatesInAScheme" ui-grid-edit ui-grid-cellNav class="grid"></div>
+					<div ui-grid="getTotalBatchesAndTotalCandidatesInAScheme" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
 				</accordion-group>
 				
 				<!-- QUESTION 7 -->
-				<accordion-group>
+				<accordion-group is-open="status.open7">
 					<accordion-heading>
 						<div ng-click="getTotalCandidatesToBeAssessedForMonth()">
 						<div ng-click="$event.stopPropagation();">
-						How many candidates will be assessed for month <select  ng-model="selectMonth" ng-init = "selectMonth = monthDropDownOptions[0].id" ng-options="option.id as option.month for option in monthDropDownOptions"></select> ?
+						How many candidates will be assessed for month <select ng-model="year.selectMonth" ng-init = "year.selectMonth = monthDropDownOptions[0].id" ng-options="option.id as option.month for option in monthDropDownOptions"></select> ?
 						</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open7, 'glyphicon-plus': !status.open7}"></i>
 						</div>
 					</accordion-heading>
 					 <div>
- 						<h6 class="manage">Candidates Assessment {{candidatesAssessmentForUpcomingMonth}}</h6>
+ 						<div class="manage">{{candidatesAssessmentForUpcomingMonth}}</div>
  						</div>
 				</accordion-group>
 				
 				<!-- QUESTION 8 -->
-				<accordion-group>
+				<accordion-group is-open="status.open8">
 					<accordion-heading>
 						<div ng-click="getTotalTrainingCentresInAState()">
 						<div ng-click="$event.stopPropagation();">
-							How many training centers have we in state <select  ng-model="selectedStateForTrainingCentres" ng-init = "selectedStateForTrainingCentres = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select> ?
+							How many training centers have we in state <select  ng-model="selectedState.selectedStateForTrainingCentres" ng-init = "selectedState.selectedStateForTrainingCentres = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select> ?
 						</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open8, 'glyphicon-plus': !status.open8}"></i>
 						</div>
 					</accordion-heading>
-					<h6 class="manage">Total Training Centres In State {{selectedStateForTrainingCentres}} : {{NumberOfTrainingCentres}} </h6>
+					<div class="manage">Total Training Centres In State {{selectedState.selectedStateForTrainingCentres}} : {{NumberOfTrainingCentres}} </div>
 				</accordion-group>
 				
 				
 				<!-- QUESTION 9 -->
-				<accordion-group>
+				<accordion-group is-open="status.open9">
 					<accordion-heading>
 						<div ng-click="getTotalBatchesAndCandidatesEnrolledMonthWiseForAYear()">					
 							<div ng-click="$event.stopPropagation();">
-								List total number of batches for all trainings and total candidates enrolled in them, for year <select  ng-model="selectYearForAllBatchesAndCandidatesEnrolled" ng-init = "selectYearForAllBatchesAndCandidatesEnrolled = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"> </select>
+								List total number of batches for all trainings and total candidates enrolled in them, for year <select  ng-model="year.yearOfEnrollment" ng-init = "year.yearOfEnrollment = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"> </select>
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open9, 'glyphicon-plus': !status.open9}"></i>
 						</div>
 					</accordion-heading>
-					<div ui-grid="gridOptionsForSelectedStateShowingTotalBatchesAndCandidatesEnrolled" ui-grid-edit ui-grid-cellNav class="grid"></div>
+					<div ui-grid="gridOptionsForSelectedStateShowingTotalBatchesAndCandidatesEnrolled" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
 				</accordion-group>
 				
 				<!-- QUESTION 10 -->
-				<accordion-group>
+				<accordion-group is-open="status.open10">
 					<accordion-heading>
 						<div ng-click="getTotalTrainingCentresConductingTraining()">					
 							<div ng-click="$event.stopPropagation();">
 								How many Training Centres are conducting Training? 
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open10, 'glyphicon-plus': !status.open10}"></i>
 						</div>
 					</accordion-heading>
-					Training Centres Conducting Training :{{CountOfTrainingCentresConductingTraining}}
+					<div>Training Centres Conducting Training :{{trainingCenter.CountOfTrainingCentresConductingTraining}}</div>
 				</accordion-group>
 				
 				<!-- QUESTION 11 -->
-				<accordion-group>
+				<accordion-group is-open="status.open11">
 					<accordion-heading>
 						<div ng-click="getNamesOfTrainingCentresNotConductingTraining()">					
 							<div ng-click="$event.stopPropagation();">
 								How many Training Centres are there, where no training has been conducted?
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open11, 'glyphicon-plus': !status.open11}"></i>
 						</div>
 					</accordion-heading>
-					<div ui-grid="gridOptionForNamesOfTrainingCentresNotConductingTraining" ui-grid-edit ui-grid-cellNav class="grid"></div>
+					<div ui-grid="gridOptionForNamesOfTrainingCentresNotConductingTraining" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
 				</accordion-group>
 				
 				<!-- QUESTION 12 -->
-				<accordion-group>
+				<accordion-group is-open="status.open12">
 					<accordion-heading>
 						<div ng-click="getTotalTrainingCentresAllIndia()">					
 							<div ng-click="$event.stopPropagation();">
-								How many Total Training Centres we have?
+								How many Training Centres do we have?
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open12, 'glyphicon-plus': !status.open12}"></i>
 						</div>
 					</accordion-heading>
-					<div> <h6 class="manage"> Total Training Centres :{{totalTrainingCentresWeHave}}</h6> </div>
+					<div class="manage">Total Training Centres :{{trainingCenter.totalTrainingCentresWeHave}}</div>
 				</accordion-group>
 				
 				<!-- QUESTION 13 -->
-				<accordion-group>
+				<accordion-group is-open="status.open13">
 					<accordion-heading>
 						<div ng-click="getAgencyNameForParticularBatchWithId()">					
 							<div ng-click="$event.stopPropagation();">
-								List the name of agency to which the Batch ID <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="inputtedBatchId" placeholder="Enter Batch Id"/> has been assigned?  
+								List the name of agency to which the Batch ID <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="batch.selectedBatchId" placeholder="Enter Batch Id"/> has been assigned?  
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open13, 'glyphicon-plus': !status.open13}"></i>
 						</div>
 					</accordion-heading>
 					<div>
@@ -208,28 +192,28 @@
 				
 				<!-- QUESTION 14 -->
 				
-				<accordion-group>
+				<accordion-group is-open="status.open14">
 					<accordion-heading>
 						<div ng-click="getStatusOfABatchWithBatchId()">					
 							<div ng-click="$event.stopPropagation();">
-								What is the status of the BatchId <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="inputBatchIdForBatchStatus" placeholder="Enter Batch Id"/> ?
+								What is the status of the BatchId <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="batch.inputBatchIdForBatchStatus" placeholder="Enter Batch Id"/> ?
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open14, 'glyphicon-plus': !status.open14}"></i>
 						</div>
 					</accordion-heading>
-					<div ui-grid="gridOptionsBatchStausOfAParticularBatchWithBatchId" ui-grid-edit ui-grid-cellNav class="grid"></div>
+					<div ui-grid="gridOptionsBatchStausOfAParticularBatchWithBatchId" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
 					
 				</accordion-group>
 				
 				<!-- QUESTION 15 -->
 				
-				<accordion-group>
+				<accordion-group is-open="status.open15">
 					<accordion-heading>
 						<div ng-click="getNumberofBatchesAssignedToAParticularAssessmentAgency()">					
 							<div ng-click="$event.stopPropagation();">
-								How many batches have been assigned to a particular assessment agency <input type="text" name="assessmentAgency" id="assessmentAgency" rows="1" style="line-height:initial" ng-model="getNameOfAssessmentAgency"/> ?
+								How many batches have been assigned to a particular assessment agency <input type="text" name="assessmentAgency" id="assessmentAgency" rows="1" style="line-height:initial" ng-model="agency.getNameOfAssessmentAgency" placeholder="Enter Agency Id"/> ?
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open15, 'glyphicon-plus': !status.open15}"></i>
 						</div>
 					</accordion-heading>
 					<div>
@@ -239,13 +223,13 @@
 				</accordion-group>
 				
 				<!-- QUESTION 16 -->
-				<accordion-group>
+				<accordion-group is-open="status.open16">
 					<accordion-heading>
 						<div ng-click="getNumberOfAssessorForAParticularAgencyInAParticularState()">					
 							<div ng-click="$event.stopPropagation();">
-								How many Assessor's of an Assessment Agency <input type="text" name="assessmentAgency" id="assessmentAgency" rows="1" style="line-height:initial" ng-model="assessmentAgencyForAParticularState"/> are there in state <select  ng-model="selectedStateForAParticularAgencyForAParticularState" ng-init = "selectedStateForAParticularAgencyForAParticularState = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select> ?
+								How many Assessor's of an Assessment Agency <input type="text" name="assessmentAgency" id="assessmentAgency" rows="1" style="line-height:initial" ng-model="agency.assessmentAgencyForAParticularState" placeholder="Enter Agency Id"/> are there in state <select  ng-model="selectedState.selectedStateForAParticularAgencyForAParticularState" ng-init = "selectedState.selectedStateForAParticularAgencyForAParticularState = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select> ?
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open16, 'glyphicon-plus': !status.open16}"></i>
 						</div>
 					</accordion-heading>
 					<div>
@@ -256,13 +240,13 @@
 				
 				<!-- QUESTION 17 -->
 				
-				<accordion-group>
+				<accordion-group is-open="status.open17">
 					<accordion-heading>
-						<div ng-click="getNumberOfAssessorForAParticularAgencyInAParticularState()">					
+						<div ng-click="getCountOfBatchesForWhichResultIsPending()">					
 							<div ng-click="$event.stopPropagation();">
 								For How many Batches result upload is pending?
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open17, 'glyphicon-plus': !status.open17}"></i>
 						</div>
 					</accordion-heading>
 					<div>
@@ -273,13 +257,13 @@
 				
 				<!-- QUESTION 18 -->
 				
-				<accordion-group>
+				<accordion-group is-open="status.open18">
 					<accordion-heading>
 						<div ng-click="getCountOfNonAssignedBatches()">					
 							<div ng-click="$event.stopPropagation();">
 								How many non-assigned batches are there?
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open18, 'glyphicon-plus': !status.open18}"></i>
 						</div>
 					</accordion-heading>
 					<div>
@@ -289,700 +273,21 @@
 				</accordion-group>
 				
 				<!-- QUESTION 19 -->
-				<accordion-group>
+				<accordion-group is-open="status.open19">
 					<accordion-heading>
 						<div ng-click="getbatchWiseCandidateDetailsForAParticularBatchWithBatchId()">					
 							<div ng-click="$event.stopPropagation();">
-								List out batch wise Candidate details for a batch <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="inputBatchIdForBatchWiseCandidateDetails" placeholder="Enter Batch Id"/>
+								List out batch wise Candidate details for a batch <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="batch.inputBatchIdForBatchWiseCandidateDetails" placeholder="Enter Batch Id"/>
 							</div>
-							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+							<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open19, 'glyphicon-plus': !status.open19}"></i>
 						</div>
 					</accordion-heading>
-					<div ui-grid="gridOptionsBatchWiseCandidateDetails" ui-grid-edit ui-grid-cellNav ui.grid.autoResizeclass="grid">
-       						</div>
-					
+					<div ui-grid="gridOptionsBatchWiseCandidateDetails" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid">
+       						</div>					
 				</accordion-group>
 				</accordion>		
 				</div>
 	</div>
-<!--     <div class="Rectangle-7"> -->
-<!-- 		<div class="container accordian">         -->
-<!--        		<div class="left Rectangle"> -->
-            
-<!--             <h4 class="question"> -->
-<!--             	How many candidates have we enrolled/assessed/certified across all the schemes since inception? -->
-<!--             </h4> -->
-            
-<!--         	</div> -->
-<!--     		<div class="center Rectangle"> -->
-
-<!--    			</div> -->
-<!--    		 <div class="right Rectangle">           -->
-<!--          		<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne" > -->
-<!--          		<span class="more-less glyphicon glyphicon-plus" ng-click="getDataAcrossAllScheme()"></span></a> -->
-         		
-<!--    		 </div> -->
-<!-- 		</div> -->
-		
-<!-- 		    <div id="collapseOne" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div> -->
-	
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-<!-- 	 <!--QUESTION 2  --> 
-	
-	
-<!--   	<div class="Rectangle-7"> -->
-<!-- 		<div class="container accordian">         -->
-<!--        		<div class="left Rectangle"> -->
-<!--             <h4 class="question"> -->
-<!--             	How many candidates have we enrolled /assessed/certified in the scheme <select  ng-model="selectedScheme" ng-init = "selectedScheme = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions">&nbsp;&nbsp;</select> ? -->
-<!--             </h4> -->
-<!--         	</div> -->
-        	
-    	
-    
-<!--    		 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getDataOfScheme()"></span></a> -->
-<!-- 		</div> -->
-<!-- 		</div> -->
-<!--             <div id="collapsetwo" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body"> -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6  class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptionsSelectedScheme" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div> -->
-	
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-<!--  <!--QUESTION 3  --> 
-	
-<!-- 	<div class="Rectangle-7"> -->
-<!-- 		<div class="container accordian">         -->
-<!--        		<div class="left Rectangle"> -->
-<!--             <h4 class="question"> -->
-<!--             	How many candidates have we&nbsp;<select id="candidatetypeselect"  ng-model="candidatesSelected" ng-init = "candidatesSelected = candidatesOptions[0].id" ng-options="option.id as option.name for option in candidatesOptions"></select> -->
-<!--             across all schemes in all the months of the year <select  ng-model="year" ng-init = "year = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"></select> ?  -->
-<!--             </h4> -->
-<!--             </ul> -->
-<!--         	</div> -->
-        	
-<!--     		<div class="center Rectangle"> -->
-    			
-<!--    			</div> -->
-<!--    		 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsethree" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getDataOfCandidatesMonthWise()"></span></a> -->
-<!--    		 </div> -->
-<!-- 		</div> -->
-<!--             <div id="collapsethree" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body"> -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6  class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptionsSelectCandidates" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div> -->
-	
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-<!--  	 <!--QUESTION 4  --> 
-	
-<!-- 	<div class="Rectangle-7"> -->
-<!-- 		<div class="container accordian">         -->
-<!--        		<div class="left Rectangle"> -->
-<!--             <h4 class="question"> -->
-<!--             	How many candidates have we&nbsp;<select id="candidatetypeselect"  ng-model="candidatesSelected" ng-init = "candidatesSelected = candidatesOptions[0].id" ng-options="option.id as option.name for option in candidatesOptions"></select> -->
-<!--             &nbsp;in the scheme&nbsp;<select id="batchSchemeSelect" ng-model="selectScheme" ng-init = "selectScheme = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions"></select> -->
-<!--               in all the months of the year <select  ng-model="selectedYear" ng-init = "selectedYear = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"></select> ? -->
-<!--             </h4>   -->
-       
-<!--         	</div> -->
-        	
-<!--     		<div class="center Rectangle"> -->
-    			
-<!--    			</div> -->
-<!--    		 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefour" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getDataOfCandidatesSchemeAndMonthWise()"></span></a> -->
-<!--    		 </div> -->
-<!-- 		</div> -->
-<!--             <div id="collapsefour" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body"> -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6  class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptionsSelectCandidatesSchemeWise" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div> -->
-	
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-
-		
-<!--  	 <!--QUESTION 5  -->
-	
-<!-- 	<div class="Rectangle-7"> -->
-<!-- 		<div class="container accordian">         -->
-<!--        		<div class="left Rectangle"> -->
-<!--              <h4 class="question"> -->
-<!--            			 List the total number of batches presently running for all training alon with the total number of candidates enrolled in them, for the state <select  ng-model="selectedState" ng-init = "selectedState = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select>  -->
-<!--            		   </h4> -->
-       
-<!--         	</div> -->
-        	
-    		
-<!--    		  <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefive" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getTotalBatchesAndAllCandidatesInAState()"></span></a> -->
-<!--    			 </div> -->
-<!-- 		</div> -->
-<!--             <div id="collapsefour" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body"> -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6  class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptionsSelectCandidatesSchemeWise" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div> -->
-	
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-<!--  	 <!--QUESTION 6  -->
-	
-	
-	 
-	
-<!--   <div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             	<h4 class="question"> -->
-<!--            			 List the total number of batches presently running for all training along with the total number of candidates enrolled in them, in the Scheme <select  ng-model="selectedBatchType" ng-init = "selectedBatchType = schemeDropDownOptions[0].id" ng-options="option.id as option.scheme for option in schemeDropDownOptions"></select> -->
-<!--            			  </h4> -->
-            	
-<!--         		</div> -->
-<!--     			<div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getTotalBatchesAndAllCandidatesInAScheme()"></span></a> -->
-<!--    			 </div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseSix" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="getTotalBatchesAndTotalCandidatesInAScheme" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div>	 -->
-
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-
-	
-<!--  	<!-- Question 7 -->
-	
-<!-- <div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             	<h4 class="question"> -->
-<!--            			How many candidates will be assessed for month <select  ng-model="selectMonth" ng-init = "selectMonth = monthDropDownOptions[0].id" ng-options="option.id as option.month for option in monthDropDownOptions"></select> ? -->
-<!--             	</h4> -->
-<!--         		</div> -->
-<!--    			 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getTotalCandidatesToBeAssessedForMonth()"></span></a> -->
-<!--    			 </div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseSeven" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h4 class="manage">Candidates Assessment {{candidatesAssessmentForUpcomingMonth}}</h6> -->
-<!-- 						</div> -->
-<!--       				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div>	 -->
-		
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-<!--  	<!-- Question 8 -->
-	
-<!--   <div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             		<div class="left Rectangle"> -->
-<!--             			<h4 class="question"> -->
-<!--            						How many training centers have we in state <select  ng-model="selectedStateForTrainingCentres" ng-init = "selectedStateForTrainingCentres = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select> ? -->
-<!--             			</h4> -->
-<!--         			</div> -->
-<!--         		</div> -->
-<!--     				<div class="right Rectangle">           -->
-<!--          				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" > -->
-<!--          					<span class="glyphicon glyphicon-plus" ng-click="getTotalTrainingCentresInAState()"></span></a> -->
-<!--    			 		</div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseEight" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage">Total Training Centres In State {{selectedStateForTrainingCentres}} : {{NumberOfTrainingCentres}} </h6> -->
-<!-- 						</div> -->
-<!--       				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div>	 -->
-
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-
-	
-<!--  	<!-- Question 9 -->
-	
-<!--   <div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             	<h4 class="question"> -->
-<!--            			 List total number of batches for all trainings and total candidates enrolled in them, for year <select  ng-model="selectYearForAllBatchesAndCandidatesEnrolled" ng-init = "selectYearForAllBatchesAndCandidatesEnrolled = yearOptions[0].id" ng-options="option.id as option.value for option in yearOptions"> </select> -->
-<!--             	</h4> -->
-<!--         		</div> -->
-<!--    			 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getTotalBatchesAndCandidatesEnrolledMonthWiseForAYear()"></span></a> -->
-<!--    			 </div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseNine" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptionsForSelectedStateShowingTotalBatchesAndCandidatesEnrolled" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div>		 -->
-	
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-	
-<!--  <!--QUESTION 10  -->
-	
-	
-	 
-	
-<!--     <div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             	<h4 class="question"> -->
-<!--            			 How many Training Centres are conducting Training? -->
-<!--             	</h4> -->
-<!--         		</div> -->
-<!--     			<div class="center Rectangle"> -->
-<!--                 </div> -->
-<!--    			 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getTotalTrainingCentresConductingTraining()"></span></a> -->
-<!--    			 </div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseTen" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage"> Training Centres Conducting Training :{{CountOfTrainingCentresConductingTraining}}</h6> -->
-<!-- 						</div> -->
-      		
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div>			 -->
-	
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-<!-- 	 <!--QUESTION 11  -->
- 
-	
-<!-- <div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             	<h4 class="question"> -->
-<!--            			 How many Training Centres are there, where no training has been conducted? -->
-<!--         		</h4> -->
-<!--         		</div> -->
-<!--     			<div class="center Rectangle"> -->
-<!--                 </div> -->
-<!--    			 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getNamesOfTrainingCentresNotConductingTraining()"></span></a> -->
-<!--    			 </div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseEleven" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptionForNamesOfTrainingCentresNotConductingTraining" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div> -->
-	
-<!-- 		<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-<!--  	 <!--QUESTION 12  -->
- 
-	
-<!-- 	<div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             	<h4 class="question"> -->
-<!--            			 How many Total Training Centres we have? -->
-<!--             	</h4> -->
-<!--         		</div> -->
-<!--     			<div class="center Rectangle"> -->
-<!--                 </div> -->
-<!--    			 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getTotalTrainingCentresAllIndia()"></span></a> -->
-<!--    			 </div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseTwelve" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage"> Total Training Centres :{{totalTrainingCentresWeHave}}</h6> -->
-<!-- 						</div> -->
-      		
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div>			 -->
-	
-	
-<!-- 		<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-<!-- 	 <!--QUESTION 13  -->
- 
-	
-<!-- 	<div class="Rectangle-7">  -->
-<!--  		<div class="container accordian">          -->
-<!--         		<div class="left Rectangle">  -->
-<!--              <h4 class="question">  -->
-<!--              	List the name of agency to which the Batch ID <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="inputtedBatchId" placeholder="Enter Batch Id"/> has been assigned?  -->
-<!--              </h4> -->
-<!--          	</div>  -->
-     		
-<!--     		 <div class="right Rectangle">            -->
-<!--           		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsethirteen" >  -->
-<!--           		<span class="glyphicon glyphicon-plus" ng-click="getAgencyNameForParticularBatchWithId()"></span></a>  -->
-<!--     		 </div>  -->
-<!--  		</div>  -->
-<!--              <div id="collapsethirteen" class="panel-collapse collapse" >  -->
-<!--                  <div class="panel-body">  -->
-    				
-<!--      				<div class="well" style="font-weight:bold;">  -->
-<!--      			<center> <b>{{AgencyNameForParticularBatchWithId}}</b></center>	  -->
-<!--      				</div>  -->
-    				
-<!--     			</div>  -->
-		 
-<!--  		 </div>  -->
-<!--  	</div>  -->
-	
-<!-- 		<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-<!--  	 <!--QUESTION 14  -->
- 
-	
-<!-- 	<div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             	<h4 class="question">  -->
-<!--            			 What is the status of the BatchId <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="inputBatchIdForBatchStatus" placeholder="Enter Batch Id"/> ? -->
-<!--             	</h4> -->
-<!--         		</div> -->
-    			
-<!--    			 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getStatusOfABatchWithBatchId()"></span></a> -->
-<!--    			 </div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseFourteen" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptionsBatchStausOfAParticularBatchWithBatchId" ui-grid-edit ui-grid-cellNav class="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div> -->
-
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-
-	
-<!-- <!-- QUESTION 15 -->
-
-
-<!-- 	<div class="Rectangle-7">  -->
-<!--  		<div class="container accordian">          -->
-<!--         		<div class="left Rectangle">  -->
-<!--             <h4 class="question">  -->
-<!--              		How many batches have been assigned to a particular assessment agency <input type="text" name="assessmentAgency" id="assessmentAgency" rows="1" style="line-height:initial" ng-model="getNameOfAssessmentAgency"/> ? -->
-<!--              </h4> -->
-<!-- 			 </div>  -->
-     		
-<!--     		 <div class="right Rectangle">            -->
-<!--           		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsefifteen" >  -->
-<!--           		<span class="glyphicon glyphicon-plus" ng-click="getNumberofBatchesAssignedToAParticularAssessmentAgency()"></span></a>  -->
-<!--     		 </div>  -->
-<!--  		</div>  -->
-<!--              <div id="collapsefifteen" class="panel-collapse collapse" >  -->
-<!--                  <div class="panel-body">  -->
-<!--    					<div class="well" style="font-weight:bold;">  -->
-<!--      			<center> <b>{{batchesAssignedToAssessmentAgency}}</b></center>	  -->
-<!--      				</div>  -->
-    				
-<!--     			</div>  -->
-		 
-<!--  		 </div>  -->
-<!--  	</div>  -->
-	
-	
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-	
-	
-		
-<!-- <!-- QUESTION 16 -->
-<!-- 	<div class="Rectangle-7">  -->
-<!--  		<div class="container accordian">          -->
-<!--         		<div class="left Rectangle">  -->
-<!--              <h4 class="question"> -->
-<!--              		How many Assessor's of an Assessment Agency <input type="text" name="assessmentAgency" id="assessmentAgency" rows="1" style="line-height:initial" ng-model="assessmentAgencyForAParticularState"/> are there in state <select  ng-model="selectedStateForAParticularAgencyForAParticularState" ng-init = "selectedStateForAParticularAgencyForAParticularState = stateDropDownOptions[0].id" ng-options="option.id as option.state for option in stateDropDownOptions"></select> ? -->
-<!--              </h4> -->
-<!-- 			 </div>  -->
-     		
-<!--     		 <div class="right Rectangle">            -->
-<!--           		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapsesixteen" >  -->
-<!--           		<span class="glyphicon glyphicon-plus" ng-click="getNumberOfAssessorForAParticularAgencyInAParticularState()"></span></a>  -->
-<!--     		 </div>  -->
-<!--  		</div>  -->
-<!--              <div id="collapsesixteen" class="panel-collapse collapse" >  -->
-<!--                  <div class="panel-body">  -->
-<!--    					<div class="well" style="font-weight:bold;">  -->
-<!--      			<center> <b>{{assessorNumberForSelectedStateAndSelectedAgency}}</b></center>	  -->
-<!--      				</div>  -->
-    				
-<!--     			</div>  -->
-		 
-<!--  		 </div>  -->
-<!--  	</div>  -->
-
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-	
-
-
-<!-- <!-- QUESTION 17 -->
-
-<!-- 			<div class="Rectangle-7">  -->
-<!--  		<div class="container accordian">          -->
-<!--         		<div class="left Rectangle">  -->
-<!--              <h4 class="question"> -->
-<!--              		For How many Batches result upload is pending? -->
-<!--              </h4>  -->
-<!-- 			 </div>  -->
-<!--      		<div class="center Rectangle">  -->
-<!--      			</div>  -->
-<!--     		 <div class="right Rectangle">            -->
-<!--           		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseseventeen" >  -->
-<!--           		<span class="glyphicon glyphicon-plus" ng-click="getCountOfBatchesForWhichResultIsPending()"></span></a>  -->
-<!--     		 </div>  -->
-<!--  		</div>  -->
-<!--              <div id="collapseseventeen" class="panel-collapse collapse" >  -->
-<!--                  <div class="panel-body">  -->
-<!--    					<div class="well" style="font-weight:bold;">  -->
-<!--      			<center> <b>{{countOfBatchesForWhichResultUploadIsPending}}</b></center>	  -->
-<!--      				</div>  -->
-    				
-<!--     			</div>  -->
-		 
-<!--  		 </div>  -->
-<!--  	</div>  -->
-	    
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-
-
-<!-- <!-- QUESTION 18 --> 
-					
-			
-<!-- 			<div class="Rectangle-7">  -->
-<!--  		<div class="container accordian">          -->
-<!--         		<div class="left Rectangle">  -->
-<!--              <h4 class="question">  -->
-<!--              		How many non-assigned batches are there? -->
-<!--              </h4>  -->
-<!-- 			 </div>  -->
-<!--      		<div class="center Rectangle">  -->
-<!--      			</div>  -->
-<!--     		 <div class="right Rectangle">            -->
-<!--           		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseeighteen" >  -->
-<!--           		<span class="glyphicon glyphicon-plus" ng-click="getCountOfNonAssignedBatches()"></span></a>  -->
-<!--     		 </div>  -->
-<!--  		</div>  -->
-<!--              <div id="collapseeighteen" class="panel-collapse collapse" >  -->
-<!--                  <div class="panel-body">  -->
-<!--    					<div class="well" style="font-weight:bold;">  -->
-<!--      			<center> <b>{{countOfTotalNonAssignedbatches}}</b></center>	  -->
-<!--      				</div>  -->
-    				
-<!--     			</div>  -->
-		 
-<!--  		 </div>  -->
-<!--  	</div>  -->
-
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
-
-
-<!-- <!-- QUESTION 19 -->	
-<!-- 			 <div class="Rectangle-7"> -->
-<!-- 			<div class="container accordian">         -->
-<!--        			<div class="left Rectangle"> -->
-<!--             	<h4 class="question"> -->
-<!--            			 List out batch wise Candidate details for a batch <input type="text" name="batchId" id="batchId" rows="1" onkeypress="return isNumberKey(event)" style="line-height:initial" ng-model="inputBatchIdForBatchWiseCandidateDetails" placeholder="Enter Batch Id"/>  -->
-<!--            		</h4> -->
-<!--         		</div> -->
-    			
-<!--    			 <div class="right Rectangle">           -->
-<!--          		<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNineteen" > -->
-<!--          		<span class="glyphicon glyphicon-plus" ng-click="getbatchWiseCandidateDetailsForAParticularBatchWithBatchId()"></span></a> -->
-<!--    			 </div> -->
-<!-- 			</div> -->
-		
-<!-- 		    <div id="collapseNineteen" class="panel-collapse collapse" > -->
-<!--                 <div class="panel-body" > -->
-<!--     				<div class="container"> -->
-<!--    						 <div> -->
-<!-- 							<h6 class="manage"></h6> -->
-<!-- 						</div> -->
-<!--       					<div class="table-wrap"> -->
-<!--         					<div> -->
-<!--           						<div ui-grid="gridOptionsBatchWiseCandidateDetails" ui-grid-edit ui-grid-cellNav ui.grid.autoResizeclass="grid"> -->
-<!--           						</div> -->
-<!--         					</div> -->
-<!--       					</div> -->
-<!--     				</div> -->
-<!--    			</div> -->
-<!-- 		 </div> -->
-<!-- 	</div>		 -->
-			
-<!-- 	<div class = "edge"> -->
-<!-- 	</div> -->
 
 
 	

@@ -1,14 +1,55 @@
 console.log("code reacxhed to faq.js");
-var faq = angular.module('faq', [ 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav','ui.grid.autoResize']);
+var faq = angular.module('faq', [ 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav','ui.grid.autoResize','ui.bootstrap']);
 
 faq.controller('faqController', faqController);
 
 faqController.$inject = ['$scope', '$http'];
 
 function faqController($scope, $http){
-
+	$scope.status = {
+		    isFirstOpen: true,
+		    isFirstDisabled: false
+		  };
   
-
+	 $scope.selectedScheme = {
+			    scheme: "",
+			    schemeForMonth:"",
+			    selectedBatchType:""
+			  };
+	 $scope.candidatesSelected={
+			 candidate:"",
+			 candidateEnrolledInMonth:""
+	 }
+	 $scope.year={
+			 selectedYear:$scope.year,
+			 selectedMonth:"",
+			 selectedYearForCondidate:"",
+			 yearOfEnrollment:""
+			 
+	 }
+	 $scope.selectedState=
+	 {
+			 state :"",
+			 selectedStateForTrainingCentres :"",
+			 
+	 };
+	 $scope.trainingCenter = 
+		 {
+			 CountOfTrainingCentresConductingTraining: $scope.CountOfTrainingCentresConductingTraining,
+			 totalTrainingCentresWeHave:""
+		 }
+	 $scope.batch=
+		 {
+			 selectedBatchId: "",
+			 inputBatchIdForBatchStatus: "",
+			 inputBatchIdForBatchWiseCandidateDetails: ""
+		 }
+	 $scope.agency = 
+		 {
+			 getNameOfAssessmentAgency:"",
+			 assessmentAgencyForAParticularState: ""
+		 }
+	 
   $scope.schemeDropDownOptions = [{ id:'PMKVY',scheme:'PMKVY'},{id:'Non-PMKVY',scheme:'Non-PMKVY'}];
   
   $scope.candidatesOptions = [{ id:'Enrolled', name:'Enrolled'},{ id:'Assessed', name:'Assessed'},{ id:'Certified', name:'Certified'}];
@@ -115,7 +156,7 @@ function faqController($scope, $http){
 	    ]
 	  };
   
-  $scope.getTotalBatchesAndTotalCandidatesInState = {
+  $scope.gridTotalBatchesAndTotalCandidatesInState = {
 		  enableGridMenus : false,  
 		  enableSorting: false, 
 		  enableFiltering: false,
@@ -198,7 +239,7 @@ function faqController($scope, $http){
 					]
 	  };
   
-    
+  
  $scope.getDataAcrossAllScheme = function(){
 	 
 	 $http.get('/getFAQTotalCandidatesTrainedAssessedCertified')
@@ -207,12 +248,14 @@ function faqController($scope, $http){
 	 		$scope.gridOptions.data = response.data;
 	 	});
  };
+
  
  $scope.getDataOfScheme = function(){
-	 
-	 var scheme = $scope.selectedScheme;
-	 $http.post('/getFAQTotalCandidatesTrainedAssessedCertifiedSchemeWise?batchType='+scheme)
+	 console.log("Selected Scheme is -"+ $scope.selectedScheme.scheme);
+	 //var scheme = $scope.selectedScheme;
+	 $http.post('/getFAQTotalCandidatesTrainedAssessedCertifiedSchemeWise?batchType='+$scope.selectedScheme.scheme)
 	 	.then(function (response)	{
+	 		
 	 		console.log(response);
 	 		$scope.gridOptionsSelectedScheme.data = response.data;
 	 	});
@@ -220,10 +263,10 @@ function faqController($scope, $http){
  
  $scope.getDataOfCandidatesMonthWise = function(){
 	 
-	 var candidatesType = $scope.candidatesSelected;
+	 var candidatesType = $scope.candidatesSelected.candidate;
 	 console.log('CANDIDATES  :'+candidatesType);
-	 var selectedYear = $scope.year;
-	 var url = '/getFAQCandidatesEnrolledAssessedCertifiedMonthWise?year='+selectedYear+'&candidates='+candidatesType;
+	 
+	 var url = '/getFAQCandidatesEnrolledAssessedCertifiedMonthWise?year='+$scope.year.selectedYear+'&candidates='+$scope.candidatesSelected.candidate;
 	 console.log(url);
 	 $http.post(url)
 	 	.then(function (response)	{
@@ -234,10 +277,10 @@ function faqController($scope, $http){
    
  	$scope.getDataOfCandidatesSchemeAndMonthWise = function(){
  		
- 		var candidatesType = $scope.candidatesSelected;
+ 		var candidatesType = $scope.candidatesSelected.candidateEnrolledInMonth;
  		 console.log('CANDIDATES  :'+candidatesType);
- 		 var selectedYear = $scope.selectedYear;
- 		 var selectedscheme = $scope.selectScheme;
+ 		 var selectedYear = $scope.selectedYear.selectedYearForCondidate;
+ 		 var selectedscheme = $scope.selectedScheme.schemeForMonth;
  		 var url = '/getFAQCandidatesEnrolledAssessedCertifiedMonthAndSchemeWise?year='+selectedYear+'&candidates='+candidatesType+'&batchType='+selectedscheme;
  		 console.log('YE HAI URL'+url);
  		 $http.post(url)
@@ -249,19 +292,19 @@ function faqController($scope, $http){
  	
  	$scope.getTotalBatchesAndAllCandidatesInAState = function(){
  		
- 		var state = $scope.selectedState;
- 		console.log('State is :'+state);
- 		var url = '/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState?state='+state;
+ 		
+ 		console.log('State is :'+$scope.selectedState.state);
+ 		var url = '/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState?state='+$scope.selectedState.state;
  		$http.post(url)
  			.then(function (response) 	{
  				console.log(response);
- 				$scope.getTotalBatchesAndTotalCandidatesInState.data = response.data;
+ 				$scope.gridTotalBatchesAndTotalCandidatesInState.data = response.data;
  			});
  	};
  	
  	 $scope.getTotalBatchesAndAllCandidatesInAScheme = function(){
          
-         var selectedBatchScheme  = $scope.selectedBatchType;
+         var selectedBatchScheme  = $scope.selectedScheme.selectedBatchType;
          console.log('SELECTED SCHEME IS:'+selectedBatchScheme);
          var url = '/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularScheme?batchType='+selectedBatchScheme ;
          $http.post(url)
@@ -273,20 +316,20 @@ function faqController($scope, $http){
      
      $scope.getTotalCandidatesToBeAssessedForMonth = function(){
          
-         var selectedMonth = $scope.selectMonth;
+         var selectedMonth = $scope.year.selectMonth;
          console.log(selectedMonth);
          var url = '/getFAQCountOfCandidatesAssessmentUpcomingForAMonth?month='+selectedMonth;
          $http.post(url)
              .then(function (response)   {
              console.log(response.data);
-             $scope.candidatesAssessmentForUpcomingMonth = response.data;
+             $scope.candidatesAssessmentForUpcomingMonth = "Candidates assessed will be : "+response.data;
 //             $scope.getTotalCandidatesToBeAssessedForUpcomingMonth = response.data;
          });
      };
      
      $scope.getTotalTrainingCentresInAState = function(){
          
-         var state = $scope.selectedStateForTrainingCentres;
+         var state = $scope.selectedState.selectedStateForTrainingCentres;
          console.log(state);
          var url = '/getFAQTotalTrainingCentresInAState?state='+state ;
          $http.post(url)
@@ -298,7 +341,7 @@ function faqController($scope, $http){
      
      $scope.getTotalBatchesAndCandidatesEnrolledMonthWiseForAYear = function(){
          
-         var year = $scope.selectYearForAllBatchesAndCandidatesEnrolled;
+         var year = $scope.year.yearOfEnrollment;
          console.log(year);
          var url = '/getFAQTotalBatchesWithTotalCandidatesEnrolledYearWise?year='+year;
          $http.post(url)
@@ -314,7 +357,7 @@ function faqController($scope, $http){
          $http.get(url)
              .then(function (response)   {
                  console.log(response.data);
-                 $scope.CountOfTrainingCentresConductingTraining = response.data;
+                 $scope.trainingCenter.CountOfTrainingCentresConductingTraining = response.data;
              //            Return Output here
          });
      };
@@ -335,32 +378,28 @@ function faqController($scope, $http){
     	 $http.get(url)
     	 	.then(function (response)	{
     	 		console.log(response.data);
-    	 		$scope.totalTrainingCentresWeHave = response.data;
+    	 		$scope.trainingCenter.totalTrainingCentresWeHave = response.data;
+    	 		//var totalTrainingCentresWeHave = "We have total "+response.data+" training centers";
     	 	});
      };
      
      $scope.getAgencyNameForParticularBatchWithId = function(){
     	 
-    	 var batchId = $scope.inputtedBatchId;
+    	 var batchId = $scope.batch.selectedBatchId;
     	 var url = '/getFAQNameOfAgencyToWhichABatchIsAssigned?batchId='+batchId;
     	 var agencyName;
     	 $http({
     		 method: 'POST',
-    		 url: url,
-    		 transformResponse: [function (data)  {
-    			 console.log(data);
-    			 agencyName=data;
-    			 return data;
-    		 }]
+    		 url: url
     	 }).then(function(response) {
-    		 
-    		 if(agencyName)
+    		 console.log(response)
+    		 if(response.data.agencyName)
     		 {
-    			 $scope.AgencyNameForParticularBatchWithId = 'Agency Name='+agencyName;
+    			 $scope.AgencyNameForParticularBatchWithId = 'Batch : '+batchId+'is assigned to agency : '+agencyName;
     		 }
     		 else
     			 {
-    			 	$scope.AgencyNameForParticularBatchWithId = 'BatchId Not Found';
+    			 	$scope.AgencyNameForParticularBatchWithId = 'No results found for batch :'+ batchId;
     			 }
     		 
 			
@@ -369,7 +408,7 @@ function faqController($scope, $http){
     	 
     	 $scope.getStatusOfABatchWithBatchId = function() {
     		 
-    		 var batchId = $scope.inputBatchIdForBatchStatus;
+    		 var batchId = $scope.batch.inputBatchIdForBatchStatus;
     		 var url = '/getFAQStatusOfAParticularBatchWithId?batchId='+batchId;
     		 $http.post(url)
     		 	.then(function (response)	{
@@ -380,30 +419,31 @@ function faqController($scope, $http){
     	 
     	 $scope.getNumberofBatchesAssignedToAParticularAssessmentAgency = function(){
     		 
-    		 var agencyName = $scope.getNameOfAssessmentAgency;
+    		 var agencyName = $scope.agency.getNameOfAssessmentAgency;
     		 var batchesCountForAgencyName;
     		 var url = '/getFAQTotalCountOfBatchesAssignedToAAssessmentAgency?agencyName='+agencyName;
     		 $http.post(url)
     		 	.then(function	(response) {
+    		 		console.log(response.data);
         		  if(response.data==0)
         		  	{
-        			  $scope.batchesAssignedToAssessmentAgency = 'No Records Found';
+        			  $scope.batchesAssignedToAssessmentAgency = 'No records found for agency : '+agencyName;
         		  	}
         		 else
         			 {
-        			 	$scope.batchesAssignedToAssessmentAgency = 'Total Batches : '+response.data;
+        			 	$scope.batchesAssignedToAssessmentAgency = 'Total Batches assigned to Agency : '+agencyName+ ' are '+response.data;
         			 }
         		});
     	 };
     	 
     	 $scope.getNumberOfAssessorForAParticularAgencyInAParticularState = function() {
     		 
-    		 var agencyName = $scope.assessmentAgencyForAParticularState;
-    			 var state  = $scope.selectedStateForAParticularAgencyForAParticularState;
+    		 var agencyName = $scope.agency.assessmentAgencyForAParticularState;
+    			 var state  = $scope.selectedState.selectedStateForAParticularAgencyForAParticularState;
     			 var url    = '/getFAQCountTotalAssessorsOfAParticularAgencyInAParticularState?agencyName='+agencyName+'&state='+state;
     			 $http.post(url)
     			 	.then(function (response)	{
-    			 		$scope.assessorNumberForSelectedStateAndSelectedAgency = 'Total Assessors Of Agency '+agencyName+' : '+response.data; 
+    			 		$scope.assessorNumberForSelectedStateAndSelectedAgency = 'Total assessors af agency '+agencyName+'  in '+ state +' are :'+response.data; 
     			 	});
 			
 		};
@@ -430,7 +470,7 @@ function faqController($scope, $http){
     	 
     	 $scope.getbatchWiseCandidateDetailsForAParticularBatchWithBatchId = function()	{
     		 
-    		 var batchId = $scope.inputBatchIdForBatchWiseCandidateDetails;
+    		 var batchId = $scope.batch.inputBatchIdForBatchWiseCandidateDetails;
     		 var url = '/getFAQBatchWiseCandidatesDetails?batchId='+batchId;
     		 $http.post(url)
     		 	.then(function (response)	{
