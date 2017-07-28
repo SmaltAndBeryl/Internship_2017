@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skill.India.common.Privilege;
 import com.skill.India.dto.FAQBatchWiseCandidateDetailsDto;
 import com.skill.India.dto.FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto;
 import com.skill.India.dto.FAQCandidatesTrainedAssessedCertifiedDto;
@@ -34,7 +35,7 @@ public class FAQController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(FAQController.class);
 	
-	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getFAQTotalCandidatesTrainedAssessedCertified")
 	public Collection<FAQCandidatesTrainedAssessedCertifiedDto> getTotalCandidatesTrainedAssessedCertified()  {
 		try
@@ -49,6 +50,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(method=RequestMethod.POST,value="/getFAQTotalCandidatesTrainedAssessedCertifiedSchemeWise")
 	public Collection<FAQCandidatesTrainedAssessedCertifiedDto> getTotalCandidatesTrainedAssessedCertifiedSchemeWise(@RequestParam("batchType") String batchType) {
 		try
@@ -63,6 +65,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQTotalTrainingCentresInAState",method=RequestMethod.POST)
 	public Integer getTotalTrainingCentresInAState(@RequestParam("state") String state) {
 		try
@@ -77,6 +80,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQCountOfTotalTrainingCentresConductingTraining")
 	public Integer getCountOfTotalTrainingCentresConductingTraining() {
 		try
@@ -91,6 +95,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQCountOfCandidatesAssessmentUpcomingForAMonth",method=RequestMethod.POST)
 	public Integer getCountOfCandidatesAssessmentUpcomingForAMonth(@RequestParam("month") String month) {
 		try
@@ -105,6 +110,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQNameOfAgencyToWhichABatchIsAssigned",method=RequestMethod.POST)
 	public String getNameOfAgencyToWhichABatchIsAssigned(@RequestParam("batchId") Integer batchId)throws EmptyResultDataAccessException {
 		try
@@ -119,6 +125,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQTotalCountOfBatchesAssignedToAAssessmentAgency",method=RequestMethod.POST)
 	public Integer getTotalCountOfBatchesAssignedToAAssessmentAgency(@RequestParam("agencyName") String agencyName)throws EmptyResultDataAccessException {
 		try
@@ -133,6 +140,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState",method=RequestMethod.POST)
 	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState(@RequestParam("state") String state) {
 		try
@@ -147,6 +155,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularScheme",method=RequestMethod.POST)
 	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountTotalNumberOfBatchesInAParticularScheme(@RequestParam("batchType") String batchType) {
 		try
@@ -161,6 +170,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQCountTotalAssessorsOfAParticularAgencyInAParticularState",method=RequestMethod.POST)
 	public Integer getCountTotalAssessorsOfAParticularAgencyInAParticularState(@RequestParam("agencyName") String agencyName, @RequestParam("state") String state) {
 		try
@@ -175,6 +185,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQStatusOfAParticularBatchWithId",method=RequestMethod.POST)
 	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(@RequestParam("batchId") Integer batchId) {
 		try
@@ -189,6 +200,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQCountBatchesForWhichResultIsPending")
 	public Integer getCountBatchesForWhichResultIsPending() {
 		try
@@ -203,6 +215,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQBatchWiseCandidatesDetails",method=RequestMethod.POST)
 	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(@RequestParam("batchId") Integer batchId) {
 		try
@@ -217,6 +230,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getFAQCountTotalNonAssignedBatches")
 	public Integer getCountTotalNonAssignedBatches() {
 		try
@@ -231,6 +245,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getFAQTrainingCentresNotTakingAnyBatches")
 	public Collection<FAQTrainingCentresNotTakingAnyBatchesDto> getTrainingCentresNotTakingAnyBatchesc(){
 		try
@@ -245,6 +260,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(method=RequestMethod.POST,value="/getFAQCandidatesEnrolledAssessedCertifiedMonthWise")
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountTotalCandidatesEnrolledMonthWise(@RequestParam("year") Integer year, @RequestParam("candidates") String candidates) {
 		try
@@ -275,6 +291,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(method=RequestMethod.POST,value="/getFAQCandidatesEnrolledAssessedCertifiedMonthAndSchemeWise")
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountTotalCandidatesEnrolledMonthAndSchemeWise(@RequestParam("year") Integer year, @RequestParam("candidates") String candidates, @RequestParam("batchType") String batchType)
 	{
@@ -306,6 +323,7 @@ public class FAQController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(method=RequestMethod.POST,value="/getFAQTotalBatchesWithTotalCandidatesEnrolledYearWise")
 	public Collection<FAQTotalBatchesWithTotalCandidatesEnrolledMonthWiseDto> getTotalBatchesWithTotalCandidatesEnrolledYearWise(@RequestParam("year") int year) {
 		try

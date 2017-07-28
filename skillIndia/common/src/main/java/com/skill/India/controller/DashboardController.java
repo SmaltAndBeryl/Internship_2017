@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skill.India.common.Privilege;
 import com.skill.India.dto.DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto;
 import com.skill.India.dto.DashboardTotalBatchesAccordingToJobRoleDto;
 import com.skill.India.dto.DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto;
@@ -25,6 +26,7 @@ class DashboardController {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(DashboardController.class);
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesEnrolled")
 	public Integer getTotalCandidatesEnrolled() {
 		
@@ -40,6 +42,7 @@ class DashboardController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesAccessed")
 	public Integer getTotalCandidatesAccessed() {
 		
@@ -55,6 +58,7 @@ class DashboardController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesCertified")
 	public Integer getTotalCandidatesCertified() {
 		
@@ -70,6 +74,7 @@ class DashboardController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalTrainingPartners")
 	public Integer getTotalTrainingPartners() {
 		
@@ -85,6 +90,7 @@ class DashboardController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalTrainingCentersInIndia")
 	public Integer getTotalTrainingCentersInIndia() {
 		
@@ -100,6 +106,7 @@ class DashboardController {
 		}
 	}
 	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalBatchesAccordingToJobRole")
 	public Collection<DashboardTotalBatchesAccordingToJobRoleDto> getTotalBatchesAccordingToJobRole() {
 		try
@@ -114,6 +121,7 @@ class DashboardController {
 		}
 	}
 		
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYears")
 	public Collection<DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto> getTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
 		try
@@ -129,6 +137,7 @@ class DashboardController {
 	}
 
 
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesCertifiedWithModeInLastThreeYears")
 	public Collection<DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto> getTotalCandidatesCertifiedWithModeInLastThreeYears() {
 		try
@@ -144,7 +153,7 @@ class DashboardController {
 		
 	}
 	
-	
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTopStatesWithMaxTrainingCenters")
 	public Collection<DashboardTopStatesWithMaxTrainingCentersDto> getTopStatesWithMaxTrainingCenters() {
 		try

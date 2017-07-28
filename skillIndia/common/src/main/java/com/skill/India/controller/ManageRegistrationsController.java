@@ -1,6 +1,7 @@
 package com.skill.India.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 import org.slf4j.Logger;
@@ -13,31 +14,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skill.India.common.Privilege;
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.ApproveRejectTableDto;
 import com.skill.India.dto.CommentDto;
+import com.skill.India.dto.DataBeanDto;
 import com.skill.India.dto.ManageRegistrationApplicationDto;
 import com.skill.India.dto.MessageDto;
 import com.skill.India.service.ApproveRejectTableService;
+import com.skill.India.service.DataBeanService;
 
 @RestController
-public class ApproveRejectTableController {
+public class ManageRegistrationsController {
 
 	private static final Logger LOGGER = LoggerFactory
-			.getLogger(ApproveRejectTableController.class);
+			.getLogger(ManageRegistrationsController.class);
 
 	@Autowired
 	private ApproveRejectTableService approveRejectTableService;
 	
 	@Autowired
 	private SessionUserUtility sessionUser;
+	
+    @Autowired
+    private DataBeanService dataBeanService;
 
+	@Privilege(value={"SCGJ"})
 	@RequestMapping("/approve")
 	public HashMap<String, ArrayList<ApproveRejectTableDto>> approveRejectTableDtos() {
 		LOGGER.info("Trying to get Data from Application table");
 		return approveRejectTableService.getUpdateRowMapper();
 	}
 
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value = "/affiliationActionOfAnApplicant", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody MessageDto setAfflilationOfBody(
 			@RequestBody ManageRegistrationApplicationDto manageRegistrationApplicationDto) {
@@ -64,6 +73,7 @@ public class ApproveRejectTableController {
 
 	}
 
+	@Privilege(value={"SCGJ"})
 	@RequestMapping(value = "/setManageRegistrationsComment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody MessageDto setComment(
 			@RequestBody CommentDto commentDto) {
@@ -87,4 +97,27 @@ public class ApproveRejectTableController {
 		return approveRegistartionMessage;
 
 	}
+	
+	
+	/*
+	 * DataBeanController
+	 */
+	
+	
+    @Privilege(value={"SCGJ"})
+    @RequestMapping("/cityData")
+    public Collection<DataBeanDto> dataBeanDtoCollection(){
+        LOGGER.info("The method to generate PDF has been called...");
+        Collection<DataBeanDto> dataBeanDtos = dataBeanService.dataBeanDtoCollection();
+        dataBeanService.getDataBeanList();
+//        dataBeanService.generatePdf();
+        return dataBeanService.dataBeanDtoCollection();
+    }
+
+    @Privilege(value={"SCGJ"})
+    @RequestMapping("/generatePdf")
+    public void pdfBeanArrayList(){
+        dataBeanService.generatePdf();
+    }
+		
 }
