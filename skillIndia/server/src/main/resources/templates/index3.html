@@ -3,58 +3,202 @@
 <head>
     <title>Hello AngularJS</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCGJ | Skill Council for Green Jobs</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.css">
+    <link rel="stylesheet" href="css/login.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.min.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular-sanitize.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-cookies.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/FAQ.css"/>
+    <link rel="stylesheet" href="css/main.css">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
+    <script src="js/controllers/login.js"></script>
+
+
+
+    <script src="js/index3.js"></script>
+    <script src="js/masterController.js"></script>
+
+    <script src="js/page1.js"></script>
+    <script src="js/page2.js"></script>
+    <script src="js/page3.js"></script>
+    <script src="js/page4.js"></script>
+    <script src="js/page5.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <style type="text/css">
-[ng\:cloak], [ng-cloak], .ng-cloak {
-	display: none !important;
-}
-</style>
+
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+	    display: none !important;
+       }
+    </style>
 </head>
 
 <body ng-app="hello" ng-cloak class="ng-cloak">
 <div ng-controller="navigation as nav" class="container">
-    <ul class="nav nav-pills" role="tablist" ng-hide="authenticated">
-
-        <!--<li ng-class="{active:nav.tab('home')}">-->
-            <!--<a href="#/">home</a>-->
-        <!--</li>-->
-        <!--<li>-->
-            <!--<a href="#/login">login</a>-->
-        <!--</li>-->
-
+    <div ng-hide="authenticated" background="images/LoginScreenBackgroundImage.png">
         <div class="alert alert-danger" ng-show="error">
             There was a problem logging in. Please try again.
         </div>
-        <form role="form" ng-submit="nav.login()">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" name="username" ng-model="nav.credentials.username"/>
+        <!--<form role="form" ng-submit="nav.login()">-->
+            <!--<div class="form-group">-->
+                <!--<label for="username">Username:</label>-->
+                <!--<input type="text" class="form-control" id="username" name="username" ng-model="nav.credentials.username"/>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<label for="password">Password:</label> <input type="password"-->
+                                                               <!--class="form-control" id="password" name="password" ng-model="nav.credentials.password"/>-->
+            <!--</div>-->
+            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+        <!--</form>-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-3">
+                    <div class="row panel-body"></div>
+                    <div class="panel panel-login">
+                        <div class="logo"><img src="images/SCGJLogo.png" height="90px" width="280px" />
+                        </div>
+                        <div class="panel-heading">
+                            <hr style="border-bottom: 1px dotted #ccc;background: white; margin-left:5px; margin-right:5px;" />
+                            <div class="row panel-body">
+                                <div class="col-xs-1">
+                                    <a href="#" class="active" id="login-form-link">Login</a>
+                                </div>
+                                <div class="col-xs-1 col-xs-offset-1">
+                                    <a href="#" id="register-form-link">SignUp</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+
+                                <!-- LOGIN FORM -->
+
+                                <form role="form" style="display: block;" data-toggle="validator" ng-submit="nav.login()">
+                                    <div class="form-group input-group">
+                                        <div>
+                                            <input type="email" pattern="[a-zA-Z0-9-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value=" " ng-model="nav.credentials.username" />
+                                        </div>
+                                        <div class="help-block with-errors"> </div>
+                                        <span class=" input-group-addon" style="background-color:white;
+                                 border:none;
+                                 border-bottom:0px solid #ccc; ">
+                              <i id="username" class="fa fa-user" ></i>
+                              </span>
+                                    </div>
+                                    <div class="wrraper">
+                                        <div class="form-group input-group">
+                                            <input type="password" data-minlength="6" name="password" id="password" tabindex="2" data-error="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.credentials.password" />
+                                            <div class="help-block with-errors"></div>
+                                            <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">
+                                    <div>
+                                       <button id="toggleBtn" class="glyphicon glyphicon-eye-open  toggler-ico" type="button">&nbsp;</button>
+                                    </div>
+                                 </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="button" name="login-submit" id="login" tabindex="4" class="form-control button" value="LOGIN" type="submit" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+                                <!-- SIGN UP FORM -->
+
+                                <form role="form" style="display: none;" data-toggle="validator">
+                                    <div class="form-group col-xs-6">
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="newUser.organizationName" />
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="newUser.sPOCName">
+                                    </div>
+                                    <div class="form-group col-xs-6">
+                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="newUser.username" />
+                                        <div class="help-block with-errors">
+                                        </div>
+                                        <span class=" input-group-addon" style="background-color:white;
+                                 border:none;
+                                 border-bottom:0px solid #ccc; ">
+                              </span>
+                                        <div>
+                                            <input type="radio" ng-model="newUser.userRole" value="TP">TP
+                                            <input type="radio" ng-model="newUser.userRole" value="AB">AB
+                                        </div>
+                                    </div>
+                                    <div class="wrraper">
+                                        <div class="form-group input-group">
+                                            <input type="password" data-minlength="6" name="mypassword" id="mypassword" tabindex="2" data-error="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="newUser.mypassword" />
+                                            <div class="help-block with-errors"></div>
+                                            <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">
+                                    <div>
+                                       <button id="toggleBt" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>
+                                    </div>
+                                 </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <input type="button" name="signup" id="signup" tabindex="4" class="form-control button" value="SIGNUP" ng-click="signup()" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="panel-footer">
+                                        &nbsp &nbsp By clicking signup,you agree to the SCGJ'S <b>"User Agreement</b>, <b>privacy policy,</b> and <b>cookie policy"	</b>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label> <input type="password"
-                                                               class="form-control" id="password" name="password" ng-model="nav.credentials.password"/>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </ul>
+        </div>
+    </div>
+
     <li ng-show="authenticated">
         <a href="" ng-click="nav.logout()">logout</a>
     </li>
 </div>
 
-<div ng-view class="container"></div>
+<div ng-view class="container">
+    <!--Rendered Views-->
+</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
-<script src="js/index3.js"></script>
-<script src="js/home.js"></script>
-<script src="js/masterController.js"></script>
-<script src="js/page1.js"></script>
-<script src="js/page2.js"></script>
-<script src="js/page3.js"></script>
+
 </body>
+<footer>
+    <div class="upperFooter">
+        <div class="link-wrapper">
+            <a href="http://sscgj.in/about-us/" class="link">About Us</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/operational-standards/" class="link">National Standards</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/affiliation/" class="link">Affiliation</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/publications/" class="link">Publications</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/state-linkages/" class="link">State Linkages</a>
+        </div>
+
+    </div>
+
+    <div class="lowerFooter">
+        <h5 class="copyright">Copyright &copy 2017 sscgj.in - All Rights Reserved.</h5>
+    </div>
+</footer>
 </html>
