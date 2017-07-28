@@ -1,7 +1,6 @@
-/**{
-
-  border: 0.5px solid;
-}*/
+.middleWrapper{
+    display : flex;
+}
 
 body{
   background-color: white;

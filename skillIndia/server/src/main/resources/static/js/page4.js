@@ -1,7 +1,7 @@
 console.log("code reached to faq.js");
-var page4 = angular.module('page4');
+var page4 = angular.module('hello');
 
-page4.controller('page4',function faqController($scope, $http) {
+page4.controller('page4',function($scope, $http) {
     $scope.status = {
         isFirstOpen: true,
         isFirstDisabled: false

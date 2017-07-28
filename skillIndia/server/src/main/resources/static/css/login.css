@@ -1,9 +1,7 @@
 body {
-    padding-top:30px;
-    padding-left:34px;
+    background-image : url("LoginScreenBackgroundImage.png");
     background-repeat: no-repeat;
     background-size: 108% 100%;
-    padding-bottom:130px;
 }
 
 .panel-login {
@@ -186,7 +184,7 @@ body {
 .tr{
        margin-left:px;
 }
-img {
+.headerImage {
     vertical-align: middle;
     width: 338px;
     height: 109px;
