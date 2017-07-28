@@ -1,5 +1,5 @@
 console.log("App.js being executed");
-var hello = angular.module('hello', ['ngRoute']);
+var hello = angular.module('hello', ['ngRoute','ui.grid', 'ui.grid.edit', 'ui.grid.cellNav','ui.grid.autoResize','ui.bootstrap']);
 
 console.log("Module initialized successfully..");
 hello.config(function($routeProvider, $httpProvider) {
@@ -27,15 +27,19 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
     var authenticate = function(credentials, callback) {
 
         var headers = credentials ? {
-            authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
+//            authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
+              authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
             } : {};
 
         $http.get('getUserDetails', {
             headers : headers
         }).then(function(response) {
+        console.log("Backend value " + response.data);
             if (response.data.name) {
+
                 $rootScope.authenticated = true;
             } else {
+            console.log("Backend value " + response);
                 $rootScope.authenticated = false;
             }
             callback && callback($rootScope.authenticated);
