@@ -1,36 +1,33 @@
 package com.skill.India.common;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.core.annotation.Order;
+
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
-@Configuration
-@EnableWebSecurity
-public class WebSecurityConfig  extends WebSecurityConfigurerAdapter{
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
-	@Autowired
-	ApplicationDatasource dataSource;
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-//		http.authorizeRequests().antMatchers("/", "/home").permitAll()
-//				.anyRequest().authenticated().and().formLogin()
-//				.loginPage("/login").permitAll().and().logout().permitAll();
+
+
+	@Configuration
+	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+	public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+		@Override
+		protected void configure(HttpSecurity http) throws Exception {
+			// @formatter:off
+			http
+					.httpBasic().and()
+					.authorizeRequests()
+					.antMatchers("/index3.html", "/home.html", "/login2.html", "/", "/master.html", "/page1.html","/page2.html","/page3.html").permitAll()
+					.anyRequest().authenticated()
+					.and()
+					.csrf()
+					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+			// @formatter:on
+		}
 	}
 
-	@Autowired
-	public void configure(AuthenticationManagerBuilder auth)
-			throws Exception {
-		JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
-		userDetailsService.setDataSource(dataSource.applicationDataSource());
-		PasswordEncoder encoder = new BCryptPasswordEncoder();
-
-		auth.userDetailsService(userDetailsService).passwordEncoder(encoder)
-		.and().jdbcAuthentication().dataSource(dataSource.applicationDataSource());
-	}
-}
