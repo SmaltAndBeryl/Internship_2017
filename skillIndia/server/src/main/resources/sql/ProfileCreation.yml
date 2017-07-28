@@ -1,0 +1,27 @@
+ProfileCreation:
+ getTrainingPartnerDataByUserId: >
+   select * from tp 
+    where userId=:userId
+ 
+ getTrainingPartnerDataByUserIdFronUser: >
+   select organisationName,SPOCName,userId from user 
+     where userId=:userId
+ 
+ checkuserIdExistenceInTrainingPartnerRegistration: >
+   select exists(select * from tp where userId=:userId) 
+   
+   
+   
+ insertDataInApplication: >
+   insert into application(applicationState,userId,activeFlag,date)
+     values(:applicationState,:userId,:activeFlag,:date)   
+     
+ insertDataInTrainingPartnerRegistration: >
+   insert into tp values(:organizationName,:SPOCName,:address,:city,:state,:pincode,:mobileNumber,:landlineNumber,:faxNumber,:website,:userId)
+   
+ updateDataInTrainingPartnerRegistration: >
+   update tp set
+     organisationName=:organizationName,SPOCName=:SPOCName,address=:address,city=:city,state=:state,pincode=:pincode,mobileNumber=:mobileNumber,landlineNumber=:landlineNumber,faxNumber=:faxNumber,website=:website,userId=:userId
+       where userId=:userId
+        
+    

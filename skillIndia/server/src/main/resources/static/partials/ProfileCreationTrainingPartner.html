@@ -1,0 +1,157 @@
+<!doctype html>
+<html ng-app="profileCreationTrainingPartner">
+
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<!--  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
+  <script src="js/controllers/ProfileCreationTrainingPartner.js"></script>
+   <link rel="stylesheet" type="text/css"  href="css/ProfileCreationTrainingPartner.css"/>
+    
+
+
+</head>
+
+<body>
+
+  <div ng-controller="AccordionDemoCtrl">
+  <div id="profileCreationTrainingPartnerHead">Profile Creation</div>
+  <br/>
+    <accordion close-others="true">
+      <accordion-group>
+        <accordion-heading>
+          BASIC INFORMATION
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+        </accordion-heading>
+          <div>
+          <div class="col-md-2">
+        <label for="organisationName">Organisation Name :</label>  
+              </div>
+              <div class="col-md-4">
+        <input ng-model="profileTp.organisationName" type="text" ng-init="" name="orgaisationName" id="organisationName"  readonly/>   
+          </div>
+          <div class="col-md-2">
+        <label for="sPOCName">SPOC Name :</label>
+          </div>
+          <div class="col-md-4">
+        <input ng-model="profileTp.sPOCName" type="text" value="SPOC Name" name="sPOCName" id="sPOCName" readonly/>   
+          </div>
+          </div>
+          <div>
+          <div class="col-md-2">
+        <label for="address">Address :</label>
+              </div>
+          <div class="col-md-10">
+              <textarea  type="text" name="address" id="address" ng-model="profileTp.address"></textarea>
+             <!-- <input ng-model="addr" type="text" name="addr"/>-->
+              <span ng-show="addressExists">Address is Required </span>
+          </div> 
+          </div>
+          
+          <div>
+          <div class="col-md-2">
+        <label for="city">City :</label>  
+          </div>
+              <div class="col-md-2">
+              <input ng-model="profileTp.city" type="text" value="City" name="city" id="city" /> 
+              <span ng-show="cityExists">City is Required </span>
+          </div>
+          <div class="col-md-2">
+        <label for="state">State :</label>
+              </div>
+              <div class="col-md-2">
+        <select ng-model="profileTp.state"  name="state" id="state" ng-options="state for state in states" ng-init="profileTp.state=states[0]">
+                  </select>  
+                  <span ng-show="stateExists">State is Required </span>
+          </div>
+              <div class="col-md-2">
+        <label for="pincode">Pincode :</label>  
+          </div>
+              <div class="col-md-2">
+              <input ng-model="profileTp.pincode" type="number"  name="pincode" id="pincode" />
+              <span ng-show="pincodeExists">Pincode is Required </span>
+          </div>
+          </div>
+          <div class="col-md-12"></div>
+          
+          
+          <div>
+       <div class="col-md-6">       
+    <fieldset  data-ng-repeat="mobileNumber in mobileNumbers track by $index">
+        <div class="col-md-4">
+        <label for="mobileNumber">Mobile Number :</label>
+          </div>
+        <div class="col-md-8">
+      <input type="text" ng-model="profileTp.mobileNumber[mobileNumber.id]" name="mobileNumber">
+      <span ng-show="mobileNumberExists">Mobile Number is Required </span>        
+      <button class="remove"  ng-click="removeMobileNumber($index)">-</button>
+             <button class="addfields" ng-click="addMobileNumber()">Add fields</button>
+        </div>
+   </fieldset>
+              </div>   
+              
+              
+          
+              <div class="col-md-6">       
+    <fieldset  data-ng-repeat="landlineNumber in landlineNumbers">
+        <div class="col-md-4">
+        <label for="landlineNumber">Landline Number :</label>
+          </div>
+        <div class="col-md-8">
+      <input type="text" ng-model="profileTp.landlineNumber" name="landlineNumber"/>
+      <span ng-show="landlineNumberExists">Landline Number is Required </span>
+      <button class="remove"  ng-click="removeLandlineNumber()">-</button>
+             <button class="addfields" ng-click="addLandlineNumber()">Add fields</button>
+        </div>
+   </fieldset>
+              </div>  
+    
+         </div>
+    
+          
+          <div>
+          <div class="col-md-2">
+        <label for="faxNumber">Fax Number :</label>
+          </div>
+          <div class="col-md-4">
+        <input ng-model="profileTp.faxNumber"  type="number" value="12365" name="faxNumber" id="faxNumber"/>  
+        <span ng-show="faxNumberExists">Fax Number is Required </span>      
+          </div>    
+          <div class="col-md-2">
+        <label for="website">Website :</label>
+          </div>
+          <div class="col-md-4">
+        <input ng-model="profileTp.website"  type="text" value="abc.com" name="website" id="website"/>
+          <span ng-show="websiteExists">Website is Required </span>
+          </div>              
+         </div>
+          
+          
+          
+      </accordion-group>
+      
+      <accordion-group>
+        <accordion-heading>
+         2nd Header 
+        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+        </accordion-heading>
+        This is just some content to illustrate fancy headings.
+      </accordion-group>
+        <br/>
+        <div>
+            <div class="col-md-10"></div>
+            <div class="col-md-1">
+        <button type="button" class="btn btn-primary">Save As Draft</button>
+            </div>
+            <div class="col-md-1"> &nbsp;
+        <button type="button" class="btn btn-success" ng-click="validateOnSubmit()">Submit</button>
+        </div>
+        </div>
+      
+    </accordion>
+ <!--     <p style="border:1px solid black;">{{address}}</p>-->
+  </div>
+</body>
+
+</html>
