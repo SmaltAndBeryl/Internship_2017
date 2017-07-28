@@ -1,6 +1,116 @@
-<div style="background-color:green;  height:100px; width: 100px;" ng-controller="page">
+<div ng-controller="page">
     Page 1 reached
     <h2>
        {{message}}
     </h2>
+
+    <head>
+        <link href="css/Dashboard.css" type="text/css" rel="stylesheet">
+    </head>
+    <div class="container">
+        <div class="panelWrap">
+            <div class="text">Overall Training Information</div>
+
+            <div class="upper-panel">
+                <div class="col-sm-2">
+                    <div class="panel">
+                        <div class="panel-body" style="background-color:#F6AB3D;">
+                            <div class="Enrolled">
+                                <b>{{enrolled}}</b>
+                            </div>
+                        </div>
+                        <div class="panel-footer" style="background-color:#E18806;">CANDIDATES ENROLLED</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background-color:#A3C3E7;">
+                            <div class="Assessed">
+                                <b>{{assessed}}</b>
+                            </div>
+                        </div>
+                        <div class="panel-footer" style="background-color:#7BA9DC;">CANDIDATES ASSESSED</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background-color:#c68d7f;">
+                            <div class="Certified">
+                                <b>{{certified}}</b>
+                            </div>
+                        </div>
+                        <div class="panel-footer" style="background-color:#A07266;">CANDIDATES CERTIFIED</div>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background-color:#57C5D9;">
+                            <div class="TotalTC" class="TotalTC">
+                                <b>{{centre}} </b>
+                            </div>
+                        </div>
+                        <div class="panel-footer" style="background-color:#2DABC1;">TRAINING CENTRES</div>
+                    </div>
+                </div>
+
+
+                <div class="col-sm-2">
+                    <div class="panel panel-default">
+                        <div class="panel-body" style="background-color:#BCD43A;">
+                            <div class="TotalTP">
+                                <b>{{partner}}</b>
+
+                            </div>
+                        </div>
+                        <div class="panel-footer" style="background-color:#A6C118;">TRAINING PARTNERS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section Starts from here-->
+
+        <div class="chartsWrap">
+            <div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div id="pieChart">
+
+                        </div>
+                    </div>
+                    &nbsp; &nbsp;
+                    <div class="col-sm-4">
+                        <div id="columnChart">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- second row for grouped column and stacked column chart -->
+            <div>
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div id="groupedColumnChart">
+                            <!--Insert Controller here -->
+                        </div>
+                    </div>
+
+                    &nbsp; &nbsp;
+
+                    <div class="col-sm-4">
+                        <div id="stackedColumnChart">
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

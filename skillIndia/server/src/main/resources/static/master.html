@@ -1,25 +1,51 @@
 <div style="background-color: yellow; height: 200px; width: 200px" ng-show="authenticated">
-    <h2>
-        Welcome to Master template
-    </h2>
-    {{message}}
+    <div>
+        <h2>
+            Welcome to Master template
+        </h2>
+        {{message}}
+    </div>
 
-    <button type="button" ng-click="page = 'page1'">Page 1</button>
-    <button type="button" ng-click="page = 'page2'">Page 2</button>
-    <button type="button" ng-click="page = 'page3'">Page 3</button>
+    <div class="middleWrapper">
 
-    <div ng-switch on="page">
-        <div ng-switch-when="page1">
-            Page 1
-            <div ng-include src="'page1.html'"></div>
+        <div class="leftNav">
+            <button type="button" ng-click="page = 'page1'">Dashboard</button>
+            <br>
+            <button type="button" ng-click="page = 'page2'">Manage Registration</button>
+            <br>
+            <button type="button" ng-click="page = 'page3'">Import</button>
+            <br>
+            <button type="button" ng-click="page = 'page4'">FAQ</button>
+            <br>
+            <button type="button" ng-click="page = 'page5'">Batch Assignment</button>
         </div>
-        <div ng-switch-when="page2">
-            Page 2
-            <div ng-include src="'page2.html'"></div>
-        </div>
-        <div ng-switch-when="page3">
-            Page 3
-            <div ng-include src="'page3.html'"></div>
+
+
+
+        <div class="rightArea">
+            <div ng-switch on="page">
+                <div ng-switch-when="page1">
+                    Page 1
+                    <div ng-include src="'page1.html'"></div>
+                </div>
+                <div ng-switch-when="page2">
+                    Page 2
+                    <div ng-include src="'page2.html'"></div>
+                </div>
+                <div ng-switch-when="page3">
+                    Page 3
+                    <div ng-include src="'page3.html'"></div>
+                </div>
+                <div ng-switch-when="page4">
+                    Page 4
+                    <div ng-include src="'page4.html'"></div>
+                </div>
+                <div ng-switch-when="page5">
+                    Page 5
+                    <div ng-include src="'page5.html'"></div>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>
