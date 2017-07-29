@@ -80,7 +80,8 @@ columnDefs:[
      }];
      $scope.uploadCSV = function(){
          
-     	var file = $scope.csvFile;
+     	var file = $scope.uploadCsvFile;
+     	console.log('File selected is :'+file);
      	var csvType = $scope.csvType;
                
          var uploadUrl = "/upload";

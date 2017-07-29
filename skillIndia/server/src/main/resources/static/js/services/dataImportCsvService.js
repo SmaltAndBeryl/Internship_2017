@@ -1,6 +1,7 @@
 imp.service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function (csvType, uploadUrl) {
+    this.uploadFileToUrl = function (file, csvType, uploadUrl) {
         var fd = new FormData();
+        console.log('File is :'+file);
         var file = document.getElementById('csvFile').files[0];
         fd.append('csvType', csvType);
         fd.append('file',  document.getElementById('csvFile').files[0]);

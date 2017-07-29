@@ -67,12 +67,12 @@
 }
 #uploadDivRow
 {
-    padding-top: 1em;
+    padding-top: 2em;
     background-color: white;
 }
 #csvTypeDiv
 {
-    padding-left: 4em;
+    padding-left: 2em;
 }
 #csvFileDiv
 {
@@ -89,7 +89,8 @@
 }
 #responseOfUpload
 {
-	padding-left: 5em;
+	padding-left: 1em;
+	overflow: hidden;
 }
 .sno{
   height: 246px;

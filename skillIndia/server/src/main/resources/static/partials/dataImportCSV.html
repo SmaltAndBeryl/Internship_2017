@@ -19,13 +19,13 @@
         <div class = "container col-md-12" id="uploadDiv">
             <form name="myform">
             <div class="row" id="uploadDivRow">
-                <div class="col-md-2" id="csvTypeDiv">
+                <div class="col-md-3" id="csvTypeDiv">
                     <select autofocus class="form-control" id="select" required ng-model="csvType" ng-init=" csvType = optionValues[0].id" ng-options="option.id as option.name for option in optionValues">
                     </select>
                 </div>
-                <div class="col-md-3" id="csvFileDiv">
+                <div class="col-md-5" id="csvFileDiv">
                     <div class="form-group">
-                        <input type="file" id="csvFile" accept=".csv" class="file" file-model/>
+                        <input type="file" id="csvFile" accept=".csv" class="file" file-model="uploadCsvFile"/>
                             <div class="input-group col-xs-12">
                                 <input type="text" id="csvFileName" ng-model="csvName" class="form-control input" data-error="Please enter .csv file" placeholder="Upload Excel File Here" required/>
                                     <span class="input-group-btn">
@@ -35,14 +35,14 @@
                             <span ng-show="myform.csvName.$touched && myform.csvName.$invalid">Please Select a .csv file</span>
                     </div>
                 </div>
-                <div class="col-md-1" id="uploadButtonDiv">
+                <div class="col-md-2" id="uploadButtonDiv">
                     <button type="submit" class="form-control btn btn-info btn data-disable"  id="uploadButton" ng-click="uploadCSV()" >Upload</button>
                 </div>
+                
             </div>
-            <p id="responseOfUpload"></p>
-        
+                   
             </form>
-            
+            <div id="responseOfUpload"></div>
         </div>
      </div>
 <!-- </body> -->
