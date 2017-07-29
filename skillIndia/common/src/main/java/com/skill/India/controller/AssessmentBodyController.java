@@ -32,21 +32,21 @@ public class AssessmentBodyController {
 	@Autowired
 	private SessionUserUtility sessionUserUtility;
 	
+	/*
+	 * Getting ApplicationId from Session
+	 */
 	
-//	@RequestMapping("/assessmentBodyApplicationStatus")
-//	public Collection<AssessmentBodyApplicationStatusDto> getAssessmentBodyApplicationStatusDto (@RequestParam("applicationId")int applicationId) {
-//	       
-//		return assessmentBodyApplicationStatusService.getUpdateRowMapper(applicationId);
-//	}
+	private int getApplicationId() {
+		return sessionUserUtility.getApplicationId(sessionUserUtility
+				.getSessionMangementfromSession().getUsername());
+	}
 	
 	@Privilege(value={"AB"})
 	@RequestMapping("/assessmentBodyApplicationStatus")
 	public Collection<AssessmentBodyApplicationStatusDto> getAssessmentBodyApplicationStatusDto() {
 	       
 		return assessmentBodyApplicationStatusService
-				.getUpdateRowMapper(sessionUserUtility
-						.getApplicationId(sessionUserUtility
-								.getSessionMangementfromSession().getUsername()));
+				.getUpdateRowMapper(getApplicationId());
 	}
 	
 	
@@ -54,32 +54,12 @@ public class AssessmentBodyController {
 	 * AssessmentBodyHomepageController 
 	 */
 	
-	// @RequestMapping("/getPastBatchesAssessmentBodyHomepage")
-		// public Collection<AssessmentBodyHomepageDto>
-		// getpastBatchesAssessmentBodyHomepageRowMapper(@RequestParam("getApplicationId()")int
-		// getApplicationId()){
-		//
-		// //System.out.println("CGCxhsvdcvdhcbdkb kdb............."+getApplicationId());
-		// return
-		// assessmentBodyHomepageService.getpastBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
-		// }
-
 		@Privilege(value={"AB"})
 		@RequestMapping("/getPastBatchesAssessmentBodyHomepage")
 		public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper() {
-
-			// System.out.println("CGCxhsvdcvdhcbdkb kdb............."+getApplicationId());
 			return assessmentBodyHomepageService
 					.getpastBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
-
-		// @RequestMapping("/getUpcomingBatchesAssessmentBodyHomepage")
-		// public Collection<AssessmentBodyHomepageDto>
-		// getupcomingBatchesAssessmentBodyHomepageRowMapper(@RequestParam("getApplicationId()")int
-		// getApplicationId()){
-		// return
-		// assessmentBodyHomepageService.getupcomingBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
-		// }
 
 		@Privilege(value={"AB"})
 		@RequestMapping("/getUpcomingBatchesAssessmentBodyHomepage")
@@ -88,28 +68,12 @@ public class AssessmentBodyController {
 					.getupcomingBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
 
-		// @RequestMapping("/getShownInterestBatchesAssessmentBodyHomepage")
-		// public Collection<AssessmentBodyHomepageDto>
-		// getshownInterestAssessmentBodyHomepageRowMapper(@RequestParam("getApplicationId()")int
-		// getApplicationId()){
-		// return
-		// assessmentBodyHomepageService.getshownInterestAssessmentBodyHomepageRowMapper(getApplicationId());
-		// }
-
 		@Privilege(value={"AB"})
 		@RequestMapping("/getShownInterestBatchesAssessmentBodyHomepage")
 		public Collection<AssessmentBodyHomepageDto> getshownInterestAssessmentBodyHomepageRowMapper() {
 			return assessmentBodyHomepageService
 					.getshownInterestAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
-
-		// @RequestMapping("/getAssignedBatchesAssessmentBodyHomepage")
-		// public Collection<AssessmentBodyHomepageDto>
-		// getassigneddBatchesAssessmentBodyHomepageRowMapper(@RequestParam("getApplicationId()")int
-		// getApplicationId()){
-		// return
-		// assessmentBodyHomepageService.getassignedBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
-		// }
 
 		@Privilege(value={"AB"})
 		@RequestMapping("/getAssignedBatchesAssessmentBodyHomepage")
@@ -118,14 +82,6 @@ public class AssessmentBodyController {
 					.getassignedBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
 
-		// @RequestMapping("/getConfirmedBatchesAssessmentBodyHomepage")
-		// public Collection<AssessmentBodyHomepageDto>
-		// getconfirmedBatchesAssessmentBodyHomepageRowMapper(@RequestParam("getApplicationId()")int
-		// getApplicationId()){
-		// return
-		// assessmentBodyHomepageService.getconfirmedBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
-		// }
-
 		@Privilege(value={"AB"})
 		@RequestMapping("/getConfirmedBatchesAssessmentBodyHomepage")
 		public Collection<AssessmentBodyHomepageDto> getconfirmedBatchesAssessmentBodyHomepageRowMapper() {
@@ -133,12 +89,6 @@ public class AssessmentBodyController {
 					.getconfirmedBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
 
-		private int getApplicationId() {
-			return sessionUserUtility.getApplicationId(sessionUserUtility
-					.getSessionMangementfromSession().getUsername());
-		}
-		
-		
 		/*
 		 * AssessmentBodyHomepageFunctionalititesController 
 		 */
@@ -153,7 +103,6 @@ public class AssessmentBodyController {
 		@Privilege(value={"AB"})
 		@RequestMapping(value="/approveAssignment",method=RequestMethod.POST)
 		public int assessmentBodyHomepageFunctionalitiesApproveBatch(@RequestParam("batchId") String batchId) {
-			System.out.println("THIS IS THE BATCH id"+batchId);
 			return assessmentBodyHomepageFunctionalitiesService.putApproveBatch(batchId);
 		}
 		

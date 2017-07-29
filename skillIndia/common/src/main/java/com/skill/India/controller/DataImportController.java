@@ -1,7 +1,9 @@
 package com.skill.India.controller;
 
 import java.util.Collection;
+
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import com.skill.India.service.FindBatchUsingBatchIdService;
 import com.skill.India.service.SaveCertificateFileService;
 import com.skill.India.service.SaveUploadedFileService;
 import com.skill.India.common.Privilege;
+import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.CertificateImportHistorydto;
 import com.skill.India.dto.DataImportGetBatchInfoDto;
 import com.skill.India.dto.DataImportHistoryDto;
@@ -49,6 +52,9 @@ public class DataImportController{
 
 	@Autowired
 	private CertificateImportHistoryService certificateImportHistoryService;
+	
+	@Autowired
+	private SessionUserUtility sessionUserUtility; 
 	
 	
 @Privilege(value={"SCGJ"})
@@ -77,18 +83,17 @@ public void getFile(@PathVariable("file_name") String fileName,
 @Privilege(value={"SCGJ"})
 @RequestMapping(value="/findBatch",method=RequestMethod.POST)
 public Collection<DataImportGetBatchInfoDto> dataImportFindBatch(@RequestParam("batchId") Integer batchId){
-	
-	System.out.println("HERE");
+
 	return findBatchUsingBatchIdService.findBatchUsingBatchId(batchId.toString());
 	
 }
 
 @Privilege(value={"SCGJ"})
 @RequestMapping(value = "/uploadCertificate", method = { RequestMethod.GET, RequestMethod.POST },consumes=MediaType.ALL_VALUE)
-public String singleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("batchId") Integer batchId, @RequestParam("userId") String userId){
-//	String batchId="0";
-//	String userId="0";
-
+public String singleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("batchId") Integer batchId){
+	String userId=sessionUserUtility
+			.getSessionMangementfromSession().getUsername();
+	
 	return saveCertificateFileService.saveUploadedFile(file, batchId, userId);
 	
 
@@ -98,8 +103,8 @@ public String singleFileUpload(@RequestParam("file") MultipartFile file,@Request
 @RequestMapping(value = "/upload", method = { RequestMethod.GET, RequestMethod.POST },consumes=MediaType.ALL_VALUE)
    public String singleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("csvType") String type) 
 {
-  String userId="1";
-//  String type="batch";
+	String userId=sessionUserUtility
+			.getSessionMangementfromSession().getUsername();
   return saveUploadedFileService.saveUploadedFile(file,type,userId);
 }
 

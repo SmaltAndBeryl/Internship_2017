@@ -34,13 +34,6 @@ public class TrainingPartnerController {
 	@Autowired
 	private TrainingPartnerApplicationStatusService trainingPartnerApplicationStatusService;
 	
-	
-//	@RequestMapping("/trainingPartnerPastBatches")
-//	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getTrainingPartnerPastTableDto (@RequestParam("applicationId")int applicationId) {
-//		
-//			return trainingPartnerPastTableService.getUpdateRowMapper(applicationId);
-//	}
-
 	@Privilege(value={"TP"})
 	@RequestMapping("/trainingPartnerPastBatches")
 	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getTrainingPartnerPastTableDto () {
@@ -50,18 +43,10 @@ public class TrainingPartnerController {
 							.getSessionMangementfromSession().getUsername()));
 	}
 	
-	
 	/*
 	 * TrainingPartnerStatusController 
 	 */
 	
-	// @RequestMapping("/trainingPartnerApplicationStatus")
-		// public Collection<TrainingPartnerApplicationStatusDto>
-		// gettrainingPartnerApplicationStatusDto (@RequestParam("applicationId")int
-		// applicationId) {
-		// return
-		// trainingPartnerApplicationStatusService.getUpdateRowMapper(applicationId);
-		// }
 	@Privilege(value={"TP"})
 	@RequestMapping("/trainingPartnerApplicationStatus")
 	public Collection<TrainingPartnerApplicationStatusDto> gettrainingPartnerApplicationStatusDto() {
