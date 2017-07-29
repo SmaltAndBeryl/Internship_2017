@@ -1,6 +1,64 @@
-<div style="background-color:pink;  height:400px; width: 400px;" ng-controller="page5">
+<div ng-controller="page5">
     Page 5 reached
     <h2>
         {{message}}
     </h2>
+
+    <head>
+        <link rel="stylesheet" href="/css/batchAssignment.css" type="text/css" />
+    </head>
+
+    <!-- MainWrap-EntireBatchAssignment -->
+    <div class="mainWrap">
+
+        <!-- BatchAssignment-Heading -->
+        <h3 class="batchAssignment">Batch Assignment</h3>
+
+        <!-- BatchAssignment-NonAssignedBatches -->
+        <div class="nonAssignedBatchTableWrap">
+            <div class="nonAssignedBatch">Non-Assigned Batch(es)</div>
+            <div>
+                <div ui-grid="gridOptions" class="nonAssignedBatchesGrid"></div>
+            </div>
+        </div>
+
+
+        <!--BatchAssignment-Search bar-->
+        <div class="searchBatchWrap">
+            <div>
+                <div method="post" role="form" style="display: block;">
+                    <label class="searchBatchId">Search Batch ID</label>
+                    <input type="text" class="searchBox" placeholder="Enter Batch ID" required name='searchText' ng-model="batchAssignmentSearch"/>
+                    <input type="button" class="searchButton"  value="Search" ng-click="getDataOfBatch()"/>
+                    <div ui-grid="searchGridOptions" class="searchBatchGrid"></div>
+                </div>
+            </div>
+        </div>
+        <!-- BatchAssignment-Other Tables -->
+
+        <!-- Proposed Batch(es) Table -->
+        <div class="proposedWrap">
+            <div class="proposedBatch">Proposed Batch(es)</div>
+            <div>
+                <div ui-grid="proposedBatchesBatchAssignmentGridOptions" class="proposedBatchesGrid"></div>
+            </div>
+        </div>
+
+        <!-- Approved Batch(es) Table -->
+        <div class="approvedWrap">
+            <div class="approvedBatch">Approved Batch(es)</div>
+            <div>
+                <div ui-grid="approvedBatchesBatchAssignmentGridOptions" class="approvedBatchesGrid"></div>
+            </div>
+        </div>
+
+         Rejected Batch(es) Table
+        <div class="rejectedWrap">
+            <div class="rejectedBatch">Rejected Batch(es)</div>
+            <div>
+                <div ui-grid="rejectedBatchesBatchAssignmentGridOptions" class="rejectedBatchesGrid"></div>
+            </div>
+        </div>
+
+    </div>
 </div>

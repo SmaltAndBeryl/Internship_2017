@@ -1,23 +1,16 @@
+<head>
+    <link rel="stylesheet" href="../css/dataImportHistory.css" type="text/css" />
+</head>
 <div ng-controller="page3">
-
-    <head>
-        <link rel="stylesheet" href="../css/dataImportHistory.css" type="text/css" />
-
-    </head>
-
-    <div class="container">
+    <div class="container" ng-controller="page3">
         <h2 class="import">Import</h2>
         <div class="upload" ng-include="'partials/dataImportCSV.html'"></div>
         <div class="historytable">
             <h4 class="title">Import History</h4>
             <div>
-                <div ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
+                <div ui-grid="dataImportHistory" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
             </div>
         </div>
-
-
-
-
         <div class="certificate">
             <form id="Search-Batch-ID" method="post" role="form" style="display: block;">
                 <label class="title">Search Batch ID</label>
@@ -25,19 +18,14 @@
                 <input type="button" class="button" value="Search" ng-click="getdatOfbatch()">
             </form>
             <div>
-                <!-- <div ui-grid="gridOptions" ui-grid-auto-resize class="grid"></div> -->
+                <div ui-grid="searchBatch" ui-grid-auto-resize class="grid1"></div>
             </div>
         </div>
-
-
-
-
         <div class="historytable">
             <h5 class="title">Certificate Upload History</h5>
             <div>
-                <div ui-grid="gridOptions" ui-grid-auto-resize class="grid"></div>
+                <div ui-grid="certificateImportHistory" ui-grid-auto-resize class="grid "></div>
             </div>
         </div>
-
     </div>
 </div>
