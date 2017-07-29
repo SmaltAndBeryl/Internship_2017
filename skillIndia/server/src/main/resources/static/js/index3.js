@@ -1,5 +1,10 @@
 console.log("App.js being executed");
-var hello = angular.module('hello', ['ngRoute','ui.grid', 'ui.grid.edit', 'ui.grid.cellNav','ui.grid.autoResize','ui.bootstrap']);
+var hello = angular.module('hello', ['ngRoute',
+                                        'ui.grid',
+                                         'ui.grid.edit',
+                                          'ui.grid.cellNav',
+                                          'ui.grid.autoResize',
+                                          'ui.bootstrap']);
 
 console.log("Module initialized successfully..");
 hello.config(function($routeProvider, $httpProvider) {
