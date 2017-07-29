@@ -1,4 +1,4 @@
-imp.service('fileUpload', ['$http', function ($http) {
+page3.service('fileUpload', ['$http', function ($http) {
     this.uploadFileToUrl = function (file, csvType, uploadUrl) {
         var fd = new FormData();
         console.log('File is :'+file);

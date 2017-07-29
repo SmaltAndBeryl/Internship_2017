@@ -1,4 +1,4 @@
-imp.service('zipCertificateUpload', ['$http', function ($http){
+page3.service('zipCertificateUpload', ['$http', function ($http){
 	this.uploadZip = function (batchId, url){
 		var fd = new FormData()
 		var file = document.getElementById('selectFile').files[0];

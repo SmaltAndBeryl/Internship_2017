@@ -17,6 +17,14 @@ hello.config(function($routeProvider, $httpProvider) {
 	    templateUrl : 'master.html',
 	    controller : 'master'
 	})
+	.when('/trainingPartner', {
+        templateUrl : 'trainingPartner.html',
+        controller : 'trainingPartner'
+    })
+    .when('/assessmentBody', {
+        templateUrl : 'assessmentBody.html',
+        controller : 'assessmentBody'
+    })
 	.otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -32,19 +40,19 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
     var authenticate = function(credentials, callback) {
 
         var headers = credentials ? {
-//            authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
               authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
             } : {};
 
         $http.get('getUserDetails', {
             headers : headers
         }).then(function(response) {
-        console.log("Backend value " + response.data);
             if (response.data.name) {
-
+                console.log("Backend value " + response + "String Format " + JSON.stringify(response.data.authorities[0].authority));
                 $rootScope.authenticated = true;
+                $rootScope.type = JSON.stringify(response.data.authorities[0].authority);
+                console.log("USER role is " + $rootScope.type);
             } else {
-            console.log("Backend value " + response);
+                console.log("Backend value " + response);
                 $rootScope.authenticated = false;
             }
             callback && callback($rootScope.authenticated);
@@ -52,19 +60,42 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
             $rootScope.authenticated = false;
             callback && callback(false);
         });
+
+
     }
 
     authenticate();
+
+
 
     self.credentials = {};
 
     self.login = function() {
         authenticate(self.credentials, function(authenticated) {
             if (authenticated) {
-                console.log("Login succeeded")
-                $location.path("/master");
+                var userType = $rootScope.type;
+                var AB = '"AB"';
+                var TP = '"TP"';
+                var SCGJ = '"SCGJ"';
+
+                if(userType == AB){
+                    alert("Welcome assessment body");
+                    $location.path("/assessmentBody");
+                }
+
+                if(userType == TP){
+                    alert("Welcome training partner");
+                    $location.path("/trainingPartner");
+                }
+
+                if(userType == SCGJ){
+                    alert("Welcome SCGJ user");
+                    $location.path("/master");
+                }
+
                 self.error = false;
                 $rootScope.authenticated = true;
+
             } else {
                 console.log("Login failed")
                 $location.path("/login");
@@ -84,5 +115,13 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
     }
 });
 
+//hello.run(function($rootScope, $location){
+//    $rootScope.$on("$locationChangeStart" , function(event, next, current){
+//        if($rootScope.userType != '"SCGJ"'){
+//            alert("YOU are not allowed to access this page");
+//            $location.path("");
+//        }
+//    });
+//})
 
 
