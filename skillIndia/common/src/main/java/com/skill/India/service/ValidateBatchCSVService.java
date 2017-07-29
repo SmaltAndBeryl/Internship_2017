@@ -60,6 +60,8 @@ public class ValidateBatchCSVService {
 			/*
 			 *  Map to store data of each row of csv read and then added to arraylist
 			 */
+			
+			
 			Map<String ,Object> record=new HashMap<String, Object>();
 			recordCount++;
 			int errorStatus=0;
@@ -369,47 +371,55 @@ public class ValidateBatchCSVService {
 					
 				if(maximumMarksTheory.equals(""))
 				{
-					maximumMarksTheory="0";
+					maximumMarksTheory=null;
 				}
 				if(maximumMarksPractical.equals(""))
 				{
-					maximumMarksPractical="0";
+					maximumMarksPractical=null;
 				}
 				if(resultApproved.equals(""))
 				{
-					resultApproved="unknown";
+					resultApproved=null;
 				}
 				if(resultApprovedOnDate.equals(""))
 				{
-					resultApprovedOnDate="1900-01-00";
+					resultApprovedOnDate=null;
+				}
+				else
+				{
+					resultApprovedOnDate=ValidationUtils.convertUtilToSqlDate(resultApprovedOnDate);
 				}
 				if(totalPass.equals(""))
 				{
-					totalPass="0";
+					totalPass=null;
 				}
 				if(totalFail.equals(""))
 				{
-					totalFail="0";
+					totalFail=null;
 				}
 				if(totalNotAppeared.equals(""))
 				{
-					totalNotAppeared="0";
+					totalNotAppeared=null;
 				}
 				if(totalCertified.equals(""))
 				{
-					totalCertified="0";
+					totalCertified=null;
 				}
 				if(batchAssignmentDate.equals(""))
 				{
-					batchAssignmentDate="1900-01-00";
+					batchAssignmentDate=null;
+				}
+				else
+				{
+					batchAssignmentDate=ValidationUtils.convertUtilToSqlDate(batchAssignmentDate);
 				}
 				if(agencyId.equals(""))
 				{
-					agencyId="0";
+					agencyId=null;
 				}
 				if(assessorId.equals(""))
 				{
-					assessorId="0";
+					assessorId=null;
 				}
 				
 				/*
@@ -432,12 +442,12 @@ public class ValidateBatchCSVService {
 				record.put("maximumMarksPractical",maximumMarksPractical);
 				record.put("level",level);
 				record.put("resultApproved",resultApproved);
-				record.put("resultApprovedOnDate",ValidationUtils.convertUtilToSqlDate(resultApprovedOnDate));
+				record.put("resultApprovedOnDate",resultApprovedOnDate);
 				record.put("totalPass",totalPass);
 				record.put("totalFail",totalFail);
 				record.put("totalNotAppeared",totalNotAppeared);
 				record.put("totalCertified",totalCertified);
-				record.put("batchAssignmentDate",ValidationUtils.convertUtilToSqlDate(batchAssignmentDate));
+				record.put("batchAssignmentDate",batchAssignmentDate);
 				record.put("assessmentDate",ValidationUtils.convertUtilToSqlDate(assessmentDate));
 				record.put("agencyId",agencyId);
 				record.put("assessorId",assessorId);
@@ -504,7 +514,7 @@ public class ValidateBatchCSVService {
 					errorString=errorString+ "trainerId key mismatch .";
 				}
 					
-				if(!getRecord.get("agencyId").equals("0"))
+				if(!(getRecord.get("agencyId")==null))
 				{
 					status=dataImportBatchDao.dataImportBatchAgencyIdCheck(getRecord);
 				if(status==0 || status==2)
@@ -513,7 +523,7 @@ public class ValidateBatchCSVService {
 					errorString=errorString+ "agencyId key mismatch .";
 				}
 				}
-				if(!getRecord.get("assessorId").equals("0"))
+				if(!(getRecord.get("assessorId")==null))
 				{
 				status=dataImportBatchDao.dataImportBatchAssessorIdCheck(getRecord);
 				if(status==0 || status==2)

@@ -47,6 +47,7 @@ public class DataImportCandidateDao extends AbstractTransactionalDao {
 		
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("employerId",getRecord.get("employerId"));
+		System.out.println(parameters + dataImportConfigSql.getEmployerIdExistsForCandidate());
 		return getJdbcTemplate().queryForObject(dataImportConfigSql.getEmployerIdExistsForCandidate(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
