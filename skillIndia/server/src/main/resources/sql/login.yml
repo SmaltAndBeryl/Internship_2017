@@ -5,3 +5,7 @@ login:
     
  checkUserSql: >
    SELECT EXISTS(SELECT * FROM user WHERE userId=:userId and password=:password)
+   
+ getSPOCName: >
+   select sPOCName from user
+     where userId=:userId    

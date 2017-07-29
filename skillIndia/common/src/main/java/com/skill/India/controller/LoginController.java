@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.LoginDto;
 import com.skill.India.dto.LoginReceiveDataDto;
 import com.skill.India.dto.SignUpInsertedUserDto;
 import com.skill.India.dto.SignUpReceiveDataDto;
+import com.skill.India.service.GetSPOCNameService;
 import com.skill.India.service.LoginService;
 import com.skill.India.service.SignUpService;
 
@@ -33,9 +35,16 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
     public String userRedirectPage;
+    
     @Autowired
 	private SignUpService signUpService;    
    
+    @Autowired
+    private GetSPOCNameService getSPOCNameService; 
+    
+    @Autowired
+    private SessionUserUtility sessionUserUtility;
+    
     
     @RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
@@ -53,31 +62,16 @@ public class LoginController {
 	  
 	}
 	
+	@RequestMapping("/getSPOCName")
+	public String getSPOCName()  {
+		String userId=sessionUserUtility
+				.getSessionMangementfromSession().getUsername();
+		return getSPOCNameService.getSPOCNameService(userId); 
+	}
 	
 	@RequestMapping("/getUserDetails")
 	public Principal user(Principal user) {
 		System.out.println("hey  : " +user);
 		return user;
 	}
-	
-	@Configuration
-	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
-	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
-			http
-				.httpBasic().and()
-				.authorizeRequests()
-					.antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll()
-					.anyRequest().authenticated()
-					.and()
-				.csrf()
-					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-			// @formatter:on
-		}
-	}
-	
-	
-	
 }

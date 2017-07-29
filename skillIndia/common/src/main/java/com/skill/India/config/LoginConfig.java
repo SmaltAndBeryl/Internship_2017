@@ -10,6 +10,18 @@ public class LoginConfig {
 
 	private String selectSql;
 	private String checkUserSql;
+	private String getSPOCName;
+	
+	
+
+	public String getGetSPOCName() {
+		return getSPOCName;
+	}
+
+	public void setGetSPOCName(String getSPOCName) {
+		this.getSPOCName = getSPOCName;
+	}
+
 
 	public String getSelectSql() {
 		return selectSql;
