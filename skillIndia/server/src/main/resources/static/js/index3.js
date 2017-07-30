@@ -33,6 +33,7 @@ hello.config(function($routeProvider, $httpProvider) {
 
 hello.controller('navigation', function($rootScope, $http, $location, $route) {
     var self = this;
+    var spock;
     self.tab = function(route) {
         return $route.current && route === $route.current.controller;
     };
@@ -43,10 +44,34 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
               authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
             } : {};
 
-        $http.get('getUserDetails', {
+        $http.get('/getUserDetails', {
             headers : headers
         }).then(function(response) {
             if (response.data.name) {
+
+                $http({
+                   method: 'POST',
+                   url: "/getSPOCName",
+                   transformResponse: [function (data)  {
+                    console.log(data);
+
+                   spock = data;
+                    return data;
+                   }]
+                   })
+                    .then(function(response){
+
+                        alert("get Successful " + spock);
+//                            if(JSON.stringify(response) == '""'){
+//                                alert("no name");
+//                                $rootScope.spockName = "Jane Doe";
+//                            }
+//                            else{
+//                                alert("A name");
+//                                $rootScope.spockName = response;
+//                            }
+                            $rootScope.spockName = spock ;
+                    });
                 console.log("Backend value " + response + "String Format " + JSON.stringify(response.data.authorities[0].authority));
                 $rootScope.authenticated = true;
                 $rootScope.type = JSON.stringify(response.data.authorities[0].authority);
@@ -77,6 +102,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                 var AB = '"AB"';
                 var TP = '"TP"';
                 var SCGJ = '"SCGJ"';
+
 
                 if(userType == AB){
                     alert("Welcome assessment body");
