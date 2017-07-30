@@ -21,9 +21,9 @@ page3.controller('page3',function($scope, $http, fileUpload) {
 
 
       $scope.download = function(rowData){
-    	  var  index = Object.values(Object.values(rowData)[1])[0];
-    	  console.log("Row Data is " + index);
-    	  var urldata = "/files/"+ index;
+    	  var  fileName = rowData.entity.csvname;
+   	   console.log("the row value is >>>" + rowData.entity.csvname);
+   	  var urldata = "/downloadCSVFile/"+ fileName;
     	  window.open(urldata);
       };
          $http.get("/importHistory")
@@ -134,7 +134,8 @@ $scope.searchBatch = {
 
  $scope.getDataOfBatch = function()
  {
-  $http.post('/findBatch?batchId='+$scope.batchId)
+	 console.log($scope.dataImportBatchIdSearch);
+  $http.post('/findBatch?batchId='+$scope.dataImportBatchIdSearch)
   .then(function(response) {
      console.log("inside request method");
      //console.log(response.data);

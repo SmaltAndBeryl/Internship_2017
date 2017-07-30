@@ -14,8 +14,8 @@
         <div class="certificate">
             <form id="Search-Batch-ID" method="post" role="form" style="display: block;">
                 <label class="title">Search Batch ID</label>
-                <input type="text" class="text" placeholder="Search..." required name='searchText'>
-                <input type="button" class="button" value="Search" ng-click="getdatOfbatch()">
+                <input type="text" class="text" placeholder="Search..." required name='searchText' ng-model="dataImportBatchIdSearch"/>
+                <input type="button" class="button" value="Search" ng-click="getDataOfBatch()">
             </form>
             <div>
                 <div ui-grid="searchBatch" ui-grid-auto-resize class="grid1"></div>
