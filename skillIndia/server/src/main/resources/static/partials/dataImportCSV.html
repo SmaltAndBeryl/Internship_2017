@@ -1,23 +1,7 @@
-<!-- <!DOCTYPE html> -->
-<!-- <html> -->
-<!--     <head> -->
-<!--         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
-<!--         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js"></script> -->
-         
-<!--         <meta charset="utf-8"/> -->
-<!--         <meta name="viewport" content="width=device-width,initial-scale=1"/> -->
-        
-<!--         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/> -->
-<!--         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> -->
-<!--         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-<!--         <link rel="stylesheet" href="../css/fAQImportCSV.css"/> -->
-<!--         <title>BOOTSTRAP QUICKSTART</title> -->
-<!-- <script type="text/javascript" src="../js/services/dataImportCsv.js"></script> -->
-<!--     </head> -->
-<!--     <body ng-app="myapp"> -->
-     <div ng-controller="importController">
-        <div class = "container col-md-12" id="uploadDiv">
-            <form name="myform">
+
+<div ng-controller="page3">
+    <div class="container col-md-12" id="uploadDiv">
+        <form name="myform">
             <div class="row" id="uploadDivRow">
                 <div class="col-md-3" id="csvTypeDiv">
                     <select autofocus class="form-control" id="select" required ng-model="csvType" ng-init=" csvType = optionValues[0].id" ng-options="option.id as option.name for option in optionValues">
@@ -25,25 +9,23 @@
                 </div>
                 <div class="col-md-5" id="csvFileDiv">
                     <div class="form-group">
-                        <input type="file" id="csvFile" accept=".csv" class="file" file-model="uploadCsvFile"/>
-                            <div class="input-group col-xs-12">
-                                <input type="text" id="csvFileName" ng-model="csvName" class="form-control input" data-error="Please enter .csv file" placeholder="Upload Excel File Here" required/>
-                                    <span class="input-group-btn">
+                        <input type="file" id="csvFile" accept=".csv" class="file" file-model="uploadCsvFile" />
+                        <div class="input-group col-xs-12">
+                            <input type="text" id="csvFileName" ng-model="csvName" class="form-control input" data-error="Please enter .csv file" placeholder="Upload Excel File Here" required/>
+                            <span class="input-group-btn">
                                         <button class="browse btn btn-primary input" id="browseButton" type="button"><i class="glyphicon glyphicon-search"></i> Browse</button>
                                     </span>
-                            </div>
-                            <span ng-show="myform.csvName.$touched && myform.csvName.$invalid">Please Select a .csv file</span>
+                        </div>
+                        <span ng-show="myform.csvName.$touched && myform.csvName.$invalid">Please Select a .csv file</span>
                     </div>
                 </div>
                 <div class="col-md-2" id="uploadButtonDiv">
-                    <button type="submit" class="form-control btn btn-info btn data-disable"  id="uploadButton" ng-click="uploadCSV()" >Upload</button>
+                    <button type="submit" class="form-control btn btn-info btn data-disable" id="uploadButton" ng-click="uploadCSV()">Upload</button>
                 </div>
-                
+
             </div>
-                   
-            </form>
-            <div id="responseOfUpload"></div>
-        </div>
-     </div>
-<!-- </body> -->
-<!-- </html> -->
+
+        </form>
+        <div id="responseOfUpload"></div>
+    </div>
+</div>
