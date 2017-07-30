@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCGJ | Skill Council for Green Jobs</title>
+    <link rel="stylesheet" href="css/main.css">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Roboto" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet"></link>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-touch/1.6.5/angular-touch.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.css"></link>
+    <link rel="stylesheet" type="text/css" href="css/FAQ.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.6/ui-grid.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/directives/dataImportCsvDirective.js"></script>
+    <script type="text/javascript" src="js/controllers/faqController.js"></script>
+    <script type="text/javascript" src="js/controllers/dataImportHistory.js"></script>
+    <script type="text/javascript" src="js/controllers/batchController.js"></script>
+    <script type="text/javascript" src="js/controllers/MRApproveRejectApplication.js"></script>
+    <script src="js/controllers/dataImportHistory.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/services/dataImportCsvService.js"></script>
+    
+    <!--Include your JS files here-->
+	
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/dataImportCsv.js"></script>
+
+
+  </head>
+  <header class="one-edge-shadow">
+    <div class="leftContent">
+      <img src="images/indexPageImages/SCGJLogo.png" alt="" class="image-0">
+    </div>
+
+    <div class="rightContent">
+      <div class="logout-wrapper">
+
+        <div class="username">
+          <h2 class="username"><b>Alkesh Srivastava</b></h2>
+        </div>
+
+        <div class="logoutButton">
+          <div class="logout-icon-text-wrap">
+            <div class="icon-wrap">
+              <img class="logout-icon" src="icon/indexPageIcons/logout.png" alt="">
+            </div>
+
+            <div class="text-wrap">
+              <h5 class="logoutText">Logout</h5>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <body>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script type="text/javascript" src="js/controllers/panelController.js"></script>
+
+
+    <!-- <a href="#!/dashboard">Dashboard</a> -->
+    <div class="mainContent">
+
+      <div class="sidebar">
+
+        <a href="#!/dashboard" class="side-link">
+          <img src="icon/indexPageIcons/dashboard.png" class="icons" alt="icon">
+          Dashboard
+        </a>
+
+        <hr>
+
+        <a href="#!/manage-registrations" class="side-link">
+          <img src="icon/indexPageIcons/registrations.png" class="icons" alt="icon">
+          Manage Registration
+        </a>
+
+        <hr>
+
+        <a href="#!/import" class="side-link">
+          <img src="icon/indexPageIcons/import.png" class="icons" alt="icon">
+          Import
+        </a>
+
+        <hr>
+
+        <a href="#!/faq" class="side-link">
+          <img src="icon/indexPageIcons/faq.png" class="icons" alt="icon">
+          FAQ's
+        </a>
+
+        <hr>
+
+        <a href="#!/batch-assignment" class="side-link">
+          <img src="icon/indexPageIcons/batch.png" class="icons" alt="icon">
+          Batch Assignment
+        </a>
+
+        <hr>
+
+      </div>
+
+      <div class="Content" style="width: 100%; min-height: 833px;">
+
+        <div ng-view style="min-height:833px;">
+
+        </div>
+        <!-- Tables -->
+      </div>
+    </div>
+
+
+    <div class="logoBar">
+      <div class="image-wrap">
+        <img src="images/indexPageImages/SkillMinistryLogo.png" alt="" class="image-1">
+
+
+        <img src="images/indexPageImages/SkillIndiaLogo.png" alt="" class="image-2">
+
+
+        <img src="images/indexPageImages/NSDCLogo.png" alt="" class="image-3">
+
+
+        <img src="images/indexPageImages/MNRELogo.png" alt="" class="image-4">
+      </div>
+    </div>
+  </body>
+
+
+  <footer>
+    <div class="upperFooter">
+      <div class="link-wrapper">
+        <a href="http://sscgj.in/about-us/" class="link">About Us</a><span class="vert-bars"> | </span>
+        <a href="http://sscgj.in/operational-standards/" class="link">National Standards</a><span class="vert-bars"> | </span>
+        <a href="http://sscgj.in/affiliation/" class="link">Affiliation</a><span class="vert-bars"> | </span>
+        <a href="http://sscgj.in/publications/" class="link">Publications</a><span class="vert-bars"> | </span>
+        <a href="http://sscgj.in/state-linkages/" class="link">State Linkages</a>
+      </div>
+
+    </div>
+
+    <div class="lowerFooter">
+      <h5 class="copyright">Copyright &copy 2017 sscgj.in - All Rights Reserved.</h5>
+    </div>
+  </footer>
