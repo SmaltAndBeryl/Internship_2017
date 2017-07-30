@@ -1,0 +1,26 @@
+<div ng-controller="trainingPartner" ng-show="authenticated">
+
+    <div class="welcome"> Welcome {{spockName}}</div>
+
+    <div  class="Rectangle-7-copy-11">
+        <div class="title">Application Status</div>
+        <div>
+            <div ui-grid="tpAppStatus" class="grid1" ui-grid-auto-resize></div>
+        </div>
+    </div>
+    <div class="presentBatchesBoxwrap">
+        <div class="presentBatchesTable"> Present Batch(es) </div>
+
+        <div>
+            <div ui-grid="presentGridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
+        </div>
+    </div>
+
+    <div class="pastBatchesBoxwrap">
+        <div class="pastBatchesTable"> Past Batch(es) </div>
+        <div>
+            <div ui-grid="pastGridOptions"  ui-grid-edit ui-grid-cellNav class="grid"></div>
+            <!-- enter Ui grid code here -->
+        </div>
+    </div>
+</div>

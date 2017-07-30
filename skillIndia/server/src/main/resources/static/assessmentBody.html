@@ -1,0 +1,41 @@
+<div ng-controller="assessmentBody" ng-show="authenticated">
+    <link rel="stylesheet" href="css/MasterTemplate2.css">
+    <link rel="stylesheet" href="css/assessmentBodyHomePage.css">
+
+    <div class="welcome"> Welcome {{spockName}}</div>
+
+    <div  class="Rectangle-7-copy-11">
+        <div class="title">Application Status</div>
+        <div>
+            <div ui-grid="gridOptions" class="grid1" ui-grid-auto-resize></div>
+        </div>
+    </div>
+
+    <div class="mainboundary1" >
+        <h3 class="heading">Past Batch(es)</h3>
+        <div>
+            <div ui-grid="gridOptions1" class="grid" ui-grid-auto-resize></div>
+        </div>
+    </div>
+
+    <div class="mainboundary2">
+        <h3 class="heading">Upcoming Batch(es)</h3>
+        <div>
+            <div ui-grid="gridOptions2" class="grid" ui-grid-auto-resize></div>
+        </div>
+    </div>
+
+    <div class="mainboundary4">
+        <h3 class="heading">Assigned Batch(es)</h3>
+        <div>
+            <div ui-grid="gridOptions3" class="grid" ui-grid-auto-resize></div>
+        </div>
+    </div>
+
+    <div class="mainboundary3">
+        <h3 class="heading">Confirmed Batch(es)</h3>
+        <div>
+            <div ui-grid="gridOptions4" class="grid" ui-grid-auto-resize></div>
+        </div>
+    </div>
+</div>

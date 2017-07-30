@@ -1,20 +1,21 @@
-<div style="background-color: yellow; height: 1500px; width: 1000px" ng-show="authenticated">
+<div ng-show="authenticated">
+
     <div>
-        <h2>Welcome {{spockName}}</h2>
+        <h3>Welcome {{spockName}}</h3>
     </div>
 
     <div class="middleWrapper">
 
         <div class="leftNav">
-            <button type="button" ng-click="page = 'page1'">Dashboard</button>
+            <div class="sideBtn" ng-click="page = 'page1'">Dashboard</div>
             <br>
-            <button type="button" ng-click="page = 'page2'">Manage Registration</button>
+            <div class="sideBtn" ng-click="page = 'page2'">Manage Registration</div>
             <br>
-            <button type="button" ng-click="page = 'page3'">Import</button>
+            <div class="sideBtn" ng-click="page = 'page3'">Import</div>
             <br>
-            <button type="button" ng-click="page = 'page4'">FAQ</button>
+            <div class="sideBtn" ng-click="page = 'page4'">FAQ</div>
             <br>
-            <button type="button" ng-click="page = 'page5'">Batch Assignment</button>
+            <div class="sideBtn" ng-click="page = 'page5'">Batch Assignment</div>
         </div>
 
 
@@ -22,23 +23,23 @@
         <div class="rightArea">
             <div ng-switch on="page">
                 <div ng-switch-when="page1">
-                    Page 1
+
                     <div ng-include src="'page1.html'"></div>
                 </div>
                 <div ng-switch-when="page2">
-                    Page 2
+
                     <div ng-include src="'page2.html'"></div>
                 </div>
                 <div ng-switch-when="page3">
-                    Page 3
+
                     <div ng-include src="'page3.html'"></div>
                 </div>
                 <div ng-switch-when="page4">
-                    Page 4
+
                     <div ng-include src="'page4.html'"></div>
                 </div>
                 <div ng-switch-when="page5">
-                    Page 5
+
                     <div ng-include src="'page5.html'"></div>
                 </div>
             </div>
