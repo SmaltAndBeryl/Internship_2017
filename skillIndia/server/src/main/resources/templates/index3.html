@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/FAQ.css"/>
     <link rel="stylesheet" href="css/MRApproveRejectApplication.css" type="text/css"/>
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/MasterTemplate2.css">
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.js"></script>
@@ -184,10 +185,40 @@
             </div>
         </div>
     </div>
+    <header class="one-edge-shadow" ng-show="authenticated">
+        <div class="leftContent">
+            <img src="images/indexPageImages/SCGJLogo.png" alt="" class="image-0">
+        </div>
 
-    <li ng-show="authenticated">
-        <a href="" ng-click="nav.logout()">logout</a>
-    </li>
+        <div class="rightContent">
+            <div class="logout-wrapper">
+
+                <div class="username">
+                    <h2 class="username"><b>{{ spockName }}</b></h2>
+                </div>
+
+                <div class="logoutButton">
+                    <div class="logout-icon-text-wrap" ng-click="nav.logout()">
+                        <div class="icon-wrap">
+                            <img class="logout-icon" src="icon/indexPageIcons/logout.png" alt="">
+                        </div>
+
+                        <div class="text-wrap">
+                            <h5 class="logoutText">Logout</h5>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+
+    <!--<li ng-show="authenticated">-->
+        <!--<a href="" ng-click="nav.logout()">logout</a>-->
+    <!--</li>-->
 </div>
 
 <div ng-view class="container">
@@ -204,10 +235,11 @@
 
 <script type="text/javascript" src="js/services/dataImportCsvService.js"></script>
 <script type="text/javascript" src="js/services/zipCertificateUpload.js"></script>
+<script type="text/javascript" src="js/dataImportCsv.js"></script>
 
 
 </body>
-<footer>
+<footer ng-show="authenticated">
     <div class="upperFooter">
         <div class="link-wrapper">
             <a href="http://sscgj.in/about-us/" class="link">About Us</a><span class="vert-bars"> | </span>
