@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.skill.India.common.ReadApplicationConstants;
 import com.skill.India.dao.DataImportCertificateDao;
 
 @Service
@@ -20,9 +21,12 @@ public class SaveCertificateFileService {
 	@Autowired
 	private DataImportCertificateDao dataImportCertificateDao;
 	
+	@Autowired
+	private ReadApplicationConstants readApplicationConstants;
+	
 	public String saveUploadedFile(MultipartFile file,Integer batchId,String userId)
 	{
-	String UPLOADED_FOLDER = "E://EclipseWorkspace//";
+	String UPLOADED_FOLDER = readApplicationConstants.getSaveCertificateAtLocation();
 	String pathOfUploadedFile="";
 	String fileNameReceived="";
 	String fileNameToBeSaved="";

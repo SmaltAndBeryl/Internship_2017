@@ -6,15 +6,23 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.skill.India.common.ReadApplicationConstants;
 
 @Service
 public class DataImportCSVDownloadService {
 
+	@Autowired
+	private ReadApplicationConstants readApplicationConstants;
+
+
 	public void DataImportCSVDownload(HttpServletResponse response,String fileName)
 	{
 	    try {
-	        FileInputStream is = new FileInputStream(new File("G://S&B//trunk//skillIndia//server//src//main//resources//static//sheets.csv"));
+	    	String pathOfCSV=readApplicationConstants.getSaveCSVAtLocation()+fileName+".csv";
+	        FileInputStream is = new FileInputStream(new File(pathOfCSV));
 	        org.apache.commons.io.IOUtils.copy(is,response.getOutputStream());
 	        response.setContentType("application/x-rar-compressed");
 	        response.setHeader("Content-disposition", "attachment; filename="+ fileName+".csv");

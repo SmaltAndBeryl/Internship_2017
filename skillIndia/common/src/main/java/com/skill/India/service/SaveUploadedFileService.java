@@ -9,33 +9,41 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoField;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.skill.India.common.ReadApplicationConstants;
 
 @Service
 public class SaveUploadedFileService {
 	
 	@Autowired
 	private CheckTypeOfCSVService checkTypeOfService;
+	
+	@Autowired
+	private ReadApplicationConstants readApplicationConstants;
 
 	public String saveUploadedFile(MultipartFile file,String type,String userId)
 	{	 
-		String UPLOADED_FOLDER = "D://EclipseWorkspace//";
+		String UPLOADED_FOLDER = readApplicationConstants.getSaveCSVAtLocation();
 		
 		if (file.isEmpty()) {
             return "Uploaded file is empty. Kindly upload a valid file";
         }
 		
 		try {
-			Timestamp timeStamp=new Timestamp(System.currentTimeMillis());
-	           int seconds=timeStamp.getSeconds();
-	           int minutes=timeStamp.getMinutes();
-	           int hours=timeStamp.getHours();
-	           int day=timeStamp.getDay();
-	           int month=timeStamp.getMonth();
-	           int year=timeStamp.getYear();
+			LocalDateTime getDateAndTime = LocalDateTime.now();
+			int year = getDateAndTime.getYear();
+			int month = getDateAndTime.getMonthValue();
+			int day = getDateAndTime.getDayOfMonth();
+			int hours = getDateAndTime.getHour();
+			int minutes = getDateAndTime.getMinute();
+			int seconds = getDateAndTime.getSecond();
+			
 	           String fileNameReceived=file.getOriginalFilename();
 	           int indexOfDot=fileNameReceived.indexOf(".");
 	           

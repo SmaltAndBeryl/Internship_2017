@@ -77,13 +77,14 @@ public void getCertificateFile(@PathVariable("file_name") String fileName,
 @RequestMapping(value = "/downloadCSVFile/{file_name}", method = RequestMethod.GET)
 public void getFile(@PathVariable("file_name") String fileName, 
     HttpServletResponse response) {
+	System.out.println(fileName);
 	dataImportCSVDownloadService.DataImportCSVDownload(response, fileName);
 }
 
 @Privilege(value={"SCGJ"})
 @RequestMapping(value="/findBatch",method=RequestMethod.POST)
 public Collection<DataImportGetBatchInfoDto> dataImportFindBatch(@RequestParam("batchId") Integer batchId){
-
+	System.out.println("HELLO" + batchId);
 	return findBatchUsingBatchIdService.findBatchUsingBatchId(batchId.toString());
 	
 }
