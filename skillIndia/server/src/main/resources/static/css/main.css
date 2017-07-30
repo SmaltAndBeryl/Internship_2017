@@ -89,7 +89,13 @@ header{
   color: black;
 }
 
-
+.sideBtn{
+    width: 100px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color : lightgreen;
+    height: 30px;
+}
 
 
 /*Sidebar Styles*/

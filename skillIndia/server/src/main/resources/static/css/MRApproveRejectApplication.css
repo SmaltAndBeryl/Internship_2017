@@ -10,6 +10,7 @@
   
 }
 
+
 .table{
   background-color: whitesmoke;
   height: 50%;
@@ -100,7 +101,8 @@ text-align: center;
 .table-wrap{
   background-color: white;
   margin: 25px;
-  padding: 30px 30px; 
+  padding: 30px 30px;
+  width: 800px;
   /*width: 500px;*/
 }
 .Institution-Name {
