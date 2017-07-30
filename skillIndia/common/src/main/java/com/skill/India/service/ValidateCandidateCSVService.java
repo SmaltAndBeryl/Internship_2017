@@ -293,59 +293,63 @@ public class ValidateCandidateCSVService {
 			  */
 			 if(aadharNumber.equals(""))
 			 {
-				 aadharNumber="0";
+				 aadharNumber=null;
 			 }
 			 if(mobileNumber.equals(""))
 			 {
-				 mobileNumber="0";
+				 mobileNumber=null;
 			 }
 			 if(emailId.equals(""))
 			 {
-				 emailId="unknown";
+				 emailId=null;
 			 }
 			 if(educationLevel.equals(""))
 			 {
-				 educationLevel="unknown";
+				 educationLevel=null;
 			 }
 			 if(traineeAddress.equals(""))
 			 {
-				 traineeAddress="unknown";
+				 traineeAddress=null;
 			 }
 			 if(traineePINCode.equals(""))
 			 {
-				 traineePINCode="0";
+				 traineePINCode=null;
 			 }
 			 if(marksObtainedTheory.equals(""))
 			 {
-				 marksObtainedTheory="0";
+				 marksObtainedTheory=null;
 			 }
 			 if(marksObtainedPractical.equals(""))
 			 {
-				 marksObtainedPractical="0";
+				 marksObtainedPractical=null;
 			 }
 			 if(result.equals(""))
 			 {
-				 result="unknown";
+				 result=null;
 			 }
 			 if(certified.equals(""))
 			 {
-				 certified="unknown";
+				 certified=null;
 			 }
 			 if(placementStatus.equals(""))
 			 {
-				 placementStatus="unknown";
+				 placementStatus=null;
 			 }
 			 if(dateOfJoining.equals(""))
 			 {
-				 dateOfJoining="1900-01-00";
+				 dateOfJoining=null;
+			 }
+			 else
+			 {
+				 dateOfJoining=ValidationUtils.convertUtilToSqlDate(dateOfJoining);
 			 }
 			 if(employmentType.equals(""))
 			 {
-				 employmentType="unknown";
+				 employmentType=null;
 			 }
 			 if(employerId.equals(""))
 			 {
-				 employerId="0";
+				 employerId=null;
 			 }
 			 
 			 /*
@@ -369,7 +373,7 @@ public class ValidateCandidateCSVService {
 			 record.put("result",result);
 			 record.put("certified",certified);
 			 record.put("placementStatus",placementStatus);
-			 record.put("dateOfJoining",ValidationUtils.convertUtilToSqlDate(dateOfJoining));
+			 record.put("dateOfJoining",dateOfJoining);
 			 record.put("employmentType",employmentType);
 			 record.put("batchId",batchId);
 			 record.put("employerId",employerId);
@@ -385,8 +389,7 @@ public class ValidateCandidateCSVService {
 		    deleteUploadedFile.delete();
 			return errorListAllRecords;
 			}
-			
-			
+				
 		}
 		catch(Exception e)
 		{	
@@ -397,7 +400,6 @@ public class ValidateCandidateCSVService {
 			return "Error parsing Batch CSV File. Kindly try again. ";
 			
 		}
-		
 		
 		/*
 		 * Checking for foreign key constraint of batchId & employerId
@@ -422,7 +424,7 @@ public class ValidateCandidateCSVService {
 				errorString=errorString+ "batchId key mismatch .";
 			}
 			
-			if(!getRecord.get("employerId").equals("0"))
+			if(!(getRecord.get("employerId")==null))
 			{
 			status=dataImportCandidateDao.dataImportCandidateEmployerIdCheck(getRecord);
 			if(status==0 || status==2)

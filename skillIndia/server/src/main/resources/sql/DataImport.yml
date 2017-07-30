@@ -18,9 +18,13 @@ DataImport:
         
         
         
- batchIdemployerIdExistsForCandidate: >
-   select exists (select * from batch,employer
-    where batch.batchId=:batchId and employer.employerId=:employerId)    
+ batchIdExistsForCandidate: >
+   select exists (select * from batch
+    where batchId=:batchId) 
+    
+ employerIdExistsForCandidate: >
+   select exists (select * from employer
+    where employerId=:employerId)
  
  candidateDeatilsIdExistsForCandidate: >   
    select exists (select * from candidate
