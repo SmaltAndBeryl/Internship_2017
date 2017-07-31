@@ -9,7 +9,19 @@ body{
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
 }
+.viewDiv
+{
+	width: 100%;
+}
 
+#header
+{
+	background-color: white;
+}
+
+.leftNav
+{
+	background-color: rgb(25, 178, 204);
 }
 .myGrid {
     width: 500px;
@@ -96,7 +108,9 @@ header{
     background-color : lightgreen;
     height: 30px;
 }
-
+.sideBtn:hover{
+	background-color: yellow;
+}
 
 /*Sidebar Styles*/
 .sidebar{

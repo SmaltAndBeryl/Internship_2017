@@ -62,7 +62,7 @@
 </head>
 
 <body ng-app="hello" ng-cloak class="ng-cloak">
-<div ng-controller="navigation as nav" class="container">
+<div ng-controller="navigation as nav" class="container" id="header">
     <div ng-hide="authenticated" background="images/LoginScreenBackgroundImage.png">
         <div class="alert alert-danger" ng-show="error">
             There was a problem logging in. Please try again.
@@ -221,7 +221,7 @@
     <!--</li>-->
 </div>
 
-<div ng-view class="container">
+<div ng-view class="container viewDiv">
     <!--Rendered Views-->
 </div>
 

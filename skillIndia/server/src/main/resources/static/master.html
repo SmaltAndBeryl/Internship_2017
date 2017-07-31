@@ -1,21 +1,21 @@
 <div ng-show="authenticated" ng-model="loggingOut">
     <div class="middleWrapper">
 
-        <div class="leftNav">
+        <div class="leftNav col-md-2">
             <div class="sideBtn" ng-click="page = 'page1'">Dashboard</div>
-            <br>
+          
             <div class="sideBtn" ng-click="page = 'page2'">Manage Registration</div>
-            <br>
+          
             <div class="sideBtn" ng-click="page = 'page3'">Import</div>
-            <br>
+          
             <div class="sideBtn" ng-click="page = 'page4'">FAQ</div>
-            <br>
+          
             <div class="sideBtn" ng-click="page = 'page5'">Batch Assignment</div>
         </div>
 
 
 
-        <div class="rightArea">
+        <div class="rightArea col-md-10">
             <div ng-switch on="page">
                 <div ng-switch-when="page1">
 
