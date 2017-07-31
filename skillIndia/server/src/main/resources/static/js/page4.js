@@ -550,7 +550,7 @@ page4.controller('page4',function($scope, $http) {
 
         var candidatesType = $scope.candidatesSelected.candidateEnrolledInMonth;
         console.log('CANDIDATES  :' + candidatesType);
-        var selectedYear = $scope.selectedYear.selectedYearForCondidate;
+        var selectedYear = $scope.year.selectedYearForCondidate;
         var selectedscheme = $scope.selectedScheme.schemeForMonth;
         var url = '/getFAQCandidatesEnrolledAssessedCertifiedMonthAndSchemeWise?year=' + selectedYear + '&candidates=' + candidatesType + '&batchType=' + selectedscheme;
         console.log('YE HAI URL' + url);
@@ -661,11 +661,15 @@ page4.controller('page4',function($scope, $http) {
         var agencyName;
         $http({
             method: 'POST',
-            url: url
+            url: url,
+            transformResponse: [function (data)  {
+	        console.log(data);
+    	    agencyName=data;
+        	return data;}]
         }).then(function(response) {
             console.log(response)
-            if (response.data.agencyName) {
-                $scope.AgencyNameForParticularBatchWithId = 'Batch : ' + batchId + 'is assigned to agency : ' + agencyName;
+            if (agencyName) {
+                $scope.AgencyNameForParticularBatchWithId = 'Batch : ' + batchId + ' is assigned to agency : ' + agencyName;
             } else {
                 $scope.AgencyNameForParticularBatchWithId = 'No results found for batch :' + batchId;
             }
