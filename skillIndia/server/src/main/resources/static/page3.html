@@ -12,11 +12,13 @@
             </div>
         </div>
         <div class="certificate">
-            <form id="Search-Batch-ID" method="post" role="form" style="display: block;">
+            <form id="Search-Batch-ID" method="post" role="form" style="display: block;margin-bottom:.5em;">
                 <label class="title">Search Batch ID</label>
                 <input type="text" class="text" placeholder="Search..." required name='searchText' ng-model="dataImportBatchIdSearch"/>
                 <input type="button" class="button" value="Search" ng-click="getDataOfBatch()">
+            <div id="responseMessage">{{errorMessage}}</div>
             </form>
+            
             <div>
                 <div ui-grid="searchBatch" ui-grid-auto-resize class="grid1"></div>
             </div>

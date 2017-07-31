@@ -260,6 +260,13 @@
    margin-left:10px;
 } 
   
+#responseMessage
+{
+	display:inline;
+	color:red;
+	padding-left: 1em;
+    	font-size: larger;
+}
 
 #ui-grid-twbs #ui-grid-twbs .form-horizontal .form-group:before,
 #ui-grid-twbs #ui-grid-twbs .form-horizontal .form-group:after,

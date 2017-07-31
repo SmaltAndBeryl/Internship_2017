@@ -143,15 +143,19 @@ $scope.searchBatch = {
 
      if(response.data[0] == null)
       {
+      //console.log('In the NULL')
       var exists= document.getElementById("responseMessage");
-      exists.style.color = "Red";
+      //exists.style.color = "Red";
       $scope.errorMessage="No Record Found";
-      console.log('YE AAY ANULL');
+      //console.log('YE AAY ANULL');
       }
       //console.log("Error");
 
      else
+     {
       $scope.searchBatch.data = response.data;
+      $scope.errorMessage="";
+     }
     });
  };
 
