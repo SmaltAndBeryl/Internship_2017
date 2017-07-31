@@ -91,8 +91,6 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 
     authenticate();
 
-
-
     self.credentials = {};
 
     self.login = function() {
@@ -122,6 +120,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                 self.error = false;
                 $rootScope.authenticated = true;
 
+
             } else {
                 console.log("Login failed")
                 $location.path("/login");
@@ -132,6 +131,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
     };
 
     self.logout = function($route) {
+        $rootScope.loggingOut = true;
         console.log("Logging out./././././././");
         $http.post('logout', {}).finally(function() {
             console.log("Logged out successfully..")
@@ -140,14 +140,5 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
         });
     }
 });
-
-//hello.run(function($rootScope, $location){
-//    $rootScope.$on("$locationChangeStart" , function(event, next, current){
-//        if($rootScope.userType != '"SCGJ"'){
-//            alert("YOU are not allowed to access this page");
-//            $location.path("");
-//        }
-//    });
-//})
 
 

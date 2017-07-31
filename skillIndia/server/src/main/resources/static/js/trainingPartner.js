@@ -1,6 +1,6 @@
 var trainingPartner = angular.module("hello");
 
-trainingPartner.controller("trainingPartner" , function($scope, $http){
+trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScope){
     $scope.message = "Hi Training Partner";
     $scope.tpAppStatus = {
         enableColumnMenus: false,
@@ -165,4 +165,11 @@ trainingPartner.controller("trainingPartner" , function($scope, $http){
 
         window.open(urldata);
     };
+
+    if($rootScope.authenticated){
+          $rootScope.$on("$locationChangeStart", function(event){
+              event.preventDefault();
+              alert("Not allowed");
+          });
+      }
 });

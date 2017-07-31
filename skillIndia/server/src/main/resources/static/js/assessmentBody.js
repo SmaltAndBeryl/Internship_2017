@@ -1,6 +1,6 @@
 var assessmentBody = angular.module("hello");
 
-assessmentBody.controller("assessmentBody", function($scope, $location, $http) {
+assessmentBody.controller("assessmentBody", function($scope, $location, $http, $rootScope) {
     $scope.message = "Hi Assessment Body";
     $scope.abAppStatus = {
         enableColumnMenus: false,
@@ -359,4 +359,10 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http) {
         })
 
     //Confirmed Batch table ends
+    if($rootScope.authenticated){
+          $rootScope.$on("$locationChangeStart", function(event){
+              event.preventDefault();
+              alert("Not allowed");
+          });
+      }
 });
