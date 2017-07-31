@@ -307,9 +307,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
     $scope.suggestFunction = function(rowData) {
         var batchIdFromRow = rowData.entity.batchID;
         //To prevent fall through due to a known bug
-        var agencyIdFromRow = 3001;
 
-        console.log("Batch and Agency ID are " + batchIdFromRow + " " + agencyIdFromRow);
         $scope.suggestedAgencyName = "AKG";
         $scope.suggestedShow = true;
 
@@ -347,75 +345,72 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                                 for (x in suggested) {
                                     console.log("Suggested body is >> " + suggested[x]);
                                 }
-                                console.log("The number of bodies recommended bodies are " + x);
+                                console.log("The number of bodies recommended bodies are " + x++);
 
 //                                For exactly one body
-                                if(x == 0){
-                                    console.log("TOP RECOMMENDATION >> " + suggested[0]);
+                                if(x == 1){
+                                    console.log("Only one RECOMMENDATION(shown interest) >> " + suggested[0]);
                                     $scope.suggestedAgencyName = suggested[0];
+
                                 }
 //                                For more than one show interest
-                                else if(x == 1){
-                                    $scope.suggestedAgencyName = "Multiple Recommendations";
+                                else{
+                                if(x > 1){
+//                                    $scope.suggestedAgencyName = "Multiple Recommendations";
+                                    console.log("Multiple bodies have shown interest, moving to next parameter...")
+                                     //Move on to second parameter
+                                     $http.get('/getAssessorState')
+                                         .then(function(response){
+                                         //Now allot marks on the basis of parameters
+                                             $http.get('/getAgencyName')
+                                                 .then(function(response){
+                                                     //initialize in a variable
+                                                     nameOfAgency = JSON.parse(response).data;
+                                                     console.log("The recommended AB is >> " + nameOfAgency);
+//                                                     alert("Recommended AB >> " + nameOfAgency);
+                                                     $scope.suggestedAgencyName = nameOfAgency;
+                                                 })
+                                         })
                                 }
 
                                 else{
-                                    $scope.suggestedAgencyName = "No Recommendation";
+
+                                    console.log("No one has shown interest..moving to next parameters..")
+                                    var req = {
+                                        method: 'GET',
+                                        url: 'getAssessorState',
+                                        transformResponse: [function(data) {
+                                            var res = data;
+                                            alert(res);
+                                            return data;
+                                        }]
+                                    }
+                                    $http(req)
+                                        .then(function(response) {
+                                            //Now allot marks on the basis of parameters
+                                            $http.get('getAgencyName')
+                                                .then(function(response) {
+                                                    console.log("get successful..")
+                                                    //initialize in a variable
+                                                    nameOfAgency = JSON.parse(response.data);
+                                                    console.log("The recommended AB is >> " + nameOfAgency);
+                                                    alert("Recommended AB >> " + nameOfAgency);
+                                                })
+                                        })
+
+
                                 }
+
+                                }
+
+
                         })
             })
         };
-        //Makeshift
 
 
-        //If number of bodies is greater than one then move to second parameter
-        //                             if(x > 1){
-        //                                 console.log("Multiple bodies have shown interest, moving to next parameter...")
-        //                                 //Move on to second parameter
-        //                                 $http.get('getAssessorState')
-        //                                     .then(function(response){
-        //                                     //Now allot marks on the basis of parameters
-        //                                         $http.get('getAgencyName')
-        //                                             .then(function(response){
-        //                                                 //initialize in a variable
-        //                                                 nameOfAgency = JSON.parse(response).data;
-        //                                                 console.log("The recommended AB is >> " + nameOfAgency);
-        //                                                 alert("Recommended AB >> " + nameOfAgency);
-        //                                             })
-        //                                     })
-        //                             }
-
-//        If exactly one body has shown interest, then display the assessment body
 
 
-        //If no one has shown interest, move to second parameter
-        //                             if(x == 0){
-        //                             console.log("No one has shown interest..moving to next parameters..")
-        //                             var req = {
-        //                                method : 'GET',
-        //                                url : 'getAssessorState',
-        //                                transformResponse : [function(data){
-        //                                    var res = data;
-        //                                    return data;
-        //                                }]
-        //                             }
-        //                             $http(req)
-        //                              .then(function(response){
-        //                              //Now allot marks on the basis of parameters
-        //                                  $http.get('getAgencyName')
-        //                                      .then(function(response){
-        //                                          console.log("get successful..")
-        //                                          //initialize in a variable
-        //                                          nameOfAgency = JSON.parse(response.data);
-        //                                          console.log("The recommended AB is >> " + nameOfAgency);
-        //                                          alert("Recommended AB >> " + nameOfAgency);
-        //                                      })
-        //                              })
-        //        //                                 console.log("Sorry, no recommendation for now as no one has shown interest..!");
-        //                             }
-        //                       })
-        //             })
-        //
 
     var agencyId = 0;
     //Get dropdown selected value from dropdown
