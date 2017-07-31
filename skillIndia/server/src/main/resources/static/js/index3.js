@@ -12,14 +12,17 @@ hello.config(function($routeProvider, $httpProvider) {
 	$routeProvider.when('/', {
 		templateUrl : 'index3.html',
 		controller : 'navigation'
+
 	})
 	.when('/master', {
 	    templateUrl : 'master.html',
 	    controller : 'master'
+
 	})
 	.when('/trainingPartner', {
         templateUrl : 'trainingPartner.html',
         controller : 'trainingPartner'
+
     })
     .when('/assessmentBody', {
         templateUrl : 'assessmentBody.html',
@@ -105,16 +108,19 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                 if(userType == AB){
                     alert("Welcome assessment body");
                     $location.path("/assessmentBody");
+                    $rootScope.priv = "AB";
                 }
 
                 if(userType == TP){
                     alert("Welcome training partner");
                     $location.path("/trainingPartner");
+                    $rootScope.priv = "TP";
                 }
 
                 if(userType == SCGJ){
                     alert("Welcome SCGJ user");
                     $location.path("/master");
+                    $rootScope.priv = "SCGJ";
                 }
 
                 self.error = false;
@@ -131,7 +137,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
     };
 
     self.logout = function($route) {
-        $rootScope.loggingOut = true;
+        $rootScope.type = "logout";
         console.log("Logging out./././././././");
         $http.post('logout', {}).finally(function() {
             console.log("Logged out successfully..")

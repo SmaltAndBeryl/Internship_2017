@@ -167,9 +167,14 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
     };
 
     if($rootScope.authenticated){
-          $rootScope.$on("$locationChangeStart", function(event){
-              event.preventDefault();
-              alert("Not allowed");
+          $rootScope.$on("$locationChangeStart", function(event,next,current){
+            if($rootScope.type == '"TP"'){
+                event.preventDefault();
+                alert("Not allowed");
+            }
+            else{
+                alert("Logging out..!");
+            }
           });
       }
 });

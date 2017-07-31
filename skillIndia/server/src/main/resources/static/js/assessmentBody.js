@@ -360,9 +360,14 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
 
     //Confirmed Batch table ends
     if($rootScope.authenticated){
-          $rootScope.$on("$locationChangeStart", function(event){
-              event.preventDefault();
-              alert("Not allowed");
-          });
-      }
+              $rootScope.$on("$locationChangeStart", function(event,next,current){
+                if($rootScope.type == '"AB"'){
+                    event.preventDefault();
+                    alert("Not allowed");
+                }
+                else{
+                    alert("Logging out..!");
+                }
+              });
+          }
 });
