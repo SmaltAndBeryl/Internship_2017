@@ -1,3 +1,4 @@
 <div>
-    <button type="button" class="suggestButton" ng-click="grid.appScope.suggestFunction(row)" data-ng-model="suggestedAB">Suggest me!</button>
+    <button type="button" class="suggestButton" ng-click="grid.appScope.suggestFunction(row)" ng-hide="grid.appScope.suggestedShow">Suggest me!</button>
+    <div ng-show="grid.appScope.suggestedShow">{{grid.appScope.suggestedAgencyName}}</div>
 </div>
