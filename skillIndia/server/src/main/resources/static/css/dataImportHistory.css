@@ -36,7 +36,7 @@
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
 }
 .historytable{
-  height: 420px; 
+  max-height: 420px; 
   margin-left: 21px;
    margin-right: 21px;
   margin-top: 10px;
@@ -128,7 +128,7 @@
   
 .date{
   height: 36px;
-	object-position: center;
+object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
 

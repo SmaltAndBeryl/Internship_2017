@@ -1,6 +1,6 @@
 var page3 = angular.module('hello');
 
-page3.controller('page3',function($scope, $http, fileUpload) {
+page3.controller('page3',function($scope, $http, fileUpload, zipCertificateUpload) {
     $scope.dataImportHistory = {
     	  enableGridMenus : false,
     	  enableSorting: false,
@@ -121,12 +121,13 @@ $scope.searchBatch = {
        columnDefs : [
 
                      //{ name:'SNo' ,            displayname:'SNo',       cellClass:'batch id',    headerCellClass:'layer' ,     cellTemplate:"1"},
-                     { name:'batchId' ,     displayname:'Batch id' ,      cellClass:'batch id', headerCellClass:'Date'},
-                     { name:'batchName' ,    displayname:'Batch Name' ,        cellClass:'batch id', headerCellClass:'Date'},
-                     { name:'batchStartDate' ,   displayname:'Batch Start date',   cellClass:'date',    headerCellClass:'Date'},
-                     { name:'batchEndDate' ,      displayname:'Batch End date',    cellClass:'date',    headerCellClass:'Date'},
-                     { name:'trainingPartnerName',displayname:'Training Partner Name', cellClass:'fname',    headerCellClass:'File-Name'},
-                     { name: 'View Uploaded File',displayName:'Uploaded File',     cellClass:'vub',      headerCellClass:'View-Uploaded-File', cellTemplate:  ' <form action="/downloadCertificate/ab" method="post" enctype="multipart/form-data"><input type="file" accept=".zip" name="file" /><input type="submit" value="submit" /></form>'}
+                     { name:'batchId' ,     displayname:'Batch id' },
+                     { name:'batchName' ,    displayname:'Batch Name'},
+                     { name:'batchStartDate' ,   displayname:'Batch Start date'},
+                     { name:'batchEndDate' ,      displayname:'Batch End date'},
+                     { name:'trainingPartnerName',displayname:'Training Partner Name'},
+                     { name:'view', displayName:'Browse file',cellClass:'fname', headerCellClass:'File-Name',width:200,  cellTemplate:  '<label> <input type="file" id="uploadFile" accept=".zip" file-model/ ng-click=grid.appScope.selectLocation(row)></label>'},
+                     {name:'viewNAme', displayName:'Upload File', cellClass:'fname',headerCellClass:'File-Name',   cellTemplate:  '<label> <img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.uploadCertificate(row)></label>'}
                    ]
    };
 
@@ -145,6 +146,7 @@ $scope.searchBatch = {
       {
       //console.log('In the NULL')
       var exists= document.getElementById("responseMessage");
+      $scope.searchBatch.data = response.data;
       //exists.style.color = "Red";
       $scope.errorMessage="No Record Found";
       //console.log('YE AAY ANULL');
@@ -160,20 +162,14 @@ $scope.searchBatch = {
  };
 
 
- $scope.UploadCertificate = function(rowData){
+ $scope.uploadCertificate = function(rowData){
 
-  var  batchId = rowData.entity.batchName;
-  //uploadCSV($scope);
-  console.log(rowData.entity.batchName);
-  $http.post('/uploadCertificate')
-  .then(function(response) {
-
-    });
-
-    console.log("the row value is >>>" + rowData.entity.batchName);
-    var urldata = "/downloadCertificate/"+ fileName;
-
-    window.open(urldata);
+	 var  batchId = rowData.entity.batchId;
+//	 console.log('Batch Id is:'+batchId);
+	 var file = $scope.uploadCertificate;
+//	 console.log("File is "+file);
+     var url = '/uploadCertificate';
+     zipCertificateUpload.uploadZip(batchId,url);
  };
 
 
