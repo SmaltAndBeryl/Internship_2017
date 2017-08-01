@@ -1,96 +1,97 @@
 .mainWrap{
   background-color: #ECF0F1;
-  width:1018px;
+/*   width:1018px; */
   height: auto;
+  padding:1em;
 	}
 .batchAssignment{
   width: 250px;
   height: 24px;
   margin-left: 27px;
   padding-top: 33px;
-  padding-bottom: 29px;
-  font-size: 24px;
+  padding-bottom: 35px;
+  font-size: 20px;
   line-height: 1.58;
   text-align: left;
-  color: #000000;
+  color: #676a6c;
   
   }
   .grid-heading-text{
   color: #676a6c;
-  font-size:12px;  
+  font-size:1em;
+  padding:0.5em; 
   }
 .nonAssignedBatchTableWrap{
-	width: 976px;
+	width: 100%;
   height: auto;
-  margin-left: 21px;
-  margin-bottom: 18px;
-  padding-bottom: 10px;
+/*   margin-left: 21px; */
+  margin-bottom: 1em;
+  padding: 1em;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
   }
 .searchBatchWrap{
-	width: 976px;
+	width: 100%;
   height: auto;
-  margin-left: 21px;
-  margin-bottom: 18px;
-  padding-bottom: 10px;
-  padding-top: 15px;
+/*   margin-left: 21px; */
+  margin-bottom: 1em;
+  padding:1em;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
   }
 .proposedWrap{
-	width: 976px;
+	width: 100%;
   height: auto;
-  margin-left: 21px;
-  margin-bottom: 18px;
-  padding-bottom: 10px;
+/*   margin-left: 21px; */
+  margin-bottom: 1em;
+  padding: 1em;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
   }
   .approvedWrap{
-	width: 976px;
+	width: 100%;
   height: auto;
-  margin-left: 21px;
-  margin-bottom: 18px;
-  padding-bottom: 10px;
+/*   margin-left: 21px; */
+  margin-bottom: 1em;
+  padding: 1em;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
   }
   .rejectedWrap{
-	width: 976px;
+	width: 100%;
   height: auto;
-  margin-left: 21px;
-  margin-bottom: 18px;
-  padding-bottom: 10px;
+/*   margin-left: 21px; */
+  margin-bottom: 1em;
+  padding: 1em;
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
   }
 .nonAssignedBatchesGrid {
-  width: 923px;
+  width: 100%;
   height: 250px !important;
-  margin-left: 21px;
+/*   margin-left: 21px; */
 }
 .searchBatchGrid {
-  width: 923px;
+  width: 100%;
   height: 70px !important;
-  margin-left: 21px;
-  margin-top: 20px;
+/*   margin-left: 21px; */
+/*   margin-top: 20px; */
 }
 .proposedBatchesGrid {
-  width: 923px;
+  width: 100%;
   height: 180px !important;
-  margin-left: 21px;
-  margin-bottom: 10px;
+/*   margin-left: 21px; */
+  margin-bottom: 1em;
 }
 .approvedBatchesGrid {
-  width: 923px;
+  width: 100%;
   height: 180px !important;
-  margin-left: 21px;
+/*   margin-left: 21px; */
 }
 .rejectedBatchesGrid {
-  width: 923px;
+  width: 100%;
   height: 180px !important;
-  margin-left: 21px;
+/*   margin-left: 21px; */
 }
 .searchBatchId {
   height: 12px;
@@ -99,7 +100,7 @@
   text-align: left;
   color: #676a6c;
   color: var(--slate-grey);
-  margin-left: 50px;
+/*   margin-left: 50px; */
   padding-bottom: 10px;
 }
 *{

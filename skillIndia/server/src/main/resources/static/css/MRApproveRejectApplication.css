@@ -31,13 +31,13 @@
 }
 
 .manage{
-                height: 20px;
+ height: 20px;
   padding: 1em;
-  font-size: 24px;
+  font-size: 20px;
   font-weight:500;
   line-height: 1.58;
   text-align: left;
-  color: #000000;
+  color: #676a6c;
 }
 .orient1{
     align-items: stretch;
@@ -46,6 +46,7 @@
 .title{
                 padding: 2px;
                 color: grey;
+                font-size:15px;
 }
 
 .grid-align{
