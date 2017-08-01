@@ -113,9 +113,9 @@ function faqController($scope, $http){
 	  enableCellEdit : false,
 	  enableColumnMenus : false,
     columnDefs: [
-		{ name: 'totalNoOfCandidatesEnrolled' , displayName: 'Total No. Of Candidate Enrolled', width:250},
-		{ name: 'totalNoOfCandidatesAssessed' , displayName: 'Total No. Of Candidate Assessed', width:250},
-		{ name: 'totalNoOfCandidatesCertified', displayName: 'Total No. Of Candidate Certified', width:250}
+		{ name: 'totalNoOfCandidatesEnrolled' , displayName: 'Total No. Of Candidate Enrolled'},
+		{ name: 'totalNoOfCandidatesAssessed' , displayName: 'Total No. Of Candidate Assessed'},
+		{ name: 'totalNoOfCandidatesCertified', displayName: 'Total No. Of Candidate Certified'}
     ]
   };
 

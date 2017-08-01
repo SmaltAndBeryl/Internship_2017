@@ -20,7 +20,7 @@
   height: 20px;
   padding: 1em;
   font-size: 24px;
-  font-weight:700;
+  font-weight:500;
   line-height: 1.58;
   text-align: left;
   color: #000000;
@@ -100,10 +100,11 @@
     font-size:14px;
     font-weight:500px;
     color:#slate-grey;
+    border-color:black;
 }
-.panel-default
-{
-	background-color:#ffffff;
+.panel-default > .panel-body{
+	border-color: #26b4ce;
+	background-color:#26b4ce;
 }
 .ui-grid, .ui-grid-viewport {
     height: auto !important;

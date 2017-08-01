@@ -2,9 +2,9 @@
     <head>
         <link href="css/Dashboard.css" type="text/css" rel="stylesheet">
     </head>
-    <div>
-        <div class="panelWrap">
-            <div class="text">Overall Training Information</div>
+    <div class="dashborad-container">
+        <div class="dashborad-panelWrap">
+            <h3 class="title">Overall Training Information</h3>
 
             <div class="upper-panel">
                 <div class="col-sm-2">
@@ -28,7 +28,7 @@
                         <div class="panel-footer" style="background-color:#7BA9DC;">CANDIDATES ASSESSED</div>
                     </div>
                 </div>
-
+					
                 <div class="col-sm-2">
                     <div class="panel panel-default">
                         <div class="panel-body" style="background-color:#c68d7f;">
@@ -68,17 +68,17 @@
 
         <!-- Charts Section Starts from here-->
 
-        <div class="chartsWrap">
+        <div class="dashboard-chartsWrap">
             <div>
 
-                <div class="row">
-                    <div class="col-sm-4">
+                <div class="dashboard-row row">
+                    <div class="dashboard-col-sm-4">
                         <div id="pieChart">
 
                         </div>
                     </div>
                     &nbsp; &nbsp;
-                    <div class="col-sm-4">
+                    <div class="dashboard-col-sm-4">
                         <div id="columnChart">
 
                         </div>
@@ -86,23 +86,19 @@
                 </div>
             </div>
             <!-- second row for grouped column and stacked column chart -->
+            <div>&nbsp; &nbsp;</div>
             <div>
-                <div class="row">
-                    <div class="col-sm-4">
-
+                <div class="dashboard-row row">
+                    <div class="dashboard-col-sm-4">
                         <div id="groupedColumnChart">
                             <!--Insert Controller here -->
                         </div>
                     </div>
-
-                    &nbsp; &nbsp;
-
-                    <div class="col-sm-4">
+                    <div class="dashboard-col-sm-4">
                         <div id="stackedColumnChart">
 
                         </div>
                     </div>
-
 
                 </div>
             </div>

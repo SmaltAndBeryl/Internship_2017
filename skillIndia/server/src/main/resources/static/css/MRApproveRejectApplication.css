@@ -14,7 +14,7 @@
 .table{
   background-color: whitesmoke;
   height: 50%;
-  
+  margin-bottom:0px;
 }
 .ui-grid, .ui-grid-viewport {
     height: auto !important;
@@ -31,15 +31,20 @@
 }
 
 .manage{
-                padding-top: 25px;
-                margin-left: 26px;
+                height: 20px;
+  padding: 1em;
+  font-size: 24px;
+  font-weight:500;
+  line-height: 1.58;
+  text-align: left;
+  color: #000000;
 }
 .orient1{
     align-items: stretch;
     object-position: left;
 }
 .title{
-                padding-top: 0px;
+                padding: 2px;
                 color: grey;
 }
 
@@ -100,9 +105,9 @@ text-align: center;
 
 .table-wrap{
   background-color: white;
-  margin: 25px;
+  margin: 32px;
   padding: 30px 30px;
-  width: 800px;
+/*   width: 800px; */
   /*width: 500px;*/
 }
 .Institution-Name {

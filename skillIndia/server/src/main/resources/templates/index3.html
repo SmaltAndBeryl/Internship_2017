@@ -1,8 +1,6 @@
 <!doctype html>
 <html>
 <head>
-    <title>Hello AngularJS</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCGJ | Skill Council for Green Jobs</title>
 
@@ -36,6 +34,7 @@
 
 
     <script src="js/index3.js"></script>
+    
     <!--Angular Directives-->
     <script type="text/javascript" src="js/directives/dataImportCsvDirective.js"></script>
 
@@ -62,8 +61,8 @@
 </head>
 
 <body ng-app="hello" ng-cloak class="ng-cloak">
-<div ng-controller="navigation as nav" class="container" id="header">
-    <div ng-hide="authenticated" background="images/LoginScreenBackgroundImage.png">
+<div ng-controller="navigation as nav" id="header" >
+    <div ng-hide="authenticated" class="login-background">
         <div class="alert alert-danger" ng-show="error">
             There was a problem logging in. Please try again.
         </div>
@@ -78,7 +77,7 @@
             <!--</div>-->
             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
         <!--</form>-->
-        <div class="container">
+        <div>
             <div class="row">
                 <div class="col-md-2 col-md-offset-3">
                     <div class="row panel-body"></div>
@@ -187,7 +186,7 @@
     </div>
     <header class="one-edge-shadow" ng-show="authenticated">
         <div class="leftContent">
-            <img src="images/indexPageImages/SCGJLogo.png" alt="" class="image-0">
+            <img src="static/images/indexPageImages/SCGJLogo.png" alt="" class="image-0">
         </div>
 
         <div class="rightContent">
@@ -200,7 +199,7 @@
                 <div class="logoutButton">
                     <div class="logout-icon-text-wrap" ng-click="nav.logout()">
                         <div class="icon-wrap">
-                            <img class="logout-icon" src="icon/indexPageIcons/logout.png" alt="">
+                            <img class="logout-icon" src="static/icon/indexPageIcons/logout.png" alt="">
                         </div>
 
                         <div class="text-wrap">
@@ -236,7 +235,7 @@
 <script type="text/javascript" src="js/services/dataImportCsvService.js"></script>
 <script type="text/javascript" src="js/services/zipCertificateUpload.js"></script>
 <script type="text/javascript" src="js/dataImportCsv.js"></script>
-
+<script type="text/javascript" src="js/login.js"></script>
 
 </body>
 <footer ng-show="authenticated">

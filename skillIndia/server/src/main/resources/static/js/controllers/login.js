@@ -3,6 +3,10 @@ angular.module('hello', [ 'ngRoute' ]) // ... omitted code
 .controller('navigation',
 
   function($rootScope, $http, $location, $scope) {
+	 $scope.alerts = [
+	                  { type: 'danger', msg: 'Invalid credentials, Please check username and password entered' }, 
+	                  { type: 'success', msg: 'Successful login' }
+	                ];
 
   var self = this
 
@@ -15,12 +19,17 @@ angular.module('hello', [ 'ngRoute' ]) // ... omitted code
     $http.get('user', {headers : headers}).then(function(response) {
       if (response.data.name) {
         $rootScope.authenticated = true;
+        self.error= false;
       } else {
         $rootScope.authenticated = false;
+        $scope.alerts.push({type: 'danger'});
+        self.error = true;
       }
       callback && callback();
-    }, function() {
+    }, 
+    function() {
       $rootScope.authenticated = false;
+      self.error = true;
       callback && callback();
     });
 
@@ -33,9 +42,14 @@ angular.module('hello', [ 'ngRoute' ]) // ... omitted code
         if ($rootScope.authenticated) {
           $location.path("/");
           self.error = false;
-        } else {
-          $location.path("/login");
+          
+        	}
+        else {
+          
+          $scope.alerts.push({type: 'danger'});
           self.error = true;
+          //$scope.alerts.push({type: 'danger'});
+          //$location.path("/login");
         }
       });
   };

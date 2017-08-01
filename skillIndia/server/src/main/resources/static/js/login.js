@@ -1,43 +1,22 @@
-console.log("File reached");
+window.onload = function(){
+	var open = 'glyphicon-eye-open';
+	var close = 'glyphicon-eye-close';
+	var ele = document.getElementById('password');
 
-
-var open = 'glyphicon-eye-open';
-var close = 'glyphicon-eye-close';
-var ele = document.getElementById('password');
-
-document.getElementById('toggleBtn').onclick = function() {
-	if( this.classList.contains(open) ) {
-  	ele.type="text";
-    this.classList.remove(open);
-    this.className += ' '+close;
-  } else {
-  	ele.type="password";
-    this.classList.remove(close);
-    this.className += ' '+open;
-  }
-}
-
-var open = 'glyphicon-eye-open';
-var close = 'glyphicon-eye-close';
-var el = document.getElementById('mypassword');
-
-document.getElementById('toggleBt').onclick = function() {
-	if( this.classList.contains(open) ) {
-  	el.type="text";
-    this.classList.remove(open);
-    this.className += ' '+close;
-  } else {
-  	el.type="password";
-    this.classList.remove(close);
-    this.className += ' '+open;
-  }
-}
-
-console.log("File reached");
-
-    $(function() {
-
-    $('#login-form-link').click(function(e) {
+	document.getElementById('toggleBtn').onclick = function() {
+		if( this.classList.contains(open) ) {
+	  	ele.type="text";
+	    this.classList.remove(open);
+	    this.className += ' '+close;
+	  } else {
+	  	ele.type="password";
+	    this.classList.remove(close);
+	    this.className += ' '+open;
+	  }
+	}
+	
+	/////
+	$('#login-form-link').click(function(e) {
 		$("#login-form").delay(100).fadeIn(100);
  		$("#register-form").fadeOut(100);
 		$('#register-form-link').removeClass('active');
@@ -46,6 +25,7 @@ console.log("File reached");
 		//$('#password').password('toggle');
 
 	});
+	
 	$('#register-form-link').click(function(e) {
 		$("#register-form").delay(100).fadeIn(100);
  		$("#login-form").fadeOut(100);
@@ -53,30 +33,23 @@ console.log("File reached");
 		$(this).addClass('active');
 		e.preventDefault();
 	});
-
-});
+	
+	//check for blank email
+	$('.button').click(function(){
+        if ($('input#userId').val() == "")
+        {
+            alert('Please fill the Email');
+        }
     
-    $(document).ready(function(){
-        $('.button').click(function(){
-             if ($('input#userId').val() == "")
-             {
-                 alert('Please fill the Email');
-             }
-         
-         
-         });
-     });
-     
-  $(document).ready(function(){
-        $('.button').click(function(){
-             if ($('input#password').val() == "")
-             {
-                 alert('Please fill the password');
-             }
-         
-         
-         });
-     });
-     
-         
-   
+    
+    });
+	//check for blank password
+	$('.button').click(function(){
+        if ($('input#password').val() == "")
+        {
+            alert('Please fill the password');
+        }
+    
+    
+    });
+}

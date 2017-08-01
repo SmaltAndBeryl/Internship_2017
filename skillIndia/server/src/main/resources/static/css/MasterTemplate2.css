@@ -11,7 +11,6 @@ body{
   font-style: normal;
 }
 
-}
 .myGrid {
     width: 500px;
     height: 250px;
@@ -134,7 +133,7 @@ img.image-4{
   /*width: 100px;*/
   /*height: 80px;*/
   /*margin-right: 25px;*/
-}*/
+
 
 /*.image-1, .image-2, .image-3, .image-4{
   margin-right: 45px;
@@ -202,83 +201,4 @@ a{
 
 a:link{
   text-decoration: none;
-}
-
-
-/*@media only screen and(max-width: 880px) {
-  a{
-    color: white;
-  }
-  .image-1,.image-2, .image-3, .image-4{
-    width: 80px;
-    margin-right: 40px;
-  }
-}*/
-
-@media(max-width: 880px) {
-  /*a{
-    color: white;
-  }*/
-  .image-1,.image-2, .image-3, .image-4{
-    width: 80px;
-    margin-right: 40px;
-  }
-  img.image-4{
-    width: 120px;
-    margin-right: 0px;
-  }
-}
-
-@media(max-width: 600px) {
-  /*a{
-    color: pink;
-  }*/
-  .image-1,.image-2, .image-3, .image-4{
-    width: 60px;
-    margin-right: 25px;
-  }
-  img.image-4{
-    width: 100px;
-    margin-right: 0px;
-  }
-  .upperFooter{
-    background-color: #1fb1cb;
-    /*height: 50px;*/
-    padding: 15px 10px;
-    text-align: center;
-  }
-
-  .username{
-    font-size: 12px;
-  }
-
-}
-
-@media(max-width: 490px) {
-  #Content{
-    width: 92%;
-  }
-  .sidebar{
-    width: 50px;
-  }
-
-  .icons{
-    height: 20px;
-    width: 20px;
-    margin-right: 12px;
-    margin-top: 2px;
-  }
-
-  .text{
-    display: none;
-  }
-
-  .logout-icon{
-    width: 22px;
-  }
-
-  .text-wrap, .username{
-    display: none;
-    display: none;
-  }
 }
