@@ -69,7 +69,7 @@ header{
   /*background-color: aqua;*/
 }
 .logout-icon{
-  width: 12px;
+  width: 1em;
   cursor: pointer;
 }
 
@@ -80,7 +80,7 @@ header{
 }
 .logoutText{
   color: grey;
-  font-size: 10px;
+  font-size: 1em;
   cursor: pointer;
   /*margin-left: 611px;*/
 }
@@ -155,6 +155,8 @@ footer{
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center;
+  margin-right:15px;
+  margin-left:15px;
 }
 
 .link{
@@ -172,7 +174,10 @@ footer{
   background-color: #1da5be;
   /*height: 30px;*/
   text-align: center;
+  margin-right:15px;
+  margin-left:15px;
 }
+
 
 .copyright{
   padding: 7px 0px;

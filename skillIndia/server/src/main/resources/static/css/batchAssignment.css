@@ -15,6 +15,10 @@
   color: #000000;
   
   }
+  .grid-heading-text{
+  color: #676a6c;
+  font-size:12px;  
+  }
 .nonAssignedBatchTableWrap{
 	width: 976px;
   height: auto;

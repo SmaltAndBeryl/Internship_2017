@@ -61,8 +61,8 @@
 </head>
 
 <body ng-app="hello" ng-cloak class="ng-cloak">
-<div ng-controller="navigation as nav" id="header" >
-    <div ng-hide="authenticated" class="login-background">
+<div ng-controller="navigation as nav" id="header">
+    <div ng-hide="authenticated"  class="login-background">
         <div class="alert alert-danger" ng-show="error">
             There was a problem logging in. Please try again.
         </div>
@@ -78,7 +78,7 @@
             <!--<button type="submit" class="btn btn-primary">Submit</button>-->
         <!--</form>-->
         <div>
-            <div class="row">
+            <div class="row login-row">
                 <div class="col-md-2 col-md-offset-3">
                     <div class="row panel-body"></div>
                     <div class="panel panel-login">

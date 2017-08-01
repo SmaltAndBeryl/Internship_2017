@@ -8,17 +8,17 @@
     border-color: #ccc;
     width: 550px;
     height: 490px;
-    margin-left: 180px;
-    margin-top: 44px;
+    margin-left: 25em;
+    margin-top: 8.7em;
     width: 500px;
     border-top-right-radius: 0;
     border-top-left-radius : 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    
-            
 } 
-    
+.login-row{
+	margin-right:0px;
+	marging-left:0px;
 }
 
 .panel-login>.panel-heading {
