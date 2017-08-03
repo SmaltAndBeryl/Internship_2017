@@ -1,0 +1,239 @@
+create table TrainingPartnerOrganizationDetails 
+(
+trainingPartnerRegistrationId int(5) primary key auto_increment ,
+applicationId int(5),
+organizationName varchar(100),
+sPOCName varchar(50),
+address varchar(500),
+city varchar(30),
+state varchar(30),
+pincode int(6),
+mobileNumber int(13),
+alternateMobileNumber int(13),
+landlineNumber int(11),
+alternateLandlineNumber int(11),
+faxNumber int(14),
+websites varchar(200),
+yearOfEstablishment int(4),
+qualificationPacks varchar(200),
+qualificationPacksAnnexurePath varchar(200),
+nSDCFunded varchar(3),
+nSDCFCertificatePath varchar(200),
+mediumOfInstructions varchar(100),
+selfOwnedInstitution int(3),
+selfOwnedInstitutionAnnexurePath varchar(200),
+franchiseOwnedInstitution int(3),
+franchiseOwnedInstitutionAnnexurePath varchar(200),
+mobileTrainingInstitution int(3),
+mobileTrainingInstitutionAnnexurePath varchar(200) ,
+panNumber varchar(10),
+panNumberPath varchar(200),
+tanNumber varchar(10),
+tanNumberPath varchar(200),
+turnOverOfInstitution decimal(6,2),
+turnOverOfInstitutionBalanceSheetPath varchar(200), 
+instituteReceivedAnyGrant varchar(3),
+instituteReceivedAnyRecognition varchar(3),
+priorExperienceOfInstitutionInSkillDevelopment varchar(3),
+anyPriorExperienceOfInstitutionInSkillTraining varchar(3),
+trainingStaffDetailsAnnexurePath varchar(200),
+foreign key(applicationId) references application(applicationId) 
+);
+
+
+create table TrainingPartnerCenterLevelDetails
+(
+trainingPartnerCenterId int(5) primary key auto_increment,
+applicationId int(5),
+nameOfCenter varchar(200),
+numberOfPermanentOfficeManager int(3),
+numberOftemporaryOfficeManager int(3),
+numberOfPermanentOfficeStaff int(3),
+numberOfTemporaryOfficeStaff int(3),
+numberOfPermanentLabAssistants int(3),
+numberOfTemporaryLabAssistants int(3),
+numberOfPermanentAccountants int(3),
+numberOfTemporaryAccountants int(3),
+numberOfPermanentSupportStaff int(3),
+numberOfTemporarySupportStaff int(3),
+numberOfPermanentOtherEmployees int(3),
+numberOfTemporaryOtherEmployees int(3),
+areaOfInstitute int(10),
+buildingType varchar(20),
+sizeOfClassrooms int(10),
+classroomPicsPath varchar(200),
+numberOfClassrooms int(3),
+sizeOfLabs int(10),
+labPicsPath varchar(200),
+numberOfLabs int(3),
+sizeOfWorkshops int(10),
+workshopPicsPath varchar(200),
+numberOfWorkshops int(3),
+mandatoryToolKitpresent int(10),
+mandatoryToolKitAnnexurePath varchar(200),
+mandatoryToolKitPicsPath varchar(200),
+safeDrinkingWater varchar(3),
+powerBackup varchar(3),
+separateToilets varchar(3),
+transportFacility varchar(3),
+presenceOfLibrary varchar(3),
+numberOfTechnicalBooks int(5),
+numberOfNonTechnicalBooks int(5),
+numberOfMagazines int(5),
+numberOfDailies int(5),
+remarksOnInfrastructureDetails varchar(1000),
+sufficientClassroomIlluminationLevel varchar(3),
+sufficientClassroomVentilationLevel varchar(3),
+sufficientCenterCleanliness varchar(3),
+centerWeatherProtected varchar(3),
+remarksOnLearningEnviornment varchar(1000),
+printedBrochureOrProspectus varchar(3),
+documentedPolicyAndProcedures varchar(3),
+concessionPolicy varchar(3),
+safeCustodyOfStudentDocuments varchar(3),
+studentAgreementWithInstitution varchar(3),
+remarksOnStudentAdmissionDetails varchar(1000),
+foreign key(applicationId) references application(applicationId)
+);
+
+
+create table InstituteGrant
+(
+instituteGrantId int(5) primary key auto_increment,
+applicationId int(5),
+nameOfMinistry varchar(100),
+natureOfWork varchar(100),
+remarks varchar(1000),
+foreign key(applicationId) references application(applicationId)
+);
+
+create table InstituteRecognition
+( 
+instituteRecognitionId int(5) primary key auto_increment,
+applicationId int(5),
+nameOfRecognizingBody varchar(200),
+recognitionNumber varchar(50),
+yearOfRecognition int(4),
+validityOfRecognition varchar(50),
+foreign key(applicationId) references application(applicationId)
+);
+
+create table priorExperienceInSkillTraining
+(
+priorExperienceInSkillTrainingId int(5) primary key auto_increment,
+applicationId int(5),
+courseName varchar(200),
+numberOfBatchesPerYear int(4),
+numberOfStudentsInEachBatch int(4),
+foreign key(applicationId) references application(applicationId)
+);
+
+
+create table ManagementAndStaffDetails
+(
+ManagementAndStaffId int(5) primary key auto_increment,
+applicationId int(5),
+type varchar(20),
+name varchar(100),
+designation varchar(50),
+emailId varchar(100),
+contactNumber int(15),
+educationalQualification varchar(100),
+regularOrVisiting varchar(20),
+experience int(3),
+cVPath varchar(200),
+certificatePath varchar(200),
+foreign key(applicationId) references application(applicationId)
+);
+
+
+
+create table AssessmentBodyRegistrationDetails (
+assessmentBodyRegistrationId int(5) primary key auto_increment,
+applicationId int(5),
+organizationName varchar(100),
+sPOCName varchar(50),
+address varchar(500),
+city varchar(30),
+state varchar(30),
+pincode int(6),
+mobileNumber int(13),
+alternateMobileNumber int(13),
+landlineNumber int(11),
+alternateLandlineNumber int(11),
+faxNumber int(14),
+websites varchar(200),
+yearOfEstablishment int(4),
+priorAssessmentExperience varchar(3),
+panNumber varchar(10),
+panNumberPath varchar(200),
+tanNumber int(10),
+tanNumberPath varchar(200),
+insituteReceivedAnyRecognition varchar(3),
+NameOfRecognitionBody varchar(200),
+RecognitionNumber varchar(50),
+yearOfRecognition int(4),
+validityOfRecognition varchar(50),
+numberOfTechnicalAssessors int(4),
+numberOfNonTechnicalAssessors int(4),
+affiliatedToAnySectorSkillCouncil varchar(3),
+foreign key(applicationId) references application(applicationId)
+);
+
+
+create table AssessmentsExperienceInTechnicalDomain (
+assessmentExperienceId int(5) primary key auto_increment,
+applicationId int(5),
+domain varchar(50),
+numberOfAssessmentsDone	 int(5),
+foreign key(applicationId) references application(applicationId)
+);
+
+
+create table AssessmentBodyDirectorsAndManagementTeamDetails (
+directorsAndManagementId int(5) primary key auto_increment,
+applicationId int(5),
+name varchar(100),
+designation varchar(50),
+contactNumber int(15),
+emailId varchar(100),
+educationalQualification varchar(100),
+experience int(3),
+cVPath varchar(200),
+foreign key(applicationId) references application(applicationId)
+);
+
+
+create table AssessmentStaffDetails(
+assessmentStaffId int(5) primary key auto_increment,
+applicationId int(5),
+name varchar(100),
+jobRoleCode varchar(100),
+designation varchar(50),
+contactNumber int(15),
+emailId varchar(100),
+state varchar(30),
+district varchar(30),
+educationalQualification varchar(100),
+experience int(3),
+cVPath varchar(200),
+certificatePath	 varchar(200),
+foreign key(applicationId) references application(applicationId)
+);
+
+
+
+create table RegionalOfficeDetails
+(
+regionalOfficeId int(5) primary key auto_increment,
+applicationId int(5),
+address varchar(500),
+state varchar(30),
+pincode int(6),
+contactNumber int(15),
+alternateContactNumber int(15),
+foreign key(applicationId) references application(applicationId)
+);
+
+
+
