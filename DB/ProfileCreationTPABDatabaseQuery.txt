@@ -44,7 +44,7 @@ foreign key(applicationId) references application(applicationId)
 create table TrainingPartnerCenterLevelDetails
 (
 trainingPartnerCenterId int(5) primary key auto_increment,
-applicationId int(5),
+trainingPartnerRegistrationId int(5),
 nameOfCenter varchar(200),
 numberOfPermanentOfficeManager int(3),
 numberOftemporaryOfficeManager int(3),
@@ -93,46 +93,48 @@ concessionPolicy varchar(3),
 safeCustodyOfStudentDocuments varchar(3),
 studentAgreementWithInstitution varchar(3),
 remarksOnStudentAdmissionDetails varchar(1000),
-foreign key(applicationId) references application(applicationId)
+foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
 );
 
 
 create table InstituteGrant
 (
 instituteGrantId int(5) primary key auto_increment,
-applicationId int(5),
+trainingPartnerRegistrationId int(5),
 nameOfMinistry varchar(100),
 natureOfWork varchar(100),
 remarks varchar(1000),
-foreign key(applicationId) references application(applicationId)
+foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
 );
 
 create table InstituteRecognition
 ( 
 instituteRecognitionId int(5) primary key auto_increment,
-applicationId int(5),
+trainingPartnerRegistrationId int(5),
 nameOfRecognizingBody varchar(200),
 recognitionNumber varchar(50),
 yearOfRecognition int(4),
 validityOfRecognition varchar(50),
-foreign key(applicationId) references application(applicationId)
+foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
 );
 
 create table priorExperienceInSkillTraining
 (
 priorExperienceInSkillTrainingId int(5) primary key auto_increment,
-applicationId int(5),
+trainingPartnerRegistrationId int(5),
 courseName varchar(200),
 numberOfBatchesPerYear int(4),
 numberOfStudentsInEachBatch int(4),
-foreign key(applicationId) references application(applicationId)
+foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
+
 );
 
 
-create table ManagementAndStaffDetails
+create table ManagementAndStaffAndOfficialsDetails
 (
 ManagementAndStaffId int(5) primary key auto_increment,
-applicationId int(5),
+trainingPartnerRegistrationId int(5),
+trainingPartnerCenterId int(5),
 type varchar(20),
 name varchar(100),
 designation varchar(50),
@@ -143,7 +145,8 @@ regularOrVisiting varchar(20),
 experience int(3),
 cVPath varchar(200),
 certificatePath varchar(200),
-foreign key(applicationId) references application(applicationId)
+foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId),
+foreign key(trainingPartnerCenterId) references TrainingPartnerCenterLevelDetails(trainingPartnerCenterId)
 );
 
 
@@ -183,16 +186,16 @@ foreign key(applicationId) references application(applicationId)
 
 create table AssessmentsExperienceInTechnicalDomain (
 assessmentExperienceId int(5) primary key auto_increment,
-applicationId int(5),
+assessmentBodyRegistrationId int(5),
 domain varchar(50),
 numberOfAssessmentsDone	 int(5),
-foreign key(applicationId) references application(applicationId)
+foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
 
 
 create table AssessmentBodyDirectorsAndManagementTeamDetails (
 directorsAndManagementId int(5) primary key auto_increment,
-applicationId int(5),
+assessmentBodyRegistrationId int(5),
 name varchar(100),
 designation varchar(50),
 contactNumber int(15),
@@ -200,13 +203,13 @@ emailId varchar(100),
 educationalQualification varchar(100),
 experience int(3),
 cVPath varchar(200),
-foreign key(applicationId) references application(applicationId)
+foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
 
 
 create table AssessmentStaffDetails(
 assessmentStaffId int(5) primary key auto_increment,
-applicationId int(5),
+assessmentBodyRegistrationId int(5),
 name varchar(100),
 jobRoleCode varchar(100),
 designation varchar(50),
@@ -218,22 +221,26 @@ educationalQualification varchar(100),
 experience int(3),
 cVPath varchar(200),
 certificatePath	 varchar(200),
-foreign key(applicationId) references application(applicationId)
+foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
-
-
 
 create table RegionalOfficeDetails
 (
 regionalOfficeId int(5) primary key auto_increment,
-applicationId int(5),
+assessmentBodyRegistrationId int(5),
 address varchar(500),
 state varchar(30),
 pincode int(6),
 contactNumber int(15),
 alternateContactNumber int(15),
-foreign key(applicationId) references application(applicationId)
+foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
 
 
-
+create table AssessmentBodyAffiliationDetails
+(
+affiliationId int(5) primary key auto_increment,
+assessmentBodyRegistrationId int(5),
+nameOfSectorSkillCouncil varchar(150),
+foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
+);
