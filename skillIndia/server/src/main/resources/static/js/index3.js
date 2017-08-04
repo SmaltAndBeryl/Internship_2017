@@ -54,7 +54,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 
                 $http({
                    method: 'POST',
-                   url: "/getSPOCNameAndApplicationState",
+                   url: "/getSPOCName",
                    transformResponse: [function (data)  {
                     console.log(data);
 
