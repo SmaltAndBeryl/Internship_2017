@@ -1,6 +1,7 @@
 package com.skill.India.controller;
 
 import java.security.Principal;
+import java.util.Collection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,11 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.common.SessionUserUtility;
+import com.skill.India.dto.GetSPOCNameAndApplicationStateDto;
 import com.skill.India.dto.LoginDto;
 import com.skill.India.dto.LoginReceiveDataDto;
 import com.skill.India.dto.SignUpInsertedUserDto;
 import com.skill.India.dto.SignUpReceiveDataDto;
-import com.skill.India.service.GetSPOCNameService;
+import com.skill.India.service.GetSPOCNameAndApplicationStateService;
 import com.skill.India.service.LoginService;
 import com.skill.India.service.SignUpService;
 
@@ -40,7 +42,7 @@ public class LoginController {
 	private SignUpService signUpService;    
    
     @Autowired
-    private GetSPOCNameService getSPOCNameService; 
+    private GetSPOCNameAndApplicationStateService getSPOCNameService; 
     
     @Autowired
     private SessionUserUtility sessionUserUtility;
@@ -62,16 +64,24 @@ public class LoginController {
 	  
 	}
 	
-	@RequestMapping("/getSPOCName")
-	public String getSPOCName()  {
+	@RequestMapping("/getSPOCNameAndApplicationState")
+	public Collection<GetSPOCNameAndApplicationStateDto> getSPOCName()  {
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
-		return getSPOCNameService.getSPOCNameService(userId); 
+		return getSPOCNameService.getSPOCNameAndApplicationStateService(userId); 
 	}
+	
 	
 	@RequestMapping("/getUserDetails")
 	public Principal user(Principal user) {
+		try{
 		System.out.println("hey  : " +user);
 		return user;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
