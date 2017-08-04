@@ -10,26 +10,34 @@ public class LoginConfig {
 
 	private String selectSql;
 	private String checkUserSql;
-	private String getSPOCNameAndApplicationStatus;
+	private String getSPOCName;
+	private String getApplicationState;
 	
 	
-
 	
 
 	/**
-	 * @return the getSPOCNameAndApplicationStatus
+	 * @return the getApplicationState
 	 */
-	public String getGetSPOCNameAndApplicationStatus() {
-		return getSPOCNameAndApplicationStatus;
+	public String getGetApplicationState() {
+		return getApplicationState;
 	}
 
 	/**
-	 * @param getSPOCNameAndApplicationStatus the getSPOCNameAndApplicationStatus to set
+	 * @param getApplicationState the getApplicationState to set
 	 */
-	public void setGetSPOCNameAndApplicationStatus(
-			String getSPOCNameAndApplicationStatus) {
-		this.getSPOCNameAndApplicationStatus = getSPOCNameAndApplicationStatus;
+	public void setGetApplicationState(String getApplicationState) {
+		this.getApplicationState = getApplicationState;
 	}
+
+	public String getGetSPOCName() {
+		return getSPOCName;
+	}
+
+	public void setGetSPOCName(String getSPOCName) {
+		this.getSPOCName = getSPOCName;
+	}
+
 
 	public String getSelectSql() {
 		return selectSql;

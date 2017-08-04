@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.common.SessionUserUtility;
-import com.skill.India.dto.GetSPOCNameAndApplicationStateDto;
 import com.skill.India.dto.LoginDto;
 import com.skill.India.dto.LoginReceiveDataDto;
 import com.skill.India.dto.SignUpInsertedUserDto;
 import com.skill.India.dto.SignUpReceiveDataDto;
-import com.skill.India.service.GetSPOCNameAndApplicationStateService;
+import com.skill.India.service.GetApplicationStateService;
+import com.skill.India.service.GetSPOCNameService;
 import com.skill.India.service.LoginService;
 import com.skill.India.service.SignUpService;
 
@@ -40,13 +40,16 @@ public class LoginController {
     
     @Autowired
 	private SignUpService signUpService;    
-   
+  
+    
     @Autowired
-    private GetSPOCNameAndApplicationStateService getSPOCNameService; 
+    private GetSPOCNameService getSPOCNameService; 
     
     @Autowired
     private SessionUserUtility sessionUserUtility;
     
+    @Autowired
+    private GetApplicationStateService getApplicationStateService; 
     
     @RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
@@ -64,11 +67,18 @@ public class LoginController {
 	  
 	}
 	
-	@RequestMapping("/getSPOCNameAndApplicationState")
-	public Collection<GetSPOCNameAndApplicationStateDto> getSPOCName()  {
+	@RequestMapping("/getSPOCName")
+	public String getSPOCName()  {
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
-		return getSPOCNameService.getSPOCNameAndApplicationStateService(userId); 
+		return getSPOCNameService.getSPOCNameService(userId); 
+	}
+	
+	@RequestMapping("/getApplicationState")
+	public String getApplicationState()  {
+		String userId=sessionUserUtility
+				.getSessionMangementfromSession().getUsername();
+		return getApplicationStateService.getApplicationStateService(userId) ; 
 	}
 	
 	
