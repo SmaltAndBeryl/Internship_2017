@@ -54,7 +54,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 
                 $http({
                    method: 'POST',
-                   url: "/getSPOCName",
+                   url: "/getSPOCNameAndApplicationState",
                    transformResponse: [function (data)  {
                     console.log(data);
 
@@ -63,7 +63,6 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                    }]
                    })
                     .then(function(response){
-
                         alert("get Successful " + spock);
 //                            if(JSON.stringify(response) == '""'){
 //                                alert("no name");

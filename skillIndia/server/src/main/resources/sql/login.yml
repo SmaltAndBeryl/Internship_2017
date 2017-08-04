@@ -6,6 +6,6 @@ login:
  checkUserSql: >
    SELECT EXISTS(SELECT * FROM user WHERE userId=:userId and password=:password)
    
- getSPOCName: >
-   select sPOCName from user
-     where userId=:userId    
+ getSPOCNameAndApplicationStatus: >
+   select sPOCName,applicationState from user,application
+     where user.userId=:userId and application.userId=:userId   
