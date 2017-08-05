@@ -28,6 +28,10 @@ hello.config(function($routeProvider, $httpProvider) {
         templateUrl : 'assessmentBody.html',
         controller : 'assessmentBody'
     })
+    .when('/profileCreationTp', {
+        templateUrl : 'profileCreationTp.html',
+        controller : 'profileCreationTp'
+    })
 	.otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -58,21 +62,13 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                    transformResponse: [function (data)  {
                     console.log(data);
 
-                   spock = data;
+                    spock = data;
                     return data;
                    }]
                    })
                     .then(function(response){
                         alert("get Successful " + spock);
-//                            if(JSON.stringify(response) == '""'){
-//                                alert("no name");
-//                                $rootScope.spockName = "Jane Doe";
-//                            }
-//                            else{
-//                                alert("A name");
-//                                $rootScope.spockName = response;
-//                            }
-                            $rootScope.spockName = spock ;
+                        $rootScope.spockName = spock ;
                     });
                 console.log("Backend value " + response + "String Format " + JSON.stringify(response.data.authorities[0].authority));
                 $rootScope.authenticated = true;
@@ -102,6 +98,8 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                 var AB = '"AB"';
                 var TP = '"TP"';
                 var SCGJ = '"SCGJ"';
+                var appState = "Submit";
+
 
 
                 if(userType == AB){
@@ -112,7 +110,29 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 
                 if(userType == TP){
                     alert("Welcome training partner");
-                    $location.path("/trainingPartner");
+                    $http({
+                       method: 'POST',
+                       url: "/getApplicationState",
+                       transformResponse: [function (data)  {
+                        console.log(data);
+                        appState = data;
+                        return data;
+                       }]
+                       })
+                        .then(function(response){
+                            alert("Application get successful, state = " + appState);
+                        });
+
+                    if(appState == 'Submit'){
+                        alert("Routing to pc" + appState);
+                        $location.path("/profileCreationTp");
+                    }
+
+                    else{
+                        alert("Not routing to pc " + appState);
+                        $location.path("/trainingPartner");
+                    }
+
                     $rootScope.priv = "TP";
                 }
 

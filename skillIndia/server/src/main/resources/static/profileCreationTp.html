@@ -1,0 +1,40 @@
+<!--<head>-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>-->
+    <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>-->
+    <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>-->
+    <!--<script src="js/profileCreationTp.js"></script>-->
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+<!--</head>-->
+<div ng-controller="profileCreationTp">
+
+    <script type="text/ng-template">
+        <div class="panel-heading">
+            <h4 class="panel-title" style="background-color:aqua">
+                <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+                  <span uib-accordion-header>
+                    {{heading}}
+                  </span>
+                </a>
+            </h4>
+        </div>
+        <div class="panel-collapse collapse" uib-collapse="!isOpen">
+            <div class="panel-body" ng-transclude></div>
+        </div>
+    </script>
+
+
+    {{userId}}
+    <uib-accordion>
+        <div uib-accordion-group class="panel-default" heading="Institution Level - Basic information">
+            <div ng-include src="'accordion1.html'"></div>
+        </div>
+
+        <div uib-accordion-group class="panel-default" heading="Institution Level - Organization details">
+            <div ng-include src="'accordion2.html'"></div>
+        </div>
+    </uib-accordion>
+
+    <button type="button" ng-click="save()" class="btn btn-warning">Save as Draft</button>
+    <button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
+</div>

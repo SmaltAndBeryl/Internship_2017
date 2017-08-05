@@ -1,0 +1,91 @@
+<div>
+    <div>
+        <div class="col-md-9">
+            <h2>{{organizationName}}</h2>
+        </div>
+        <div class="col-md-3">
+            <h2>{{sPOCName}}</h2>
+        </div>
+
+    </div>
+
+
+    <div class="field1">
+        <div class="col-md-6">Address</div>
+        <div class="col-md-6">
+            <input type="text" ng-model="address" required>
+        </div>
+    </div>
+
+    <div class="field2">
+        <div class="col-md-6">City</div>
+        <div class="col-md-6">
+            <input type="text" ng-model="city" required>
+        </div>
+    </div>
+
+    <div class="field3">
+        <div class="col-md-6">Is the institution NSDC Funded?</div>
+        <div class="col-md-6">
+            <select ng-model="selected" ng-options="x for x in states">
+                <option value="">Choose state</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field3">
+        <div class="col-md-6">PIN Code</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="pincode" required>
+        </div>
+    </div>
+
+    <div class="field4">
+        <div class="col-md-6">Mobile No.</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="mobile" required>
+        </div>
+    </div>
+
+
+    <div class="field5">
+        <div class="col-md-6">Alternative Mobile No.</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="mobileAlt">
+        </div>
+    </div>
+
+
+    <div class="field6">
+        <div class="col-md-6">Landline No.</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="landline" required>
+        </div>
+    </div>
+
+
+    <div class="field7">
+        <div class="col-md-6">Alternative landline no.</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="landlineAlt">
+        </div>
+    </div>
+
+
+    <div class="field8">
+        <div class="col-md-6">Fax</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="fax" required>
+        </div>
+    </div>
+
+
+    <div class="field9">
+        <div class="col-md-6">Website</div>
+        <div class="col-md-6">
+            <input type="url" ng-model="website" required>
+        </div>
+    </div>
+
+    <button type="button" ng-click="isOpen = false" class="btn btn-primary">Next</button>
+</div>
