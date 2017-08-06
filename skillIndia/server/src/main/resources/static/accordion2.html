@@ -8,6 +8,8 @@
         </div>
     </div>
 
+    <br>
+
     <div class="field2">
         <div class="col-md-6">Qualification Packs</div>
         <div class="col-md-6">
@@ -17,13 +19,23 @@
         </div>
     </div>
 
+    <br>
+
     <div class="field3">
         <div class="col-md-6">Is the institution NSDC Funded?</div>
         <div class="col-md-6">
             <input type="radio" ng-model="NSDCFunded" value="yes">Yes
             <input type="radio" ng-model="NSDCFunded" value="no">No
+
+            <div ng-show="NSDCFunded == 'yes'">
+                Upload annexure
+                <button class="btn btn-sm btn-info">Upload File</button>
+                <input type="number" ng-model="mobileOwned">
+            </div>
         </div>
     </div>
+
+    <br>
 
     <div class="field4">
         <div class="col-md-6">Medium of instruction</div>
@@ -34,6 +46,7 @@
         </div>
     </div>
 
+    <br>
 
     <h4>Model of Institution</h4>
     <div class="field5">
@@ -45,8 +58,6 @@
             <div ng-show="self == 'yes'">
                 Upload annexure
                 <button class="btn btn-sm btn-info">Upload File</button>
-            </div>
-            <div ng-show="self">
                 <input type="number" ng-model="selfOwned">
             </div>
 
@@ -56,6 +67,12 @@
         <div class="col-md-6">
             <input type="radio" ng-model="franchise" value="yes">Yes
             <input type="radio" ng-model="franchise" value="no">No
+
+            <div ng-show="franchise == 'yes'">
+                Upload annexure
+                <button class="btn btn-sm btn-info">Upload File</button>
+                <input type="number" ng-model="franchiseOwned">
+            </div>
         </div>
 
 
@@ -63,8 +80,16 @@
         <div class="col-md-6">
             <input type="radio" ng-model="mobile" value="yes">Yes
             <input type="radio" ng-model="mobile" value="no">No
+
+            <div ng-show="mobile == 'yes'">
+                Upload annexure
+                <button class="btn btn-sm btn-info">Upload File</button>
+                <input type="number" ng-model="mobileOwned">
+            </div>
         </div>
     </div>
+
+    <br>
 
     <div class="field6">
         <div class="col-md-6">PAN</div>
@@ -73,12 +98,76 @@
         </div>
     </div>
 
+    <br>
+
     <div class="field7">
-        <div class="col-md-6">PAN</div>
+        <div class="col-md-6">TAN</div>
         <div class="col-md-6">
             <input type="number" ng-model="tan" value="{{tan}}">
         </div>
     </div>
 
+    <br>
+
+    <div class="field8">
+        <div class="col-md-6">Turnover of the institute</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="trainingPartner.turnover">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="field9">
+        <div class="col-md-6">Does the institution receive any grant?</div>
+        <div class="col-md-6">
+            <input type="radio" ng-model="grant" value="yes">Yes
+            <input type="radio" ng-model="grant" value="no">No
+
+            <div ng-show="grant == 'yes'">
+                <div ui-grid="grantTable"  ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="field10">
+        <div class="col-md-6">Is the institute recognized with any bodies?</div>
+        <div class="col-md-6">
+            <input type="radio" ng-model="recognized" value="yes">Yes
+            <input type="radio" ng-model="recognized" value="no">No
+
+            <div ng-show="recognized == 'yes'">
+                <div ui-grid="grantTable"  ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="field10">
+        <div class="col-md-6">Prior exposure in skill development</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="trainingPartner.exposure">
+        </div>
+    </div>
+
+    <br>
+
+
+    <div class="field10">
+        <div class="col-md-6">Prior exposure of the institution in skill training(Related to QP)</div>
+        <div class="col-md-6">
+            <input type="radio" ng-model="exposureSkillTraining" value="yes">Yes
+            <input type="radio" ng-model="exposureSkillTraining" value="no">No
+
+            <div ng-show="exposureSkillTraining == 'yes'">
+                <div ui-grid="grantTable"  ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" ng-click="isOpen = false" class="btn btn-primary btn-block">Next</button>
 
 </div>

@@ -1,6 +1,4 @@
-<head>
-    <script src="js/accordion1.js"></script>
-</head>
+
 <div ng-controller="profileCreationTp">
 
     <script type="text/ng-template">
@@ -27,6 +25,14 @@
 
         <div uib-accordion-group class="panel-default" heading="Institution Level - Organization details">
             <div ng-include src="'accordion2.html'"></div>
+        </div>
+
+        <div uib-accordion-group class="panel-default" heading="Institution Level - Personnel details">
+            <div ng-include src="'accordion3.html'"></div>
+        </div>
+
+        <div uib-accordion-group class="panel-default" heading="Centre Level - Information">
+            <div ng-include src="'accordion4.html'"></div>
         </div>
 
     </uib-accordion>
