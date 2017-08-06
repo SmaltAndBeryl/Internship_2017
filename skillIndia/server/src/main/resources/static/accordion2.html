@@ -20,9 +20,65 @@
     <div class="field3">
         <div class="col-md-6">Is the institution NSDC Funded?</div>
         <div class="col-md-6">
-            <select ng-model="selected" ng-options="d as d.year in year">
-                <option value="">Choose year</option>
-            </select>
+            <input type="radio" ng-model="NSDCFunded" value="yes">Yes
+            <input type="radio" ng-model="NSDCFunded" value="no">No
         </div>
     </div>
+
+    <div class="field4">
+        <div class="col-md-6">Medium of instruction</div>
+        <div class="col-md-6">
+            <input type="checkbox" ng-model="english">English
+            <input type="checkbox" ng-model="hindi">Hindi
+            <input type="checkbox" ng-model="other">Other
+        </div>
+    </div>
+
+
+    <h4>Model of Institution</h4>
+    <div class="field5">
+        <div class="col-md-6">Self-owned</div>
+        <div class="col-md-6">
+            <input type="radio" ng-model="self" value="yes">Yes
+            <input type="radio" ng-model="self" value="no">No
+
+            <div ng-show="self == 'yes'">
+                Upload annexure
+                <button class="btn btn-sm btn-info">Upload File</button>
+            </div>
+            <div ng-show="self">
+                <input type="number" ng-model="selfOwned">
+            </div>
+
+        </div>
+
+        <div class="col-md-6">Franchisee</div>
+        <div class="col-md-6">
+            <input type="radio" ng-model="franchise" value="yes">Yes
+            <input type="radio" ng-model="franchise" value="no">No
+        </div>
+
+
+        <div class="col-md-6">Mobile</div>
+        <div class="col-md-6">
+            <input type="radio" ng-model="mobile" value="yes">Yes
+            <input type="radio" ng-model="mobile" value="no">No
+        </div>
+    </div>
+
+    <div class="field6">
+        <div class="col-md-6">PAN</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="pan" value="{{pan}}">
+        </div>
+    </div>
+
+    <div class="field7">
+        <div class="col-md-6">PAN</div>
+        <div class="col-md-6">
+            <input type="number" ng-model="tan" value="{{tan}}">
+        </div>
+    </div>
+
+
 </div>

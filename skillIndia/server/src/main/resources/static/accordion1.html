@@ -1,10 +1,10 @@
 <div>
     <div>
         <div class="col-md-9">
-            <h2>{{organizationName}}</h2>
+            <h2>{{trainingPartner.organizationName}}</h2>
         </div>
         <div class="col-md-3">
-            <h2>{{sPOCName}}</h2>
+            <h2>{{trainingPartner.sPOCName}}</h2>
         </div>
 
     </div>
@@ -13,14 +13,14 @@
     <div class="field1">
         <div class="col-md-6">Address</div>
         <div class="col-md-6">
-            <input type="text" ng-model="address" value="{{address}}"required>
+            <input type="text" ng-model="trainingPartner.address" value="{{address}}"required>
         </div>
     </div>
 
     <div class="field2">
         <div class="col-md-6">City</div>
         <div class="col-md-6">
-            <input type="text" ng-model="city" value="{{city}}" required>
+            <input type="text" ng-model="trainingPartner.city" value="{{city}}" required>
         </div>
     </div>
 
@@ -36,14 +36,14 @@
     <div class="field3">
         <div class="col-md-6">PIN Code</div>
         <div class="col-md-6">
-            <input type="number" ng-model="pincode" value="{{pincode}}" required>
+            <input type="number" ng-model="trainingPartner.pincode" value="{{pincode}}" required>
         </div>
     </div>
 
     <div class="field4">
         <div class="col-md-6">Mobile No.</div>
         <div class="col-md-6">
-            <input type="number" ng-model="mobile" value="{{mobile}}" required>
+            <input type="number" ng-model="trainingPartner.mobileNumber" value="{{mobile}}" required>
         </div>
     </div>
 
@@ -51,7 +51,7 @@
     <div class="field5">
         <div class="col-md-6">Alternative Mobile No.</div>
         <div class="col-md-6">
-            <input type="number" ng-model="mobileAlt" value="{{mobileAlt}}">
+            <input type="number" ng-model="trainingPartner.alternateMobileNumber" value="{{mobileAlt}}">
         </div>
     </div>
 
@@ -59,7 +59,7 @@
     <div class="field6">
         <div class="col-md-6">Landline No.</div>
         <div class="col-md-6">
-            <input type="number" ng-model="landline" value="{{landline}}" required>
+            <input type="number" ng-model="trainingPartner.landlineNumber" value="{{landline}}" required>
         </div>
     </div>
 
@@ -67,7 +67,7 @@
     <div class="field7">
         <div class="col-md-6">Alternative landline no.</div>
         <div class="col-md-6">
-            <input type="number" ng-model="landlineAlt" value="{{landlineAlt}}">
+            <input type="number" ng-model="trainingPartner.alternateLandlineNumber" value="{{landlineAlt}}">
         </div>
     </div>
 
@@ -75,7 +75,7 @@
     <div class="field8">
         <div class="col-md-6">Fax</div>
         <div class="col-md-6">
-            <input type="number" ng-model="fax" value="{{fax}}" required>
+            <input type="number" ng-model="trainingPartner.faxNumber" value="{{fax}}" required>
         </div>
     </div>
 
@@ -83,7 +83,7 @@
     <div class="field9">
         <div class="col-md-6">Website</div>
         <div class="col-md-6">
-            <input type="url" ng-model="website" value="{{website}}" required>
+            <input type="url" ng-model="trainingPartner.websites" value="{{website}}" required>
         </div>
     </div>
 
