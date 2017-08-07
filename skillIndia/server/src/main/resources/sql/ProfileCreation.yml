@@ -1,6 +1,6 @@
 ProfileCreation:
  getTrainingPartnerDataByUserId: >
-   select * from tp 
+   select * from TrainingPartnerOrganizationDetails 
     where userId=:userId
  
  getTrainingPartnerDataByUserIdFronUser: >
@@ -8,20 +8,26 @@ ProfileCreation:
      where userId=:userId
  
  checkuserIdExistenceInTrainingPartnerRegistration: >
-   select exists(select * from tp where userId=:userId) 
+   select exists(select * from TrainingPartnerOrganizationDetails where userId=:userId) 
    
    
    
  insertDataInApplication: >
-   insert into application(applicationState,userId,activeFlag,date)
-     values(:applicationState,:userId,:activeFlag,:date)   
+   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
+     values(:applicationState,:activeFlag,:dateOfSubmission,:userId) 
+     
+     
+ updateDataInApplication: >
+   update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
+    where userId=:userId      
      
  insertDataInTrainingPartnerRegistration: >
-   insert into tp values(:organizationName,:SPOCName,:address,:city,:state,:pincode,:mobileNumber,:landlineNumber,:faxNumber,:website,:userId)
+   insert into TrainingPartnerOrganizationDetails(applicationId,organizationName,sPOCName,address,city,state,pincode,mobileNumber,alternateMobileNumber,landlineNumber,alternateLandlineNumber,faxNumber,websites,userId) 
+    values(:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:userId)
    
  updateDataInTrainingPartnerRegistration: >
-   update tp set
-     organisationName=:organizationName,SPOCName=:SPOCName,address=:address,city=:city,state=:state,pincode=:pincode,mobileNumber=:mobileNumber,landlineNumber=:landlineNumber,faxNumber=:faxNumber,website=:website,userId=:userId
+   update TrainingPartnerOrganizationDetails set
+     organizationName=:organizationName,sPOCName=:sPOCName,address=:address,city=:city,state=:state,pincode=:pincode,mobileNumber=:mobileNumber,alternateMobileNumber=:alternateMobileNumber,landlineNumber=:landlineNumber,alternateLandlineNumber=:alternateLandlineNumber,faxNumber=:faxNumber,websites=:websites
        where userId=:userId
         
     
