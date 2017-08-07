@@ -19,7 +19,25 @@ public class ProfileCreationConfigSql {
 	private String updateDataInTrainingPartnerRegistration;
 	
 	
+	private String updateDataInApplication;
 	
+	
+	
+	
+	/**
+	 * @return the updateDataInApplication
+	 */
+	public String getUpdateDataInApplication() {
+		return updateDataInApplication;
+	}
+
+	/**
+	 * @param updateDataInApplication the updateDataInApplication to set
+	 */
+	public void setUpdateDataInApplication(String updateDataInApplication) {
+		this.updateDataInApplication = updateDataInApplication;
+	}
+
 	/**
 	 * @return the updateDataInTrainingPartnerRegistration
 	 */
