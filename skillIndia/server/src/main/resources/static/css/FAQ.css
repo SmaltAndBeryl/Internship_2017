@@ -17,12 +17,12 @@
 	}
         
 .FAQs {
-  height: 20px;
+/*   height: 20px; */
   padding: 1em;
   font-size: 24px;
   font-weight:500;
-  line-height: 1.58;
-  text-align: left;
+/*   line-height: 1.58; */
+/*   text-align: left; */
   color: #000000;
 }
    

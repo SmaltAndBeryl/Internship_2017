@@ -5,20 +5,22 @@
   padding:1em;
 	}
 .batchAssignment{
-  width: 250px;
+/*   width: 250px; */
   height: 24px;
-  margin-left: 27px;
-  padding-top: 33px;
-  padding-bottom: 35px;
+  margin-bottom: 0.5em;
+  margin-top: 0.6em;
+/*   padding-top: 33px; */
+/*   padding-bottom: 35px; */
   font-size: 20px;
-  line-height: 1.58;
-  text-align: left;
+/*   line-height: 1.58; */
+/*   text-align: left; */
   color: #676a6c;
   
   }
   .grid-heading-text{
   color: #676a6c;
-  font-size:1em;
+  font-size:14px;
+  font-weight:600;
   padding:0.5em; 
   }
 .nonAssignedBatchTableWrap{
@@ -26,9 +28,9 @@
   height: auto;
 /*   margin-left: 21px; */
   margin-bottom: 1em;
-  padding: 1em;
+/*   padding: 1em; */
   background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  padding:1em;
   }
 .searchBatchWrap{
 	width: 100%;
@@ -37,7 +39,7 @@
   margin-bottom: 1em;
   padding:1em;
   background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  
   }
 .proposedWrap{
 	width: 100%;
@@ -46,7 +48,7 @@
   margin-bottom: 1em;
   padding: 1em;
   background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  
   }
   .approvedWrap{
 	width: 100%;
@@ -55,7 +57,7 @@
   margin-bottom: 1em;
   padding: 1em;
   background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  
   }
   .rejectedWrap{
 	width: 100%;
@@ -64,7 +66,7 @@
   margin-bottom: 1em;
   padding: 1em;
   background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  
   }
 .nonAssignedBatchesGrid {
   width: 100%;
@@ -75,7 +77,7 @@
   width: 100%;
   height: 70px !important;
 /*   margin-left: 21px; */
-/*   margin-top: 20px; */
+  margin-top: 0.5em;
 }
 .proposedBatchesGrid {
   width: 100%;
@@ -94,14 +96,11 @@
 /*   margin-left: 21px; */
 }
 .searchBatchId {
-  height: 12px;
-  font-family: OpenSans;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight:600;
   text-align: left;
   color: #676a6c;
-  color: var(--slate-grey);
-/*   margin-left: 50px; */
-  padding-bottom: 10px;
+  /*   margin-left: 50px; */
 }
 *{
   font-family: 'Open Sans', sans-serif;
@@ -109,10 +108,11 @@
 }
 .searchButton{
     font-size:10pt;
-    width:76px; 
-    height:34px;
+    width:6em; 
+    height:2em;
     color:white;
     background-color:#1ab394;
-    border:0px solid #336600;
+    border:0px solid #1ab394;
+    border-radius:0.2em;
     padding:4px;
 }

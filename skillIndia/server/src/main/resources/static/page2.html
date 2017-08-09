@@ -1,4 +1,3 @@
-
 <div class="table" ng-controller="page2">
     <h3 class="manage">Manage Registration</h3>
     <div class="table-wrap">
@@ -9,23 +8,23 @@
         </div>
     </div>
 
-    <div class="table1">
-        <h4 class="table2-wrap"> Approved Applications </h4>
+    <div class="table-wrap">
+        <h4 class="title"> Approved Applications </h4>
         <div>
             <div  ui-grid="gridOptionsApproved" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
     </div>
     <div ng-show="messagealert" ng-model="message" ng-controller="page2">{{message}}</div>
-    <div class="table1">
-        <h4 class="table2-wrap"> Rejected Applications </h4>
+    <div class="table-wrap">
+        <h4 class="title"> Rejected Applications </h4>
         <div>
             <div ui-grid="gridOptionsRejected" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
     </div>
     <div ng-show="messagealert" ng-model="message" ng-controller="page2">{{message}}</div>
 
-    <div class="table1">
-        <h4 class="table2-wrap"> Incomplete Applications</h4>
+    <div class="table-wrap">
+        <h4 class="title"> Incomplete Applications</h4>
         <div ng-controller="page2">
             <div ui-grid="gridOptionsIncomplete" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>

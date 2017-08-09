@@ -204,11 +204,6 @@ page5.controller('page5', function($scope, $http, $log, $location) {
         verticalScrollbar: 0,
 
         columnDefs: [
-
-            {
-                name: '#',
-                displayName: '#'
-            },
             {
                 name: 'batchId',
                 displayName: 'Batch id',
@@ -444,8 +439,26 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                     }
                 })
                 .then(function(response) {
-                    alert("Your response has been recorded..!")
+                    alert("Agency Id has been proposed")
                     console.log("Status changed to proposed.! " + btc)
+                    
+                    //refresh non- assigned batches table
+                    $http.get('/non')
+                    .then(function(response) {
+                        console.log("Get successful" + response.data)
+                        $scope.gridOptions.data = response.data;
+                    });
+                    
+                    //refresh proposed batches table
+                    $http.get('/getProposedBatchesBatchAssignment')
+                    .then(function(response) {
+                        console.log("get successful");
+                        $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
+                    });
+                },
+                function()
+                {
+                	alert("Error in proposing agency");
                 })
 
 

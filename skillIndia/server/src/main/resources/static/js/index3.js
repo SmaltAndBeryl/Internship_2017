@@ -67,15 +67,15 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                    }]
                    })
                     .then(function(response){
-                        alert("get Successful " + spock);
+//                        alert("get Successful " + spock);
                         $rootScope.spockName = spock ;
                     });
-                console.log("Backend value " + response + "String Format " + JSON.stringify(response.data.authorities[0].authority));
+//                console.log("Backend value " + response + "String Format " + JSON.stringify(response.data.authorities[0].authority));
                 $rootScope.authenticated = true;
                 $rootScope.type = JSON.stringify(response.data.authorities[0].authority);
-                console.log("USER role is " + $rootScope.type);
+//                console.log("USER role is " + $rootScope.type);
             } else {
-                console.log("Backend value " + response);
+//                console.log("Backend value " + response);
                 $rootScope.authenticated = false;
             }
             callback && callback($rootScope.authenticated);

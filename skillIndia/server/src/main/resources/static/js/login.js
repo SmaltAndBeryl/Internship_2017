@@ -14,8 +14,7 @@ window.onload = function(){
 	    this.className += ' '+open;
 	  }
 	}
-	
-	/////
+	//to toggle to login form
 	$('#login-form-link').click(function(e) {
 		$("#login-form").delay(100).fadeIn(100);
  		$("#register-form").fadeOut(100);
@@ -26,6 +25,7 @@ window.onload = function(){
 
 	});
 	
+	// to toggle to registration form
 	$('#register-form-link').click(function(e) {
 		$("#register-form").delay(100).fadeIn(100);
  		$("#login-form").fadeOut(100);
