@@ -440,7 +440,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 })
                 .then(function(response) {
                     alert("Agency Id has been proposed")
-                    console.log("Status changed to proposed.! " + btc)
+                    console.log("Status changed to proposed.! " + response.data)
                     
                     //refresh non- assigned batches table
                     $http.get('/non')
