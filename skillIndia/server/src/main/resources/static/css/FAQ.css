@@ -106,6 +106,9 @@
 	border-color: #26b4ce;
 	background-color:#26b4ce;
 }
+div .pannel-group{
+	padding-right:1em;
+}
 .ui-grid, .ui-grid-viewport {
     height: auto !important;
 }
