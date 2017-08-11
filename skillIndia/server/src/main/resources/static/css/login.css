@@ -3,6 +3,13 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
+.errorMessageLoginPage
+{
+	display: inline;
+    color: red;
+    padding-left: 1em;
+    font-size: larger;
+}
 
 .panel-login {
     border-color: #ccc;

@@ -77,10 +77,14 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
             } else {
 //                console.log("Backend value " + response);
                 $rootScope.authenticated = false;
+                
+                
             }
             callback && callback($rootScope.authenticated);
         }, function() {
             $rootScope.authenticated = false;
+            console.log("I AM HERE");
+            $rootScope.errorMessagesForLoggingIn = 'Invalid UserName/Password';
             callback && callback(false);
         });
 
@@ -147,7 +151,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 
 
             } else {
-                console.log("Login failed")
+                console.log("Login failed");
                 $location.path("/login");
                 self.error = true;
                 $rootScope.authenticated = false;
