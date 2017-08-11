@@ -190,11 +190,23 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 method: "POST",
                 params: {
                     batchId: withdraw,
-                    responseType:'withdraw'
                 }
             })
             .then(function(response) {
-                console.log("Status changed to Default! " + btc)
+                console.log("Successfully withdrawn proposal")
+                //refresh non assigned batches table
+                $http.get('/non')
+                .then(function(response) {
+                    console.log("Get successful" + response.data)
+                    $scope.gridOptions.data = response.data;
+                });
+                
+                //refresh proposed table
+                $http.get('/getProposedBatchesBatchAssignment')
+                .then(function(response) {
+                    console.log("get successful");
+                    $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
+                });
             });
     }
 
@@ -450,7 +462,20 @@ console.log("Inside propose function");
                     alert("Agency Id has been proposed")
                     console.log("Status changed to proposed.! " + response.data)
                     
-                    //refresh non- assigned batches table
+                    //refresh proposed batches table
+                    $http.get('/getProposedBatchesBatchAssignment')
+                    .then(function(response) {
+                        console.log("get successful");
+                        $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
+                    });
+                    
+                    //refresh non-assigned batches table
+                    $http.get('/non')
+                    .then(function(response) {
+                        console.log("Get successful" + response.data)
+                        $scope.gridOptions.data = response.data;
+                    });
+
                 },
                 function()
                 {
@@ -458,17 +483,18 @@ console.log("Inside propose function");
                 })
 
 
-            $http({
-                url: "/agencyUpdate",
-                method: "POST",
-                params: {
-                    agencyId: agencyId,
-                    batchId: batchIdFromRow
-                }
-            }).then(function(response) {
-                alert("Agency Updated");
-                console.log("Success in agency update");
-            })
+//            $http({
+//                url: "/agencyUpdate",
+//                method: "POST",
+//                params: {
+//                    agencyId: selectedAgencyId,
+//                    batchId: batchIdFromRow,
+//                    responseType:'proposed'
+//                }
+//            }).then(function(response) {
+//                alert("Agency Updated");
+//                console.log("Success in agency update");
+//            })
         }
     };
 });

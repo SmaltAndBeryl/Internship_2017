@@ -11,7 +11,7 @@ nonAssignedBatches:
   UPDATE batchassignment SET responseType=:responseType, agencyId= :agencyId
    WHERE batchId = :batchId;
   
-  insertSqlNonAssignedBatches: >
+ insertSqlNonAssignedBatches: >
    INSERT into batchassignment (batchId,agencyId,responseType)
     values (:batchId, :agencyId,:responseType);
 

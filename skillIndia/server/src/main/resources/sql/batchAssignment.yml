@@ -15,5 +15,5 @@ batchAssignment:
   where A.responseType="rejected" and B.centreId = C.centreId and A.batchId = B.batchId and A.agencyId = D.agencyId;
   
  updateSqlBatchAssignment: >
-  UPDATE batchassignment SET responseType="default"
+  UPDATE batchassignment SET responseType='withdraw'
    WHERE batchId = :batchId;
