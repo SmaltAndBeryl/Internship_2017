@@ -101,7 +101,7 @@
 
                                 <!-- LOGIN FORM -->
 
-                                <form role="form" style="display: block;" data-toggle="validator" ng-submit="nav.login()">
+                                <form role="form" style="display: block;" data-toggle="validator" ng-submit="nav.login()" id="login-form">
                                     <div class="form-group input-group">
                                         <div>
                                             <input type="email" pattern="[a-zA-Z0-9-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value=" " ng-model="nav.credentials.username" />
@@ -137,7 +137,7 @@
 
                                 <!-- SIGN UP FORM -->
 
-                                <form role="form" style="display: none;" data-toggle="validator">
+                                <form role="form" style="display: none;" data-toggle="validator" id="register-form">
                                     <div class="form-group col-xs-6">
                                         <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="newUser.organizationName" />
                                     </div>

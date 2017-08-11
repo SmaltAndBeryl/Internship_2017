@@ -3,6 +3,10 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
+.login-row{
+	margin-left:0px;
+	margin-right:0px;
+}
 .errorMessageLoginPage
 {
 	display: inline;
