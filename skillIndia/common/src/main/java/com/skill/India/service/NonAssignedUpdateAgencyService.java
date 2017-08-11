@@ -12,7 +12,7 @@ public class NonAssignedUpdateAgencyService {
     @Autowired
     private NonAssignedUpdateAgencyDao nonAssignedUpdateAgencyDao;
 
-    public int putAgencyId(String agencyId, String batchId){
-        return nonAssignedUpdateAgencyDao.putAgencyId(agencyId, batchId);
+    public int putAgencyId(String agencyId, String batchId, String responseType){
+        return nonAssignedUpdateAgencyDao.putAgencyId(agencyId, batchId, responseType);
     }
 }

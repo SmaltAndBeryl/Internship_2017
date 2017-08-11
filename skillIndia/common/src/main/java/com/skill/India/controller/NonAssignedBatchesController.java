@@ -42,8 +42,8 @@ public class NonAssignedBatchesController {
     
     @Privilege(value={"SCGJ"})
     @RequestMapping(method = RequestMethod.POST, value = "/nonUpdate")
-    public int nonAssignedBatchesUpdate(@RequestParam("batchId") String batchId) {
-        return nonAssignedBatchesUpdateService.putUpdateBatches(batchId);
+    public int nonAssignedBatchesUpdate(@RequestParam("batchId") String batchId, @RequestParam("agencyId") String agencyId,  @RequestParam("responseType") String responseType) {
+        return nonAssignedBatchesUpdateService.putUpdateBatches(batchId, agencyId,responseType);
     }
     
     
@@ -53,8 +53,8 @@ public class NonAssignedBatchesController {
     
     @Privilege(value={"SCGJ"})
     @RequestMapping(method = RequestMethod.POST, value = "/agencyUpdate")
-    public int agencyUpdate(@RequestParam("agencyId") String agencyId, @RequestParam String batchId){
-        return nonAssignedUpdateAgencyService.putAgencyId(agencyId, batchId);
+    public int agencyUpdate(@RequestParam("agencyId") String agencyId, @RequestParam String batchId,@RequestParam("responseType") String responseType){
+        return nonAssignedUpdateAgencyService.putAgencyId(agencyId, batchId, responseType);
     }
     
 }

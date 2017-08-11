@@ -15,10 +15,11 @@ import java.util.Map;
 public class NonAssignedUpdateAgencyDao extends AbstractTransactionalDao{
     @Autowired
     public NonAssignedBatchesConfigSql configSql;
-    public int putAgencyId(String agencyId, String batchId){
+    public int putAgencyId(String agencyId, String batchId, String responseType){
         Map<String,Object> parameters = new HashMap<>();
         parameters.put("agencyId", agencyId);
         parameters.put("batchId", batchId);
+        parameters.put("responseType", responseType);
         return getJdbcTemplate().update(configSql.getUpdateSqlProposeAgency(), parameters);
     }
 }
