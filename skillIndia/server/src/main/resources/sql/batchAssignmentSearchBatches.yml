@@ -1,6 +1,7 @@
 batchAssignmentSearch:
  selectSqlInformationOfTheBatchId: > 
-  select distinct 
-   batch.batchId,centre.state,batch.batchEndDate,batch.assessmentDate,agency.agencyName from
-    batch,centre,agency where centre.centreId=batch.centreId and  
-     batch.agencyId=agency.agencyId and batch.batchId =:batchId;   
+  Select * 
+   from batch as B 
+    LEFT OUTER JOIN agency as A on B.agencyId=A.agencyId 
+     LEFT OUTER JOIN centre as C on B.centreId=C.centreId 
+      Where batchId=:batchId; 

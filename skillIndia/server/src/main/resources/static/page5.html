@@ -25,6 +25,7 @@
                     <label class="searchBatchId">Search Batch ID</label>
                     <input type="text" class="searchBox" placeholder="Enter Batch ID" required name='searchText' ng-model="batchAssignmentSearch"/>
                     <input type="button" class="searchButton"  value="Search" ng-click="getDataOfBatch()"/>
+                    <div class="errorResponseForBatchNotFound">{{errorMessageForSearchBatchAssignment}}</div>
                     <div ui-grid="searchGridOptions" class="searchBatchGrid"></div>
                 </div>
             </div>

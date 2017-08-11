@@ -117,3 +117,12 @@
     border-radius:0.2em;
     padding:4px;
 }
+
+
+.errorResponseForBatchNotFound
+{
+	display: inline;
+    color: red;
+    padding-left: 1em;
+    font-size: larger;
+}

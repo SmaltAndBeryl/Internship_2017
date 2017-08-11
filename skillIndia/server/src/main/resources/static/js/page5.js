@@ -248,7 +248,18 @@ page5.controller('page5', function($scope, $http, $log, $location) {
         $http.post('/getInformationOfTheBatchId?batchId=' + $scope.batchAssignmentSearch)
             .then(function(response) {
                 console.log("inside request method");
-                $scope.searchGridOptions.data = response.data;
+                console.log(response.data);
+                if(response.data[0] == null)
+                	{
+                	$scope.searchGridOptions.data = response.data;
+                	$scope.errorMessageForSearchBatchAssignment="No Record Found";
+                	}
+                else
+                	{
+                	$scope.searchGridOptions.data = response.data;
+                	$scope.errorMessageForSearchBatchAssignment="";
+                	}
+                	
             });
     };
 
