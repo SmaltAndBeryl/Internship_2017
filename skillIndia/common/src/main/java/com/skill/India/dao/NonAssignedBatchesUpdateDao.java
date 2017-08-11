@@ -58,6 +58,8 @@ public class NonAssignedBatchesUpdateDao extends AbstractTransactionalDao{
         parameters.put("batchId", batchId);
         parameters.put("agencyId",agencyId);
         parameters.put("responseType", responseType);
+        LOGGER.info("Inserting value in batch assignment table is" + parameters.toString());
+        LOGGER.info("The SQL formed is " + batchesConfigSql.getInsertSqlNonAssignedBatches());
         return getJdbcTemplate().update(batchesConfigSql.getInsertSqlNonAssignedBatches(),parameters);
     }
 }
