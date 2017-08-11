@@ -1,0 +1,290 @@
+
+TASK 1: 
+Get Data From Database
+
+select * from TrainingPartnerOrganizationDetails where applicationId=:applicationId;
+select * from TrainingPartnerCenterLevelDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+select * from TrainingPartnerInstituteGrant where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+select * from TrainingPartnerInstituteRecognition where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+select * from TrainingPartnerPriorExperienceInSkillTraining where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+select * from TrainingPartnerManagementAndStaffAndOfficialsDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+select * from AssessmentBodyAffiliationDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+
+
+
+select * from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
+select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+select * from AssessmentBodyDirectorsAndManagementTeamDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+select * from AssessmentStaffDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+select * from AssessmentBodyRegionalOfficeDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+
+
+
+TASK 2 : 
+Insert Queries
+
+INSERT INTO `scgj`.`trainingpartnerorganizationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `qualificationPacks`, `qualificationPacksAnnexurePath`, `nSDCFunded`, `nSDCFundedCertificatePath`, `mediumOfInstructions`, `selfOwnedInstitution`, `selfOwnedInstitutionAnnexurePath`, `franchiseOwnedInstitution`, `franchiseOwnedInstitutionAnnexurePath`, `mobileTrainingInstitution`, `mobileTrainingInstitutionAnnexurePath`, `panNumber`, `panNumberPath`, `tanNumber`, `tanNumberPath`, `turnOverOfInstitution`, `turnOverOfInstitutionBalanceSheetPath`, `instituteReceivedAnyGrant`, `instituteReceivedAnyRecognition`, `priorExperienceOfInstitutionInSkillDevelopment`, `anyPriorExperienceOfInstitutionInSkillTraining`, `trainingStaffDetailsAnnexurePath`) VALUES (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:qualificationPacks,:qualificationPacksAnnexurePath,:nSDCFunded,:nSDCFundedCertificatePath,:mediumOfInstructions,:selfOwnedInstitution,:selfOwnedInstitutionAnnexurePath,:franchiseOwnedInstitution,:franchiseOwnedInstitutionAnnexurePath,:mobileTrainingInstitution,:mobileTrainingInstitutionAnnexurePath,:panNumber,:panNumberPath,:tanNumber,:tanNumberPath,:turnOverOfInstitution,:turnOverOfInstitutionBalanceSheetPath,:instituteReceivedAnyGrant,:instituteReceivedAnyRecognition,:priorExperienceOfInstitutionInSkillDevelopment,:anyPriorExperienceOfInstitutionInSkillTraining,:trainingStaffDetailsAnnexurePath);
+
+
+
+
+INSERT INTO `scgj`.`trainingpartnercenterleveldetails` (`trainingPartnerRegistrationId`, `nameOfCenter`, `numberOfPermanentOfficeManager`, `numberOftemporaryOfficeManager`, `numberOfPermanentOfficeStaff`, `numberOfTemporaryOfficeStaff`, `numberOfPermanentLabAssistants`, `numberOfTemporaryLabAssistants`, `numberOfPermanentAccountants`, `numberOfTemporaryAccountants`, `numberOfPermanentSupportStaff`, `numberOfTemporarySupportStaff`, `numberOfPermanentOtherEmployees`, `numberOfTemporaryOtherEmployees`, `areaOfInstitute`, `buildingType`, `sizeOfClassrooms`, `classroomPicsPath`, `numberOfClassrooms`, `sizeOfLabs`, `labPicsPath`, `numberOfLabs`, `sizeOfWorkshops`, `workshopPicsPath`, `numberOfWorkshops`, `mandatoryToolKitpresent`, `mandatoryToolKitAnnexurePath`, `mandatoryToolKitPicsPath`, `safeDrinkingWater`, `powerBackup`, `separateToilets`, `transportFacility`, `presenceOfLibrary`, `numberOfTechnicalBooks`, `numberOfNonTechnicalBooks`, `numberOfMagazines`, `numberOfDailies`, `remarksOnInfrastructureDetails`, `sufficientClassroomIlluminationLevel`, `sufficientClassroomVentilationLevel`, `sufficientCenterCleanliness`, `centerWeatherProtected`, `remarksOnLearningEnviornment`, `printedBrochureOrProspectus`, `documentedPolicyAndProcedures`, `concessionPolicy`, `safeCustodyOfStudentDocuments`, `studentAgreementWithInstitution`, `remarksOnStudentAdmissionDetails`) VALUES(:trainingPartnerRegistrationId,:nameOfCenter,:numberOfPermanentOfficeManager,:numberOftemporaryOfficeManager,:numberOfPermanentOfficeStaff,:numberOfTemporaryOfficeStaff,:numberOfPermanentLabAssistants,:numberOfTemporaryLabAssistants,:numberOfPermanentAccountants,:numberOfTemporaryAccountants,:numberOfPermanentSupportStaff,:numberOfTemporarySupportStaff,:numberOfPermanentOtherEmployees,:numberOfTemporaryOtherEmployees,:areaOfInstitute,:buildingType,:sizeOfClassrooms,:classroomPicsPath,:numberOfClassrooms,:sizeOfLabs,:labPicsPath,:numberOfLabs,:sizeOfWorkshops,:workshopPicsPath, :numberOfWorkshops,:mandatoryToolKitpresent,:mandatoryToolKitAnnexurePath,:mandatoryToolKitPicsPath,:safeDrinkingWater,:powerBackup,:separateToilets,:transportFacility,:presenceOfLibrary,:numberOfTechnicalBooks,:numberOfNonTechnicalBooks,:numberOfMagazines,:numberOfDailies,:remarksOnInfrastructureDetails,:sufficientClassroomIlluminationLevel,:sufficientClassroomVentilationLevel,:sufficientCenterCleanliness,:centerWeatherProtected,:remarksOnLearningEnviornment,:printedBrochureOrProspectus,:documentedPolicyAndProcedures,:concessionPolicy,:safeCustodyOfStudentDocuments,:studentAgreementWithInstitution,:remarksOnStudentAdmissionDetails);
+
+
+
+
+INSERT INTO `scgj`.`trainingpartnerinstitutegrant` (`trainingPartnerRegistrationId`, `nameOfMinistry`, `natureOfWork`, `remarks`) VALUES (:trainingPartnerRegistrationId,:nameOfMinistry,:natureOfWork,:remarks);
+
+
+
+INSERT INTO `scgj`.`trainingpartnerinstituterecognition` (`trainingPartnerRegistrationId`, `nameOfRecognizingBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`) VALUES (:trainingPartnerRegistrationId,:nameOfRecognizingBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition);
+
+
+
+INSERT INTO `scgj`.`trainingpartnerpriorexperienceinskilltraining` (`trainingPartnerRegistrationId`, `courseName`, `numberOfBatchesPerYear`, `numberOfStudentsInEachBatch`) VALUES (:trainingPartnerRegistrationId,:courseName,:numberOfBatchesPerYear,:numberOfStudentsInEachBatch);
+
+
+
+INSERT INTO `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` (`trainingPartnerRegistrationId`, `trainingPartnerCenterId`, `type`, `name`, `designation`, `emailId`, `contactNumber`, `educationalQualification`, `regularOrVisiting`, `experience`, `cVPath`, `certificatePath`) VALUES (:trainingPartnerRegistrationId,:trainingPartnerCenterId,:type,:name,:designation,:emailId,:contactNumber,:educationalQualification,:regularOrVisiting,:experience,:cVPath,:certificatePath);
+
+
+
+
+INSERT INTO `scgj`.`assessmentbodyregistrationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `priorAssessmentExperience`, `panNumber`, `panNumberPath`, `tanNumber`, `tanNumberPath`, `insituteReceivedAnyRecognition`, `numberOfTechnicalAssessors`, `numberOfNonTechnicalAssessors`, `affiliatedToAnySectorSkillCouncil`) VALUES 
+(:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:priorAssessmentExperience,:panNumber,:panNumberPath,:tanNumber,:tanNumberPath,:insituteReceivedAnyRecognition,:numberOfTechnicalAssessors,:numberOfNonTechnicalAssessors,:affiliatedToAnySectorSkillCouncil);
+
+
+
+INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `NameOfRecognitionBody`, `RecognitionNumber`, `yearOfRecognition`, `validityOfRecognition`) VALUES (:assessmentBodyRegistrationId,:NameOfRecognitionBody,:RecognitionNumber,:yearOfRecognition,:validityOfRecognition);
+
+
+
+INSERT INTO `scgj`.`assessmentsexperienceintechnicaldomain` (`assessmentBodyRegistrationId`, `domain`, `numberOfAssessmentsDone`) VALUES (:assessmentBodyRegistrationId,:domain,:numberOfAssessmentsDone);
+
+
+
+INSERT INTO `scgj`.`assessmentbodydirectorsandmanagementteamdetails` (`assessmentBodyRegistrationId`, `name`, `designation`, `contactNumber`, `emailId`, `educationalQualification`, `experience`, `cVPath`) VALUES (:assessmentBodyRegistrationId,:name,:designation,:contactNumber,:emailId,:educationalQualification,:experience,:cVPath);
+
+
+
+INSERT INTO `scgj`.`assessmentstaffdetails` (`assessmentBodyRegistrationId`, `name`, `jobRoleCode`, `designation`, `contactNumber`, `emailId`, `state`, `district`, `educationalQualification`, `experience`, `cVPath`, `certificatePath`) VALUES(:assessmentBodyRegistrationId,:name,:jobRoleCode,:designation,:contactNumber,:emailId,:state,:district,:educationalQualification,:experience,:cVPath,:certificatePath);
+
+
+
+INSERT INTO `scgj`.`assessmentbodyregionalofficedetails` (`assessmentBodyRegistrationId`, `address`, `state`, `pincode`, `contactNumber`, `alternateContactNumber`) VALUES (:assessmentBodyRegistrationId,:address,:state,:pincode,:contactNumber,:alternateContactNumber);
+
+
+
+INSERT INTO `scgj`.`assessmentbodyaffiliationdetails` (`assessmentBodyRegistrationId`, `nameOfSectorSkillCouncil`) VALUES (:assessmentBodyRegistrationId,:nameOfSectorSkillCouncil);
+
+
+
+TASK -3
+Update Queries
+
+UPDATE `scgj`.`trainingpartnerorganizationdetails` SET `address`=:address,
+`city`=:city,
+`state`=:state, 
+`pincode`=:pincode, 
+`mobileNumber`=:mobileNumber, 
+`alternateMobileNumber`=:alternateMobileNumber, 
+`landlineNumber`=:landlineNumber, 
+`alternateLandlineNumber`=:alternateLandlineNumber, 
+`faxNumber`=:faxNumber, 
+`websites`=:websites, 
+`yearOfEstablishment`=:yearOfEstablishment, 
+`qualificationPacks`=:qualificationPacks, 
+`qualificationPacksAnnexurePath`=:qualificationPacksAnnexurePath, 
+`nSDCFunded`=:nSDCFunded, 
+`nSDCFundedCertificatePath`=:nSDCFundedCertificatePath, 
+`mediumOfInstructions`=:mediumOfInstructions, 
+`selfOwnedInstitution`=:selfOwnedInstitution, 
+`selfOwnedInstitutionAnnexurePath`=:selfOwnedInstitutionAnnexurePath, `franchiseOwnedInstitution`=:franchiseOwnedInstitution, `franchiseOwnedInstitutionAnnexurePath`=:franchiseOwnedInstitutionAnnexurePath, `mobileTrainingInstitution`=:mobileTrainingInstitution, `mobileTrainingInstitutionAnnexurePath`=:mobileTrainingInstitutionAnnexurePath, 
+`panNumber`=:panNumber, 
+`panNumberPath`=:panNumberPath, 
+`tanNumber`=:tanNumber, 
+`tanNumberPath`=:tanNumberPath, 
+`turnOverOfInstitution`=:turnOverOfInstitution,
+`turnOverOfInstitutionBalanceSheetPath`=:turnOverOfInstitutionBalanceSheetPath, `instituteReceivedAnyGrant`=:instituteReceivedAnyGrant, `instituteReceivedAnyRecognition`=:instituteReceivedAnyRecognition, `priorExperienceOfInstitutionInSkillDevelopment`=:priorExperienceOfInstitutionInSkillDevelopment, `anyPriorExperienceOfInstitutionInSkillTraining`=:anyPriorExperienceOfInstitutionInSkillTraining, `trainingStaffDetailsAnnexurePath`=:trainingStaffDetailsAnnexurePath 
+WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
+
+
+
+
+UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `nameOfCenter`=:nameOfCenter, `numberOfPermanentOfficeManager`=:numberOfPermanentOfficeManager,
+`numberOftemporaryOfficeManager`=:numberOftemporaryOfficeManager, 
+`numberOfPermanentOfficeStaff`=:numberOfPermanentOfficeStaff, 
+`numberOfTemporaryOfficeStaff`=:numberOfTemporaryOfficeStaff, 
+`numberOfTemporaryLabAssistants`=:numberOfTemporaryLabAssistants, 
+`numberOfPermanentAccountants`=:numberOfPermanentAccountants, 
+`numberOfTemporaryAccountants`=:numberOfTemporaryAccountants, 
+`numberOfPermanentSupportStaff`=:numberOfPermanentSupportStaff, 
+`numberOfTemporarySupportStaff`=:numberOfTemporarySupportStaff, 
+`numberOfPermanentOtherEmployees`=:numberOfPermanentOtherEmployees, 
+`numberOfTemporaryOtherEmployees`=:numberOfTemporaryOtherEmployees, 
+`areaOfInstitute`=:areaOfInstitute, 
+`buildingType`=:buildingType, 
+`sizeOfClassrooms`=:sizeOfClassrooms, 
+`classroomPicsPath`=:classroomPicsPath, 
+`numberOfClassrooms`=:numberOfClassrooms, 
+`sizeOfLabs`=:sizeOfLabs, 
+`labPicsPath`=:labPicsPath, 
+`numberOfLabs`=:numberOfLabs, 
+`sizeOfWorkshops`=:sizeOfWorkshops, 
+`workshopPicsPath`=:workshopPicsPath, 
+`numberOfWorkshops`=numberOfWorkshops,
+`mandatoryToolKitpresent`=:mandatoryToolKitpresent,
+`mandatoryToolKitAnnexurePath`=:mandatoryToolKitAnnexurePath, 
+`mandatoryToolKitPicsPath`=:mandatoryToolKitPicsPath, 
+`safeDrinkingWater`=:safeDrinkingWater, 
+`powerBackup`=:powerBackup, 
+`separateToilets`=:separateToilets, 
+`transportFacility`=:transportFacility, 
+`presenceOfLibrary`=:presenceOfLibrary, 
+`numberOfTechnicalBooks`=:numberOfTechnicalBooks, 
+`numberOfNonTechnicalBooks`=:numberOfNonTechnicalBooks, 
+`numberOfMagazines`=:numberOfMagazines, 
+`numberOfDailies`=:numberOfDailies, 
+`remarksOnInfrastructureDetails`=:remarksOnInfrastructureDetails, 
+`sufficientClassroomIlluminationLevel`=:sufficientClassroomIlluminationLevel, 
+`sufficientClassroomVentilationLevel`=:sufficientClassroomVentilationLevel, 
+`sufficientCenterCleanliness`=:sufficientCenterCleanliness, 
+`centerWeatherProtected`=:centerWeatherProtected, 
+`remarksOnLearningEnviornment`=:remarksOnLearningEnviornment, 
+`printedBrochureOrProspectus`=:printedBrochureOrProspectus, 
+`documentedPolicyAndProcedures`=:documentedPolicyAndProcedures, 
+`concessionPolicy`=:concessionPolicy, 
+`safeCustodyOfStudentDocuments`=:safeCustodyOfStudentDocuments, 
+`studentAgreementWithInstitution`=:studentAgreementWithInstitution, 
+`remarksOnStudentAdmissionDetails`=:remarksOnStudentAdmissionDetails 
+WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId;
+
+
+
+
+
+UPDATE `scgj`.`trainingpartnerinstitutegrant` SET `nameOfMinistry`=:nameOfMinistry,
+`natureOfWork`=:natureOfWork,
+`remarks`=:remarks 
+WHERE `instituteGrantId`=:instituteGrantId;
+
+
+
+UPDATE `scgj`.`trainingpartnerinstituterecognition` SET `nameOfRecognizingBody`=:nameOfRecognizingBody, `recognitionNumber`=:recognitionNumber, 
+`yearOfRecognition`=:yearOfRecognition, 
+`validityOfRecognition`=:validityOfRecognition 
+WHERE `instituteRecognitionId`=:instituteRecognitionId;
+
+
+
+
+UPDATE `scgj`.`trainingpartnerpriorexperienceinskilltraining` SET `courseName`=:courseName,
+`numberOfBatchesPerYear`=:numberOfBatchesPerYear,
+`numberOfStudentsInEachBatch`=:numberOfStudentsInEachBatch 
+WHERE `priorExperienceInSkillTrainingId`=:priorExperienceInSkillTrainingId;
+
+
+
+
+UPDATE `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` SET `type`=:type, 
+`name`=:name, 
+`designation`=:designation, 
+`emailId`=:emailId, 
+`contactNumber`=:contactNumber, 
+`educationalQualification`=:educationalQualification, 
+`regularOrVisiting`=:regularOrVisiting, 
+`experience`=:experience, 
+`cVPath`=:cVPath, 
+`certificatePath`=:certificatePath 
+WHERE `ManagementAndStaffId`=:
+ManagementAndStaffId
+;
+
+
+
+
+
+UPDATE `scgj`.`assessmentbodyregistrationdetails` SET `organizationName`=:organizationName, 
+`sPOCName`=:sPOCName, 
+`address`=:address, 
+`city`=:city, 
+`state`=:state, 
+`pincode`=:pincode, 
+`mobileNumber`=:mobileNumber, 
+`alternateMobileNumber`=:alternateMobileNumber, 
+`landlineNumber`=:landlineNumber,
+`alternateLandlineNumber`=:alternateLandlineNumber,
+`faxNumber`=:faxNumber,
+`websites`=:websites,
+`yearOfEstablishment`=:yearOfEstablishment,
+`priorAssessmentExperience`=:priorAssessmentExperience,
+`panNumber`=:panNumber,
+`panNumberPath`=:panNumberPath,
+`tanNumber`=:tanNumber,
+`tanNumberPath`=:tanNumberPath,
+`insituteReceivedAnyRecognition`=:insituteReceivedAnyRecognition, 
+`numberOfTechnicalAssessors`=:numberOfTechnicalAssessors,
+`numberOfNonTechnicalAssessors`=:numberOfNonTechnicalAssessors,
+`affiliatedToAnySectorSkillCouncil`=:affiliatedToAnySectorSkillCouncil 
+WHERE `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId;
+
+
+
+
+UPDATE `scgj`.`assessmentbodyrecognitions` SET `NameOfRecognitionBody`=:NameOfRecognitionBody, 
+`RecognitionNumber`=:RecognitionNumber, 
+`yearOfRecognition`=:yearOfRecognition, 
+`validityOfRecognition`=:validityOfRecognition
+WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId;
+
+
+
+UPDATE `scgj`.`assessmentsexperienceintechnicaldomain` SET `domain`=:domain, 
+`numberOfAssessmentsDone`=:numberOfAssessmentsDone
+WHERE `assessmentExperienceId`=:assessmentExperienceId;
+
+
+
+UPDATE `scgj`.`assessmentbodydirectorsandmanagementteamdetails` SET `name`=:name, 
+`designation`=:designation,
+`contactNumber`=:contactNumber,
+`emailId`=:emailId,
+`educationalQualification`=:educationalQualification,
+`experience`=:experience,
+`cVPath`=:cVPath
+WHERE `directorsAndManagementId`=:directorsAndManagementId;
+
+
+
+UPDATE `scgj`.`assessmentstaffdetails` SET `name`=:name, 
+`jobRoleCode`=:jobRoleCode, 
+`designation`=:designation, 
+`contactNumber`=:contactNumber, 
+`emailId`=:emailId, 
+`state`=:state,
+`district`=:district, 
+`educationalQualification`=:educationalQualification, 
+`experience`=:experience, 
+`cVPath`=:cVPath, 
+`certificatePath`=:certificatePath 
+WHERE `assessmentStaffId`=:assessmentStaffId;
+
+
+
+
+UPDATE `scgj`.`assessmentbodyregionalofficedetails` SET `address`=:address, 
+`state`=:state, 
+`pincode`=:pincode, 
+`contactNumber`=:contactNumber, 
+`alternateContactNumber`=:alternateContactNumber 
+WHERE `regionalOfficeId`=:regionalOfficeId;
+
+
+
+UPDATE `scgj`.`assessmentbodyaffiliationdetails` SET `nameOfSectorSkillCouncil`=:nameOfSectorSkillCouncil 
+WHERE `affiliationId`=:affiliationId;
+
+
+
+
