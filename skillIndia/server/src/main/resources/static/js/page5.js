@@ -3,7 +3,7 @@ var page5 = angular.module('hello');
 
 page5.controller('page5', function($scope, $http, $log, $location) {
     $scope.message = "Page loaded via angular module";
-    
+    var selectedvalue="";
 
 
     $scope.proposedBatchesBatchAssignmentGridOptions = {
@@ -430,7 +430,7 @@ console.log("Inside propose function");
         console.log("Batch and Agency ID are " + batchIdFromRow + " " + selectedAgencyId);
 
         // If assessment body is not set, do not update the DB
-        if (agencyId == 0) {
+        if (selectedAgencyId == 0) {
             alert("Please select an assessment body first...!!");
         } 
         else {
