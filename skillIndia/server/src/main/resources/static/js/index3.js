@@ -87,7 +87,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 
     }
 
-    authenticate();
+    //authenticate();
 
     self.credentials = {};
 

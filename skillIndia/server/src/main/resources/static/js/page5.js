@@ -3,6 +3,8 @@ var page5 = angular.module('hello');
 
 page5.controller('page5', function($scope, $http, $log, $location) {
     $scope.message = "Page loaded via angular module";
+    
+
 
     $scope.proposedBatchesBatchAssignmentGridOptions = {
         enableGridMenus: false,
@@ -176,7 +178,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
         alert("You have withdrawn the assignment");
 
         //Extract first cell value
-        var withdraw = Object.values(Object.values(rowData)[1])[0];
+        var withdraw = rowData.entity.batchId;
         console.log("Row Data is " + withdraw);
 
 
@@ -187,7 +189,8 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 url: urldata,
                 method: "POST",
                 params: {
-                    batchId: withdraw
+                    batchId: withdraw,
+                    responseType:'withdraw'
                 }
             })
             .then(function(response) {
@@ -408,26 +411,29 @@ page5.controller('page5', function($scope, $http, $log, $location) {
 
 
     var agencyId = 0;
+    
     //Get dropdown selected value from dropdown
     $scope.drop = function(selectedValue) {
+    	
         console.log("Selected value is " + selectedValue.agencyId);
-        agencyId = selectedValue.agencyId;
-        console.log("Select assignment successful" + agencyId)
+        selectedAgencyId = selectedValue.agencyId;
+        console.log("Select assignment successful" + selectedAgencyId)
     }
 
 
-    // Code to update the DB
+    // code to call method which proposes Assessment body
     $scope.pushFunction = function(rowData) {
-
+console.log("Inside propose function");
         var batchIdFromRow = rowData.entity.batchID;
         var agencyIdFromRow = 0;
-        console.log("Selected value is " + agencyId);
-        console.log("Batch and Agency ID are " + batchIdFromRow + " " + agencyId);
+        console.log("Selected value is " + selectedAgencyId);
+        console.log("Batch and Agency ID are " + batchIdFromRow + " " + selectedAgencyId);
 
         // If assessment body is not set, do not update the DB
         if (agencyId == 0) {
             alert("Please select an assessment body first...!!");
-        } else {
+        } 
+        else {
             //Code for batches update
             var urldata = "/nonUpdate";
 
@@ -435,7 +441,9 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                     url: urldata,
                     method: "POST",
                     params: {
-                        batchId: batchIdFromRow
+                        batchId: batchIdFromRow,
+                        agencyId: selectedAgencyId,
+                        responseType: 'proposed'
                     }
                 })
                 .then(function(response) {
@@ -443,18 +451,6 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                     console.log("Status changed to proposed.! " + response.data)
                     
                     //refresh non- assigned batches table
-                    $http.get('/non')
-                    .then(function(response) {
-                        console.log("Get successful" + response.data)
-                        $scope.gridOptions.data = response.data;
-                    });
-                    
-                    //refresh proposed batches table
-                    $http.get('/getProposedBatchesBatchAssignment')
-                    .then(function(response) {
-                        console.log("get successful");
-                        $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
-                    });
                 },
                 function()
                 {

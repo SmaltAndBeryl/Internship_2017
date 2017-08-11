@@ -4,8 +4,16 @@ nonAssignedBatches:
      FROM batch,centre WHERE batch.agencyId IS NULL AND batch.centreId=centre.centreId;
 
  updateSqlNonAssignedBatches: >
-  UPDATE batchassignment SET responseType="proposed"
+  UPDATE batchassignment SET responseType=:responseType, agencyId= :agencyId
    WHERE batchId = :batchId;
+  
+  insertSqlNonAssignedBatches: >
+   INSERT into batchassignment (batchId,agencyId,responseType)
+    values (:batchId, :agencyId,:responseType);
 
  updateSqlProposeAgency: >
-  UPDATE batch SET agencyId = :agencyId where batchId = :batchId;
+  UPDATE batch SET agencyId = :agencyId, responseType= :responseType where batchId = :batchId;
+  
+ checkBatchInBatchAssignment: >
+  SELECT EXISTS (SELECT * FROM batchassignment WHERE batchId= :batchId);
+  
