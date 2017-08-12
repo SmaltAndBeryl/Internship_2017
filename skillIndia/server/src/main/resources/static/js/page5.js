@@ -175,7 +175,6 @@ page5.controller('page5', function($scope, $http, $log, $location) {
         });
 
     $scope.withdrawFunction = function(rowData) {
-        alert("You have withdrawn the assignment");
 
         //Extract first cell value
         var withdraw = rowData.entity.batchId;
@@ -193,7 +192,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 }
             })
             .then(function(response) {
-                console.log("Successfully withdrawn proposal")
+                $scope.responseMessageForBatchWithdraw='Successfully withdrawn proposal';
                 //refresh non assigned batches table
                 $http.get('/non')
                 .then(function(response) {
@@ -208,6 +207,13 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                     $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
                 });
             });
+        
+        		//refresh approved batches
+        
+        $http.get('/getApprovedBatchesBatchAssignment')
+        .then(function(response) {
+            $scope.approvedBatchesBatchAssignmentGridOptions.data = response.data;
+        });
     }
 
 
@@ -470,7 +476,7 @@ console.log("Inside propose function");
                     }
                 })
                 .then(function(response) {
-                    alert("Agency Id has been proposed")
+                    $scope.responseMessagesForBatchesProposed = 'Agency Id has been proposed';
                     console.log("Status changed to proposed.! " + response.data)
                     
                     //refresh proposed batches table

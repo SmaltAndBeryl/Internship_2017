@@ -126,3 +126,26 @@
     padding-left: 1em;
     font-size: larger;
 }
+
+.responsesForBatchProposed
+{
+	display: inline;
+    color: #0A90A8;
+    padding-left: 20em;
+    font-size: medium;
+}
+
+.responsesForBatchWithdrawn
+{
+	display: inline;
+    color: #A6C118;
+    padding-left: 20em;
+    font-size: medium;
+}
+.responsesForBatchApproved
+{
+	display: inline;
+    color: #0A90A8;
+    padding-left: 20em;
+    font-size: medium;
+}

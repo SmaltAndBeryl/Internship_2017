@@ -11,7 +11,8 @@
 
         <!-- BatchAssignment-NonAssignedBatches -->
         <div class="nonAssignedBatchTableWrap">
-            <div class="grid-heading-text">Non-Assigned Batch(es)</div>
+            <div class="grid-heading-text">Non-Assigned Batch(es) <div class="responsesForBatchProposed">{{responseMessagesForBatchesProposed}}</div></div>
+            
             <div>
                 <div ui-grid="gridOptions" class="nonAssignedBatchesGrid"></div>
             </div>
@@ -34,7 +35,7 @@
 
         <!-- Proposed Batch(es) Table -->
         <div class="proposedWrap">
-            <div class="grid-heading-text">Proposed Batch(es)</div>
+            <div class="grid-heading-text">Proposed Batch(es)<div class="responsesForBatchWithdrawn">{{responseMessageForBatchWithdraw}}</div></div>
             <div>
                 <div ui-grid="proposedBatchesBatchAssignmentGridOptions" class="proposedBatchesGrid"></div>
             </div>
@@ -42,7 +43,7 @@
 
         <!-- Approved Batch(es) Table -->
         <div class="approvedWrap">
-            <div class="grid-heading-text">Approved Batch(es)</div>
+            <div class="grid-heading-text">Approved Batch(es)<div class="responsesForBatchApproved">{{responseMessageForBatchWithdraw}}</div></div>
             <div>
                 <div ui-grid="approvedBatchesBatchAssignmentGridOptions" class="approvedBatchesGrid"></div>
             </div>
