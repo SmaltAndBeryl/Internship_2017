@@ -53,7 +53,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 displayName: 'Withdraw',
                 cellClass: '',
                 headerCellClass: '',
-                cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunction(row)></label>'
+                cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunctionForProposedBatches(row)></label>'
             }
         ]
     };
@@ -112,7 +112,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 displayName: 'Withdraw',
                 cellClass: '',
                 headerCellClass: '',
-                cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunction(row)></label>'
+                cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunctionForApprovedBatches(row)></label>'
             }
         ]
     };
@@ -174,7 +174,9 @@ page5.controller('page5', function($scope, $http, $log, $location) {
             $scope.rejectedBatchesBatchAssignmentGridOptions.data = response.data;
         });
 
-    $scope.withdrawFunction = function(rowData) {
+    //function for withdrawing of Proposed Batches Table
+    
+    $scope.withdrawFunctionForProposedBatches = function(rowData) {
 
         //Extract first cell value
         var withdraw = rowData.entity.batchId;
@@ -192,7 +194,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 }
             })
             .then(function(response) {
-                $scope.responseMessageForBatchWithdraw='Successfully withdrawn proposal';
+                $scope.responseMessageForBatchWithdrawForProposedBatches='Successfully withdrawn proposal';
                 //refresh non assigned batches table
                 $http.get('/non')
                 .then(function(response) {
@@ -214,8 +216,52 @@ page5.controller('page5', function($scope, $http, $log, $location) {
         .then(function(response) {
             $scope.approvedBatchesBatchAssignmentGridOptions.data = response.data;
         });
-    }
+    };
+	
+    //function for withdrawing batches for Approved Batches Table
+    
+	$scope.withdrawFunctionForApprovedBatches = function(rowData) {
 
+        //Extract first cell value
+        var withdraw = rowData.entity.batchId;
+        console.log("Row Data is " + withdraw);
+
+
+        //Code for query update
+        var urldata = "/withdrawAssignment";
+
+        $http({
+                url: urldata,
+                method: "POST",
+                params: {
+                    batchId: withdraw,
+                }
+            })
+            .then(function(response) {
+                $scope.responseMessageForBatchWithdrawForApprovedBatches='Successfully withdrawn proposal';
+                //refresh non assigned batches table
+                $http.get('/non')
+                .then(function(response) {
+                    console.log("Get successful" + response.data)
+                    $scope.gridOptions.data = response.data;
+                });
+                
+                //refresh proposed table
+                $http.get('/getProposedBatchesBatchAssignment')
+                .then(function(response) {
+                    console.log("get successful");
+                    $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
+                });
+            });
+        
+        		//refresh approved batches
+        
+        $http.get('/getApprovedBatchesBatchAssignment')
+        .then(function(response) {
+            $scope.approvedBatchesBatchAssignmentGridOptions.data = response.data;
+        });
+    };
+	
 
 
     $scope.searchGridOptions = {
