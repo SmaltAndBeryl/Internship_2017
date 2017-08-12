@@ -43,6 +43,105 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	private String type;
 	
 	
+	
+	
+	
+	/**
+	 * @param organizationName
+	 * @param sPOCName
+	 * @param address
+	 * @param city
+	 * @param state
+	 * @param pincode
+	 * @param mobileNumber
+	 * @param alternateMobileNumber
+	 * @param landlineNumber
+	 * @param alternateLandlineNumber
+	 * @param faxNumber
+	 * @param websites
+	 * @param yearOfEstablishment
+	 * @param qualificationPacks
+	 * @param qualificationPacksAnnexurePath
+	 * @param nSDCFunded
+	 * @param nSDCFundedCertificatePath
+	 * @param mediumOfInstructions
+	 * @param selfOwnedInstitution
+	 * @param selfOwnedInstitutionAnnexurePath
+	 * @param franchiseOwnedInstitution
+	 * @param franchiseOwnedInstitutionAnnexurePath
+	 * @param mobileTrainingInstitution
+	 * @param mobileTrainingInstitutionAnnexurePath
+	 * @param panNumber
+	 * @param panNumberPath
+	 * @param tanNumber
+	 * @param tanNumberPath
+	 * @param turnOverOfInstitution
+	 * @param turnOverOfInstitutionBalanceSheetPath
+	 * @param instituteReceivedAnyGrant
+	 * @param instituteReceivedAnyRecognition
+	 * @param priorExperienceOfInstitutionInSkillDevelopment
+	 * @param anyPriorExperienceOfInstitutionInSkillTraining
+	 * @param trainingStaffDetailsAnnexurePath
+	 */
+	public ProfileCreationTrainingPartnerOrganizationDetailsDto(
+			String organizationName, String sPOCName, String address,
+			String city, String state, String pincode, String mobileNumber,
+			String alternateMobileNumber, String landlineNumber,
+			String alternateLandlineNumber, String faxNumber, String websites,
+			String yearOfEstablishment, String qualificationPacks,
+			String qualificationPacksAnnexurePath, String nSDCFunded,
+			String nSDCFundedCertificatePath, String mediumOfInstructions,
+			String selfOwnedInstitution,
+			String selfOwnedInstitutionAnnexurePath,
+			String franchiseOwnedInstitution,
+			String franchiseOwnedInstitutionAnnexurePath,
+			String mobileTrainingInstitution,
+			String mobileTrainingInstitutionAnnexurePath, String panNumber,
+			String panNumberPath, String tanNumber, String tanNumberPath,
+			String turnOverOfInstitution,
+			String turnOverOfInstitutionBalanceSheetPath,
+			String instituteReceivedAnyGrant,
+			String instituteReceivedAnyRecognition,
+			String priorExperienceOfInstitutionInSkillDevelopment,
+			String anyPriorExperienceOfInstitutionInSkillTraining,
+			String trainingStaffDetailsAnnexurePath) {
+		super();
+		this.organizationName = organizationName;
+		this.sPOCName = sPOCName;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.pincode = pincode;
+		this.mobileNumber = mobileNumber;
+		this.alternateMobileNumber = alternateMobileNumber;
+		this.landlineNumber = landlineNumber;
+		this.alternateLandlineNumber = alternateLandlineNumber;
+		this.faxNumber = faxNumber;
+		this.websites = websites;
+		this.yearOfEstablishment = yearOfEstablishment;
+		this.qualificationPacks = qualificationPacks;
+		this.qualificationPacksAnnexurePath = qualificationPacksAnnexurePath;
+		this.nSDCFunded = nSDCFunded;
+		this.nSDCFundedCertificatePath = nSDCFundedCertificatePath;
+		this.mediumOfInstructions = mediumOfInstructions;
+		this.selfOwnedInstitution = selfOwnedInstitution;
+		this.selfOwnedInstitutionAnnexurePath = selfOwnedInstitutionAnnexurePath;
+		this.franchiseOwnedInstitution = franchiseOwnedInstitution;
+		this.franchiseOwnedInstitutionAnnexurePath = franchiseOwnedInstitutionAnnexurePath;
+		this.mobileTrainingInstitution = mobileTrainingInstitution;
+		this.mobileTrainingInstitutionAnnexurePath = mobileTrainingInstitutionAnnexurePath;
+		this.panNumber = panNumber;
+		this.panNumberPath = panNumberPath;
+		this.tanNumber = tanNumber;
+		this.tanNumberPath = tanNumberPath;
+		this.turnOverOfInstitution = turnOverOfInstitution;
+		this.turnOverOfInstitutionBalanceSheetPath = turnOverOfInstitutionBalanceSheetPath;
+		this.instituteReceivedAnyGrant = instituteReceivedAnyGrant;
+		this.instituteReceivedAnyRecognition = instituteReceivedAnyRecognition;
+		this.priorExperienceOfInstitutionInSkillDevelopment = priorExperienceOfInstitutionInSkillDevelopment;
+		this.anyPriorExperienceOfInstitutionInSkillTraining = anyPriorExperienceOfInstitutionInSkillTraining;
+		this.trainingStaffDetailsAnnexurePath = trainingStaffDetailsAnnexurePath;
+	}
 	/**
 	 * 
 	 */
