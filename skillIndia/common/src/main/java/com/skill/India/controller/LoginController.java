@@ -1,24 +1,18 @@
 package com.skill.India.controller;
 
 import java.security.Principal;
-import java.util.Collection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.common.SessionUserUtility;
+import com.skill.India.dto.ApplicationDto;
 import com.skill.India.dto.LoginDto;
 import com.skill.India.dto.LoginReceiveDataDto;
 import com.skill.India.dto.SignUpInsertedUserDto;
@@ -75,7 +69,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/getApplicationState")
-	public String getApplicationState()  {
+	public ApplicationDto getApplicationState()  {
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
 		return getApplicationStateService.getApplicationStateService(userId) ; 

@@ -7,11 +7,11 @@ public class SignUpReceiveDataDto extends BaseDto {
 	private static final long serialVersionUID = 1L;
 	
 	
-	public String organizationName;
-	public String sPOCName;
-	public String userId;
-	public String mypassword;
-	public String userRole;
+	private String organizationName;
+	private String sPOCName;
+	private String userId;
+	private String password;
+	private String userRole;
 	/**
 	 * @return the organizationName
 	 */
@@ -38,27 +38,49 @@ public class SignUpReceiveDataDto extends BaseDto {
 		return userRole;
 	}
 	
+	
+
 	/**
-	 * @param organizationName
-	 * @param sPOCName
-	 * @param userId
-	 * @param password
-	 * @param userRole
+	 * @return the password
 	 */
-	public SignUpReceiveDataDto(String organizationName, String sPOCName,
-			String userId, String mypassword, String userRole) {
-		super();
-		this.organizationName = organizationName;
-		this.sPOCName = sPOCName;
-		this.userId = userId;
-		this.mypassword = mypassword;
-		this.userRole = userRole;
+	public String getPassword() {
+		return password;
 	}
+
 	/**
-	 * 
+	 * @param password the password to set
 	 */
-	public SignUpReceiveDataDto() {
-		super();
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @param sPOCName the sPOCName to set
+	 */
+	public void setsPOCName(String sPOCName) {
+		this.sPOCName = sPOCName;
+	}
+
+
+	/**
+	 * @param organizationName the organizationName to set
+	 */
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * @param userRole the userRole to set
+	 */
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
 	}
 	
 	

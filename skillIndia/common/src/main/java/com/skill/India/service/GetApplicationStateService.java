@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skill.India.dao.GetApplicationStateDao;
+import com.skill.India.dto.ApplicationDto;
 
 @Service
 public class GetApplicationStateService {
@@ -11,7 +12,7 @@ public class GetApplicationStateService {
 	@Autowired
 	private GetApplicationStateDao getApplicationStateDao;
 	
-	public String getApplicationStateService(String userId){
+	public ApplicationDto getApplicationStateService(String userId){
 		try{
 			System.out.println(getApplicationStateDao.getApplicationState(userId));
 		return getApplicationStateDao.getApplicationState(userId);

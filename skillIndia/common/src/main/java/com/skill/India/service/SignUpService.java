@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skill.India.dao.SaveAsDraftAndSubmitDao;
 import com.skill.India.dao.SignUpDao;
 import com.skill.India.dto.SignUpInsertedUserDto;
 import com.skill.India.dto.SignUpReceiveDataDto;
@@ -17,6 +18,10 @@ public class SignUpService {
 	@Autowired
 	private SignUpDao signUpDao;
 	private SignUpInsertedUserDto signUpInsertedUserDto;
+	
+	@Autowired
+	private SaveAsDraftAndSubmitDao saveAsDraftAndSubmitDao;
+
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(SignUpService.class);
 
@@ -29,20 +34,15 @@ public class SignUpService {
 		
 		LOGGER.info("Check the existence of new user in the record");
 		
-		userExistStatus=signUpDao.checkUserExistence(signUpReceiveDataDto.userId,signUpReceiveDataDto.organizationName);
+		userExistStatus=signUpDao.checkUserExistence(signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getOrganizationName());
 		if(userExistStatus==0)
 		{
 			LOGGER.info("User does not exist in the record");
-			id = signUpDao.insertSignUpData(signUpReceiveDataDto.organizationName,signUpReceiveDataDto.sPOCName,signUpReceiveDataDto.userId,signUpReceiveDataDto.mypassword,signUpReceiveDataDto.userRole);
-			
-			Collection<SignUpInsertedUserDto> signUp= signUpDao.getUserData(id);
-			LOGGER.info("Successful insertion of new user in the record");
-
-			for(SignUpInsertedUserDto s: signUp)
-			{
-				return s;
-			}
-			
+			id = signUpDao.insertSignUpData(signUpReceiveDataDto.getOrganizationName(),signUpReceiveDataDto.getSPOCName(),signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getPassword(),signUpReceiveDataDto.getUserRole());
+		 if(id >-1){
+			 saveAsDraftAndSubmitDao.insertIntoApplication(signUpReceiveDataDto.getUserId(), "Submit");
+		 }
+					
 		}
 		else
 		{

@@ -20,7 +20,7 @@ public class SaveAsDraftAndSubmitDao extends AbstractTransactionalDao {
 	@Autowired
 	private ProfileCreationConfigSql profileCreationConfigSql;
 
-	public int insertIntoApplication(ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerDto,String type)
+	public int insertIntoApplication(String userId,String type)
 	{
 		try{
 		long millis=System.currentTimeMillis();
@@ -35,7 +35,7 @@ public class SaveAsDraftAndSubmitDao extends AbstractTransactionalDao {
 		{
 		parameters.put("applicationState","Submit");
 		}
-		parameters.put("userId",profileCreationTrainingPartnerDto.getUserId());
+		parameters.put("userId",userId);
 		parameters.put("activeFlag","1");
 		parameters.put("dateOfSubmission",date);
 		return getJdbcTemplate().update(profileCreationConfigSql.getInsertDataInApplication(), parameters);

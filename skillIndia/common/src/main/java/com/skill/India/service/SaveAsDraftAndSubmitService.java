@@ -42,7 +42,7 @@ public class SaveAsDraftAndSubmitService {
 			 */
 			try{
 
-				int statusOfInsertIntoApplication=saveAsDraftAndSubmitDao.insertIntoApplication(profileCreationTrainingPartnerDto,type);
+				int statusOfInsertIntoApplication=saveAsDraftAndSubmitDao.insertIntoApplication(profileCreationTrainingPartnerDto.getUserId(),type);
 				/*
 				 *  -1 is returned if an exception occurs
 				 */
