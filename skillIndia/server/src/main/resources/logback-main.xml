@@ -11,7 +11,7 @@
 
 		<logger name="org.springframework" level="INFO" />
 		<logger name="com.skill.India" level="DEBUG" />
-
+		<logger name ="org.springframework.security" level="DEBUG"></logger>
 		<root level="INFO">
 			<appender-ref ref="STDOUT" />
 		</root>
@@ -45,6 +45,7 @@
 
 		<logger name="org.springframework" level="INFO" />
 		<logger name="com.skill.India" level="DEBUG" />
+		<logger name ="org.springframework.security" level="DEBUG"></logger>
 		<root level="INFO">
 			<appender-ref ref="FILEOUT" />
 		</root>

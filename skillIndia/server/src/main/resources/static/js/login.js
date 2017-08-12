@@ -1,9 +1,23 @@
 window.onload = function(){
 	var open = 'glyphicon-eye-open';
 	var close = 'glyphicon-eye-close';
-	var ele = document.getElementById('password');
+	
 
 	document.getElementById('toggleBtn').onclick = function() {
+		var ele = document.getElementById('password');
+		if( this.classList.contains(open) ) {
+			
+	  	ele.type="text";
+	    this.classList.remove(open);
+	    this.className += ' '+close;
+	  } else {
+	  	ele.type="password";
+	    this.classList.remove(close);
+	    this.className += ' '+open;
+	  }
+	}
+	document.getElementById('signUptoggleBtn').onclick = function() {
+		var ele = document.getElementById('registerPassword');
 		if( this.classList.contains(open) ) {
 	  	ele.type="text";
 	    this.classList.remove(open);
@@ -44,8 +58,16 @@ window.onload = function(){
     
     });
 	//check for blank password
-	$('.button').click(function(){
+	$('#login-submit').click(function(){
         if ($('input#password').val() == "")
+        {
+            alert('Please fill the password');
+        }
+    
+    
+    });
+	$('#signup').click(function(){
+        if ($('input#registerPassword').val() == "")
         {
             alert('Please fill the password');
         }

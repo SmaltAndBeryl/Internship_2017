@@ -9,12 +9,7 @@ var hello = angular.module('hello', ['ngRoute',
 console.log("Module initialized successfully..");
 hello.config(function($routeProvider, $httpProvider) {
 
-	$routeProvider.when('/', {
-		templateUrl : 'index3.html',
-		controller : 'navigation'
-
-	})
-	.when('/master', {
+	$routeProvider.when('/master', {
 	    templateUrl : 'master.html',
 	    controller : 'master'
 
@@ -31,7 +26,11 @@ hello.config(function($routeProvider, $httpProvider) {
     .when('/profileCreationTp', {
         templateUrl : 'profileCreationTp.html',
         controller : 'profileCreationTp'
+    }).when('/profileCreationAb', {
+        templateUrl : 'profileCreationAb.html',
+        controller : 'profileCreationAb'
     })
+
 	.otherwise('/');
 
 	$httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -45,9 +44,68 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
         return $route.current && route === $route.current.controller;
     };
 
-    var authenticate = function(credentials, callback) {
+    
+    var checkAndSetState =function(submitRoutingUrl,acceptedRoutingUrl){
+        $http({
+            method: 'POST',
+            url: "/getApplicationState"})
+             .then(function(response){
+            	 var appState = response.data.applicationState;
+                 alert("Application get successful, state = " + appState);
+                 if(appState != 'Complete'){
+                     $location.path(submitRoutingUrl);
+                 }
 
-        var headers = credentials ? {
+                 else{
+                     alert("Not routing to pc " + appState);
+                     $location.path(acceptedRoutingUrl);
+                 }
+
+             });
+
+     
+
+    }
+    var successCallBack = function(authenticated) {
+        if (authenticated) {
+            var userType = $rootScope.type;
+            var AB = '"AB"';
+            var TP = '"TP"';
+            var SCGJ = '"SCGJ"';
+            var appState = "Submit";
+
+
+
+            if(userType == AB){
+                
+              //  $location.path("/assessmentBody");
+                $rootScope.priv = "AB";
+                checkAndSetState("/profileCreationAb","/assessmentBody");
+            }
+
+            if(userType == TP){
+                
+                $rootScope.priv = "TP";
+                checkAndSetState("/profileCreationTp","/trainingPartner");
+            }
+
+            if(userType == SCGJ){
+                
+                $location.path("/master");
+                $rootScope.priv = "SCGJ";
+            }
+
+            self.error = false;
+            $rootScope.authenticated = true;
+
+
+        } 
+    
+}
+
+    var authenticate = function(credentials) {
+
+    	var headers = credentials ? {
               authorization : "Basic " + btoa(credentials.username + ":" + credentials.password)
             } : {};
 
@@ -67,105 +125,80 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                    }]
                    })
                     .then(function(response){
-//                        alert("get Successful " + spock);
+// alert("get Successful " + spock);
                         $rootScope.spockName = spock ;
+                        
                     });
-//                console.log("Backend value " + response + "String Format " + JSON.stringify(response.data.authorities[0].authority));
-                $rootScope.authenticated = true;
-                $rootScope.type = JSON.stringify(response.data.authorities[0].authority);
-//                console.log("USER role is " + $rootScope.type);
+// console.log("Backend value " + response + "String Format " +
+// JSON.stringify(response.data.authorities[0].authority));
+            
             } else {
-//                console.log("Backend value " + response);
+// console.log("Backend value " + response);
                 $rootScope.authenticated = false;
                 
                 
             }
-            callback && callback($rootScope.authenticated);
+            $rootScope.authenticated = true;
+            $rootScope.type = JSON.stringify(response.data.authorities[0].authority);
+            successCallBack($rootScope.authenticated);
+            console.log("USER role is " + $rootScope.type);
+//         
+            
         }, function() {
-            $rootScope.authenticated = false;
-            console.log("I AM HERE");
-            $rootScope.errorMessagesForLoggingIn = 'Invalid UserName/Password';
-            callback && callback(false);
+          if(credentials){
+        	  console.log("Login failed");
+              self.error = true;
+              $rootScope.authenticated = false;
+              console.log("I AM HERE");
+              $rootScope.errorMessagesForLoggingIn = 'Invalid UserName/Password';
+                
+          }
         });
 
 
     }
 
-    //authenticate();
+ authenticate();
 
     self.credentials = {};
-
+    self.newUser ={};
+    self.signup = function (){
+    	alert(JSON.stringify(self.newUser));
+    	
+		$http({
+			url : "/signup",
+			method : "POST",
+			data : angular.toJson(self.newUser),
+			headers : {
+						'Content-type': 'application/json'
+						}
+			
+			}).then(function(response)
+				{
+			     console.log(response.data);
+		     var signupAction=response.data;
+		     var userName=signupAction.userId;
+		     if(userName=="null" || signupAction.organizationName=="null" || signupAction.sPOCName=="null"){
+		    	alert("User already exist");
+		    	 }
+		     else{
+		    	 alert("User created with userId - "+self.newUser.userId); 
+		     }
+		     window.location.href ="/";
+		    	 
+			  });
+    }
     self.login = function() {
-        authenticate(self.credentials, function(authenticated) {
-            if (authenticated) {
-                var userType = $rootScope.type;
-                var AB = '"AB"';
-                var TP = '"TP"';
-                var SCGJ = '"SCGJ"';
-                var appState = "Submit";
-
-
-
-                if(userType == AB){
-                    alert("Welcome assessment body");
-                    $location.path("/assessmentBody");
-                    $rootScope.priv = "AB";
-                }
-
-                if(userType == TP){
-                    alert("Welcome training partner");
-                    $http({
-                       method: 'POST',
-                       url: "/getApplicationState",
-                       transformResponse: [function (data)  {
-                        console.log(data);
-                        appState = data;
-                        return data;
-                       }]
-                       })
-                        .then(function(response){
-                            alert("Application get successful, state = " + appState);
-                        });
-
-                    if(appState == 'Submit'){
-                        alert("Routing to pc" + appState);
-                        $location.path("/profileCreationTp");
-                    }
-
-                    else{
-                        alert("Not routing to pc " + appState);
-                        $location.path("/trainingPartner");
-                    }
-
-                    $rootScope.priv = "TP";
-                }
-
-                if(userType == SCGJ){
-                    alert("Welcome SCGJ user");
-                    $location.path("/master");
-                    $rootScope.priv = "SCGJ";
-                }
-
-                self.error = false;
-                $rootScope.authenticated = true;
-
-
-            } else {
-                console.log("Login failed");
-                $location.path("/login");
-                self.error = true;
-                $rootScope.authenticated = false;
-            }
-        })
-    };
-
+        authenticate(self.credentials);
+    } 
+    
     self.logout = function($route) {
-        $rootScope.type = "logout";
+        $rootScope.type = "logout"; 	
         console.log("Logging out./././././././");
         $http.post('logout', {}).finally(function() {
             console.log("Logged out successfully..")
-            $rootScope.authenticated = false;
-            $location.path("/");
+            window.location.href ="/";
+           // $location.path("/");
         });
     }
 });

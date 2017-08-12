@@ -11,5 +11,6 @@ login:
      where userId=:userId  
      
  getApplicationState: >
-   select applicationState from application
+   select applicationState, applicationId from application
      where userId=:userId 
+     and activeFlag = 1

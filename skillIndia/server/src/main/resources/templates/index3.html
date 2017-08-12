@@ -129,7 +129,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="button" name="login-submit" id="login" tabindex="4" class="form-control button" value="LOGIN" type="submit" />
+                                                <input type="button" name="login-submit" id="login-submit" tabindex="4" class="form-control button" value="LOGIN" type="submit" />
                                             </div>
                                         </div>
                                     </div>
@@ -140,13 +140,13 @@
 
                                 <form role="form" style="display: none;" data-toggle="validator" id="register-form">
                                     <div class="form-group col-xs-6">
-                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="newUser.organizationName" />
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="nav.newUser.organizationName" />
                                     </div>
                                     <div class="form-group col-xs-6">
-                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="newUser.sPOCName">
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="nav.newUser.sPOCName">
                                     </div>
                                     <div class="form-group col-xs-6">
-                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="newUser.username" />
+                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="nav.newUser.userId" />
                                         <div class="help-block with-errors">
                                         </div>
                                         <span class=" input-group-addon" style="background-color:white;
@@ -154,17 +154,17 @@
                                  border-bottom:0px solid #ccc; ">
                               </span>
                                         <div>
-                                            <input type="radio" ng-model="newUser.userRole" value="TP">TP
-                                            <input type="radio" ng-model="newUser.userRole" value="AB">AB
+                                            <input type="radio" ng-model="nav.newUser.userRole" value="TP">TP
+                                            <input type="radio" ng-model="nav.newUser.userRole" value="AB">AB
                                         </div>
                                     </div>
                                     <div class="wrraper">
                                         <div class="form-group input-group">
-                                            <input type="password" data-minlength="6" name="mypassword" id="mypassword" tabindex="2" data-error="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="newUser.mypassword" />
+                                            <input type="password" data-minlength="6" name="registerPassword" id="registerPassword" tabindex="2" data-error="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.newUser.password" />
                                             <div class="help-block with-errors"></div>
                                             <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">
                                     <div>
-                                       <button id="toggleBt" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>
+                                       <button id="signUptoggleBtn" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>
                                     </div>
                                  </span>
                                         </div>
@@ -172,7 +172,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="button" name="signup" id="signup" tabindex="4" class="form-control button" value="SIGNUP" ng-click="signup()" />
+                                                <input type="button" name="signup" id="signup" tabindex="4" class="form-control button" value="SIGNUP" ng-click="nav.signup()" />
                                             </div>
                                         </div>
                                     </div>
