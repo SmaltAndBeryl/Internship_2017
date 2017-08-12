@@ -26,6 +26,10 @@
     border-top-left-radius : 0;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid transparent;
 } 
 .login-row{
 	margin-right:0px;
