@@ -1,7 +1,7 @@
 console.log("working page 5");
 var page5 = angular.module('hello');
 
-page5.controller('page5', function($scope, $http, $log, $location) {
+page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
     $scope.message = "Page loaded via angular module";
     var selectedvalue="";
 
@@ -16,7 +16,8 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 name: 'serialNumber',
                 displayName: 'S.No.',
                 cellClass: '',
-                headerCellClass: ''
+                headerCellClass: '',
+                cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' 
             },
             {
                 name: 'batchId',
@@ -53,7 +54,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 displayName: 'Withdraw',
                 cellClass: '',
                 headerCellClass: '',
-                cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunctionForProposedBatches(row)></label>'
+                cellTemplate: '<center><label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunctionForProposedBatches(row)></label></center>'
             }
         ]
     };
@@ -75,7 +76,8 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 name: 'serialNumber',
                 displayName: 'S.No.',
                 cellClass: '',
-                headerCellClass: ''
+                headerCellClass: '',
+                cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' 
             },
             {
                 name: 'batchId',
@@ -112,7 +114,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 displayName: 'Withdraw',
                 cellClass: '',
                 headerCellClass: '',
-                cellTemplate: '<label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunctionForApprovedBatches(row)></label>'
+                cellTemplate: '<center><label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunctionForApprovedBatches(row)></label></center>'
             }
         ]
     };
@@ -134,7 +136,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 displayName: 'S.No.',
                 cellClass: '',
                 headerCellClass: '',
-                cellTemplate: '<div>{{row.grid.renderContainers.body.visibleRowsCache.indexOf(row)}}</div>'
+                cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>'  
             },
             {
                 name: 'batchId',
@@ -216,7 +218,11 @@ page5.controller('page5', function($scope, $http, $log, $location) {
         .then(function(response) {
             $scope.approvedBatchesBatchAssignmentGridOptions.data = response.data;
         });
-    };
+        
+        $timeout(function() {
+         $scope.responseMessageForBatchWithdrawForProposedBatches='';
+      }, 2000);
+      };
 	
     //function for withdrawing batches for Approved Batches Table
     
@@ -260,6 +266,10 @@ page5.controller('page5', function($scope, $http, $log, $location) {
         .then(function(response) {
             $scope.approvedBatchesBatchAssignmentGridOptions.data = response.data;
         });
+        
+        $timeout(function() {
+         $scope.responseMessageForBatchWithdrawForApprovedBatches='';
+      }, 2000);
     };
 	
 
@@ -305,6 +315,9 @@ page5.controller('page5', function($scope, $http, $log, $location) {
                 	{
                 	$scope.searchGridOptions.data = response.data;
                 	$scope.errorMessageForSearchBatchAssignment="No Record Found";
+                        $timeout(function() {
+         $scope.errorMessageForSearchBatchAssignment='';
+      }, 2000);
                 	}
                 else
                 	{
@@ -359,7 +372,7 @@ page5.controller('page5', function($scope, $http, $log, $location) {
             {
                 name: 'Assign',
                 displayName: 'Assign',
-                cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.pushFunction(row)></label>'
+                cellTemplate: '<center><label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.pushFunction(row)></label></center>'
             }
         ]
     };
@@ -559,5 +572,8 @@ console.log("Inside propose function");
 //                console.log("Success in agency update");
 //            })
         }
+    $timeout(function() {
+         $scope.responseMessagesForBatchesProposed='';
+      }, 2000);
     };
 });

@@ -206,7 +206,7 @@ text-align: center;
 }
 .ui-grid-contents-wrapper {
   position: relative;
-  height: 100%;
+  height: auto !important;
   width: 100%;
 }
 .ui-grid-sr-only {

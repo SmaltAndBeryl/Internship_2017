@@ -71,30 +71,38 @@
   }
 .nonAssignedBatchesGrid {
   width: 100%;
-  height: 250px !important;
+  height: auto !important;
 /*   margin-left: 21px; */
 }
 .searchBatchGrid {
   width: 100%;
-  height: 70px !important;
+  height: auto;
 /*   margin-left: 21px; */
   margin-top: 0.5em;
 }
 .proposedBatchesGrid {
   width: 100%;
-  height: 180px !important;
-/*   margin-left: 21px; */
-  margin-bottom: 1em;
+    height: auto;
+    max-height: 12em !important;
+    /* margin-left: 21px; */
+    margin-bottom: 1em;
+    overflow-y: auto;
 }
 .approvedBatchesGrid {
   width: 100%;
-  height: 180px !important;
+  height: auto;
+  max-height: 12em !important;
 /*   margin-left: 21px; */
+  overflow-y: auto;
+  margin-bottom: 1em;
 }
 .rejectedBatchesGrid {
   width: 100%;
-  height: 180px !important;
+  height: auto;
+  max-height: 12em !important;
 /*   margin-left: 21px; */
+overflow-y: auto;
+  margin-bottom: 1em;
 }
 .searchBatchId {
   font-size: 14px;
