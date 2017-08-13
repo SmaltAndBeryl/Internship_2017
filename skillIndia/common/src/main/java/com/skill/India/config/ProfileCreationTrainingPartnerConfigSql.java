@@ -25,7 +25,21 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateIntoTrainingPartnerInstituteRecognition;
 	private String updateIntoTrainingPartnerPriorExperienceInSkillTraining;
 	private String updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	private String insertDataInApplication;
 	
+	
+	/**
+	 * @return the insertDataInApplication
+	 */
+	public String getInsertDataInApplication() {
+		return insertDataInApplication;
+	}
+	/**
+	 * @param insertDataInApplication the insertDataInApplication to set
+	 */
+	public void setInsertDataInApplication(String insertDataInApplication) {
+		this.insertDataInApplication = insertDataInApplication;
+	}
 	/**
 	 * @return the getDataFromTrainingPartnerOrganizationDetails
 	 */

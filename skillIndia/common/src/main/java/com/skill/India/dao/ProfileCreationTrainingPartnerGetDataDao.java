@@ -26,6 +26,18 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 	@Autowired
 	private ProfileCreationTrainingPartnerConfigSql profileCreationTrainingPartnerConfigSql;
 	
+	/*
+	 * Get ApplicationId using userId  
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	private static final ProfileCreationTrainingPartnerOrganizationDetailsRowMapper ROW_MAPPER_TPREG_ORGDETAILS = new ProfileCreationTrainingPartnerOrganizationDetailsRowMapper();
 	
 	public Collection<ProfileCreationTrainingPartnerOrganizationDetailsDto> profileCreationGetDataFromTrainingPartnerOrganizationDetails(String applicationId)
