@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>File Upload Example in AngularJS</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+</head>
+
+<body ng-app="fupApp">
+
+    <div ng-controller="fupController">
+       
+        
+          <input type="file" id="file1" name="fileName" 
+            onchange="angular.element(this).scope().getFileDetails(this)" /> 
+        
+          <input type="file" id="file2..." name="fileName1" 
+            onchange="angular.element(this).scope().getFileDetails(this)" /> 
+       
+        <input type="button" ng-click="uploadFiles()" value="Upload" />
+
+    </div>
+    </body>
+<script>
+    var myApp = angular.module('fupApp', []);
+
+    
+    myApp.controller('fupController',function ($scope,$http) {
+
+       var files = [];
+       var idName= [];
+        var status=0;
+        var i = 0;
+        // GET THE FILE INFORMATION.
+        
+        $scope.getFileDetails = function (e) {
+          
+        
+            $scope.$apply(function () {
+                 console.log(i);
+                
+				var j=-1;
+                for(j;j<idName.length;j++)
+                    {
+                        console.log(e.id+"      "+idName[j]);
+                        if(e.id == idName[j])
+                            {
+                                console.log("In If ");
+                                status=1;   
+                                break;
+                            }
+                        else
+                            {
+                                status=0;
+                                console.log("In else");
+                                //break;
+                            }
+                    }
+                
+                if(status==1)
+                    {
+                        console.log("Value of J for if is : " + j);
+                        files.splice(j,1,e.files[0]); 
+                    }
+                else if(status==0)
+                    {
+                        console.log("Value of J for else is : " + j);
+                        idName.push(e.id); 
+                        console.log("Hey Id is  : "+ e.id);
+                        files.push(e.files[0]);
+                        i++;  
+                    }
+                 
+                        
+                // STORE THE FILE OBJECT IN AN ARRAY.
+               
+                            
+            });
+        };
+
+        // NOW UPLOAD THE FILES.
+        $scope.uploadFiles = function () {
+            
+            //FILL FormData WITH FILE DETAILS.
+            var data = new FormData();
+            var lol="uplo";
+            console.log("LOL :"+files);
+            for (var i in files) {
+                data.append(lol, files[i]);
+                console.log(files[i]);
+            }
+            
+			console.log("Data Is :" +data);
+            var uploadUrl="/a";
+            $http({
+            	method: 'POST',
+            	url: uploadUrl,
+                data: data,
+              
+                headers: {'Content-Type': undefined},
+                
+                transformRequest: angular.identity,
+                transformResponse: [function (data) {
+                	//console.log(data);
+                	thisIsResponse=data;
+                	console.log(thisIsResponse);
+                	return data;
+                }]
+            }).then(function(response) {
+                
+            	console.log("response of success -----");
+            	console.log(thisIsResponse);
+                return response.data;
+                
+            }, function errorCallback(response) {
+            	console.log("Error in receiving response from backend------" +response);
+                console.log('Error: '+response);
+             });
+            
+
+        // CONFIRMATION.
+        function transferComplete(e) {
+            alert("Files uploaded successfully.");
+        }
+    }
+    });
+</script>
+</html>
