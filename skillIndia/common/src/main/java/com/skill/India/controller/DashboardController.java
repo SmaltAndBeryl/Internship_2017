@@ -29,7 +29,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesEnrolled")
 	public Integer getTotalCandidatesEnrolled() {
-		
+		LOGGER.info("In DashboardController - getTotalCandidatesEnrolled");
+		LOGGER.info("Request Received from backend to get Total Candidates Enrolled for Dashboard Panel");
 		try
 		{
 			return dashboardService.getTotalCandidatesEnrolled();
@@ -45,7 +46,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesAccessed")
 	public Integer getTotalCandidatesAccessed() {
-		
+		LOGGER.info("In DashboardController - getTotalCandidatesAccessed");
+		LOGGER.info("Request Received from backend to get Total Candidates Assessed for Dashboard Panel");
 		try
 		{
 			return dashboardService.getTotalCandidatesAccessed();
@@ -61,7 +63,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesCertified")
 	public Integer getTotalCandidatesCertified() {
-		
+		LOGGER.info("In DashboardController - getTotalCandidatesCertified");
+		LOGGER.info("Request Received from backend to get Total Candidates Certified for Dashboard Panel");
 		try
 		{
 			return dashboardService.getTotalCandidatesCertified();
@@ -77,7 +80,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalTrainingPartners")
 	public Integer getTotalTrainingPartners() {
-		
+		LOGGER.info("In DashboardController - getTotalTrainingPartners");
+		LOGGER.info("Request Received from backend to get Total Number of Training Partners for Dashboard Panel");
 		try
 		{
 			return dashboardService.getTotalTrainingPartners();
@@ -93,7 +97,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalTrainingCentersInIndia")
 	public Integer getTotalTrainingCentersInIndia() {
-		
+		LOGGER.info("In DashboardController - getTotalTrainingCentersInIndia");
+		LOGGER.info("Request Received from backend to get Total Number of Training Centers for Dashboard Panel");
 		try
 		{
 			return dashboardService.getTotalTrainingCentersInIndia();
@@ -109,6 +114,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalBatchesAccordingToJobRole")
 	public Collection<DashboardTotalBatchesAccordingToJobRoleDto> getTotalBatchesAccordingToJobRole() {
+		LOGGER.info("In DashboardController - getTotalBatchesAccordingToJobRole");
+		LOGGER.info("Request Received from backend to get data for High Charts - Total Batches According to Job Role for Dashboard");
 		try
 		{
 			return dashboardService.getTotalBatchesAccordingToJobRole();
@@ -124,6 +131,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYears")
 	public Collection<DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto> getTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
+		LOGGER.info("In DashboardController - getTotalCandidatesTrainedWithBatchTypeInLastThreeYears");
+		LOGGER.info("Request Received from backend to get data for High Charts - Total Candidates Trained According to Batch Type for Dashboard");
 		try
 		{
 			return dashboardService.getTotalCandidatesTrainedWithBatchTypeInLastThreeYears();
@@ -140,6 +149,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTotalCandidatesCertifiedWithModeInLastThreeYears")
 	public Collection<DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto> getTotalCandidatesCertifiedWithModeInLastThreeYears() {
+		LOGGER.info("In DashboardController - getTotalCandidatesCertifiedWithModeInLastThreeYears");
+		LOGGER.info("Request Received from backend to get data for High Charts - Total Candidates Certified According to Mode In last Three Years for Dashboard");
 		try
 		{
 			return dashboardService.getTotalCandidatesCertifiedWithModeInLastThreeYears();
@@ -156,6 +167,8 @@ class DashboardController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/getDashboardTopStatesWithMaxTrainingCenters")
 	public Collection<DashboardTopStatesWithMaxTrainingCentersDto> getTopStatesWithMaxTrainingCenters() {
+		LOGGER.info("In DashboardController - getTopStatesWithMaxTrainingCenters");
+		LOGGER.info("Request Received from backend to get data for High Charts - Top States According to Max Training Centers for Dashboard");
 		try
 		{
 			return dashboardService.getTopStatesWithMaxTrainingCenters();
@@ -170,7 +183,8 @@ class DashboardController {
 	
 	@ExceptionHandler(MissingServletRequestParameterException.class)
 	public void handleMissingParams(MissingServletRequestParameterException exception) {
-	    String parameterName = exception.getParameterName();
+		LOGGER.info("In DashboardController Handling Exceptions Missing Parameters - handleMissingParams");
+		String parameterName = exception.getParameterName();
 	    LOGGER.error(parameterName + " parameter is missing");
 	    // Handling Missing Parameters Exceptions Here
 	}

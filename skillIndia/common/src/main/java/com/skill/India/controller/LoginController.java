@@ -1,7 +1,6 @@
 package com.skill.India.controller;
 
 import java.security.Principal;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,21 +47,26 @@ public class LoginController {
     @RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
 	{	
-    	LOGGER.info("Application have to validate the user");
+    	LOGGER.info("In LoginController - getLoginDto");
+		LOGGER.info("Request Received from backend to Validate User For the login process");
+		LOGGER.info("Parameters Received from backend are - 'loginReceiveDataDto': ",loginReceiveDataDto);
 		return loginService.checkUser(loginReceiveDataDto);
 		
 	}	
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto){
-		
-		LOGGER.info("Application have to record the new user");
-	 return signUpService.signUp(signUpReceiveDataDto);
+		LOGGER.info("In LoginController - signUp");
+		LOGGER.info("Request Received from backend to Validate User For the SignUp process");
+		LOGGER.info("Parameters Received from backend are - 'signUpReceiveDataDto': ",signUpReceiveDataDto);
+		return signUpService.signUp(signUpReceiveDataDto);
 	  
 	}
 	
 	@RequestMapping("/getSPOCName")
 	public String getSPOCName()  {
+		LOGGER.info("In LoginController - getSPOCName");
+		LOGGER.info("Request Received from backend to get SPOC Name of the Validated User");
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
 		return getSPOCNameService.getSPOCNameService(userId); 
@@ -70,6 +74,8 @@ public class LoginController {
 	
 	@RequestMapping("/getApplicationState")
 	public ApplicationDto getApplicationState()  {
+		LOGGER.info("In LoginController - getApplicationState");
+		LOGGER.info("Request Received from backend to get Application state of the Validated User ");
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
 		return getApplicationStateService.getApplicationStateService(userId) ; 
@@ -78,6 +84,8 @@ public class LoginController {
 	
 	@RequestMapping("/getUserDetails")
 	public Principal user(Principal user) {
+		LOGGER.info("In LoginController - user");
+		LOGGER.info("Parameters Received from backend are - 'user': ",user);
 		try{
 		System.out.println("hey  : " +user);
 		return user;

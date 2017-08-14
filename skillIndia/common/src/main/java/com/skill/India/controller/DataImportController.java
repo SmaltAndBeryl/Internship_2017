@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +34,9 @@ import com.skill.India.dto.DataImportHistoryDto;
 
 @RestController
 public class DataImportController{
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(DataImportController.class);
+	
 	@Autowired
 	private DataImportServices dataImportServices;
 	
@@ -60,6 +65,8 @@ public class DataImportController{
 @Privilege(value={"SCGJ"})
 @RequestMapping("/importHistory")
 public Collection<DataImportHistoryDto> getdataImportHistorydto(){
+LOGGER.info("In DataImportController - getdataImportHistorydto");
+LOGGER.info("Request Received from backend to get Data for Import History Table in Data Import");
 return dataImportServices.getUpdateHistory();
 }
 	
@@ -68,7 +75,9 @@ return dataImportServices.getUpdateHistory();
 @RequestMapping(value = "/downloadCertificate/{file_name}", method = RequestMethod.GET)
 public void getCertificateFile(@PathVariable("file_name") String fileName, 
     HttpServletResponse response) {
-    
+	LOGGER.info("In DataImportController - getCertificateFile");
+	LOGGER.info("Request Received from backend to download Certificate For a particular Batch in Data Import");
+	LOGGER.info("Parameters Received from backend are - 'file_name': "+fileName+" 'response':",response);
 	dataImportDownloadCertificateService.dataImportDownloadCertificate(response, fileName);
     
 }
@@ -77,6 +86,9 @@ public void getCertificateFile(@PathVariable("file_name") String fileName,
 @RequestMapping(value = "/downloadCSVFile/{file_name}", method = RequestMethod.GET)
 public void getFile(@PathVariable("file_name") String fileName, 
     HttpServletResponse response) {
+	LOGGER.info("In DataImportController - getFile");
+	LOGGER.info("Request Received from backend to download uploaded CSV file in Data Import");
+	LOGGER.info("Parameters Received from backend are - 'file_name': "+fileName+" 'response':",response);
 	System.out.println(fileName);
 	dataImportCSVDownloadService.DataImportCSVDownload(response, fileName);
 }
@@ -84,6 +96,9 @@ public void getFile(@PathVariable("file_name") String fileName,
 @Privilege(value={"SCGJ"})
 @RequestMapping(value="/findBatch",method=RequestMethod.POST)
 public Collection<DataImportGetBatchInfoDto> dataImportFindBatch(@RequestParam("batchId") Integer batchId){
+	LOGGER.info("In DataImportController - dataImportFindBatch");
+	LOGGER.info("Request Received from backend to find information about a particular Batch in Data Import");
+	LOGGER.info("Parameters Received from backend are - 'batchId': ",batchId);
 	System.out.println("HELLO" + batchId);
 	return findBatchUsingBatchIdService.findBatchUsingBatchId(batchId.toString());
 	
@@ -92,6 +107,9 @@ public Collection<DataImportGetBatchInfoDto> dataImportFindBatch(@RequestParam("
 @Privilege(value={"SCGJ"})
 @RequestMapping(value = "/uploadCertificate", method = { RequestMethod.GET, RequestMethod.POST },consumes=MediaType.ALL_VALUE)
 public String singleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("batchId") Integer batchId){
+	LOGGER.info("In DataImportController - singleFileUpload");
+	LOGGER.info("Request Received from backend to Upload Certificate For a particular Batch in Data Import");
+	LOGGER.info("Parameters Received from backend are - 'file': "+file+" 'batchId':",batchId);
 	String userId=sessionUserUtility
 			.getSessionMangementfromSession().getUsername();
 	
@@ -104,6 +122,9 @@ public String singleFileUpload(@RequestParam("file") MultipartFile file,@Request
 @RequestMapping(value = "/upload", method = { RequestMethod.GET, RequestMethod.POST },consumes=MediaType.ALL_VALUE)
    public String singleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("csvType") String type) 
 {
+	LOGGER.info("In DataImportController - singleFileUpload");
+	LOGGER.info("Request Received from backend to Upload Csv File in Data Import");
+	LOGGER.info("Parameters Received from backend are - 'file': "+file+" 'csvType':",type);
 	String userId=sessionUserUtility
 			.getSessionMangementfromSession().getUsername();
   return saveUploadedFileService.saveUploadedFile(file,type,userId);
@@ -116,7 +137,9 @@ public String singleFileUpload(@RequestParam("file") MultipartFile file,@Request
 @Privilege(value={"SCGJ"})
 @RequestMapping("/certificateImportHistory")
 public Collection<CertificateImportHistorydto> getcertificateImportHistorydto(){
-return certificateImportHistoryService.getUpdateHistory();
+	LOGGER.info("In DataImportController - getcertificateImportHistorydto");
+	LOGGER.info("Request Received from backend to get data for Certificate Import History Table in Data Import");
+	return certificateImportHistoryService.getUpdateHistory();
 }
 
 
