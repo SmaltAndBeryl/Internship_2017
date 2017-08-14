@@ -1,8 +1,8 @@
 Session: 
  getUserIdPasswordRole: >
-   select userId,password,userRole from user
+   select userId,password,userRole from scgj.user
     where userId=:userId
     
  checkUserSql: >
-   select exists(select * from user where userId=:userId)   
+   select exists(select 1 from scgj.user where userId=:userId)   
     
