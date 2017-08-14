@@ -6,6 +6,8 @@ import com.skill.India.service.NonAssignedBatchesService;
 import com.skill.India.service.NonAssignedBatchesUpdateService;
 import com.skill.India.service.NonAssignedUpdateAgencyService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +22,8 @@ import java.util.Collection;
 @RestController
 public class NonAssignedBatchesController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(NonAssignedBatchesController.class);
+	
     @Autowired
     private NonAssignedBatchesService nonAssignedBatchesService;
 
@@ -32,8 +36,9 @@ public class NonAssignedBatchesController {
     @Privilege(value={"SCGJ"})
     @RequestMapping("/non")
     public Collection<NonAssignedBatchesDto> getNonAssignedBatchesDto(){
-
-        return nonAssignedBatchesService.getCollection();
+    	LOGGER.info("In NonAssignedBatchesController - getNonAssignedBatchesDto");
+    	LOGGER.info("Request Received from front end to get data for all non assigned Batches For Batch assignment");
+		return nonAssignedBatchesService.getCollection();
     }
     
     /*
@@ -43,7 +48,10 @@ public class NonAssignedBatchesController {
     @Privilege(value={"SCGJ"})
     @RequestMapping(method = RequestMethod.POST, value = "/nonUpdate")
     public int nonAssignedBatchesUpdate(@RequestParam("batchId") String batchId, @RequestParam("agencyId") String agencyId,  @RequestParam("responseType") String responseType) {
-        return nonAssignedBatchesUpdateService.putUpdateBatches(batchId, agencyId,responseType);
+    	LOGGER.info("In NonAssignedBatchesController - nonAssignedBatchesUpdate");
+    	LOGGER.info("Request Received from front end to set proposed agency for corresponding Batch Id For Batch assignment");
+    	LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':",responseType);
+    	return nonAssignedBatchesUpdateService.putUpdateBatches(batchId, agencyId,responseType);
     }
     
     
@@ -54,7 +62,11 @@ public class NonAssignedBatchesController {
     @Privilege(value={"SCGJ"})
     @RequestMapping(method = RequestMethod.POST, value = "/agencyUpdate")
     public int agencyUpdate(@RequestParam("agencyId") String agencyId, @RequestParam String batchId,@RequestParam("responseType") String responseType){
-        return nonAssignedUpdateAgencyService.putAgencyId(agencyId, batchId, responseType);
+    	LOGGER.info("In NonAssignedBatchesController - agencyUpdate");
+    	LOGGER.info("Request Received from front end to set agency for corresponding Batch For Batch assignment");
+    	LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':",responseType);
+    	
+    	return nonAssignedUpdateAgencyService.putAgencyId(agencyId, batchId, responseType);
     }
     
 }

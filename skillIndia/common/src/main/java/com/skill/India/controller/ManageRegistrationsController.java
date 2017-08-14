@@ -27,8 +27,7 @@ import com.skill.India.service.DataBeanService;
 @RestController
 public class ManageRegistrationsController {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(ManageRegistrationsController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ManageRegistrationsController.class);
 
 	@Autowired
 	private ApproveRejectTableService approveRejectTableService;
@@ -42,6 +41,8 @@ public class ManageRegistrationsController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/approve")
 	public HashMap<String, ArrayList<ApproveRejectTableDto>> approveRejectTableDtos() {
+		LOGGER.info("In ManageRegistrationsController - approveRejectTableDtos");
+		LOGGER.info("Request Received from front end to get data for Approve/Reject Table for Manage Registration");
 		LOGGER.info("Trying to get Data from Application table");
 		return approveRejectTableService.getUpdateRowMapper();
 	}
@@ -50,6 +51,9 @@ public class ManageRegistrationsController {
 	@RequestMapping(value = "/affiliationActionOfAnApplicant", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody MessageDto setAfflilationOfBody(
 			@RequestBody ManageRegistrationApplicationDto manageRegistrationApplicationDto) {
+		LOGGER.info("In ManageRegistrationsController - setAfflilationOfBody");
+		LOGGER.info("Request Received from front end to set Affiliation of a Body");
+		LOGGER.info("Parameters Received from front end are - 'manageRegistrationApplicationDto': ",manageRegistrationApplicationDto);
 		LOGGER.info("Setting the UserId For the Affilation of a Body");
 		manageRegistrationApplicationDto.setUserId(sessionUser.getSessionMangementfromSession().getUsername());
 		MessageDto approveRegistartionMessage = new MessageDto();
@@ -75,8 +79,11 @@ public class ManageRegistrationsController {
 
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value = "/setManageRegistrationsComment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody MessageDto setComment(
-			@RequestBody CommentDto commentDto) {
+	public @ResponseBody MessageDto setComment(@RequestBody CommentDto commentDto) {
+		LOGGER.info("In ManageRegistrationsController - setComment");
+		LOGGER.info("Request Received from front end to set comments for the process of Affiliation of a Body");
+		LOGGER.info("Parameters Received from front end are - 'commentDto': ",commentDto);
+		
 		MessageDto approveRegistartionMessage = new MessageDto();
 		try {
 
@@ -107,8 +114,9 @@ public class ManageRegistrationsController {
     @Privilege(value={"SCGJ"})
     @RequestMapping("/cityData")
     public Collection<DataBeanDto> dataBeanDtoCollection(){
-        LOGGER.info("The method to generate PDF has been called...");
-        Collection<DataBeanDto> dataBeanDtos = dataBeanService.dataBeanDtoCollection();
+    	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
+    	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
+		Collection<DataBeanDto> dataBeanDtos = dataBeanService.dataBeanDtoCollection();
         dataBeanService.getDataBeanList();
 //        dataBeanService.generatePdf();
         return dataBeanService.dataBeanDtoCollection();
@@ -117,7 +125,9 @@ public class ManageRegistrationsController {
     @Privilege(value={"SCGJ"})
     @RequestMapping("/generatePdf")
     public void pdfBeanArrayList(){
-        dataBeanService.generatePdf();
+    	LOGGER.info("In ManageRegistrationsController - pdfBeanArrayList");
+    	LOGGER.info("Request Received from front end to generate PDF for the process of Affiliation of a Body");
+		dataBeanService.generatePdf();
     }
 		
 }

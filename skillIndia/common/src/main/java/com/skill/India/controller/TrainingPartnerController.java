@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +27,8 @@ import com.skill.India.service.TrainingPartnerBatchesService;
 @RestController
 public class TrainingPartnerController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(TrainingPartnerController.class);
+	
 	@Autowired
 	private TrainingPartnerBatchesService trainingPartnerPastTableService;
 	
@@ -37,7 +41,9 @@ public class TrainingPartnerController {
 	@Privilege(value={"TP"})
 	@RequestMapping("/trainingPartnerPastBatches")
 	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getTrainingPartnerPastTableDto () {
-		
+			LOGGER.info("In TrainingPartnerController - getTrainingPartnerPastTableDto");
+			LOGGER.info("Request Received from front end to get data for Past Batches For Training Partner");
+	    		    	
 			return trainingPartnerPastTableService.getUpdateRowMapper(sessionUserUtility
 					.getApplicationId(sessionUserUtility
 							.getSessionMangementfromSession().getUsername()));
@@ -50,6 +56,8 @@ public class TrainingPartnerController {
 	@Privilege(value={"TP"})
 	@RequestMapping("/trainingPartnerApplicationStatus")
 	public Collection<TrainingPartnerApplicationStatusDto> gettrainingPartnerApplicationStatusDto() {
+		LOGGER.info("In TrainingPartnerController - gettrainingPartnerApplicationStatusDto");
+		LOGGER.info("Request Received from front end to get data for Application status table for Training Partner");
 		return trainingPartnerApplicationStatusService
 				.getUpdateRowMapper(sessionUserUtility
 						.getApplicationId(sessionUserUtility

@@ -48,8 +48,8 @@ public class LoginController {
 	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
 	{	
     	LOGGER.info("In LoginController - getLoginDto");
-		LOGGER.info("Request Received from backend to Validate User For the login process");
-		LOGGER.info("Parameters Received from backend are - 'loginReceiveDataDto': ",loginReceiveDataDto);
+		LOGGER.info("Request Received from front end to Validate User For the login process");
+		LOGGER.info("Parameters Received from front end are - 'loginReceiveDataDto': ",loginReceiveDataDto);
 		return loginService.checkUser(loginReceiveDataDto);
 		
 	}	
@@ -57,8 +57,8 @@ public class LoginController {
 	@RequestMapping(value="/signup", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
 	public SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto){
 		LOGGER.info("In LoginController - signUp");
-		LOGGER.info("Request Received from backend to Validate User For the SignUp process");
-		LOGGER.info("Parameters Received from backend are - 'signUpReceiveDataDto': ",signUpReceiveDataDto);
+		LOGGER.info("Request Received from front end to Validate User For the SignUp process");
+		LOGGER.info("Parameters Received from front end are - 'signUpReceiveDataDto': ",signUpReceiveDataDto);
 		return signUpService.signUp(signUpReceiveDataDto);
 	  
 	}
@@ -66,7 +66,7 @@ public class LoginController {
 	@RequestMapping("/getSPOCName")
 	public String getSPOCName()  {
 		LOGGER.info("In LoginController - getSPOCName");
-		LOGGER.info("Request Received from backend to get SPOC Name of the Validated User");
+		LOGGER.info("Request Received from front end to get SPOC Name of the Validated User");
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
 		return getSPOCNameService.getSPOCNameService(userId); 
@@ -75,7 +75,7 @@ public class LoginController {
 	@RequestMapping("/getApplicationState")
 	public ApplicationDto getApplicationState()  {
 		LOGGER.info("In LoginController - getApplicationState");
-		LOGGER.info("Request Received from backend to get Application state of the Validated User ");
+		LOGGER.info("Request Received from front end to get Application state of the Validated User ");
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
 		return getApplicationStateService.getApplicationStateService(userId) ; 
@@ -85,7 +85,7 @@ public class LoginController {
 	@RequestMapping("/getUserDetails")
 	public Principal user(Principal user) {
 		LOGGER.info("In LoginController - user");
-		LOGGER.info("Parameters Received from backend are - 'user': ",user);
+		LOGGER.info("Parameters Received from front end are - 'user': ",user);
 		try{
 		System.out.println("hey  : " +user);
 		return user;

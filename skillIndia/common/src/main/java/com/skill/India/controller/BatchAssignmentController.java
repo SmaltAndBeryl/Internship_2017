@@ -52,7 +52,7 @@ public class BatchAssignmentController {
 	@RequestMapping("/getProposedBatchesBatchAssignment")
 	public Collection<BatchAssignmentDto> getproposedBatchesBatchAssignmentRowMapper(){
 		LOGGER.info("In BatchAssignmentController - getproposedBatchesBatchAssignmentRowMapper");
-		LOGGER.info("Request Received from backend to get data for Proposed Batches Table");
+		LOGGER.info("Request Received from front end to get data for Proposed Batches Table");
 		return batchAssignmentService.getproposedBatchesBatchAssignmentRowMapper();
 	}
 	
@@ -60,7 +60,7 @@ public class BatchAssignmentController {
 	@RequestMapping("/getApprovedBatchesBatchAssignment")
 	public Collection<BatchAssignmentDto> getapprovedBatchesBatchAssignmentRowMapper(){
 		LOGGER.info("In BatchAssignmentController - getapprovedBatchesBatchAssignmentRowMapper");
-		LOGGER.info("Request Received from backend to get data for Approved Batches table");
+		LOGGER.info("Request Received from front end to get data for Approved Batches table");
 		return batchAssignmentService.getapprovedBatchesBatchAssignmentRowMapper();
 	}
 	
@@ -68,7 +68,7 @@ public class BatchAssignmentController {
 	@RequestMapping("/getRejectedBatchesBatchAssignment")
 	public Collection<BatchAssignmentDto> getrejectedBatchesBatchAssignmentRowMapper(){
 		LOGGER.info("In BatchAssignmentController - getrejectedBatchesBatchAssignmentRowMapper");
-		LOGGER.info("Request Received from backend to get data for Rejected Batches table");
+		LOGGER.info("Request Received from front end to get data for Rejected Batches table");
 		return batchAssignmentService.getrejectedBatchesBatchAssignmentRowMapper();
 	}
 	
@@ -81,8 +81,8 @@ public class BatchAssignmentController {
 	public Collection<BatchAssignmentSearchDto> getInformationOfTheBatchId(@RequestParam("batchId") Integer batchId)
 	{
 		LOGGER.info("In BatchAssignmentController - getInformationOfTheBatchId");
-		LOGGER.info("Request Received from backend to get Information for a particular Batch");
-		LOGGER.info("Parameters Received from backend are - 'batchId': ",batchId);
+		LOGGER.info("Request Received from front end to get Information for a particular Batch");
+		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
 		return batchAssignmentSearchService.getBatchDataForAssignmentService(batchId);
 
 	}
@@ -96,8 +96,8 @@ public class BatchAssignmentController {
     @RequestMapping(value = "/withdrawAssignment",method=RequestMethod.POST)
     public int batchAssignmentWithdrawUpdate(@RequestParam("batchId") String batchId) {
 		LOGGER.info("In BatchAssignmentController - batchAssignmentWithdrawUpdate");
-		LOGGER.info("Request Received from backend to Withdraw a particular Batch");
-		LOGGER.info("Parameters Received from backend are - 'batchId': ",batchId);
+		LOGGER.info("Request Received from front end to Withdraw a particular Batch");
+		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
 		return batchAssignmentWithdrawService.putUpdateBatches(batchId);
     }
 	
@@ -109,8 +109,8 @@ public class BatchAssignmentController {
     @RequestMapping(method = RequestMethod.POST, value = "/getBatchId")
     public Collection<AlgorithmDto> getAlgorithmDto(@RequestParam("batchId") String batchId){
 		LOGGER.info("In BatchAssignmentController - getAlgorithmDto");
-		LOGGER.info("Request Received from backend to get Proposed Assessment Body for a particular Batch - Part-1");
-		LOGGER.info("Parameters Received from backend are - 'batchId': ",batchId);
+		LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-1");
+		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
 		return algorithmService.getBatchIdCollection(batchId);
     }
 
@@ -118,8 +118,8 @@ public class BatchAssignmentController {
     @RequestMapping(method = RequestMethod.POST, value = "/getAgencyId")
     public Collection<Algorithm2Dto> getAlgorithm2Dto(@RequestParam("batchId") int batchId){
     	LOGGER.info("In BatchAssignmentController - getAlgorithm2Dto");
-    	LOGGER.info("Request Received from backend to get Proposed Assessment Body for a particular Batch - Part-2");
-		LOGGER.info("Parameters Received from backend are - 'batchId': ",batchId);
+    	LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-2");
+		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
     	return algorithmService.getAgencyIdCollection(batchId);
     }
 
@@ -127,7 +127,7 @@ public class BatchAssignmentController {
     @RequestMapping("/getAssessorState")
     public Collection<Algorithm3Dto> getAlgorithm3Dto(){
     	LOGGER.info("In BatchAssignmentController - getAlgorithm3Dto");
-    	LOGGER.info("Request Received from backend to get Proposed Assessment Body for a particular Batch - Part-3");
+    	LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-3");
     	return algorithmService.getAssessorIdCollecion();
     }
 
@@ -135,7 +135,7 @@ public class BatchAssignmentController {
     @RequestMapping(value = "/getAgencyName", method = RequestMethod.GET, produces = "application/JSON")
     public String getSelectedAgency(){
     	LOGGER.info("In BatchAssignmentController - getSelectedAgency");
-    	LOGGER.info("Request Received from backend to get Proposed Agency Name for a particular Batch - Part-4");
+    	LOGGER.info("Request Received from front end to get Proposed Agency Name for a particular Batch - Part-4");
         return algorithmService.printStates();
     }
     
@@ -147,7 +147,7 @@ public class BatchAssignmentController {
     @RequestMapping("/dropdown")
     public Collection<DropdownDto> getDropdownDto(){
     	LOGGER.info("In BatchAssignmentController - getDropdownDto");
-    	LOGGER.info("Request Received from backend to get drop down options for All Assessment Body");
+    	LOGGER.info("Request Received from front end to get drop down options for All Assessment Body");
 		return dropdownService.getCollection();
     }
     
@@ -160,7 +160,7 @@ public class BatchAssignmentController {
 	public Collection<AssignedBatchesDto> getAssignedBatchesDto() 
 	{
     	LOGGER.info("In BatchAssignmentController - getAssignedBatchesDto");
-    	LOGGER.info("Request Received from backend to get Assigned Batches ");
+    	LOGGER.info("Request Received from front end to get Assigned Batches ");
 		 return assignedbatchesService.getUpdateRowMapper();
 	}	
 
