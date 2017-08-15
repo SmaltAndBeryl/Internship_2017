@@ -1,5 +1,7 @@
 package com.skill.India.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerDto;
 @Service
 public class SaveAsDraftAndSubmitService {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(SaveAsDraftAndSubmitService.class);
+	
 	@Autowired
 	private UserIdCheckInTrainingPartnerRegistration userIdCheckInTrainingPartnerRegistration;
 
@@ -22,14 +26,20 @@ public class SaveAsDraftAndSubmitService {
 
 	public String saveAsDraftAndSubmit(ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerDto,String type)
 	{
+		LOGGER.info("Request Received from Controller");
+		LOGGER.info("In SaveAsDraftAndSubmitService - saveAsDraftAndSubmit");
+		LOGGER.info("Parameters Received from front end are - 'type': "+type+" 'profileCreationTrainingPartnerDto':",profileCreationTrainingPartnerDto);
 		try{
+			LOGGER.info("Inside TRY block");
 			
 		if(type.equalsIgnoreCase("submit"))
 		{
 			throw new Exception();
 		}
-		
+		LOGGER.info("Checking Existense of Training Partner");
+		LOGGER.info("Making a Request to Dao to get data");
 		int userIdExists=userIdCheckInTrainingPartnerRegistration.userIdCheckInTrainingPartnerRegistration(profileCreationTrainingPartnerDto.getUserId());
+		LOGGER.info("Response received from Dao");
 		System.out.println("UserId status : "+userIdExists);
 		if(userIdExists==0)
 		{
@@ -41,8 +51,10 @@ public class SaveAsDraftAndSubmitService {
 			 *  3) Set data in TPREG table(insert query)
 			 */
 			try{
-
+				LOGGER.info("Inserting data in Application Table");
+				LOGGER.info("Making a Request to Dao");
 				int statusOfInsertIntoApplication=saveAsDraftAndSubmitDao.insertIntoApplication(profileCreationTrainingPartnerDto.getUserId(),type);
+				LOGGER.info("Response received from Dao");
 				/*
 				 *  -1 is returned if an exception occurs
 				 */
@@ -60,14 +72,17 @@ public class SaveAsDraftAndSubmitService {
 						return null;
 					}
 					try{
+						LOGGER.info("Inserting data in Training Partner Registration table");
+						LOGGER.info("Making a Request to Dao");
 					int statusOfInsertIntoTrainingPartnerRegistration=saveAsDraftAndSubmitDao.insertIntoTrainingPartnerRegistration(profileCreationTrainingPartnerDto);
+					LOGGER.info("Response received from Dao");
 					if(statusOfInsertIntoTrainingPartnerRegistration>0)
 					{
 						return "Success";
 					}
 					else
 					{
-						System.out.println("Data Not Inserted in TP REG");
+						LOGGER.info("Data Not Inserted in TP REG");
 						return null;
 					}
 
@@ -81,13 +96,14 @@ public class SaveAsDraftAndSubmitService {
 				}
 				else
 				{
-					System.out.println("Data Not Inserted in Application");
+					LOGGER.info("Data Not Inserted in Application");
 					return null;
 				}
 
 			}
 			catch(Exception e)
 			{
+				LOGGER.info("inside CATCH block");
 				e.printStackTrace();
 				return null;
 			}
@@ -103,18 +119,24 @@ public class SaveAsDraftAndSubmitService {
 			try{
 				if(type.equalsIgnoreCase("Submit"))
 				{
+					LOGGER.info("Updating data in Application Table");
+					LOGGER.info("Making a Request to Dao");
 					int statusOfUpdateIntoApplication=saveAsDraftAndSubmitDao.updateIntoApplication(profileCreationTrainingPartnerDto,type);
+					LOGGER.info("Response received from Dao");
 					if(statusOfUpdateIntoApplication > 0)
 					{
 						try{
+							LOGGER.info("Updating data in Application Table");
+							LOGGER.info("Making a Request to Dao");
 						int statusOfUpdateIntoTrainingPartnerRegistration=saveAsDraftAndSubmitDao.updateIntoTrainingPartnerRegistration(profileCreationTrainingPartnerDto);
+						LOGGER.info("Response received from Dao");
 						if(statusOfUpdateIntoTrainingPartnerRegistration>0)
 						{
 							return "Success";
 						}
 						else
 						{
-							System.out.println("Data Not Updated in TP REG");
+							LOGGER.info("Data Not Updated in TP REG");
 							return null;
 						}
 						}
@@ -126,7 +148,7 @@ public class SaveAsDraftAndSubmitService {
 					}
 					else
 					{
-						System.out.println("Data Not Updated in Application");
+						LOGGER.info("Data Not Updated in Application");
 						return null;
 					}
 				}
@@ -135,15 +157,18 @@ public class SaveAsDraftAndSubmitService {
 				else
 				{
 					try{
+						LOGGER.info("Updating data in Training Partner Registration table");
+						LOGGER.info("Making a Request to Dao");
 						int statusOfUpdateIntoTrainingPartnerRegistration=saveAsDraftAndSubmitDao.updateIntoTrainingPartnerRegistration(profileCreationTrainingPartnerDto);
+						LOGGER.info("Response received from Dao");
 						if(statusOfUpdateIntoTrainingPartnerRegistration>0)
 						{
-							System.out.println("IN UPDATE RETURNING SUCCESS");
+							LOGGER.info("IN UPDATE RETURNING SUCCESS");
 							return "Success";
 						}
 						else
 						{
-							System.out.println("Data Not Updated in TP REG");
+							LOGGER.info("Data Not Updated in TP REG");
 							return null;
 						}
 						}

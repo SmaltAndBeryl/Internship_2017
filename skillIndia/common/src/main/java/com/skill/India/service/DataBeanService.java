@@ -28,6 +28,9 @@ public class DataBeanService {
     private DataBeanListDao dataBeanListDao;
 
         public Collection<DataBeanDto> dataBeanDtoCollection(){
+        	
+        	LOGGER.info("Request Received from Controller");
+    		LOGGER.info("In DataBeanService - dataBeanDtoCollection");
 
 //            Collection<DataBeanDto> dataBeanDtos = dataBeanListDao.dataBeanDtoCollection();
 //            Collection<DataBeanDto> dataBeans = dataBeanListDao.dataBeanDtoCollection();
@@ -37,19 +40,22 @@ public class DataBeanService {
 
             LOGGER.info("Starting the process for PDF generation......///");
             String sourceFileName = "D://Jasper/juno.jasper";
-            LOGGER.info("Creating an instance of the Service class....");
+            LOGGER.info("Creating an instance of the DataBeanService class....");
             DataBeanService dataBeanService = new DataBeanService();
             LOGGER.info("Getting the data in form of beans...");
 //        Collection<DataBeanDto> dataBeanDtos = dataBeanService.dataBeanDtoCollection();
-
+            LOGGER.info("Initializing Bean Object");
             ArrayList<PdfBean> pdfBeans = new ArrayList<>();
+            LOGGER.info("Successfully initialized");
             LOGGER.info("Data retrieval successful...!");
             String printFileName = null;
             LOGGER.info("Storing the information in form of beans...");
             Collection<DataBeanDto> dataBeanDtos = dataBeanListDao.dataBeanDtoCollection();
             ArrayList<String> pdfBeans1 = new ArrayList<>();
             JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(dataBeanDtos);
+            LOGGER.info("Initializing Hash Map Object");
             Map parameters = new HashMap();
+            LOGGER.info("Successfully initialized");
             for(DataBeanDto dataBeanDto : dataBeanDtos){
                 pdfBeans1.add(dataBeanDto.getFirstName());
                 pdfBeans1.add(dataBeanDto.getEmailDirector());
@@ -61,7 +67,7 @@ public class DataBeanService {
             String destFileName = "D://Jasper/" + rndm + ".pdf";
             LOGGER.info("Started the PDF generation process.......");
             try{
-                LOGGER.info("entered the try catch block...");
+                LOGGER.info("Inside TRY block");
                 printFileName = JasperFillManager.fillReportToFile(sourceFileName,parameters,beanCollectionDataSource);
                 LOGGER.info("Generating PDF.....//////////");
                 if(printFileName!=null) {
@@ -70,25 +76,38 @@ public class DataBeanService {
                 }
                 LOGGER.info("Pdf generated successfully....!!!");
             } catch (JRException e) {
+            	LOGGER.info("Inside CATCH block ");
             }
-            LOGGER.info("returned the Collection successfully..");
+            LOGGER.info("returning the Collection");
+            LOGGER.info("Sending the Response to Controller");
             return dataBeanListDao.dataBeanDtoCollection();
     }
 
 
     //Method to return an array List of values from database
     public ArrayList<PdfBean> getDataBeanList(){
-        ArrayList<PdfBean> dataBeanList = new ArrayList<>();
+    	LOGGER.info("Initializing ArrayList PdfBean Object");
+    	ArrayList<PdfBean> dataBeanList = new ArrayList<>();
+    	LOGGER.info("Successfully initialized");
+    	LOGGER.info("Initializing Collection DataBeanDto Object");
         Collection<DataBeanDto> dataBeanDtos = dataBeanListDao.dataBeanDtoCollection();
-
+        LOGGER.info("Successfully initialized");
+        
         for(DataBeanDto beanDto : dataBeanDtos){
             dataBeanList.add(produce(beanDto.getTrainingPartnerName(), beanDto.getIsNSDCfunded(), beanDto.getFirstName(), beanDto.getAddressLine1(), beanDto.getFaxNumber(), beanDto.getEmailDirector(), beanDto.getWebsite(), beanDto.getYearOfEstablishment(), beanDto.getPriorExposureInSkill(), beanDto.getMedium(), beanDto.getSelfOwnedTC(), beanDto.getFranchiseTC(), beanDto.getPAN(), beanDto.getTAN(), beanDto.getTurnover()));
         }
+        LOGGER.info("Sending response");
         return dataBeanList;
     }
 
     private PdfBean produce(String trainingPartnerName,String isNSDCfunded,String firstName,String addressLine1,String faxNumber,String emailDirector, String website,String yearOfEstablishment,String priorExposureInSkill,String medium,String selfOwnedTC,String franchiseTC,String PAN,String TAN,String turnover) {
-        PdfBean pdfBean = new PdfBean();
+        
+    	LOGGER.info("Request Received from Controller");
+		LOGGER.info("In DataBeanService - produce");
+		LOGGER.info("Initializing PdfBean Object");
+    	PdfBean pdfBean = new PdfBean();
+    	LOGGER.info("Successfully initialized");
+    	LOGGER.info("Inserting Data to PdfBean Object");
         pdfBean.setTrainingPartnerName(trainingPartnerName);
         pdfBean.setIsNSDCfunded(isNSDCfunded);
         pdfBean.setFirstName(firstName);
@@ -108,10 +127,13 @@ public class DataBeanService {
     }
 
     public void generatePdf(){
-        LOGGER.info("Starting the process for PDF generation......///");
+    	LOGGER.info("Request Received from Controller");
+		LOGGER.info("In DataBeanService - generatePdf");
+		LOGGER.info("Starting the process for PDF generation......///");
         String sourceFileName = "D://Jasper/juno.jasper";
         LOGGER.info("Creating an instance of the Service class....");
         DataBeanService dataBeanService = new DataBeanService();
+        LOGGER.info("Successfully initialized");
         LOGGER.info("Getting the data in form of beans...");
 //        Collection<DataBeanDto> dataBeanDtos = dataBeanService.dataBeanDtoCollection();
 
@@ -120,12 +142,15 @@ public class DataBeanService {
         String printFileName = null;
         LOGGER.info("Storing the information in form of beans...");
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(pdfBeans);
+        LOGGER.info("Initializing HashMap object");
         Map parameters = new HashMap();
+        LOGGER.info("Successfully initialized");
 
         String rndm = String.valueOf(Math.random()).substring(4,8);
         String destFileName = "D://Jasper/" + rndm + ".pdf";
         LOGGER.info("Started the PDF generation process.......");
         try{
+        	LOGGER.info("Inside TRY block");
             printFileName = JasperFillManager.fillReportToFile(sourceFileName,parameters,beanCollectionDataSource);
             LOGGER.info("Generating PDF.....//////////");
             if(printFileName!=null)
@@ -133,6 +158,8 @@ public class DataBeanService {
 
             LOGGER.info("Pdf generated successfully....!!!");
         } catch (JRException e) {
+        	LOGGER.info("Inside CATCH block");
+        	LOGGER.info("ERROR: Encountered Exception - ",e);
         }
 //        return 1;
     }

@@ -1,6 +1,5 @@
 package com.skill.India.service;
 
-import com.skill.India.dao.LoginDao;
 import com.skill.India.dao.NonAssignedBatchesDao;
 import com.skill.India.dto.NonAssignedBatchesDto;
 
@@ -23,7 +22,9 @@ public class NonAssignedBatchesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(NonAssignedBatchesService.class);
     
     public Collection<NonAssignedBatchesDto> getCollection(){
-    	LOGGER.info("Inside service class to get data for Non assigned batches");
+    	LOGGER.info("Request Received from Controller");
+		LOGGER.info("In NonAssignedBatchesService - getCollection");
+		LOGGER.info("Making a Request to Dao to get data for Non assigned batches");
         return updateDao.getCollection();
     }
 }
