@@ -38,6 +38,7 @@ public class NonAssignedBatchesController {
     public Collection<NonAssignedBatchesDto> getNonAssignedBatchesDto(){
     	LOGGER.info("In NonAssignedBatchesController - getNonAssignedBatchesDto");
     	LOGGER.info("Request Received from front end to get data for all non assigned Batches For Batch assignment");
+    	LOGGER.info("Sending Request to service");
 		return nonAssignedBatchesService.getCollection();
     }
     
@@ -51,6 +52,7 @@ public class NonAssignedBatchesController {
     	LOGGER.info("In NonAssignedBatchesController - nonAssignedBatchesUpdate");
     	LOGGER.info("Request Received from front end to set proposed agency for corresponding Batch Id For Batch assignment");
     	LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':",responseType);
+    	LOGGER.info("Sending Request to service");
     	return nonAssignedBatchesUpdateService.putUpdateBatches(batchId, agencyId,responseType);
     }
     
@@ -65,7 +67,7 @@ public class NonAssignedBatchesController {
     	LOGGER.info("In NonAssignedBatchesController - agencyUpdate");
     	LOGGER.info("Request Received from front end to set agency for corresponding Batch For Batch assignment");
     	LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':",responseType);
-    	
+    	LOGGER.info("Sending Request to service");
     	return nonAssignedUpdateAgencyService.putAgencyId(agencyId, batchId, responseType);
     }
     

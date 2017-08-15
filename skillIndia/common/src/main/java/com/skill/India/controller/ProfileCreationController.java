@@ -42,6 +42,7 @@ public class ProfileCreationController {
 	{
 		LOGGER.info("In ProfileCreationController - profileCreationTrainingPartnerController");
 		LOGGER.info("Request Received from front end to get data of Training Partner for Profile Creation");
+		LOGGER.info("Sending Request to service");
 		return profileCreationTrainingPartnerService.profileCreationTrainingPartner();
 	}
 
@@ -51,8 +52,10 @@ public class ProfileCreationController {
 		LOGGER.info("In ProfileCreationController - saveAsDraftAndSubmitController");
 		LOGGER.info("Request Received from front end to save and submit data data of Training Partner/Assessment Body for Profile Creation");
 		LOGGER.info("Parameters Received from front end are - 'profileCreationTrainingPartnerDto': ",profileCreationTrainingPartnerDto);
-		LOGGER.info("In save as Draft controller"+ profileCreationTrainingPartnerDto.getOrganizationName()+profileCreationTrainingPartnerDto.getUserId() + profileCreationTrainingPartnerDto.getType());
+		LOGGER.info("Data"+ profileCreationTrainingPartnerDto.getOrganizationName()+profileCreationTrainingPartnerDto.getUserId() + profileCreationTrainingPartnerDto.getType());
+		LOGGER.info("Sending Request to service");
 		saveAsDraftAndSubmitService.saveAsDraftAndSubmit(profileCreationTrainingPartnerDto,profileCreationTrainingPartnerDto.getType());
+		LOGGER.info("Response Received from Service");
 		return null;
 	}
 

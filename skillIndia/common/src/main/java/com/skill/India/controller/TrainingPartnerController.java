@@ -43,7 +43,7 @@ public class TrainingPartnerController {
 	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getTrainingPartnerPastTableDto () {
 			LOGGER.info("In TrainingPartnerController - getTrainingPartnerPastTableDto");
 			LOGGER.info("Request Received from front end to get data for Past Batches For Training Partner");
-	    		    	
+	    	LOGGER.info("Sending Request to service");	    	
 			return trainingPartnerPastTableService.getUpdateRowMapper(sessionUserUtility
 					.getApplicationId(sessionUserUtility
 							.getSessionMangementfromSession().getUsername()));
@@ -58,6 +58,7 @@ public class TrainingPartnerController {
 	public Collection<TrainingPartnerApplicationStatusDto> gettrainingPartnerApplicationStatusDto() {
 		LOGGER.info("In TrainingPartnerController - gettrainingPartnerApplicationStatusDto");
 		LOGGER.info("Request Received from front end to get data for Application status table for Training Partner");
+		LOGGER.info("Sending Request to service");
 		return trainingPartnerApplicationStatusService
 				.getUpdateRowMapper(sessionUserUtility
 						.getApplicationId(sessionUserUtility

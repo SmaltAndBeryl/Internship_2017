@@ -44,6 +44,7 @@ public class ManageRegistrationsController {
 		LOGGER.info("In ManageRegistrationsController - approveRejectTableDtos");
 		LOGGER.info("Request Received from front end to get data for Approve/Reject Table for Manage Registration");
 		LOGGER.info("Trying to get Data from Application table");
+		LOGGER.info("Sending Request to service");
 		return approveRejectTableService.getUpdateRowMapper();
 	}
 
@@ -59,20 +60,27 @@ public class ManageRegistrationsController {
 		MessageDto approveRegistartionMessage = new MessageDto();
 		LOGGER.info("Trying to Affilate an Applicant.");
 		int updatedAffilationOfAApplicant = 0;
-
+		LOGGER.info("Sending Request to service");
 		updatedAffilationOfAApplicant = approveRejectTableService
 				.updateAffilationOfAApplicant(manageRegistrationApplicationDto);
-		if (updatedAffilationOfAApplicant > 0) {
+		if (updatedAffilationOfAApplicant > 0)
+		{
 
 			LOGGER.info("Success");
-
+			LOGGER.info("Setting up the Success Message");
+			LOGGER.info("Sending request to Dao");
 			approveRegistartionMessage.setSuccessMessage("Success");
-
-		} else {
-			approveRegistartionMessage.setErrorMessage("Error");
-			LOGGER.info("Error");
-
+			LOGGER.info("Response received from Dao");
 		}
+		else
+		{
+			LOGGER.info("Error");
+			LOGGER.info("Setting up the Success Message");
+			LOGGER.info("Sending request to Dao");
+			approveRegistartionMessage.setErrorMessage("Error");
+			LOGGER.info("Response received from Dao");
+		}
+		LOGGER.info("Sending Response back to Front End");
 		return approveRegistartionMessage;
 
 	}
@@ -83,10 +91,11 @@ public class ManageRegistrationsController {
 		LOGGER.info("In ManageRegistrationsController - setComment");
 		LOGGER.info("Request Received from front end to set comments for the process of Affiliation of a Body");
 		LOGGER.info("Parameters Received from front end are - 'commentDto': ",commentDto);
-		
+		LOGGER.debug("Initializing a MessageDto");
 		MessageDto approveRegistartionMessage = new MessageDto();
+		LOGGER.info("Successfully initialized");
 		try {
-
+			LOGGER.info("Sending Request to service");
 			String commentResult = approveRejectTableService
 					.editUserApplication(commentDto.getApplicationId(),
 							commentDto.getComment(),
@@ -116,8 +125,12 @@ public class ManageRegistrationsController {
     public Collection<DataBeanDto> dataBeanDtoCollection(){
     	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
     	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
-		Collection<DataBeanDto> dataBeanDtos = dataBeanService.dataBeanDtoCollection();
+    	LOGGER.info("Creating Collection to collect data for PDF creation");
+    	LOGGER.info("Sending Request to Service");
+    	Collection<DataBeanDto> dataBeanDtos = dataBeanService.dataBeanDtoCollection();
         dataBeanService.getDataBeanList();
+        LOGGER.info("Response received from Service");
+        LOGGER.info("Data received in Collection");
 //        dataBeanService.generatePdf();
         return dataBeanService.dataBeanDtoCollection();
     }
@@ -127,7 +140,9 @@ public class ManageRegistrationsController {
     public void pdfBeanArrayList(){
     	LOGGER.info("In ManageRegistrationsController - pdfBeanArrayList");
     	LOGGER.info("Request Received from front end to generate PDF for the process of Affiliation of a Body");
-		dataBeanService.generatePdf();
+    	LOGGER.info("Sending Request to Service");
+    	dataBeanService.generatePdf();
+    	LOGGER.info("Exiting The Controller");
     }
 		
 }
