@@ -37,10 +37,11 @@ public class SignUpService {
 		userExistStatus=signUpDao.checkUserExistence(signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getOrganizationName());
 		if(userExistStatus==0)
 		{
+			LOGGER.info("User existence status is-"+userExistStatus);
 			LOGGER.info("User does not exist in the record");
 			id = signUpDao.insertSignUpData(signUpReceiveDataDto.getOrganizationName(),signUpReceiveDataDto.getSPOCName(),signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getPassword(),signUpReceiveDataDto.getUserRole());
 		 if(id >-1){
-			 saveAsDraftAndSubmitDao.insertIntoApplication(signUpReceiveDataDto.getUserId(), "Submit");
+			 saveAsDraftAndSubmitDao.insertIntoApplication(signUpReceiveDataDto.getUserId(), "Draft");
 		 }
 					
 		}
@@ -48,7 +49,6 @@ public class SignUpService {
 		{
 			LOGGER.info("User already exist in the record");
 			signUpInsertedUserDto= new SignUpInsertedUserDto(null, null, null);
-			
 		}
 		
 		

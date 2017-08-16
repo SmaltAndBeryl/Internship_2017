@@ -38,22 +38,22 @@ public class ApproveRejectTableDao extends AbstractTransactionalDao {
 		
 		switch (rowWiseData.getapplicationState())
 		{
-			case "approved" :
+			case "Approved" :
 			{
 				approvedApplications.add(rowWiseData);
 				break;
 			}
-			case "rejected":
+			case "Rejected":
 			{
 				rejectedApplications.add(rowWiseData);
 				break;
 			}
-			case "submit":
+			case "Submit":
 			{
 				submittedApplications.add(rowWiseData);
 				break;
 			}
-			case "incomplete":
+			case "Incomplete":
 			{
 				incompleteApplications.add(rowWiseData);
 				break;
