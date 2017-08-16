@@ -52,7 +52,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
              .then(function(response){
             	 var appState = response.data.applicationState;
                  alert("Application get successful, state = " + appState);
-                 if(appState != 'Complete'){
+                 if(appState != 'Submit'){
                      $location.path(submitRoutingUrl);
                  }
 
@@ -180,6 +180,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 		     var userName=signupAction.userId;
 		     if(userName=="null" || signupAction.organizationName=="null" || signupAction.sPOCName=="null"){
 		    	alert("User already exist");
+		    	$scope.errorMessagesForSignUp = "Organisation name is already in use."
 		    	 }
 		     else{
 		    	 alert("User created with userId - "+self.newUser.userId); 

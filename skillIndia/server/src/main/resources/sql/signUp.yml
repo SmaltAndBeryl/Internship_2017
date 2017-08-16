@@ -4,7 +4,7 @@ signUp:
     values (:organizationName,:sPOCName,:userId,:password,:userRole,'temp')
     
  checkSql: >
-   SELECT EXISTS(SELECT * FROM user WHERE userId=:userId and organizationName=:organizationName)
+   SELECT EXISTS(SELECT * FROM user WHERE userId=:userId or organizationName=:organizationName)
    
  getSql: >
    select userId,organizationName,spocName from user where Id=:Id

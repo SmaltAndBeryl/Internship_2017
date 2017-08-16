@@ -4,7 +4,7 @@ ProfileCreation:
     where userId=:userId
  
  getTrainingPartnerDataByUserIdFronUser: >
-   select organisationName,SPOCName,userId from user 
+   select organizationName,SPOCName,userId from user 
      where userId=:userId
  
  checkuserIdExistenceInTrainingPartnerRegistration: >

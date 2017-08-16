@@ -191,16 +191,14 @@ $scope.myfunctionedit = function(rowData) {
     $scope.messagealert = false;
     console.log("function to get row data");
     var editdetailsOfApplication = {
-        applicationState: 'incomplete',
+        applicationState: 'Incomplete',
         applicationId: rowData.entity.applicationId,
         comment: rowData.entity.Comments
     }
     //console.log(dataOfRow[0][0]);
     console.log(rowData.entity.Comments);
     console.log(editdetailsOfApplication);
-    //grid.getCellValue(row,col);
-    //var abj = Object.values(rowData)[1];
-    //console.log("Row Data is " + abj);
+   
     var manageControllerURI = "/setManageRegistrationsComment";
     console.log(manageControllerURI);
     console.log("click is working");
@@ -226,7 +224,7 @@ $scope.myfunctionedit = function(rowData) {
                 })
         },
         function(errorResponse, status) {
-            $scope.message = response.data.errorMessage;
+            $scope.message = errorResponse.data.errorMessage;
             $scope.messagealert = true;
             var failure = $scope.message;
             console.log('THIS IS THE RESPONSE IN THE COMMENT:' + failure);
@@ -240,7 +238,7 @@ $scope.myfunctionapprove = function(rowData) {
     $scope.messagealert = false;
     alert("are you sure you want to accept this application")
     var editDetailsOfApplication = {
-        'applicationState': 'approved',
+        'applicationState': 'Approved',
         'applicationId': rowData.entity.applicationId,
         'activeFlag': 'true',
         'userId': rowData.entity.userId
@@ -295,7 +293,7 @@ $scope.myfunctionreject = function(rowData) {
 
 
     var rejectApplicationData = {
-        'applicationState': 'rejected',
+        'applicationState': 'Rejected',
         'applicationId': rowData.entity.applicationId,
         'userId': rowData.entity.userId,
         'activeFlag': "false"

@@ -126,7 +126,7 @@ $scope.searchBatch = {
                      { name:'batchStartDate' ,   displayname:'Batch Start date'},
                      { name:'batchEndDate' ,      displayname:'Batch End date'},
                      { name:'trainingPartnerName',displayname:'Training Partner Name'},
-                     { name:'view', displayName:'Browse file',cellClass:'fname', headerCellClass:'File-Name',width:200,  cellTemplate:  '<label> <input type="file" id="uploadFile" accept=".zip" file-model/ ng-click=grid.appScope.selectLocation(row)></label>'},
+                     { name:'view', displayName:'Upload Certificate',cellClass:'fname', headerCellClass:'File-Name',width:200,  cellTemplate:  '<label> <input type="file" id="uploadFile" accept=".zip" file-model/ ng-click=grid.appScope.selectLocation(row)></label>'},
                      {name:'viewNAme', displayName:'Upload File', cellClass:'fname',headerCellClass:'File-Name',   cellTemplate:  '<label> <img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.uploadCertificate(row)></label>'}
                    ]
    };

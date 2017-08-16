@@ -57,7 +57,7 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
     $scope.myfunction = function(rowData) {
         var appState = Object.values(Object.values(rowData)[1])[3];
         if (appState == "Incomplete") {
-            window.location = "https://setprofilecreation";
+            $location.path('/profileCreationTp');
             console.log("Please Edit the Form");
 
         } else {
