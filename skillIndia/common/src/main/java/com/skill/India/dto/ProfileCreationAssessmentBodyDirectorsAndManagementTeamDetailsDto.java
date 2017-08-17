@@ -2,6 +2,8 @@ package com.skill.India.dto;
 
 public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 
+	private String directorsAndManagementId;
+	private String assessmentBodyRegistrationId;
 	private String name;
 	private String designation;
 	private String contactNumber;
@@ -10,7 +12,8 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	private String experience;
 	private String cVPath;
 	
-
+	
+	
 	/**
 	 * 
 	 */
@@ -18,6 +21,8 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 		super();
 	}
 	/**
+	 * @param directorsAndManagementId
+	 * @param assessmentBodyRegistrationId
 	 * @param name
 	 * @param designation
 	 * @param contactNumber
@@ -27,10 +32,13 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	 * @param cVPath
 	 */
 	public ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto(
-			String name, String designation, String contactNumber,
-			String emailId, String educationalQualification, String experience,
-			String cVPath) {
+			String directorsAndManagementId,
+			String assessmentBodyRegistrationId, String name,
+			String designation, String contactNumber, String emailId,
+			String educationalQualification, String experience, String cVPath) {
 		super();
+		this.directorsAndManagementId = directorsAndManagementId;
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
 		this.name = name;
 		this.designation = designation;
 		this.contactNumber = contactNumber;
@@ -38,6 +46,30 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 		this.educationalQualification = educationalQualification;
 		this.experience = experience;
 		this.cVPath = cVPath;
+	}
+	/**
+	 * @return the directorsAndManagementId
+	 */
+	public String getDirectorsAndManagementId() {
+		return directorsAndManagementId;
+	}
+	/**
+	 * @param directorsAndManagementId the directorsAndManagementId to set
+	 */
+	public void setDirectorsAndManagementId(String directorsAndManagementId) {
+		this.directorsAndManagementId = directorsAndManagementId;
+	}
+	/**
+	 * @return the assessmentBodyRegistrationId
+	 */
+	public String getAssessmentBodyRegistrationId() {
+		return assessmentBodyRegistrationId;
+	}
+	/**
+	 * @param assessmentBodyRegistrationId the assessmentBodyRegistrationId to set
+	 */
+	public void setAssessmentBodyRegistrationId(String assessmentBodyRegistrationId) {
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
 	}
 	/**
 	 * @return the name
@@ -123,6 +155,9 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	public void setcVPath(String cVPath) {
 		this.cVPath = cVPath;
 	}
+	
+
+	
 	
 	
 }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.ProfileCreationTrainingPartnerConfigSql;
-import com.skill.India.dao.ProfileCreationTrainingPartnerDao.ProfileCreationRowMapper;
 import com.skill.India.dto.ProfileCreationTrainingPartnerCenterDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteGrantDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto;
@@ -29,14 +28,6 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 	/*
 	 * Get ApplicationId using userId  
 	 */
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	private static final ProfileCreationTrainingPartnerOrganizationDetailsRowMapper ROW_MAPPER_TPREG_ORGDETAILS = new ProfileCreationTrainingPartnerOrganizationDetailsRowMapper();
 	
@@ -59,6 +50,8 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 		@Override
 		public ProfileCreationTrainingPartnerOrganizationDetailsDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
+			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
+			String applicationId = resultSet.getString("applicationId");
 			String organizationName = resultSet.getString("organizationName");
 			String sPOCName = resultSet.getString("sPOCName");
 			String address = resultSet.getString("address");
@@ -94,15 +87,15 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 			String priorExperienceOfInstitutionInSkillDevelopment = resultSet.getString("priorExperienceOfInstitutionInSkillDevelopment");
 			String anyPriorExperienceOfInstitutionInSkillTraining = resultSet.getString("anyPriorExperienceOfInstitutionInSkillTraining");
 			String trainingStaffDetailsAnnexurePath = resultSet.getString("trainingStaffDetailsAnnexurePath");
-			return new ProfileCreationTrainingPartnerOrganizationDetailsDto(organizationName,sPOCName,address,city,state,pincode,
+			String type=resultSet.getString("type");
+			return new ProfileCreationTrainingPartnerOrganizationDetailsDto(trainingPartnerRegistrationId,applicationId,organizationName,sPOCName,address,city,state,pincode,
 				mobileNumber,alternateMobileNumber,landlineNumber,alternateLandlineNumber,faxNumber,websites,yearOfEstablishment,qualificationPacks,qualificationPacksAnnexurePath,nSDCFunded,nSDCFundedCertificatePath,
 				mediumOfInstructions,selfOwnedInstitution,selfOwnedInstitutionAnnexurePath,franchiseOwnedInstitution,franchiseOwnedInstitutionAnnexurePath,mobileTrainingInstitution,mobileTrainingInstitutionAnnexurePath,
 				panNumber,panNumberPath,tanNumber,tanNumberPath,turnOverOfInstitution,turnOverOfInstitutionBalanceSheetPath,instituteReceivedAnyGrant,instituteReceivedAnyRecognition,priorExperienceOfInstitutionInSkillDevelopment,
-				anyPriorExperienceOfInstitutionInSkillTraining,trainingStaffDetailsAnnexurePath);
+				anyPriorExperienceOfInstitutionInSkillTraining,trainingStaffDetailsAnnexurePath,type);
 		}
 
 }
-	
 	
 	/*
 	 * Table 2 Center Level Details
@@ -110,11 +103,11 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 	
 private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper ROW_MAPPER_TPREG_CENTERDEATILS = new ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper();
 	
-	public Collection<ProfileCreationTrainingPartnerCenterDetailsDto> profileCreationGetDataFromTrainingPartnerCenterLevelDetails(String applicationId)
+	public Collection<ProfileCreationTrainingPartnerCenterDetailsDto> profileCreationGetDataFromTrainingPartnerCenterLevelDetails(String trainingPartnerRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
 		return getJdbcTemplate().query(profileCreationTrainingPartnerConfigSql.getGetDataFromTrainingPartnerOrganizationDetails(),parameters,ROW_MAPPER_TPREG_CENTERDEATILS);
 		}
 		catch(Exception e)
@@ -129,6 +122,8 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 		@Override
 		public ProfileCreationTrainingPartnerCenterDetailsDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
+			String trainingPartnerCenterId = resultSet.getString("trainingPartnerCenterId");
+			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
 			String nameOfCenter = resultSet.getString("nameOfCenter");
 			String numberOfPermanentOfficeManager = resultSet.getString("numberOfPermanentOfficeManager");
 			String numberOftemporaryOfficeManager = resultSet.getString("numberOftemporaryOfficeManager");
@@ -177,21 +172,19 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 			String safeCustodyOfStudentDocuments = resultSet.getString("safeCustodyOfStudentDocuments");
 			String studentAgreementWithInstitution = resultSet.getString("studentAgreementWithInstitution");
 			String remarksOnStudentAdmissionDetails = resultSet.getString("remarksOnStudentAdmissionDetails");
-			return new ProfileCreationTrainingPartnerCenterDetailsDto(nameOfCenter,numberOfPermanentOfficeManager,numberOftemporaryOfficeManager,
+			return new ProfileCreationTrainingPartnerCenterDetailsDto(trainingPartnerCenterId,trainingPartnerRegistrationId,nameOfCenter,numberOfPermanentOfficeManager,numberOftemporaryOfficeManager,
 				numberOfPermanentOfficeStaff,numberOfTemporaryOfficeStaff,numberOfPermanentLabAssistants,numberOfTemporaryLabAssistants,
 				numberOfPermanentAccountants,numberOfTemporaryAccountants,numberOfPermanentSupportStaff,numberOfTemporarySupportStaff,
 				numberOfPermanentOtherEmployees,numberOfTemporaryOtherEmployees,areaOfInstitute,buildingType,sizeOfClassrooms,classroomPicsPath,
 				numberOfClassrooms,sizeOfLabs,labPicsPath,numberOfLabs,sizeOfWorkshops,workshopPicsPath,numberOfWorkshops,mandatoryToolKitpresent,
 				mandatoryToolKitAnnexurePath,mandatoryToolKitPicsPath,safeDrinkingWater,powerBackup,separateToilets,transportFacility,presenceOfLibrary,
-				numberOfNonTechnicalBooks,numberOfNonTechnicalBooks,numberOfMagazines,numberOfDailies,remarksOnInfrastructureDetails,
+				numberOfTechnicalBooks,numberOfNonTechnicalBooks,numberOfMagazines,numberOfDailies,remarksOnInfrastructureDetails,
 				sufficientClassroomIlluminationLevel,sufficientClassroomVentilationLevel,sufficientCenterCleanliness,centerWeatherProtected,
 				remarksOnLearningEnviornment,printedBrochureOrProspectus,documentedPolicyAndProcedures,concessionPolicy,safeCustodyOfStudentDocuments,
 				studentAgreementWithInstitution,remarksOnStudentAdmissionDetails);
 		}
 
 }
-	
-	
 /*
  * Table 3 Institute Grant
  * 	
@@ -201,11 +194,11 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 	
 private static final ProfileCreationTrainingPartnerInstituteGrantRowMapper ROW_MAPPER_TPREG_INSTGRANT = new ProfileCreationTrainingPartnerInstituteGrantRowMapper();
 	
-	public Collection<ProfileCreationTrainingPartnerInstituteGrantDto> profileCreationGetDataFromTrainingPartnerInstituteGrant(String applicationId)
+	public Collection<ProfileCreationTrainingPartnerInstituteGrantDto> profileCreationGetDataFromTrainingPartnerInstituteGrant(String trainingPartnerRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
 		return getJdbcTemplate().query(profileCreationTrainingPartnerConfigSql.getGetDataFromTrainingPartnerInstituteGrant(),parameters,ROW_MAPPER_TPREG_INSTGRANT);
 		}
 		catch(Exception e)
@@ -220,14 +213,15 @@ private static final ProfileCreationTrainingPartnerInstituteGrantRowMapper ROW_M
 		@Override
 		public ProfileCreationTrainingPartnerInstituteGrantDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
+			String instituteGrantId = resultSet.getString("instituteGrantId");
+			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
 			String nameOfMinistry = resultSet.getString("nameOfMinistry");
 			String natureOfWork = resultSet.getString("natureOfWork");
 			String remarks = resultSet.getString("remarks");
-			return new ProfileCreationTrainingPartnerInstituteGrantDto(nameOfMinistry,natureOfWork,remarks);
+			return new ProfileCreationTrainingPartnerInstituteGrantDto(instituteGrantId,trainingPartnerRegistrationId,nameOfMinistry,natureOfWork,remarks);
 		}
 
 }
-	
 	
 	/*
 	 * Table 4 Institute Recognition 
@@ -235,11 +229,11 @@ private static final ProfileCreationTrainingPartnerInstituteGrantRowMapper ROW_M
 	
 private static final ProfileCreationTrainingPartnerInstituteRecognitionRowMapper ROW_MAPPER_TPREG_INSTRECOGNITION = new ProfileCreationTrainingPartnerInstituteRecognitionRowMapper();
 	
-	public Collection<ProfileCreationTrainingPartnerInstituteRecognitionDto> profileCreationGetDataFromTrainingPartnerInstituteRecognition(String applicationId)
+	public Collection<ProfileCreationTrainingPartnerInstituteRecognitionDto> profileCreationGetDataFromTrainingPartnerInstituteRecognition(String trainingPartnerRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
 		return getJdbcTemplate().query(profileCreationTrainingPartnerConfigSql.getGetDataFromTrainingPartnerInstituteRecognition(),parameters,ROW_MAPPER_TPREG_INSTRECOGNITION);
 		}
 		catch(Exception e)
@@ -254,11 +248,13 @@ private static final ProfileCreationTrainingPartnerInstituteRecognitionRowMapper
 		@Override
 		public ProfileCreationTrainingPartnerInstituteRecognitionDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
+			String instituteRecognitionId = resultSet.getString("instituteRecognitionId");
+			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
 			String nameOfRecognizingBody = resultSet.getString("nameOfRecognizingBody");
 			String recognitionNumber = resultSet.getString("recognitionNumber");
 			String yearOfRecognition = resultSet.getString("yearOfRecognition");
 			String validityOfRecognition = resultSet.getString("validityOfRecognition");
-			return new ProfileCreationTrainingPartnerInstituteRecognitionDto(nameOfRecognizingBody,recognitionNumber,yearOfRecognition,validityOfRecognition);
+			return new ProfileCreationTrainingPartnerInstituteRecognitionDto(instituteRecognitionId,trainingPartnerRegistrationId,nameOfRecognizingBody,recognitionNumber,yearOfRecognition,validityOfRecognition);
 		}
 
 }
@@ -270,11 +266,11 @@ private static final ProfileCreationTrainingPartnerInstituteRecognitionRowMapper
 	
 private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingRowMapper ROW_MAPPER_TPREG_PRIOREXP = new ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingRowMapper();
 	
-	public Collection<ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> profileCreationGetDataFromTrainingPartnerPriorExperienceInSkillTraining(String applicationId)
+	public Collection<ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> profileCreationGetDataFromTrainingPartnerPriorExperienceInSkillTraining(String trainingPartnerRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
 		return getJdbcTemplate().query(profileCreationTrainingPartnerConfigSql.getGetDataFromTrainingPartnerPriorExperienceInSkillTraining(),parameters,ROW_MAPPER_TPREG_PRIOREXP);
 		}
 		catch(Exception e)
@@ -289,11 +285,12 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		@Override
 		public ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
+			String priorExperienceInSkillTrainingId = resultSet.getString("priorExperienceInSkillTrainingId");
+			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
 			String courseName = resultSet.getString("courseName");
 			String numberOfBatchesPerYear = resultSet.getString("numberOfBatchesPerYear");
 			String numberOfStudentsInEachBatch = resultSet.getString("numberOfStudentsInEachBatch");
-			
-			return new ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto(courseName,numberOfBatchesPerYear,numberOfStudentsInEachBatch);
+			return new ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto(priorExperienceInSkillTrainingId,trainingPartnerRegistrationId,courseName,numberOfBatchesPerYear,numberOfStudentsInEachBatch);
 		}
 
 }
@@ -304,11 +301,11 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 
 private static final ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsRowMapper ROW_MAPPER_TPREG_STAFFDETAILS = new ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsRowMapper();
 	
-	public Collection<ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto> profileCreationGetDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails(String applicationId)
+	public Collection<ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto> profileCreationGetDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails(String trainingPartnerRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
 		return getJdbcTemplate().query(profileCreationTrainingPartnerConfigSql.getGetDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails(),parameters,ROW_MAPPER_TPREG_STAFFDETAILS);
 		}
 		catch(Exception e)
@@ -323,6 +320,9 @@ private static final ProfileCreationTrainingPartnerManagementAndStaffAndOfficial
 		@Override
 		public ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
+			String managementAndStaffId = resultSet.getString("managementAndStaffId");
+			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
+			String trainingPartnerCenterId = resultSet.getString("trainingPartnerCenterId");
 			String type = resultSet.getString("type");
 			String name = resultSet.getString("name");;
 			String designation = resultSet.getString("designation");;
@@ -333,7 +333,7 @@ private static final ProfileCreationTrainingPartnerManagementAndStaffAndOfficial
 			String experience = resultSet.getString("experience");;
 			String cVPath = resultSet.getString("cVPath");;
 			String certificatePath = resultSet.getString("certificatePath");;
-			return new ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(type,name,designation,emailId,contactNumber,
+			return new ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(managementAndStaffId,trainingPartnerRegistrationId,trainingPartnerCenterId,type,name,designation,emailId,contactNumber,
 					educationalQualification,regularOrVisiting,experience,cVPath,certificatePath);
 		}
 

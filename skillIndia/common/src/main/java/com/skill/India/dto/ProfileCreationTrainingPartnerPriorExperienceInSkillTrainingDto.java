@@ -2,6 +2,8 @@ package com.skill.India.dto;
 
 public class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto {
 
+	private String priorExperienceInSkillTrainingId;
+	private String trainingPartnerRegistrationId;
 	private String courseName;
 	private String numberOfBatchesPerYear;
 	private String numberOfStudentsInEachBatch;
@@ -19,12 +21,45 @@ public class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto {
 	 * @param numberOfStudentsInEachBatch
 	 */
 	public ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto(
+			String priorExperienceInSkillTrainingId,
+			String trainingPartnerRegistrationId,
 			String courseName, String numberOfBatchesPerYear,
 			String numberOfStudentsInEachBatch) {
 		super();
 		this.courseName = courseName;
 		this.numberOfBatchesPerYear = numberOfBatchesPerYear;
 		this.numberOfStudentsInEachBatch = numberOfStudentsInEachBatch;
+		this.priorExperienceInSkillTrainingId=priorExperienceInSkillTrainingId;
+		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
+	}
+	
+	
+	
+	/**
+	 * @return the priorExperienceInSkillTrainingId
+	 */
+	public String getPriorExperienceInSkillTrainingId() {
+		return priorExperienceInSkillTrainingId;
+	}
+	/**
+	 * @param priorExperienceInSkillTrainingId the priorExperienceInSkillTrainingId to set
+	 */
+	public void setPriorExperienceInSkillTrainingId(
+			String priorExperienceInSkillTrainingId) {
+		this.priorExperienceInSkillTrainingId = priorExperienceInSkillTrainingId;
+	}
+	/**
+	 * @return the trainingPartnerRegistrationId
+	 */
+	public String getTrainingPartnerRegistrationId() {
+		return trainingPartnerRegistrationId;
+	}
+	/**
+	 * @param trainingPartnerRegistrationId the trainingPartnerRegistrationId to set
+	 */
+	public void setTrainingPartnerRegistrationId(
+			String trainingPartnerRegistrationId) {
+		this.trainingPartnerRegistrationId = trainingPartnerRegistrationId;
 	}
 	/**
 	 * @return the courseName

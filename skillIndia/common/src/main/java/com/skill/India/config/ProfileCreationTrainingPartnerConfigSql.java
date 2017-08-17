@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="ProfileCreationTrainingPartner:",locations="classpath:sql/ProfileCreationTrainingPartner.yml")
+@ConfigurationProperties(prefix="ProfileCreationAssessmentBody",locations="classpath:sql/ProfileCreationTrainingPartner.yml")
 public class ProfileCreationTrainingPartnerConfigSql {
 
 	private String getDataFromTrainingPartnerOrganizationDetails;
@@ -26,8 +26,22 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateIntoTrainingPartnerPriorExperienceInSkillTraining;
 	private String updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
 	private String insertDataInApplication;
+	private String updateDataInApplication;
 	
 	
+	
+	/**
+	 * @return the updateDataInApplication
+	 */
+	public String getUpdateDataInApplication() {
+		return updateDataInApplication;
+	}
+	/**
+	 * @param updateDataInApplication the updateDataInApplication to set
+	 */
+	public void setUpdateDataInApplication(String updateDataInApplication) {
+		this.updateDataInApplication = updateDataInApplication;
+	}
 	/**
 	 * @return the insertDataInApplication
 	 */

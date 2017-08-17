@@ -2,11 +2,14 @@ package com.skill.India.dto;
 
 public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 
+	private String regionalOfficeId;
+	private String assessmentBodyRegistrationId;
 	private String address;
 	private String state;
 	private String pincode;
 	private String contactNumber;
 	private String alternateContactNumber;
+	
 	
 	/**
 	 * 
@@ -15,6 +18,8 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 		super();
 	}
 	/**
+	 * @param regionalOfficeId
+	 * @param assessmentBodyRegistrationId
 	 * @param address
 	 * @param state
 	 * @param pincode
@@ -22,14 +27,41 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 	 * @param alternateContactNumber
 	 */
 	public ProfileCreationAssessmentBodyRegionalOfficeDetailsDto(
+			String regionalOfficeId, String assessmentBodyRegistrationId,
 			String address, String state, String pincode, String contactNumber,
 			String alternateContactNumber) {
 		super();
+		this.regionalOfficeId = regionalOfficeId;
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
 		this.address = address;
 		this.state = state;
 		this.pincode = pincode;
 		this.contactNumber = contactNumber;
 		this.alternateContactNumber = alternateContactNumber;
+	}
+	/**
+	 * @return the regionalOfficeId
+	 */
+	public String getRegionalOfficeId() {
+		return regionalOfficeId;
+	}
+	/**
+	 * @param regionalOfficeId the regionalOfficeId to set
+	 */
+	public void setRegionalOfficeId(String regionalOfficeId) {
+		this.regionalOfficeId = regionalOfficeId;
+	}
+	/**
+	 * @return the assessmentBodyRegistrationId
+	 */
+	public String getAssessmentBodyRegistrationId() {
+		return assessmentBodyRegistrationId;
+	}
+	/**
+	 * @param assessmentBodyRegistrationId the assessmentBodyRegistrationId to set
+	 */
+	public void setAssessmentBodyRegistrationId(String assessmentBodyRegistrationId) {
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
 	}
 	/**
 	 * @return the address
@@ -92,5 +124,6 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 		this.alternateContactNumber = alternateContactNumber;
 	}
 	
+		
 	
 }

@@ -2,11 +2,11 @@ package com.skill.India.dto;
 
 public class ProfileCreationTrainingPartnerInstituteGrantDto {
 
+	private String instituteGrantId;
+	private String trainingPartnerRegistrationId;
 	private String nameOfMinistry;
 	private String natureOfWork;
 	private String remarks;
-	
-	
 	
 	
 	/**
@@ -20,12 +20,41 @@ public class ProfileCreationTrainingPartnerInstituteGrantDto {
 	 * @param natureOfWork
 	 * @param remarks
 	 */
-	public ProfileCreationTrainingPartnerInstituteGrantDto(String nameOfMinistry,
+	public ProfileCreationTrainingPartnerInstituteGrantDto(String instituteGrantId, String trainingPartnerRegistrationId ,String nameOfMinistry,
 			String natureOfWork, String remarks) {
 		super();
+		this.instituteGrantId=instituteGrantId;
+		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
 		this.nameOfMinistry = nameOfMinistry;
 		this.natureOfWork = natureOfWork;
 		this.remarks = remarks;
+	}
+	
+
+	/**
+	 * @return the instituteGrantId
+	 */
+	public String getInstituteGrantId() {
+		return instituteGrantId;
+	}
+	/**
+	 * @param instituteGrantId the instituteGrantId to set
+	 */
+	public void setInstituteGrantId(String instituteGrantId) {
+		this.instituteGrantId = instituteGrantId;
+	}
+	/**
+	 * @return the trainingPartnerRegistrationId
+	 */
+	public String getTrainingPartnerRegistrationId() {
+		return trainingPartnerRegistrationId;
+	}
+	/**
+	 * @param trainingPartnerRegistrationId the trainingPartnerRegistrationId to set
+	 */
+	public void setTrainingPartnerRegistrationId(
+			String trainingPartnerRegistrationId) {
+		this.trainingPartnerRegistrationId = trainingPartnerRegistrationId;
 	}
 	/**
 	 * @return the nameOfMinistry

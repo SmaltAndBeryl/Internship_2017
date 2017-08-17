@@ -2,6 +2,9 @@ package com.skill.India.dto;
 
 public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 
+	
+	private String assessmentBodyRegistrationId;
+	private String applicationId;
 	private String organizationName;
 	private String sPOCName;
 	private String address;
@@ -35,6 +38,8 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 		super();
 	}
 	/**
+	 * @param assessmentBodyRegistrationId
+	 * @param applicationId
 	 * @param organizationName
 	 * @param sPOCName
 	 * @param address
@@ -59,6 +64,7 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 	 * @param affiliatedToAnySectorSkillCouncil
 	 */
 	public ProfileCreationAssessmentBodyRegistrationDetailsDto(
+			String assessmentBodyRegistrationId, String applicationId,
 			String organizationName, String sPOCName, String address,
 			String city, String state, String pincode, String mobileNumber,
 			String alternateMobileNumber, String landlineNumber,
@@ -70,6 +76,8 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 			String numberOfNonTechnicalAssessors,
 			String affiliatedToAnySectorSkillCouncil) {
 		super();
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
+		this.applicationId = applicationId;
 		this.organizationName = organizationName;
 		this.sPOCName = sPOCName;
 		this.address = address;
@@ -92,6 +100,30 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 		this.numberOfTechnicalAssessors = numberOfTechnicalAssessors;
 		this.numberOfNonTechnicalAssessors = numberOfNonTechnicalAssessors;
 		this.affiliatedToAnySectorSkillCouncil = affiliatedToAnySectorSkillCouncil;
+	}
+	/**
+	 * @return the assessmentBodyRegistrationId
+	 */
+	public String getAssessmentBodyRegistrationId() {
+		return assessmentBodyRegistrationId;
+	}
+	/**
+	 * @param assessmentBodyRegistrationId the assessmentBodyRegistrationId to set
+	 */
+	public void setAssessmentBodyRegistrationId(String assessmentBodyRegistrationId) {
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
+	}
+	/**
+	 * @return the applicationId
+	 */
+	public String getApplicationId() {
+		return applicationId;
+	}
+	/**
+	 * @param applicationId the applicationId to set
+	 */
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId;
 	}
 	/**
 	 * @return the organizationName
@@ -360,6 +392,7 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 			String affiliatedToAnySectorSkillCouncil) {
 		this.affiliatedToAnySectorSkillCouncil = affiliatedToAnySectorSkillCouncil;
 	}
+	
 	
 	
 	

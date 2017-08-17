@@ -2,17 +2,21 @@ package com.skill.India.dto;
 
 public class ProfileCreationAssessmentStaffDetailsDto {
 
+	private String assessmentStaffId;
+	private String assessmentBodyRegistrationId;
 	private String name;
 	private String jobRoleCode;
 	private String designation;
 	private String contactNumber;
 	private String emailId;
 	private String state;
-	private String district;
+	private String city;
 	private String educationalQualification;
 	private String experience;
 	private String cVPath;
 	private String certificatePath;
+	
+	
 	
 	/**
 	 * 
@@ -21,35 +25,64 @@ public class ProfileCreationAssessmentStaffDetailsDto {
 		super();
 	}
 	/**
+	 * @param assessmentStaffId
+	 * @param assessmentBodyRegistrationId
 	 * @param name
 	 * @param jobRoleCode
 	 * @param designation
 	 * @param contactNumber
 	 * @param emailId
 	 * @param state
-	 * @param district
+	 * @param city
 	 * @param educationalQualification
 	 * @param experience
 	 * @param cVPath
 	 * @param certificatePath
 	 */
-	public ProfileCreationAssessmentStaffDetailsDto(String name,
+	public ProfileCreationAssessmentStaffDetailsDto(String assessmentStaffId,
+			String assessmentBodyRegistrationId, String name,
 			String jobRoleCode, String designation, String contactNumber,
-			String emailId, String state, String district,
+			String emailId, String state, String city,
 			String educationalQualification, String experience, String cVPath,
 			String certificatePath) {
 		super();
+		this.assessmentStaffId = assessmentStaffId;
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
 		this.name = name;
 		this.jobRoleCode = jobRoleCode;
 		this.designation = designation;
 		this.contactNumber = contactNumber;
 		this.emailId = emailId;
 		this.state = state;
-		this.district = district;
+		this.city = city;
 		this.educationalQualification = educationalQualification;
 		this.experience = experience;
 		this.cVPath = cVPath;
 		this.certificatePath = certificatePath;
+	}
+	/**
+	 * @return the assessmentStaffId
+	 */
+	public String getAssessmentStaffId() {
+		return assessmentStaffId;
+	}
+	/**
+	 * @param assessmentStaffId the assessmentStaffId to set
+	 */
+	public void setAssessmentStaffId(String assessmentStaffId) {
+		this.assessmentStaffId = assessmentStaffId;
+	}
+	/**
+	 * @return the assessmentBodyRegistrationId
+	 */
+	public String getAssessmentBodyRegistrationId() {
+		return assessmentBodyRegistrationId;
+	}
+	/**
+	 * @param assessmentBodyRegistrationId the assessmentBodyRegistrationId to set
+	 */
+	public void setAssessmentBodyRegistrationId(String assessmentBodyRegistrationId) {
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
 	}
 	/**
 	 * @return the name
@@ -124,16 +157,16 @@ public class ProfileCreationAssessmentStaffDetailsDto {
 		this.state = state;
 	}
 	/**
-	 * @return the district
+	 * @return the city
 	 */
-	public String getDistrict() {
-		return district;
+	public String getCity() {
+		return city;
 	}
 	/**
-	 * @param district the district to set
+	 * @param city the city to set
 	 */
-	public void setDistrict(String district) {
-		this.district = district;
+	public void setCity(String city) {
+		this.city = city;
 	}
 	/**
 	 * @return the educationalQualification

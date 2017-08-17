@@ -2,6 +2,9 @@ package com.skill.India.dto;
 
 public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto {
 
+	private String managementAndStaffId;
+	private String trainingPartnerRegistrationId;
+	private String trainingPartnerCenterId;
 	private String type;
 	private String name;
 	private String designation;
@@ -35,11 +38,15 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	 * @param certificatePath
 	 */
 	public ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(
+			String managementAndStaffId,String trainingPartnerRegistrationId,String trainingPartnerCenterId,
 			String type, String name, String designation, String emailId,
 			String contactNumber, String educationalQualification,
 			String regularOrVisiting, String experience, String cVPath,
 			String certificatePath) {
 		super();
+		this.managementAndStaffId=managementAndStaffId;
+		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
+		this.trainingPartnerCenterId=trainingPartnerCenterId;
 		this.type = type;
 		this.name = name;
 		this.designation = designation;
@@ -50,6 +57,46 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 		this.experience = experience;
 		this.cVPath = cVPath;
 		this.certificatePath = certificatePath;
+	}
+	
+	
+	
+	/**
+	 * @return the managementAndStaffId
+	 */
+	public String getManagementAndStaffId() {
+		return managementAndStaffId;
+	}
+	/**
+	 * @param managementAndStaffId the managementAndStaffId to set
+	 */
+	public void setManagementAndStaffId(String managementAndStaffId) {
+		this.managementAndStaffId = managementAndStaffId;
+	}
+	/**
+	 * @return the trainingPartnerRegistrationId
+	 */
+	public String getTrainingPartnerRegistrationId() {
+		return trainingPartnerRegistrationId;
+	}
+	/**
+	 * @param trainingPartnerRegistrationId the trainingPartnerRegistrationId to set
+	 */
+	public void setTrainingPartnerRegistrationId(
+			String trainingPartnerRegistrationId) {
+		this.trainingPartnerRegistrationId = trainingPartnerRegistrationId;
+	}
+	/**
+	 * @return the trainingPartnerCenterId
+	 */
+	public String getTrainingPartnerCenterId() {
+		return trainingPartnerCenterId;
+	}
+	/**
+	 * @param trainingPartnerCenterId the trainingPartnerCenterId to set
+	 */
+	public void setTrainingPartnerCenterId(String trainingPartnerCenterId) {
+		this.trainingPartnerCenterId = trainingPartnerCenterId;
 	}
 	/**
 	 * @return the type

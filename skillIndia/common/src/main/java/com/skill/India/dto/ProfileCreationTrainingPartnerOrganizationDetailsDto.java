@@ -1,7 +1,8 @@
 package com.skill.India.dto;
 
 public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
-
+	private String applicationId;
+	private String trainingPartnerRegistrationId;
 	private String organizationName;
 	private String sPOCName;
 	private String address;
@@ -44,8 +45,6 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	
 	
 	
-	
-	
 	/**
 	 * @param organizationName
 	 * @param sPOCName
@@ -84,6 +83,7 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	 * @param trainingStaffDetailsAnnexurePath
 	 */
 	public ProfileCreationTrainingPartnerOrganizationDetailsDto(
+			String trainingPartnerRegistrationId,String applicationId,
 			String organizationName, String sPOCName, String address,
 			String city, String state, String pincode, String mobileNumber,
 			String alternateMobileNumber, String landlineNumber,
@@ -106,6 +106,8 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 			String anyPriorExperienceOfInstitutionInSkillTraining,
 			String trainingStaffDetailsAnnexurePath) {
 		super();
+		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
+		this.applicationId=applicationId;
 		this.organizationName = organizationName;
 		this.sPOCName = sPOCName;
 		this.address = address;
@@ -195,7 +197,8 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	 * @param anyPriorExperienceOfInstitutionInSkillTraining
 	 * @param trainingStaffDetailsAnnexurePath
 	 */
-	public ProfileCreationTrainingPartnerOrganizationDetailsDto(String organizationName,
+	public ProfileCreationTrainingPartnerOrganizationDetailsDto(String trainingPartnerRegistrationId,
+			String applicationId,String organizationName,
 			String sPOCName, String address, String city, String state,
 			String pincode, String mobileNumber, String alternateMobileNumber,
 			String landlineNumber, String alternateLandlineNumber,
@@ -254,9 +257,37 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 		this.anyPriorExperienceOfInstitutionInSkillTraining = anyPriorExperienceOfInstitutionInSkillTraining;
 		this.trainingStaffDetailsAnnexurePath = trainingStaffDetailsAnnexurePath;
 		this.type=type;
+		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
+		this.applicationId=applicationId;
 	}
 	
 	
+	
+	/**
+	 * @return the applicationId
+	 */
+	public String getApplicationId() {
+		return applicationId;
+	}
+	/**
+	 * @param applicationId the applicationId to set
+	 */
+	public void setApplicationId(String applicationId) {
+		this.applicationId = applicationId;
+	}
+	/**
+	 * @return the trainingPartnerRegistrationId
+	 */
+	public String getTrainingPartnerRegistrationId() {
+		return trainingPartnerRegistrationId;
+	}
+	/**
+	 * @param trainingPartnerRegistrationId the trainingPartnerRegistrationId to set
+	 */
+	public void setTrainingPartnerRegistrationId(
+			String trainingPartnerRegistrationId) {
+		this.trainingPartnerRegistrationId = trainingPartnerRegistrationId;
+	}
 	
 	/**
 	 * @return the type

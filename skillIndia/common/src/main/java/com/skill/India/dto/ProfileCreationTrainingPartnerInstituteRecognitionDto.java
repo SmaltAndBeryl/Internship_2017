@@ -1,7 +1,9 @@
 package com.skill.India.dto;
 
 public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
-
+	
+	private String instituteRecognitionId;
+	private String trainingPartnerRegistrationId;
 	private String nameOfRecognizingBody;
 	private String recognitionNumber;
 	private String yearOfRecognition;
@@ -20,13 +22,44 @@ public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
 	 * @param validityOfRecognition
 	 */
 	public ProfileCreationTrainingPartnerInstituteRecognitionDto(
+			String instituteRecognitionId, String trainingPartnerRegistrationId,
 			String nameOfRecognizingBody, String recognitionNumber,
 			String yearOfRecognition, String validityOfRecognition) {
 		super();
+		this.instituteRecognitionId=instituteRecognitionId;
+		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
 		this.nameOfRecognizingBody = nameOfRecognizingBody;
 		this.recognitionNumber = recognitionNumber;
 		this.yearOfRecognition = yearOfRecognition;
 		this.validityOfRecognition = validityOfRecognition;
+	}
+	
+	
+	
+	/**
+	 * @return the trainingPartnerRegistrationId
+	 */
+	public String getTrainingPartnerRegistrationId() {
+		return trainingPartnerRegistrationId;
+	}
+	/**
+	 * @param trainingPartnerRegistrationId the trainingPartnerRegistrationId to set
+	 */
+	public void setTrainingPartnerRegistrationId(
+			String trainingPartnerRegistrationId) {
+		this.trainingPartnerRegistrationId = trainingPartnerRegistrationId;
+	}
+	/**
+	 * @return the instituteRecognitionId
+	 */
+	public String getInstituteRecognitionId() {
+		return instituteRecognitionId;
+	}
+	/**
+	 * @param instituteRecognitionId the instituteRecognitionId to set
+	 */
+	public void setInstituteRecognitionId(String instituteRecognitionId) {
+		this.instituteRecognitionId = instituteRecognitionId;
 	}
 	/**
 	 * @return the nameOfRecognizingBody

@@ -2,12 +2,12 @@ package com.skill.India.dto;
 
 public class ProfileCreationAssessmentBodyRecognitionsDto {
 
-	private String NameOfRecognitionBody;
-	private String RecognitionNumber;
+	private String assessmentBodyRecognitionId;
+	private String assessmentBodyRegistrationId;
+	private String nameOfRecognitionBody;
+	private String recognitionNumber;
 	private String yearOfRecognition;
 	private String validityOfRecognition;
-	
-	
 	
 	
 	/**
@@ -17,49 +17,81 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 		super();
 	}
 	/**
+	 * @param assessmentBodyRecognitionId
+	 * @param assessmentBodyRegistrationId
 	 * @param nameOfRecognitionBody
 	 * @param recognitionNumber
 	 * @param yearOfRecognition
 	 * @param validityOfRecognition
 	 */
 	public ProfileCreationAssessmentBodyRecognitionsDto(
-			String nameOfRecognitionBody, String recognitionNumber,
-			String yearOfRecognition, String validityOfRecognition) {
+			String assessmentBodyRecognitionId,
+			String assessmentBodyRegistrationId, String nameOfRecognitionBody,
+			String recognitionNumber, String yearOfRecognition,
+			String validityOfRecognition) {
 		super();
-		NameOfRecognitionBody = nameOfRecognitionBody;
-		RecognitionNumber = recognitionNumber;
+		this.assessmentBodyRecognitionId = assessmentBodyRecognitionId;
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
+		this.nameOfRecognitionBody = nameOfRecognitionBody;
+		this.recognitionNumber = recognitionNumber;
 		this.yearOfRecognition = yearOfRecognition;
 		this.validityOfRecognition = validityOfRecognition;
+	}
+	/**
+	 * @return the assessmentBodyRecognitionId
+	 */
+	public String getAssessmentBodyRecognitionId() {
+		return assessmentBodyRecognitionId;
+	}
+	/**
+	 * @param assessmentBodyRecognitionId the assessmentBodyRecognitionId to set
+	 */
+	public void setAssessmentBodyRecognitionId(String assessmentBodyRecognitionId) {
+		this.assessmentBodyRecognitionId = assessmentBodyRecognitionId;
+	}
+	/**
+	 * @return the assessmentBodyRegistrationId
+	 */
+	public String getAssessmentBodyRegistrationId() {
+		return assessmentBodyRegistrationId;
+	}
+	/**
+	 * @param assessmentBodyRegistrationId the assessmentBodyRegistrationId to set
+	 */
+	public void setAssessmentBodyRegistrationId(String assessmentBodyRegistrationId) {
+		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
+	}
+	/**
+	 * @return the yearOfRecognition
+	 */
+	
+	
+	public String getYearOfRecognition() {
+		return yearOfRecognition;
 	}
 	/**
 	 * @return the nameOfRecognitionBody
 	 */
 	public String getNameOfRecognitionBody() {
-		return NameOfRecognitionBody;
+		return nameOfRecognitionBody;
 	}
 	/**
 	 * @param nameOfRecognitionBody the nameOfRecognitionBody to set
 	 */
 	public void setNameOfRecognitionBody(String nameOfRecognitionBody) {
-		NameOfRecognitionBody = nameOfRecognitionBody;
+		this.nameOfRecognitionBody = nameOfRecognitionBody;
 	}
 	/**
 	 * @return the recognitionNumber
 	 */
 	public String getRecognitionNumber() {
-		return RecognitionNumber;
+		return recognitionNumber;
 	}
 	/**
 	 * @param recognitionNumber the recognitionNumber to set
 	 */
 	public void setRecognitionNumber(String recognitionNumber) {
-		RecognitionNumber = recognitionNumber;
-	}
-	/**
-	 * @return the yearOfRecognition
-	 */
-	public String getYearOfRecognition() {
-		return yearOfRecognition;
+		this.recognitionNumber = recognitionNumber;
 	}
 	/**
 	 * @param yearOfRecognition the yearOfRecognition to set
@@ -81,4 +113,5 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 	}
 	
 	
+		
 }

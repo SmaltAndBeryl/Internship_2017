@@ -2,6 +2,8 @@ package com.skill.India.dto;
 
 public class ProfileCreationTrainingPartnerCenterDetailsDto {
 
+	private String trainingPartnerCenterId;
+	private String trainingPartnerRegistrationId;
 	private String nameOfCenter;
 	private String numberOfPermanentOfficeManager;
 	private String numberOftemporaryOfficeManager;
@@ -110,8 +112,13 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	 * @param safeCustodyOfStudentDocuments
 	 * @param studentAgreementWithInstitution
 	 * @param remarksOnStudentAdmissionDetails
+	 * @param trainingPartnerRegistrationId
+	 * @param trainingPartnerCenterId
 	 */
-	public ProfileCreationTrainingPartnerCenterDetailsDto(String nameOfCenter,
+	public ProfileCreationTrainingPartnerCenterDetailsDto(
+			String trainingPartnerCenterId,
+			String trainingPartnerRegistrationId,
+			String nameOfCenter,
 			String numberOfPermanentOfficeManager,
 			String numberOftemporaryOfficeManager,
 			String numberOfPermanentOfficeStaff,
@@ -144,7 +151,8 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 			String documentedPolicyAndProcedures, String concessionPolicy,
 			String safeCustodyOfStudentDocuments,
 			String studentAgreementWithInstitution,
-			String remarksOnStudentAdmissionDetails) {
+			String remarksOnStudentAdmissionDetails
+			) {
 		super();
 		this.nameOfCenter = nameOfCenter;
 		this.numberOfPermanentOfficeManager = numberOfPermanentOfficeManager;
@@ -194,6 +202,37 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 		this.safeCustodyOfStudentDocuments = safeCustodyOfStudentDocuments;
 		this.studentAgreementWithInstitution = studentAgreementWithInstitution;
 		this.remarksOnStudentAdmissionDetails = remarksOnStudentAdmissionDetails;
+		this.trainingPartnerCenterId=trainingPartnerCenterId;
+		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
+		
+	}
+	
+	
+	
+	/**
+	 * @return the trainingPartnerRegistrationId
+	 */
+	public String getTrainingPartnerRegistrationId() {
+		return trainingPartnerRegistrationId;
+	}
+	/**
+	 * @param trainingPartnerRegistrationId the trainingPartnerRegistrationId to set
+	 */
+	public void setTrainingPartnerRegistrationId(
+			String trainingPartnerRegistrationId) {
+		this.trainingPartnerRegistrationId = trainingPartnerRegistrationId;
+	}
+	/**
+	 * @return the trainingPartnerCenterId
+	 */
+	public String getTrainingPartnerCenterId() {
+		return trainingPartnerCenterId;
+	}
+	/**
+	 * @param trainingPartnerCenterId the trainingPartnerCenterId to set
+	 */
+	public void setTrainingPartnerCenterId(String trainingPartnerCenterId) {
+		this.trainingPartnerCenterId = trainingPartnerCenterId;
 	}
 	/**
 	 * @return the nameOfCenter
