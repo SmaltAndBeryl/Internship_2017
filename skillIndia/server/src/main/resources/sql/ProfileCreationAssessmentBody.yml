@@ -3,8 +3,8 @@ ProfileCreationAssessmentBody:
 getDataFromAssessmentBodyRegistrationDetails: >
  select * from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
  
-getDataFromAssessmentBodyAffiliationDetails: >
- select * from AssessmentBodyAffiliationDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+getDataFromAssessmentBodyRecognitions: >
+ select * from AssessmentBodyRecognitions where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
 
 getDataFromAssessmentsExperienceInTechnicalDomain: >
  select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
@@ -20,6 +20,10 @@ getDataFromAssessmentBodyRegionalOfficeDetails: >
 
 getDataFromAssessmentBodyAffiliationDetails: >
  select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+
+insertDataInApplication: >
+   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
+     values(:applicationState,:activeFlag,:dateOfSubmission,:userId)
 
 insertIntoAssessmentBodyRegistrationDetails: >
  INSERT INTO `scgj`.`assessmentbodyregistrationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `priorAssessmentExperience`, `panNumber`, `panNumberPath`, `tanNumber`, `tanNumberPath`, `insituteReceivedAnyRecognition`, `numberOfTechnicalAssessors`, `numberOfNonTechnicalAssessors`, `affiliatedToAnySectorSkillCouncil`) VALUES 
@@ -49,6 +53,9 @@ insertIntoAssessmentBodyRegionalOfficeDetails: >
 insertIntoAssessmentBodyAffiliationDetails: >
  INSERT INTO `scgj`.`assessmentbodyaffiliationdetails` (`assessmentBodyRegistrationId`, `nameOfSectorSkillCouncil`) VALUES (:assessmentBodyRegistrationId,:nameOfSectorSkillCouncil);
 
+updateDataInApplication: >
+ update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
+    where userId=:userId
 
 updateIntoAssessmentBodyRegistrationDetails: >
  UPDATE `scgj`.`assessmentbodyregistrationdetails` SET `organizationName`=:organizationName, 
@@ -115,7 +122,6 @@ updateIntoAssessmentStaffDetails: >
  `cVPath`=:cVPath, 
  `certificatePath`=:certificatePath 
  WHERE `assessmentStaffId`=:assessmentStaffId;
-
 
 
 updateIntoAssessmentBodyRegionalOfficeDetails: >

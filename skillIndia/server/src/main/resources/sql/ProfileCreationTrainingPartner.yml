@@ -18,6 +18,9 @@ getDataFromTrainingPartnerPriorExperienceInSkillTraining: >
 getDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails: >
  select * from TrainingPartnerManagementAndStaffAndOfficialsDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
 
+insertDataInApplication: >
+   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
+     values(:applicationState,:activeFlag,:dateOfSubmission,:userId)  
   
 insertIntoTrainingPartnerOrganizationDetails: >
  INSERT INTO `scgj`.`trainingpartnerorganizationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `qualificationPacks`, `qualificationPacksAnnexurePath`, `nSDCFunded`, `nSDCFundedCertificatePath`, `mediumOfInstructions`, `selfOwnedInstitution`, `selfOwnedInstitutionAnnexurePath`, `franchiseOwnedInstitution`, `franchiseOwnedInstitutionAnnexurePath`, `mobileTrainingInstitution`, `mobileTrainingInstitutionAnnexurePath`, `panNumber`, `panNumberPath`, `tanNumber`, `tanNumberPath`, `turnOverOfInstitution`, `turnOverOfInstitutionBalanceSheetPath`, `instituteReceivedAnyGrant`, `instituteReceivedAnyRecognition`, `priorExperienceOfInstitutionInSkillDevelopment`, `anyPriorExperienceOfInstitutionInSkillTraining`, `trainingStaffDetailsAnnexurePath`) VALUES (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:qualificationPacks,:qualificationPacksAnnexurePath,:nSDCFunded,:nSDCFundedCertificatePath,:mediumOfInstructions,:selfOwnedInstitution,:selfOwnedInstitutionAnnexurePath,:franchiseOwnedInstitution,:franchiseOwnedInstitutionAnnexurePath,:mobileTrainingInstitution,:mobileTrainingInstitutionAnnexurePath,:panNumber,:panNumberPath,:tanNumber,:tanNumberPath,:turnOverOfInstitution,:turnOverOfInstitutionBalanceSheetPath,:instituteReceivedAnyGrant,:instituteReceivedAnyRecognition,:priorExperienceOfInstitutionInSkillDevelopment,:anyPriorExperienceOfInstitutionInSkillTraining,:trainingStaffDetailsAnnexurePath);
@@ -43,6 +46,10 @@ insertIntoTrainingPartnerPriorExperienceInSkillTraining: >
 insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails: >
  INSERT INTO `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` (`trainingPartnerRegistrationId`, `trainingPartnerCenterId`, `type`, `name`, `designation`, `emailId`, `contactNumber`, `educationalQualification`, `regularOrVisiting`, `experience`, `cVPath`, `certificatePath`) VALUES (:trainingPartnerRegistrationId,:trainingPartnerCenterId,:type,:name,:designation,:emailId,:contactNumber,:educationalQualification,:regularOrVisiting,:experience,:cVPath,:certificatePath);
 
+
+updateDataInApplication: >
+ update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
+    where userId=:userId
 
 updateIntoTrainingPartnerOrganizationDetails: >
  UPDATE `scgj`.`trainingpartnerorganizationdetails` SET `address`=:address,
@@ -129,7 +136,7 @@ updateIntoTrainingPartnerInstituteGrant: >
  UPDATE `scgj`.`trainingpartnerinstitutegrant` SET `nameOfMinistry`=:nameOfMinistry,
  `natureOfWork`=:natureOfWork,
  `remarks`=:remarks 
-  aWHERE `instituteGrantId`=:instituteGrantId;
+   WHERE `instituteGrantId`=:instituteGrantId;
 
 
 updateIntoTrainingPartnerInstituteRecognition: >
@@ -159,4 +166,4 @@ updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails: >
  `experience`=:experience, 
  `cVPath`=:cVPath, 
  `certificatePath`=:certificatePath 
-  WHERE `ManagementAndStaffId`=:ManagementAndStaffId;
+  WHERE `managementAndStaffId`=:managementAndStaffId;
