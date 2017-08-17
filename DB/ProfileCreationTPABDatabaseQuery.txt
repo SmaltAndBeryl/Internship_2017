@@ -133,7 +133,7 @@ foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizatio
 
 create table TrainingPartnerManagementAndStaffAndOfficialsDetails
 (
-ManagementAndStaffId int(5) primary key auto_increment,
+managementAndStaffId int(5) primary key auto_increment,
 trainingPartnerRegistrationId int(5),
 trainingPartnerCenterId int(5),
 type varchar(20),
@@ -189,8 +189,8 @@ foreign key(applicationId) references application(applicationId)
 create table AssessmentBodyRecognitions (
 assessmentBodyRecognitionId int(5) primary key auto_increment,
 assessmentBodyRegistrationId int(5),
-NameOfRecognitionBody varchar(200),
-RecognitionNumber varchar(50),
+nameOfRecognitionBody varchar(200),
+recognitionNumber varchar(50),
 yearOfRecognition int(4),
 validityOfRecognition varchar(50),
 foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
@@ -230,7 +230,7 @@ designation varchar(50),
 contactNumber int(15),
 emailId varchar(100),
 state varchar(30),
-district varchar(30),
+city varchar(30),
 educationalQualification varchar(100),
 experience int(3),
 cVPath varchar(200),
