@@ -1,10 +1,13 @@
 ProfileCreationAssessmentBody:
 
+getAssessmentBodyRegistrationIdUsingApplicationId: >
+ select assessmentBodyRegistrationId from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
+
 getDataFromAssessmentBodyRegistrationDetails: >
  select * from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
  
 getDataFromAssessmentBodyRecognitions: >
- select * from AssessmentBodyRecognitions where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+ select * from AssessmentBodyRecognitions where assessmentBodyRegistrationId=:assessmentBodyRegistrationId;
 
 getDataFromAssessmentsExperienceInTechnicalDomain: >
  select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
@@ -31,7 +34,7 @@ insertIntoAssessmentBodyRegistrationDetails: >
 
 
 insertIntoAssessmentBodyRecognitions: >
- INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `NameOfRecognitionBody`, `RecognitionNumber`, `yearOfRecognition`, `validityOfRecognition`) VALUES (:assessmentBodyRegistrationId,:NameOfRecognitionBody,:RecognitionNumber,:yearOfRecognition,:validityOfRecognition);
+ INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `nameOfRecognitionBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`) VALUES (:assessmentBodyRegistrationId,:nameOfRecognitionBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition);
 
 
 insertIntoAssessmentsExperienceInTechnicalDomain: >
@@ -85,8 +88,8 @@ updateIntoAssessmentBodyRegistrationDetails: >
 
 
 updateIntoAssessmentBodyRecognitions: >
- UPDATE `scgj`.`assessmentbodyrecognitions` SET `NameOfRecognitionBody`=:NameOfRecognitionBody, 
- `RecognitionNumber`=:RecognitionNumber, 
+ UPDATE `scgj`.`assessmentbodyrecognitions` SET `nameOfRecognitionBody`=:nameOfRecognitionBody, 
+ `recognitionNumber`=:recognitionNumber, 
  `yearOfRecognition`=:yearOfRecognition, 
  `validityOfRecognition`=:validityOfRecognition
  WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId;

@@ -1,5 +1,8 @@
 ProfileCreationTrainingPartner:
 
+getTrainingPartnerRegistrationIdUsingApplicationId: >
+ select trainingPartnerRegistrationId from TrainingPartnerOrganizationDetails where applicationId=:applicationId;
+
 getDataFromTrainingPartnerOrganizationDetails: >
  select * from TrainingPartnerOrganizationDetails where applicationId=:applicationId;
 

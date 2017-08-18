@@ -1,0 +1,10 @@
+ProfileCreationTPABCommon:
+ 
+ insertIntoApplication: >
+  INSERT INTO `scgj`.`application` (`applicationState`,`activeFlag`,`dateOfSubmission`,`userId`) VALUES (:applicationState,:activeFlag,:dateOfSubmission,:userId);
+  
+ updateIntoApplication: >
+  UPDATE `scgj`.`application` SET `applicationState`=:applicationState, `activeFlag`=:activeFlag, `dateOfSubmission`=:dateOfSubmission, `userId`=:userId WHERE `applicationId`=:applicationId;
+    
+ getDataFromUser: >
+  select * from user where userId=:userId; 
