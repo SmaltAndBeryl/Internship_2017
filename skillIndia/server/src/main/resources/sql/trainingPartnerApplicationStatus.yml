@@ -1,4 +1,3 @@
 trainingPartnerApplicationStatus:
  selectSql: > 
-   select application.applicationId,application.dateOfSubmission,trainingpartnerregistration.trainingPartnerName,application.applicationState,applicationcomments.comment 
-    from application INNER JOIN applicationcomments ON application.applicationId=applicationcomments.applicationId INNER JOIN trainingpartnerregistration ON application.applicationId=trainingpartnerregistration.applicationId where trainingpartnerregistration.applicationId= :applicationId and applicationcomments.activeFlag='1';
+   select A.applicationId,A.dateOfSubmission,T.trainingPartnerName,A.applicationState,AC.comment from application as A,trainingpartnerregistration as T left join applicationcomments as AC on AC.applicationId=T.applicationId where A.applicationId=T.applicationId and T.applicationId=:applicationId AND (AC.activeFlag=1 OR AC.activeFlag is null);
