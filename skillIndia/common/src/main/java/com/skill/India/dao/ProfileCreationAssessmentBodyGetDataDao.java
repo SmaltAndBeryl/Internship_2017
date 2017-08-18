@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.skill.India.common.AbstractTransactionalDao;
+import com.skill.India.common.SessionUserUtility;
 import com.skill.India.config.ProfileCreationAssessmentBodyConfigSql;
 import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto;
@@ -26,6 +27,27 @@ public class ProfileCreationAssessmentBodyGetDataDao extends AbstractTransaction
 	@Autowired
 	private ProfileCreationAssessmentBodyConfigSql profileCreationAssessmentBodyConfigSql;
 	
+	@Autowired
+	private SessionUserUtility sessionUserUtility;
+	
+	/*
+	 * Get AssessmentBody Registration Id using ApplicationId  
+	 */
+	
+	public String profileCreationGetAssessmentBodyRegistrationIdUsingApplicationId()
+	{
+		try{
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("applicationId",sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername()));
+		return getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getGetAssessmentBodyRegistrationIdUsingApplicationId(), parameters, String.class);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+ 	}
+
 	/*
 	 * Getting data from table 1 ProfileCreationAssessmentBodyRegistrationDetails 
 	 */
@@ -198,8 +220,6 @@ private static final ProfileCreationAssessmentBodyDirectorsAndManagementTeamDeta
 
 }
 	
-	
-
 	/*
 	 * Getting data from table 5  AssessmentStaffDetails
 	 */

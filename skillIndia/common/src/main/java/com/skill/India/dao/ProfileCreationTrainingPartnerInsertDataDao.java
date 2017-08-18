@@ -32,7 +32,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 	/*
 	 * Insert into Application table 
 	 */
-	
+/*	
 	public int insertIntoApplication(String type)
 	{
 		try{
@@ -40,9 +40,9 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		java.sql.Date date=new java.sql.Date(millis);
 		Map<String, Object> parameters=new HashMap<String, Object>();
 		
-		/*
+		
 		 *Getting userId here from session 
-		 */
+		 
 		String userId="";
 		
 		
@@ -66,7 +66,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		}
 	}
 	
-	
+	*/
 	
 	public int insertIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto,String applicationId)
 	{

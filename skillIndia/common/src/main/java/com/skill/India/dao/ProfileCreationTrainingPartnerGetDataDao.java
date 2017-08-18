@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.skill.India.common.AbstractTransactionalDao;
+import com.skill.India.common.SessionUserUtility;
 import com.skill.India.config.ProfileCreationTrainingPartnerConfigSql;
 import com.skill.India.dto.ProfileCreationTrainingPartnerCenterDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteGrantDto;
@@ -25,8 +26,30 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 	@Autowired
 	private ProfileCreationTrainingPartnerConfigSql profileCreationTrainingPartnerConfigSql;
 	
+	@Autowired
+	private SessionUserUtility sessionUserUtility;
+	
 	/*
-	 * Get ApplicationId using userId  
+	 * Get Training Partner Registration id using ApplicationId  
+	 */
+	
+	public String profileCreationGetTrainingPartnerRegistrationIdUsingApplicationId()
+	{
+		try{
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("applicationId",sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername()));
+		return getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getGetTrainingPartnerRegistrationIdUsingApplicationId(), parameters, String.class);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+ 	}
+	
+	
+	/*
+	 * Get Training Partner Organization Level data from table  
 	 */
 	
 	private static final ProfileCreationTrainingPartnerOrganizationDetailsRowMapper ROW_MAPPER_TPREG_ORGDETAILS = new ProfileCreationTrainingPartnerOrganizationDetailsRowMapper();

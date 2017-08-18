@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix="ProfileCreationAssessmentBody",locations="classpath:sql/ProfileCreationTrainingPartner.yml")
 public class ProfileCreationTrainingPartnerConfigSql {
 
+	private String getTrainingPartnerRegistrationIdUsingApplicationId;
 	private String getDataFromTrainingPartnerOrganizationDetails;
 	private String getDataFromTrainingPartnerCenterLevelDetails;
 	private String getDataFromTrainingPartnerInstituteGrant;
@@ -30,6 +31,19 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	
 	
 	
+	/**
+	 * @return the getTrainingPartnerRegistrationIdUsingApplicationId
+	 */
+	public String getGetTrainingPartnerRegistrationIdUsingApplicationId() {
+		return getTrainingPartnerRegistrationIdUsingApplicationId;
+	}
+	/**
+	 * @param getTrainingPartnerRegistrationIdUsingApplicationId the getTrainingPartnerRegistrationIdUsingApplicationId to set
+	 */
+	public void setGetTrainingPartnerRegistrationIdUsingApplicationId(
+			String getTrainingPartnerRegistrationIdUsingApplicationId) {
+		this.getTrainingPartnerRegistrationIdUsingApplicationId = getTrainingPartnerRegistrationIdUsingApplicationId;
+	}
 	/**
 	 * @return the updateDataInApplication
 	 */
