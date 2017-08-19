@@ -376,7 +376,8 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
             }
         ]
     };
-    http.get('/non')
+
+    $http.get('/non')
         .then(function(response) {
             console.log("get successful")
             $scope.gridOptions.data = response.data;
@@ -402,7 +403,7 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
 
     // code to call method which proposes Assessment body
     $scope.pushFunction = function(rowData) {
-console.log("Inside propose function");
+    console.log("Inside propose function");
         var batchIdFromRow = rowData.entity.batchID;
         var agencyIdFromRow = 0;
         console.log("Selected value is " + selectedAgencyId);
@@ -435,7 +436,7 @@ console.log("Inside propose function");
                         console.log("get successful");
                         $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
                     });
-                    
+
                     //refresh non-assigned batches table
                     $http.get('/non')
                     .then(function(response) {
