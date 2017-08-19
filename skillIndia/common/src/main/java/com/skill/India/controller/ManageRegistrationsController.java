@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import net.sf.jasperreports.engine.JRException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,16 +123,12 @@ public class ManageRegistrationsController {
 	
     @Privilege(value={"SCGJ"})
     @RequestMapping("/cityData")
-    public Collection<DataBeanDto> dataBeanDtoCollection(){
+    public Collection<DataBeanDto> dataBeanDtoCollection()throws JRException{
     	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
     	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
     	LOGGER.info("Creating Collection to collect data for PDF creation");
     	LOGGER.info("Sending Request to Service");
-    	Collection<DataBeanDto> dataBeanDtos = dataBeanService.dataBeanDtoCollection();
-        dataBeanService.getDataBeanList();
-        LOGGER.info("Response received from Service");
-        LOGGER.info("Data received in Collection");
-//        dataBeanService.generatePdf();
+    	
         return dataBeanService.dataBeanDtoCollection();
     }
 
