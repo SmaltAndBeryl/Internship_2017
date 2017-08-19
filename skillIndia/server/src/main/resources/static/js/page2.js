@@ -191,9 +191,11 @@ $http.get('/approve')
 $scope.myfunction = function(){
     $http.get('/cityData')
         .then(function(response){
-            console.log("Generating PDF..")
+            console.log("Generating PDF..");
+            if(response.data != null){
+                alert("PDF generation successful..");
+            }
         })
-    alert("PDF generation successful..");
 };
 //function for edit functionalities
 
