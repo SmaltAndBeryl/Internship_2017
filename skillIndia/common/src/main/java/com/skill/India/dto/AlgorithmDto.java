@@ -7,27 +7,14 @@ import com.skill.India.common.BaseDto;
  */
 public class AlgorithmDto extends BaseDto {
     private static final long serialVersionUID = 1L;
-    private final int batchId;
-    private final String state;
-    private final String district;
 
-
-    public int getBatchId() {
-        return batchId;
+    public int getAgencyId() {
+        return agencyId;
     }
 
-    public String getState() {
-        return state;
-    }
+    private final int agencyId;
 
-    public String getDistrict() {
-        return district;
-    }
-
-    public AlgorithmDto(int batchId, String state, String district) {
-        super();
-        this.batchId = batchId;
-        this.state = state;
-        this.district = district;
+    public AlgorithmDto(int agencyId) {
+        this.agencyId = agencyId;
     }
 }

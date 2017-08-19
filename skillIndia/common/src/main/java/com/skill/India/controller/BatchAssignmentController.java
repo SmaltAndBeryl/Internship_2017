@@ -18,7 +18,7 @@ import com.skill.India.dto.AssignedBatchesDto;
 import com.skill.India.dto.BatchAssignmentDto;
 import com.skill.India.dto.BatchAssignmentSearchDto;
 import com.skill.India.dto.DropdownDto;
-import com.skill.India.service.AlgorithmService;
+//import com.skill.India.service.AlgorithmService;
 import com.skill.India.service.AssignedBatchesService;
 import com.skill.India.service.BatchAssignmentSearchService;
 import com.skill.India.service.BatchAssignmentService;
@@ -39,8 +39,8 @@ public class BatchAssignmentController {
 	@Autowired
 	private BatchAssignmentWithdrawService batchAssignmentWithdrawService;
     
-	@Autowired
-    private AlgorithmService algorithmService;
+//	@Autowired
+//    private AlgorithmService algorithmService;
 	
     @Autowired
     private DropdownService dropdownService;
@@ -105,40 +105,40 @@ public class BatchAssignmentController {
 	 * AlgorithmController
 	 */
 	
-	@Privilege(value={"SCGJ"})
-    @RequestMapping(method = RequestMethod.POST, value = "/getBatchId")
-    public Collection<AlgorithmDto> getAlgorithmDto(@RequestParam("batchId") String batchId){
-		LOGGER.info("In BatchAssignmentController - getAlgorithmDto");
-		LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-1");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
-		return algorithmService.getBatchIdCollection(batchId);
-    }
-
-    @Privilege(value={"SCGJ"})
-    @RequestMapping(method = RequestMethod.POST, value = "/getAgencyId")
-    public Collection<Algorithm2Dto> getAlgorithm2Dto(@RequestParam("batchId") int batchId){
-    	LOGGER.info("In BatchAssignmentController - getAlgorithm2Dto");
-    	LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-2");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
-    	return algorithmService.getAgencyIdCollection(batchId);
-    }
-
-    @Privilege(value={"SCGJ"})
-    @RequestMapping("/getAssessorState")
-    public Collection<Algorithm3Dto> getAlgorithm3Dto(){
-    	LOGGER.info("In BatchAssignmentController - getAlgorithm3Dto");
-    	LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-3");
-    	return algorithmService.getAssessorIdCollecion();
-    }
-
-    @Privilege(value={"SCGJ"})
-    @RequestMapping(value = "/getAgencyName", method = RequestMethod.GET, produces = "application/JSON")
-    public String getSelectedAgency(){
-    	LOGGER.info("In BatchAssignmentController - getSelectedAgency");
-    	LOGGER.info("Request Received from front end to get Proposed Agency Name for a particular Batch - Part-4");
-        return algorithmService.printStates();
-    }
-    
+//	@Privilege(value={"SCGJ"})
+//    @RequestMapping(method = RequestMethod.POST, value = "/getBatchId")
+//    public Collection<AlgorithmDto> getAlgorithmDto(@RequestParam("batchId") String batchId){
+//		LOGGER.info("In BatchAssignmentController - getAlgorithmDto");
+//		LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-1");
+//		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+//		return algorithmService.getBatchIdCollection(batchId);
+//    }
+//
+//    @Privilege(value={"SCGJ"})
+//    @RequestMapping(method = RequestMethod.POST, value = "/getAgencyId")
+//    public Collection<Algorithm2Dto> getAlgorithm2Dto(@RequestParam("batchId") int batchId){
+//    	LOGGER.info("In BatchAssignmentController - getAlgorithm2Dto");
+//    	LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-2");
+//		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+//    	return algorithmService.getAgencyIdCollection(batchId);
+//    }
+//
+//    @Privilege(value={"SCGJ"})
+//    @RequestMapping("/getAssessorState")
+//    public Collection<Algorithm3Dto> getAlgorithm3Dto(){
+//    	LOGGER.info("In BatchAssignmentController - getAlgorithm3Dto");
+//    	LOGGER.info("Request Received from front end to get Proposed Assessment Body for a particular Batch - Part-3");
+//    	return algorithmService.getAssessorIdCollecion();
+//    }
+//
+//    @Privilege(value={"SCGJ"})
+//    @RequestMapping(value = "/getAgencyName", method = RequestMethod.GET, produces = "application/JSON")
+//    public String getSelectedAgency(){
+//    	LOGGER.info("In BatchAssignmentController - getSelectedAgency");
+//    	LOGGER.info("Request Received from front end to get Proposed Agency Name for a particular Batch - Part-4");
+//        return algorithmService.printStates();
+//    }
+//
     /*
      * DropDownController
      */

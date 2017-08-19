@@ -138,7 +138,7 @@ public class ManageRegistrationsController {
     	LOGGER.info("In ManageRegistrationsController - pdfBeanArrayList");
     	LOGGER.info("Request Received from front end to generate PDF for the process of Affiliation of a Body");
     	LOGGER.info("Sending Request to Service");
-    	dataBeanService.generatePdf();
+//    	dataBeanService.generatePdf();
     	LOGGER.info("Exiting The Controller");
     }
 		
