@@ -9,102 +9,30 @@ public class DataBeanDto {
 
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DataBeanDto.class);
     private final String trainingPartnerName;
-    private final String isNSDCfunded;
-    private final String firstName;
-    private final String addressLine1;
-    private final String faxNumber;
-    private final String emailDirector;
-    private final String website;
-    private final String yearOfEstablishment;
-    private final String priorExposureInSkill;
-    private final String medium;
-    private final String selfOwnedTC;
-    private final String franchiseTC;
-    private final String PAN;
-    private final String TAN;
-    private final String turnover;
+    private final String emailId;
+    private final String district;
+    private final String state;
 
 
-
-    public DataBeanDto(String trainingPartnerName, String isNSDCfunded, String firstName, String addressLine1, String faxNumber, String emailDirector, String website, String yearOfEstablishment, String priorExposureInSkill, String medium, String selfOwnedTC, String franchiseTC, String pan, String tan, String turnover) {
+    public DataBeanDto(String trainingPartnerName, String emailId, String district, String state) {
         this.trainingPartnerName = trainingPartnerName;
-        this.isNSDCfunded = isNSDCfunded;
-        this.firstName = firstName;
-        this.addressLine1 = addressLine1;
-        this.faxNumber = faxNumber;
-        this.emailDirector = emailDirector;
-        this.website = website;
-        this.yearOfEstablishment = yearOfEstablishment;
-        this.priorExposureInSkill = priorExposureInSkill;
-        this.medium = medium;
-        this.selfOwnedTC = selfOwnedTC;
-        this.franchiseTC = franchiseTC;
-        //The pan and tan variables have been changed
-        this.PAN = pan;
-        this.TAN = tan;
-        this.turnover = turnover;
+        this.emailId = emailId;
+        this.district = district;
+        this.state = state;
+    }
+    public String getDistrict() {
+        return district;
     }
 
+    public String getState() {
+        return state;
+    }
     public String getTrainingPartnerName() {
         return trainingPartnerName;
     }
 
-    public String getIsNSDCfunded() {
-        return isNSDCfunded;
+    public String getEmailId() {
+        return emailId;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getAddressLine1() {
-        return addressLine1;
-    }
-
-    public String getFaxNumber() {
-        return faxNumber;
-    }
-
-    public String getEmailDirector() {
-        return emailDirector;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public String getYearOfEstablishment() {
-        return yearOfEstablishment;
-    }
-
-    public String getPriorExposureInSkill() {
-        return priorExposureInSkill;
-    }
-
-    public String getMedium() {
-        return medium;
-    }
-
-    public String getSelfOwnedTC() {
-        return selfOwnedTC;
-    }
-
-    public String getFranchiseTC() {
-        return franchiseTC;
-    }
-
-    public String getPAN() {
-        return PAN;
-    }
-
-    public String getTAN() {
-        return TAN;
-    }
-
-    public String getTurnover() {
-        return turnover;
-    }
-
-
 }
 

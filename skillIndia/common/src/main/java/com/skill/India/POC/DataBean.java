@@ -8,22 +8,40 @@ import com.skill.India.common.BaseDto;
 public class DataBean{
 
 
-    private String name;
-    private String city;
+    private String trainingPartnerName;
+    private String emailId;
+    private String district;
+    private String state;
 
-    public String getName() {
-        return name;
+    public String getDistrict() {
+        return district;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDistrict(String district) {
+        this.district = district;
     }
 
-    public String getCity() {
-        return city;
+    public String getState() {
+        return state;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getTrainingPartnerName() {
+        return trainingPartnerName;
+    }
+
+    public void setTrainingPartnerName(String trainingPartnerName) {
+        this.trainingPartnerName = trainingPartnerName;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 }
