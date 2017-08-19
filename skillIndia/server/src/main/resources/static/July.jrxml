@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="July" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e2736914-3eca-45ac-a246-112799717ea2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<queryString language="SQL">
+		<![CDATA[select trainingPartnerName, emailId, district, state from trainingpartnerregistration where tpId = 1]]>
+	</queryString>
+	<field name="trainingPartnerName" class="java.lang.String"/>
+	<field name="emailId" class="java.lang.String"/>
+	<field name="district" class="java.lang.String"/>
+	<field name="state" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="154" splitType="Stretch">
+			<textField>
+				<reportElement x="190" y="26" width="290" height="30" uuid="8bb19fa4-300a-42e1-a5c9-5a1f5657135d"/>
+				<textElement>
+					<font size="17"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{trainingPartnerName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="55" width="290" height="30" uuid="e484d29f-05e2-44f0-a3de-cd1ea7cc90a2"/>
+				<textElement>
+					<font size="17"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emailId}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="26" width="100" height="30" uuid="ac12eb28-1e90-40a7-b950-08872a9c16f6"/>
+				<textElement>
+					<font size="17"/>
+				</textElement>
+				<text><![CDATA[Training]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="55" width="100" height="30" uuid="821060f7-4046-4061-aad4-31406e1d072c"/>
+				<textElement>
+					<font size="17"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="84" width="100" height="30" uuid="820be0e8-63f4-4f82-a9d9-ce825363865c"/>
+				<textElement>
+					<font size="17"/>
+				</textElement>
+				<text><![CDATA[District]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="113" width="100" height="30" uuid="16aa98d3-9709-443a-824c-8cb817895ccb"/>
+				<textElement>
+					<font size="17"/>
+				</textElement>
+				<text><![CDATA[State]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="190" y="84" width="290" height="30" uuid="9ea187ce-f6a3-4f30-8828-173509a970fc"/>
+				<textElement>
+					<font size="17"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{district}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="113" width="290" height="30" uuid="4eba102b-f7a3-45c3-b3ef-11d0329c3306"/>
+				<textElement>
+					<font size="17"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
