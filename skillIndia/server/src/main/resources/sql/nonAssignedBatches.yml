@@ -6,6 +6,9 @@ nonAssignedBatches:
      AND B.agencyId is null 
       AND B.centreId = C.centreId 
        order by 1;
+ selectSqlAgencyId: >
+  SELECT showinterest.agencyId FROM showinterest,batch
+   WHERE showinterest.batchId = batch.batchId AND batch.batchId = :batchId;
 
  updateSqlNonAssignedBatches: >
   UPDATE batchassignment SET responseType=:responseType, agencyId= :agencyId
