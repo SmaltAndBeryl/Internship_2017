@@ -376,126 +376,17 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
             }
         ]
     };
-    $http.get('/non')
+    http.get('/non')
         .then(function(response) {
-            console.log("Get successful" + response.data)
+            console.log("get successful")
             $scope.gridOptions.data = response.data;
-        });
+        })
 
     $http.get('/dropdown')
         .then(function(response) {
             console.log("get successful")
             $scope.genderTypes = response.data;
         })
-
-    var suggestedAgencyName = "";
-    //Algorithm code
-    $scope.suggestFunction = function(rowData) {
-        var batchIdFromRow = rowData.entity.batchID;
-        //To prevent fall through due to a known bug
-
-        $scope.suggestedAgencyName = "AKG";
-        $scope.suggestedShow = true;
-
-        var getBatchId = "getBatchId";
-        var getAgencyId = "getAgencyId";
-
-        //      Code hit to get the batchId, state and centre
-        $http({
-                url: getBatchId,
-                method: "POST",
-                params: {
-                    batchId: batchIdFromRow
-                }
-            })
-            .then(function(response) {
-                    console.log("The batches are " + JSON.stringify(response.data));
-                    var suggested = [];
-                    var i = 0;
-                    var nameOfAgency;
-
-                    //Parameter 1 - Code to get the show interested agencies
-                    $http({
-                            url: getAgencyId,
-                            method: "POST",
-                            params: {
-                                batchId: batchIdFromRow
-                            }
-                    })
-                        .then(function(response) {
-                                for (var key in response.data) {
-                                    suggested[i++] = response.data[key].agencyName;
-                                }
-                                var x = 0;
-
-                                for (x in suggested) {
-                                    console.log("Suggested body is >> " + suggested[x]);
-                                }
-                                console.log("The number of bodies recommended bodies are " + x++);
-
-//                                For exactly one body
-                                if(x == 1){
-                                    console.log("Only one RECOMMENDATION(shown interest) >> " + suggested[0]);
-                                    $scope.suggestedAgencyName = suggested[0];
-
-                                }
-//                                For more than one show interest
-                                else{
-                                if(x > 1){
-//                                    $scope.suggestedAgencyName = "Multiple Recommendations";
-                                    console.log("Multiple bodies have shown interest, moving to next parameter...")
-                                     //Move on to second parameter
-                                     $http.get('/getAssessorState')
-                                         .then(function(response){
-                                         //Now allot marks on the basis of parameters
-                                             $http.get('/getAgencyName')
-                                                 .then(function(response){
-                                                     //initialize in a variable
-                                                     nameOfAgency = JSON.parse(response).data;
-                                                     console.log("The recommended AB is >> " + nameOfAgency);
-//                                                     alert("Recommended AB >> " + nameOfAgency);
-                                                     $scope.suggestedAgencyName = nameOfAgency;
-                                                 })
-                                         })
-                                }
-
-                                else{
-
-                                    console.log("No one has shown interest..moving to next parameters..")
-                                    var req = {
-                                        method: 'GET',
-                                        url: 'getAssessorState',
-                                        transformResponse: [function(data) {
-                                            var res = data;
-                                            alert(res);
-                                            return data;
-                                        }]
-                                    }
-                                    $http(req)
-                                        .then(function(response) {
-                                            //Now allot marks on the basis of parameters
-                                            $http.get('getAgencyName')
-                                                .then(function(response) {
-                                                    console.log("get successful..")
-                                                    //initialize in a variable
-                                                    nameOfAgency = JSON.parse(response.data);
-                                                    console.log("The recommended AB is >> " + nameOfAgency);
-                                                    alert("Recommended AB >> " + nameOfAgency);
-                                                })
-                                        })
-
-
-                                }
-
-                                }
-
-
-                        })
-            })
-        };
-
-
-
 
 
     var agencyId = 0;
@@ -558,19 +449,6 @@ console.log("Inside propose function");
                 	alert("Error in proposing agency");
                 })
 
-
-//            $http({
-//                url: "/agencyUpdate",
-//                method: "POST",
-//                params: {
-//                    agencyId: selectedAgencyId,
-//                    batchId: batchIdFromRow,
-//                    responseType:'proposed'
-//                }
-//            }).then(function(response) {
-//                alert("Agency Updated");
-//                console.log("Success in agency update");
-//            })
         }
     $timeout(function() {
          $scope.responseMessagesForBatchesProposed='';
