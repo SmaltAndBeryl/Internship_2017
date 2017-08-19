@@ -3,9 +3,8 @@ package com.skill.India.dao;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.NonAssignedBatchesConfigSql;
 import com.skill.India.dto.NonAssignedBatchesDto;
-import com.skill.India.service.NonAssignedBatchesService;
 
-import org.slf4j.Logger;
+import com.skill.India.service.NonAssignedBatchesService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,9 +13,9 @@ import org.springframework.stereotype.Repository;
 
 
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,33 +25,52 @@ import java.util.Map;
  */
 @Repository
 public class NonAssignedBatchesDao extends AbstractTransactionalDao{
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(com.skill.India.dao.NonAssignedBatchesDao.class);
+
+    static ArrayList<String> test = new ArrayList<>();
 
     @Autowired
     private NonAssignedBatchesConfigSql nonAssignedBatchesConfigSql;
 
-    private static NonAssignedBatchesDaoRowMapper ROW_MAPPER = new NonAssignedBatchesDaoRowMapper();
-    
-    private static final Logger LOGGER = LoggerFactory.getLogger(NonAssignedBatchesDao.class);
-    
-    public Collection<NonAssignedBatchesDto> getCollection() {
+    private static com.skill.India.dao.NonAssignedBatchesDao.NonAssignedBatchesDaoRowMapper ROW_MAPPER = new com.skill.India.dao.NonAssignedBatchesDao.NonAssignedBatchesDaoRowMapper();
+
+    public Collection<NonAssignedBatchesDto> getCollection(ArrayList<String> rec) {
         Map<String, Object> parameters = new HashMap<>();
-        LOGGER.info("Trying to get data for  non assigned batches");
+        if(test.isEmpty())
+        {
+            test = rec;
+        }
         return getJdbcTemplate().query(nonAssignedBatchesConfigSql.getSelectSqlNonAssignedBatches(), parameters, ROW_MAPPER);
     }
 
     private static class NonAssignedBatchesDaoRowMapper implements RowMapper<NonAssignedBatchesDto> {
 
-        
-    	@Override
+        int counter = 0;
+        @Override
         public NonAssignedBatchesDto mapRow(ResultSet resultSet, int rowNum)throws SQLException{
-            
-    		String batchID = resultSet.getString("batchId");
-    	    String state = resultSet.getString("state");
-    	    String batchEndDate = resultSet.getString("batchEndDate");
-    	    String assessmentDate = resultSet.getString("assessmentDate");
-    	    LOGGER.info("Data recieved successfully for non-assigned batches.. Trying to create DTO");    
-    		return new NonAssignedBatchesDto(batchID, state, batchEndDate, assessmentDate);
-    		
-    	}
+
+            String batchID = resultSet.getString("batchId");
+            String state = resultSet.getString("state");
+            String batchEndDate = resultSet.getString("batchEndDate");
+            String assessmentDate = resultSet.getString("assessmentDate");
+            String recommendedAB = "Not get";
+
+            if(!test.isEmpty()){
+                if(counter >= test.size()){
+                    LOGGER.info("The value of counter on after calls is " + String.valueOf(counter));
+                    recommendedAB = "No Recommendations";
+                }
+                else {
+                    LOGGER.info("The value of counter on before call is " + String.valueOf(counter));
+                    recommendedAB = test.get(counter++);
+                }
+
+            }
+
+            LOGGER.info("Getting agencyID show interest ");
+
+            return new NonAssignedBatchesDto(batchID, state, batchEndDate, assessmentDate, recommendedAB);
+
+        }
     }
 }
