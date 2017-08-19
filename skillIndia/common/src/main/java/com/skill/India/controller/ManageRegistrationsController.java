@@ -128,7 +128,7 @@ public class ManageRegistrationsController {
     	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
     	LOGGER.info("Creating Collection to collect data for PDF creation");
     	LOGGER.info("Sending Request to Service");
-    	
+
         return dataBeanService.dataBeanDtoCollection();
     }
 
