@@ -185,6 +185,16 @@ $http.get('/approve')
         $scope.gridOptionsIncomplete.data = response.data.incomplete;
 
     });
+
+//function for pdf generation
+
+$scope.myfunction = function(){
+    $http.get('/cityData')
+        .then(function(response){
+            console.log("Generating PDF..")
+        })
+    alert("PDF generation successful..");
+};
 //function for edit functionalities
 
 $scope.myfunctionedit = function(rowData) {
