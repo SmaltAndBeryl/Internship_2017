@@ -60,17 +60,8 @@ public class DataBeanService {
         //Logic for generating pdf
 
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("/July.jrxml");
-//        if(!inputStream.equals(null)){
-//            JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
-//            LOGGER.info("Report compiled successfully..!!");
-//        }
-//        else {
-//            LOGGER.info("the stream received was empty");
-//        }
-//
 
         String sourceFileName = "D://Jasper/July.jasper";
-
 //        LOGGER.info("Read file successful, name is " + sourceFileName);
         //Call to function that returns the beans
         DataBeanList dataBeanList = new DataBeanList();
