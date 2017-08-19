@@ -356,9 +356,8 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
             {
                 name: 'recommendedAB',
                 displayName: 'Recommended Assessment Body',
-                enableCellEdit: true,
+                enableCellEdit: false,
                 width: 100,
-                cellTemplate: 'partials/suggest.html'
             },
             {
                 name: 'assignedAB',
