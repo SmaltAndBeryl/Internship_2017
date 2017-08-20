@@ -1,4 +1,4 @@
 pdfData:
  selectSql: >
-  select trainingPartnerName, emailId, district, state from trainingpartnerregistration
+  select * from trainingpartnerregistration
    where tpId = 1;
