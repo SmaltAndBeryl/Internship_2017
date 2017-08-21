@@ -4,17 +4,12 @@ import com.skill.India.POC.DataBean;
 import com.skill.India.POC.DataBeanList;
 import com.skill.India.dao.DataBeanListDao;
 import com.skill.India.dto.DataBeanDto;
-import jdk.internal.util.xml.impl.Input;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.view.JasperViewer;
-import org.apache.commons.io.IOUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.*;
 
@@ -36,10 +31,49 @@ public class DataBeanService {
 
         if(!dataBeanDtos.isEmpty()){
             for(DataBeanDto beanDto : dataBeanDtos){
+                arrayList.add(beanDto.getTotalCenters());
+                arrayList.add(beanDto.getOfficeStaffP());
+                arrayList.add(beanDto.getOfficeStaffT());
+                arrayList.add(beanDto.getLabAttendantsP());
+                arrayList.add(beanDto.getLabAttendantsT());
+                arrayList.add(beanDto.getAccountantsP());
+                arrayList.add(beanDto.getAccountantsT());
+                arrayList.add(beanDto.getSupportStaffT());
+                arrayList.add(beanDto.getOthersP());
+                arrayList.add(beanDto.getOthersT());
+                arrayList.add(beanDto.getAreaOfInstitute());
+                arrayList.add(beanDto.getSizeOfClassRoom());
+                arrayList.add(beanDto.getSizeOfLabs());
+                arrayList.add(beanDto.getNumberOfLabs());
+                arrayList.add(beanDto.getNumberOfWorkshops());
+                arrayList.add(beanDto.getPresenceOfToolkit());
+                arrayList.add(beanDto.getSafeDrinkingWater());
+                arrayList.add(beanDto.getSeparateToilet());
+                arrayList.add(beanDto.getTransportFacility());
+                arrayList.add(beanDto.getPresenceOfLibrary());
+                arrayList.add(beanDto.getIsIlluminationSufficient());
+                arrayList.add(beanDto.getIsVentilated());
+                arrayList.add(beanDto.getWeatherProtected());
+                arrayList.add(beanDto.getPrintedBrochure());
+                arrayList.add(beanDto.getDocumentedPolicy());
+                arrayList.add(beanDto.getConcessionsPolicy());
+                arrayList.add(beanDto.getSafeCustodyOfDocuments());
+                arrayList.add(beanDto.getStudentAgreement());
+                arrayList.add(beanDto.getYearOfEstablishment());
+                arrayList.add(beanDto.getMediumOfInstructions());
+                arrayList.add(beanDto.getMobileNo());
+                arrayList.add(beanDto.getPAN());
+                arrayList.add(beanDto.getTAN());
+                arrayList.add(beanDto.getYearOfRecognition());
+                arrayList.add(beanDto.getWebsite());
+                arrayList.add(beanDto.getPINcode());
+                arrayList.add(beanDto.getDistrict());
+                arrayList.add(beanDto.getLandlineNumber());
+                arrayList.add(beanDto.getFaxNumber());
+                arrayList.add(beanDto.getValidityOfRecognition());
+                arrayList.add(beanDto.getApplicationId());
                 arrayList.add(beanDto.getTrainingPartnerName());
                 arrayList.add(beanDto.getEmailId());
-                arrayList.add(beanDto.getDistrict());
-                arrayList.add(beanDto.getState());
             }
         }
 
@@ -61,7 +95,7 @@ public class DataBeanService {
 
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("/July.jrxml");
 
-        String sourceFileName = "D://Jasper/July.jasper";
+        String sourceFileName = "C://Users/Alkesh/JaspersoftWorkspace/Curie/July.jasper";
 //        LOGGER.info("Read file successful, name is " + sourceFileName);
         //Call to function that returns the beans
         DataBeanList dataBeanList = new DataBeanList();
@@ -73,7 +107,7 @@ public class DataBeanService {
         String printFileName = null;
 
         LOGGER.info("Creating the data source..");
-        JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(dataList);
+        JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(dataList, false);
 //        JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(strings);
         Map parameters = new HashMap();
 
@@ -95,6 +129,7 @@ public class DataBeanService {
             System.out.println("Pdf generated successfully....!!!");
         } catch (JRException e) {
             LOGGER.info("Exception caught..");
+            e.printStackTrace();
         }
         return dataBeanListDao.dataBeanDtoCollection();
 
