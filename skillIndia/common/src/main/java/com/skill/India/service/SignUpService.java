@@ -1,7 +1,5 @@
 package com.skill.India.service;
 
-import java.util.Collection;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,26 +30,38 @@ public class SignUpService {
 
 	public SignUpInsertedUserDto signUp(SignUpReceiveDataDto signUpReceiveDataDto){
 		
+		LOGGER.info("Request Received from Controller");
+		LOGGER.info("In SignUpService - signUp");
+		LOGGER.info("Parameters Received from front end are - 'SignUpReceiveDataDto': ",signUpReceiveDataDto);
 		LOGGER.info("Check the existence of new user in the record");
-		
+		LOGGER.info("Making a Request to Dao");
 		userExistStatus=signUpDao.checkUserExistence(signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getOrganizationName());
+		LOGGER.info("Response received from Dao");
 		if(userExistStatus==0)
 		{
-			LOGGER.info("User existence status is-"+userExistStatus);
 			LOGGER.info("User does not exist in the record");
+			LOGGER.info("Inserting user details - SignUp process");
+			LOGGER.info("Making a Request to Dao");
 			id = signUpDao.insertSignUpData(signUpReceiveDataDto.getOrganizationName(),signUpReceiveDataDto.getSPOCName(),signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getPassword(),signUpReceiveDataDto.getUserRole());
-		 if(id >-1){
+			LOGGER.info("Response received from Dao");
+			if(id >-1)
+			{
+			 LOGGER.info("Saving the details of user");
+			 LOGGER.info("Inserting data into application table");
+			 LOGGER.info("Making a Request to Dao");
 			 saveAsDraftAndSubmitDao.insertIntoApplication(signUpReceiveDataDto.getUserId(), "Draft");
-		 }
+			}
 					
 		}
 		else
 		{
 			LOGGER.info("User already exist in the record");
+			LOGGER.info("Initializing blank Dto to return to controller");
 			signUpInsertedUserDto= new SignUpInsertedUserDto(null, null, null);
+			LOGGER.info("Successfully Initialized");
 		}
 		
-		
+		LOGGER.info("Returning response to Controller");
 		return signUpInsertedUserDto;
 		
 	}

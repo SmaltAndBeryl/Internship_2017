@@ -50,6 +50,7 @@ public class LoginController {
     	LOGGER.info("In LoginController - getLoginDto");
 		LOGGER.info("Request Received from front end to Validate User For the login process");
 		LOGGER.info("Parameters Received from front end are - 'loginReceiveDataDto': ",loginReceiveDataDto);
+		LOGGER.info("Sending Request to service");
 		return loginService.checkUser(loginReceiveDataDto);
 		
 	}	
@@ -59,6 +60,7 @@ public class LoginController {
 		LOGGER.info("In LoginController - signUp");
 		LOGGER.info("Request Received from front end to Validate User For the SignUp process");
 		LOGGER.info("Parameters Received from front end are - 'signUpReceiveDataDto': ",signUpReceiveDataDto);
+		LOGGER.info("Sending Request to service");
 		return signUpService.signUp(signUpReceiveDataDto);
 	  
 	}
@@ -69,6 +71,7 @@ public class LoginController {
 		LOGGER.info("Request Received from front end to get SPOC Name of the Validated User");
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
+		LOGGER.info("Sending Request to service");
 		return getSPOCNameService.getSPOCNameService(userId); 
 	}
 	
@@ -78,6 +81,7 @@ public class LoginController {
 		LOGGER.info("Request Received from front end to get Application state of the Validated User ");
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
+		LOGGER.info("Sending Request to service");
 		return getApplicationStateService.getApplicationStateService(userId) ; 
 	}
 	
