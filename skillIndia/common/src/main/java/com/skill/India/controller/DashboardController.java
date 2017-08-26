@@ -33,10 +33,13 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get Total Candidates Enrolled for Dashboard Panel");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTotalCandidatesEnrolled();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
 			return null;
@@ -50,12 +53,16 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get Total Candidates Assessed for Dashboard Panel");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTotalCandidatesAccessed();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("Returning NULL");
 			return null;
 		}
 	}
@@ -67,12 +74,16 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get Total Candidates Certified for Dashboard Panel");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTotalCandidatesCertified();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("Returning NULL");
 			return null;
 		}
 	}
@@ -84,12 +95,16 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get Total Number of Training Partners for Dashboard Panel");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTotalTrainingPartners();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("Returning NULL");
 			return null;
 		}
 	}
@@ -101,12 +116,16 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get Total Number of Training Centers for Dashboard Panel");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTotalTrainingCentersInIndia();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("Returning NULL");
 			return null;
 		}
 	}
@@ -118,12 +137,16 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get data for High Charts - Total Batches According to Job Role for Dashboard");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTotalBatchesAccordingToJobRole();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("Returning NULL");
 			return null;
 		}
 	}
@@ -135,12 +158,16 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get data for High Charts - Total Candidates Trained According to Batch Type for Dashboard");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTotalCandidatesTrainedWithBatchTypeInLastThreeYears();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("Returning NULL");
 			return null;
 		}
 	}
@@ -153,12 +180,16 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get data for High Charts - Total Candidates Certified According to Mode In last Three Years for Dashboard");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTotalCandidatesCertifiedWithModeInLastThreeYears();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("Returning NULL");
 			return null;
 		}
 		
@@ -171,12 +202,16 @@ class DashboardController {
 		LOGGER.info("Request Received from front end to get data for High Charts - Top States According to Max Training Centers for Dashboard");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return dashboardService.getTopStatesWithMaxTrainingCenters();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("Returning NULL");
 			return null;
 		}
 	}

@@ -42,12 +42,16 @@ public class FAQController {
 		LOGGER.info("Request Received from front end to get data for Total Candidates Trained, Assessed, Certified for FAQ");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getTotalCandidatesTrainedAssessedCertifiedDao();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -60,12 +64,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'batchType': ",batchType);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getTotalCandidatesTrainedAssessedCertifiedSchemeWise(batchType);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -78,12 +86,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'state': ",state);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getTotalTrainingCentresInAState(state);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -95,12 +107,16 @@ public class FAQController {
 		LOGGER.info("Request Received from front end to get Total Training Centres conducting training for FAQ");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getCountOfTotalTrainingCentresConductingTraining();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -113,12 +129,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'month': ",month);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getCountOfCandidatesAssessmentUpcomingForAMonth(month);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -131,12 +151,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getNameOfAgencyToWhichABatchIsAssigned(batchId);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -149,12 +173,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'agencyName': ",agencyName);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getTotalCountOfBatchesAssignedToAAssessmentAgency(agencyName);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -168,12 +196,16 @@ public class FAQController {
 		
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState(state);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -186,12 +218,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'batchType': ",batchType);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(batchType);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -204,12 +240,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'agencyName':"+agencyName+" 'state': ",state);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getCountTotalAssessorsOfAParticularAgencyInAParticularState(agencyName, state);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -222,12 +262,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getStatusOfAParticularBatchWithId(batchId);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -239,12 +283,16 @@ public class FAQController {
 		LOGGER.info("Request Received from front end to get Total Batches for which Result is Pending for FAQ");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getCountBatchesForWhichResultIsPending();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -257,12 +305,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getBatchWiseCandidatesDetails(batchId);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -274,12 +326,16 @@ public class FAQController {
 		LOGGER.info("Request Received from front end to get Total Non-Assigned Batches for FAQ");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getCountTotalNonAssignedBatches();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -291,12 +347,16 @@ public class FAQController {
 		LOGGER.info("Request Received from front end to get Training centres not taking any Batches for FAQ");
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getTrainingCentresNotTakingAnyBatches();
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -309,28 +369,39 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'year': "+year+" 'candidates:'",candidates);
 		try
 		{
+			LOGGER.info("In TRY block");
 			if(candidates.equalsIgnoreCase("Enrolled"))
 			{
+				LOGGER.info("Selected field is - Enrolled");
+				LOGGER.info("Sending Request to service");
 				return fAQService.getCountOfFAQCandidatesEnrolledMonthWise(year);
 			}
 			else if(candidates.equalsIgnoreCase("Assessed"))
 			{
+				LOGGER.info("Selected field is - Assessed");
+				LOGGER.info("Sending Request to service");
 				return fAQService.getCountOfFAQCandidatesAssessedMonthWise(year);
 			}
 			else if(candidates.equalsIgnoreCase("Certified"))
 			{
+				LOGGER.info("Selected field is - Certified");
+				LOGGER.info("Sending Request to service");
 				return fAQService.getCountOfFAQCandidatesCertifiedMonthWise(year);
 			}
 			else
 			{
+				LOGGER.info("Selected field is - Unknown");
 				LOGGER.error("Incorrect Value for the selected type 'Candidate' or 'Year'");
+				LOGGER.info("Returning NULL");
 				return null;
 			}
 		}
 		catch(Exception e)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+e);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -344,28 +415,39 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'year': "+year+" 'candidates:'"+candidates+" 'batchType:'",batchType);
 		try
 		{
+			LOGGER.info("In TRY block");
 			if(candidates.equalsIgnoreCase("Enrolled"))
 			{
+				LOGGER.info("Selected field is - Enrolled");
+				LOGGER.info("Sending Request to service");
 				return fAQService.getCountOfFAQCandidatesEnrolledMonthAndSchemeWise(year, batchType);
 			}
 			else if(candidates.equalsIgnoreCase("Assessed"))
 			{
+				LOGGER.info("Selected field is - Assessed");
+				LOGGER.info("Sending Request to service");
 				return fAQService.getCountOfFAQCandidatesAssessedMonthAndSchemeWise(year, batchType);
 			}
 			else if(candidates.equalsIgnoreCase("Certified"))
 			{
+				LOGGER.info("Selected field is - Certified");
+				LOGGER.info("Sending Request to service");
 				return fAQService.getCountOfFAQCandidatesCertifiedMonthAndSchemeWise(year, batchType);
 			}
 			else
 			{
+				LOGGER.info("Selected field is - Unknown");
 				LOGGER.error("Incorrect Value for the selected type 'Candidate' or 'Year'");
+				LOGGER.info("Returning NULL");
 				return null;
 			}
 		}
 		catch(Exception e)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+e);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 	}
@@ -378,12 +460,16 @@ public class FAQController {
 		LOGGER.info("Parameters Received from front end are - 'year': ",year);
 		try
 		{
+			LOGGER.info("In TRY block");
+			LOGGER.info("Sending Request to service");
 			return fAQService.getTotalBatchesWithTotalCandidatesEnrolledYearWise(year);
 		}
 		catch(Exception exception)
 		{
+			LOGGER.info("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
 			LOGGER.error("Exception is :"+exception);
+			LOGGER.info("returning NULL");
 			return null;
 		}
 		

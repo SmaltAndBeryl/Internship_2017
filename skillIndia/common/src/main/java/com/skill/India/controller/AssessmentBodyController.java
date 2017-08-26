@@ -43,6 +43,7 @@ public class AssessmentBodyController {
 	private int getApplicationId() {
 		LOGGER.info("In AssessmentBodyController - getApplicationId");
 		LOGGER.info("Trying to get ApplicationId ");
+		LOGGER.info("Sending Request to service");
 		return sessionUserUtility.getApplicationId(sessionUserUtility
 				.getSessionMangementfromSession().getUsername());
 	}
@@ -52,6 +53,7 @@ public class AssessmentBodyController {
 	public Collection<AssessmentBodyApplicationStatusDto> getAssessmentBodyApplicationStatusDto() {
 		LOGGER.info("In AssessmentBodyController - getAssessmentBodyApplicationStatusDto");   
 		LOGGER.info("Request received from front end to get Assessment Body Application Status");
+		LOGGER.info("Sending Request to service");
 		return assessmentBodyApplicationStatusService
 				.getUpdateRowMapper(getApplicationId());
 	}
@@ -66,6 +68,7 @@ public class AssessmentBodyController {
 		public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper() {
 			LOGGER.info("In AssessmentBodyController - getpastBatchesAssessmentBodyHomepageRowMapper");	
 			LOGGER.info("Request Received from front end to get Past Batches For Assessment Body");
+			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageService
 					.getpastBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
@@ -75,6 +78,7 @@ public class AssessmentBodyController {
 		public Collection<AssessmentBodyHomepageDto> getupcomingBatchesAssessmentBodyHomepageRowMapper() {
 			LOGGER.info("In AssessmentBodyController - getupcomingBatchesAssessmentBodyHomepageRowMapper");
 			LOGGER.info("Request Received from front end to get Upcoming Batches For Assessment Body");
+			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageService
 					.getupcomingBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
@@ -84,6 +88,7 @@ public class AssessmentBodyController {
 		public Collection<AssessmentBodyHomepageDto> getshownInterestAssessmentBodyHomepageRowMapper() {
 			LOGGER.info("In AssessmentBodyController - getshownInterestAssessmentBodyHomepageRowMapper");
 			LOGGER.info("Request Received from front end to get shown interest Batches For Assessment Body");
+			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageService
 					.getshownInterestAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
@@ -93,6 +98,7 @@ public class AssessmentBodyController {
 		public Collection<AssessmentBodyHomepageDto> getassigneddBatchesAssessmentBodyHomepageRowMapper() {
 			LOGGER.info("In AssessmentBodyController - getassigneddBatchesAssessmentBodyHomepageRowMapper");
 			LOGGER.info("Request Received from front end to get Assigned Batches For Assessment Body");
+			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageService
 					.getassignedBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
@@ -102,6 +108,7 @@ public class AssessmentBodyController {
 		public Collection<AssessmentBodyHomepageDto> getconfirmedBatchesAssessmentBodyHomepageRowMapper() {
 			LOGGER.info("In AssessmentBodyController - getconfirmedBatchesAssessmentBodyHomepageRowMapper");
 			LOGGER.info("Request Received from front end to get Confirmed Batches For Assessment Body");
+			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageService
 					.getconfirmedBatchesAssessmentBodyHomepageRowMapper(getApplicationId());
 		}
@@ -117,6 +124,7 @@ public class AssessmentBodyController {
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesUpdateShowInterest");
 			LOGGER.info("Request Received from front end to show Interest For Particular Batch For Assessment Body");
 			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId +" 'agencyId':",agencyId);
+			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageFunctionalitiesService.putShowInterest(batchId,agencyId);
 		}
 
@@ -126,6 +134,7 @@ public class AssessmentBodyController {
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesApproveBatch");
 			LOGGER.info("Request Received from front end to Approve the Batch For Assessment Body");
 			LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageFunctionalitiesService.putApproveBatch(batchId);
 		}
 		
@@ -135,6 +144,7 @@ public class AssessmentBodyController {
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesRejectBatch");
 			LOGGER.info("Request Received from front end to Reject the Batch For Assessment Body");
 			LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageFunctionalitiesService.putRejectBatch(batchId);
 		}
 
