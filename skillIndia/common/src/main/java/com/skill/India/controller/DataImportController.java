@@ -67,6 +67,7 @@ public class DataImportController{
 public Collection<DataImportHistoryDto> getdataImportHistorydto(){
 LOGGER.info("In DataImportController - getdataImportHistorydto");
 LOGGER.info("Request Received from front end to get Data for Import History Table in Data Import");
+LOGGER.info("Sending Request to service");
 return dataImportServices.getUpdateHistory();
 }
 	
@@ -78,6 +79,7 @@ public void getCertificateFile(@PathVariable("file_name") String fileName,
 	LOGGER.info("In DataImportController - getCertificateFile");
 	LOGGER.info("Request Received from front end to download Certificate For a particular Batch in Data Import");
 	LOGGER.info("Parameters Received from front end are - 'file_name': "+fileName+" 'response':",response);
+	LOGGER.info("Sending Request to service");
 	dataImportDownloadCertificateService.dataImportDownloadCertificate(response, fileName);
     
 }
@@ -89,7 +91,8 @@ public void getFile(@PathVariable("file_name") String fileName,
 	LOGGER.info("In DataImportController - getFile");
 	LOGGER.info("Request Received from front end to download uploaded CSV file in Data Import");
 	LOGGER.info("Parameters Received from front end are - 'file_name': "+fileName+" 'response':",response);
-	System.out.println(fileName);
+//	System.out.println(fileName);
+	LOGGER.info("Sending Request to service");
 	dataImportCSVDownloadService.DataImportCSVDownload(response, fileName);
 }
 
@@ -99,7 +102,8 @@ public Collection<DataImportGetBatchInfoDto> dataImportFindBatch(@RequestParam("
 	LOGGER.info("In DataImportController - dataImportFindBatch");
 	LOGGER.info("Request Received from front end to find information about a particular Batch in Data Import");
 	LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
-	System.out.println("HELLO" + batchId);
+//	System.out.println("HELLO" + batchId);
+	LOGGER.info("Sending Request to service");
 	return findBatchUsingBatchIdService.findBatchUsingBatchId(batchId.toString());
 	
 }
@@ -110,9 +114,11 @@ public String singleFileUpload(@RequestParam("file") MultipartFile file,@Request
 	LOGGER.info("In DataImportController - singleFileUpload");
 	LOGGER.info("Request Received from front end to Upload Certificate For a particular Batch in Data Import");
 	LOGGER.info("Parameters Received from front end are - 'file': "+file+" 'batchId':",batchId);
+	LOGGER.info("Sending Request to get User Id from Session");
 	String userId=sessionUserUtility
 			.getSessionMangementfromSession().getUsername();
-	
+	LOGGER.info("Response received");
+	LOGGER.info("Sending Request to service to upload the CSV file");
 	return saveCertificateFileService.saveUploadedFile(file, batchId, userId);
 	
 
@@ -125,8 +131,11 @@ public String singleFileUpload(@RequestParam("file") MultipartFile file,@Request
 	LOGGER.info("In DataImportController - singleFileUpload");
 	LOGGER.info("Request Received from front end to Upload Csv File in Data Import");
 	LOGGER.info("Parameters Received from front end are - 'file': "+file+" 'csvType':",type);
+	LOGGER.info("Sending Request to get User Id from Session");
 	String userId=sessionUserUtility
 			.getSessionMangementfromSession().getUsername();
+	LOGGER.info("Response received");
+	LOGGER.info("Sending Request to service to upload the CSV file");
   return saveUploadedFileService.saveUploadedFile(file,type,userId);
 }
 
@@ -139,6 +148,7 @@ public String singleFileUpload(@RequestParam("file") MultipartFile file,@Request
 public Collection<CertificateImportHistorydto> getcertificateImportHistorydto(){
 	LOGGER.info("In DataImportController - getcertificateImportHistorydto");
 	LOGGER.info("Request Received from front end to get data for Certificate Import History Table in Data Import");
+	LOGGER.info("Sending Request to service");
 	return certificateImportHistoryService.getUpdateHistory();
 }
 
