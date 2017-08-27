@@ -18,7 +18,8 @@ import java.util.Collection;
 @Service
 public class NonAssignedBatchesService {
 
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(com.skill.India.service.NonAssignedBatchesService.class);
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(NonAssignedBatchesService.class);
+    
     @Autowired
     private NonAssignedBatchesDao updateDao;
 
@@ -31,15 +32,27 @@ public class NonAssignedBatchesService {
     public Collection<NonAssignedBatchesDto> getCollection() {
         LOGGER.info("Request Received from Controller");
         LOGGER.info("In NonAssignedBatchesService - getCollection");
-        LOGGER.info("Making a Request to Dao to get data for Non assigned batches");
-
+        
         String recommendedAB = "Default";
+        
+        LOGGER.info("Creating ArrayList object");
         ArrayList<String> rec = new ArrayList<>();
+        LOGGER.info("Successfully created");
+        
+        LOGGER.info("Creating Collection object");
+        LOGGER.info("Making a Request to Dao to get data for Non assigned batches");
         Collection<NonAssignedBatchesDto> nonAssignedBatchesDtos = updateDao.getCollection(rec);
-
+        LOGGER.info("Received Response from Dao");
+        LOGGER.info("Successfully initialized");
+        
+        LOGGER.info("Iterating Collection object");
         for (NonAssignedBatchesDto nonAssignedBatchesDto : nonAssignedBatchesDtos) {
+        	LOGGER.info("Creating ArrayList object");
             ArrayList<Integer> agencyIdShowInterest = new ArrayList<>();
-            System.out.println("Call to display list of interest bodies----------------------------------------------------------------------");
+            LOGGER.info("Successfully initialized");
+//            System.out.println("Call to display list of interest bodies----------------------------------------------------------------------");
+            
+           
             for (AlgorithmDto algorithmDto : algorithmDao.algorithmDtoCollection(Integer.parseInt(nonAssignedBatchesDto.getBatchID()))) {
                 agencyIdShowInterest.add(algorithmDto.getAgencyId());
                 LOGGER.info("Add successful..");

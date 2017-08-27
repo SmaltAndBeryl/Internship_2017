@@ -33,12 +33,17 @@ public class ProfileCreationTrainingPartnerService {
 			
 		try{
 			LOGGER.info("In TRY block");
-		String userId=sessionUserUtility.getSessionMangementfromSession().getUsername();
+			LOGGER.info("getting user Id from session");
+			LOGGER.info("Making a Request to Dao to get data");
+			String userId=sessionUserUtility.getSessionMangementfromSession().getUsername();
+			LOGGER.info("Response received from Dao");
 		/*
 		 * First checking if userId exists in tpReg table or not then getting data from respective tables
 		 */
 		LOGGER.info("Checking Existense of User Id in Training Partner Table");
+		LOGGER.info("Making a Request to Dao to get data");
 		int userIdExists=userIdCheckInTrainingPartnerRegistration.userIdCheckInTrainingPartnerRegistration(userId);
+		LOGGER.info("Response received from Dao");
 		if(userIdExists==1)
 		{
 			LOGGER.info("Creating Collection to get data of Training Partner");
@@ -69,7 +74,8 @@ public class ProfileCreationTrainingPartnerService {
 		catch(Exception e)
 		{
 			LOGGER.info("In CATCH Block");
-			LOGGER.info("Error : Encountered an Exception - ",e);
+			LOGGER.error("Error : Encountered an Exception - ",e);
+			LOGGER.info("Returning NULL");
 			e.printStackTrace();
 			return null;
 		}

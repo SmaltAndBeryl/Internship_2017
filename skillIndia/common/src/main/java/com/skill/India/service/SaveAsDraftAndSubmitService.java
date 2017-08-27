@@ -68,7 +68,11 @@ public class SaveAsDraftAndSubmitService {
 					}
 					catch(Exception e)
 					{
-						e.printStackTrace();
+
+						LOGGER.info("Inside CATCH block");
+						LOGGER.error("ERROR: Exception is - ",e);
+						LOGGER.info("Returning NULL");
+//						e.printStackTrace();
 						return null;
 					}
 					try{
@@ -89,7 +93,11 @@ public class SaveAsDraftAndSubmitService {
 					}
 					catch(Exception e)
 					{
-						e.printStackTrace();
+
+						LOGGER.info("Inside CATCH block");
+						LOGGER.error("ERROR: Exception is - ",e);
+						LOGGER.info("Returning NULL");
+//						e.printStackTrace();
 						return null;
 					}
 
@@ -103,8 +111,12 @@ public class SaveAsDraftAndSubmitService {
 			}
 			catch(Exception e)
 			{
-				LOGGER.info("inside CATCH block");
-				e.printStackTrace();
+//				LOGGER.info("inside CATCH block");
+
+				LOGGER.info("Inside CATCH block");
+				LOGGER.error("ERROR: Exception is - ",e);
+				LOGGER.info("Returning NULL");
+//				e.printStackTrace();
 				return null;
 			}
 
@@ -174,7 +186,12 @@ public class SaveAsDraftAndSubmitService {
 						}
 						catch(Exception e)
 						{
-							e.printStackTrace();
+
+							LOGGER.info("Inside CATCH block");
+							LOGGER.error("ERROR: Exception is - ",e);
+							LOGGER.info("Returning NULL");
+							
+//							e.printStackTrace();
 							return null;
 						}
 				}
@@ -182,7 +199,11 @@ public class SaveAsDraftAndSubmitService {
 			}
 			catch(Exception e)
 			{
-				e.printStackTrace();
+
+				LOGGER.info("Inside CATCH block");
+				LOGGER.error("ERROR: Exception is - ",e);
+				LOGGER.info("Returning NULL");
+//				e.printStackTrace();
 				return null;
 			}
 
@@ -191,7 +212,10 @@ public class SaveAsDraftAndSubmitService {
 	}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.info("Inside CATCH block");
+			LOGGER.error("ERROR: Exception is - ",e);
+			LOGGER.info("Returning NULL");
+//			e.printStackTrace();
 			return null;
 		}
 	}
