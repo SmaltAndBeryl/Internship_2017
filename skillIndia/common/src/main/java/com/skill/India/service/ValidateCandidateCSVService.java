@@ -57,29 +57,38 @@ public class ValidateCandidateCSVService {
 		LOGGER.info("Creating ArrayList object");
 		ArrayList<Map<String,Object>> arrayOfRecords=new ArrayList<Map<String,Object>>();
 		LOGGER.info("Successfully created");
+		
 		try{
 			LOGGER.info("In TRY block");
+			
 			LOGGER.info("Creating ColumnPositionMappingStrategy object of type ValidateCandidateCSVDto");
 		ColumnPositionMappingStrategy<ValidateCandidateCSVDto> strategy=new ColumnPositionMappingStrategy<ValidateCandidateCSVDto>();
 		LOGGER.info("Successfully created and initialized");
+		
 		LOGGER.info("Setting type of object to ValidateCandidateCSVDto");
 		strategy.setType(ValidateCandidateCSVDto.class);
 		String [] CandidateCSVColumns=new String[]{"candidateDetailsId","candidateName","enrollmentNumber","gender","dateOfBirth","nameOfFatherOrHusband","aadharNumber","mobileNumber","emailId","educationLevel","traineeAddress","traineePINCode","marksObtainedTheory","marksObtainedPractical","result","certified","placementStatus","dateOfJoining","employmentType","batchId","employerId"};
+		
 		LOGGER.info("Setting ColumnMapping of object");
 		strategy.setColumnMapping(CandidateCSVColumns);
 		//String CandidateCSVFileName = "D:\\EclipseWorkspace\\Candidate.csv";
+		
 		LOGGER.info("Creating CSVReader object ");
 		CandidateCSVReader=new CSVReader(new FileReader(CandidateCSVFileName),',','"',2);
 		LOGGER.info("Successfully created and initialized");
+		
 		LOGGER.info("Creating CsvToBean object ");
 		CsvToBean<ValidateCandidateCSVDto> CandidateCSVToBean=new CsvToBean<ValidateCandidateCSVDto>(); 
 		LOGGER.info("Successfully created and initialized");
+		
 		LOGGER.info("Creating List object of type ValidateCandidateCSVDto");
 		List<ValidateCandidateCSVDto> CandidateCSVDataList= CandidateCSVToBean.parse(strategy,CandidateCSVReader);
 		LOGGER.info("Successfully created and initialized");
+		
 		int recordCount=0;
 		int errorExist=0;
 		String errorListAllRecords="";
+		
 		LOGGER.info("Iterating List Object");
 		for(ValidateCandidateCSVDto CandidateCSVData :CandidateCSVDataList)
 		{
@@ -88,10 +97,12 @@ public class ValidateCandidateCSVService {
 			 */
 			LOGGER.info("Creating HashMap object");
 			Map<String ,Object> record=new HashMap<String, Object>();
+			LOGGER.info("Successfully created");
 			
 			recordCount++;
 			int errorStatus=0;
 			String errorString="";
+			
 			LOGGER.info("Fetching data from each row");		
 			String candidateDetailsId=CandidateCSVData.getCandidateDetailsId();
 			String candidateName=CandidateCSVData.getCandidateName();
@@ -404,7 +415,6 @@ public class ValidateCandidateCSVService {
 			  * Inserting row wise data in HashMap
 			  */
 			 LOGGER.info("Inserting values into HashMap Object");
-				
 			 record.put("candidateDetailsId", candidateDetailsId);
 			 record.put("candidateName",candidateName);
 			 record.put("enrollmentNumber",enrollmentNumber);
@@ -426,6 +436,7 @@ public class ValidateCandidateCSVService {
 			 record.put("employmentType",employmentType);
 			 record.put("batchId",batchId);
 			 record.put("employerId",employerId);
+			 
 			 LOGGER.info("Adding HashMap object into ArrayList");
 			 arrayOfRecords.add(record);
 			}
@@ -436,12 +447,15 @@ public class ValidateCandidateCSVService {
 				LOGGER.info("Closing CSV reader");
 				CandidateCSVReader.close();
 				LOGGER.info("Successfully closed");
+				
 				LOGGER.info("Creating File object");
 				File deleteUploadedFile = new File(CandidateCSVFileName);
 				LOGGER.info("Successfully created and initialized");
+				
 				LOGGER.info("deleting Saved file from system");
 			    deleteUploadedFile.delete();
 			    LOGGER.info("Successfully deleted");
+			    
 			    LOGGER.info("returning Error list as String");
 				return errorListAllRecords;
 			}
@@ -450,15 +464,19 @@ public class ValidateCandidateCSVService {
 		catch(Exception e)
 		{	
 			LOGGER.info("In CATCH block");
+			
 			LOGGER.info("Closing CSV reader");
 			CandidateCSVReader.close();
 			LOGGER.info("Successfully closed");
+			
 			LOGGER.info("Creating File object");
 			File deleteUploadedFile = new File(CandidateCSVFileName);
 			LOGGER.info("Successfully created and initialized");
+			
 			LOGGER.info("deleting Saved file from system");
 		    deleteUploadedFile.delete();
 		    LOGGER.info("Successfully deleted");
+		    
 		    LOGGER.info("returning Error list as String");
 //			e.printStackTrace();
 			return "Error parsing Batch CSV File. Kindly try again. ";
@@ -476,6 +494,7 @@ public class ValidateCandidateCSVService {
 
 	try{
 		LOGGER.info("In TRY block");
+		
 		LOGGER.info("Iterating Array List object"); 
 		for(Map<String, Object> getRecord:arrayOfRecords)
 		{	
@@ -486,6 +505,7 @@ public class ValidateCandidateCSVService {
 			LOGGER.info("Making a Request to Dao to get data");
 			status=dataImportCandidateDao.dataImportCandidateBatchIdCheck(getRecord);
 			LOGGER.info("Response received from Dao");
+			
 			if(status==0 || status==2)
 			{
 				errorStatus=1;
@@ -497,6 +517,7 @@ public class ValidateCandidateCSVService {
 				LOGGER.info("Making a Request to Dao to get data");
 				status=dataImportCandidateDao.dataImportCandidateEmployerIdCheck(getRecord);
 				LOGGER.info("Response received from Dao");
+				
 				if(status==0 || status==2)
 				{
 					errorStatus=1;
@@ -517,12 +538,15 @@ public class ValidateCandidateCSVService {
 			LOGGER.info("Closing CSV reader");
 			CandidateCSVReader.close();
 			LOGGER.info("Successfully closed");
+			
 			LOGGER.info("Creating File object");
 			File deleteUploadedFile = new File(CandidateCSVFileName);
 			LOGGER.info("Successfully created and initialized");
+			
 			LOGGER.info("deleting Saved file from system");
 		    deleteUploadedFile.delete();
 		    LOGGER.info("Successfully deleted");
+		    
 		    LOGGER.info("returning Error list as String");
 			return errorListAllRecords;
 		}
@@ -533,12 +557,15 @@ public class ValidateCandidateCSVService {
 	{
 		LOGGER.info("In CATCH block");
 //		e.printStackTrace();
+		
 		LOGGER.info("Creating File object");
 		File deleteUploadedFile = new File(CandidateCSVFileName);
 		LOGGER.info("Successfully created and initialized");
+		
 		LOGGER.info("deleting Saved file from system");
 	    deleteUploadedFile.delete();
 	    LOGGER.info("Successfully deleted");
+	    
 	    LOGGER.info("returning Error list as String");
 		return "Error checking Foreign key constraint . Kindly try again .";
 		
@@ -550,27 +577,30 @@ public class ValidateCandidateCSVService {
 		 */
 			  try{
 				  LOGGER.info("In TRY block");
+				 
 				  LOGGER.info("Iterating ArrayList object");
 				for(Map<String, Object> getRecord:arrayOfRecords)
 				{
 					LOGGER.info("Making a Request to Dao to get data");
 					status=dataImportCandidateDao.dataImportCandidatePrimaryKeyConstraintCheck(getRecord);
 					LOGGER.info("Response received from Dao");
-				if(status==0)
-				{
-					/*
-					 * If primary key doesn't exists in DB then run insert query
-					 */
-					LOGGER.info("Record Doesn't exist in Database");
-					LOGGER.info("Inserting data into Database");
-					LOGGER.info("Making a Request to Dao to get data");
-					int insertDataStatus=dataImportCandidateDao.insertDataInCandidate(getRecord);
-					LOGGER.info("Response received from Dao");
-					if(!(insertDataStatus>0))
+				
+					if(status==0)
 					{
-						throw new Exception();
+						/*
+						 * If primary key doesn't exists in DB then run insert query
+						 */
+						LOGGER.info("Record Doesn't exist in Database");
+						LOGGER.info("Inserting data into Database");
+						LOGGER.info("Making a Request to Dao to get data");
+						int insertDataStatus=dataImportCandidateDao.insertDataInCandidate(getRecord);
+						LOGGER.info("Response received from Dao");
+						
+						if(!(insertDataStatus>0))
+						{
+							throw new Exception();
+						}
 					}
-				}
 				else if(status==1)
 				{
 					/*
@@ -581,6 +611,7 @@ public class ValidateCandidateCSVService {
 					LOGGER.info("Making a Request to Dao to get data");
 					int updateDataStatus=dataImportCandidateDao.updateDataInCandidate(getRecord);
 					LOGGER.info("Response received from Dao");
+					
 					if(!(updateDataStatus>0))
 					{
 						throw new Exception();
@@ -601,14 +632,17 @@ public class ValidateCandidateCSVService {
 						LOGGER.info("Creating date object");		
 						Date date=new Date(System.currentTimeMillis());
 						LOGGER.info("Successfully created and initialized");
+						
 						LOGGER.info("Creating HashMap object");		
 						Map<String,Object> uploadedFileInfo= new HashMap<String, Object>();
+						LOGGER.info("Successfully created");
+						
 						LOGGER.info("Initializing HashMap object");		
 						uploadedFileInfo.put("csvType",type);
 						uploadedFileInfo.put("csvName",fileNameToBeSaved);
 						uploadedFileInfo.put("csvUploadDate",date);
 						uploadedFileInfo.put("csvUploadUserId",userId);
-						
+						LOGGER.info("Successfully initialized");
 						/*
 						 * Checking for valid UserId (Foreign key constraint)
 						 */
@@ -616,14 +650,17 @@ public class ValidateCandidateCSVService {
 						LOGGER.info("Making a Request to Dao to get data");
 						status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
 						LOGGER.info("Response received from Dao");
+						
 						if(status==0 || status==2)
 						{
 							LOGGER.info("Creating File object");
 							File deleteUploadedFile = new File(CandidateCSVFileName);
 							LOGGER.info("Successfully created and initialized");
+							
 							LOGGER.info("deleting Saved file from system");
 						    deleteUploadedFile.delete();
 						    LOGGER.info("Successfully deleted");
+						    
 						    LOGGER.info("returning Error list as String");
 							return "Invalid User Id . Action Aborted";	
 						}
@@ -631,14 +668,17 @@ public class ValidateCandidateCSVService {
 						LOGGER.info("Making a Request to Dao to get data");
 						int insertDataStatus=dataImportCSVUploadTableDao.insertDataInCSVUpload(uploadedFileInfo);
 						LOGGER.info("Response received from Dao");
+						
 						if(!(insertDataStatus>0))
 						{
 							LOGGER.info("Creating File object");
 							File deleteUploadedFile = new File(CandidateCSVFileName);
 							LOGGER.info("Successfully created and initialized");
+							
 							LOGGER.info("deleting Saved file from system");
 						    deleteUploadedFile.delete();
 						    LOGGER.info("Successfully deleted");
+						    
 						    LOGGER.info("returning Error list as String");
 							return "Some Error occured while inserting data in csvUploaded By details table . Kindly try again ."; 
 						}
@@ -650,16 +690,21 @@ public class ValidateCandidateCSVService {
 				catch(Exception e)
 				{
 					LOGGER.info("In CATCH block");
-		        	LOGGER.error("ERROR: Encountered an Exception - ",e);
-		   			LOGGER.info("Closing CSV reader");
+		        	
+					LOGGER.error("ERROR: Encountered an Exception - ",e);
+		   			
+					LOGGER.info("Closing CSV reader");
 					CandidateCSVReader.close();
 					LOGGER.info("Successfully closed");
+					
 					LOGGER.info("Creating File object");
 					File deleteUploadedFile = new File(CandidateCSVFileName);
 					LOGGER.info("Successfully created and initialized");
+					
 					LOGGER.info("deleting Saved file from system");
 				    deleteUploadedFile.delete();
 				    LOGGER.info("Successfully deleted");
+				    
 				    LOGGER.info("returning Error list as String");
 //					e.printStackTrace();
 					return "Error Inserting or Updating data .Kindly try again .";
