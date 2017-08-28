@@ -12,8 +12,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.skill.India.common.AbstractDatasource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -31,20 +29,45 @@ public class LoginDao extends AbstractTransactionalDao {
 	
 	
 	public Integer userExistence(String userId, String password){
-		LOGGER.info("Verify the existence of user");
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In LoginDao - userExistence");
+		LOGGER.info("Parameters Received from Service are - 'userId': " +userId+" 'password': ");
+		   	
+		LOGGER.info("Checking Existense of User");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
 		parameters.put("userId", userId);
 		parameters.put("password", password);
-		return getJdbcTemplate().queryForObject(loginconfig.getCheckUserSql(), parameters, Integer.class);
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().queryForObject(loginconfig.getCheckUserSql(), parameters, Integer.class);
 		
 	}
 	
 	public Collection<LoginDto> getValidateLoginUser(String userId, String password) {
-		LOGGER.info("After successful existence, validate the user against entered credentials");
+//		LOGGER.info("After successful existence, validate the user against entered credentials");
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In LoginDao - getValidateLoginUser");
+		LOGGER.info("Parameters Received from Service are - 'userId': " +userId+" 'password': ");
+		   	
+		LOGGER.info("Getting UserRole,UserStatus of User ");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
 		parameters.put("userId", userId);
 		parameters.put("password", password);
-		return getJdbcTemplate().query(loginconfig.getSelectSql(),parameters, ROW_MAPPER);//query for multiple rows from database
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().query(loginconfig.getSelectSql(),parameters, ROW_MAPPER);//query for multiple rows from database
 	}
 	
 	
@@ -57,9 +80,6 @@ public class LoginDao extends AbstractTransactionalDao {
 					String userRole = resultSet.getString("userRole");
 					String userStatus = resultSet.getString("userStatus");
 					return new LoginDto(userId, userRole, userStatus);
-			
-			
-			
 		}
 	
 	
