@@ -1,7 +1,6 @@
 package com.skill.India.dao;
 
 import com.skill.India.common.AbstractTransactionalDao;
-import com.skill.India.config.AlgorithmConfigSql;
 import com.skill.India.config.NonAssignedBatchesConfigSql;
 import com.skill.India.dto.AlgorithmDto;
 import org.slf4j.LoggerFactory;
@@ -27,9 +26,21 @@ public class AlgorithmDao extends AbstractTransactionalDao {
     private static AlgorithmDaoRowMapper ROW_MAPPER = new AlgorithmDaoRowMapper();
 
     public Collection<AlgorithmDto> algorithmDtoCollection(int batchId){
-        Map<String, Object> parameters = new HashMap<>();
-        LOGGER.info("Adding values to arraylist of show interest for batch ID " + batchId);
-        parameters.put("batchId", batchId);
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In AlgorithmDao - algorithmDtoCollection");
+		LOGGER.info("Parameters Received from Service are - 'batchId': " +batchId);
+				   	
+		LOGGER.info("Adding values to arraylist of show interest for batch ID " + batchId);
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String,Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
+		parameters.put("batchId", batchId);
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().query(nonAssignedBatchesConfigSql.getSelectSqlAgencyId(), parameters, ROW_MAPPER);
     }
 
