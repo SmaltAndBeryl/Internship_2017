@@ -1,6 +1,5 @@
 package com.skill.India.dao;
 
-import com.skill.India.common.AbstractDatasource;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.AssessmentBodyUpcomingBatchConfigSql;
 import com.skill.India.dto.AssessmentBodyUpcomingBatchDto;
@@ -28,10 +27,8 @@ import java.util.Map;
 @Repository
 public class AssessmentBodyUpcomingBatchDao extends AbstractTransactionalDao{
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentBodyUpcomingBatchDao.class);
 	
-	
-
     @Autowired
     public AssessmentBodyUpcomingBatchConfigSql updateConfigSql;
 
@@ -39,10 +36,17 @@ public class AssessmentBodyUpcomingBatchDao extends AbstractTransactionalDao{
     
     
     public Collection<AssessmentBodyUpcomingBatchDto> getUpateRowMapper() {
-    	LOGGER.info("Code reached");
-        Map<String, Object> parameters = new HashMap<>();
-        //return getJdbcTemplate().query
-      
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In AssessmentBodyUpcomingBatchDao - getUpateRowMapper");
+				   	
+		LOGGER.info("fetching Upcoming batches details");
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		//return getJdbcTemplate().query
+		LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 
         		ROW_MAPPER);
         

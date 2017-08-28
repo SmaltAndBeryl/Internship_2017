@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.skill.India.common.AbstractDatasource;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.AssignedBatchesConfigSql;
 import com.skill.India.dto.AssignedBatchesDto;
@@ -22,7 +21,7 @@ import com.skill.India.dto.AssignedBatchesDto;
 @Repository
 public class AssignedBatchesDao extends AbstractTransactionalDao {
 	
-private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.class);
+private static final Logger LOGGER = LoggerFactory.getLogger(AssignedBatchesDao.class);
 	
 	@Autowired
     public AssignedBatchesConfigSql updateConfigSql;
@@ -30,9 +29,17 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.
 	private static final UpdateRowSelectRowMapper ROW_MAPPER = new UpdateRowSelectRowMapper();
 
 	public Collection<AssignedBatchesDto> getupdateRowMapper() {
-		LOGGER.info("Code reached");
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In AssignedBatchesDao - getupdateRowMapper");
+				   	
+		LOGGER.info("fetching Assigned batches details");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters,
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters,
 				ROW_MAPPER);
 	}
 		

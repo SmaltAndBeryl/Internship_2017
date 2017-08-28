@@ -3,6 +3,8 @@ import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.BatchAssignmentSearchConfigSql;
 import com.skill.India.dto.BatchAssignmentSearchDto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,8 @@ import java.util.Map;
 @Repository
 public class BatchAssignmentSearchDao extends AbstractTransactionalDao{
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(BatchAssignmentSearchDao.class);
+	
 	@Autowired
 	public BatchAssignmentSearchConfigSql batchAssignmentSelectSql;
 	
@@ -26,10 +30,21 @@ public class BatchAssignmentSearchDao extends AbstractTransactionalDao{
 	
 	public Collection<BatchAssignmentSearchDto> executeSearch(int batchId)
 	{
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In BatchAssignmentSearchDao - executeSearch");
+				   	
+		LOGGER.info("Searching Batch with batch Id");
 		
-	  Map<String, Object> parameters = new HashMap<>();
-	  parameters.put("batchId", batchId);
-	  return getJdbcTemplate().query(batchAssignmentSelectSql.getSelectSqlInformationOfTheBatchId(), parameters , ROW_MAPPER );
+		LOGGER.info("Creating HashMap object");
+		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
+		parameters.put("batchId", batchId);
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().query(batchAssignmentSelectSql.getSelectSqlInformationOfTheBatchId(), parameters , ROW_MAPPER );
 	}
 	
 	private static class SearchBatchRowMapper implements RowMapper<BatchAssignmentSearchDto> {

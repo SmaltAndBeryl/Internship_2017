@@ -1,6 +1,5 @@
 package com.skill.India.dao;
 
-import com.skill.India.common.AbstractDatasource;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.AssessmentBodyApplicationStatusConfigSql;
 import com.skill.India.dto.AssessmentBodyApplicationStatusDto;
@@ -23,22 +22,31 @@ import java.util.Map;
 public class AssessmentBodyApplicationStatusDao extends AbstractTransactionalDao {
 
 	
-private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.class);
+private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentBodyApplicationStatusDao.class);
 	
-	
-
-    @Autowired
+	@Autowired
     public AssessmentBodyApplicationStatusConfigSql updateConfigSql;
 
     private static final UpdateRowSelectRowMapper ROW_MAPPER = new UpdateRowSelectRowMapper();
     
     
     public Collection<AssessmentBodyApplicationStatusDto> getUpateRowMapper(int applicationId) {
-    	LOGGER.info("Code reached");
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("applicationId",applicationId);
-        //return getJdbcTemplate().query
-      
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In AssessmentBodyApplicationStatusDao - getUpateRowMapper");
+		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
+				   	
+		LOGGER.info("Getting application status of Assessment Body");
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String,Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
+		parameters.put("applicationId",applicationId);
+		LOGGER.info("Parameters inserted");
+		//return getJdbcTemplate().query
+      		
+		LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 
         		ROW_MAPPER);       
     }

@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -25,14 +27,26 @@ import com.skill.India.dto.CertificateImportHistorydto;
  */
 @Repository
 public class CertificateImportHistorydao extends AbstractTransactionalDao{
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(CertificateImportHistorydao.class);
+	
 	@Autowired
 	public CertificateImportHistoryConfigSql config;
 	
 	private static final CertificateImportHistoryRowMapper ROW_MAPPER = new CertificateImportHistoryRowMapper();
 
 	public Collection<CertificateImportHistorydto> getUpdateHistory() {
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In CertificateImportHistorydao - getUpdateHistory");
+				   	
+		LOGGER.info("Getting Certificate upload history");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		return getJdbcTemplate().query(config.getSelectSql(), parameters,
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().query(config.getSelectSql(), parameters,
 				ROW_MAPPER);
 	}
 
