@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.skill.India.dao.NonAssignedBatchesDao;
 import com.skill.India.dto.SessionManagementDto;
 import com.skill.India.service.UserIdtoApplicationIdService;
 
@@ -16,9 +17,10 @@ public class SessionUserUtility {
 	
 	@Autowired
 	private UserIdtoApplicationIdService userIdtoApplicationIdService;
-
+	
+	
 	 public int getApplicationId(String userId) 
-		{	
+		{	LOGGER.info("Application Id is -" + userIdtoApplicationIdService.getApplicationId(userId));
 		 	LOGGER.info("Request Received to get Application Id");
 		 	LOGGER.info("In UserIdtoApplicationIdService - getApplicationId");
 		 	LOGGER.info("Request Received are - 'userId': ",userId);
