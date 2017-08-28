@@ -3,6 +3,9 @@ package com.skill.India.dao;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.DropdownConfigSql;
 import com.skill.India.dto.DropdownDto;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -18,13 +21,25 @@ import java.util.Map;
  */
 @Repository
 public class DropdownDao extends AbstractTransactionalDao{
-    @Autowired
+    
+	private static final Logger LOGGER = LoggerFactory.getLogger(DropdownDao.class);
+	
+	@Autowired
     private DropdownConfigSql dropdownConfigSql;
 
     private static DropdownRowMapper ROW_MAPPER = new DropdownRowMapper();
 
     public Collection<DropdownDto> getCollection(){
-        Map<String, Object> parameters = new HashMap<>();
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In DropdownDao - getCollection");
+				   	
+		LOGGER.info("getting list of all agency");
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().query(dropdownConfigSql.getSelectSql(), parameters, ROW_MAPPER);
     }
     private static class DropdownRowMapper implements RowMapper<DropdownDto> {

@@ -1,6 +1,5 @@
 package com.skill.India.dao;
 
-import com.skill.India.common.AbstractDatasource;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.DownloadExcelConfigSql;
 import com.skill.India.dto.DownloadExcelDto;
@@ -22,18 +21,24 @@ import java.util.Map;
 @Repository
 public class DownloadExcelDao extends AbstractTransactionalDao{
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(DownloadExcelDao.class);
 	
 	@Autowired
     public DownloadExcelConfigSql updateConfigSql;
 	
 	private static final UpdateRowSelectRowMapper ROW_MAPPER = new UpdateRowSelectRowMapper();
 	public Collection<DownloadExcelDto> getUpateRowMapper() {
-    	LOGGER.info("Code reached");
-        Map<String, Object> parameters = new HashMap<>();
-        
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In DownloadExcelDao - getUpateRowMapper");
+				   	
+		LOGGER.info("getting CSV location stored at machine");
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+				
       //return getJdbcTemplate().query
-        
+        LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 
         		ROW_MAPPER);
 }
