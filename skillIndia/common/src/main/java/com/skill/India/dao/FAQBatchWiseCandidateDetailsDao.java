@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -24,14 +26,29 @@ import com.skill.India.dto.FAQBatchWiseCandidateDetailsDto;
 @Repository
 public class FAQBatchWiseCandidateDetailsDao extends AbstractTransactionalDao {
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(FAQBatchWiseCandidateDetailsDao.class);
+	
 	@Autowired
 	private FAQConfigSql fAQConfigSql;
 	
 	private static BatchWiseCandidateDetailsDaoRowMapper ROW_MAPPER = new BatchWiseCandidateDetailsDaoRowMapper(); 
 	
 	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(Integer batchId) {
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In FAQBatchWiseCandidateDetailsDao - getBatchWiseCandidatesDetails");
+		LOGGER.info("Parameters Received from Service are - 'batchId': " +batchId);
+				   	
+		LOGGER.info("getting candidate details of a particular batch");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
 		parameters.put("batchId", batchId);
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query and returning response");
 		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlBatchWiseCandidatesDetails(), parameters,ROW_MAPPER);
 	}
 

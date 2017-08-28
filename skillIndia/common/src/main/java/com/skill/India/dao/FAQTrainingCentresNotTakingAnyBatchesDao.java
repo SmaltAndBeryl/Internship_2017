@@ -9,6 +9,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -24,14 +26,25 @@ import com.skill.India.dto.FAQTrainingCentresNotTakingAnyBatchesDto;
 @Repository
 public class FAQTrainingCentresNotTakingAnyBatchesDao extends AbstractTransactionalDao {
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(FAQTrainingCentresNotTakingAnyBatchesDao.class);
+	
 	@Autowired
 	private FAQConfigSql fAQConfigSql;
 	
 	private static final FAQTrainingCentresNotTakingAnyBatchesRowMapper ROW_MAPPER = new FAQTrainingCentresNotTakingAnyBatchesRowMapper();
 	
 	public Collection<FAQTrainingCentresNotTakingAnyBatchesDto> getTotalTrainingCentresNotTakingAnyBatches() {
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In FAQTrainingCentresNotTakingAnyBatchesDao - getTotalTrainingCentresNotTakingAnyBatches");
+				   	
+		LOGGER.info("getting Number of training centers not taking any batches");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		return getJdbcTemplate().query(fAQConfigSql.getSelectSqTrainingCentresNotTakingAnyBatches(), parameters, ROW_MAPPER);
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().query(fAQConfigSql.getSelectSqTrainingCentresNotTakingAnyBatches(), parameters, ROW_MAPPER);
 	}
 	
 	private static class FAQTrainingCentresNotTakingAnyBatchesRowMapper implements RowMapper<FAQTrainingCentresNotTakingAnyBatchesDto> {
