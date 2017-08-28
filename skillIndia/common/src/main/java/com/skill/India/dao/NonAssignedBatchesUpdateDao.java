@@ -23,24 +23,52 @@ public class NonAssignedBatchesUpdateDao extends AbstractTransactionalDao{
     private static final Logger LOGGER = LoggerFactory.getLogger(NonAssignedBatchesUpdateDao.class);
     
     public int putUpdateBatches(String batchId, String agencyId,String responseType){
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("batchId", batchId);
+    	
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In NonAssignedBatchesUpdateDao - putUpdateBatches");
+		LOGGER.info("Parameters Received from Service are - 'batchId': " +batchId+" 'agencyId': "+agencyId+" 'responseType': "+responseType);
+		   	
+		LOGGER.info("Update the response of Agency proposed corresponding to a batch ");
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
+		parameters.put("batchId", batchId);
         parameters.put("responseType",responseType);
         parameters.put("agencyId", agencyId);
-        LOGGER.info("Parameters to be passed to update batch porposal batchId is -"+batchId+" type of acion is "+responseType);
+        LOGGER.info("Parameters inserted");
+		
+//		LOGGER.info("Parameters to be passed to update batch porposal batchId is -"+batchId+" type of acion is "+responseType);
+		LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().update(batchesConfigSql.getUpdateSqlNonAssignedBatches(),parameters);
     }
     
     
     public Boolean checkIfProposedAlready(String batchId)
     {
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In NonAssignedBatchesUpdateDao - checkIfProposedAlready");
+		LOGGER.info("Parameters Received from Service are - 'batchId': " +batchId);
+		   	
+		LOGGER.info("Checking if a Batch is already proposed to a Agency ");
+		
     	Integer valueExists = 0;
     	Boolean alreadyProposed = false;
+    	
+    	LOGGER.info("Creating HashMap object");
     	Map<String,Object> parameters = new HashMap<>();
-    	parameters.put("batchId", batchId);
-    	 valueExists = getJdbcTemplate().queryForObject(batchesConfigSql.getCheckBatchInBatchAssignment(), parameters, Integer.class);
-    	 if(valueExists ==1)
+    	LOGGER.info("object created successfully");
+    	
+    	LOGGER.info("Inserting parameters to HashMap object");
+		parameters.put("batchId", batchId);
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query");
+        valueExists = getJdbcTemplate().queryForObject(batchesConfigSql.getCheckBatchInBatchAssignment(), parameters, Integer.class);
+    	LOGGER.info("Query Executed"); 
+        if(valueExists ==1)
     	 {
     		 alreadyProposed = true;
     	 }
@@ -48,18 +76,31 @@ public class NonAssignedBatchesUpdateDao extends AbstractTransactionalDao{
     	 {
     		 alreadyProposed = false;
     	 }
+        LOGGER.info("Returning response");
     	 return alreadyProposed;
     }
     
     public int insertProposedBatch(String agencyId, String batchId, String responseType)
     {
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In NonAssignedBatchesUpdateDao - insertProposedBatch");
+		LOGGER.info("Parameters Received from Service are - 'agencyId': " +agencyId+" 'batchId': "+batchId+" 'responseType': "+responseType);
+		   	
+		LOGGER.info("Proposing Agency corresponding to a batch ");
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
     	
-    	Map<String, Object> parameters = new HashMap<>();
-        parameters.put("batchId", batchId);
+    	LOGGER.info("Inserting parameters to HashMap object");
+		parameters.put("batchId", batchId);
         parameters.put("agencyId",agencyId);
         parameters.put("responseType", responseType);
-        LOGGER.info("Inserting value in batch assignment table is" + parameters.toString());
-        LOGGER.info("The SQL formed is " + batchesConfigSql.getInsertSqlNonAssignedBatches());
+        LOGGER.info("Parameters inserted");
+		
+//		  LOGGER.info("Inserting value in batch assignment table is" + parameters.toString());
+//        LOGGER.info("The SQL formed is " + batchesConfigSql.getInsertSqlNonAssignedBatches());
+        LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().update(batchesConfigSql.getInsertSqlNonAssignedBatches(),parameters);
     }
 }

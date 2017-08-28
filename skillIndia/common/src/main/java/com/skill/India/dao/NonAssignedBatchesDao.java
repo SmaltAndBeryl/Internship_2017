@@ -35,11 +35,22 @@ public class NonAssignedBatchesDao extends AbstractTransactionalDao{
     private static com.skill.India.dao.NonAssignedBatchesDao.NonAssignedBatchesDaoRowMapper ROW_MAPPER = new com.skill.India.dao.NonAssignedBatchesDao.NonAssignedBatchesDaoRowMapper();
 
     public Collection<NonAssignedBatchesDto> getCollection(ArrayList<String> rec) {
-        Map<String, Object> parameters = new HashMap<>();
-        if(test.isEmpty())
+    	
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In NonAssignedBatchesDao - getCollection");
+		LOGGER.info("Parameters Received from Service are - 'rec': " +rec);
+		   	
+		LOGGER.info("Select those batches which haven't been proposed and assigned to any agency ");
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		if(test.isEmpty())
         {
             test = rec;
         }
+		
+		LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().query(nonAssignedBatchesConfigSql.getSelectSqlNonAssignedBatches(), parameters, ROW_MAPPER);
     }
 

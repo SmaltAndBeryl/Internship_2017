@@ -25,10 +25,8 @@ import com.skill.India.dto.TrainingPartnerBatchesDto;
 @Repository
 public class TrainingPartnerbatchesDao extends AbstractTransactionalDao {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(TrainingPartnerbatchesDao.class);
 	
-	
-
     @Autowired
     public TrainingPartnerConfigSql updateConfigSql;
 
@@ -36,11 +34,23 @@ public class TrainingPartnerbatchesDao extends AbstractTransactionalDao {
     
     
     public Collection<TrainingPartnerBatchesDto> getUpdateRowMapper(int applicationId) {
-    	LOGGER.info("Code reached");
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("applicationId", applicationId);
-        //return getJdbcTemplate().query
-      
+    	
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In TrainingPartnerbatchesDao - getUpdateRowMapper");
+		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
+		   	
+		LOGGER.info("Getting All batches of Training Partner");
+		
+		LOGGER.info("Creating HashMap object");
+		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
+		parameters.put("applicationId", applicationId);
+		LOGGER.info("Parameters inserted");
+		//return getJdbcTemplate().query
+				
+		LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSqlOfBatches(), parameters, 
         		ROW_MAPPER); 
     }

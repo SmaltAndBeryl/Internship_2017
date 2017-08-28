@@ -24,42 +24,75 @@ import com.skill.India.dto.SignUpInsertedUserDto;
 public class SignUpDao extends AbstractTransactionalDao {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(SignUpDao.class);
-
 	
 	@Autowired
 	private SignUpConfigSql signUpConfigSql;
 
-		
 	private static final SignUpRowSelectRowMapper ROW_MAPPER = new SignUpRowSelectRowMapper();
 	
 	public Integer checkUserExistence(String userId, String organizationName){
-		LOGGER.info("Check the user existence against parameter- userId and organization name");
+		
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In SignUpDao - checkUserExistence");
+		LOGGER.info("Parameters Received from Service are - 'userId': " +userId+" 'organizationName': "+organizationName);
+		   	
+		LOGGER.info("Checking the user existence ");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
 		parameters.put("userId", userId);
 		parameters.put("organizationName", organizationName);
-		return getJdbcTemplate().queryForObject(signUpConfigSql.getCheckSql(), parameters, Integer.class);
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().queryForObject(signUpConfigSql.getCheckSql(), parameters, Integer.class);
 		
 	}
-	
-	
-	
+		
 	public int insertSignUpData(String organizationName, String sPOCName, String userId, String password, String userRole) {
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In SignUpDao - insertSignUpData");
+		LOGGER.info("Parameters Received from Service are - 'organizationName': " +organizationName+" 'sPOCName': "+sPOCName+" 'userId': "+userId+" 'password':   "+" 'userRole': "+userRole);
+		
 		LOGGER.info("Insert the record of new user-organization name, spoc name, user id, password");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
 		parameters.put("organizationName",organizationName);
 		parameters.put("sPOCName", sPOCName);
 		parameters.put("userId", userId);
 		parameters.put("password", password );
 		parameters.put("userRole", userRole);
-		return insert(signUpConfigSql.getInsertSql(), parameters, "Id");
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return insert(signUpConfigSql.getInsertSql(), parameters, "Id");
 	}
 	
 	
 	public Collection<SignUpInsertedUserDto> getUserData(int Id){
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In SignUpDao - getUserData");
+		LOGGER.info("Parameters Received from Service are - 'Id': " +Id);
+		
 		LOGGER.info("Fetch the record of new user");
+		
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Inserting parameters to HashMap object");
 		parameters.put("Id",Id);
-		return getJdbcTemplate().query(signUpConfigSql.getGetSql(), parameters, ROW_MAPPER);
+		LOGGER.info("Parameters inserted");
+		
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().query(signUpConfigSql.getGetSql(), parameters, ROW_MAPPER);
 	}
 
 	

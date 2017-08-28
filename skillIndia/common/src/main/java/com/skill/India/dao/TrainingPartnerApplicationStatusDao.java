@@ -23,7 +23,7 @@ import java.util.Map;
 public class TrainingPartnerApplicationStatusDao extends AbstractTransactionalDao
 {
 
-private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.class);
+private static final Logger LOGGER = LoggerFactory.getLogger(TrainingPartnerApplicationStatusDao.class);
 	
 	
 
@@ -34,11 +34,22 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AbstractDatasource.
     
     
     public Collection<TrainingPartnerApplicationStatusDto> getUpateRowMapper(int applicationId) {
-    	LOGGER.info("Code reached");
+    	LOGGER.info("Request Received from Service");
+		LOGGER.info("In TrainingPartnerApplicationStatusDao - getUpateRowMapper");
+		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
+		
+		LOGGER.info("Getting Training Partner Application status");
+		
+		LOGGER.info("Creating HashMap object");
         Map<String, Object> parameters = new HashMap<>();
-       parameters.put("applicationId",applicationId);
-        //return getJdbcTemplate().query
-      
+        LOGGER.info("object created successfully");
+		
+        LOGGER.info("Inserting parameters to HashMap object");
+		parameters.put("applicationId",applicationId);
+		LOGGER.info("Parameters inserted");
+		//return getJdbcTemplate().query
+		
+		LOGGER.info("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 
         		ROW_MAPPER);       
     }
