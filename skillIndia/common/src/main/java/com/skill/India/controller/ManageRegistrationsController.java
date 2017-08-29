@@ -55,7 +55,7 @@ public class ManageRegistrationsController {
 			@RequestBody ManageRegistrationApplicationDto manageRegistrationApplicationDto) {
 		LOGGER.info("In ManageRegistrationsController - setAfflilationOfBody");
 		LOGGER.info("Request Received from front end to set Affiliation of a Body");
-		LOGGER.info("Parameters Received from front end are - 'manageRegistrationApplicationDto': ",manageRegistrationApplicationDto);
+		LOGGER.info("Parameters Received from front end are - 'manageRegistrationApplicationDto': "+manageRegistrationApplicationDto);
 		LOGGER.info("Setting the UserId For the Affilation of a Body");
 		manageRegistrationApplicationDto.setUserId(sessionUser.getSessionMangementfromSession().getUsername());
 		MessageDto approveRegistartionMessage = new MessageDto();
@@ -91,7 +91,7 @@ public class ManageRegistrationsController {
 	public @ResponseBody MessageDto setComment(@RequestBody CommentDto commentDto) {
 		LOGGER.info("In ManageRegistrationsController - setComment");
 		LOGGER.info("Request Received from front end to set comments for the process of Affiliation of a Body");
-		LOGGER.info("Parameters Received from front end are - 'commentDto': ",commentDto);
+		LOGGER.info("Parameters Received from front end are - 'commentDto': "+commentDto);
 		LOGGER.debug("Initializing a MessageDto");
 		MessageDto approveRegistartionMessage = new MessageDto();
 		LOGGER.info("Successfully initialized");

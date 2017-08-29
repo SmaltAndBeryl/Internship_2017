@@ -61,7 +61,7 @@ public class FAQController {
 	public Collection<FAQCandidatesTrainedAssessedCertifiedDto> getTotalCandidatesTrainedAssessedCertifiedSchemeWise(@RequestParam("batchType") String batchType) {
 		LOGGER.info("In FAQController - getTotalCandidatesTrainedAssessedCertifiedSchemeWise");
 		LOGGER.info("Request Received from front end to get data for Total Candidates Trained, Assessed, Certified Scheme Wise for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'batchType': ",batchType);
+		LOGGER.info("Parameters Received from front end are - 'batchType': "+batchType);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -83,7 +83,7 @@ public class FAQController {
 	public Integer getTotalTrainingCentresInAState(@RequestParam("state") String state) {
 		LOGGER.info("In FAQController - getTotalTrainingCentresInAState");
 		LOGGER.info("Request Received from front end to get data for Total Training Centres in a State for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'state': ",state);
+		LOGGER.info("Parameters Received from front end are - 'state': "+state);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -126,7 +126,7 @@ public class FAQController {
 	public Integer getCountOfCandidatesAssessmentUpcomingForAMonth(@RequestParam("month") String month) {
 		LOGGER.info("In FAQController - getCountOfCandidatesAssessmentUpcomingForAMonth");
 		LOGGER.info("Request Received from front end to get Total Candidates Assessment Upcoming for a month for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'month': ",month);
+		LOGGER.info("Parameters Received from front end are - 'month': "+month);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -148,7 +148,7 @@ public class FAQController {
 	public String getNameOfAgencyToWhichABatchIsAssigned(@RequestParam("batchId") Integer batchId)throws EmptyResultDataAccessException {
 		LOGGER.info("In FAQController - getNameOfAgencyToWhichABatchIsAssigned");
 		LOGGER.info("Request Received from front end to get Agency Name to which a Batch is Assigned for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -170,7 +170,7 @@ public class FAQController {
 	public Integer getTotalCountOfBatchesAssignedToAAssessmentAgency(@RequestParam("agencyName") String agencyName)throws EmptyResultDataAccessException {
 		LOGGER.info("In FAQController - getTotalCountOfBatchesAssignedToAAssessmentAgency");
 		LOGGER.info("Request Received from front end to get Total Batches assigned to a Assessment Agency for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'agencyName': ",agencyName);
+		LOGGER.info("Parameters Received from front end are - 'agencyName': "+agencyName);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -192,7 +192,7 @@ public class FAQController {
 	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState(@RequestParam("state") String state) {
 		LOGGER.info("In FAQController - getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState");
 		LOGGER.info("Request Received from front end to get Total Batches and Total Candidates Enrolled In a Particular state for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'state': ",state);
+		LOGGER.info("Parameters Received from front end are - 'state': "+state);
 		
 		try
 		{
@@ -215,7 +215,7 @@ public class FAQController {
 	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountTotalNumberOfBatchesInAParticularScheme(@RequestParam("batchType") String batchType) {
 		LOGGER.info("In FAQController - getCountTotalNumberOfBatchesInAParticularScheme");
 		LOGGER.info("Request Received from front end to get Total Batches and Total Candidates Enrolled In a Particular scheme for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'batchType': ",batchType);
+		LOGGER.info("Parameters Received from front end are - 'batchType': "+batchType);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -237,7 +237,7 @@ public class FAQController {
 	public Integer getCountTotalAssessorsOfAParticularAgencyInAParticularState(@RequestParam("agencyName") String agencyName, @RequestParam("state") String state) {
 		LOGGER.info("In FAQController - getCountTotalAssessorsOfAParticularAgencyInAParticularState");
 		LOGGER.info("Request Received from front end to get Total Assessors Of A particular Agency in a particular State for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'agencyName':"+agencyName+" 'state': ",state);
+		LOGGER.info("Parameters Received from front end are - 'agencyName':"+agencyName+" 'state': "+state);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -259,7 +259,7 @@ public class FAQController {
 	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(@RequestParam("batchId") Integer batchId) {
 		LOGGER.info("In FAQController - getStatusOfAParticularBatchWithId");
 		LOGGER.info("Request Received from front end to get Status of A Partcular batch for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -302,7 +302,7 @@ public class FAQController {
 	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(@RequestParam("batchId") Integer batchId) {
 		LOGGER.info("In FAQController - getBatchWiseCandidatesDetails");
 		LOGGER.info("Request Received from front end to get Batche wise Candidate details for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -366,7 +366,7 @@ public class FAQController {
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountTotalCandidatesEnrolledMonthWise(@RequestParam("year") Integer year, @RequestParam("candidates") String candidates) {
 		LOGGER.info("In FAQController - getCountTotalCandidatesEnrolledMonthWise");
 		LOGGER.info("Request Received from front end to get Total Candidates Enrolled or Assessed or Certified in a Particular year for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'year': "+year+" 'candidates:'",candidates);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year+" 'candidates:'"+candidates);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -412,7 +412,7 @@ public class FAQController {
 	{
 		LOGGER.info("In FAQController - getCountTotalCandidatesEnrolledMonthAndSchemeWise");
 		LOGGER.info("Request Received from front end to get Total Candidates Enrolled or Assessed or Certified in a Particular year For a particular Scheme for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'year': "+year+" 'candidates:'"+candidates+" 'batchType:'",batchType);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year+" 'candidates:'"+candidates+" 'batchType:'"+batchType);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -457,7 +457,7 @@ public class FAQController {
 	public Collection<FAQTotalBatchesWithTotalCandidatesEnrolledMonthWiseDto> getTotalBatchesWithTotalCandidatesEnrolledYearWise(@RequestParam("year") int year) {
 		LOGGER.info("In FAQController - getTotalBatchesWithTotalCandidatesEnrolledYearWise");
 		LOGGER.info("Request Received from front end to get Total Batches with Total Candidates Enrolled in a Particular year for FAQ");
-		LOGGER.info("Parameters Received from front end are - 'year': ",year);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year);
 		try
 		{
 			LOGGER.info("In TRY block");

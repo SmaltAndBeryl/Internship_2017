@@ -123,7 +123,7 @@ public class AssessmentBodyController {
 		public int assessmentBodyHomepageFunctionalitiesUpdateShowInterest(@RequestParam("batchId") String batchId,@RequestParam("agencyId") String agencyId) {
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesUpdateShowInterest");
 			LOGGER.info("Request Received from front end to show Interest For Particular Batch For Assessment Body");
-			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId +" 'agencyId':",agencyId);
+			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId +" 'agencyId':"+agencyId);
 			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageFunctionalitiesService.putShowInterest(batchId,agencyId);
 		}
@@ -133,7 +133,7 @@ public class AssessmentBodyController {
 		public int assessmentBodyHomepageFunctionalitiesApproveBatch(@RequestParam("batchId") String batchId) {
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesApproveBatch");
 			LOGGER.info("Request Received from front end to Approve the Batch For Assessment Body");
-			LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageFunctionalitiesService.putApproveBatch(batchId);
 		}
@@ -143,7 +143,7 @@ public class AssessmentBodyController {
 		public int assessmentBodyHomepageFunctionalitiesRejectBatch(@RequestParam("batchId") String batchId) {
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesRejectBatch");
 			LOGGER.info("Request Received from front end to Reject the Batch For Assessment Body");
-			LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 			LOGGER.info("Sending Request to service");
 			return assessmentBodyHomepageFunctionalitiesService.putRejectBatch(batchId);
 		}

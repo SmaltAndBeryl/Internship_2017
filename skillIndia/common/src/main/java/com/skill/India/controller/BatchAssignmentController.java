@@ -85,7 +85,7 @@ public class BatchAssignmentController {
 	{
 		LOGGER.info("In BatchAssignmentController - getInformationOfTheBatchId");
 		LOGGER.info("Request Received from front end to get Information for a particular Batch");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		LOGGER.info("Sending Request to service");
 		return batchAssignmentSearchService.getBatchDataForAssignmentService(batchId);
 
@@ -101,7 +101,7 @@ public class BatchAssignmentController {
     public int batchAssignmentWithdrawUpdate(@RequestParam("batchId") String batchId) {
 		LOGGER.info("In BatchAssignmentController - batchAssignmentWithdrawUpdate");
 		LOGGER.info("Request Received from front end to Withdraw a particular Batch");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		LOGGER.info("Sending Request to service");
 		return batchAssignmentWithdrawService.putUpdateBatches(batchId);
     }

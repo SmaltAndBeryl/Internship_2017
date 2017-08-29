@@ -51,7 +51,7 @@ public class NonAssignedBatchesController {
     public int nonAssignedBatchesUpdate(@RequestParam("batchId") String batchId, @RequestParam("agencyId") String agencyId,  @RequestParam("responseType") String responseType) {
     	LOGGER.info("In NonAssignedBatchesController - nonAssignedBatchesUpdate");
     	LOGGER.info("Request Received from front end to set proposed agency for corresponding Batch Id For Batch assignment");
-    	LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':",responseType);
+    	LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':"+responseType);
     	LOGGER.info("Sending Request to service");
     	return nonAssignedBatchesUpdateService.putUpdateBatches(batchId, agencyId,responseType);
     }
@@ -66,7 +66,7 @@ public class NonAssignedBatchesController {
     public int agencyUpdate(@RequestParam("agencyId") String agencyId, @RequestParam String batchId,@RequestParam("responseType") String responseType){
     	LOGGER.info("In NonAssignedBatchesController - agencyUpdate");
     	LOGGER.info("Request Received from front end to set agency for corresponding Batch For Batch assignment");
-    	LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':",responseType);
+    	LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':"+responseType);
     	LOGGER.info("Sending Request to service");
     	return nonAssignedUpdateAgencyService.putAgencyId(agencyId, batchId, responseType);
     }

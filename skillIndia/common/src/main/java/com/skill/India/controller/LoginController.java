@@ -49,7 +49,7 @@ public class LoginController {
 	{	
     	LOGGER.info("In LoginController - getLoginDto");
 		LOGGER.info("Request Received from front end to Validate User For the login process");
-		LOGGER.info("Parameters Received from front end are - 'loginReceiveDataDto': ",loginReceiveDataDto);
+		LOGGER.info("Parameters Received from front end are - 'loginReceiveDataDto': "+ loginReceiveDataDto);
 		LOGGER.info("Sending Request to service");
 		return loginService.checkUser(loginReceiveDataDto);
 		
@@ -59,7 +59,7 @@ public class LoginController {
 	public SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto){
 		LOGGER.info("In LoginController - signUp");
 		LOGGER.info("Request Received from front end to Validate User For the SignUp process");
-		LOGGER.info("Parameters Received from front end are - 'signUpReceiveDataDto': ",signUpReceiveDataDto);
+		LOGGER.info("Parameters Received from front end are - 'signUpReceiveDataDto': "+signUpReceiveDataDto);
 		LOGGER.info("Sending Request to service");
 		return signUpService.signUp(signUpReceiveDataDto);
 	  
@@ -89,7 +89,7 @@ public class LoginController {
 	@RequestMapping("/getUserDetails")
 	public Principal user(Principal user) {
 		LOGGER.info("In LoginController - user");
-		LOGGER.info("Parameters Received from front end are - 'user': ",user);
+		LOGGER.info("Parameters Received from front end are - 'user': "+user);
 		try{
 		System.out.println("hey  : " +user);
 		return user;

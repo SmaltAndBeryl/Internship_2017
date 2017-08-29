@@ -23,7 +23,7 @@ public class RandomRestController {
 	{
 		LOGGER.info("In RandomRestController - singleFileUpload123");
 		LOGGER.info("Request received from front end ");
-		LOGGER.info("Parameters Received from front end are - 'MultipartFile': ");
+		LOGGER.info("Parameters Received from front end are - 'MultipartFile': "+file);
 		
 		try{
 			LOGGER.info("Inside TRY block");
