@@ -108,7 +108,7 @@ public class ManageRegistrationsController {
 		} catch (Exception e) {
 			approveRegistartionMessage
 					.setErrorMessage("Exception inserting comments in Database");
-			LOGGER.info("Exception in inserting comments to Database ", e);
+			LOGGER.info("Exception in inserting comments to Database "+ e);
 
 		}
 		return approveRegistartionMessage;
