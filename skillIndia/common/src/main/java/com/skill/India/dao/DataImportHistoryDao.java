@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -17,14 +19,26 @@ import com.skill.India.dto.DataImportHistoryDto;
 
 @Repository
 public class DataImportHistoryDao extends AbstractTransactionalDao{
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(DataImportHistoryDao.class);
+	
 	@Autowired
 	public DataImportHistoryConfigSql config;
 
 	private static final DataImportHistoryRowMapper ROW_MAPPER = new  DataImportHistoryRowMapper();
 
 	public Collection<DataImportHistoryDto> getUpdateHistory() {
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In DataImportHistoryDao - getUpdateHistory");
+		
+		LOGGER.info("Getting Data Import History details ");
+				
+		LOGGER.info("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		return getJdbcTemplate().query(config.getSelectSql(), parameters,
+		LOGGER.info("object created successfully");
+		
+		LOGGER.info("Executing SQL query and returning response");
+	    return getJdbcTemplate().query(config.getSelectSql(), parameters,
 				ROW_MAPPER);
 	}
 

@@ -7,6 +7,8 @@ package com.skill.India.dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +18,8 @@ import com.skill.India.config.DataImportConfigSql;
 @Repository
 public class DataImportEmployerDao extends AbstractTransactionalDao {
 		
+	private static final Logger LOGGER = LoggerFactory.getLogger(DataImportEmployerDao.class);
+	
 	@Autowired
 	private DataImportConfigSql dataImportConfigSql;
 	
@@ -26,14 +30,32 @@ public class DataImportEmployerDao extends AbstractTransactionalDao {
 	
 	public int dataImportEmployerPrimaryKeyConstraintCheck(Map<String,Object> getRecord)
 	{
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In DataImportEmployerDao - dataImportEmployerPrimaryKeyConstraintCheck");
+		LOGGER.info("Parameters Received from Service are - HashMap 'getRecord' ");
+		
+		LOGGER.info("checking for primary key constraint for EmployerId ");
+		
 		try{							
+			LOGGER.info("Inside TRY block");
+			
+			LOGGER.info("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<>();
+			LOGGER.info("object created successfully");
+			
+			LOGGER.info("Inserting parameters to HashMap object");
 			parameters.put("employerId",getRecord.get("employerId"));
-			return getJdbcTemplate().queryForObject(dataImportConfigSql.getEmployerIdExistsForEmployer(), parameters,Integer.class );					
+			LOGGER.info("Parameters inserted");
+			
+			LOGGER.info("Executing SQL query and returning response");
+		    return getJdbcTemplate().queryForObject(dataImportConfigSql.getEmployerIdExistsForEmployer(), parameters,Integer.class );					
 		}
 			catch(Exception e)
 			{
-				e.printStackTrace();
+				LOGGER.info("Inside CATCH block");
+				
+				LOGGER.error("ERROR: Encountered Exception - "+e);
+//				e.printStackTrace();
 				return 2;
 			}		
 }	
@@ -44,7 +66,13 @@ public class DataImportEmployerDao extends AbstractTransactionalDao {
 	
 	public int insertDataInEmployer(Map<String , Object> recordToInsert)
 	{
-		return getJdbcTemplate().update(dataImportConfigSql.getInsertIntoEmployer(), recordToInsert);	
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In DataImportEmployerDao - insertDataInEmployer");
+		LOGGER.info("Parameters Received from Service are  - HashMap 'recordToInsert'");
+				   	
+		LOGGER.info("Inserting data in Employer Table");
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().update(dataImportConfigSql.getInsertIntoEmployer(), recordToInsert);	
 	}
 	
 	/*
@@ -53,7 +81,13 @@ public class DataImportEmployerDao extends AbstractTransactionalDao {
 	
 	public int updateDataInEmployer(Map<String , Object> recordToInsert)
 	{
-		return getJdbcTemplate().update(dataImportConfigSql.getUpdateIntoEmployer(), recordToInsert);
+		LOGGER.info("Request Received from Service");
+		LOGGER.info("In DataImportEmployerDao - updateDataInEmployer");
+		LOGGER.info("Parameters Received from Service are  - HashMap 'recordToInsert'");
+				   	
+		LOGGER.info("Updating data in Employer Table");
+		LOGGER.info("Executing SQL query and returning response");
+        return getJdbcTemplate().update(dataImportConfigSql.getUpdateIntoEmployer(), recordToInsert);
 	}	
 
 
