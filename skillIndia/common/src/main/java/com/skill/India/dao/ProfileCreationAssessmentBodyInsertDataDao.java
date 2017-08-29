@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.ProfileCreationAssessmentBodyConfigSql;
@@ -15,6 +16,7 @@ import com.skill.India.dto.ProfileCreationAssessmentBodyRegistrationDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentStaffDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentsExperienceInTechnicalDomainDto;
 
+@Repository
 public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransactionalDao {
 
 	@Autowired
@@ -25,12 +27,12 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 * Inserting data in Assessment Body Registration Details
 	 */
 	
-	public int insertIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto,String applicationId)
+	public int insertIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
-			parameters.put("applicationId",applicationId);
+			parameters.put("applicationId",profileCreationAssessmentBodyRegistrationDetailsDto.getApplicationId());
 			parameters.put("organizationName",profileCreationAssessmentBodyRegistrationDetailsDto.getOrganizationName());
 			parameters.put("sPOCName",profileCreationAssessmentBodyRegistrationDetailsDto.getsPOCName());
 			parameters.put("address",profileCreationAssessmentBodyRegistrationDetailsDto.getAddress());
@@ -43,6 +45,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("alternateLandlineNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getAlternateLandlineNumber());
 			parameters.put("faxNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getFaxNumber());
 			parameters.put("websites",profileCreationAssessmentBodyRegistrationDetailsDto.getWebsites());
+			parameters.put("yearOfEstablishment",profileCreationAssessmentBodyRegistrationDetailsDto.getYearOfEstablishment());
 			parameters.put("priorAssessmentExperience",profileCreationAssessmentBodyRegistrationDetailsDto.getPriorAssessmentExperience());
 			parameters.put("panNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumber());
 			parameters.put("panNumberPath",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumberPath());
@@ -68,12 +71,12 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 * Inserting data in Assessment Body Registration Details
 	 */
 	
-	public int insertIntoAssessmentBodyRecognitions(ProfileCreationAssessmentBodyRecognitionsDto profileCreationAssessmentBodyRecognitionsDto,String assessmentBodyRegistrationId)
+	public int insertIntoAssessmentBodyRecognitions(ProfileCreationAssessmentBodyRecognitionsDto profileCreationAssessmentBodyRecognitionsDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
-			parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
+			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyRecognitionsDto.getAssessmentBodyRegistrationId());
 			parameters.put("nameOfRecognitionBody",profileCreationAssessmentBodyRecognitionsDto.getNameOfRecognitionBody());
 			parameters.put("recognitionNumber",profileCreationAssessmentBodyRecognitionsDto.getRecognitionNumber());
 			parameters.put("yearOfRecognition",profileCreationAssessmentBodyRecognitionsDto.getValidityOfRecognition());
@@ -93,12 +96,12 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 *Inserting data in table  AssessmentsExperienceInTechnicalDomain
 	 */
 	
-	public int insertIntoAssessmentsExperienceInTechnicalDomain(ProfileCreationAssessmentsExperienceInTechnicalDomainDto profileCreationAssessmentsExperienceInTechnicalDomainDto,String assessmentBodyRegistrationId)
+	public int insertIntoAssessmentsExperienceInTechnicalDomain(ProfileCreationAssessmentsExperienceInTechnicalDomainDto profileCreationAssessmentsExperienceInTechnicalDomainDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
-			parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
+			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentsExperienceInTechnicalDomainDto.getAssessmentBodyRegistrationId());
 			parameters.put("domain",profileCreationAssessmentsExperienceInTechnicalDomainDto.getDomain());
 			parameters.put("numberOfAssessmentsDone",profileCreationAssessmentsExperienceInTechnicalDomainDto.getNumberOfAssessmentsDone());			
 			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentsExperienceInTechnicalDomain(),parameters);
@@ -115,12 +118,12 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 * Inserting data in table  AssessmentBodyDirectorsAndManagementTeamDetails
 	 */
 	
-	public int insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto,String assessmentBodyRegistrationId)
+	public int insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
-			parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
+			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getAssessmentBodyRegistrationId());
 			parameters.put("name",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getName());
 			parameters.put("designation",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getDesignation());
 			parameters.put("contactNumber",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getContactNumber());
@@ -144,12 +147,12 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 * Inserting data in table AssessmentStaffDetails
 	 */
 	
-	public int insertIntoAssessmentStaffDetails(ProfileCreationAssessmentStaffDetailsDto profileCreationAssessmentStaffDetailsDto,String assessmentBodyRegistrationId)
+	public int insertIntoAssessmentStaffDetails(ProfileCreationAssessmentStaffDetailsDto profileCreationAssessmentStaffDetailsDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
-			parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
+			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentStaffDetailsDto.getAssessmentBodyRegistrationId());
 			parameters.put("name",profileCreationAssessmentStaffDetailsDto.getName());
 			parameters.put("jobRoleCode",profileCreationAssessmentStaffDetailsDto.getJobRoleCode());
 			parameters.put("designation",profileCreationAssessmentStaffDetailsDto.getDesignation());
@@ -175,12 +178,12 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 * Inserting data in table AssessmentBodyRegionalOfficeDetails
 	 */
 	
-	public int insertIntoAssessmentBodyRegionalOfficeDetails(ProfileCreationAssessmentBodyRegionalOfficeDetailsDto profileCreationAssessmentBodyRegionalOfficeDetailsDto,String assessmentBodyRegistrationId)
+	public int insertIntoAssessmentBodyRegionalOfficeDetails(ProfileCreationAssessmentBodyRegionalOfficeDetailsDto profileCreationAssessmentBodyRegionalOfficeDetailsDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
-			parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
+			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getAssessmentBodyRegistrationId());
 			parameters.put("address",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getAddress());
 			parameters.put("state",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getState());
 			parameters.put("pincode",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getPincode());
@@ -199,14 +202,14 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 * Inserting data in table AssessmentBodyAffiliationDetails
 	 */
 	
-	public int insertIntoAssessmentBodyAffiliationDetails(ProfileCreationAssessmentBodyAffiliationDetailsDto profileCreationAssessmentBodyAffiliationDetailsDto,String assessmentBodyRegistrationId)
+	public int insertIntoAssessmentBodyAffiliationDetails(ProfileCreationAssessmentBodyAffiliationDetailsDto profileCreationAssessmentBodyAffiliationDetailsDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
-			parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
+			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyAffiliationDetailsDto.getAssessmentBodyRegistrationId());
 			parameters.put("nameOfSectorSkillCouncil",profileCreationAssessmentBodyAffiliationDetailsDto.getNameOfSectorSkillCouncil());
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyRegionalOfficeDetails(),parameters);
+			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyAffiliationDetails(),parameters);
 
 		}catch(Exception e)
 		{

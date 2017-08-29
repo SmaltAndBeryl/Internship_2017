@@ -86,7 +86,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			parameters.put("yearOfEstablishment",profileCreationTrainingPartnerOrganizationDetailsDto.getYearOfEstablishment());
 			parameters.put("qualificationPacks",profileCreationTrainingPartnerOrganizationDetailsDto.getQualificationPacks());
 			parameters.put("qualificationPacksAnnexurePath",profileCreationTrainingPartnerOrganizationDetailsDto.getQualificationPacksAnnexurePath());
-			parameters.put("nSDCFunded ",profileCreationTrainingPartnerOrganizationDetailsDto.getnSDCFunded());
+			parameters.put("nSDCFunded",profileCreationTrainingPartnerOrganizationDetailsDto.getnSDCFunded());
 			parameters.put("nSDCFundedCertificatePath",profileCreationTrainingPartnerOrganizationDetailsDto.getnSDCFundedCertificatePath());
 			parameters.put("mediumOfInstructions",profileCreationTrainingPartnerOrganizationDetailsDto.getMediumOfInstructions());
 			parameters.put("selfOwnedInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getSelfOwnedInstitution());
@@ -202,10 +202,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		{
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
-				
-				/*
-				 * Get TPREGID using App Id nd pass it on to This function
-				 */
+
 				parameters.put("instituteGrantId",profileCreationTrainingPartnerInstituteGrantDto.getInstituteGrantId());
 				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerInstituteGrantDto.getTrainingPartnerRegistrationId());
 				parameters.put("nameOfMinistry",profileCreationTrainingPartnerInstituteGrantDto.getNameOfMinistry());
@@ -232,9 +229,6 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				
-				/*
-				 * Get TPREGID using App Id nd pass it on to This function
-				 */
 				parameters.put("instituteRecognitionId", profileCreationTrainingPartnerInstituteRecognitionDto.getInstituteRecognitionId());
 				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerInstituteRecognitionDto.getTrainingPartnerRegistrationId());
 				parameters.put("nameOfRecognizingBody",profileCreationTrainingPartnerInstituteRecognitionDto.getNameOfRecognizingBody());
@@ -260,11 +254,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		{
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
-				
-				/*
-				 * Get TPREGID using App Id nd pass it on to This function
-				 */
-				
+
 				parameters.put("priorExperienceInSkillTrainingId",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getPriorExperienceInSkillTrainingId());
 				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getTrainingPartnerRegistrationId());
 				parameters.put("courseName",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getCourseName());
@@ -288,14 +278,11 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		 * Update data in Training Partner ManagementAndStaffAndOfficialsDetails Table 
 		 */
 		
-		public int updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto,String trainingPartnerRegistrationId)
+		public int updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto)
 		{
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
-				
-				/*
-				 * Get TPREGID using App Id nd pass it on to This function
-				 */
+
 				parameters.put("managementAndStaffId",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getManagementAndStaffId());
 				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getTrainingPartnerRegistrationId());
 				parameters.put("trainingPartnerCenterId",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getTrainingPartnerCenterId());

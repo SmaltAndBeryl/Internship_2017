@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="ProfileCreationAssessmentBody",locations="classpath:sql/ProfileCreationTrainingPartner.yml")
+@ConfigurationProperties(prefix="ProfileCreationTrainingPartner",locations="classpath:sql/ProfileCreationTrainingPartner.yml")
 public class ProfileCreationTrainingPartnerConfigSql {
 
 	private String getTrainingPartnerRegistrationIdUsingApplicationId;
@@ -157,6 +157,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	 */
 	public void setInsertIntoTrainingPartnerOrganizationDetails(
 			String insertIntoTrainingPartnerOrganizationDetails) {
+		System.out.println("In tpconfig : " +insertIntoTrainingPartnerOrganizationDetails);
 		this.insertIntoTrainingPartnerOrganizationDetails = insertIntoTrainingPartnerOrganizationDetails;
 	}
 	/**

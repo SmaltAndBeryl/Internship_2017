@@ -109,11 +109,11 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 	
 	private static final ProfileCreationAssessmentBodyRecognitionsRowMapper ROW_MAPPER_ABRECOGNITIONS = new ProfileCreationAssessmentBodyRecognitionsRowMapper();
 	
-	public Collection<ProfileCreationAssessmentBodyRecognitionsDto> profileCreationGetDataFromAssessmentBodyRecognitions(String applicationId)
+	public Collection<ProfileCreationAssessmentBodyRecognitionsDto> profileCreationGetDataFromAssessmentBodyRecognitions(String assessmentBodyRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
 		return getJdbcTemplate().query(profileCreationAssessmentBodyConfigSql.getGetDataFromAssessmentBodyRecognitions(),parameters,ROW_MAPPER_ABRECOGNITIONS);
 		}
 		catch(Exception e)
@@ -148,11 +148,11 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 	
 	private static final ProfileCreationAssessmentsExperienceInTechnicalDomainRowMapper ROW_MAPPER_ABASSESSMENTSEXP = new ProfileCreationAssessmentsExperienceInTechnicalDomainRowMapper();
 	
-	public Collection<ProfileCreationAssessmentsExperienceInTechnicalDomainDto> profileCreationGetDataFromAssessmentsExperienceInTechnicalDomain(String applicationId)
+	public Collection<ProfileCreationAssessmentsExperienceInTechnicalDomainDto> profileCreationGetDataFromAssessmentsExperienceInTechnicalDomain(String assessmentBodyRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
 		return getJdbcTemplate().query(profileCreationAssessmentBodyConfigSql.getGetDataFromAssessmentsExperienceInTechnicalDomain(),parameters,ROW_MAPPER_ABASSESSMENTSEXP);
 		}
 		catch(Exception e)
@@ -184,11 +184,11 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 	
 private static final ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsRowMapper ROW_MAPPER_ABTEAMDETAILS = new ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsRowMapper();
 	
-	public Collection<ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto> profileCreationGetDataFromAssessmentBodyDirectorsAndManagementTeamDetails(String applicationId)
+	public Collection<ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto> profileCreationGetDataFromAssessmentBodyDirectorsAndManagementTeamDetails(String assessmentBodyRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
 		return getJdbcTemplate().query(profileCreationAssessmentBodyConfigSql.getGetDataFromAssessmentBodyDirectorsAndManagementTeamDetails(),parameters,ROW_MAPPER_ABTEAMDETAILS);
 		}
 		catch(Exception e)
@@ -226,11 +226,11 @@ private static final ProfileCreationAssessmentBodyDirectorsAndManagementTeamDeta
 	
 private static final ProfileCreationAssessmentStaffDetailsRowMapper ROW_MAPPER_ABSTAFFDETAILS = new ProfileCreationAssessmentStaffDetailsRowMapper();
 	
-	public Collection<ProfileCreationAssessmentStaffDetailsDto> profileCreationGetDataFromAssessmentStaffDetails(String applicationId)
+	public Collection<ProfileCreationAssessmentStaffDetailsDto> profileCreationGetDataFromAssessmentStaffDetails(String assessmentBodyRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
 		return getJdbcTemplate().query(profileCreationAssessmentBodyConfigSql.getGetDataFromAssessmentStaffDetails(),parameters,ROW_MAPPER_ABSTAFFDETAILS);
 		}
 		catch(Exception e)
@@ -254,13 +254,13 @@ private static final ProfileCreationAssessmentStaffDetailsRowMapper ROW_MAPPER_A
 			String contactNumber = resultSet.getString("contactNumber");
 			String emailId = resultSet.getString("emailId");
 			String state = resultSet.getString("state");
-			String district = resultSet.getString("district");
+			String city = resultSet.getString("city");
 			String educationalQualification = resultSet.getString("educationalQualification");
 			String experience = resultSet.getString("experience");
 			String cVPath = resultSet.getString("cVPath");
 			String certificatePath = resultSet.getString("certificatePath");
 				return new ProfileCreationAssessmentStaffDetailsDto(assessmentStaffId,assessmentBodyRegistrationId,
-						name,jobRoleCode,designation,contactNumber,emailId,state,district,educationalQualification,
+						name,jobRoleCode,designation,contactNumber,emailId,state,city,educationalQualification,
 						experience,cVPath,certificatePath);
 		}
 
@@ -274,11 +274,11 @@ private static final ProfileCreationAssessmentStaffDetailsRowMapper ROW_MAPPER_A
 	
 private static final ProfileCreationAssessmentBodyRegionalOfficeDetailsRowMapper ROW_MAPPER_ABREGIONALOFFICEDETAILS = new ProfileCreationAssessmentBodyRegionalOfficeDetailsRowMapper();
 	
-	public Collection<ProfileCreationAssessmentBodyRegionalOfficeDetailsDto> profileCreationGetDataFromAssessmentBodyRegionalOfficeDetails(String applicationId)
+	public Collection<ProfileCreationAssessmentBodyRegionalOfficeDetailsDto> profileCreationGetDataFromAssessmentBodyRegionalOfficeDetails(String assessmentBodyRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
 		return getJdbcTemplate().query(profileCreationAssessmentBodyConfigSql.getGetDataFromAssessmentBodyRegionalOfficeDetails(),parameters,ROW_MAPPER_ABREGIONALOFFICEDETAILS);
 		}
 		catch(Exception e)
@@ -313,11 +313,11 @@ private static final ProfileCreationAssessmentBodyRegionalOfficeDetailsRowMapper
 	
 private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper ROW_MAPPER_ABAFFILIATIONDETAILS = new ProfileCreationAssessmentBodyAffiliationDetailsRowMapper();
 	
-	public Collection<ProfileCreationAssessmentBodyAffiliationDetailsDto> profileCreationGetDataFromAssessmentBodyAffiliationDetails(String applicationId)
+	public Collection<ProfileCreationAssessmentBodyAffiliationDetailsDto> profileCreationGetDataFromAssessmentBodyAffiliationDetails(String assessmentBodyRegistrationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",applicationId);
+		parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
 		return getJdbcTemplate().query(profileCreationAssessmentBodyConfigSql.getGetDataFromAssessmentBodyAffiliationDetails(),parameters,ROW_MAPPER_ABAFFILIATIONDETAILS);
 		}
 		catch(Exception e)

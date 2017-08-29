@@ -110,12 +110,12 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 			String priorExperienceOfInstitutionInSkillDevelopment = resultSet.getString("priorExperienceOfInstitutionInSkillDevelopment");
 			String anyPriorExperienceOfInstitutionInSkillTraining = resultSet.getString("anyPriorExperienceOfInstitutionInSkillTraining");
 			String trainingStaffDetailsAnnexurePath = resultSet.getString("trainingStaffDetailsAnnexurePath");
-			String type=resultSet.getString("type");
+			//String type=resultSet.getString("type");
 			return new ProfileCreationTrainingPartnerOrganizationDetailsDto(trainingPartnerRegistrationId,applicationId,organizationName,sPOCName,address,city,state,pincode,
 				mobileNumber,alternateMobileNumber,landlineNumber,alternateLandlineNumber,faxNumber,websites,yearOfEstablishment,qualificationPacks,qualificationPacksAnnexurePath,nSDCFunded,nSDCFundedCertificatePath,
 				mediumOfInstructions,selfOwnedInstitution,selfOwnedInstitutionAnnexurePath,franchiseOwnedInstitution,franchiseOwnedInstitutionAnnexurePath,mobileTrainingInstitution,mobileTrainingInstitutionAnnexurePath,
 				panNumber,panNumberPath,tanNumber,tanNumberPath,turnOverOfInstitution,turnOverOfInstitutionBalanceSheetPath,instituteReceivedAnyGrant,instituteReceivedAnyRecognition,priorExperienceOfInstitutionInSkillDevelopment,
-				anyPriorExperienceOfInstitutionInSkillTraining,trainingStaffDetailsAnnexurePath,type);
+				anyPriorExperienceOfInstitutionInSkillTraining,trainingStaffDetailsAnnexurePath);
 		}
 
 }
@@ -131,7 +131,7 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
-		return getJdbcTemplate().query(profileCreationTrainingPartnerConfigSql.getGetDataFromTrainingPartnerOrganizationDetails(),parameters,ROW_MAPPER_TPREG_CENTERDEATILS);
+		return getJdbcTemplate().query(profileCreationTrainingPartnerConfigSql.getGetDataFromTrainingPartnerCenterLevelDetails(),parameters,ROW_MAPPER_TPREG_CENTERDEATILS);
 		}
 		catch(Exception e)
 		{
