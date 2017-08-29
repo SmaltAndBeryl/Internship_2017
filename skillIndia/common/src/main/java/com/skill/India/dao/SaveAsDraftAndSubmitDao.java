@@ -29,7 +29,7 @@ public class SaveAsDraftAndSubmitDao extends AbstractTransactionalDao {
 		
 		if(type.equalsIgnoreCase("SaveAsDraft"))
 		{
-			parameters.put("applicationState","Incomplete");
+			parameters.put("applicationState","Draft");
 		}
 		else if(type.equalsIgnoreCase("Submit"))
 		{
