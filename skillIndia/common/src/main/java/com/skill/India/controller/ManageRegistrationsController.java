@@ -1,27 +1,21 @@
 package com.skill.India.controller;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import com.skill.India.dto.*;
+import com.skill.India.service.TrainingPartnerRegistrationIdService;
 import net.sf.jasperreports.engine.JRException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.skill.India.common.Privilege;
 import com.skill.India.common.SessionUserUtility;
-import com.skill.India.dto.ApproveRejectTableDto;
-import com.skill.India.dto.CommentDto;
-import com.skill.India.dto.DataBeanDto;
-import com.skill.India.dto.ManageRegistrationApplicationDto;
-import com.skill.India.dto.MessageDto;
 import com.skill.India.service.ApproveRejectTableService;
 import com.skill.India.service.DataBeanService;
 
@@ -38,6 +32,9 @@ public class ManageRegistrationsController {
 	
     @Autowired
     private DataBeanService dataBeanService;
+
+    @Autowired
+	private TrainingPartnerRegistrationIdService trainingPartnerRegistrationIdService;
 
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/approve")
@@ -123,7 +120,7 @@ public class ManageRegistrationsController {
 	
     @Privilege(value={"SCGJ"})
     @RequestMapping("/cityData")
-    public Collection<DataBeanDto> dataBeanDtoCollection()throws JRException{
+    public Collection<DataBeanDto> dataBeanDtoCollection() throws JRException, FileNotFoundException {
     	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
     	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
     	LOGGER.info("Creating Collection to collect data for PDF creation");
@@ -131,6 +128,17 @@ public class ManageRegistrationsController {
 
         return dataBeanService.dataBeanDtoCollection();
     }
+
+	@Privilege(value={"SCGJ"})
+	@RequestMapping(value = "/getTrainingPartnerRegistrationId", method = RequestMethod.POST)
+	public String trainingPartnerRegistrationId(@RequestParam("organizationName") String organizationName){
+		LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
+		LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
+		LOGGER.info("Creating Collection to collect data for PDF creation");
+		LOGGER.info("Sending Request to Service");
+
+		return trainingPartnerRegistrationIdService.trainingPartnerRegistrationId(organizationName);
+	}
 
     @Privilege(value={"SCGJ"})
     @RequestMapping("/generatePdf")
