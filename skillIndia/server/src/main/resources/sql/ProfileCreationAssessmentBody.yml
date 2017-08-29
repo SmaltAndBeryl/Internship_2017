@@ -1,143 +1,143 @@
 ProfileCreationAssessmentBody:
 
-getAssessmentBodyRegistrationIdUsingApplicationId: >
- select assessmentBodyRegistrationId from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
+ getAssessmentBodyRegistrationIdUsingApplicationId: >
+  select assessmentBodyRegistrationId from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
 
-getDataFromAssessmentBodyRegistrationDetails: >
- select * from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
+ getDataFromAssessmentBodyRegistrationDetails: >
+  select * from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
  
-getDataFromAssessmentBodyRecognitions: >
- select * from AssessmentBodyRecognitions where assessmentBodyRegistrationId=:assessmentBodyRegistrationId;
+ getDataFromAssessmentBodyRecognitions: >
+  select * from AssessmentBodyRecognitions where assessmentBodyRegistrationId=:assessmentBodyRegistrationId;
 
-getDataFromAssessmentsExperienceInTechnicalDomain: >
- select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+ getDataFromAssessmentsExperienceInTechnicalDomain: >
+  select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
  
-getDataFromAssessmentBodyDirectorsAndManagementTeamDetails: > 
- select * from AssessmentBodyDirectorsAndManagementTeamDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+ getDataFromAssessmentBodyDirectorsAndManagementTeamDetails: > 
+  select * from AssessmentBodyDirectorsAndManagementTeamDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
 
-getDataFromAssessmentStaffDetails: >
- select * from AssessmentStaffDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+ getDataFromAssessmentStaffDetails: >
+  select * from AssessmentStaffDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
  
-getDataFromAssessmentBodyRegionalOfficeDetails: > 
- select * from AssessmentBodyRegionalOfficeDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+ getDataFromAssessmentBodyRegionalOfficeDetails: > 
+  select * from AssessmentBodyRegionalOfficeDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
 
-getDataFromAssessmentBodyAffiliationDetails: >
- select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+ getDataFromAssessmentBodyAffiliationDetails: >
+  select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
 
-insertDataInApplication: >
-   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
+ insertDataInApplication: >
+  insert into application(applicationState,activeFlag,dateOfSubmission,userId)
      values(:applicationState,:activeFlag,:dateOfSubmission,:userId)
 
-insertIntoAssessmentBodyRegistrationDetails: >
- INSERT INTO `scgj`.`assessmentbodyregistrationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `priorAssessmentExperience`, `panNumber`, `panNumberPath`, `tanNumber`, `tanNumberPath`, `insituteReceivedAnyRecognition`, `numberOfTechnicalAssessors`, `numberOfNonTechnicalAssessors`, `affiliatedToAnySectorSkillCouncil`) VALUES 
- (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:priorAssessmentExperience,:panNumber,:panNumberPath,:tanNumber,:tanNumberPath,:insituteReceivedAnyRecognition,:numberOfTechnicalAssessors,:numberOfNonTechnicalAssessors,:affiliatedToAnySectorSkillCouncil);
+ insertIntoAssessmentBodyRegistrationDetails: >
+  INSERT INTO `scgj`.`assessmentbodyregistrationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `priorAssessmentExperience`, `panNumber`, `panNumberPath`, `tanNumber`, `tanNumberPath`, `insituteReceivedAnyRecognition`, `numberOfTechnicalAssessors`, `numberOfNonTechnicalAssessors`, `affiliatedToAnySectorSkillCouncil`) VALUES 
+  (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:priorAssessmentExperience,:panNumber,:panNumberPath,:tanNumber,:tanNumberPath,:insituteReceivedAnyRecognition,:numberOfTechnicalAssessors,:numberOfNonTechnicalAssessors,:affiliatedToAnySectorSkillCouncil);
 
 
-insertIntoAssessmentBodyRecognitions: >
- INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `nameOfRecognitionBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`) VALUES (:assessmentBodyRegistrationId,:nameOfRecognitionBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition);
+ insertIntoAssessmentBodyRecognitions: >
+  INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `nameOfRecognitionBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`) VALUES (:assessmentBodyRegistrationId,:nameOfRecognitionBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition);
 
 
-insertIntoAssessmentsExperienceInTechnicalDomain: >
- INSERT INTO `scgj`.`assessmentsexperienceintechnicaldomain` (`assessmentBodyRegistrationId`, `domain`, `numberOfAssessmentsDone`) VALUES (:assessmentBodyRegistrationId,:domain,:numberOfAssessmentsDone);
+ insertIntoAssessmentsExperienceInTechnicalDomain: >
+  INSERT INTO `scgj`.`assessmentsexperienceintechnicaldomain` (`assessmentBodyRegistrationId`, `domain`, `numberOfAssessmentsDone`) VALUES (:assessmentBodyRegistrationId,:domain,:numberOfAssessmentsDone);
 
 
-insertIntoAssessmentBodyDirectorsAndManagementTeamDetails: >
- INSERT INTO `scgj`.`assessmentbodydirectorsandmanagementteamdetails` (`assessmentBodyRegistrationId`, `name`, `designation`, `contactNumber`, `emailId`, `educationalQualification`, `experience`, `cVPath`) VALUES (:assessmentBodyRegistrationId,:name,:designation,:contactNumber,:emailId,:educationalQualification,:experience,:cVPath);
+ insertIntoAssessmentBodyDirectorsAndManagementTeamDetails: >
+  INSERT INTO `scgj`.`assessmentbodydirectorsandmanagementteamdetails` (`assessmentBodyRegistrationId`, `name`, `designation`, `contactNumber`, `emailId`, `educationalQualification`, `experience`, `cVPath`) VALUES (:assessmentBodyRegistrationId,:name,:designation,:contactNumber,:emailId,:educationalQualification,:experience,:cVPath);
 
 
-insertIntoAssessmentStaffDetails: >
- INSERT INTO `scgj`.`assessmentstaffdetails` (`assessmentBodyRegistrationId`, `name`, `jobRoleCode`, `designation`, `contactNumber`, `emailId`, `state`, `district`, `educationalQualification`, `experience`, `cVPath`, `certificatePath`) VALUES(:assessmentBodyRegistrationId,:name,:jobRoleCode,:designation,:contactNumber,:emailId,:state,:district,:educationalQualification,:experience,:cVPath,:certificatePath);
+ insertIntoAssessmentStaffDetails: >
+  INSERT INTO `scgj`.`assessmentstaffdetails` (`assessmentBodyRegistrationId`, `name`, `jobRoleCode`, `designation`, `contactNumber`, `emailId`, `state`, `city`, `educationalQualification`, `experience`, `cVPath`, `certificatePath`) VALUES(:assessmentBodyRegistrationId,:name,:jobRoleCode,:designation,:contactNumber,:emailId,:state,:city,:educationalQualification,:experience,:cVPath,:certificatePath);
 
 
-insertIntoAssessmentBodyRegionalOfficeDetails: >
- INSERT INTO `scgj`.`assessmentbodyregionalofficedetails` (`assessmentBodyRegistrationId`, `address`, `state`, `pincode`, `contactNumber`, `alternateContactNumber`) VALUES (:assessmentBodyRegistrationId,:address,:state,:pincode,:contactNumber,:alternateContactNumber);
+ insertIntoAssessmentBodyRegionalOfficeDetails: >
+  INSERT INTO `scgj`.`assessmentbodyregionalofficedetails` (`assessmentBodyRegistrationId`, `address`, `state`, `pincode`, `contactNumber`, `alternateContactNumber`) VALUES (:assessmentBodyRegistrationId,:address,:state,:pincode,:contactNumber,:alternateContactNumber);
 
 
-insertIntoAssessmentBodyAffiliationDetails: >
- INSERT INTO `scgj`.`assessmentbodyaffiliationdetails` (`assessmentBodyRegistrationId`, `nameOfSectorSkillCouncil`) VALUES (:assessmentBodyRegistrationId,:nameOfSectorSkillCouncil);
+ insertIntoAssessmentBodyAffiliationDetails: >
+  INSERT INTO `scgj`.`assessmentbodyaffiliationdetails` (`assessmentBodyRegistrationId`, `nameOfSectorSkillCouncil`) VALUES (:assessmentBodyRegistrationId,:nameOfSectorSkillCouncil);
 
-updateDataInApplication: >
- update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
+ updateDataInApplication: >
+  update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
     where userId=:userId
 
-updateIntoAssessmentBodyRegistrationDetails: >
- UPDATE `scgj`.`assessmentbodyregistrationdetails` SET `organizationName`=:organizationName, 
- `sPOCName`=:sPOCName, 
- `address`=:address, 
- `city`=:city, 
- `state`=:state, 
- `pincode`=:pincode, 
- `mobileNumber`=:mobileNumber, 
- `alternateMobileNumber`=:alternateMobileNumber, 
- `landlineNumber`=:landlineNumber,
- `alternateLandlineNumber`=:alternateLandlineNumber,
- `faxNumber`=:faxNumber,
- `websites`=:websites,
- `yearOfEstablishment`=:yearOfEstablishment,
- `priorAssessmentExperience`=:priorAssessmentExperience,
- `panNumber`=:panNumber,
- `panNumberPath`=:panNumberPath,
- `tanNumber`=:tanNumber,
- `tanNumberPath`=:tanNumberPath,
- `insituteReceivedAnyRecognition`=:insituteReceivedAnyRecognition, 
- `numberOfTechnicalAssessors`=:numberOfTechnicalAssessors,
- `numberOfNonTechnicalAssessors`=:numberOfNonTechnicalAssessors,
- `affiliatedToAnySectorSkillCouncil`=:affiliatedToAnySectorSkillCouncil 
- WHERE `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId;
+ updateIntoAssessmentBodyRegistrationDetails: >
+  UPDATE `scgj`.`assessmentbodyregistrationdetails` SET `organizationName`=:organizationName, 
+  `sPOCName`=:sPOCName, 
+  `address`=:address, 
+  `city`=:city, 
+  `state`=:state, 
+  `pincode`=:pincode, 
+  `mobileNumber`=:mobileNumber, 
+  `alternateMobileNumber`=:alternateMobileNumber, 
+  `landlineNumber`=:landlineNumber,
+  `alternateLandlineNumber`=:alternateLandlineNumber,
+  `faxNumber`=:faxNumber,
+  `websites`=:websites,
+  `yearOfEstablishment`=:yearOfEstablishment,
+  `priorAssessmentExperience`=:priorAssessmentExperience,
+  `panNumber`=:panNumber,
+  `panNumberPath`=:panNumberPath,
+  `tanNumber`=:tanNumber,
+  `tanNumberPath`=:tanNumberPath,
+  `insituteReceivedAnyRecognition`=:insituteReceivedAnyRecognition, 
+  `numberOfTechnicalAssessors`=:numberOfTechnicalAssessors,
+  `numberOfNonTechnicalAssessors`=:numberOfNonTechnicalAssessors,
+  `affiliatedToAnySectorSkillCouncil`=:affiliatedToAnySectorSkillCouncil 
+  WHERE `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId;
 
 
 
-updateIntoAssessmentBodyRecognitions: >
- UPDATE `scgj`.`assessmentbodyrecognitions` SET `nameOfRecognitionBody`=:nameOfRecognitionBody, 
- `recognitionNumber`=:recognitionNumber, 
- `yearOfRecognition`=:yearOfRecognition, 
- `validityOfRecognition`=:validityOfRecognition
- WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId;
+ updateIntoAssessmentBodyRecognitions: >
+  UPDATE `scgj`.`assessmentbodyrecognitions` SET `nameOfRecognitionBody`=:nameOfRecognitionBody, 
+  `recognitionNumber`=:recognitionNumber, 
+  `yearOfRecognition`=:yearOfRecognition, 
+  `validityOfRecognition`=:validityOfRecognition
+  WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId;
 
 
-updateIntoAssessmentsExperienceInTechnicalDomain: >
- UPDATE `scgj`.`assessmentsexperienceintechnicaldomain` SET `domain`=:domain, 
- `numberOfAssessmentsDone`=:numberOfAssessmentsDone
- WHERE `assessmentExperienceId`=:assessmentExperienceId;
+ updateIntoAssessmentsExperienceInTechnicalDomain: >
+  UPDATE `scgj`.`assessmentsexperienceintechnicaldomain` SET `domain`=:domain, 
+  `numberOfAssessmentsDone`=:numberOfAssessmentsDone
+  WHERE `assessmentExperienceId`=:assessmentExperienceId;
 
 
-updateIntoAssessmentBodyDirectorsAndManagementTeamDetails: >
- UPDATE `scgj`.`assessmentbodydirectorsandmanagementteamdetails` SET `name`=:name, 
- `designation`=:designation,
- `contactNumber`=:contactNumber,
- `emailId`=:emailId,
- `educationalQualification`=:educationalQualification,
- `experience`=:experience,
- `cVPath`=:cVPath
- WHERE `directorsAndManagementId`=:directorsAndManagementId;
+ updateIntoAssessmentBodyDirectorsAndManagementTeamDetails: >
+  UPDATE `scgj`.`assessmentbodydirectorsandmanagementteamdetails` SET `name`=:name, 
+  `designation`=:designation,
+  `contactNumber`=:contactNumber,
+  `emailId`=:emailId,
+  `educationalQualification`=:educationalQualification,
+  `experience`=:experience,
+  `cVPath`=:cVPath
+  WHERE `directorsAndManagementId`=:directorsAndManagementId;
 
 
-updateIntoAssessmentStaffDetails: >
- UPDATE `scgj`.`assessmentstaffdetails` SET `name`=:name, 
- `jobRoleCode`=:jobRoleCode, 
- `designation`=:designation, 
- `contactNumber`=:contactNumber, 
- `emailId`=:emailId, 
- `state`=:state,
- `district`=:district, 
- `educationalQualification`=:educationalQualification, 
- `experience`=:experience, 
- `cVPath`=:cVPath, 
- `certificatePath`=:certificatePath 
- WHERE `assessmentStaffId`=:assessmentStaffId;
+ updateIntoAssessmentStaffDetails: >
+  UPDATE `scgj`.`assessmentstaffdetails` SET `name`=:name, 
+  `jobRoleCode`=:jobRoleCode, 
+  `designation`=:designation, 
+  `contactNumber`=:contactNumber, 
+  `emailId`=:emailId, 
+  `state`=:state,
+  `city`=:city, 
+  `educationalQualification`=:educationalQualification, 
+  `experience`=:experience, 
+  `cVPath`=:cVPath, 
+  `certificatePath`=:certificatePath 
+  WHERE `assessmentStaffId`=:assessmentStaffId;
 
 
-updateIntoAssessmentBodyRegionalOfficeDetails: >
- UPDATE `scgj`.`assessmentbodyregionalofficedetails` SET `address`=:address, 
- `state`=:state, 
- `pincode`=:pincode, 
- `contactNumber`=:contactNumber, 
- `alternateContactNumber`=:alternateContactNumber 
- WHERE `regionalOfficeId`=:regionalOfficeId;
+ updateIntoAssessmentBodyRegionalOfficeDetails: >
+  UPDATE `scgj`.`assessmentbodyregionalofficedetails` SET `address`=:address, 
+  `state`=:state, 
+  `pincode`=:pincode, 
+  `contactNumber`=:contactNumber, 
+  `alternateContactNumber`=:alternateContactNumber 
+  WHERE `regionalOfficeId`=:regionalOfficeId;
 
 
-updateIntoAssessmentBodyAffiliationDetails: >
- UPDATE `scgj`.`assessmentbodyaffiliationdetails` SET `nameOfSectorSkillCouncil`=:nameOfSectorSkillCouncil 
- WHERE `affiliationId`=:affiliationId;
+ updateIntoAssessmentBodyAffiliationDetails: >
+  UPDATE `scgj`.`assessmentbodyaffiliationdetails` SET `nameOfSectorSkillCouncil`=:nameOfSectorSkillCouncil 
+  WHERE `affiliationId`=:affiliationId;
 
 
