@@ -32,7 +32,7 @@ public class SignUpService {
 		
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In SignUpService - signUp");
-		LOGGER.info("Parameters Received from front end are - 'SignUpReceiveDataDto': ",signUpReceiveDataDto);
+		LOGGER.info("Parameters Received from front end are - 'SignUpReceiveDataDto': "+signUpReceiveDataDto);
 		LOGGER.info("Check the existence of new user in the record");
 		LOGGER.info("Making a Request to Dao");
 		userExistStatus=signUpDao.checkUserExistence(signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getOrganizationName());

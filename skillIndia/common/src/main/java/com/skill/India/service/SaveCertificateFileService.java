@@ -32,7 +32,7 @@ public class SaveCertificateFileService {
 	{
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In SaveCertificateFileService - saveUploadedFile");
-		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'MultipartFile': "+file+ " 'userId': ",userId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'MultipartFile': "+file+ " 'userId': "+userId);
 		LOGGER.info("Initializing the default path for uploading certificates");
 		String UPLOADED_FOLDER = readApplicationConstants.getSaveCertificateAtLocation();
 		LOGGER.info("Successfully Initialized");
@@ -63,7 +63,7 @@ public class SaveCertificateFileService {
        Path path = Paths.get(UPLOADED_FOLDER +fileNameToBeSaved);
        LOGGER.info("Initializing the full path with file name for uploading certificates file");
        pathOfUploadedFile=UPLOADED_FOLDER+fileNameToBeSaved;
-       LOGGER.info("Path is - ",pathOfUploadedFile);
+       LOGGER.info("Path is - "+pathOfUploadedFile);
        LOGGER.info("Creating File object");
        File checkFileExistence = new File(pathOfUploadedFile);
        LOGGER.info("Successfully Created and Initialized");
@@ -90,7 +90,7 @@ public class SaveCertificateFileService {
        catch(Exception e)
        {
     	   LOGGER.info("In CATCH block");
-			LOGGER.error("ERROR: Encountered an Exception - ",e);
+			LOGGER.error("ERROR: Encountered an Exception - "+e);
 			e.printStackTrace();
     	   return "Error Saving file on Local Machine.Try Again later ";
        }
@@ -165,7 +165,7 @@ public class SaveCertificateFileService {
 		catch(Exception e)
 		{
 			LOGGER.info("In CATCH block");
-			LOGGER.error("ERROR: Encountered an Exception - ",e);
+			LOGGER.error("ERROR: Encountered an Exception - "+e);
 						e.printStackTrace();
 			LOGGER.info("Creating File object for deleting file");
 			File deleteUploadedFile = new File(pathOfUploadedFile);

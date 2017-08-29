@@ -44,7 +44,7 @@ public class ValidateTrainerCSVService {
 		
 		LOGGER.info("Request Received from Service");
 		LOGGER.info("In ValidateTrainerCSVService - validateTrainerCSV");
-		LOGGER.info("Parameters Received from Controller are - 'trainerCSVFileName': "+trainerCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': ",fileNameToBeSaved);
+		LOGGER.info("Parameters Received from Controller are - 'trainerCSVFileName': "+trainerCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
 		
 		CSVReader trainerCSVReader=null;
 		/*
@@ -388,7 +388,7 @@ public class ValidateTrainerCSVService {
 				{
 					LOGGER.info("In CATCH block");
 		        	
-					LOGGER.error("ERROR: Encountered an Exception - ",e);
+					LOGGER.error("ERROR: Encountered an Exception - "+e);
 		   			
 					LOGGER.info("Closing CSV reader");
 					trainerCSVReader.close();

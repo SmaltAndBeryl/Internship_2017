@@ -18,7 +18,7 @@ public class GetSPOCNameService {
 	public String getSPOCNameService(String userId){
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In GetSPOCNameService - getSPOCNameService");
-		LOGGER.info("Parameters Received from front end are - 'userId': ",userId);
+		LOGGER.info("Parameters Received from front end are - 'userId': "+userId);
 		
 		try
 		{
@@ -30,7 +30,7 @@ public class GetSPOCNameService {
 		catch(Exception e)
 		{
 			LOGGER.info("In catch Block");
-			LOGGER.info("ERROR: Encountered Exception - ",e);
+			LOGGER.info("ERROR: Encountered Exception - "+e);
 			e.printStackTrace();
 			LOGGER.info("Sending response back to Controller");
 			return  null;

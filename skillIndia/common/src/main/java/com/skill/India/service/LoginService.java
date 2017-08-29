@@ -28,7 +28,7 @@ public class LoginService {
 		LOGGER.info("In LoginService - checkUser");
 		//LOGGER.info(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
 		LOGGER.info("Application have to verify the user existence");
-		LOGGER.info("Parameters Received from front end are - 'loginReceiveDataDto': ",loginReceiveDataDto);
+		LOGGER.info("Parameters Received from front end are - 'loginReceiveDataDto': "+loginReceiveDataDto);
 		LOGGER.info("Making a Request to Dao to check if user exists or not");
 		userExistenceValidation=loginDao.userExistence(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
 		LOGGER.info("Response received from Dao");

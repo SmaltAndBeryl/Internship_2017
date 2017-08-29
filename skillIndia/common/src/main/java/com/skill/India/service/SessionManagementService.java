@@ -32,7 +32,7 @@ public class SessionManagementService implements UserDetailsService {
 		
 		LOGGER.info("Request Received from controller");
 		LOGGER.info("In SessionManagementService - loadUserByUsername");
-		LOGGER.info("Parameters Received from Controller are - 'username': ",username);
+		LOGGER.info("Parameters Received from Controller are - 'username': "+username);
 		
 		LOGGER.info("Creating Collection object");
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();

@@ -44,7 +44,7 @@ public class ValidateBatchCSVService {
 		
 		LOGGER.info("Request Received from Service");
 		LOGGER.info("In ValidateBatchCSVService - validateBatchCSV");
-		LOGGER.info("Parameters Received from Controller are - 'BatchCSVFileName': "+BatchCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': ",fileNameToBeSaved);
+		LOGGER.info("Parameters Received from Controller are - 'BatchCSVFileName': "+BatchCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
 		
 		
 		CSVReader BatchCSVReader=null;
@@ -805,7 +805,7 @@ public class ValidateBatchCSVService {
 				{
 					LOGGER.info("In CATCH block");
 		        	
-					LOGGER.error("ERROR: Encountered an Exception - ",e);
+					LOGGER.error("ERROR: Encountered an Exception - "+e);
 		   			LOGGER.info("Closing CSV reader");
 					BatchCSVReader.close();
 					LOGGER.info("Successfully closed");

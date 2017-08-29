@@ -20,7 +20,7 @@ public class GetApplicationStateService {
 	{
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In GetApplicationStateService - getApplicationStateService");
-		LOGGER.info("Parameters Received from front end are - 'userId': ",userId);
+		LOGGER.info("Parameters Received from front end are - 'userId': "+userId);
 		try
 		{
 			LOGGER.info("In TRY block");
@@ -33,7 +33,7 @@ public class GetApplicationStateService {
 		catch(Exception e)
 		{
 			LOGGER.info("In catch Block");
-			LOGGER.info("ERROR: Encountered Exception - ",e);
+			LOGGER.info("ERROR: Encountered Exception - "+e);
 			e.printStackTrace();
 			LOGGER.info("Sending response back to Controller");
 			return  null;

@@ -29,7 +29,7 @@ public class TrainingPartnerBatchesService {
 		
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In TrainingPartnerBatchesService - getUpdateRowMapper");
-		LOGGER.info("Parameters Received from Controller are - 'applicationId': ",applicationId);
+		LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId);
 		//System.out.println("LIST 1 Code reached");
 	
 		LOGGER.info("Creating Array List to hold data for Past Batches");

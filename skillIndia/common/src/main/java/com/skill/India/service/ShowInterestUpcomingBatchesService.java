@@ -17,7 +17,7 @@ public class ShowInterestUpcomingBatchesService {
 	public String putInsertRowMapper(int id){
 		LOGGER.info("Request Received from controller");
 		LOGGER.info("In ShowInterestUpcomingBatchesService - putInsertRowMapper");
-		LOGGER.info("Parameters Received from Controller are - 'id': ",id);
+		LOGGER.info("Parameters Received from Controller are - 'id': "+id);
 		
 		LOGGER.info("Making a Request to Dao to get data");
 		int i=insertDao.insertShowInterestUpcomingBatches(id);

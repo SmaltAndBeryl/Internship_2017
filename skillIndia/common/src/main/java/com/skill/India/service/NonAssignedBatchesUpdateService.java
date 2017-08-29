@@ -20,7 +20,7 @@ public class NonAssignedBatchesUpdateService {
     {
     	LOGGER.info("Request Received from Controller");
 		LOGGER.info("In NonAssignedBatchesUpdateService - putUpdateBatches");
-		LOGGER.info("Parameters Received from Controller are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':",responseType);
+		LOGGER.info("Parameters Received from Controller are - 'batchId': "+batchId+" 'agencyId':"+agencyId+" 'responseType':"+responseType);
 		
     	try
     	{
@@ -42,7 +42,7 @@ public class NonAssignedBatchesUpdateService {
     	catch(Exception e)
     	{
     		LOGGER.info("Inside CATCH block");
-    		LOGGER.info("ERROR: Encountered Exception: ",e);
+    		LOGGER.info("ERROR: Encountered Exception: "+e);
     		return 1;
     	}        
     }

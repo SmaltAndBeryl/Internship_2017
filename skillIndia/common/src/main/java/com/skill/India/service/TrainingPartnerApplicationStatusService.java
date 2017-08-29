@@ -21,7 +21,7 @@ public class TrainingPartnerApplicationStatusService {
 	public Collection<TrainingPartnerApplicationStatusDto> getUpdateRowMapper(int applicationId){
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In TrainingPartnerApplicationStatusService - getUpdateRowMapper");
-		LOGGER.info("Parameters Received from front end are - 'applicationId': ",applicationId);
+		LOGGER.info("Parameters Received from front end are - 'applicationId': "+applicationId);
 		LOGGER.info("Making a Request to Dao");
 		return updateDao.getUpateRowMapper(applicationId) ;
 	}

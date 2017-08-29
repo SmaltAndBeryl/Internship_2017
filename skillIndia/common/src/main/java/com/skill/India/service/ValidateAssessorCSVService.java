@@ -46,7 +46,7 @@ public class ValidateAssessorCSVService {
 		
 		LOGGER.info("Request Received from Service");
 		LOGGER.info("In ValidateAssessorCSVService - validateAssessorCSV");
-		LOGGER.info("Parameters Received from Controller are - 'assessorCSVFileName': "+assessorCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': ",fileNameToBeSaved);
+		LOGGER.info("Parameters Received from Controller are - 'assessorCSVFileName': "+assessorCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
 		
 		CSVReader assessorCSVReader=null;
 		/*
@@ -429,7 +429,7 @@ public class ValidateAssessorCSVService {
 				catch(Exception e)
 				{
 					LOGGER.info("In CATCH block");
-		        	LOGGER.error("ERROR: Encountered an Exception - ",e);
+		        	LOGGER.error("ERROR: Encountered an Exception - "+e);
 		   			
 		        	LOGGER.info("Closing CSV reader");
 					assessorCSVReader.close();

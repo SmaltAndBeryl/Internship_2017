@@ -18,7 +18,7 @@ import com.skill.India.dao.ManageRegistrationDao;
 			{	
 				LOGGER.info("Request Received from controller");
 				LOGGER.info("In ManageRegistrationService - putUpdateRowMapper");
-				LOGGER.info("Parameters Received from Controller are - 'id': ",id);
+				LOGGER.info("Parameters Received from Controller are - 'id': "+id);
 				
 				 LOGGER.info("Making a Request to Dao to get data");
 				 int i = updateDao.putUpdateRowMapper(id);

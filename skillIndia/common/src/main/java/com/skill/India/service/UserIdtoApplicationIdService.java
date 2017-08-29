@@ -18,7 +18,7 @@ public class UserIdtoApplicationIdService {
 		
 		LOGGER.info("Request Received to get application Id");
 		LOGGER.info("In UserIdtoApplicationIdService - getApplicationId");
-		LOGGER.info("Parameters Received from Controller are - 'userId': ",userId);
+		LOGGER.info("Parameters Received from Controller are - 'userId': "+userId);
 		LOGGER.info("Getting Application id against received userId");
 		return userIdtoApplicationIdDao.getApplicationId(userId);
 	}

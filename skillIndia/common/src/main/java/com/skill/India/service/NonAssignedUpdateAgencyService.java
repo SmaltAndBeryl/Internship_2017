@@ -22,7 +22,7 @@ public class NonAssignedUpdateAgencyService {
     	
     	LOGGER.info("Request Received from Controller");
 		LOGGER.info("In NonAssignedUpdateAgencyService - putAgencyId");
-		LOGGER.info("Parameters Received from Controller are - 'agencyId': "+agencyId+" 'batchId': "+batchId+" 'responseType': ",responseType);
+		LOGGER.info("Parameters Received from Controller are - 'agencyId': "+agencyId+" 'batchId': "+batchId+" 'responseType': "+responseType);
 		LOGGER.info("Making a Request to Dao");
 		return nonAssignedUpdateAgencyDao.putAgencyId(agencyId, batchId, responseType);
     }
