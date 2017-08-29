@@ -1,4 +1,8 @@
 assessmentBodyApplicationStatus:
- selectSql: > 
-   select application.applicationId,application.dateOfSubmission,assessmentagencyregistration.assessmentAgencyName,application.applicationState,applicationcomments.comment 
-    from application INNER JOIN applicationcomments ON application.applicationId=applicationcomments.applicationId INNER JOIN assessmentagencyregistration ON application.applicationId=assessmentagencyregistration.applicationId where assessmentagencyregistration.applicationId= :applicationId and applicationcomments.activeFlag='1';
+ selectSql: >
+  select A.applicationId,A.dateOfSubmission,T.assessmentAgencyName,A.applicationState,AC.comment 
+   from application as A,assessmentagencyregistration as T 
+    left join applicationcomments as AC on AC.applicationId=T.applicationId 
+     where A.applicationId=T.applicationId 
+      and T.applicationId=:applicationId 
+       AND (AC.activeFlag=1 OR AC.activeFlag is null);
