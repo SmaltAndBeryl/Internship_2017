@@ -22,7 +22,7 @@ public class BatchAssignmentSearchService {
 	public Collection<BatchAssignmentSearchDto> getBatchDataForAssignmentService(int batchId){
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In BatchAssignmentSearchService - getBatchDataForAssignmentService");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		LOGGER.info("Making a Request to Dao to get data");
 		return updateDao.executeSearch(batchId);
 	}

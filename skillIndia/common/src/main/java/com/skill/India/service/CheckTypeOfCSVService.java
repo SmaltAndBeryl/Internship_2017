@@ -49,7 +49,7 @@ public class CheckTypeOfCSVService {
 		   
 		   	LOGGER.info("Request Received from Service");
 			LOGGER.info("In CheckTypeOfCSVService - checkTypeOfCSV");
-			LOGGER.info("Parameters Received from Controller are - 'type': "+type+" 'pathOfUploadedFile': "+pathOfUploadedFile+" 'userId': "+userId+" 'fileNameToBeSaved': ",fileNameToBeSaved);
+			LOGGER.info("Parameters Received from Controller are - 'type': "+type+" 'pathOfUploadedFile': "+pathOfUploadedFile+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
 			
 
 	        String line = "";
@@ -226,7 +226,7 @@ public class CheckTypeOfCSVService {
 	        
 	        catch (IOException e) {
 	        	LOGGER.info("In CATCH block");
-	        	LOGGER.error("ERROR: Encountered an Exception - ",e);
+	        	LOGGER.error("ERROR: Encountered an Exception - "+e);
 	   			e.printStackTrace();
 	            LOGGER.info("Creating File object");
         		File deleteUploadedFile = new File(pathOfUploadedFile);

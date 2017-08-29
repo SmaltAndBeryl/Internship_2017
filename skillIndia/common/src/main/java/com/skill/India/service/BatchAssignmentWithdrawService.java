@@ -21,7 +21,7 @@ public class BatchAssignmentWithdrawService {
     public int putUpdateBatches(String batchId){
     	LOGGER.info("Request Received from Controller");
 		LOGGER.info("In BatchAssignmentWithdrawService - putUpdateBatches");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		LOGGER.info("Making a Request to Dao to get data");
 		return batchAssignmentWithdrawDao.putUpdateBatches(batchId);
     }

@@ -67,7 +67,7 @@ public class FAQService {
 	public Collection<FAQCandidatesTrainedAssessedCertifiedDto> getTotalCandidatesTrainedAssessedCertifiedSchemeWise(String batchType) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getTotalCandidatesTrainedAssessedCertifiedSchemeWise");
-		LOGGER.info("Parameters Received from front end are - 'batchType': ",batchType);
+		LOGGER.info("Parameters Received from front end are - 'batchType': "+batchType);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQCandidatesTrainedAssessedCertifiedDao.getTotalCandidatesTrainedAssessedCertifiedSchemeWise(batchType);
 	}
@@ -75,7 +75,7 @@ public class FAQService {
 	public Integer getTotalTrainingCentresInAState(String state) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getTotalTrainingCentresInAState");
-		LOGGER.info("Parameters Received from front end are - 'state': ",state);
+		LOGGER.info("Parameters Received from front end are - 'state': "+state);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQQuestionCommonDao.getTotalTrainingCentresInAState(state);
 	}
@@ -90,7 +90,7 @@ public class FAQService {
 	public Integer getCountOfCandidatesAssessmentUpcomingForAMonth(String month) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfCandidatesAssessmentUpcomingForAMonth");
-		LOGGER.info("Parameters Received from front end are - 'month': ",month);
+		LOGGER.info("Parameters Received from front end are - 'month': "+month);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQQuestionCommonDao.getCountOfCandidatesAssessmentUpcomingForAMonth(month);
 	}
@@ -98,7 +98,7 @@ public class FAQService {
 	public String getNameOfAgencyToWhichABatchIsAssigned(Integer batchId)throws EmptyResultDataAccessException {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getNameOfAgencyToWhichABatchIsAssigned");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQQuestionCommonDao.getNameOfAgencyToWhichABatchIsAssigned(batchId);
 	}
@@ -106,7 +106,7 @@ public class FAQService {
 	public Integer getTotalCountOfBatchesAssignedToAAssessmentAgency(String agencyName)throws EmptyResultDataAccessException {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getTotalCountOfBatchesAssignedToAAssessmentAgency");
-		LOGGER.info("Parameters Received from front end are - 'agencyName': ",agencyName);
+		LOGGER.info("Parameters Received from front end are - 'agencyName': "+agencyName);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQQuestionCommonDao.getTotalCountOfBatchesAssignedToAAssessmentAgency(agencyName);
 	}
@@ -114,7 +114,7 @@ public class FAQService {
 	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState(String state) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState");
-		LOGGER.info("Parameters Received from front end are - 'state': ",state);
+		LOGGER.info("Parameters Received from front end are - 'state': "+state);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDao.getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState(state);
 	}
@@ -122,7 +122,7 @@ public class FAQService {
 	public Collection<FAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDto> getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(String batchType) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise");
-		LOGGER.info("Parameters Received from front end are - 'batchType': ",batchType);
+		LOGGER.info("Parameters Received from front end are - 'batchType': "+batchType);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQTotalNumberOfBatchesAndTotalEnrolledInAParticularStateDao.getCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularStateSchemeWise(batchType);
 	}
@@ -130,7 +130,7 @@ public class FAQService {
 	public Integer getCountTotalAssessorsOfAParticularAgencyInAParticularState(String agencyName,String state) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountTotalAssessorsOfAParticularAgencyInAParticularState");
-		LOGGER.info("Parameters Received from front end are - 'agencyName': "+agencyName+" 'state': ",state);
+		LOGGER.info("Parameters Received from front end are - 'agencyName': "+agencyName+" 'state': "+state);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQQuestionCommonDao.getCountTotalAssessorsOfAParticularAgencyInAParticularState(agencyName, state);
 	}
@@ -138,7 +138,7 @@ public class FAQService {
 	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(Integer batchId) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getStatusOfAParticularBatchWithId");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQStatusOfAParticularBatchWithIdDao.getStatusOfAParticularBatchWithId(batchId);
 	}
@@ -153,7 +153,7 @@ public class FAQService {
 	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(Integer batchId) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getBatchWiseCandidatesDetails");
-		LOGGER.info("Parameters Received from front end are - 'batchId': ",batchId);
+		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQBatchWiseCandidateDetailsDao.getBatchWiseCandidatesDetails(batchId);
 	}
@@ -168,7 +168,7 @@ public class FAQService {
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesEnrolledMonthWise(int year) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfFAQCandidatesEnrolledMonthWise");
-		LOGGER.info("Parameters Received from front end are - 'year': ",year);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesEnrolledMonthWise(year);
 	}
@@ -176,7 +176,7 @@ public class FAQService {
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesAssessedMonthWise(int year) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfFAQCandidatesAssessedMonthWise");
-		LOGGER.info("Parameters Received from front end are - 'year': ",year);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesAssessedMonthWise(year);
 	}
@@ -184,7 +184,7 @@ public class FAQService {
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesCertifiedMonthWise(int year) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfFAQCandidatesCertifiedMonthWise");
-		LOGGER.info("Parameters Received from front end are - 'year': ",year);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesCertifiedMonthWise(year);
 	}
@@ -192,7 +192,7 @@ public class FAQService {
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesEnrolledMonthAndSchemeWise(int year,String batchType) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfFAQCandidatesEnrolledMonthAndSchemeWise");
-		LOGGER.info("Parameters Received from front end are - 'year': "+year+" batchType: ",batchType);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year+" batchType: "+batchType);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesEnrolledMonthAndSchemeWise(year, batchType);
 	}
@@ -200,7 +200,7 @@ public class FAQService {
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesAssessedMonthAndSchemeWise(int year,String batchType) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfFAQCandidatesAssessedMonthAndSchemeWise");
-		LOGGER.info("Parameters Received from front end are - 'year': "+year+" batchType: ",batchType);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year+" batchType: "+batchType);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesAssessedMonthAndSchemeWise(year, batchType);
 	}
@@ -208,7 +208,7 @@ public class FAQService {
 	public Collection<FAQCandidatesEnrolledAssessedCertifiedMonthWiseDto> getCountOfFAQCandidatesCertifiedMonthAndSchemeWise(int year,String batchType) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getCountOfFAQCandidatesCertifiedMonthAndSchemeWise");
-		LOGGER.info("Parameters Received from front end are - 'year': "+year+" batchType: ",batchType);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year+" batchType: "+batchType);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQCandidatesEnrolledAssessedCertifiedMonthWiseDao.getCountTotalCandidatesCertifiedMonthAndSchemeWise(year, batchType);
 	}
@@ -223,7 +223,7 @@ public class FAQService {
 	public Collection<FAQTotalBatchesWithTotalCandidatesEnrolledMonthWiseDto> getTotalBatchesWithTotalCandidatesEnrolledYearWise(int year) {
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In FAQService - getTotalBatchesWithTotalCandidatesEnrolledYearWise");
-		LOGGER.info("Parameters Received from front end are - 'year': ",year);
+		LOGGER.info("Parameters Received from front end are - 'year': "+year);
 		LOGGER.info("Making a Request to Dao to get data");
 		return fAQTotalBatchesWithTotalCandidatesEnrolledYearWiseDao.getTotalBatchesWithTotalCandidatesEnrolledYearWise(year);
 	}

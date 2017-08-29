@@ -31,7 +31,7 @@ public class DataImportCSVDownloadService {
 	    	LOGGER.info("In TRY block");
 			LOGGER.info("Creating path to download the CSV");
 			String pathOfCSV=readApplicationConstants.getSaveCSVAtLocation()+fileName+".csv";
-			LOGGER.info("Path created is : ",pathOfCSV);
+			LOGGER.info("Path created is : "+pathOfCSV);
 			LOGGER.info("Creating FileInputStream object");
 			FileInputStream is = new FileInputStream(new File(pathOfCSV));
 			LOGGER.info("Successfully Created and Initialized");

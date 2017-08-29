@@ -30,7 +30,7 @@ public class DataImportDownloadCertificateService {
 			LOGGER.info("In TRY block");
 			LOGGER.info("Creating path to download the ZIP certificates");
 			String pathOfZipFile=readApplicationConstants.getSaveCertificateAtLocation()+fileName+".zip";
-			LOGGER.info("Path created is : ",pathOfZipFile);
+			LOGGER.info("Path created is : "+pathOfZipFile);
 			LOGGER.info("Creating FileInputStream object");
 			FileInputStream is = new FileInputStream(new File(pathOfZipFile));
 			LOGGER.info("Successfully Created and Initialized");

@@ -23,7 +23,7 @@ public class AssessmentBodyApplicationStatusService {
 	public Collection<AssessmentBodyApplicationStatusDto> getUpdateRowMapper(int applicationId){
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In AssessmentBodyApplicationStatusService - getUpdateRowMapper");
-		LOGGER.info("Parameters Received from front end are - 'applicationId': ",applicationId);
+		LOGGER.info("Parameters Received from front end are - 'applicationId': "+applicationId);
 		LOGGER.info("Making a Request to Dao to get data");
 		return updateDao.getUpateRowMapper(applicationId) ;
 	}

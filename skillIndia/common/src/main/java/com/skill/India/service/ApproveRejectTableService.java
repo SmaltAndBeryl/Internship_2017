@@ -38,7 +38,7 @@ public class ApproveRejectTableService {
 	{
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In ApproveRejectTableService - editUserApplication");
-		LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment':"+comment+" 'applicationState':",applicationState);
+		LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment':"+comment+" 'applicationState':"+applicationState);
 		try
 		{
 			LOGGER.info("Inside TRY block");
@@ -57,14 +57,14 @@ public class ApproveRejectTableService {
 				System.out.println("I IS "+i);
 			}
 			LOGGER.info("Inserting Comment");
-			LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment': ",comment);
+			LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment': "+comment);
 			LOGGER.info("Making a Request to Dao");
 			int insertSuccessful=manageRegistrationActionDao.insertCommentsOnAction(applicationId, comment);
 			LOGGER.info("Response received from Dao");
 			LOGGER.info("Successfully inserted");
 			System.out.println("insertApplicationId:"+insertSuccessful);
 			LOGGER.info("Now Updating Application State");
-			LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'applicationState': ",applicationState);
+			LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'applicationState': "+applicationState);
 			LOGGER.info("Making a Request to Dao");
 			manageRegistrationActionDao.updateApplicationStateonAction(applicationId,applicationState);
 			LOGGER.info("Response received from Dao");
@@ -74,7 +74,7 @@ public class ApproveRejectTableService {
 		catch(Exception ex)
 		{
 			LOGGER.info("Inside CATCH block");
-			LOGGER.info("Error: Encountered Exception - ", ex);
+			LOGGER.info("Error: Encountered Exception - "+ex);
 			return "Failed to Insert Comment ";
 		}
 		
@@ -84,7 +84,7 @@ public class ApproveRejectTableService {
 	{
 		LOGGER.info("Request Received from Controller");
 		LOGGER.info("In ApproveRejectTableService - updateAffilationOfAApplicant");
-		LOGGER.info("Parameters Received from Controller are - 'manageRegistrationApplicationDto': ",manageRegistrationApplicationDto);
+		LOGGER.info("Parameters Received from Controller are - 'manageRegistrationApplicationDto': "+manageRegistrationApplicationDto);
 		LOGGER.info("Making a Request to Dao");
 		return manageRegistrationActionDao.updateAffilationOfAApplicant(manageRegistrationApplicationDto);
 	
