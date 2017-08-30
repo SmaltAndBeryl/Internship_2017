@@ -1,28 +1,36 @@
 pdfData:
  selectSql: >
   SELECT * from trainingpartnerorganizationdetails
-   WHERE trainingPartnerRegistrationId = 1;
+   WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlInstitutionGrant: >
   SELECT * from institutegrant
-   WHERE trainingPartnerRegistrationId = 1;
+   WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlCenterLevel : >
   SELECT * from trainingpartnercenterleveldetails
-   WHERE trainingPartnerRegistrationId = 1;
+   WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlInstitutionRecognition: >
   SELECT * from instituterecognition
-   WHERE trainingPartnerRegistrationId = 1;
+   WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlPriorExperience: >
   SELECT * from priorexperienceinskilltraining
-   WHERE trainingPartnerRegistrationId = 1;
+   WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlDirector: >
   SELECT * from tpmanagement
-   WHERE tpId = 1;
+   WHERE tpId = :trainingPartnerRegistrationId;
 
  selectSqlTrainingPartnerRegistrationId: >
   SELECT trainingPartnerRegistrationId from trainingpartnerorganizationdetails
-   WHERE organizationName = :organizationName;
+   WHERE applicationId = :applicationId;
+
+ selectUserRoleApplicationId: >
+  SELECT user.userRole, application.applicationId from user, application
+   WHERE user.userId = application.userId AND applicationId = :applicationId;
+
+ selectTrainingPartnerRegistrationId: >
+  SELECT trainingPartnerRegistrationId from trainingpartnerorganizationdetails
+   WHERE applicationId = :applicationId;
