@@ -87,7 +87,54 @@ public class DataBeanService {
 
         if(!centerLevelDtos.isEmpty()){
             for (CenterLevelDto beanDto : centerLevelDtos){
-                arrayListDto1.add(centerLevelDto(beanDto.getNumberOfClassrooms(), beanDto.getBuildingType()));
+                arrayListDto1.add(centerLevelDto(beanDto.getNameOfCenter(),
+                        beanDto.getNumberOfPermanentOfficeManager(),
+                        beanDto.getNumberOftemporaryOfficeManager(),
+                        beanDto.getNumberOfPermanentOfficeStaff(),
+                        beanDto.getNumberOfTemporaryOfficeStaff(),
+                        beanDto.getNumberOfPermanentLabAssistants(),
+                        beanDto.getNumberOfTemporaryLabAssistants(),
+                        beanDto.getNumberOfPermanentLabAssistants(),
+                        beanDto.getNumberOfTemporaryLabAssistants(),
+                        beanDto.getNumberOfPermanentSupportStaff(),
+                        beanDto.getNumberOfTemporarySupportStaff(),
+                        beanDto.getNumberOfPermanentOtherEmployees(),
+                        beanDto.getNumberOfPermanentOtherEmployees(),
+
+                        beanDto.getAreaOfInstitute(),
+                        beanDto.getBuildingType(),
+                        beanDto.getSizeOfClassrooms(),
+                        beanDto.getNumberOfClassrooms(),
+                        beanDto.getSizeOfLabs(),
+                        beanDto.getNumberOfLabs(),
+                        beanDto.getSizeOfWorkshops(),
+                        beanDto.getNumberOfWorkshops(),
+                        beanDto.getMandatoryToolKitpresent(),
+                        beanDto.getSafeDrinkingWater(),
+                        beanDto.getPowerBackup(),
+                        beanDto.getSeparateToilets(),
+                        beanDto.getTransportFacility(),
+                        beanDto.getPresenceOfLibrary(),
+                        beanDto.getNumberOfTechnicalBooks(),
+                        beanDto.getNumberOfNonTechnicalBooks(),
+                        beanDto.getNumberOfMagazines(),
+                        beanDto.getNumberOfDailies(),
+                        beanDto.getRemarksOnInfrastructureDetails(),
+
+                        beanDto.getSufficientClassroomIlluminationLevel(),
+                        beanDto.getSufficientClassroomVentilationLevel(),
+                        beanDto.getSufficientCenterCleanliness(),
+                        beanDto.getCenterWeatherProtected(),
+                        beanDto.getRemarksOnLearningEnviornment(),
+
+                        beanDto.getPrintedBrochureOrProspectus(),
+                        beanDto.getDocumentedPolicyAndProcedures(),
+                        beanDto.getConcessionPolicy(),
+                        beanDto.getSafeCustodyOfStudentDocuments(),
+                        beanDto.getStudentAgreementWithInstitution(),
+                        beanDto.getRemarksOnStudentAdmissionDetails()
+
+                        ));
             }
         }
 
@@ -128,7 +175,7 @@ public class DataBeanService {
 
 
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(organizationArrayList, false);
-        JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(arrayListDto1, false);
+        JRBeanCollectionDataSource centerLevelDataSource = new JRBeanCollectionDataSource(arrayListDto1, false);
         JRBeanCollectionDataSource institutionGrantDataSource = new JRBeanCollectionDataSource(institutionGrantArrayList, false);
         JRBeanCollectionDataSource institutionRecognitionDataSource = new JRBeanCollectionDataSource(institutionRecognitionDtoArrayList, false);
         JRBeanCollectionDataSource priorExperienceDataSource = new JRBeanCollectionDataSource(priorExperienceDtoArrayList, false);
@@ -139,7 +186,7 @@ public class DataBeanService {
         Map parameters = new HashMap();
         String r = "test param";
         parameters.put("organizationLevel", beanCollectionDataSource);
-//        parameters.put("centerLevel", jrBeanCollectionDataSource);
+        parameters.put("centerLevel", centerLevelDataSource);
         parameters.put("institutionGrant", institutionGrantDataSource);
         parameters.put("institutionRecognition", institutionRecognitionDataSource);
         parameters.put("priorExperience", priorExperienceDataSource);
@@ -205,8 +252,101 @@ public class DataBeanService {
         return dataBeanDto;
     }
 
-    private CenterLevelDto centerLevelDto(String numberOfClassrooms, String buildingType){
-        CenterLevelDto levelDto = new CenterLevelDto(numberOfClassrooms, buildingType);
+    private CenterLevelDto centerLevelDto(String nameOfCenter,
+                                          String numberOfPermanentOfficeManager,
+                                          String numberOftemporaryOfficeManager,
+                                          String numberOfPermanentOfficeStaff,
+                                          String numberOfTemporaryOfficeStaff,
+                                          String numberOfPermanentLabAssistants,
+                                          String numberOfTemporaryLabAssistants,
+                                          String ofPermanentLabAssistants,
+                                          String ofTemporaryLabAssistants,
+                                          String numberOfPermanentSupportStaff,
+                                          String numberOfTemporarySupportStaff,
+                                          String numberOfPermanentOtherEmployees,
+                                          String numberofPermanentOtherEmployees,
+
+                                          String areaOfInstitute,
+                                          String buildingType,
+                                          String sizeOfClassrooms,
+                                          String numberOfClassrooms,
+                                          String sizeOfLabs,
+                                          String numberOfLabs,
+                                          String sizeOfWorkshops,
+                                          String numberOfWorkshops,
+                                          String mandatoryToolKitpresent,
+                                          String safeDrinkingWater,
+                                          String powerBackup,
+                                          String separateToilets,
+                                          String transportFacility,
+                                          String presenceOfLibrary,
+                                          String numberOfTechnicalBooks,
+                                          String numberOfNonTechnicalBooks,
+                                          String numberOfMagazines,
+                                          String numberOfDailies,
+                                          String remarksOnInfrastructureDetails,
+
+                                          String sufficientClassroomIlluminationLevel,
+                                          String sufficientClassroomVentilationLevel,
+                                          String sufficientCenterCleanliness,
+                                          String centerWeatherProtected,
+                                          String remarksOnLearningEnviornment,
+
+                                          String printedBrochureOrProspectus,
+                                          String documentedPolicyAndProcedures,
+                                          String concessionPolicy,
+                                          String safeCustodyOfStudentDocuments,
+                                          String studentAgreementWithInstitution,
+                                          String remarksOnStudentAdmissionDetails){
+
+        CenterLevelDto levelDto = new CenterLevelDto(
+                nameOfCenter,
+                numberOfPermanentOfficeManager,
+                numberOftemporaryOfficeManager,
+                numberOfPermanentOfficeStaff,
+                numberOfTemporaryOfficeStaff,
+                numberOfPermanentLabAssistants,
+                numberOfTemporaryLabAssistants,
+                ofPermanentLabAssistants,
+                ofTemporaryLabAssistants,
+                numberOfPermanentSupportStaff,
+                numberOfTemporarySupportStaff,
+                numberOfPermanentOtherEmployees,
+                numberofPermanentOtherEmployees,
+
+                areaOfInstitute,
+                buildingType,
+                sizeOfClassrooms,
+                numberOfClassrooms,
+                sizeOfLabs,
+                numberOfLabs,
+                sizeOfWorkshops,
+                numberOfWorkshops,
+                mandatoryToolKitpresent,
+                safeDrinkingWater,
+                powerBackup,
+                separateToilets,
+                transportFacility,
+                presenceOfLibrary,
+                numberOfTechnicalBooks,
+                numberOfNonTechnicalBooks,
+                numberOfMagazines,
+                numberOfDailies,
+                remarksOnInfrastructureDetails,
+
+                sufficientClassroomIlluminationLevel,
+                sufficientClassroomVentilationLevel,
+                sufficientCenterCleanliness,
+                centerWeatherProtected,
+                remarksOnLearningEnviornment,
+
+                printedBrochureOrProspectus,
+                documentedPolicyAndProcedures,
+                concessionPolicy,
+                safeCustodyOfStudentDocuments,
+                studentAgreementWithInstitution,
+                remarksOnStudentAdmissionDetails
+                );
         return levelDto;
     }
 
