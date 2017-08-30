@@ -2,6 +2,7 @@ package com.skill.India.dao;
 
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.AlgorithmConfigSql;
+import com.skill.India.config.NonAssignedBatchesConfigSql;
 import com.skill.India.dto.Algorithm3Dto;
 
 import org.slf4j.Logger;
@@ -25,11 +26,11 @@ public class Algorithm3Dao extends AbstractTransactionalDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(Algorithm3Dao.class);
 	
 	@Autowired
-    private AlgorithmConfigSql algorithmConfigSql;
+    private NonAssignedBatchesConfigSql nonAssignedBatchesConfigSql;
 
     private static Algorithm3DaoRowMapper ROW_MAPPER = new Algorithm3DaoRowMapper();
 
-    public Collection<Algorithm3Dto> getAssessorIdCollection(){
+    public Collection<Algorithm3Dto> getAssessorIdCollection(String recommendedAgency){
     	LOGGER.info("Request Received from Service");
 		LOGGER.info("In Algorithm3Dao - getAssessorIdCollection");
 				   	
@@ -37,19 +38,18 @@ public class Algorithm3Dao extends AbstractTransactionalDao {
 		
 		LOGGER.info("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("agencyId", recommendedAgency);
 		LOGGER.info("object created successfully");
 		
 		LOGGER.info("Executing SQL query and returning response");
-        return getJdbcTemplate().query(algorithmConfigSql.getGetAssessorIdSelectSql(), parameters, ROW_MAPPER);
+        return getJdbcTemplate().query(nonAssignedBatchesConfigSql.getSelectSqlAgencyName(), parameters, ROW_MAPPER);
     }
 
     private static class Algorithm3DaoRowMapper implements RowMapper<Algorithm3Dto>{
         @Override
         public Algorithm3Dto mapRow(ResultSet rs, int rowNum) throws SQLException {
-            String state = rs.getString("state");
-            String district = rs.getString("district");
             String agencyName = rs.getString("agencyName");
-            return new Algorithm3Dto(state, district, agencyName);
+            return new Algorithm3Dto(agencyName);
         }
     }
 }

@@ -1,8 +1,12 @@
 package com.skill.India.service;
 
-import com.skill.India.POC.AlgoPoc;
+import com.skill.India.common.RecommendationAlgorithm;
+import com.skill.India.dao.Algorithm2Dao;
+import com.skill.India.dao.Algorithm3Dao;
 import com.skill.India.dao.AlgorithmDao;
 import com.skill.India.dao.NonAssignedBatchesDao;
+import com.skill.India.dto.Algorithm2Dto;
+import com.skill.India.dto.Algorithm3Dto;
 import com.skill.India.dto.AlgorithmDto;
 import com.skill.India.dto.NonAssignedBatchesDto;
 import org.slf4j.LoggerFactory;
@@ -26,7 +30,13 @@ public class NonAssignedBatchesService {
     @Autowired
     private AlgorithmDao algorithmDao;
 
-    AlgoPoc algoPoc = new AlgoPoc();
+    @Autowired
+    private Algorithm2Dao algorithm2Dao;
+
+    @Autowired
+    private Algorithm3Dao algorithm3Dao;
+
+   RecommendationAlgorithm recommendationAlgorithm = new RecommendationAlgorithm();
 
 
     public Collection<NonAssignedBatchesDto> getCollection() {
@@ -36,34 +46,63 @@ public class NonAssignedBatchesService {
         String recommendedAB = "Default";
         
         LOGGER.info("Creating ArrayList object");
+
         ArrayList<String> rec = new ArrayList<>();
+
         LOGGER.info("Successfully created");
         
         LOGGER.info("Creating Collection object");
         LOGGER.info("Making a Request to Dao to get data for Non assigned batches");
-        Collection<NonAssignedBatchesDto> nonAssignedBatchesDtos = updateDao.getCollection(rec);
+        String recommendedAgency = "";
+
+        Collection<NonAssignedBatchesDto> nonAssignedBatchesDtos = updateDao.getCollection();
+        Collection<NonAssignedBatchesDto> nonAssignedBatchesDtoCollection = new ArrayList<>();
         LOGGER.info("Received Response from Dao");
         LOGGER.info("Successfully initialized");
-        
-        LOGGER.info("Iterating Collection object");
-        for (NonAssignedBatchesDto nonAssignedBatchesDto : nonAssignedBatchesDtos) {
-        	LOGGER.info("Creating ArrayList object");
-            ArrayList<Integer> agencyIdShowInterest = new ArrayList<>();
-            LOGGER.info("Successfully initialized");
-//            System.out.println("Call to display list of interest bodies----------------------------------------------------------------------");
-            
-           
-            for (AlgorithmDto algorithmDto : algorithmDao.algorithmDtoCollection(Integer.parseInt(nonAssignedBatchesDto.getBatchID()))) {
-                agencyIdShowInterest.add(algorithmDto.getAgencyId());
-                LOGGER.info("Add successful..");
+
+
+        for(NonAssignedBatchesDto beanDto : nonAssignedBatchesDtos){
+            LOGGER.info("The state and district for >>>>>>>>>>>>>>>>>>>>>>>>>>" + beanDto.getBatchID() + " are " +beanDto.getState() + " " + beanDto.getDistrict());
+            String batchId = beanDto.getBatchID();
+            String stateBatch = beanDto.getState();
+            String districtBatch = beanDto.getDistrict();
+
+
+            //Collection to store the agencies who have shown interest
+            Collection<AlgorithmDto> algorithmDtos = algorithmDao.algorithmDtoCollection(Integer.parseInt(batchId));
+
+            if(!algorithmDtos.isEmpty()){
+                for(AlgorithmDto algorithmDto : algorithmDtos){
+                    LOGGER.info("The agencies who have shown interest are >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + algorithmDto.getAgencyId() + " " + algorithmDto.getState() + " " + algorithmDto.getDistrict());
+                }
+
+                recommendedAgency = recommendationAlgorithm.getAgencyShowInterest(stateBatch, districtBatch, algorithmDtos);
+                LOGGER.info("recommended agency is "+ recommendedAgency);
             }
 
-            LOGGER.info("The best match is -=-=-=-=-====================-=-=-=-=");
-            recommendedAB = algoPoc.recommendedAgencyName(agencyIdShowInterest);
-            LOGGER.info("Best match = " + recommendedAB);
-            LOGGER.info("Adding to rec array list");
-            rec.add(recommendedAB);
+            else {
+                LOGGER.info("No one has shown INTEREST -*-*-*-*-*-*-*-* ");
+                //Proceed to next step
+                Collection<Algorithm2Dto> algorithm2Dtos = algorithm2Dao.getAgencyIdCollection();
+
+                for (Algorithm2Dto algorithm2Dto : algorithm2Dtos){
+                    LOGGER.info("Displaying all agencies cause no one has shown interest" + algorithm2Dto.getAgencyId() + " " + algorithm2Dto.getState() + " " + algorithm2Dto.getDistrict());
+                }
+
+
+                recommendedAgency = recommendationAlgorithm.getAgency(stateBatch, districtBatch, algorithm2Dtos);
+                LOGGER.info("recommended agency is "+ recommendedAgency);
+            }
+
+            LOGGER.info("The agency name is " + String.valueOf(algorithm3Dao.getAssessorIdCollection(recommendedAgency)));
+            String recommendedAgencyName = "";
+            for(Algorithm3Dto dto : algorithm3Dao.getAssessorIdCollection(recommendedAgency)){
+                recommendedAgencyName = dto.getAgencyName();
+                LOGGER.info("RECOMMENDED AGENCY IS " + recommendedAgencyName);
+            }
+
+            nonAssignedBatchesDtoCollection.add(new NonAssignedBatchesDto(batchId, stateBatch, districtBatch, beanDto.getBatchEndDate(), beanDto.getAssessmentDate(), recommendedAgencyName));
         }
-        return updateDao.getCollection(rec);
+        return nonAssignedBatchesDtoCollection;
     }
 }

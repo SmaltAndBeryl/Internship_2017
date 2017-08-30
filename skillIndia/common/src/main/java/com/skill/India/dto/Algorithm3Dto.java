@@ -5,22 +5,10 @@ package com.skill.India.dto;
  */
 
 public class Algorithm3Dto {
-    public final String state;
-    public final String district;
     public final String agencyName;
 
-    public Algorithm3Dto(String state, String district, String agencyName) {
-        this.state = state;
-        this.district = district;
+    public Algorithm3Dto(String agencyName) {
         this.agencyName = agencyName;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public String getDistrict() {
-        return district;
     }
 
     public String getAgencyName() {

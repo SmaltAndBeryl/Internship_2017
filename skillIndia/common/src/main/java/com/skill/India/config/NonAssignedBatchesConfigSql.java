@@ -16,6 +16,24 @@ public class NonAssignedBatchesConfigSql {
     private String checkBatchInBatchAssignment;
     private String insertSqlNonAssignedBatches;
 	private String selectSqlAgencyId;
+	private String selectSqlAgencyIdAll;
+	private String selectSqlAgencyName;
+
+	public String getSelectSqlAgencyName() {
+		return selectSqlAgencyName;
+	}
+
+	public void setSelectSqlAgencyName(String selectSqlAgencyName) {
+		this.selectSqlAgencyName = selectSqlAgencyName;
+	}
+
+	public String getSelectSqlAgencyIdAll() {
+		return selectSqlAgencyIdAll;
+	}
+
+	public void setSelectSqlAgencyIdAll(String selectSqlAgencyIdAll) {
+		this.selectSqlAgencyIdAll = selectSqlAgencyIdAll;
+	}
 
 	public String getSelectSqlAgencyId() {
 		return selectSqlAgencyId;

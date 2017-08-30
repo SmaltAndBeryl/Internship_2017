@@ -5,26 +5,26 @@ package com.skill.India.dto;
  */
 public class Algorithm2Dto {
     public final int agencyId;
-    public final int batchId;
-    public final String agencyName;
-
-
-    public Algorithm2Dto(int agencyId, int batchId, String agencyName) {
-        this.agencyId = agencyId;
-        this.batchId = batchId;
-        this.agencyName = agencyName;
-    }
-
-    public String getAgencyName() {
-        return agencyName;
-    }
+    public final String state;
+    public final String district;
 
     public int getAgencyId() {
         return agencyId;
     }
 
-    public int getBatchId() {
-        return batchId;
+    public String getState() {
+        return state;
     }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public Algorithm2Dto(int agencyId, String state, String district) {
+        this.agencyId = agencyId;
+        this.state = state;
+        this.district = district;
+    }
+
 
 }

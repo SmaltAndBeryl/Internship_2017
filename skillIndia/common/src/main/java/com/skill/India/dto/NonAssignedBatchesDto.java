@@ -6,7 +6,7 @@ package com.skill.India.dto;
 public class NonAssignedBatchesDto {
     private final String batchID;
     private final String state;
-    //    private fi
+    private final String district;
     private final String batchEndDate;
     private final String assessmentDate;
     private final String recommendedAB;
@@ -17,6 +17,10 @@ public class NonAssignedBatchesDto {
 
     public String getState() {
         return state;
+    }
+
+    public String getDistrict() {
+        return district;
     }
 
     public String getBatchEndDate() {
@@ -31,10 +35,11 @@ public class NonAssignedBatchesDto {
         return recommendedAB;
     }
 
-    public NonAssignedBatchesDto(String batchID, String state, String batchEndDate, String assessmentDate, String recommendedAB) {
+    public NonAssignedBatchesDto(String batchID, String state, String district, String batchEndDate, String assessmentDate, String recommendedAB) {
         super();
         this.batchID = batchID;
         this.state = state;
+        this.district = district;
         this.batchEndDate = batchEndDate;
         this.assessmentDate = assessmentDate;
         this.recommendedAB = recommendedAB;

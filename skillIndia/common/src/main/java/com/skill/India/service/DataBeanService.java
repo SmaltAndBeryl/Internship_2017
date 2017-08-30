@@ -120,6 +120,8 @@ public class DataBeanService {
         //Logic for generating pdf
         String sourceFileName = "C://Users/Alkesh/JaspersoftWorkspace/Curie/January.jasper";
 //        String printFileName = null;
+//        String sourceFileName = System.getProperty("user.home");
+        LOGGER.info("THE source file is located at "+ sourceFileName);
         String print = null;
 
         LOGGER.info("Creating the data source..");
@@ -147,6 +149,8 @@ public class DataBeanService {
 
         String rndm = String.valueOf(Math.random()).substring(4,8);
         String destFileName = "D://Jasper/" + rndm + ".pdf";
+//        String destFileName = sourceFileName + File.separatorChar + "TrainingPartner.pdf";
+
         try{
             LOGGER.info("Creating the jrprint file..");
             JasperPrint printFileName = JasperFillManager.fillReport(sourceFileName,parameters, new JREmptyDataSource());

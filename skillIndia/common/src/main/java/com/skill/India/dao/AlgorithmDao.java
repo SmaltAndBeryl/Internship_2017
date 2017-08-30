@@ -48,8 +48,10 @@ public class AlgorithmDao extends AbstractTransactionalDao {
         @Override
         public AlgorithmDto mapRow(ResultSet resultSet, int i) throws SQLException {
             int agencyId = resultSet.getInt("agencyId");
+            String state = resultSet.getString("state");
+            String district = resultSet.getString("district");
             LOGGER.info("The district is >>> " + agencyId);
-            return new AlgorithmDto(agencyId);
+            return new AlgorithmDto(agencyId, state, district);
         }
     }
 }
