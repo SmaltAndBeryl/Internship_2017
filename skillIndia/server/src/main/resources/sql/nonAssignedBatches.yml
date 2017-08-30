@@ -1,14 +1,23 @@
 nonAssignedBatches:
  selectSqlNonAssignedBatches: >
-  select B.batchId,C.state,B.batchEndDate,B.assessmentDate 
+  select B.batchId,C.state,C.district,B.batchEndDate,B.assessmentDate
    from batch B,centre C 
     Where B.batchId not in (select BA.batchId from batchassignment as BA where responseType='proposed') 
      AND B.agencyId is null 
       AND B.centreId = C.centreId 
        order by 1;
+
  selectSqlAgencyId: >
-  SELECT showinterest.agencyId FROM showinterest,batch
-   WHERE showinterest.batchId = batch.batchId AND batch.batchId = :batchId;
+  SELECT showinterest.agencyId, assessor.state, assessor.district FROM showinterest, assessor
+   WHERE batchId = :batchId AND showinterest.agencyId=assessor.agencyId;
+
+ selectSqlAgencyIdAll: >
+  SELECT agency.agencyId, assessor.state, assessor.district FROM agency, assessor
+   WHERE agency.agencyId=assessor.agencyId;
+
+ selectSqlAgencyName: >
+  select agency.agencyName from agency
+   where agency.agencyId = :agencyId;
 
  updateSqlNonAssignedBatches: >
   UPDATE batchassignment SET responseType=:responseType, agencyId= :agencyId
