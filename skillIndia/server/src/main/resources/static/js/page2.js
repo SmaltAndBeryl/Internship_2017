@@ -44,7 +44,7 @@ $scope.gridOptions = {
         {
             name: 'userId',
             displayName: 'View Application',
-            cellTemplate: '<img src="icon/indexPageIcons/pdf.png" ng-click=grid.appScope.myfunction()>',
+            cellTemplate: '<img src="icon/indexPageIcons/pdf.png" ng-click=grid.appScope.myfunction(row)>',
             headerCellClass: 'Institution-Name',
             cellClass: 'va',
             width: 120
@@ -188,14 +188,27 @@ $http.get('/approve')
 
 //function for pdf generation
 
-$scope.myfunction = function(){
-    $http.get('/cityData')
+$scope.myfunction = function(rowData){
+    var applicationId = rowData.entity.applicationId;
+    console.log("The application Id is " + applicationId);
+
+    $http({
+        url : '/getUserRoleApplicationId',
+        method : 'POST',
+        params : { applicationId : applicationId}
+    })
         .then(function(response){
-            console.log("Generating PDF..");
-            if(response.data != null){
-                alert("PDF generation successful..");
-            }
+            console.log("Application Id posted successfully");
+            alert("the response is "+ JSON.stringify(response.data));
         })
+
+//    $http.get('/cityData')
+//        .then(function(response){
+//            console.log("Generating PDF..");
+//            if(response.data != null){
+//                alert("PDF generation successful..");
+//            }
+//        })
 };
 //function for edit functionalities
 
