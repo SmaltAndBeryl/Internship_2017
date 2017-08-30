@@ -51,7 +51,7 @@ public class DataBeanService {
         ArrayList<InstitutionRecognitionDto> institutionRecognitionDtoArrayList = new ArrayList<>();
         ArrayList<PriorExperienceDto> priorExperienceDtoArrayList = new ArrayList<>();
         ArrayList<DirectorDto> directorDtoArrayList = new ArrayList<>();
-        
+
         if(!dataBeanDtos.isEmpty()){
             for(DataBeanDto beanDto : dataBeanDtos){
                 organizationArrayList.add(produce(beanDto.getOrganizationName(),
