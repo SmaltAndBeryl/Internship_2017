@@ -22,8 +22,9 @@ public class DirectorDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<DirectorDto> dataBeanDtoCollectionDirector(){
+    public Collection<DirectorDto> dataBeanDtoCollectionDirector(String trainingPartnerRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("trainingPartnerRegistrationId" ,trainingPartnerRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectSqlDirector(), parameters, ROW_MAPPER);
     }
 

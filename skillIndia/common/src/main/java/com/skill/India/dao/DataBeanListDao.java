@@ -29,7 +29,7 @@ public class DataBeanListDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<DataBeanDto> dataBeanDtoCollection(){
+    public Collection<DataBeanDto> dataBeanDtoCollection(String trainingPartnerRegistrationId){
     	LOGGER.info("Request Received from Service");
 		LOGGER.info("In DataBeanListDao - dataBeanDtoCollection");
 				   	
@@ -37,6 +37,7 @@ public class DataBeanListDao extends AbstractTransactionalDao{
 		
 		LOGGER.info("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 		LOGGER.info("object created successfully");
 		
 		LOGGER.info("Executing SQL query and returning response");

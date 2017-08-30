@@ -22,9 +22,9 @@ public class TrainingPartnerRegistrationIdDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<TrainingPartnerRegistrationIdDto> trainingPartnerRegistrationId(String organizationName){
+    public Collection<TrainingPartnerRegistrationIdDto> trainingPartnerRegistrationId(String applicationId){
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("organizationName", organizationName);
+        parameters.put("applicationId", applicationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectSqlTrainingPartnerRegistrationId(), parameters, ROW_MAPPER);
     }
 

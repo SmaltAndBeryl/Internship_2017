@@ -21,8 +21,9 @@ public class InstitutionRecognitionDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<InstitutionRecognitionDto> dataBeanDtoCollectionInstitutionRecognition(){
+    public Collection<InstitutionRecognitionDto> dataBeanDtoCollectionInstitutionRecognition(String trainingPartnerRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectSqlInstitutionRecognition(), parameters, ROW_MAPPER);
     }
 

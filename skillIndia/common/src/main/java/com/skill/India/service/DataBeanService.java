@@ -36,14 +36,14 @@ public class DataBeanService {
     @Autowired
     private DirectorDao directorDao;
 
-    public Collection<DataBeanDto> dataBeanDtoCollection() throws JRException, FileNotFoundException {
+    public Collection<DataBeanDto> dataBeanDtoCollection(String trainingPartnerRegistrationId) throws JRException, FileNotFoundException {
 
-        Collection<DataBeanDto> dataBeanDtos = dataBeanListDao.dataBeanDtoCollection();
-        Collection<CenterLevelDto> centerLevelDtos = centerLevelDao.centerLevelDtos();
-        Collection<InstitutionGrantDto> institutionGrantDtos = institutionGrantDao.dataBeanDtoCollectionInstitutionGrant();
-        Collection<InstitutionRecognitionDto> institutionRecognitionDtos = institutionRecognitionDao.dataBeanDtoCollectionInstitutionRecognition();
-        Collection<PriorExperienceDto> priorExperienceDtos = priorExperienceDao.dataBeanDtoCollectionPriorExperience();
-        Collection<DirectorDto> directorDtos = directorDao.dataBeanDtoCollectionDirector();
+        Collection<DataBeanDto> dataBeanDtos = dataBeanListDao.dataBeanDtoCollection(trainingPartnerRegistrationId);
+        Collection<CenterLevelDto> centerLevelDtos = centerLevelDao.centerLevelDtos(trainingPartnerRegistrationId);
+        Collection<InstitutionGrantDto> institutionGrantDtos = institutionGrantDao.dataBeanDtoCollectionInstitutionGrant(trainingPartnerRegistrationId);
+        Collection<InstitutionRecognitionDto> institutionRecognitionDtos = institutionRecognitionDao.dataBeanDtoCollectionInstitutionRecognition(trainingPartnerRegistrationId);
+        Collection<PriorExperienceDto> priorExperienceDtos = priorExperienceDao.dataBeanDtoCollectionPriorExperience(trainingPartnerRegistrationId);
+        Collection<DirectorDto> directorDtos = directorDao.dataBeanDtoCollectionDirector(trainingPartnerRegistrationId);
 
         ArrayList<DataBeanDto> organizationArrayList = new ArrayList<>();
         ArrayList<CenterLevelDto> arrayListDto1 = new ArrayList<>();
@@ -51,7 +51,7 @@ public class DataBeanService {
         ArrayList<InstitutionRecognitionDto> institutionRecognitionDtoArrayList = new ArrayList<>();
         ArrayList<PriorExperienceDto> priorExperienceDtoArrayList = new ArrayList<>();
         ArrayList<DirectorDto> directorDtoArrayList = new ArrayList<>();
-
+        
         if(!dataBeanDtos.isEmpty()){
             for(DataBeanDto beanDto : dataBeanDtos){
                 organizationArrayList.add(produce(beanDto.getOrganizationName(),
@@ -217,7 +217,7 @@ public class DataBeanService {
             LOGGER.info("Exception caught..");
             e.printStackTrace();
         }
-        return dataBeanListDao.dataBeanDtoCollection();
+        return dataBeanListDao.dataBeanDtoCollection(trainingPartnerRegistrationId);
 
     }
 

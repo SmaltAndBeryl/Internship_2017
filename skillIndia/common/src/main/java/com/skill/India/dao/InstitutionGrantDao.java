@@ -21,8 +21,9 @@ public class InstitutionGrantDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<InstitutionGrantDto> dataBeanDtoCollectionInstitutionGrant(){
+    public Collection<InstitutionGrantDto> dataBeanDtoCollectionInstitutionGrant(String trainingPartnerRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectSqlInstitutionGrant(), parameters, ROW_MAPPER);
     }
 

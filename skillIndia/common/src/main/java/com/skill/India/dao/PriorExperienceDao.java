@@ -22,8 +22,9 @@ public class PriorExperienceDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<PriorExperienceDto> dataBeanDtoCollectionPriorExperience(){
+    public Collection<PriorExperienceDto> dataBeanDtoCollectionPriorExperience(String trainingPartnerRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectSqlPriorExperience(), parameters, ROW_MAPPER);
     }
 

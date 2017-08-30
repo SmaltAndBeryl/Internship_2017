@@ -15,6 +15,24 @@ public class PdfDataConfigSql {
     private String selectSqlInstitutionRecognition;
     private String selectSqlPriorExperience;
     private String selectSqlDirector;
+    private String selectUserRoleApplicationId;
+    private String selectTrainingPartnerRegistrationId;
+
+    public String getSelectTrainingPartnerRegistrationId() {
+        return selectTrainingPartnerRegistrationId;
+    }
+
+    public void setSelectTrainingPartnerRegistrationId(String selectTrainingPartnerRegistrationId) {
+        this.selectTrainingPartnerRegistrationId = selectTrainingPartnerRegistrationId;
+    }
+
+    public String getSelectUserRoleApplicationId() {
+        return selectUserRoleApplicationId;
+    }
+
+    public void setSelectUserRoleApplicationId(String selectUserRoleApplicationId) {
+        this.selectUserRoleApplicationId = selectUserRoleApplicationId;
+    }
 
     private String selectSqlTrainingPartnerRegistrationId;
 

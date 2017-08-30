@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import com.skill.India.dto.*;
 import com.skill.India.service.TrainingPartnerRegistrationIdService;
+import com.skill.India.service.UserRoleApplicationIdService;
 import net.sf.jasperreports.engine.JRException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,9 @@ public class ManageRegistrationsController {
 
     @Autowired
 	private TrainingPartnerRegistrationIdService trainingPartnerRegistrationIdService;
+
+    @Autowired
+	private UserRoleApplicationIdService userRoleApplicationIdService;
 
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/approve")
@@ -118,26 +122,28 @@ public class ManageRegistrationsController {
 	 */
 	
 	
-    @Privilege(value={"SCGJ"})
-    @RequestMapping("/cityData")
-    public Collection<DataBeanDto> dataBeanDtoCollection() throws JRException, FileNotFoundException {
-    	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
-    	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
-    	LOGGER.info("Creating Collection to collect data for PDF creation");
-    	LOGGER.info("Sending Request to Service");
+//    @Privilege(value={"SCGJ"})
+//    @RequestMapping("/cityData")
+//    public Collection<DataBeanDto> dataBeanDtoCollection() throws JRException, FileNotFoundException {
+//    	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
+//    	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
+//    	LOGGER.info("Creating Collection to collect data for PDF creation");
+//    	LOGGER.info("Sending Request to Service");
+//
+//        return dataBeanService.dataBeanDtoCollection();
+//    }
 
-        return dataBeanService.dataBeanDtoCollection();
-    }
 
 	@Privilege(value={"SCGJ"})
-	@RequestMapping(value = "/getTrainingPartnerRegistrationId", method = RequestMethod.POST)
-	public String trainingPartnerRegistrationId(@RequestParam("organizationName") String organizationName){
+	@RequestMapping(value = "/getUserRoleApplicationId", method = RequestMethod.POST)
+	public Collection<UserRoleApplicationIdDto> userRoleApplicationId(@RequestParam("applicationId") String applicationId) throws FileNotFoundException, JRException {
 		LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
 		LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
 		LOGGER.info("Creating Collection to collect data for PDF creation");
 		LOGGER.info("Sending Request to Service");
 
-		return trainingPartnerRegistrationIdService.trainingPartnerRegistrationId(organizationName);
+
+		return userRoleApplicationIdService.userRoleApplicationIdDtos(applicationId);
 	}
 
     @Privilege(value={"SCGJ"})

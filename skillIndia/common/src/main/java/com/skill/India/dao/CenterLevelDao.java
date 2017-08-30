@@ -21,8 +21,9 @@ public class CenterLevelDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<CenterLevelDto> centerLevelDtos(){
+    public Collection<CenterLevelDto> centerLevelDtos(String trainingPartnerRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectSqlCenterLevel(), parameters, ROW_MAPPER);
     }
 
