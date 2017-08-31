@@ -122,32 +122,35 @@ public class AssessmentBodyController {
 		@Privilege(value={"AB"})
 		@RequestMapping(value="/showInterest",method=RequestMethod.POST)
 		public int assessmentBodyHomepageFunctionalitiesUpdateShowInterest(@RequestParam("batchId") String batchId) {
+			int applicationId = getApplicationId();
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesUpdateShowInterest");
 			LOGGER.info("Request Received from front end to show Interest For Particular Batch For Assessment Body");
-			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId +" 'agencyId':"+getApplicationId());
+			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId +" 'agencyId':"+applicationId);
 			LOGGER.info("Sending Request to service");
-			getApplicationId();
-			return assessmentBodyHomepageFunctionalitiesService.putShowInterest(batchId,"ruchi");
+			
+			return assessmentBodyHomepageFunctionalitiesService.putShowInterest(batchId,applicationId);
 		}
 
 		@Privilege(value={"AB"})
 		@RequestMapping(value="/approveAssignment",method=RequestMethod.POST)
 		public int assessmentBodyHomepageFunctionalitiesApproveBatch(@RequestParam("batchId") String batchId) {
+			int applicationId = getApplicationId();
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesApproveBatch");
 			LOGGER.info("Request Received from front end to Approve the Batch For Assessment Body");
 			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 			LOGGER.info("Sending Request to service");
-			return assessmentBodyHomepageFunctionalitiesService.putApproveBatch(batchId);
+			return assessmentBodyHomepageFunctionalitiesService.putApproveBatch(batchId, applicationId);
 		}
 		
 		@Privilege(value={"AB"})
 		@RequestMapping(value="/rejectAssignment",method=RequestMethod.POST)
 		public int assessmentBodyHomepageFunctionalitiesRejectBatch(@RequestParam("batchId") String batchId) {
+			int applicationId = getApplicationId();
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesRejectBatch");
 			LOGGER.info("Request Received from front end to Reject the Batch For Assessment Body");
 			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
 			LOGGER.info("Sending Request to service");
-			return assessmentBodyHomepageFunctionalitiesService.putRejectBatch(batchId);
+			return assessmentBodyHomepageFunctionalitiesService.putRejectBatch(batchId,applicationId);
 		}
 
 	
