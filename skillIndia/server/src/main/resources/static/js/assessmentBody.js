@@ -195,11 +195,24 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
         if (bool == true) {
             var interestid = rowData.entity.batchId;
             var urldata = "/showInterest?batchId=" + interestid
+            var urlUpcoming = "/getUpcomingBatchesAssessmentBodyHomepage";
+            var urlShowInterest = "/getShownInterestBatchesAssessmentBodyHomepage";
             //remove agency Id- pick it from session
             //let batch id as is
             $http.post(urldata).then(function(response) {
 
                 console.log("batch id for Interest is " + interestid);
+                
+                $http.get(urlUpcoming)
+                .then(function(responseUpcoming) {
+                    $scope.gridOptions2.data = responseUpcoming.data;
+                })
+                
+                $http.get(urlShowInterest)
+                .then(function(responseShowInterest) {
+                    $scope.gridstatus.data = responseShowInterest.data;
+                })
+                
             });
 
             console.log("Interest Shown");
@@ -304,17 +317,34 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
         //Extract first cell value
         var approveid = rowData.entity.batchId;
         var urldata = "/approveAssignment?batchId=" + approveid;
-
+        var urlassigned = "/getAssignedBatchesAssessmentBodyHomepage";
+        var urlconfirm = "/getConfirmedBatchesAssessmentBodyHomepage";
         $http.post(urldata).then(function(response) {
             console.log("batch id for Approve is " + approveid);
+            
+            $http.post(urlassigned)
+            .then(function(responseAssigned){
+            	$scope.gridOptions3.data= responseAssigned.data;
+            })
+            
+             $http.post(urlconfirm)
+            .then(function(responseConfirmed){
+            	$scope.gridOptions4.data= responseConfirmed.data;
+            })
         });
     }
     $scope.reject = function(rowData) {
         var rejectid = rowData.entity.batchId;
         var urldata = "/rejectAssignment?batchId=" + rejectid;
-
+        var urlAssigned = "/getAssignedBatchesAssessmentBodyHomepage";
+        
         $http.post(urldata).then(function(response) {
             console.log("batch id for Approve is " + rejectid);
+            
+            $http.post(urlAssigned)
+            .then(function(responseAssigned){
+            	$scope.gridOptions3.data= responseAssigned.data;
+            })
         });
     }
 
