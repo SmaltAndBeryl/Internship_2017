@@ -1,8 +1,8 @@
 assessmentBodyHomepage:
  selectSqlpastBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
-  from batch B, trainingpartner A, trainingpartnerregistration C, batchassignment D, Agency E, centre F
-  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and A.applicationId = E.applicationId and D.responseType="Approved" and B.agencyId=E.agencyId and E.applicationId= :applicationId and B.assessmentDate<curdate();
+  from batch B, trainingpartner A, trainingpartnerregistration C, centre F
+  where B.assessmentDate<curdate() and B.agencyId= :agencyId and B.trainingPartnerId = A.trainingPartnerId and B.centreId=F.centreId and F.trainingPartnerId=A.trainingPartnerId and A.applicationId=C.applicationId;
 
  selectSqlupcomingBatchesAssessmentBodyHomepage: >
   select B.batchId, B.assessmentDate, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, CONCAT(F.district, ' | ', F.state) as location,B.totalCandidatesInBatch
