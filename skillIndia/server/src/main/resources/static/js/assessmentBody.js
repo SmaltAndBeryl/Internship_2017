@@ -56,15 +56,17 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
     }
 
     $scope.myfunction = function(rowData) {
-        var appState = Object.values(Object.values(rowData)[1])[3];
-        profileCreationURL = '';
+    	
+        var appState = rowData.entity.applicationState
+        profileCreationURL = '/profileCreationAb';
         if (appState == "Incomplete") {
             //window.location = "https://www.google.co.in";
             //$location.path();
-            $location.path(acceptedRoutingUrl)
+            $location.path(profileCreationURL)
             console.log("Please Edit the Form");
 
-        } else {
+        } else
+        {
             window.alert("Invalid Access");
         }
         console.log("Click is working" + appState);
