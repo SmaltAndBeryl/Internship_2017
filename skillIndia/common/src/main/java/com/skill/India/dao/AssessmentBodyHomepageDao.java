@@ -83,6 +83,7 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 	}
 	public Collection<AssessmentBodyHomepageDto> getshownInterestAssessmentBodyHomepageRowMapper(int applicationId) {
 		LOGGER.info("Request Received from Service");
+		Integer agencyId= getAgencyId(applicationId);
 		LOGGER.info("In AssessmentBodyHomepageDao - getshownInterestAssessmentBodyHomepageRowMapper");
 		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
 				   	
@@ -93,7 +94,7 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 		LOGGER.info("object created successfully");
 		
 		LOGGER.info("Inserting parameters to HashMap object");
-		parameters.put("applicationId",applicationId);
+		parameters.put("agencyId",agencyId);
 		LOGGER.info("Parameters inserted");
 		
 		LOGGER.info("Executing SQL query and returning response");
@@ -102,6 +103,7 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 	}
 	public Collection<AssessmentBodyHomepageDto> getassignedBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
 		LOGGER.info("Request Received from Service");
+		Integer agencyId = getAgencyId(applicationId);
 		LOGGER.info("In AssessmentBodyHomepageDao - getassignedBatchesAssessmentBodyHomepageRowMapper");
 		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
 				   	
@@ -112,7 +114,7 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 		LOGGER.info("object created successfully");
 		
 		LOGGER.info("Inserting parameters to HashMap object");
-		parameters.put("applicationId",applicationId);
+		parameters.put("agencyId",agencyId);
 		LOGGER.info("Parameters inserted");
 		
 		LOGGER.info("Executing SQL query and returning response");
