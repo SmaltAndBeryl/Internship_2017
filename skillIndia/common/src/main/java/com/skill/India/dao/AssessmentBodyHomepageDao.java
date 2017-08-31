@@ -122,6 +122,7 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 				ROW_MAPPER);
 	}	
 	public Collection<AssessmentBodyHomepageDto> getconfirmedBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
+		Integer agencyId = getAgencyId(applicationId);
 		LOGGER.info("Request Received from Service");
 		LOGGER.info("In AssessmentBodyHomepageDao - getconfirmedBatchesAssessmentBodyHomepageRowMapper");
 		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
@@ -133,7 +134,7 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 		LOGGER.info("object created successfully");
 		
 		LOGGER.info("Inserting parameters to HashMap object");
-		parameters.put("applicationId",applicationId);
+		parameters.put("agencyId",agencyId);
 		LOGGER.info("Parameters inserted");
 		
 		LOGGER.info("Executing SQL query and returning response");
