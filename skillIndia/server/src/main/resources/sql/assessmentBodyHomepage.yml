@@ -17,7 +17,7 @@ assessmentBodyHomepage:
  selectSqlassignedBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
   from batch B, trainingpartnerregistration C, trainingpartner A, centre F
-  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and assessmentDate>curdate() and exists(Select batchId from batchassignment where agencyId= :agencyId and batchId =B.batchId) and A.applicationId=C.applicationId
+  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and assessmentDate>curdate() and exists(Select batchId from batchassignment where agencyId= :agencyId and batchId =B.batchId and responseType = 'proposed') and A.applicationId=C.applicationId
  
  selectSqlconfirmedBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
