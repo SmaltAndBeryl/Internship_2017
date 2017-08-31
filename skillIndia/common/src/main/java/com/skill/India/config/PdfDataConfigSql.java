@@ -18,6 +18,52 @@ public class PdfDataConfigSql {
     private String selectUserRoleApplicationId;
     private String selectTrainingPartnerRegistrationId;
 
+    private String selectAssessmentBodyRegistrationDetails;
+    private String selectAssessmentsExperienceInTechnicalDomain;
+    private String selectAssessmentBodyDirectorsAndManagementTeamDetails;
+    private String selectAssessmentStaffDetails;
+    private String selectRegionalOfficeDetails;
+
+    public String getSelectAssessmentStaffDetails() {
+        return selectAssessmentStaffDetails;
+    }
+
+    public void setSelectAssessmentStaffDetails(String selectAssessmentStaffDetails) {
+        this.selectAssessmentStaffDetails = selectAssessmentStaffDetails;
+    }
+
+    public String getSelectRegionalOfficeDetails() {
+        return selectRegionalOfficeDetails;
+    }
+
+    public void setSelectRegionalOfficeDetails(String selectRegionalOfficeDetails) {
+        this.selectRegionalOfficeDetails = selectRegionalOfficeDetails;
+    }
+
+    public String getSelectAssessmentBodyRegistrationDetails() {
+        return selectAssessmentBodyRegistrationDetails;
+    }
+
+    public void setSelectAssessmentBodyRegistrationDetails(String selectAssessmentBodyRegistrationDetails) {
+        this.selectAssessmentBodyRegistrationDetails = selectAssessmentBodyRegistrationDetails;
+    }
+
+    public String getSelectAssessmentsExperienceInTechnicalDomain() {
+        return selectAssessmentsExperienceInTechnicalDomain;
+    }
+
+    public void setSelectAssessmentsExperienceInTechnicalDomain(String selectAssessmentsExperienceInTechnicalDomain) {
+        this.selectAssessmentsExperienceInTechnicalDomain = selectAssessmentsExperienceInTechnicalDomain;
+    }
+
+    public String getSelectAssessmentBodyDirectorsAndManagementTeamDetails() {
+        return selectAssessmentBodyDirectorsAndManagementTeamDetails;
+    }
+
+    public void setSelectAssessmentBodyDirectorsAndManagementTeamDetails(String selectAssessmentBodyDirectorsAndManagementTeamDetails) {
+        this.selectAssessmentBodyDirectorsAndManagementTeamDetails = selectAssessmentBodyDirectorsAndManagementTeamDetails;
+    }
+
     public String getSelectTrainingPartnerRegistrationId() {
         return selectTrainingPartnerRegistrationId;
     }
