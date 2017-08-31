@@ -11,6 +11,42 @@ public class AssessmentStaffDetailsDto {
     private final String educationalQualification;
     private final String experience;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getJobRoleCode() {
+        return jobRoleCode;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getEducationalQualification() {
+        return educationalQualification;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
     public AssessmentStaffDetailsDto(String name, String jobRoleCode, String designation, String contactNumber, String emailId, String district, String state, String educationalQualification, String experience) {
 
         this.name = name;
