@@ -11,13 +11,13 @@ assessmentBodyHomepage:
  
  selectSqlShownInterestBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
-  from batch B, trainingpartnerregistration C, trainingpartner A, batchassignment D, Agency E, centre F,showinterest G
-  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and A.applicationId = E.applicationId and D.responseType="Default" and E.applicationId= :applicationId and E.agencyId=G.agencyId and assessmentDate>curdate();
+  from batch B, trainingpartnerregistration C, trainingpartner A, centre F
+  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and assessmentDate>curdate() and exists(Select batchId from showinterest where agencyId= :agencyId and batchId =B.batchId) and A.applicationId=C.applicationId;
 
  selectSqlassignedBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
-  from batch B, trainingpartnerregistration C, trainingpartner A, batchassignment D, Agency E, centre F
-  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and A.applicationId = E.applicationId and B.agencyId=D.agencyId and B.batchId=D.batchId and D.responseType="Proposed" and E.applicationId= :applicationId and assessmentDate>curdate();
+  from batch B, trainingpartnerregistration C, trainingpartner A, centre F
+  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and assessmentDate>curdate() and exists(Select batchId from batchassignment where agencyId= :agencyId and batchId =B.batchId) and A.applicationId=C.applicationId
  
  selectSqlconfirmedBatchesAssessmentBodyHomepage: >
   select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
