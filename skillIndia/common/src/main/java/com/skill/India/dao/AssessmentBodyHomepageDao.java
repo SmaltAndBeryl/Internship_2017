@@ -29,18 +29,20 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 	private static final AssessmentBodyHomepageAgencyRowMapper ROW_MAPPER_AGENCY_ID = new AssessmentBodyHomepageAgencyRowMapper();
 	
 	public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
+		Integer agencyId = getAgencyId(applicationId);
 		LOGGER.info("Request Received from Service");
 		LOGGER.info("In AssessmentBodyHomepageDao - getpastBatchesAssessmentBodyHomepageRowMapper");
 		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
-				   	
+		
+		LOGGER.info("Agency Id for application Id :"+ applicationId+"is :"+agencyId);
 		LOGGER.info("Getting details of past batches for agency");
 		
 		LOGGER.info("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.info("Object created successfully");
 		
 		LOGGER.info("Inserting parameters to HashMap object");
-		parameters.put("applicationId",applicationId);
+		parameters.put("agencyId",agencyId);
 		LOGGER.info("Parameters inserted");
 		
 		LOGGER.info("Executing SQL query and returning response");
