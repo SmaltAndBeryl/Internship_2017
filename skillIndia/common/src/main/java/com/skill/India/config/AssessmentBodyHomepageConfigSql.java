@@ -23,8 +23,17 @@ public class AssessmentBodyHomepageConfigSql {
 	private String updateSqlapproveBatchesAssessmentBody;
 	
 	private String updateSqlrejectBatchesAssessmentBody;
-
 	
+	private String getAgencyId;
+	
+	public String getGetAgencyId() {
+		return getAgencyId;
+	}
+
+	public void setGetAgencyId(String getAgencyId) {
+		this.getAgencyId = getAgencyId;
+	}
+
 	/**
 	 * @return the selectSqlpastBatchesAssessmentBodyHomepage
 	 */

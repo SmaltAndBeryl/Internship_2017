@@ -48,6 +48,7 @@ public class AssessmentBodyController {
 				.getSessionMangementfromSession().getUsername());
 	}
 	
+	
 	@Privilege(value={"AB"})
 	@RequestMapping("/assessmentBodyApplicationStatus")
 	public Collection<AssessmentBodyApplicationStatusDto> getAssessmentBodyApplicationStatusDto() {
@@ -120,12 +121,13 @@ public class AssessmentBodyController {
 		
 		@Privilege(value={"AB"})
 		@RequestMapping(value="/showInterest",method=RequestMethod.POST)
-		public int assessmentBodyHomepageFunctionalitiesUpdateShowInterest(@RequestParam("batchId") String batchId,@RequestParam("agencyId") String agencyId) {
+		public int assessmentBodyHomepageFunctionalitiesUpdateShowInterest(@RequestParam("batchId") String batchId) {
 			LOGGER.info("In AssessmentBodyController - assessmentBodyHomepageFunctionalitiesUpdateShowInterest");
 			LOGGER.info("Request Received from front end to show Interest For Particular Batch For Assessment Body");
-			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId +" 'agencyId':"+agencyId);
+			LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId +" 'agencyId':"+getApplicationId());
 			LOGGER.info("Sending Request to service");
-			return assessmentBodyHomepageFunctionalitiesService.putShowInterest(batchId,agencyId);
+			getApplicationId();
+			return assessmentBodyHomepageFunctionalitiesService.putShowInterest(batchId,"ruchi");
 		}
 
 		@Privilege(value={"AB"})

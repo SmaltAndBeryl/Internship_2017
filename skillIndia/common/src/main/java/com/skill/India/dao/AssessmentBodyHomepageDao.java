@@ -26,6 +26,7 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 	public AssessmentBodyHomepageConfigSql assessmentBodyHomepageConfigSql;
 
 	private static final AssessmentBodyHomepageSelectRowMapper ROW_MAPPER = new AssessmentBodyHomepageSelectRowMapper();
+	private static final AssessmentBodyHomepageAgencyRowMapper ROW_MAPPER_AGENCY_ID = new AssessmentBodyHomepageAgencyRowMapper();
 	
 	public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
 		LOGGER.info("Request Received from Service");
@@ -50,21 +51,33 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 	public Collection<AssessmentBodyHomepageDto> getupcomingBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
 		LOGGER.info("Request Received from Service");
 		LOGGER.info("In AssessmentBodyHomepageDao - getupcomingBatchesAssessmentBodyHomepageRowMapper");
-		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
+		LOGGER.info("Parameters Received from Service are - 'agencyId': " +applicationId);
 				   	
 		LOGGER.info("Getting details of upcoming batches for agency");
 		
 		LOGGER.info("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
+		
 		LOGGER.info("object created successfully");
 		
 		LOGGER.info("Inserting parameters to HashMap object");
-		parameters.put("applicationId",applicationId);
-		LOGGER.info("Parameters inserted");
+		parameters.put("agencyId" ,getAgencyId(applicationId));
+		LOGGER.info("Parameters inserted are:"+parameters.toString());
 		
 		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.info("Query formed is:"+ assessmentBodyHomepageConfigSql.getSelectSqlupcomingBatchesAssessmentBodyHomepage().toString());
         return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlupcomingBatchesAssessmentBodyHomepage(),parameters,
 				ROW_MAPPER);
+	}
+	private int getAgencyId(int applicationId)
+	{
+		int agencyId=0;
+		LOGGER.info("trying to get agency Id for application Id"+ applicationId);
+		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("applicationId", applicationId);
+		agencyId = getJdbcTemplate().queryForObject(assessmentBodyHomepageConfigSql.getGetAgencyId(), parameters,ROW_MAPPER_AGENCY_ID);
+		LOGGER.info("Agency Id for applicationId :"+applicationId+"is :"+agencyId);
+		return agencyId;
 	}
 	public Collection<AssessmentBodyHomepageDto> getshownInterestAssessmentBodyHomepageRowMapper(int applicationId) {
 		LOGGER.info("Request Received from Service");
@@ -137,6 +150,17 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 		Integer totalCandidatesInBatch = rs.getInt("totalCandidatesInBatch");
 		
 		return new AssessmentBodyHomepageDto(batchId, trainingPartnerDetails, assessmentDate, location, totalCandidatesInBatch);
+		}
+	}
+	
+private static class AssessmentBodyHomepageAgencyRowMapper implements RowMapper<Integer> {
+		
+		@Override
+		public Integer mapRow(ResultSet rs, int rowNum)
+		throws SQLException {
+		Integer agencyId = rs.getInt("agencyId");
+		return agencyId;
+		//return new AssessmentBodyHomepageDto(batchId, trainingPartnerDetails, assessmentDate, location, totalCandidatesInBatch);
 		}
 	}
 }
