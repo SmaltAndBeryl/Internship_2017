@@ -199,7 +199,7 @@ $scope.myfunction = function(rowData){
     })
         .then(function(response){
             console.log("Application Id posted successfully");
-            alert("the response is "+ JSON.stringify(response.data));
+//            alert("the response is "+ JSON.stringify(response.data));
         })
 
 //    $http.get('/cityData')
