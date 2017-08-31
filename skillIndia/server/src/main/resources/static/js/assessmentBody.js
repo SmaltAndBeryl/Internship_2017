@@ -57,9 +57,11 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
 
     $scope.myfunction = function(rowData) {
         var appState = Object.values(Object.values(rowData)[1])[3];
+        profileCreationURL = '';
         if (appState == "Incomplete") {
-            window.location = "https://www.google.co.in";
+            //window.location = "https://www.google.co.in";
             //$location.path();
+            $location.path(acceptedRoutingUrl)
             console.log("Please Edit the Form");
 
         } else {
@@ -163,9 +165,15 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
             },
             {
                 name: 'Show Interest',
+                displayName: 'Express Interest',
                 cellClass: 'check',
                 headerCellClass: 'CommonCell',
-                cellTemplate: '<div><input type="checkbox" id="myCheck" value="abc" ng-click=grid.appScope.check(row)>&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.confirmfinal(row)></div>'
+                cellTemplate: '<div><input type="checkbox" id="myCheck" value="abc" ng-click=grid.appScope.check(row)></div>'
+            },
+            {
+            	name: 'Confirm',
+            	displayName: 'Confirm',
+            	cellTemplate : '<div><img src="icon/indexPageIcons/tick.png" class="ab-img-shadow" ng-click=grid.appScope.confirmfinal(row)></div>'
             }
         ]
     };
@@ -183,8 +191,8 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
     }
     $scope.confirmfinal = function(rowData) {
         if (bool == true) {
-            var interestid = Object.values(Object.values(rowData)[1])[0];
-            var urldata = "/showInterest?batchId=" + interestid + "&agencyId=3001";
+            var interestid = rowData.entity.batchId;
+            var urldata = "/showInterest?batchId=" + interestid
             //remove agency Id- pick it from session
             //let batch id as is
             $http.post(urldata).then(function(response) {

@@ -12,6 +12,10 @@
   height: 68px;
   background-color: none;
 }
+.ab-img-shadow
+{
+	cursor: pointer;
+}
 .CommonCell
 {
  width: 50px;
@@ -94,4 +98,5 @@
 }
 .abBackground{
 	background-color: #slategrey;
+	padding:1em;
 }
