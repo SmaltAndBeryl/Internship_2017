@@ -1,6 +1,7 @@
 package com.skill.India.controller;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -124,7 +125,7 @@ public class ManageRegistrationsController {
 	
     @Privilege(value={"SCGJ"})
     @RequestMapping("/cityData")
-    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanDtoCollection(){
+    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanDtoCollection() throws IOException {
     	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
     	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
     	LOGGER.info("Creating Collection to collect data for PDF creation");

@@ -165,9 +165,12 @@ public class DataBeanService {
         LOGGER.info("The size of the array received is >> " + organizationArrayList.size() + " " + arrayListDto1.size() + " " + institutionGrantArrayList.size()+ " " + priorExperienceDtoArrayList.size());
 
         //Logic for generating pdf
-        String sourceFileName = "C://Users/Alkesh/JaspersoftWorkspace/Curie/January.jasper";
+//        String sourceFileName = "C://Users/Alkesh/JaspersoftWorkspace/Curie/January.jasper";
 //        String printFileName = null;
 //        String sourceFileName = System.getProperty("user.home");
+        File file = new File("server/src/main/resources/static/January.jasper");
+        String sourceFileName = file.getAbsolutePath();
+
         LOGGER.info("THE source file is located at "+ sourceFileName);
         String print = null;
 
@@ -195,8 +198,8 @@ public class DataBeanService {
         LOGGER.info("Starting pdf generation.....");
 
         String rndm = String.valueOf(Math.random()).substring(4,8);
-        String destFileName = "D://Jasper/" + rndm + ".pdf";
-//        String destFileName = sourceFileName + File.separatorChar + "TrainingPartner.pdf";
+        File newFile = new File("server/src/main/resources/TrainingPartnerPDF/"+ rndm + ".pdf");
+        String destFileName = newFile.getAbsolutePath();
 
         try{
             LOGGER.info("Creating the jrprint file..");
