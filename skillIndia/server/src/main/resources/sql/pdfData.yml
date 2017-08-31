@@ -34,3 +34,19 @@ pdfData:
  selectTrainingPartnerRegistrationId: >
   SELECT trainingPartnerRegistrationId from trainingpartnerorganizationdetails
    WHERE applicationId = :applicationId;
+
+
+ selectAssessmentBodyRegistrationDetails: >
+  SELECT * from assessmentbodyregistrationdetails;
+
+ selectAssessmentsExperienceInTechnicalDomain: >
+  SELECT * from assessmentsexperienceintechnicaldomain;
+
+ selectAssessmentBodyDirectorsAndManagementTeamDetails: >
+  SELECT * from assessmentbodydirectorsandmanagementteamdetails;
+
+ selectAssessmentStaffDetails: >
+  select * from assessmentstaffdetails;
+
+ selectRegionalOfficeDetails: >
+  select * from regionalofficedetails;
