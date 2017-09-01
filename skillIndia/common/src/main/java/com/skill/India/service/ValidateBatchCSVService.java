@@ -106,31 +106,31 @@ public class ValidateBatchCSVService {
 			LOGGER.info("Fetching data from each row");		
 			String errorString="";
 			
-			String batchId=BatchCSVData.getBatchId();
-			String batchName=BatchCSVData.getBatchName();
-			String batchType=BatchCSVData.getBatchType();
-			String trainingPartnerId=BatchCSVData.getTrainingPartnerId();
-			String centreId=BatchCSVData.getCentreId();
-			String trainerId=BatchCSVData.getTrainerId();
-			String totalCandidatesInBatch=BatchCSVData.getTotalCandidatesInBatch();
-			String batchMode=BatchCSVData.getBatchMode();
-			String batchStartDate=BatchCSVData.getBatchStartDate();
-			String batchEndDate=BatchCSVData.getBatchEndDate();
-			String jobRole=BatchCSVData.getJobRole();
-			String jobRoleCode=BatchCSVData.getJobRoleCode();
-			String maximumMarksTheory=BatchCSVData.getMaximumMarksTheory();
-			String maximumMarksPractical=BatchCSVData.getMaximumMarksPractical();
-			String level=BatchCSVData.getLevel();
-			String resultApproved=BatchCSVData.getResultApproved();
-			String resultApprovedOnDate=BatchCSVData.getResultApprovedOnDate();
-			String totalPass=BatchCSVData.getTotalPass();
-			String totalFail=BatchCSVData.getTotalFail();
-			String totalNotAppeared=BatchCSVData.getTotalNotAppeared();
-			String totalCertified=BatchCSVData.getTotalCertified();
-			String batchAssignmentDate=BatchCSVData.getBatchAssignmentDate();
-			String assessmentDate=BatchCSVData.getAssessmentDate();
-			String agencyId=BatchCSVData.getAgencyId();
-			String assessorId=BatchCSVData.getAssessorId();
+			String batchId=BatchCSVData.getBatchId().trim();
+			String batchName=BatchCSVData.getBatchName().trim();
+			String batchType=BatchCSVData.getBatchType().trim();
+			String trainingPartnerId=BatchCSVData.getTrainingPartnerId().trim();
+			String centreId=BatchCSVData.getCentreId().trim();
+			String trainerId=BatchCSVData.getTrainerId().trim();
+			String totalCandidatesInBatch=BatchCSVData.getTotalCandidatesInBatch().trim();
+			String batchMode=BatchCSVData.getBatchMode().trim();
+			String batchStartDate=BatchCSVData.getBatchStartDate().trim();
+			String batchEndDate=BatchCSVData.getBatchEndDate().trim();
+			String jobRole=BatchCSVData.getJobRole().trim();
+			String jobRoleCode=BatchCSVData.getJobRoleCode().trim();
+			String maximumMarksTheory=BatchCSVData.getMaximumMarksTheory().trim();
+			String maximumMarksPractical=BatchCSVData.getMaximumMarksPractical().trim();
+			String level=BatchCSVData.getLevel().trim();
+			String resultApproved=BatchCSVData.getResultApproved().trim();
+			String resultApprovedOnDate=BatchCSVData.getResultApprovedOnDate().trim();
+			String totalPass=BatchCSVData.getTotalPass().trim();
+			String totalFail=BatchCSVData.getTotalFail().trim();
+			String totalNotAppeared=BatchCSVData.getTotalNotAppeared().trim();
+			String totalCertified=BatchCSVData.getTotalCertified().trim();
+			String batchAssignmentDate=BatchCSVData.getBatchAssignmentDate().trim();
+			String assessmentDate=BatchCSVData.getAssessmentDate().trim();
+			String agencyId=BatchCSVData.getAgencyId().trim();
+			String assessorId=BatchCSVData.getAssessorId().trim();
 			
 			
 			/*
@@ -229,6 +229,7 @@ public class ValidateBatchCSVService {
 			if(!ValidationUtils.dateFormatCheck(batchStartDate) || batchStartDate.equals(""))
 			{
 				errorStatus=1;
+				System.out.println(batchStartDate);
 				errorString=errorString + "Error in 'batchStartDate' column .";
 			}
 			

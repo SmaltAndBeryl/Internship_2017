@@ -103,9 +103,9 @@ public class ValidateTrainingPartnerCSVService {
 			String errorString="";
 			
 			LOGGER.info("Fetching data from each row");		
-			String trainingPartnerId=trainingPartnerCSVData.getTrainingPartnerId();
-			String applicationId=trainingPartnerCSVData.getApplicationId();
-			String trainingPartnerName=trainingPartnerCSVData.getTrainingPartnerName();
+			String trainingPartnerId=trainingPartnerCSVData.getTrainingPartnerId().trim();
+			String applicationId=trainingPartnerCSVData.getApplicationId().trim();
+			String trainingPartnerName=trainingPartnerCSVData.getTrainingPartnerName().trim();
 			
 			/*
 			 * Checking for error in trainingPartnerId column 

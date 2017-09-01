@@ -101,11 +101,11 @@ public class ValidateAssessorCSVService {
 			String errorString="";
 			
 			LOGGER.info("Fetching data from each row");
-			String assessorId=assessorCSVData.getAssessorId();
-			String assessorName=assessorCSVData.getAssessorName();
-			String agencyId=assessorCSVData.getAgencyId();
-			String district=assessorCSVData.getDistrict();
-			String state=assessorCSVData.getState();
+			String assessorId=assessorCSVData.getAssessorId().trim();
+			String assessorName=assessorCSVData.getAssessorName().trim();
+			String agencyId=assessorCSVData.getAgencyId().trim();
+			String district=assessorCSVData.getDistrict().trim();
+			String state=assessorCSVData.getState().trim();
 			
 			/*
 			 * Checking for error in assessorId column 

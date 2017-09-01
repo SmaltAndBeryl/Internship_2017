@@ -99,10 +99,10 @@ public class ValidateTrainerCSVService {
 				String errorString="";
 				
 				LOGGER.info("Fetching data from each row");		
-				String trainerId=trainerCSVData.getTrainerId();
-				String trainerName=trainerCSVData.getTrainerName();
-				String designation=trainerCSVData.getDesignation();
-				String trainingPartnerId=trainerCSVData.getTrainingPartnerId();
+				String trainerId=trainerCSVData.getTrainerId().trim();
+				String trainerName=trainerCSVData.getTrainerName().trim();
+				String designation=trainerCSVData.getDesignation().trim();
+				String trainingPartnerId=trainerCSVData.getTrainingPartnerId().trim();
 	
 				/*
 				 * Checking for error in trainerId column 

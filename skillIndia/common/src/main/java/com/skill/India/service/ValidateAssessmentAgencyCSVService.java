@@ -102,9 +102,9 @@ public class ValidateAssessmentAgencyCSVService {
 			String errorString="";
 			
 			LOGGER.info("Fetching data from each row");		
-			String agencyId=assessmentAgencyCSVData.getAgencyId();
-			String agencyName=assessmentAgencyCSVData.getAgencyName();
-			String applicationId=assessmentAgencyCSVData.getApplicationId();
+			String agencyId=assessmentAgencyCSVData.getAgencyId().trim();
+			String agencyName=assessmentAgencyCSVData.getAgencyName().trim();
+			String applicationId=assessmentAgencyCSVData.getApplicationId().trim();
 			
 			/*
 			 * Checking for error in agencyId column 

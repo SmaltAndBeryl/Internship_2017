@@ -104,27 +104,27 @@ public class ValidateCandidateCSVService {
 			String errorString="";
 			
 			LOGGER.info("Fetching data from each row");		
-			String candidateDetailsId=CandidateCSVData.getCandidateDetailsId();
-			String candidateName=CandidateCSVData.getCandidateName();
-		    String enrollmentNumber=CandidateCSVData.getEnrollmentNumber();
-			String gender=CandidateCSVData.getGender();
-			String dateOfBirth=CandidateCSVData.getDateOfBirth();
-		    String nameOfFatherOrHusband=CandidateCSVData.getNameOfFatherOrHusband();
-			String aadharNumber=CandidateCSVData.getAadharNumber();
-			String mobileNumber=CandidateCSVData.getMobileNumber();
-			String emailId=CandidateCSVData.getEmailId();
-			String educationLevel=CandidateCSVData.getEducationLevel();
-			String traineeAddress=CandidateCSVData.getTraineeAddress();
-			String traineePINCode=CandidateCSVData.getTraineePINCode();
-			String marksObtainedTheory=CandidateCSVData.getMarksObtainedTheory();
-			String marksObtainedPractical=CandidateCSVData.getMarksObtainedPractical();
-			String result=CandidateCSVData.getResult();
-			String certified=CandidateCSVData.getCertified();
-			String placementStatus=CandidateCSVData.getPlacementStatus();
-			String dateOfJoining=CandidateCSVData.getDateOfJoining();
-			String employmentType=CandidateCSVData.getEmploymentType();
-			String batchId=CandidateCSVData.getBatchId();
-			String employerId=CandidateCSVData.getEmployerId();
+			String candidateDetailsId=CandidateCSVData.getCandidateDetailsId().trim();
+			String candidateName=CandidateCSVData.getCandidateName().trim();
+		    String enrollmentNumber=CandidateCSVData.getEnrollmentNumber().trim();
+			String gender=CandidateCSVData.getGender().trim();
+			String dateOfBirth=CandidateCSVData.getDateOfBirth().trim();
+		    String nameOfFatherOrHusband=CandidateCSVData.getNameOfFatherOrHusband().trim();
+			String aadharNumber=CandidateCSVData.getAadharNumber().trim();
+			String mobileNumber=CandidateCSVData.getMobileNumber().trim();
+			String emailId=CandidateCSVData.getEmailId().trim();
+			String educationLevel=CandidateCSVData.getEducationLevel().trim();
+			String traineeAddress=CandidateCSVData.getTraineeAddress().trim();
+			String traineePINCode=CandidateCSVData.getTraineePINCode().trim();
+			String marksObtainedTheory=CandidateCSVData.getMarksObtainedTheory().trim();
+			String marksObtainedPractical=CandidateCSVData.getMarksObtainedPractical().trim();
+			String result=CandidateCSVData.getResult().trim();
+			String certified=CandidateCSVData.getCertified().trim();
+			String placementStatus=CandidateCSVData.getPlacementStatus().trim();
+			String dateOfJoining=CandidateCSVData.getDateOfJoining().trim();
+			String employmentType=CandidateCSVData.getEmploymentType().trim();
+			String batchId=CandidateCSVData.getBatchId().trim();
+			String employerId=CandidateCSVData.getEmployerId().trim();
 	
 			/*
 			 * Checking for error in candidateDetailsId column

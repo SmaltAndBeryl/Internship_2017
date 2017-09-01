@@ -99,13 +99,13 @@ public class ValidateCentreCSVService {
 			String errorString="";
 			
 			LOGGER.info("Fetching data from each row");
-			String centreId=centreCSVData.getCentreId(); 
-			String centreName=centreCSVData.getCentreName();
-			String centrePOCContactName=centreCSVData.getCentrePOCContactname();
-			String centreAddress=centreCSVData.getCentreAddress();
-			String district=centreCSVData.getDistrict();
-			String state=centreCSVData.getState();
-			String trainingPartnerId=centreCSVData.getTrainingPartnerId();
+			String centreId=centreCSVData.getCentreId().trim(); 
+			String centreName=centreCSVData.getCentreName().trim();
+			String centrePOCContactName=centreCSVData.getCentrePOCContactname().trim();
+			String centreAddress=centreCSVData.getCentreAddress().trim();
+			String district=centreCSVData.getDistrict().trim();
+			String state=centreCSVData.getState().trim();
+			String trainingPartnerId=centreCSVData.getTrainingPartnerId().trim();
 		
 			/*
 			 * Checking for error in centreId column 

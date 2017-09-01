@@ -99,11 +99,11 @@ public class ValidateEmployerCSVService {
 			String errorString="";
 		
 			LOGGER.info("Fetching data from each row");
-			String employerId=employerCSVData.getEmployerId();
-			String employerName=employerCSVData.getEmployerName();
-			String locationOfEmployer=employerCSVData.getLocationOfEmployer();
-			String locationOfEmployerDistrict=employerCSVData.getLocationOfEmployerDistrict();
-			String locationOfEmployerState=employerCSVData.getLocationOfEmployerState();
+			String employerId=employerCSVData.getEmployerId().trim();
+			String employerName=employerCSVData.getEmployerName().trim();
+			String locationOfEmployer=employerCSVData.getLocationOfEmployer().trim();
+			String locationOfEmployerDistrict=employerCSVData.getLocationOfEmployerDistrict().trim();
+			String locationOfEmployerState=employerCSVData.getLocationOfEmployerState().trim();
 			
 			/*
 			 * Checking for Mandatory fields 
