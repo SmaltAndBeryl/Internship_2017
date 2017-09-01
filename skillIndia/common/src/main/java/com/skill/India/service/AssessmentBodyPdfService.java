@@ -42,6 +42,7 @@ public class AssessmentBodyPdfService {
         Collection<AssessmentExperienceInTechnicalDomainDto> assessmentExperienceInTechnicalDomainDtos = assessmentExperienceInTechnicalDomainDao.dataBeanDtoCollectionExperience();
         Collection<AssessmentStaffDetailsDto> assessmentStaffDetailsDtos = assessmentStaffDetailsDao.dataBeanDtoCollectionAssessmentStaffDetail();
 
+        String organizationName = null;
         ArrayList<RegionalOfficeDetailsDto> regionalOfficeDetailsDtoArrayList = new ArrayList<>();
         ArrayList<AssessmentBodyRegistrationDetailsDto> assessmentBodyRegistrationDetailsDtoArrayList = new ArrayList<>();
         ArrayList<AssessmentBodyDirectorsDto> assessmentBodyDirectorsDtoArrayList = new ArrayList<>();
@@ -56,6 +57,7 @@ public class AssessmentBodyPdfService {
 
         if(!assessmentBodyRegistrationDetailsDtos.isEmpty()){
             for(AssessmentBodyRegistrationDetailsDto beanDto : assessmentBodyRegistrationDetailsDtos){
+                organizationName = beanDto.getOrganizationName();
                 assessmentBodyRegistrationDetailsDtoArrayList.add(assessmentBodyRegistrationBeans(beanDto.getOrganizationName(), beanDto.getAddress(), beanDto.getCity(), beanDto.getState(), beanDto.getPincode(), beanDto.getsPOCName(), beanDto.getMobileNumber(), beanDto.getAlternateMobileNumber(), beanDto.getLandlineNumber(), beanDto.getAlternateLandlineNumber(), beanDto.getFaxNumber(), beanDto.getWebsites(),
                         beanDto.getYearOfEstablishment(), beanDto.getPriorAssessmentExperience(), beanDto.getPanNumber(), beanDto.getTanNumber(), beanDto.getInsituteReceivedAnyRecognition(), beanDto.getNameOfRecognitionBody(), beanDto.getRecognitionNumber(), beanDto.getYearOfRecognition(), beanDto.getValidityOfRecognition(),
                         beanDto.getAffiliatedToAnySectorSkillCouncil(),
@@ -100,7 +102,7 @@ public class AssessmentBodyPdfService {
         parameters.put("assessmentStaff", assessmentStaffDetailsDataSource);
 
         String rndm = String.valueOf(Math.random()).substring(4,8);
-        File newFile = new File("server/src/main/resources/AssessmentBodyPDF/"+ rndm + ".pdf");
+        File newFile = new File("server/src/main/resources/AssessmentBodyPDF/"+ organizationName.trim() + ".pdf");
         String destFileName = newFile.getAbsolutePath();
         LOGGER.info("THE DESTINATION FILE NAME IS " + sourceFileName);
 

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.*;
 
 /**
@@ -45,6 +47,7 @@ public class DataBeanService {
         Collection<PriorExperienceDto> priorExperienceDtos = priorExperienceDao.dataBeanDtoCollectionPriorExperience(trainingPartnerRegistrationId);
         Collection<DirectorDto> directorDtos = directorDao.dataBeanDtoCollectionDirector(trainingPartnerRegistrationId);
 
+        String nameOfOrganization = null;
         ArrayList<DataBeanDto> organizationArrayList = new ArrayList<>();
         ArrayList<CenterLevelDto> arrayListDto1 = new ArrayList<>();
         ArrayList<InstitutionGrantDto> institutionGrantArrayList = new ArrayList<>();
@@ -54,6 +57,7 @@ public class DataBeanService {
 
         if(!dataBeanDtos.isEmpty()){
             for(DataBeanDto beanDto : dataBeanDtos){
+                nameOfOrganization = beanDto.getOrganizationName();
                 organizationArrayList.add(produce(beanDto.getOrganizationName(),
                         beanDto.getAddress(),
                         beanDto.getCity(),
@@ -198,7 +202,8 @@ public class DataBeanService {
         LOGGER.info("Starting pdf generation.....");
 
         String rndm = String.valueOf(Math.random()).substring(4,8);
-        File newFile = new File("server/src/main/resources/TrainingPartnerPDF/"+ rndm + ".pdf");
+
+        File newFile = new File("server/src/main/resources/TrainingPartnerPDF/"+ nameOfOrganization.trim() + ".pdf");
         String destFileName = newFile.getAbsolutePath();
 
         try{

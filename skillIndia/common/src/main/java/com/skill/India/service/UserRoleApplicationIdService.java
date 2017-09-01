@@ -37,14 +37,20 @@ public class UserRoleApplicationIdService {
 
             if(userRole.equalsIgnoreCase("TP")){
                 LOGGER.info("PRINTING THE trainingPartnerRegistrationId for each user of the Training Partner");
-                for(TrainingPartnerRegistrationIdDto beanDto : trainingPartnerRegistrationIdDtos){
-                    String trainingPartnerRegistrationId = beanDto.getTrainingPartnerRegistrationId();
-                    LOGGER.info("TRAINING PARTNER ID IS " + beanDto.getTrainingPartnerRegistrationId());
-                    dataBeanService.dataBeanDtoCollection(trainingPartnerRegistrationId);
+                if(!trainingPartnerRegistrationIdDtos.isEmpty()){
+                    LOGGER.info("THE trainingPartnerRegistrationIdDtos are not empty and have a size " + trainingPartnerRegistrationIdDtos.size());
+                    for(TrainingPartnerRegistrationIdDto beanDto : trainingPartnerRegistrationIdDtos){
+                        String trainingPartnerRegistrationId = beanDto.getTrainingPartnerRegistrationId();
+                        LOGGER.info("TRAINING PARTNER ID IS " + beanDto.getTrainingPartnerRegistrationId());
+                        dataBeanService.dataBeanDtoCollection(trainingPartnerRegistrationId);
+                    }
+                }
+                else {
+                    LOGGER.info("THE training partner registration ID Dtos are empty with size " + trainingPartnerRegistrationIdDtos.size());
                 }
             }
 
-            else{
+            else if(userRole.equalsIgnoreCase("AB")){
                 LOGGER.info("THE USER IS ASSESSMENT BODY");
                 for(TrainingPartnerRegistrationIdDto beanDto : trainingPartnerRegistrationIdDtos){
 //                    String assessmentBodyRegistrationId = beanDto.get
