@@ -16,13 +16,33 @@ public class PdfDataConfigSql {
     private String selectSqlPriorExperience;
     private String selectSqlDirector;
     private String selectUserRoleApplicationId;
+
     private String selectTrainingPartnerRegistrationId;
+
+    private String selectAssessmentBodyRegistrationId;
 
     private String selectAssessmentBodyRegistrationDetails;
     private String selectAssessmentsExperienceInTechnicalDomain;
     private String selectAssessmentBodyDirectorsAndManagementTeamDetails;
     private String selectAssessmentStaffDetails;
     private String selectRegionalOfficeDetails;
+    private String selectassessmentbodyaffiliationdetails;
+
+    public String getSelectassessmentbodyaffiliationdetails() {
+        return selectassessmentbodyaffiliationdetails;
+    }
+
+    public void setSelectassessmentbodyaffiliationdetails(String selectassessmentbodyaffiliationdetails) {
+        this.selectassessmentbodyaffiliationdetails = selectassessmentbodyaffiliationdetails;
+    }
+
+    public String getSelectAssessmentBodyRegistrationId() {
+        return selectAssessmentBodyRegistrationId;
+    }
+
+    public void setSelectAssessmentBodyRegistrationId(String selectAssessmentBodyRegistrationId) {
+        this.selectAssessmentBodyRegistrationId = selectAssessmentBodyRegistrationId;
+    }
 
     public String getSelectAssessmentStaffDetails() {
         return selectAssessmentStaffDetails;

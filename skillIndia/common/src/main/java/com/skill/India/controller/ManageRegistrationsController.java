@@ -1,6 +1,5 @@
 package com.skill.India.controller;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -137,7 +136,7 @@ public class ManageRegistrationsController {
 
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value = "/getUserRoleApplicationId", method = RequestMethod.POST)
-	public Collection<UserRoleApplicationIdDto> userRoleApplicationId(@RequestParam("applicationId") String applicationId) throws FileNotFoundException, JRException {
+	public int userRoleApplicationId(@RequestParam("applicationId") String applicationId) throws IOException, JRException {
 		LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
 		LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
 		LOGGER.info("Creating Collection to collect data for PDF creation");

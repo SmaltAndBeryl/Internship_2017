@@ -1,7 +1,9 @@
 package com.skill.India.service;
 
+import com.skill.India.dao.AssessmentBodyRegistrationIdDao;
 import com.skill.India.dao.TrainingPartnerRegistrationIdDao;
 import com.skill.India.dao.UserRoleApplicationIdDao;
+import com.skill.India.dto.AssessmentBodyRegistrationIdDto;
 import com.skill.India.dto.TrainingPartnerRegistrationIdDto;
 import com.skill.India.dto.UserRoleApplicationIdDto;
 import net.sf.jasperreports.engine.JRException;
@@ -9,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collection;
 
 @Service
@@ -23,13 +25,21 @@ public class UserRoleApplicationIdService {
     TrainingPartnerRegistrationIdDao trainingPartnerRegistrationIdDao;
 
     @Autowired
+    AssessmentBodyRegistrationIdDao assessmentBodyRegistrationIdDao;
+
+    @Autowired
     DataBeanService dataBeanService;
 
-    public Collection<UserRoleApplicationIdDto> userRoleApplicationIdDtos(String applicationId) throws FileNotFoundException, JRException {
+    @Autowired
+    AssessmentBodyPdfService assessmentBodyPdfService;
+
+    public int userRoleApplicationIdDtos(String applicationId) throws IOException, JRException {
         Collection<UserRoleApplicationIdDto> userRoleApplicationIdDtos = userRoleApplicationIdDao.dataBeanCollectionUserRoleApplicationId(applicationId);
 
         Collection<TrainingPartnerRegistrationIdDto> trainingPartnerRegistrationIdDtos = trainingPartnerRegistrationIdDao.trainingPartnerRegistrationId(applicationId);
+        Collection<AssessmentBodyRegistrationIdDto> assessmentBodyRegistrationIdDtos = assessmentBodyRegistrationIdDao.assessmentBodyRegistrationIdRegistrationIdDtos(applicationId);
 
+        int success = 0;
         for(UserRoleApplicationIdDto userRoleApplicationIdDto : userRoleApplicationIdDtos){
             String userRole = userRoleApplicationIdDto.getUserRole();
 
@@ -42,7 +52,7 @@ public class UserRoleApplicationIdService {
                     for(TrainingPartnerRegistrationIdDto beanDto : trainingPartnerRegistrationIdDtos){
                         String trainingPartnerRegistrationId = beanDto.getTrainingPartnerRegistrationId();
                         LOGGER.info("TRAINING PARTNER ID IS " + beanDto.getTrainingPartnerRegistrationId());
-                        dataBeanService.dataBeanDtoCollection(trainingPartnerRegistrationId);
+                        success = dataBeanService.dataBeanDtoCollection(trainingPartnerRegistrationId);
                     }
                 }
                 else {
@@ -52,12 +62,17 @@ public class UserRoleApplicationIdService {
 
             else if(userRole.equalsIgnoreCase("AB")){
                 LOGGER.info("THE USER IS ASSESSMENT BODY");
-                for(TrainingPartnerRegistrationIdDto beanDto : trainingPartnerRegistrationIdDtos){
-//                    String assessmentBodyRegistrationId = beanDto.get
+                if(!assessmentBodyRegistrationIdDtos.isEmpty()){
+                    for(AssessmentBodyRegistrationIdDto beanDto : assessmentBodyRegistrationIdDtos){
+                        String assessmentBodyRegistrationId = beanDto.getAssessmentBodyRegistrationId();
+                        LOGGER.info("ASSESSMENT BODY REGISTRATION ID IS " + beanDto.getAssessmentBodyRegistrationId());
+                        assessmentBodyPdfService.dataBeanCollection();
+                    }
                 }
+
             }
 
         }
-        return userRoleApplicationIdDao.dataBeanCollectionUserRoleApplicationId(applicationId);
+        return success;
     }
 }

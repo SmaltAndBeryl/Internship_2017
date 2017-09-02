@@ -6,11 +6,9 @@ import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,122 +32,81 @@ public class AssessmentBodyPdfService {
     @Autowired
     private RegionalOfficeDetailsDao regionalOfficeDetailsDao;
 
-    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanCollection() throws IOException {
+    @Autowired AssessmentBodyAffiliationDao assessmentBodyAffiliationDao;
 
+    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanCollection() throws IOException {
+        final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(com.skill.India.service.AssessmentBodyPdfService.class);
+
+        LOGGER.info("Creating collection for storing value from Dtos");
         Collection<RegionalOfficeDetailsDto> regionalOfficeDetailsDtos = regionalOfficeDetailsDao.dataBeanDtoCollectionRegionalOffice();
+        LOGGER.info("Size of Collection regionalOfficeDetailsDto is " + regionalOfficeDetailsDtos.size());
         Collection<AssessmentBodyRegistrationDetailsDto> assessmentBodyRegistrationDetailsDtos = assessmentBodyRegistrationDetailsDao.dataBeanDtoCollectionAssessmentBodyRegistrationDetails();
+        LOGGER.info("Size of Collection assessmentBodyRegistrationDetailsDtos is " + assessmentBodyRegistrationDetailsDtos.size());
         Collection<AssessmentBodyDirectorsDto> assessmentBodyDirectorsDtos = assessmentBodyDirectorsDao.dataBeanDtoCollectionDirectors();
+        LOGGER.info("Size of Collection assessmentBodyDirectorsDtos is " + assessmentBodyDirectorsDtos.size());
         Collection<AssessmentExperienceInTechnicalDomainDto> assessmentExperienceInTechnicalDomainDtos = assessmentExperienceInTechnicalDomainDao.dataBeanDtoCollectionExperience();
+        LOGGER.info("Size of Collection assessmentExperienceInTechnicalDomainDtos is " + assessmentExperienceInTechnicalDomainDtos.size());
         Collection<AssessmentStaffDetailsDto> assessmentStaffDetailsDtos = assessmentStaffDetailsDao.dataBeanDtoCollectionAssessmentStaffDetail();
+        LOGGER.info("Size of Collection assessmentStaffDetailsDtos is " + assessmentStaffDetailsDtos.size());
+        Collection<AssessmentBodyAffiliationDto> assessmentBodyAffiliationDtos = assessmentBodyAffiliationDao.affiliationDtos();
+        LOGGER.info("Size of Collection assessmentBodyAffiliationDtos is " + assessmentBodyAffiliationDtos.size());
+        LOGGER.info("Successfully fetched values in form of collection");
 
         String organizationName = null;
-        ArrayList<RegionalOfficeDetailsDto> regionalOfficeDetailsDtoArrayList = new ArrayList<>();
-        ArrayList<AssessmentBodyRegistrationDetailsDto> assessmentBodyRegistrationDetailsDtoArrayList = new ArrayList<>();
-        ArrayList<AssessmentBodyDirectorsDto> assessmentBodyDirectorsDtoArrayList = new ArrayList<>();
-        ArrayList<AssessmentExperienceInTechnicalDomainDto> assessmentExperienceInTechnicalDomainDtoArrayList = new ArrayList<>();
-        ArrayList<AssessmentStaffDetailsDto> assessmentStaffDetailsDtoArrayList = new ArrayList<>();
 
-        if(!regionalOfficeDetailsDtos.isEmpty()){
-            for(RegionalOfficeDetailsDto beanDto : regionalOfficeDetailsDtos){
-                regionalOfficeDetailsDtoArrayList.add(regionalOfficeDetailsBeans(beanDto.getRegionalOfficeId(), beanDto.getAddress(), beanDto.getState(), beanDto.getPincode(), beanDto.getContactNumber(), beanDto.getAlternateContactNumber()));
-            }
+        for(AssessmentBodyRegistrationDetailsDto beanDto : assessmentBodyRegistrationDetailsDtos){
+            LOGGER.info("Fetching the organization name and storing it to use as PDF name");
+            organizationName = beanDto.getOrganizationName();
         }
+        LOGGER.info("The name of pdf file is " + organizationName);
 
-        if(!assessmentBodyRegistrationDetailsDtos.isEmpty()){
-            for(AssessmentBodyRegistrationDetailsDto beanDto : assessmentBodyRegistrationDetailsDtos){
-                organizationName = beanDto.getOrganizationName();
-                assessmentBodyRegistrationDetailsDtoArrayList.add(assessmentBodyRegistrationBeans(beanDto.getOrganizationName(), beanDto.getAddress(), beanDto.getCity(), beanDto.getState(), beanDto.getPincode(), beanDto.getsPOCName(), beanDto.getMobileNumber(), beanDto.getAlternateMobileNumber(), beanDto.getLandlineNumber(), beanDto.getAlternateLandlineNumber(), beanDto.getFaxNumber(), beanDto.getWebsites(),
-                        beanDto.getYearOfEstablishment(), beanDto.getPriorAssessmentExperience(), beanDto.getPanNumber(), beanDto.getTanNumber(), beanDto.getInsituteReceivedAnyRecognition(), beanDto.getNameOfRecognitionBody(), beanDto.getRecognitionNumber(), beanDto.getYearOfRecognition(), beanDto.getValidityOfRecognition(),
-                        beanDto.getAffiliatedToAnySectorSkillCouncil(),
-                        beanDto.getNumberOfTechnicalAssessors(), beanDto.getNumberOfNonTechnicalAssessors()));
-            }
-        }
+        LOGGER.info("Creating JRBeanCollectionDataSources for injecting into the PDF");
+        JRBeanCollectionDataSource regionalOfficeDataSource = new JRBeanCollectionDataSource(regionalOfficeDetailsDtos, false);
+        JRBeanCollectionDataSource assessmentBodyRegistrationDetailsDataSource = new JRBeanCollectionDataSource(assessmentBodyRegistrationDetailsDtos, false);
+        JRBeanCollectionDataSource assessmentBodyDirectorsDataSource = new JRBeanCollectionDataSource(assessmentBodyDirectorsDtos, false);
+        JRBeanCollectionDataSource assessmentExperienceInTechnicalDomainDataSource = new JRBeanCollectionDataSource(assessmentExperienceInTechnicalDomainDtos, false);
+        JRBeanCollectionDataSource assessmentStaffDetailsDataSource = new JRBeanCollectionDataSource(assessmentStaffDetailsDtos, false);
+        JRBeanCollectionDataSource assessmentAffiliationDetails = new JRBeanCollectionDataSource(assessmentBodyAffiliationDtos, false);
+        LOGGER.info("Successfully created the JRBeanDataSources");
 
-        if(!assessmentBodyDirectorsDtos.isEmpty()){
-            for(AssessmentBodyDirectorsDto beanDto : assessmentBodyDirectorsDtos){
-                assessmentBodyDirectorsDtoArrayList.add(assessmentBodyDirectorsBeans(beanDto.getName(), beanDto.getDesignation(), beanDto.getContactNumber(), beanDto.getEmailId(), beanDto.getEducationalQualification(), beanDto.getExperience()));
-            }
-        }
-
-        if(!assessmentExperienceInTechnicalDomainDtos.isEmpty()){
-            for(AssessmentExperienceInTechnicalDomainDto beanDto : assessmentExperienceInTechnicalDomainDtos){
-                assessmentExperienceInTechnicalDomainDtoArrayList.add(assessmentExperienceInTechnicalDomainBeans(beanDto.getDomain(), beanDto.getNumberOfAssessmentsDone()));
-            }
-        }
-
-        if(!assessmentStaffDetailsDtos.isEmpty()){
-            for(AssessmentStaffDetailsDto beanDto : assessmentStaffDetailsDtos){
-                assessmentStaffDetailsDtoArrayList.add(assessmentStaffDetailsBeans(beanDto.getName(), beanDto.getJobRoleCode(), beanDto.getDesignation(), beanDto.getContactNumber(), beanDto.getEmailId(), beanDto.getDistrict(), beanDto.getState(), beanDto.getEducationalQualification(), beanDto.getExperience()));
-            }
-        }
-
-        File file = new File("server/src/main/resources/static/February.jasper");
-        String sourceFileName = file.getAbsolutePath();
-
-        LOGGER.info("THE SOURCE FILE NAME IS " + sourceFileName);
-
-        JRBeanCollectionDataSource regionalOfficeDataSource = new JRBeanCollectionDataSource(regionalOfficeDetailsDtoArrayList, false);
-        JRBeanCollectionDataSource assessmentBodyRegistrationDetailsDataSource = new JRBeanCollectionDataSource(assessmentBodyRegistrationDetailsDtoArrayList, false);
-        JRBeanCollectionDataSource assessmentBodyDirectorsDataSource = new JRBeanCollectionDataSource(assessmentBodyDirectorsDtoArrayList, false);
-        JRBeanCollectionDataSource assessmentExperienceInTechnicalDomainDataSource = new JRBeanCollectionDataSource(assessmentExperienceInTechnicalDomainDtoArrayList, false);
-        JRBeanCollectionDataSource assessmentStaffDetailsDataSource = new JRBeanCollectionDataSource(assessmentStaffDetailsDtoArrayList, false);
 
         Map parameters = new HashMap();
+        LOGGER.info("Creating HashMap to pass JRBeanDatSource into the PDF as parameters");
         parameters.put("regionalOffice", regionalOfficeDataSource);
         parameters.put("registrationDetails", assessmentBodyRegistrationDetailsDataSource);
         parameters.put("director", assessmentBodyDirectorsDataSource);
-//        parameters.put("technicalDomain",assessmentExperienceInTechnicalDomainDataSource );
+        parameters.put("technicalDomain", assessmentExperienceInTechnicalDomainDataSource);
         parameters.put("assessmentStaff", assessmentStaffDetailsDataSource);
+        parameters.put("assessmentAffiliation", assessmentAffiliationDetails);
 
-        String rndm = String.valueOf(Math.random()).substring(4,8);
-        File newFile = new File("server/src/main/resources/AssessmentBodyPDF/"+ organizationName.trim() + ".pdf");
+        LOGGER.info("Starting PDF injection");
+        File file = new File("server/src/main/resources/static/February.jasper");
+        String sourceFileName = file.getAbsolutePath();
+        LOGGER.info("THE SOURCE FILE NAME IS " + sourceFileName);
+
+        File newFile = new File("server/src/main/resources/AssessmentBodyPDF/" + organizationName.trim() + ".pdf");
         String destFileName = newFile.getAbsolutePath();
-        LOGGER.info("THE DESTINATION FILE NAME IS " + sourceFileName);
+        LOGGER.info("THE DESTINATION FILE NAME IS " + destFileName);
 
-        try{
+        try {
             LOGGER.info("Creating the jrprint file..");
-            JasperPrint printFileName = JasperFillManager.fillReport(sourceFileName,parameters, new JREmptyDataSource());
+            JasperPrint printFileName = JasperFillManager.fillReport(sourceFileName, parameters, new JREmptyDataSource());
+            LOGGER.info("Successfuly created the jrprint file >> " + printFileName);
             OutputStream outputStream = new FileOutputStream(new File(destFileName));
 
-
-            if(printFileName!=null){
+            if (printFileName != null) {
                 LOGGER.info("Exporting the file to pdf..");
-                JasperExportManager.exportReportToPdfStream(printFileName,outputStream);
-            }
-            else {
+                JasperExportManager.exportReportToPdfStream(printFileName, outputStream);
+            } else {
                 LOGGER.info("jrprint file is empty..");
             }
 
             LOGGER.info("Pdf generated successfully....!!!");
         } catch (JRException e) {
-            LOGGER.info("Exception caught..");
+            LOGGER.info("Exception caught, Error in generating PDF");
             e.printStackTrace();
         }
 
         return assessmentBodyRegistrationDetailsDao.dataBeanDtoCollectionAssessmentBodyRegistrationDetails();
-    }
-
-    private AssessmentStaffDetailsDto assessmentStaffDetailsBeans(String name, String jobRoleCode, String designation, String contactNumber, String emailId, String district, String state, String educationalQualification, String experience) {
-        return new AssessmentStaffDetailsDto(name, jobRoleCode, designation, contactNumber, emailId, district, state, educationalQualification, experience);
-    }
-
-    private AssessmentExperienceInTechnicalDomainDto assessmentExperienceInTechnicalDomainBeans(String domain, String numberOfAssessmentsDone) {
-        return new AssessmentExperienceInTechnicalDomainDto(domain, numberOfAssessmentsDone);
-    }
-
-    private AssessmentBodyDirectorsDto assessmentBodyDirectorsBeans(String name, String designation, String contactNumber, String emailId, String educationalQualification, String experience) {
-        return new AssessmentBodyDirectorsDto(name, designation, contactNumber, emailId, educationalQualification, experience);
-    }
-
-    private AssessmentBodyRegistrationDetailsDto assessmentBodyRegistrationBeans(String organizationName, String address, String city, String state, String pincode, String spocName, String mobileNumber, String alternateMobileNumber, String landlineNumber, String alternateLandlineNumber, String faxNumber, String websites, String yearOfEstablishment, String priorAssessmentExperience, String panNumber, String tanNumber, String insituteReceivedAnyRecognition, String NameOfRecognitionBody, String RecognitionNumber, String yearOfRecognition, String validityOfRecognition, String affiliatedToAnySectorSkillCouncil, String numberOfTechnicalAssessors, String numberOfNonTechnicalAssessors) {
-        return new AssessmentBodyRegistrationDetailsDto(organizationName,address, city, state, pincode,spocName, mobileNumber, alternateMobileNumber, landlineNumber, alternateLandlineNumber,faxNumber, websites,
-                yearOfEstablishment, priorAssessmentExperience, panNumber, tanNumber, insituteReceivedAnyRecognition, NameOfRecognitionBody, RecognitionNumber, yearOfRecognition, validityOfRecognition,
-                affiliatedToAnySectorSkillCouncil,
-                numberOfTechnicalAssessors, numberOfNonTechnicalAssessors
-        );
-    }
-
-    private RegionalOfficeDetailsDto regionalOfficeDetailsBeans(String regionalOfficeId, String address, String state, String pincode, String contactNumber, String alternateContactNumber) {
-        return new RegionalOfficeDetailsDto(regionalOfficeId, address, state, pincode, contactNumber, alternateContactNumber);
     }
 }

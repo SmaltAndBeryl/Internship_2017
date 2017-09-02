@@ -25,7 +25,7 @@ public class AssessmentBodyDirectorsDao extends AbstractTransactionalDao{
 
     public Collection<AssessmentBodyDirectorsDto> dataBeanDtoCollectionDirectors(){
         Map<String,Object> parameters = new HashMap<>();
-        return getJdbcTemplate().query(pdfDataConfigSql.getSelectAssessmentsExperienceInTechnicalDomain(), parameters, ROW_MAPPER);
+        return getJdbcTemplate().query(pdfDataConfigSql.getSelectAssessmentBodyDirectorsAndManagementTeamDetails(), parameters, ROW_MAPPER);
     }
 
     private static class PdfDataDaoRowMapper implements RowMapper<AssessmentBodyDirectorsDto> {
