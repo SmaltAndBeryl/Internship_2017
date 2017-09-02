@@ -199,16 +199,20 @@ $scope.myfunction = function(rowData){
     })
         .then(function(response){
             console.log("Application Id posted successfully");
+            if(response.data > 0){
+                $scope.successText = "PDF generated successfully";
+                $scope.successTextColor = "green";
+            }
+            else if(response.data < 0){
+                $scope.successText = "PDF could not be generated successfully due to some error";
+                $scope.successTextColor = "orange";
+            }
+            else if(response.data == 0){
+                $scope.successText = "PDF could not be generated successfully";
+                $scope.successTextColor = "red";
+            }
 //            alert("the response is "+ JSON.stringify(response.data));
         })
-
-//    $http.get('/cityData')
-//        .then(function(response){
-//            console.log("Generating PDF..");
-//            if(response.data != null){
-//                alert("PDF generation successful..");
-//            }
-//        })
 };
 //function for edit functionalities
 

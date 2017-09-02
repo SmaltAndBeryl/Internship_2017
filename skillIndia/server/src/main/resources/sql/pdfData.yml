@@ -35,6 +35,10 @@ pdfData:
   SELECT trainingPartnerRegistrationId from trainingpartnerorganizationdetails
    WHERE applicationId = :applicationId;
 
+ selectAssessmentBodyRegistrationId: >
+  SELECT assessmentBodyRegistrationId from assessmentbodyregistrationdetails
+   WHERE applicationId = :applicationId;
+
 
  selectAssessmentBodyRegistrationDetails: >
   SELECT * from assessmentbodyregistrationdetails;
@@ -50,3 +54,6 @@ pdfData:
 
  selectRegionalOfficeDetails: >
   select * from regionalofficedetails;
+
+ selectassessmentbodyaffiliationdetails: >
+  select * from assessmentbodyaffiliationdetails;
