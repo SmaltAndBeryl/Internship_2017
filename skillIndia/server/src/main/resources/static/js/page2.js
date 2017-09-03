@@ -185,13 +185,16 @@ $http.get('/approve')
         $scope.gridOptionsIncomplete.data = response.data.incomplete;
 
     });
+//function for loader
 
 //function for pdf generation
 
 $scope.myfunction = function(rowData){
     var applicationId = rowData.entity.applicationId;
     console.log("The application Id is " + applicationId);
-
+    console.log("Rolling is " + $scope.rolling);
+    $scope.rolling = true;
+    $scope.generating = "Generating your PDF, please wait..."
     $http({
         url : '/getUserRoleApplicationId',
         method : 'POST',
@@ -202,14 +205,17 @@ $scope.myfunction = function(rowData){
             if(response.data > 0){
                 $scope.successText = "PDF generated successfully";
                 $scope.successTextColor = "green";
+                $scope.rolling = false;
             }
             else if(response.data < 0){
                 $scope.successText = "PDF could not be generated successfully due to some error";
                 $scope.successTextColor = "orange";
+                $scope.rolling = false;
             }
             else if(response.data == 0){
                 $scope.successText = "PDF could not be generated successfully";
                 $scope.successTextColor = "red";
+                $scope.rolling = false;
             }
 //            alert("the response is "+ JSON.stringify(response.data));
         })

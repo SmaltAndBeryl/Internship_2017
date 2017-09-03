@@ -1,12 +1,19 @@
-<div class="table" ng-controller="page2">
+<div class="table" ng-controller="page2" ng-cloak>
     <h3 class="manage">Manage Registration</h3>
     <div class="table-wrap">
+        <!--<div data-loading></div>-->
         <h4 class="title">Approve/Reject Forms</h4>
-        <div class=" approveReject">
+        <div class="approveReject">
+            <div data-loading></div>
             <div  ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid"></div>
             <div style=" color : {{successTextColor}}; margin: 10px ">
                 {{successText}}
+                <div ng-show="rolling">
+                    <img src="gif/Facebook.gif"/>
+                    {{generating}}
+                </div>
             </div>
+
         </div>
     </div>
 
