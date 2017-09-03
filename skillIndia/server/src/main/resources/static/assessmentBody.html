@@ -1,46 +1,44 @@
-    <link rel="stylesheet" href="../css/assessmentBodyHomePage.css">
+    <link href="css/Abhomepage.css" type="text/css" rel="stylesheet" />
 <div ng-controller="assessmentBody" ng-show="authenticated" class="ab-background">    
 
     <div class="welcome"> Welcome {{spockName}}</div>
 
-    <div  class="">
+    <div class="mainboundary">
         <div class="title">Application Status</div>
-        <div>
-            <div ui-grid="abAppStatus" class="" ui-grid-auto-resize></div>
-        </div>
+        
+            <div ui-grid="abAppStatus" ui-grid-auto-resize></div>
+        
     </div>
 
-    <div class="" >
+    <div class="mainboundary" >
         <h3 class="heading">Past Batch(es)</h3>
-        <div>
-            <div ui-grid="gridOptions1" class="" ui-grid-auto-resize></div>
-        </div>
+        
+            <div ui-grid="gridOptions1" ui-grid-auto-resize></div>
+        
     </div>
 
-    <div class="">
+    <div class="mainboundary" >
         <h3 class="heading">Upcoming Batch(es)</h3>
-        <div>
-            <div ui-grid="gridOptions2" class="" ui-grid-auto-resize></div>
-        </div>
+        
+            <div ui-grid="gridOptions2" ui-grid-auto-resize></div>
+        
     </div>
 
-    <div class="">
+    <div  class="mainboundary" >
         <h3 class="heading">Assigned Batch(es)</h3>
-        <div>
-            <div ui-grid="gridOptions3" class="" ui-grid-auto-resize></div>
-        </div>
+        
+            <div ui-grid="gridOptions3" ui-grid-auto-resize></div>
+        
     </div>
-
-    <div class="">
+    <div class="mainboundary">
         <h3 class="heading">Confirmed Batch(es)</h3>
-        <div>
-            <div ui-grid="gridOptions4" class="" ui-grid-auto-resize></div>
+        
+            <div ui-grid="gridOptions4" ui-grid-auto-resize></div>
         </div>
-        <div>
+        <div class="mainboundary">
         <h3 class="heading">Interest Expressed Batch(es)</h3>
-        <div>
-        	<div ui-grid="gridstatus" class="" ui-grid-auto-resize></div>
-        </div>
+        
+        	<div ui-grid="gridstatus" ui-grid-auto-resize></div>
+        
         </div>
     </div>
-</div>

@@ -1,96 +1,69 @@
-.mainwrap {
-  width: 1280px;
-  height: 1200px;
-  margin: 24px;
-  background-color: #ECF0F1;
+.ab-img-shadow
+{
+	box-shadow: 0 0 10px #ccc;
+	cursor: pointer;
 }
-.welcome {
-  width: 400px;
-  height: 60px;
-  font-family: Calibri;
-  font-size: 32px;
-  line-height: 1.58;
-  padding: 36px;
-  text-align: left;
-  color: #000000;
+.ab-img-shadow:hover
+{
+	cursor: pointer;
 }
-.appstboxwrap {
-  width: 1178px;
-  height: 152px;
-  margin-left: 51px;
-  margin-right: 51px;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
-}
-.appst {
-  width: 220px;
-  height: 30px;
-  font-family: Calibri;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 10px;
+.CommonCell
+{
+ width: 50px;
+  height: 10px;
+  font-family: OpenSans;
+  font-size: 13px;
   text-align: left;
   color: #676a6c;
+  padding-left:10px;
+  padding-top:5px;
 }
-.pstbtchboxwrap {
-  width: 1178px;
-  height: 248px;
-  margin-left: 51px;
-  margin-right: 51px;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
-}
-.pasttbatch {
-  width: 200px;
-  height: 30px;
-  font-family: Calibri;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 10px;
+.cell
+{
+ width: 58px;
+  height: 15px;
+  font-family: OpenSans;
+  font-size: 15px;
   text-align: left;
   color: #676a6c;
+  padding-left:10px;
+  padding-top:5px;
 }
-.upbtchboxwrap {
-  width: 1178px;
-  height: 248px;
-  margin-left: 51px;
-  margin-right: 51px;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+.showInterest
+{
+ text-align: center;
 }
-.upcomingbatch {
-  width: 200px;
-  height: 30px;
-  font-family: Calibri;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 10px;
-  text-align: left;
-  color: #676a6c;
+.check
+{
+ text-align:center;
+ margin:center;
 }
-.asgnstboxwrap {
-  width: 1178px;
-  height: 248px;
-  margin-right: 51px;
-  margin-left: 51px;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+.mainboundary
+{
+ background-color:White;
+ padding:1em;
+ margin-bottom:1em;
 }
-.assignstatus {
-  width: 200px;
-  height: 30px;
-  font-family: Calibri;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 10px;
-  text-align: left;
-  color: #676a6c;
+.heading
+{
+/*     padding: 0.3em; */
+margin-bottom:1em;
+    color: grey;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tick
+{
+ margin-bottom:5px;
+ cursor: pointer;
+}
+.tick:hover{
+	-moz-box-shadow: 0 0 10px #ccc;
+		-webkit-box-shadow: 0 0 10px #ccc;
+		box-shadow: 0 0 10px #ccc;
+}
+.ab-background{
+	background-color: #EAEEEF;
+	padding:1em;
 }
