@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -97,7 +98,6 @@ public class DataBeanService {
         //Use this if the below stream doesn't work
 //        InputStream inputStream = getClass().getResourceAsStream("/static/January.jasper");
 
-        //Modified input stream if path to resource is invalid
 
         ClassPathResource resource = new ClassPathResource("/static/January.jasper");
         InputStream inputStream = resource.getInputStream();
@@ -112,7 +112,7 @@ public class DataBeanService {
         LOGGER.info("THE DESTINATION FILE NAME IS " + destFileName);
 
 
-
+        HashMap<String, Object> map = new HashMap<>();
         int success = 0;
         try{
             LOGGER.info("Creating the jrprint file..");
@@ -120,7 +120,7 @@ public class DataBeanService {
             LOGGER.info("Successfuly created the jrprint file >> " + printFileName);
             OutputStream outputStream = new FileOutputStream(new File(destFileName));
 
-
+            map.put("jrprint", printFileName);
             if(printFileName!=null){
                 LOGGER.info("Exporting the file to pdf..");
                 JasperExportManager.exportReportToPdfStream(printFileName,outputStream);
@@ -132,6 +132,7 @@ public class DataBeanService {
             }
 
             success++;
+            map.put("success", success);
             LOGGER.info("Pdf generated successfully....!!!");
             LOGGER.info("Success code = "+ success);
 

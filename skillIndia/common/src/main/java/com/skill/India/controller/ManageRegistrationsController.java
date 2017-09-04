@@ -1,9 +1,6 @@
 package com.skill.India.controller;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -15,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 
 import com.skill.India.common.Privilege;
@@ -139,6 +137,32 @@ public class ManageRegistrationsController {
     }
 
 
+    private static final String FILE_PATH = "/static/2151.pdf";
+    private static final String APPLICATION_PDF = "application/pdf";
+
+	@Privilege(value={"SCGJ"})
+	@RequestMapping(value = "/generate", method = RequestMethod.GET , produces = APPLICATION_PDF)
+	public @ResponseBody void download(HttpServletResponse response) throws IOException {
+		File file = new File("C://Internship_2017.git/trunk/skillIndia/server/src/main/resources/static/2151.pdf");
+		InputStream inputStream = new FileInputStream(file);
+		response.setContentType(APPLICATION_PDF);
+		response.setHeader("Content-Disposition", "attachement; filename=" + file.getName());
+		response.setHeader("Content-Length", String.valueOf(file.length()));
+		FileCopyUtils.copy(inputStream, response.getOutputStream());
+	}
+
+//	@Privilege(value={"SCGJ"})
+//	@RequestMapping(value = "/getUserRoleApplicationId", method = RequestMethod.POST)
+//	public int userRoleApplicationId(@RequestParam("applicationId") String applicationId, HttpServletResponse response) throws IOException, JRException {
+//		LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
+//		LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
+//		LOGGER.info("Creating Collection to collect data for PDF creation");
+//		LOGGER.info("Sending Request to Service");
+//
+//
+//		return userRoleApplicationIdService.userRoleApplicationIdDtos(applicationId);
+//	}
+
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value = "/getUserRoleApplicationId", method = RequestMethod.POST)
 	public int userRoleApplicationId(@RequestParam("applicationId") String applicationId, HttpServletResponse response) throws IOException, JRException {
@@ -146,11 +170,11 @@ public class ManageRegistrationsController {
 		LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
 		LOGGER.info("Creating Collection to collect data for PDF creation");
 		LOGGER.info("Sending Request to Service");
-
+		LOGGER.info("Calling method to download file");
+//		manageRegistrationsController.download(response);
 
 		return userRoleApplicationIdService.userRoleApplicationIdDtos(applicationId);
 	}
-
 //	private void streamReport(HttpServletResponse response, byte[] data, Path paths) throws IOException {
 //		response.setContentType("application/pdf");
 //		response.setHeader("Content-disposition", "attachment; filename="+ paths);
