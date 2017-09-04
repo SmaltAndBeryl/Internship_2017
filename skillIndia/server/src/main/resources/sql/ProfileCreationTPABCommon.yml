@@ -8,3 +8,6 @@ ProfileCreationTPABCommon:
     
  getDataFromUser: >
   select * from user where userId=:userId; 
+  
+ getUserRole: >
+  select userRole from user where userId=:userId; 
