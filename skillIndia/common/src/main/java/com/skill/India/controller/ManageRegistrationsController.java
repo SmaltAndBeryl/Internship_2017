@@ -1,6 +1,9 @@
 package com.skill.India.controller;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.skill.India.common.Privilege;
 import com.skill.India.common.SessionUserUtility;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class ManageRegistrationsController {
@@ -136,7 +141,7 @@ public class ManageRegistrationsController {
 
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value = "/getUserRoleApplicationId", method = RequestMethod.POST)
-	public int userRoleApplicationId(@RequestParam("applicationId") String applicationId) throws IOException, JRException {
+	public int userRoleApplicationId(@RequestParam("applicationId") String applicationId, HttpServletResponse response) throws IOException, JRException {
 		LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
 		LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
 		LOGGER.info("Creating Collection to collect data for PDF creation");
@@ -146,14 +151,28 @@ public class ManageRegistrationsController {
 		return userRoleApplicationIdService.userRoleApplicationIdDtos(applicationId);
 	}
 
-    @Privilege(value={"SCGJ"})
-    @RequestMapping("/generatePdf")
-    public void pdfBeanArrayList(){
-    	LOGGER.info("In ManageRegistrationsController - pdfBeanArrayList");
-    	LOGGER.info("Request Received from front end to generate PDF for the process of Affiliation of a Body");
-    	LOGGER.info("Sending Request to Service");
-//    	dataBeanService.generatePdf();
-    	LOGGER.info("Exiting The Controller");
-    }
+//	private void streamReport(HttpServletResponse response, byte[] data, Path paths) throws IOException {
+//		response.setContentType("application/pdf");
+//		response.setHeader("Content-disposition", "attachment; filename="+ paths);
+//		response.setContentLength(data.length);
+//
+//		response.getOutputStream().write(data);
+//		response.getOutputStream().flush();
+//
+//	}
+
+//	@Privilege(value={"SCGJ"})
+//    @RequestMapping("/generatePdf")
+//    public int pdfBeanArrayList(HttpServletResponse response) throws IOException, JRException {
+//    	LOGGER.info("In ManageRegistrationsController - pdfBeanArrayList");
+//    	LOGGER.info("Request Received from front end to generate PDF for the process of Affiliation of a Body");
+//    	LOGGER.info("Sending Request to Service");
+//
+//		Path paths = Paths.get("server/src/main/resources/static/2151.pdf");
+//		byte[] data = Files.readAllBytes(paths);
+//		streamReport(response, data, paths);
+//
+//    	return 1;
+//    }
 		
 }
