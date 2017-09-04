@@ -33,11 +33,11 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 	 * Get Training Partner Registration id using ApplicationId  
 	 */
 	
-	public String profileCreationGetTrainingPartnerRegistrationIdUsingApplicationId()
+	public String profileCreationGetTrainingPartnerRegistrationIdUsingApplicationId(int applicationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername()));
+		parameters.put("applicationId",applicationId);
 		return getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getGetTrainingPartnerRegistrationIdUsingApplicationId(), parameters, String.class);
 		}
 		catch(Exception e)
@@ -54,7 +54,7 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 	
 	private static final ProfileCreationTrainingPartnerOrganizationDetailsRowMapper ROW_MAPPER_TPREG_ORGDETAILS = new ProfileCreationTrainingPartnerOrganizationDetailsRowMapper();
 	
-	public Collection<ProfileCreationTrainingPartnerOrganizationDetailsDto> profileCreationGetDataFromTrainingPartnerOrganizationDetails(String applicationId)
+	public Collection<ProfileCreationTrainingPartnerOrganizationDetailsDto> profileCreationGetDataFromTrainingPartnerOrganizationDetails(int applicationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();

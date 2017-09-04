@@ -10,6 +10,22 @@ public class ProfileCreationTPABCommonConfigSql {
 	private String getDataFromUser;
 	private String insertIntoApplication;
 	private String updateIntoApplication;
+	private String getUserRole;
+	
+	
+	
+	/**
+	 * @return the getUserRole
+	 */
+	public String getGetUserRole() {
+		return getUserRole;
+	}
+	/**
+	 * @param getUserRole the getUserRole to set
+	 */
+	public void setGetUserRole(String getUserRole) {
+		this.getUserRole = getUserRole;
+	}
 	/**
 	 * @return the getDataFromUser
 	 */

@@ -34,11 +34,11 @@ public class ProfileCreationAssessmentBodyGetDataDao extends AbstractTransaction
 	 * Get AssessmentBody Registration Id using ApplicationId  
 	 */
 	
-	public String profileCreationGetAssessmentBodyRegistrationIdUsingApplicationId()
+	public String profileCreationGetAssessmentBodyRegistrationIdUsingApplicationId(int applicationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("applicationId",sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername()));
+		parameters.put("applicationId",applicationId);
 		return getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getGetAssessmentBodyRegistrationIdUsingApplicationId(), parameters, String.class);
 		}
 		catch(Exception e)
@@ -54,7 +54,7 @@ public class ProfileCreationAssessmentBodyGetDataDao extends AbstractTransaction
 	
 private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper ROW_MAPPER_ABREGDETAILS = new ProfileCreationAssessmentBodyRegistrationDetailsRowMapper();
 	
-	public Collection<ProfileCreationAssessmentBodyRegistrationDetailsDto> profileCreationGetDataFromAssessmentBodyRegistrationDetails(String applicationId)
+	public Collection<ProfileCreationAssessmentBodyRegistrationDetailsDto> profileCreationGetDataFromAssessmentBodyRegistrationDetails(int applicationId)
 	{
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();

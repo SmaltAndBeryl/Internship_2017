@@ -63,8 +63,8 @@ public class UserIdtoApplicationIdDao extends AbstractTransactionalDao {
 			LOGGER.error("ERROR: Encountered Exception - "+e);
 			
 			LOGGER.info("Exception occurs in getting applicationId");
-			LOGGER.info("Returning NULL");
-			return null;
+			LOGGER.info("Returning -2 (Exception occurs )");
+			return -2;
 			// TODO: handle exception
 		}
 	}
