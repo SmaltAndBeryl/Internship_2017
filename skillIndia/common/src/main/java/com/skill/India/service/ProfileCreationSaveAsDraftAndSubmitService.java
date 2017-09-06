@@ -11,6 +11,13 @@ import org.springframework.stereotype.Service;
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dao.GetUserRoleDao;
 import com.skill.India.dao.ProfileCreationTPABCommonDao;
+import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
+import com.skill.India.dto.ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto;
+import com.skill.India.dto.ProfileCreationAssessmentBodyRecognitionsDto;
+import com.skill.India.dto.ProfileCreationAssessmentBodyRegionalOfficeDetailsDto;
+import com.skill.India.dto.ProfileCreationAssessmentBodyRegistrationDetailsDto;
+import com.skill.India.dto.ProfileCreationAssessmentStaffDetailsDto;
+import com.skill.India.dto.ProfileCreationAssessmentsExperienceInTechnicalDomainDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerCenterDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteGrantDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto;
@@ -392,6 +399,212 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			/*
 			 * Setting different Dto's
 			 */
+			
+			/*
+			 * ProfileCreationAssessmentBodyRegistrationDetailsDto Setting Starts
+			 */
+			
+			ArrayList<ProfileCreationAssessmentBodyRegistrationDetailsDto> assessmentBodyRegistrationDetailsList = new ArrayList<ProfileCreationAssessmentBodyRegistrationDetailsDto>();
+			
+			for(Map.Entry<String, HashMap<String, String>> profileCreationAssessmentBodyRegistrationDetailsIterator : assessmentBodyRegistrationDetails.entrySet())
+			{
+			HashMap<String, String> setProfileCreationAssessmentBodyRegistrationDetailsDto = new HashMap<String, String>();
+			setProfileCreationAssessmentBodyRegistrationDetailsDto=profileCreationAssessmentBodyRegistrationDetailsIterator.getValue();
+			assessmentBodyRegistrationDetailsList.add(new ProfileCreationAssessmentBodyRegistrationDetailsDto(
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("assessmentBodyRegistrationId"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("applicationId"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("organizationName"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("sPOCName"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("address"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("city"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("state"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("pincode"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("mobileNumber"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("alternateMobileNumber"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("landlineNumber"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("alternateLandlineNumber"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("faxNumber"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("websites"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("yearOfEstablishment"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("priorAssessmentExperience"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("panNumber"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("panNumberPath"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("tanNumber"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("tanNumberPath"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("insituteReceivedAnyRecognition"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("numberOfTechnicalAssessors"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("numberOfNonTechnicalAssessors"),
+					setProfileCreationAssessmentBodyRegistrationDetailsDto.get("affiliatedToAnySectorSkillCouncil")
+					));
+			}
+			
+			/*
+			 * Setting of ProfileCreationAssessmentBodyRegistrationDetailsDto Ends Here
+			 */
+
+			
+			
+			/*
+			 * ProfileCreationAssessmentBodyRecognitionsDto Setting Starts
+			 */
+			
+			ArrayList<ProfileCreationAssessmentBodyRecognitionsDto> assessmentBodyRecognitionsList = new ArrayList<ProfileCreationAssessmentBodyRecognitionsDto>();
+			
+			for(Map.Entry<String, HashMap<String, String>> profileCreationAssessmentBodyRecognitionsIterator : assessmentBodyRecognitions.entrySet())
+			{
+			HashMap<String, String> setProfileCreationAssessmentBodyRecognitionsDto = new HashMap<String, String>();
+			setProfileCreationAssessmentBodyRecognitionsDto=profileCreationAssessmentBodyRecognitionsIterator.getValue();
+			assessmentBodyRecognitionsList.add(new ProfileCreationAssessmentBodyRecognitionsDto(
+					setProfileCreationAssessmentBodyRecognitionsDto.get("assessmentBodyRecognitionId"),
+					setProfileCreationAssessmentBodyRecognitionsDto.get("assessmentBodyRegistrationId"),
+					setProfileCreationAssessmentBodyRecognitionsDto.get("nameOfRecognitionBody"),
+					setProfileCreationAssessmentBodyRecognitionsDto.get("recognitionNumber"),
+					setProfileCreationAssessmentBodyRecognitionsDto.get("yearOfRecognition"),
+					setProfileCreationAssessmentBodyRecognitionsDto.get("validityOfRecognition")
+					));
+			}
+			
+			/*
+			 * Setting of ProfileCreationAssessmentBodyRecognitionsDto Ends Here
+			 */
+			
+			
+			
+			/*
+			 * ProfileCreationAssessmentsExperienceInTechnicalDomainDto Setting Starts
+			 */
+			
+			ArrayList<ProfileCreationAssessmentsExperienceInTechnicalDomainDto> assessmentsExperienceInTechnicalDomainList = new ArrayList<ProfileCreationAssessmentsExperienceInTechnicalDomainDto>();
+			
+			for(Map.Entry<String, HashMap<String, String>> profileCreationAssessmentsExperienceInTechnicalDomainIterator : assessmentsExperienceInTechnicalDomain.entrySet())
+			{
+			HashMap<String, String> setProfileCreationAssessmentsExperienceInTechnicalDomainDto = new HashMap<String, String>();
+			setProfileCreationAssessmentsExperienceInTechnicalDomainDto=profileCreationAssessmentsExperienceInTechnicalDomainIterator.getValue();
+			assessmentsExperienceInTechnicalDomainList.add(new ProfileCreationAssessmentsExperienceInTechnicalDomainDto(
+					setProfileCreationAssessmentsExperienceInTechnicalDomainDto.get("assessmentExperienceId"),
+					setProfileCreationAssessmentsExperienceInTechnicalDomainDto.get("assessmentBodyRegistrationId"),
+					setProfileCreationAssessmentsExperienceInTechnicalDomainDto.get("domain"),
+					setProfileCreationAssessmentsExperienceInTechnicalDomainDto.get("numberOfAssessmentsDone")
+					));
+			}
+			
+			/*
+			 * Setting of ProfileCreationAssessmentsExperienceInTechnicalDomainDto Ends Here
+			 */
+			
+			
+			
+			/*
+			 * ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto Setting Starts
+			 */
+			
+			ArrayList<ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto> assessmentBodyDirectorsAndManagementTeamDetailsList = new ArrayList<ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto>();
+			
+			for(Map.Entry<String, HashMap<String, String>> profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsIterator : assessmentBodyDirectorsAndManagementTeamDetail.entrySet())
+			{
+			HashMap<String, String> setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto = new HashMap<String, String>();
+			setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto=profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsIterator.getValue();
+			assessmentBodyDirectorsAndManagementTeamDetailsList.add(new ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto(
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("directorsAndManagementId"),
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("assessmentBodyRegistrationId"),
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("name"),
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("designation"),
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("contactNumber"),
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("emailId"),
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("educationalQualification"),
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("experience"),
+					setProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.get("cVPath")
+					));
+			}
+			
+			/*
+			 * Setting of ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto Ends Here
+			 */
+			
+			
+			/*
+			 * ProfileCreationAssessmentStaffDetailsDto Setting Starts
+			 */
+			
+			ArrayList<ProfileCreationAssessmentStaffDetailsDto> assessmentStaffDetailsList = new ArrayList<ProfileCreationAssessmentStaffDetailsDto>();
+			
+			for(Map.Entry<String, HashMap<String, String>> profileCreationAssessmentStaffDetailsIterator : assessmentStaffDetails.entrySet())
+			{
+			HashMap<String, String> setProfileCreationAssessmentStaffDetailsDto = new HashMap<String, String>();
+			setProfileCreationAssessmentStaffDetailsDto=profileCreationAssessmentStaffDetailsIterator.getValue();
+			assessmentStaffDetailsList.add(new ProfileCreationAssessmentStaffDetailsDto(
+					setProfileCreationAssessmentStaffDetailsDto.get("assessmentStaffId"),
+					setProfileCreationAssessmentStaffDetailsDto.get("assessmentBodyRegistrationId"),
+					setProfileCreationAssessmentStaffDetailsDto.get("name"),
+					setProfileCreationAssessmentStaffDetailsDto.get("jobRoleCode"),
+					setProfileCreationAssessmentStaffDetailsDto.get("designation"),
+					setProfileCreationAssessmentStaffDetailsDto.get("contactNumber"),
+					setProfileCreationAssessmentStaffDetailsDto.get("emailId"),
+					setProfileCreationAssessmentStaffDetailsDto.get("state"),
+					setProfileCreationAssessmentStaffDetailsDto.get("city"),
+					setProfileCreationAssessmentStaffDetailsDto.get("educationalQualification"),
+					setProfileCreationAssessmentStaffDetailsDto.get("experience"),
+					setProfileCreationAssessmentStaffDetailsDto.get("cVPath"),
+					setProfileCreationAssessmentStaffDetailsDto.get("certificatePath")
+					));
+			}
+			
+			/*
+			 * Setting of ProfileCreationAssessmentStaffDetailsDto Ends Here
+			 */
+			
+			
+			
+			/*
+			 * ProfileCreationAssessmentBodyRegionalOfficeDetailsDto Setting Starts
+			 */
+			
+			ArrayList<ProfileCreationAssessmentBodyRegionalOfficeDetailsDto> assessmentBodyRegionalOfficeDetailsList = new ArrayList<ProfileCreationAssessmentBodyRegionalOfficeDetailsDto>();
+			
+			for(Map.Entry<String, HashMap<String, String>> profileCreationAssessmentBodyRegionalOfficeDetailsIterator : assessmentBodyRegionalOfficeDetails.entrySet())
+			{
+			HashMap<String, String> setProfileCreationAssessmentBodyRegionalOfficeDetailsDto = new HashMap<String, String>();
+			setProfileCreationAssessmentBodyRegionalOfficeDetailsDto=profileCreationAssessmentBodyRegionalOfficeDetailsIterator.getValue();
+			assessmentBodyRegionalOfficeDetailsList.add(new ProfileCreationAssessmentBodyRegionalOfficeDetailsDto(
+					setProfileCreationAssessmentBodyRegionalOfficeDetailsDto.get("regionalOfficeId"),
+					setProfileCreationAssessmentBodyRegionalOfficeDetailsDto.get("assessmentBodyRegistrationId"),
+					setProfileCreationAssessmentBodyRegionalOfficeDetailsDto.get("address"),
+					setProfileCreationAssessmentBodyRegionalOfficeDetailsDto.get("state"),
+					setProfileCreationAssessmentBodyRegionalOfficeDetailsDto.get("pincode"),
+					setProfileCreationAssessmentBodyRegionalOfficeDetailsDto.get("contactNumber"),
+					setProfileCreationAssessmentBodyRegionalOfficeDetailsDto.get("alternateContactNumber")
+					));
+			}
+			
+			/*
+			 * Setting of ProfileCreationAssessmentBodyRegionalOfficeDetailsDto Ends Here
+			 */
+			
+			
+			/*
+			 * ProfileCreationAssessmentBodyAffiliationDetailsDto Setting Starts
+			 */
+			
+			ArrayList<ProfileCreationAssessmentBodyAffiliationDetailsDto> assessmentBodyAffiliationDetailsList = new ArrayList<ProfileCreationAssessmentBodyAffiliationDetailsDto>();
+			
+			for(Map.Entry<String, HashMap<String, String>> profileCreationAssessmentBodyAffiliationDetailsIterator : assessmentBodyAffiliationDetails.entrySet())
+			{
+			HashMap<String, String> setProfileCreationAssessmentBodyAffiliationDetailsDto = new HashMap<String, String>();
+			setProfileCreationAssessmentBodyAffiliationDetailsDto=profileCreationAssessmentBodyAffiliationDetailsIterator.getValue();
+			assessmentBodyAffiliationDetailsList.add(new ProfileCreationAssessmentBodyAffiliationDetailsDto(
+					setProfileCreationAssessmentBodyAffiliationDetailsDto.get("affiliationId"),
+					setProfileCreationAssessmentBodyAffiliationDetailsDto.get("assessmentBodyRegistrationId"),
+					setProfileCreationAssessmentBodyAffiliationDetailsDto.get("nameOfSectorSkillCouncil")
+
+					));
+			}
+			
+			/*
+			 * Setting of ProfileCreationAssessmentBodyAffiliationDetailsDto Ends Here
+			 */
+			
+			
+			
 			
 		}
 		else 
