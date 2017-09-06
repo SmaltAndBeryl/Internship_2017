@@ -1,5 +1,6 @@
 package com.skill.India.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skill.India.common.ReadApplicationConstants;
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dao.GetUserRoleDao;
 import com.skill.India.dao.ProfileCreationTPABCommonDao;
@@ -38,7 +40,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	private GetUserRoleDao getUserRoleDao;
 	
 	@Autowired
-	private ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto; 
+	private ReadApplicationConstants readApplicationConstants;
 	
 	public String profileCreationSaveAsDraftAndSubmit(String type,HashMap<String, HashMap<String, HashMap<String, String>>> userData)
 	{
@@ -603,8 +605,30 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			 * Setting of ProfileCreationAssessmentBodyAffiliationDetailsDto Ends Here
 			 */
 			
+			/*
+			 * Creating Folder Structure for saving files 
+			 */
 			
-			
+			if(userRole.equalsIgnoreCase("TP"))
+			{
+				File createTrainingPartnerFolder = new File(readApplicationConstants.getProfileCreationTrainingPartnerFolder()+"//"+ applicationId);
+				File createModelOfInstitutionFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//ModelOfInstitution");
+				File createInstituteGrantFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//InstituteGrant");
+				File createDirectorsAndManagementTeamMembersFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//DirectorsAndManagementTeamMembers");
+				File createTrainingStaffFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//TrainingStaff");
+				
+			}
+			else if (userRole.equalsIgnoreCase("AB")) 
+			{
+				
+			}
+			else
+			{
+				/*
+				 * Error Throw user Out
+				 */
+				return null;
+			}
 			
 		}
 		else 
