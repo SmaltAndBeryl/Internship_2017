@@ -13,7 +13,42 @@ import org.springframework.stereotype.Component;
 	   
 	   private String saveCSVAtLocation;
 	   private String saveCertificateAtLocation;
+	   private String profileCreationTrainingPartnerFolder;
+	   private String profileCreationAssessmentBodyFolder;
 	   
+	   
+	   
+	   
+
+	/**
+	 * @return the profileCreationTrainingPartnerFolder
+	 */
+	public String getProfileCreationTrainingPartnerFolder() {
+		return profileCreationTrainingPartnerFolder;
+	}
+
+	/**
+	 * @param profileCreationTrainingPartnerFolder the profileCreationTrainingPartnerFolder to set
+	 */
+	public void setProfileCreationTrainingPartnerFolder(
+			String profileCreationTrainingPartnerFolder) {
+		this.profileCreationTrainingPartnerFolder = profileCreationTrainingPartnerFolder;
+	}
+
+	/**
+	 * @return the profileCreationAssessmentBodyFolder
+	 */
+	public String getProfileCreationAssessmentBodyFolder() {
+		return profileCreationAssessmentBodyFolder;
+	}
+
+	/**
+	 * @param profileCreationAssessmentBodyFolder the profileCreationAssessmentBodyFolder to set
+	 */
+	public void setProfileCreationAssessmentBodyFolder(
+			String profileCreationAssessmentBodyFolder) {
+		this.profileCreationAssessmentBodyFolder = profileCreationAssessmentBodyFolder;
+	}
 
 	/**
 	 * @return the saveCertificateAtLocation
