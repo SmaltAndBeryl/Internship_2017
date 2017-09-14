@@ -100,27 +100,26 @@ public class DataBeanService {
 
 
         ClassPathResource resource = new ClassPathResource("/static/January.jasper");
+
+        File desktop = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + nameOfOrganization + ".pdf");
+        String dest2 = desktop.getAbsolutePath();
+        LOGGER.info("the output file on desktop is " + dest2);
         InputStream inputStream = resource.getInputStream();
 
-        URL out = resource.getURL();
-        String pa = resource.getPath();
-        LOGGER.info("the output file is " + out + " AND " + pa);
+//        LOGGER.info("the output file is " + dest);
+//
+//        File newFile = new File("server/src/main/resources/TrainingPartnerPDF/"+ nameOfOrganization.trim() + ".pdf");
+//        String destFileName = newFile.getAbsolutePath();
+//        LOGGER.info("THE DESTINATION FILE NAME IS " + destFileName);
 
-
-        File newFile = new File("server/src/main/resources/TrainingPartnerPDF/"+ nameOfOrganization.trim() + ".pdf");
-        String destFileName = newFile.getAbsolutePath();
-        LOGGER.info("THE DESTINATION FILE NAME IS " + destFileName);
-
-
-        HashMap<String, Object> map = new HashMap<>();
         int success = 0;
         try{
             LOGGER.info("Creating the jrprint file..");
             JasperPrint printFileName = JasperFillManager.fillReport(inputStream,parameters, new JREmptyDataSource());
             LOGGER.info("Successfuly created the jrprint file >> " + printFileName);
-            OutputStream outputStream = new FileOutputStream(new File(destFileName));
 
-            map.put("jrprint", printFileName);
+            OutputStream outputStream = new FileOutputStream(new File(dest2));
+
             if(printFileName!=null){
                 LOGGER.info("Exporting the file to pdf..");
                 JasperExportManager.exportReportToPdfStream(printFileName,outputStream);
@@ -132,7 +131,6 @@ public class DataBeanService {
             }
 
             success++;
-            map.put("success", success);
             LOGGER.info("Pdf generated successfully....!!!");
             LOGGER.info("Success code = "+ success);
 
