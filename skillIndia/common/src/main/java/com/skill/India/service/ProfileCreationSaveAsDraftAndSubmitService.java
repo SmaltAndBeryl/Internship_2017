@@ -1,6 +1,8 @@
 package com.skill.India.service;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,11 +10,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.skill.India.common.ReadApplicationConstants;
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dao.GetUserRoleDao;
 import com.skill.India.dao.ProfileCreationTPABCommonDao;
+import com.skill.India.dao.ProfileCreationTrainingPartnerInsertDataDao;
+import com.skill.India.dao.ProfileCreationTrainingPartnerUpdateDataDao;
 import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyRecognitionsDto;
@@ -42,7 +47,16 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	@Autowired
 	private ReadApplicationConstants readApplicationConstants;
 	
-	public String profileCreationSaveAsDraftAndSubmit(String type,HashMap<String, HashMap<String, HashMap<String, String>>> userData)
+	@Autowired
+	private ProfileCreationSaveFile profileCreationSaveFile;
+	
+	@Autowired
+	private ProfileCreationTrainingPartnerInsertDataDao profileCreationTrainingPartnerInsertDataDao;
+	
+	@Autowired
+	private ProfileCreationTrainingPartnerUpdateDataDao profileCreationTrainingPartnerUpdateDataDao;
+	
+	public String profileCreationSaveAsDraftAndSubmit(String type,HashMap<String, HashMap<String, HashMap<String, String>>> userData,HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads,HashMap<String, HashMap<String, HashMap<String, String>>> userDeletes)
 	{
 		try{
 			/*
@@ -131,16 +145,28 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			 */
 			
 			HashMap<String, HashMap<String, String>> trainingPartnerOrganizationDetails=userData.get("TrainingPartnerOrganizationDetails");
+			HashMap<String, HashMap<String, MultipartFile>> trainingPartnerOrganizationDetailsFiles=userUploads.get("TrainingPartnerOrganizationDetails");
+			
 			HashMap<String, HashMap<String, String>> trainingPartnerCenterLevelDetails=userData.get("TrainingPartnerCenterLevelDetails");
+			HashMap<String, HashMap<String, MultipartFile>> trainingPartnerCenterLevelDetailsFiles=userUploads.get("TrainingPartnerCenterLevelDetails");
+			HashMap<String, HashMap<String, String>> trainingPartnerCenterLevelDetailsDeletes=userDeletes.get("TrainingPartnerCenterLevelDetails");
+			
 			HashMap<String, HashMap<String, String>> trainingPartnerInstituteGrant=userData.get("TrainingPartnerInstituteGrant");
+			HashMap<String, HashMap<String, String>> trainingPartnerInstituteGrantDeletes=userDeletes.get("TrainingPartnerInstituteGrant");
+			
 			HashMap<String, HashMap<String, String>> trainingPartnerInstituteRecognition=userData.get("TrainingPartnerInstituteRecognition");
+			HashMap<String, HashMap<String, String>> trainingPartnerInstituteRecognitionDeletes=userDeletes.get("TrainingPartnerInstituteRecognition");
+			
 			HashMap<String, HashMap<String, String>> trainingPartnerPriorExperienceInSkillTraining=userData.get("TrainingPartnerPriorExperienceInSkillTraining");
+			HashMap<String, HashMap<String, String>> trainingPartnerPriorExperienceInSkillTrainingDeletes=userDeletes.get("TrainingPartnerPriorExperienceInSkillTraining");
+			 
 			HashMap<String, HashMap<String, String>> trainingPartnerManagementAndStaffAndOfficialsDetails=userData.get("TrainingPartnerManagementAndStaffAndOfficialsDetails");
+			HashMap<String, HashMap<String, MultipartFile>> trainingPartnerManagementAndStaffAndOfficialsDetailsFiles=userUploads.get("TrainingPartnerManagementAndStaffAndOfficialsDetails");
+			HashMap<String, HashMap<String, String>> trainingPartnerManagementAndStaffAndOfficialsDetailsDeletes=userDeletes.get("TrainingPartnerManagementAndStaffAndOfficialsDetails");
 			
 			/*
 			 * Setting different Dto's
 			 */
-			
 			
 			/*
 			 * ProfileCreationTrainingPartnerOrganizationDetailsDto Setting starts
@@ -383,6 +409,535 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			 */
 			
 			
+			if(userRole.equalsIgnoreCase("TP"))
+			{
+				File createTrainingPartnerFolder = new File(readApplicationConstants.getProfileCreationTrainingPartnerFolder()+"//"+ applicationId);
+				
+				File createInstituteGrantFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//InstituteGrant");
+				File createDirectorsAndManagementTeamMembersFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//DirectorsAndManagementTeamMembers");
+				File createTrainingStaffFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//TrainingStaff");
+				File createAnnexuresFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//Annexures");
+				File createTrainingStaffCVFolder = new File(createTrainingStaffFolder.getAbsolutePath()+"//CV");
+				File createTrainingStaffCertificateFolder = new File(createTrainingStaffFolder.getAbsolutePath()+"//Certificate");
+				File createCentersFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//Centers");
+				
+				if(!createTrainingPartnerFolder.exists())
+				{
+					
+					if(!createTrainingPartnerFolder.mkdirs())
+					{
+					// directory creation failed 
+					}
+					if(!createInstituteGrantFolder.mkdir())
+					{
+					// directory creation failed
+					}
+					if(!createDirectorsAndManagementTeamMembersFolder.mkdir())
+					{
+					// directory creation failed
+					}		
+					if(!createTrainingStaffFolder.mkdir())
+					{
+					// directory creation failed
+					}
+					if(!createAnnexuresFolder.mkdir())
+					{
+					// directory creation failed
+					}
+					if(!createTrainingStaffCVFolder.mkdir())
+					{
+					// directory creation failed
+					}
+					if(!createTrainingStaffCertificateFolder.mkdir())
+					{
+					// directory creation failed	
+					}
+					if(!createCentersFolder.mkdir())
+					{
+					// directory creation failed	
+					}
+				}
+				else
+				{
+					// Do whatever is required Folder with name of applicationId is present 
+				}
+				
+				/*
+				 * End of Creating Folder Structure for Organization level details for saving files 
+				 */
+				
+				
+				/*
+				 * Iterating Arraylist trainingPartnerOrganizationDetailsList  
+				 */
+				
+				for(int temp=0;temp<trainingPartnerOrganizationDetailsList.size();temp++)
+				{
+					/*
+					 * Set paths of qualificationPacksAnnexurePath,nSDCFundedCertificatePath
+					 * selfOwnedInstitutionAnnexurePath, franchiseOwnedInstitutionAnnexurePath
+					 * mobileTrainingInstitutionAnnexurePath, panNumberPath, tanNumberPath
+					 * turnOverOfInstitutionBalanceSheetPath
+					 * 
+					 * Iterate trainingPartnerOrganizationDetailsFiles and save files
+					 */
+					
+					HashMap<String, MultipartFile> getAllFiles = new HashMap<String, MultipartFile>();
+					getAllFiles = trainingPartnerOrganizationDetailsFiles.get("Record"+temp++);
+					
+					/*
+					 * Declaring HashMap to set paths of various files to store in DB 
+					 */
+					
+					HashMap<String, String> setPaths = new HashMap<String, String>();
+					
+					
+					/*
+					 * Now start extracting Pan Number from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("PanNumber")==null)
+					{
+						/*
+						 * No file is coming for Pan Number
+						 */
+						
+						setPaths.put("panNumberPath",trainingPartnerOrganizationDetailsList.get(temp).getPanNumberPath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save Pan number file 
+						 */
+						
+						Path path=Paths.get(createTrainingPartnerFolder.getAbsolutePath()+"//PanNumber.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("PanNumber"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						
+						/*
+						 * Setting panNumberPath 
+						 */
+						
+						setPaths.put("panNumberPath",path.toString());
+						
+					}
+					
+					/*
+					 * Extracting of Pan Number Ends 
+					 */
+				
+					/*
+					 * Now start extracting Tan Number from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("TanNumber")==null)
+					{
+						/*
+						 * No file is coming for Tan Number
+						 */
+						
+						setPaths.put("tanNumberPath",trainingPartnerOrganizationDetailsList.get(temp).getTanNumberPath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save Tan number file 
+						 */
+						
+						Path path=Paths.get(createTrainingPartnerFolder.getAbsolutePath()+"//TanNumber.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("TanNumber"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						
+						/*
+						 * Set tanNumberPath accordingly 
+						 */
+						
+						setPaths.put("tanNumberPath",path.toString());
+					}
+					
+					/*
+					 * Extracting of Tan Number Ends 
+					 */
+					
+					
+					/*
+					 * Now start extracting Turn Over from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("TurnOver")==null)
+					{
+						/*
+						 * No file is coming for TurnOver
+						 */
+						
+						setPaths.put("turnOverOfInstitutionBalanceSheetPath",trainingPartnerOrganizationDetailsList.get(temp).getTurnOverOfInstitutionBalanceSheetPath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save TurnOver file 
+						 */
+						
+						Path path=Paths.get(createTrainingPartnerFolder.getAbsolutePath()+"//TurnOver.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("TurnOver"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						
+						
+						/*
+						 * Set turnOverOfInstitutionBalanceSheetPath accordingly 
+						 */
+						
+						setPaths.put("turnOverOfInstitutionBalanceSheetPath", path.toString());
+					}
+					
+					/*
+					 * Extracting of TurnOver Ends 
+					 */
+					
+					
+					/*
+					 * Now start extracting QualificationPackAnnexure from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("QualificationPacksAnnexure")==null)
+					{
+						/*
+						 * No file is coming for QualificationPackAnnexure
+						 */
+						
+						setPaths.put("qualificationPacksAnnexurePath",trainingPartnerOrganizationDetailsList.get(temp).getQualificationPacksAnnexurePath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save QualificationPacksAnnexure file 
+						 */
+						
+						Path path=Paths.get(createAnnexuresFolder.getAbsolutePath()+"//QualificationPacksAnnexure.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("QualificationPacksAnnexure"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						
+						/*
+						 * Set qualificationPacksAnnexurePath accordingly 
+						 */
+						
+						setPaths.put("qualificationPacksAnnexurePath", path.toString() );
+					}
+					
+					/*
+					 * Extracting of QualificationPackAnnexure Ends 
+					 */
+					
+					
+					/*
+					 * Now start extracting NSDCFundedCertificate from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("NSDCFundedCertificate")==null)
+					{
+						/*
+						 * No file is coming for Tan Number
+						 */
+						
+						setPaths.put("nSDCFundedCertificatePath",trainingPartnerOrganizationDetailsList.get(temp).getnSDCFundedCertificatePath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save NSDCFundedCertificate file 
+						 */
+						
+						Path path=Paths.get(createTrainingPartnerFolder.getAbsolutePath()+"//NSDCFundedCertificate.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("NSDCFundedCertificate"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						
+						/*
+						 * Set nSDCFundedCertificatePath accordingly 
+						 */
+						
+						setPaths.put("nSDCFundedCertificatePath", path.toString());
+					}
+					
+					/*
+					 * Extracting of NSDCFundedCertificate Ends 
+					 */
+					
+					/*
+					 * Now start extracting SelfOwnedInstitutionAnnexure from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("SelfOwnedInstitutionAnnexure")==null)
+					{
+						/*
+						 * No file is coming for SelfOwnedInstitutionAnnexure
+						 */
+						
+						setPaths.put("selfOwnedInstitutionAnnexurePath",trainingPartnerOrganizationDetailsList.get(temp).getSelfOwnedInstitutionAnnexurePath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save SelfOwnedInstitutionAnnexure file 
+						 */
+						
+						Path path=Paths.get(createAnnexuresFolder.getAbsolutePath()+"//SelfOwnedInstitutionAnnexure.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("SelfOwnedInstitutionAnnexure"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						
+						/*
+						 * Set selfOwnedInstitutionAnnexurePath accordingly 
+						 */
+						
+						setPaths.put("selfOwnedInstitutionAnnexurePath", path.toString());
+					}
+					
+					/*
+					 * Extracting of SelfOwnedInstitutionAnnexure Ends 
+					 */
+					
+					/*
+					 * Now start extracting FranchiseOwnedInstitutionAnnexure from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("FranchiseOwnedInstitutionAnnexure")==null)
+					{
+						/*
+						 * No file is coming for FranchiseOwnedInstitutionAnnexure
+						 */
+						
+						setPaths.put("franchiseOwnedInstitutionAnnexurePath",trainingPartnerOrganizationDetailsList.get(temp).getFranchiseOwnedInstitutionAnnexurePath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save FranchiseOwnedInstitutionAnnexure file 
+						 */
+						
+						Path path=Paths.get(createAnnexuresFolder.getAbsolutePath()+"//FranchiseOwnedInstitutionAnnexure.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("FranchiseOwnedInstitutionAnnexure"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						/*
+						 * Set franchiseOwnedInstitutionAnnexurePath accordingly 
+						 */
+						
+						setPaths.put("franchiseOwnedInstitutionAnnexurePath", path.toString());
+					}
+					
+					/*
+					 * Extracting of FranchiseOwnedInstitutionAnnexure Ends 
+					 */
+					
+					/*
+					 * Now start extracting MobileTrainingInstitutionAnnexure from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("MobileTrainingInstitutionAnnexure")==null)
+					{
+						/*
+						 * No file is coming for MobileTrainingInstitutionAnnexure
+						 */
+						
+						setPaths.put("mobileTrainingInstitutionAnnexurePath",trainingPartnerOrganizationDetailsList.get(temp).getMobileTrainingInstitutionAnnexurePath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save MobileTrainingInstitutionAnnexure file 
+						 */
+						
+						Path path=Paths.get(createAnnexuresFolder.getAbsolutePath()+"//MobileTrainingInstitutionAnnexure.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("MobileTrainingInstitutionAnnexure"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						/*
+						 * Set mobileTrainingInstitutionAnnexurePath accordingly 
+						 */
+						setPaths.put("mobileTrainingInstitutionAnnexurePath", path.toString());
+					}
+					
+					/*
+					 * Extracting of MobileTrainingInstitutionAnnexure Ends 
+					 */
+					
+					
+					/*
+					 * Now start extracting trainingStaffDetailsAnnexure from getAllFiles hashmap
+					 */
+					
+					if(getAllFiles.get("TrainingStaffDetailsAnnexure")==null)
+					{
+						/*
+						 * No file is coming for MobileTrainingInstitutionAnnexure
+						 */
+						
+						setPaths.put("trainingStaffDetailsAnnexurePath",trainingPartnerOrganizationDetailsList.get(temp).getTrainingStaffDetailsAnnexurePath());
+					}
+					else
+					{
+						/*
+						 * Setting path where to save trainingStaffDetailsAnnexure file 
+						 */
+						
+						Path path=Paths.get(createAnnexuresFolder.getAbsolutePath()+"//TrainingStaffDetailsAnnexure.pdf");
+						
+						/*
+						 * Call ProfileCreationSaveFile with actual parameters to save file 
+						 */
+						String status=profileCreationSaveFile.saveFile(getAllFiles.get("TrainingStaffDetailsAnnexure"), path);
+						
+						if(status==null)
+						{
+							/*
+							 * Error Saving file on system
+							 */
+						}
+						/*
+						 * Set trainingStaffDetailsAnnexurePath accordingly 
+						 */
+						setPaths.put("trainingStaffDetailsAnnexurePath", path.toString());
+					}
+					
+					/*
+					 * Extracting of TrainingStaffDetailsAnnexure Ends 
+					 */
+					
+		
+					/*
+					 * Setting Database of TrainingPartnerOrganizationDetails
+					 */
+					
+					
+					if(userExists==-1)
+					{
+						/*
+						 * Insert into database
+						 */
+						
+						int status=profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(trainingPartnerOrganizationDetailsList.get(temp),setPaths);
+						if(status>0)
+						{
+							/*
+							 * Successfully inserted into database 
+							 */
+						}
+						else if(status==-1)
+						{
+							/*
+							 * An exception Occurred while inserting data in database
+							 */
+						}
+						
+					}
+					else if(userExists==-2)
+					{
+						/*
+						 * Error Occurred while getting ApplicationId
+						 */
+					}
+					else
+					{
+						/*
+						 * Run update query
+						 */
+					}
+					
+					
+				}
+			
+			
+			
+			
+			
+			
+			}
+			
+			
+			
+			
 		}
 		else if(userRole.equalsIgnoreCase("AB"))
 		{
@@ -606,29 +1161,10 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			 */
 			
 			/*
-			 * Creating Folder Structure for saving files 
+			 * Creating Folder Structure for Organization level details for saving files 
 			 */
 			
-			if(userRole.equalsIgnoreCase("TP"))
-			{
-				File createTrainingPartnerFolder = new File(readApplicationConstants.getProfileCreationTrainingPartnerFolder()+"//"+ applicationId);
-				File createModelOfInstitutionFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//ModelOfInstitution");
-				File createInstituteGrantFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//InstituteGrant");
-				File createDirectorsAndManagementTeamMembersFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//DirectorsAndManagementTeamMembers");
-				File createTrainingStaffFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//TrainingStaff");
-				
-			}
-			else if (userRole.equalsIgnoreCase("AB")) 
-			{
-				
-			}
-			else
-			{
-				/*
-				 * Error Throw user Out
-				 */
-				return null;
-			}
+
 			
 		}
 		else 
