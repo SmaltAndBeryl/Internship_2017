@@ -41,19 +41,25 @@ pdfData:
 
 
  selectAssessmentBodyRegistrationDetails: >
-  SELECT * from assessmentbodyregistrationdetails;
+  SELECT * from assessmentbodyregistrationdetails
+   WHERE assessmentBodyRegistrationId = :assessmentBodyRegistrationId;
 
  selectAssessmentsExperienceInTechnicalDomain: >
-  SELECT * from assessmentsexperienceintechnicaldomain;
+  SELECT * from assessmentsexperienceintechnicaldomain
+   WHERE assessmentBodyRegistrationId = :assessmentBodyRegistrationId;
 
  selectAssessmentBodyDirectorsAndManagementTeamDetails: >
-  SELECT * from assessmentbodydirectorsandmanagementteamdetails;
+  SELECT * from assessmentbodydirectorsandmanagementteamdetails
+   WHERE assessmentBodyRegistrationId = :assessmentBodyRegistrationId;
 
  selectAssessmentStaffDetails: >
-  select * from assessmentstaffdetails;
+  select * from assessmentstaffdetails
+   WHERE assessmentBodyRegistrationId = :assessmentBodyRegistrationId;
 
  selectRegionalOfficeDetails: >
-  select * from assessmentbodyregionalofficedetails;
+  select * from assessmentbodyregionalofficedetails
+   WHERE assessmentBodyRegistrationId = :assessmentBodyRegistrationId;
 
  selectassessmentbodyaffiliationdetails: >
-  select * from assessmentbodyaffiliationdetails;
+  select * from assessmentbodyaffiliationdetails
+   WHERE assessmentBodyRegistrationId = :assessmentBodyRegistrationId;
