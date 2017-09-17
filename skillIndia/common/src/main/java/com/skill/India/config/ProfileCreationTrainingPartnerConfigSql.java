@@ -26,11 +26,81 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateIntoTrainingPartnerInstituteRecognition;
 	private String updateIntoTrainingPartnerPriorExperienceInSkillTraining;
 	private String updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	private String deleteFromTrainingPartnerInstituteGrant;
+	private String deleteFromTrainingPartnerInstituteRecognition;
+	private String deleteFromTrainingPartnerPriorExperienceInSkillTraining;
+	private String deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	private String deleteFromTrainingPartnerCenterLevelDetails;
 	private String insertDataInApplication;
 	private String updateDataInApplication;
 	
 	
 	
+	/**
+	 * @return the deleteFromTrainingPartnerInstituteRecognition
+	 */
+	public String getDeleteFromTrainingPartnerInstituteRecognition() {
+		return deleteFromTrainingPartnerInstituteRecognition;
+	}
+	/**
+	 * @param deleteFromTrainingPartnerInstituteRecognition the deleteFromTrainingPartnerInstituteRecognition to set
+	 */
+	public void setDeleteFromTrainingPartnerInstituteRecognition(
+			String deleteFromTrainingPartnerInstituteRecognition) {
+		this.deleteFromTrainingPartnerInstituteRecognition = deleteFromTrainingPartnerInstituteRecognition;
+	}
+	/**
+	 * @return the deleteFromTrainingPartnerPriorExperienceInSkillTraining
+	 */
+	public String getDeleteFromTrainingPartnerPriorExperienceInSkillTraining() {
+		return deleteFromTrainingPartnerPriorExperienceInSkillTraining;
+	}
+	/**
+	 * @param deleteFromTrainingPartnerPriorExperienceInSkillTraining the deleteFromTrainingPartnerPriorExperienceInSkillTraining to set
+	 */
+	public void setDeleteFromTrainingPartnerPriorExperienceInSkillTraining(
+			String deleteFromTrainingPartnerPriorExperienceInSkillTraining) {
+		this.deleteFromTrainingPartnerPriorExperienceInSkillTraining = deleteFromTrainingPartnerPriorExperienceInSkillTraining;
+	}
+	/**
+	 * @return the deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails
+	 */
+	public String getDeleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails() {
+		return deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	}
+	/**
+	 * @param deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails the deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails to set
+	 */
+	public void setDeleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails(
+			String deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails) {
+		this.deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails = deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	}
+	/**
+	 * @return the deleteFromTrainingPartnerCenterLevelDetails
+	 */
+	public String getDeleteFromTrainingPartnerCenterLevelDetails() {
+		return deleteFromTrainingPartnerCenterLevelDetails;
+	}
+	/**
+	 * @param deleteFromTrainingPartnerCenterLevelDetails the deleteFromTrainingPartnerCenterLevelDetails to set
+	 */
+	public void setDeleteFromTrainingPartnerCenterLevelDetails(
+			String deleteFromTrainingPartnerCenterLevelDetails) {
+		this.deleteFromTrainingPartnerCenterLevelDetails = deleteFromTrainingPartnerCenterLevelDetails;
+	}
+	/**
+	 * @return the deleteFromTrainingPartnerInstituteGrant
+	 */
+	public String getDeleteFromTrainingPartnerInstituteGrant() {
+		return deleteFromTrainingPartnerInstituteGrant;
+	}
+	/**
+	 * @param deleteFromTrainingPartnerInstituteGrant the deleteFromTrainingPartnerInstituteGrant to set
+	 */
+	public void setDeleteFromTrainingPartnerInstituteGrant(
+			String deleteFromTrainingPartnerInstituteGrant) {
+		this.deleteFromTrainingPartnerInstituteGrant = deleteFromTrainingPartnerInstituteGrant;
+	}
 	/**
 	 * @return the getTrainingPartnerRegistrationIdUsingApplicationId
 	 */

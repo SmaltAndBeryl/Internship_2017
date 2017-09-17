@@ -64,7 +64,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	 * 
 	 */
 	
-	public int updateIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto)
+	public int updateIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto,HashMap<String, String> getPaths)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
@@ -85,30 +85,31 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			parameters.put("websites",profileCreationTrainingPartnerOrganizationDetailsDto.getWebsites());
 			parameters.put("yearOfEstablishment",profileCreationTrainingPartnerOrganizationDetailsDto.getYearOfEstablishment());
 			parameters.put("qualificationPacks",profileCreationTrainingPartnerOrganizationDetailsDto.getQualificationPacks());
-			parameters.put("qualificationPacksAnnexurePath",profileCreationTrainingPartnerOrganizationDetailsDto.getQualificationPacksAnnexurePath());
+			parameters.put("qualificationPacksAnnexurePath",getPaths.get("qualificationPacksAnnexurePath"));
 			parameters.put("nSDCFunded",profileCreationTrainingPartnerOrganizationDetailsDto.getnSDCFunded());
-			parameters.put("nSDCFundedCertificatePath",profileCreationTrainingPartnerOrganizationDetailsDto.getnSDCFundedCertificatePath());
+			parameters.put("nSDCFundedCertificatePath",getPaths.get("nSDCFundedCertificatePath"));
 			parameters.put("mediumOfInstructions",profileCreationTrainingPartnerOrganizationDetailsDto.getMediumOfInstructions());
 			parameters.put("selfOwnedInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getSelfOwnedInstitution());
-			parameters.put("selfOwnedInstitutionAnnexurePath",profileCreationTrainingPartnerOrganizationDetailsDto.getSelfOwnedInstitutionAnnexurePath());
+			parameters.put("selfOwnedInstitutionAnnexurePath",getPaths.get("selfOwnedInstitutionAnnexurePath"));
 			parameters.put("franchiseOwnedInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getFranchiseOwnedInstitution());
-			parameters.put("franchiseOwnedInstitutionAnnexurePath",profileCreationTrainingPartnerOrganizationDetailsDto.getFranchiseOwnedInstitutionAnnexurePath());
+			parameters.put("franchiseOwnedInstitutionAnnexurePath",getPaths.get("franchiseOwnedInstitutionAnnexurePath"));
 			parameters.put("mobileTrainingInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getMobileTrainingInstitution());
-			parameters.put("mobileTrainingInstitutionAnnexurePath",profileCreationTrainingPartnerOrganizationDetailsDto.getMobileTrainingInstitutionAnnexurePath());
+			parameters.put("mobileTrainingInstitutionAnnexurePath",getPaths.get("mobileTrainingInstitutionAnnexurePath"));
 			parameters.put("panNumber",profileCreationTrainingPartnerOrganizationDetailsDto.getPanNumber());
-			parameters.put("panNumberPath",profileCreationTrainingPartnerOrganizationDetailsDto.getPanNumberPath());
+			parameters.put("panNumberPath",getPaths.get("panNumberPath"));
 			parameters.put("tanNumber",profileCreationTrainingPartnerOrganizationDetailsDto.getTanNumber());
-			parameters.put("tanNumberPath",profileCreationTrainingPartnerOrganizationDetailsDto.getTanNumberPath());
+			parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
 			parameters.put("turnOverOfInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getTurnOverOfInstitution());
-			parameters.put("turnOverOfInstitutionBalanceSheetPath",profileCreationTrainingPartnerOrganizationDetailsDto.getTurnOverOfInstitutionBalanceSheetPath());
+			parameters.put("turnOverOfInstitutionBalanceSheetPath",getPaths.get("turnOverOfInstitutionBalanceSheetPath"));
 			parameters.put("instituteReceivedAnyGrant",profileCreationTrainingPartnerOrganizationDetailsDto.getInstituteReceivedAnyGrant());
 			parameters.put("instituteReceivedAnyRecognition",profileCreationTrainingPartnerOrganizationDetailsDto.getInstituteReceivedAnyRecognition());
 			parameters.put("priorExperienceOfInstitutionInSkillDevelopment",profileCreationTrainingPartnerOrganizationDetailsDto.getPriorExperienceOfInstitutionInSkillDevelopment());
 			parameters.put("anyPriorExperienceOfInstitutionInSkillTraining",profileCreationTrainingPartnerOrganizationDetailsDto.getAnyPriorExperienceOfInstitutionInSkillTraining());
-			parameters.put("trainingStaffDetailsAnnexurePath",profileCreationTrainingPartnerOrganizationDetailsDto.getTrainingStaffDetailsAnnexurePath());
+			parameters.put("trainingStaffDetailsAnnexurePath",getPaths.get("trainingStaffDetailsAnnexurePath"));
 			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerOrganizationDetails(),parameters);
 
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 			return -1;

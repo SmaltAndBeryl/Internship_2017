@@ -86,6 +86,9 @@ private static final ProfileCreationGetDataFromUserRowMapper ROW_MAPPER_USERDETA
 		}
 		catch(Exception e)
 		{
+			/*
+			 * In case error occurs 
+			 */
 			e.printStackTrace();
 			return -1;
 		}

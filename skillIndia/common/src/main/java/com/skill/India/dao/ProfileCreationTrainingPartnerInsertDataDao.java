@@ -108,11 +108,11 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 			parameters.put("instituteReceivedAnyRecognition",profileCreationTrainingPartnerOrganizationDetailsDto.getInstituteReceivedAnyRecognition());
 			parameters.put("priorExperienceOfInstitutionInSkillDevelopment",profileCreationTrainingPartnerOrganizationDetailsDto.getPriorExperienceOfInstitutionInSkillDevelopment());
 			parameters.put("anyPriorExperienceOfInstitutionInSkillTraining",profileCreationTrainingPartnerOrganizationDetailsDto.getAnyPriorExperienceOfInstitutionInSkillTraining());
-			parameters.put("trainingStaffDetailsAnnexurePath",profileCreationTrainingPartnerOrganizationDetailsDto.getTrainingStaffDetailsAnnexurePath());
-			System.out.println(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerOrganizationDetails());
+			parameters.put("trainingStaffDetailsAnnexurePath",getPaths.get("trainingStaffDetailsAnnexurePath"));
 			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerOrganizationDetails(),parameters);
 
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			e.printStackTrace();
 			return -1;
