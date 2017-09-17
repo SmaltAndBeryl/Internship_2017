@@ -19,10 +19,10 @@ public class AssessmentBodyRegistrationDetailsDto {
     private final String panNumber;
     private final String tanNumber;
     private final String insituteReceivedAnyRecognition;
-    private final String NameOfRecognitionBody;
-    private final String RecognitionNumber;
-    private final String yearOfRecognition;
-    private final String validityOfRecognition;
+//    private final String NameOfRecognitionBody;
+//    private final String RecognitionNumber;
+//    private final String yearOfRecognition;
+//    private final String validityOfRecognition;
 
     private final String affiliatedToAnySectorSkillCouncil;
 
@@ -97,21 +97,21 @@ public class AssessmentBodyRegistrationDetailsDto {
         return insituteReceivedAnyRecognition;
     }
 
-    public String getNameOfRecognitionBody() {
-        return NameOfRecognitionBody;
-    }
-
-    public String getRecognitionNumber() {
-        return RecognitionNumber;
-    }
-
-    public String getYearOfRecognition() {
-        return yearOfRecognition;
-    }
-
-    public String getValidityOfRecognition() {
-        return validityOfRecognition;
-    }
+//    public String getNameOfRecognitionBody() {
+//        return NameOfRecognitionBody;
+//    }
+//
+//    public String getRecognitionNumber() {
+//        return RecognitionNumber;
+//    }
+//
+//    public String getYearOfRecognition() {
+//        return yearOfRecognition;
+//    }
+//
+//    public String getValidityOfRecognition() {
+//        return validityOfRecognition;
+//    }
 
     public String getAffiliatedToAnySectorSkillCouncil() {
         return affiliatedToAnySectorSkillCouncil;
@@ -125,7 +125,7 @@ public class AssessmentBodyRegistrationDetailsDto {
         return numberOfNonTechnicalAssessors;
     }
 
-    public AssessmentBodyRegistrationDetailsDto(String organizationName, String address, String city, String state, String pincode, String sPOCName, String mobileNumber, String alternateMobileNumber, String landlineNumber, String alternateLandlineNumber, String faxNumber, String websites, String yearOfEstablishment, String priorAssessmentExperience, String panNumber, String tanNumber, String insituteReceivedAnyRecognition, String NameOfRecognitionBody, String RecognitionNumber, String yearOfRecognition, String validityOfRecognition, String affiliatedToAnySectorSkillCouncil, String numberOfTechnicalAssessors, String numberOfNonTechnicalAssessors) {
+    public AssessmentBodyRegistrationDetailsDto(String organizationName, String address, String city, String state, String pincode, String sPOCName, String mobileNumber, String alternateMobileNumber, String landlineNumber, String alternateLandlineNumber, String faxNumber, String websites, String yearOfEstablishment, String priorAssessmentExperience, String panNumber, String tanNumber, String insituteReceivedAnyRecognition, String affiliatedToAnySectorSkillCouncil, String numberOfTechnicalAssessors, String numberOfNonTechnicalAssessors) {
 
         this.organizationName = organizationName;
         this.address = address;
@@ -145,10 +145,10 @@ public class AssessmentBodyRegistrationDetailsDto {
         this.panNumber = panNumber;
         this.tanNumber = tanNumber;
         this.insituteReceivedAnyRecognition = insituteReceivedAnyRecognition;
-        this.NameOfRecognitionBody = NameOfRecognitionBody;
-        this.RecognitionNumber = RecognitionNumber;
-        this.yearOfRecognition = yearOfRecognition;
-        this.validityOfRecognition = validityOfRecognition;
+//        this.NameOfRecognitionBody = NameOfRecognitionBody;
+//        this.RecognitionNumber = RecognitionNumber;
+//        this.yearOfRecognition = yearOfRecognition;
+//        this.validityOfRecognition = validityOfRecognition;
 
         this.affiliatedToAnySectorSkillCouncil = affiliatedToAnySectorSkillCouncil;
 

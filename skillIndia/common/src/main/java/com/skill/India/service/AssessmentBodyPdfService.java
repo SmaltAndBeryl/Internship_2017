@@ -2,11 +2,14 @@ package com.skill.India.service;
 
 import com.skill.India.dao.*;
 import com.skill.India.dto.*;
+import jdk.internal.util.xml.impl.Input;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import sun.rmi.runtime.Log;
 
 import java.io.*;
 import java.util.Collection;
@@ -34,21 +37,21 @@ public class AssessmentBodyPdfService {
 
     @Autowired AssessmentBodyAffiliationDao assessmentBodyAffiliationDao;
 
-    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanCollection() throws IOException {
+    public int dataBeanCollection(String assessmentBodyRegistrationId) throws IOException {
         final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(com.skill.India.service.AssessmentBodyPdfService.class);
 
         LOGGER.info("Creating collection for storing value from Dtos");
-        Collection<RegionalOfficeDetailsDto> regionalOfficeDetailsDtos = regionalOfficeDetailsDao.dataBeanDtoCollectionRegionalOffice();
+        Collection<RegionalOfficeDetailsDto> regionalOfficeDetailsDtos = regionalOfficeDetailsDao.dataBeanDtoCollectionRegionalOffice(assessmentBodyRegistrationId);
         LOGGER.info("Size of Collection regionalOfficeDetailsDto is " + regionalOfficeDetailsDtos.size());
-        Collection<AssessmentBodyRegistrationDetailsDto> assessmentBodyRegistrationDetailsDtos = assessmentBodyRegistrationDetailsDao.dataBeanDtoCollectionAssessmentBodyRegistrationDetails();
+        Collection<AssessmentBodyRegistrationDetailsDto> assessmentBodyRegistrationDetailsDtos = assessmentBodyRegistrationDetailsDao.dataBeanDtoCollectionAssessmentBodyRegistrationDetails(assessmentBodyRegistrationId);
         LOGGER.info("Size of Collection assessmentBodyRegistrationDetailsDtos is " + assessmentBodyRegistrationDetailsDtos.size());
-        Collection<AssessmentBodyDirectorsDto> assessmentBodyDirectorsDtos = assessmentBodyDirectorsDao.dataBeanDtoCollectionDirectors();
+        Collection<AssessmentBodyDirectorsDto> assessmentBodyDirectorsDtos = assessmentBodyDirectorsDao.dataBeanDtoCollectionDirectors(assessmentBodyRegistrationId);
         LOGGER.info("Size of Collection assessmentBodyDirectorsDtos is " + assessmentBodyDirectorsDtos.size());
-        Collection<AssessmentExperienceInTechnicalDomainDto> assessmentExperienceInTechnicalDomainDtos = assessmentExperienceInTechnicalDomainDao.dataBeanDtoCollectionExperience();
+        Collection<AssessmentExperienceInTechnicalDomainDto> assessmentExperienceInTechnicalDomainDtos = assessmentExperienceInTechnicalDomainDao.dataBeanDtoCollectionExperience(assessmentBodyRegistrationId);
         LOGGER.info("Size of Collection assessmentExperienceInTechnicalDomainDtos is " + assessmentExperienceInTechnicalDomainDtos.size());
-        Collection<AssessmentStaffDetailsDto> assessmentStaffDetailsDtos = assessmentStaffDetailsDao.dataBeanDtoCollectionAssessmentStaffDetail();
+        Collection<AssessmentStaffDetailsDto> assessmentStaffDetailsDtos = assessmentStaffDetailsDao.dataBeanDtoCollectionAssessmentStaffDetail(assessmentBodyRegistrationId);
         LOGGER.info("Size of Collection assessmentStaffDetailsDtos is " + assessmentStaffDetailsDtos.size());
-        Collection<AssessmentBodyAffiliationDto> assessmentBodyAffiliationDtos = assessmentBodyAffiliationDao.affiliationDtos();
+        Collection<AssessmentBodyAffiliationDto> assessmentBodyAffiliationDtos = assessmentBodyAffiliationDao.affiliationDtos(assessmentBodyRegistrationId);
         LOGGER.info("Size of Collection assessmentBodyAffiliationDtos is " + assessmentBodyAffiliationDtos.size());
         LOGGER.info("Successfully fetched values in form of collection");
 
@@ -80,24 +83,32 @@ public class AssessmentBodyPdfService {
         parameters.put("assessmentAffiliation", assessmentAffiliationDetails);
 
         LOGGER.info("Starting PDF injection");
-        File file = new File("server/src/main/resources/static/February.jasper");
-        String sourceFileName = file.getAbsolutePath();
-        LOGGER.info("THE SOURCE FILE NAME IS " + sourceFileName);
+//        File file = new File("server/src/main/resources/static/February.jasper");
+//        String sourceFileName = file.getAbsolutePath();
+//        LOGGER.info("THE SOURCE FILE NAME IS " + sourceFileName);
 
-        File newFile = new File("server/src/main/resources/AssessmentBodyPDF/" + organizationName.trim() + ".pdf");
-        String destFileName = newFile.getAbsolutePath();
-        LOGGER.info("THE DESTINATION FILE NAME IS " + destFileName);
+        ClassPathResource resource = new ClassPathResource("/static/February.jasper");
+        File desktop = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + organizationName + ".pdf");
+        String dest = desktop.getAbsolutePath();
+        LOGGER.info("THE OUTPUT FILE IS "+ dest);
+        LOGGER.info("Getting input stream");
+        InputStream inputStream = resource.getInputStream();
+        LOGGER.info("Input Stream successfully generated");
 
+        int success = 0;
         try {
             LOGGER.info("Creating the jrprint file..");
-            JasperPrint printFileName = JasperFillManager.fillReport(sourceFileName, parameters, new JREmptyDataSource());
+            JasperPrint printFileName = JasperFillManager.fillReport(inputStream, parameters, new JREmptyDataSource());
             LOGGER.info("Successfuly created the jrprint file >> " + printFileName);
-            OutputStream outputStream = new FileOutputStream(new File(destFileName));
+            OutputStream outputStream = new FileOutputStream(new File(dest));
 
             if (printFileName != null) {
                 LOGGER.info("Exporting the file to pdf..");
                 JasperExportManager.exportReportToPdfStream(printFileName, outputStream);
+                success = 1;
+                LOGGER.info("PDF generated successfully..!!");
             } else {
+                success = -1;
                 LOGGER.info("jrprint file is empty..");
             }
 
@@ -107,6 +118,6 @@ public class AssessmentBodyPdfService {
             e.printStackTrace();
         }
 
-        return assessmentBodyRegistrationDetailsDao.dataBeanDtoCollectionAssessmentBodyRegistrationDetails();
+        return success;
     }
 }

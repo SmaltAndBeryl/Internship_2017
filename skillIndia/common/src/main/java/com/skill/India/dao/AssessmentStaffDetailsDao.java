@@ -21,8 +21,9 @@ public class AssessmentStaffDetailsDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<AssessmentStaffDetailsDto> dataBeanDtoCollectionAssessmentStaffDetail(){
+    public Collection<AssessmentStaffDetailsDto> dataBeanDtoCollectionAssessmentStaffDetail(String assessmentBodyRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectAssessmentStaffDetails(), parameters, ROW_MAPPER);
     }
 
@@ -34,12 +35,12 @@ public class AssessmentStaffDetailsDao extends AbstractTransactionalDao{
             String designation = resultSet.getString("designation");
             String contactNumber = resultSet.getString("contactNumber");
             String emailId = resultSet.getString("emailId");
-            String district = resultSet.getString("district");
+            String city = resultSet.getString("city");
             String state = resultSet.getString("state");
             String educationalQualification = resultSet.getString("educationalQualification");
             String experience = resultSet.getString("experience");
 
-            return new AssessmentStaffDetailsDto(name, jobRoleCode, designation, contactNumber, emailId, district, state, educationalQualification, experience);
+            return new AssessmentStaffDetailsDto(name, jobRoleCode, designation, contactNumber, emailId, city, state, educationalQualification, experience);
         }
     }
 }

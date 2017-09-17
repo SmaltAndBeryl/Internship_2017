@@ -124,17 +124,17 @@ public class ManageRegistrationsController {
 	 * DataBeanController
 	 */
 	
-	
-    @Privilege(value={"SCGJ"})
-    @RequestMapping("/cityData")
-    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanDtoCollection() throws IOException {
-    	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
-    	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
-    	LOGGER.info("Creating Collection to collect data for PDF creation");
-    	LOGGER.info("Sending Request to Service");
-
-        return assessmentBodyPdfService.dataBeanCollection();
-    }
+//
+//    @Privilege(value={"SCGJ"})
+//    @RequestMapping("/cityData")
+//    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanDtoCollection() throws IOException {
+//    	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
+//    	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
+//    	LOGGER.info("Creating Collection to collect data for PDF creation");
+//    	LOGGER.info("Sending Request to Service");
+//
+//        return assessmentBodyPdfService.dataBeanCollection();
+//    }
 
 
     private static final String FILE_PATH = "/static/2151.pdf";

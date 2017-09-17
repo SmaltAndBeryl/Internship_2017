@@ -57,6 +57,7 @@ public class UserRoleApplicationIdService {
                 }
                 else {
                     LOGGER.info("THE training partner registration ID Dtos are empty with size " + trainingPartnerRegistrationIdDtos.size());
+                    success = 2;
                 }
             }
 
@@ -66,13 +67,17 @@ public class UserRoleApplicationIdService {
                     for(AssessmentBodyRegistrationIdDto beanDto : assessmentBodyRegistrationIdDtos){
                         String assessmentBodyRegistrationId = beanDto.getAssessmentBodyRegistrationId();
                         LOGGER.info("ASSESSMENT BODY REGISTRATION ID IS " + beanDto.getAssessmentBodyRegistrationId());
-                        assessmentBodyPdfService.dataBeanCollection();
+                        success = assessmentBodyPdfService.dataBeanCollection(assessmentBodyRegistrationId);
                     }
                 }
-
+                else {
+                    LOGGER.info("The assessment body Id dtos are empty with size " + assessmentBodyRegistrationIdDtos.size());
+                    success = 2;
+                }
             }
 
         }
+        LOGGER.info("THE success value being returned is "+ success);
         return success;
     }
 }

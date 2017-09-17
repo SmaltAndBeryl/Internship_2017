@@ -23,8 +23,9 @@ public class AssessmentBodyAffiliationDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<AssessmentBodyAffiliationDto> affiliationDtos(){
+    public Collection<AssessmentBodyAffiliationDto> affiliationDtos(String assessmentBodyRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectassessmentbodyaffiliationdetails(), parameters, ROW_MAPPER);
     }
 

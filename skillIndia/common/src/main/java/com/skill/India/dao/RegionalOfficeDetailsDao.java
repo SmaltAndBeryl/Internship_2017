@@ -24,8 +24,9 @@ public class RegionalOfficeDetailsDao extends AbstractTransactionalDao{
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<RegionalOfficeDetailsDto> dataBeanDtoCollectionRegionalOffice(){
+    public Collection<RegionalOfficeDetailsDto> dataBeanDtoCollectionRegionalOffice(String assessmentBodyRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectRegionalOfficeDetails(), parameters, ROW_MAPPER);
     }
 

@@ -22,8 +22,9 @@ public class AssessmentBodyRegistrationDetailsDao extends AbstractTransactionalD
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanDtoCollectionAssessmentBodyRegistrationDetails(){
+    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanDtoCollectionAssessmentBodyRegistrationDetails(String assessmentBodyRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectAssessmentBodyRegistrationDetails(), parameters, ROW_MAPPER);
     }
 
@@ -48,10 +49,10 @@ public class AssessmentBodyRegistrationDetailsDao extends AbstractTransactionalD
             String panNumber = resultSet.getString("panNumber");
             String tanNumber = resultSet.getString("tanNumber");
             String insituteReceivedAnyRecognition = resultSet.getString("insituteReceivedAnyRecognition");
-            String NameOfRecognitionBody = resultSet.getString("NameOfRecognitionBody");
-            String RecognitionNumber = resultSet.getString("RecognitionNumber");
-            String yearOfRecognition = resultSet.getString("yearOfRecognition");
-            String validityOfRecognition = resultSet.getString("validityOfRecognition");
+//            String NameOfRecognitionBody = resultSet.getString("NameOfRecognitionBody");
+//            String RecognitionNumber = resultSet.getString("RecognitionNumber");
+//            String yearOfRecognition = resultSet.getString("yearOfRecognition");
+//            String validityOfRecognition = resultSet.getString("validityOfRecognition");
 
             String affiliatedToAnySectorSkillCouncil = resultSet.getString("affiliatedToAnySectorSkillCouncil");
 
@@ -77,10 +78,10 @@ public class AssessmentBodyRegistrationDetailsDao extends AbstractTransactionalD
                     panNumber,
                     tanNumber,
                     insituteReceivedAnyRecognition,
-                    NameOfRecognitionBody,
-                    RecognitionNumber,
-                    yearOfRecognition,
-                    validityOfRecognition,
+//                    NameOfRecognitionBody,
+//                    RecognitionNumber,
+//                    yearOfRecognition,
+//                    validityOfRecognition,
 
                     affiliatedToAnySectorSkillCouncil,
 

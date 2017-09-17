@@ -22,8 +22,9 @@ public class AssessmentExperienceInTechnicalDomainDao extends AbstractTransactio
 
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
-    public Collection<AssessmentExperienceInTechnicalDomainDto> dataBeanDtoCollectionExperience(){
+    public Collection<AssessmentExperienceInTechnicalDomainDto> dataBeanDtoCollectionExperience(String assessmentBodyRegistrationId){
         Map<String,Object> parameters = new HashMap<>();
+        parameters.put("assessmentBodyRegistrationId",assessmentBodyRegistrationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectAssessmentsExperienceInTechnicalDomain(), parameters, ROW_MAPPER);
     }
 

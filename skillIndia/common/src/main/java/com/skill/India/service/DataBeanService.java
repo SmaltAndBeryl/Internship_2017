@@ -123,16 +123,24 @@ public class DataBeanService {
             if(printFileName!=null){
                 LOGGER.info("Exporting the file to pdf..");
                 JasperExportManager.exportReportToPdfStream(printFileName,outputStream);
-                success++;
+                success = 1;
             }
             else {
                 LOGGER.info("jrprint file is empty..");
-                success--;
+                success = -1;
             }
 
-            success++;
-            LOGGER.info("Pdf generated successfully....!!!");
-            LOGGER.info("Success code = "+ success);
+//            success++;
+            if(success == 1){
+                LOGGER.info("Pdf generated successfully....!!!");
+                LOGGER.info("Success code = "+ success);
+            }
+
+            else {
+                LOGGER.info("Error in PDF generation due to error in Jrprint file");
+            }
+
+
 
         } catch (JRException e) {
             LOGGER.info("Exception caught.., an error occured in PDF generation");
