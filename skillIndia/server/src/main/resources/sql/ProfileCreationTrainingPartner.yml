@@ -170,3 +170,21 @@ ProfileCreationTrainingPartner:
   `cVPath`=:cVPath, 
   `certificatePath`=:certificatePath 
    WHERE `managementAndStaffId`=:managementAndStaffId;
+
+   
+ deleteFromTrainingPartnerInstituteGrant: >
+  DELETE FROM `scgj`.`trainingpartnerinstitutegrant` WHERE `instituteGrantId`=:instituteGrantId;
+  
+ deleteFromTrainingPartnerInstituteRecognition: >
+  DELETE FROM `scgj`.`trainingpartnerinstituterecognition` WHERE `instituteRecognitionId`=:instituteRecognitionId;
+  
+ deleteFromTrainingPartnerPriorExperienceInSkillTraining: >
+  DELETE FROM `scgj`.`trainingpartnerPriorExperienceInSkillTraining` WHERE `priorExperienceInSkillTrainingId`=:priorExperienceInSkillTrainingId;
+ 
+ deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails: >
+  DELETE FROM `scgj`.`trainingpartnerManagementAndStaffAndOfficialsDetails` WHERE `managementAndStaffId`=:managementAndStaffId; 
+  
+ deleteFromTrainingPartnerCenterLevelDetails: >
+  DELETE FROM `scgj`.`trainingpartnerCenterlevelDetails` WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId; 
+   
+   
