@@ -4,7 +4,7 @@ pdfData:
    WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlInstitutionGrant: >
-  SELECT * from institutegrant
+  SELECT * from trainingpartnerinstitutegrant
    WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlCenterLevel : >
@@ -12,11 +12,11 @@ pdfData:
    WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlInstitutionRecognition: >
-  SELECT * from instituterecognition
+  SELECT * from trainingpartnerinstituterecognition
    WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlPriorExperience: >
-  SELECT * from priorexperienceinskilltraining
+  SELECT * from trainingpartnerpriorexperienceinskilltraining
    WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlDirector: >
@@ -53,7 +53,7 @@ pdfData:
   select * from assessmentstaffdetails;
 
  selectRegionalOfficeDetails: >
-  select * from regionalofficedetails;
+  select * from assessmentbodyregionalofficedetails;
 
  selectassessmentbodyaffiliationdetails: >
   select * from assessmentbodyaffiliationdetails;
