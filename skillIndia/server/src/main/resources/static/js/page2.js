@@ -202,12 +202,13 @@ $scope.myfunction = function(rowData){
     })
         .then(function(response){
             console.log("Application Id posted successfully");
-            if(response.data > 0){
+
+            if(response.data == 1){
                 $scope.successText = "PDF generated successfully";
                 $scope.successTextColor = "green";
                 $scope.rolling = false;
             }
-            else if(response.data < 0){
+            else if(response.data == -1){
                 $scope.successText = "PDF could not be generated successfully due to some error";
                 $scope.successTextColor = "orange";
                 $scope.rolling = false;
@@ -217,6 +218,12 @@ $scope.myfunction = function(rowData){
                 $scope.successTextColor = "red";
                 $scope.rolling = false;
             }
+            else if(response.data == 2){
+                $scope.successText = "PDF could not be generated due to SQL tables being empty";
+                $scope.successTextColor = "blue";
+                $scope.rolling = false;
+            }
+
 //            alert("the response is "+ JSON.stringify(response.data));
         })
 };
