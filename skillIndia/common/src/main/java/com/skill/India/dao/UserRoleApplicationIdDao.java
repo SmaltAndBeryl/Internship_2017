@@ -2,8 +2,6 @@ package com.skill.India.dao;
 
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.PdfDataConfigSql;
-import com.skill.India.dto.InstitutionRecognitionDto;
-import com.skill.India.dto.PriorExperienceDto;
 import com.skill.India.dto.UserRoleApplicationIdDto;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +24,7 @@ public class UserRoleApplicationIdDao extends AbstractTransactionalDao{
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
     public Collection<UserRoleApplicationIdDto> dataBeanCollectionUserRoleApplicationId(String applicationId){
+    	LOGGER.info("Trying to get user role based on application id");
         Map<String,Object> parameters = new HashMap<>();
         parameters.put("applicationId", applicationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectUserRoleApplicationId(), parameters, ROW_MAPPER);

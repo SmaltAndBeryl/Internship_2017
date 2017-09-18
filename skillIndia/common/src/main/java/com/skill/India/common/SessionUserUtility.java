@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.skill.India.dao.NonAssignedBatchesDao;
 import com.skill.India.dto.SessionManagementDto;
 import com.skill.India.service.UserIdtoApplicationIdService;
 

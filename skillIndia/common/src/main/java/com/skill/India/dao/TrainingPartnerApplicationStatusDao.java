@@ -1,6 +1,5 @@
 package com.skill.India.dao;
 
-import com.skill.India.common.AbstractDatasource;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.TrainingPartnerApplicationStatusConfigSql;
 import com.skill.India.dto.TrainingPartnerApplicationStatusDto;

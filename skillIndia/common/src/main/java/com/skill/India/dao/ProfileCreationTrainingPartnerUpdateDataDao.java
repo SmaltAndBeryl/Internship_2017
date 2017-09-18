@@ -3,6 +3,8 @@ package com.skill.India.dao;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +20,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillT
 @Repository
 public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransactionalDao{
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationTrainingPartnerUpdateDataDao.class);
 	@Autowired
 	private ProfileCreationTrainingPartnerConfigSql profileCreationTrainingPartnerConfigSql;
 
@@ -67,6 +70,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	public int updateIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto,HashMap<String, String> getPaths)
 	{
 		try{
+			LOGGER.info("Trying to construct database query to update data of organisation details in Training Partner");
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
 			parameters.put("applicationId",profileCreationTrainingPartnerOrganizationDetailsDto.getApplicationId());
@@ -106,11 +110,14 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			parameters.put("priorExperienceOfInstitutionInSkillDevelopment",profileCreationTrainingPartnerOrganizationDetailsDto.getPriorExperienceOfInstitutionInSkillDevelopment());
 			parameters.put("anyPriorExperienceOfInstitutionInSkillTraining",profileCreationTrainingPartnerOrganizationDetailsDto.getAnyPriorExperienceOfInstitutionInSkillTraining());
 			parameters.put("trainingStaffDetailsAnnexurePath",getPaths.get("trainingStaffDetailsAnnexurePath"));
+			
+			LOGGER.info("Trying to execute database query to update data of organisation details in Training Partner");
 			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerOrganizationDetails(),parameters);
 
 		}
 		catch(Exception e)
 		{
+			LOGGER.debug("Exception occured while updating data of organisation details in Training Partner. Exception is -" +e);
 			e.printStackTrace();
 			return -1;
 		}

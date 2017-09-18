@@ -1,7 +1,6 @@
 package com.skill.India.dao;
 
 import com.skill.India.common.AbstractTransactionalDao;
-import com.skill.India.config.AlgorithmConfigSql;
 import com.skill.India.config.NonAssignedBatchesConfigSql;
 import com.skill.India.dto.Algorithm3Dto;
 

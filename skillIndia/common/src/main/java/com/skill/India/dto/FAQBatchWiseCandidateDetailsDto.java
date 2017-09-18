@@ -3,8 +3,6 @@
  */
 package com.skill.India.dto;
 
-import java.sql.Time;
-
 /**
  * @author Aashish sharma
  *

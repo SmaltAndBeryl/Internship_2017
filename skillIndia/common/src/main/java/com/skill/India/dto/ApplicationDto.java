@@ -3,6 +3,10 @@ package com.skill.India.dto;
 import com.skill.India.common.BaseDto;
 
 public class ApplicationDto  extends BaseDto{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String applicationState;
 	private String applicationId;
 	public ApplicationDto(String applicationState, String applicationId) {

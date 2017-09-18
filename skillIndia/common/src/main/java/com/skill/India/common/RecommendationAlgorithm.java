@@ -2,8 +2,6 @@ package com.skill.India.common;
 
 import com.skill.India.dto.Algorithm2Dto;
 import com.skill.India.dto.AlgorithmDto;
-import org.apache.commons.collections.MultiMap;
-import org.apache.commons.collections.map.MultiValueMap;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;

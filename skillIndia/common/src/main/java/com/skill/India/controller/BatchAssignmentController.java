@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.common.Privilege;
-import com.skill.India.dto.Algorithm2Dto;
-import com.skill.India.dto.Algorithm3Dto;
-import com.skill.India.dto.AlgorithmDto;
 import com.skill.India.dto.AssignedBatchesDto;
 import com.skill.India.dto.BatchAssignmentDto;
 import com.skill.India.dto.BatchAssignmentSearchDto;

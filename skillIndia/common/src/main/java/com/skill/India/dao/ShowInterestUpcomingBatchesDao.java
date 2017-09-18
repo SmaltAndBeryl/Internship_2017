@@ -2,13 +2,6 @@ package com.skill.India.dao;
 
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.ShowInterestUpcomingBatchesConfigSql;
-import com.skill.India.dto.ShowInterestUpcomingBatchesDto;
-
-
-
-
-
-//import com.skill.India.dto.PetDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;

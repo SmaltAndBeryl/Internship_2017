@@ -2,7 +2,6 @@ package com.skill.India.controller;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import com.skill.India.dto.*;
@@ -137,7 +136,7 @@ public class ManageRegistrationsController {
 //    }
 
 
-    private static final String FILE_PATH = "/static/2151.pdf";
+//    private static final String FILE_PATH = "/static/2151.pdf";
     private static final String APPLICATION_PDF = "application/pdf";
 
 	@Privilege(value={"SCGJ"})

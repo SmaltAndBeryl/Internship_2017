@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.skill.India.common.AbstractDatasource;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.TrainingPartnerConfigSql;
 import com.skill.India.dto.TrainingPartnerBatchesDto;

@@ -3,8 +3,6 @@ package com.skill.India.dao;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.PdfDataConfigSql;
 import com.skill.India.dto.AssessmentBodyAffiliationDto;
-import com.skill.India.dto.InstitutionRecognitionDto;
-import com.skill.India.dto.TrainingPartnerRegistrationIdDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;

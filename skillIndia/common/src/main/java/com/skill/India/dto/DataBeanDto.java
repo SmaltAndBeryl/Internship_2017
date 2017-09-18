@@ -1,13 +1,10 @@
 package com.skill.India.dto;
 
-import org.slf4j.LoggerFactory;
 
 /**
  * Created by Alkesh on 7/13/2017.
  */
 public class DataBeanDto {
-
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DataBeanDto.class);
 
     private final String organizationName;
     private final String address;

@@ -53,7 +53,7 @@ public class NonAssignedBatchesDao extends AbstractTransactionalDao{
 
     private static class NonAssignedBatchesDaoRowMapper implements RowMapper<NonAssignedBatchesDto> {
 
-        int counter = 0;
+//        int counter = 0;
         @Override
         public NonAssignedBatchesDto mapRow(ResultSet resultSet, int rowNum)throws SQLException{
 

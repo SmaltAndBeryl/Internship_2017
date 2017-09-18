@@ -2,9 +2,6 @@ package com.skill.India.dao;
 
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.PdfDataConfigSql;
-import com.skill.India.dto.AssessmentBodyDirectorsDto;
-import com.skill.India.dto.AssessmentExperienceInTechnicalDomainDto;
-import com.skill.India.dto.InstitutionRecognitionDto;
 import com.skill.India.dto.RegionalOfficeDetailsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
