@@ -314,7 +314,26 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			}
 	
 		}
+		
+		/*
+		 * Update cvPath & certificatePath in TrainingPartnerManagementAndStaffAndOfficialsDetails
+		 */
 	
+		public int updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(HashMap<String, String> setPaths,int managementAndStaffId)
+		{
+			try{
+			Map<String, String> parameters = new HashMap<String, String>();
+			parameters.put("cVPath", setPaths.get("cVPath"));
+			parameters.put("certificatePath", setPaths.get("certificatePath"));
+			parameters.put("managementAndStaffId", String.valueOf(managementAndStaffId));
+			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(), parameters);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				return -1;
+			}
+		}
 
 	
 	

@@ -235,7 +235,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		 * Insert data in Institute Recognition Table
 		 */
 	
-		public int insertIntoTrainingPartnerInstituteRecognition(ProfileCreationTrainingPartnerInstituteRecognitionDto profileCreationTrainingPartnerInstituteRecognitionDto,String trainingPartnerRegistrationId)
+		public int insertIntoTrainingPartnerInstituteRecognition(ProfileCreationTrainingPartnerInstituteRecognitionDto profileCreationTrainingPartnerInstituteRecognitionDto)
 		{
 			try{
 				LOGGER.info("Trying to construct database query to insert details of institution recognition of training partner");
@@ -313,9 +313,8 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				parameters.put("experience",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getExperience());
 				parameters.put("cVPath",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getcVPath());
 				parameters.put("certificatePath",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getCertificatePath());
-				
-				LOGGER.info("Trying to execute database query to insert details of management and training staff of training partner");
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(),parameters);
+				LOGGER.info("Trying to execute database query to insert details of management and training staff of training partner and get back the managementAndStaffId");
+				return insert(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(),parameters, "managementAndStaffId");
 
 			}catch(Exception e)
 			{
