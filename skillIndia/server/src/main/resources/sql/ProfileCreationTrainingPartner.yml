@@ -186,5 +186,8 @@ ProfileCreationTrainingPartner:
   
  deleteFromTrainingPartnerCenterLevelDetails: >
   DELETE FROM `scgj`.`trainingpartnerCenterlevelDetails` WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId; 
-   
+ 
+ updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails: >
+  UPDATE `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` SET `cVPath`=:cVPath, `certificatePath`=:certificatePath WHERE `managementAndStaffId`=:managementAndStaffId;
+    
    
