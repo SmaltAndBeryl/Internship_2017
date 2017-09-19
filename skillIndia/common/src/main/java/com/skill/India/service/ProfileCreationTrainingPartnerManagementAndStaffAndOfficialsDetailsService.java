@@ -31,7 +31,7 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	@Autowired
 	private ProfileCreationSaveFile profileCreationSaveFile;
 	
-	public String setTrainingPartnerManagementAndStaffAndOfficialsDetails(HashMap<String, HashMap<String, String>> trainingPartnerManagementAndStaffAndOfficialsDetails,HashMap<String, HashMap<String, String>> trainingPartnerManagementAndStaffAndOfficialsDetailsDeletes, HashMap<String,HashMap<String, MultipartFile>> trainingPartnerManagementAndStaffAndOfficialsDetailsFiles,File createDirectorsAndManagementTeamMembersFolder,File createTrainingStaffCVFolder,File createTrainingStaffCertificateFolder,int userExists)
+	public String setTrainingPartnerManagementAndStaffAndOfficialsDetails(HashMap<String, HashMap<String, String>> trainingPartnerManagementAndStaffAndOfficialsDetails,HashMap<String, HashMap<String, String>> trainingPartnerManagementAndStaffAndOfficialsDetailsDeletes, HashMap<String,HashMap<String, MultipartFile>> trainingPartnerManagementAndStaffAndOfficialsDetailsFiles,File createDirectorsAndManagementTeamMembersFolder,File createTrainingStaffCVFolder,File createTrainingStaffCertificateFolder)
 	{
 		try{
 
@@ -118,7 +118,7 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 				}
 				
 			}
-			if(trainingPartnerManagementAndStaffAndOfficialsDetails.get("certificatePath")!=null)
+			if(deleteManagementAndStaffAndOfficialsDetailsRecord.get("certificatePath")!=null)
 			{
 				/*
 				 * Delete certificate on that path
@@ -379,7 +379,8 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 				 * Updating paths of Files saved on system in database 
 				 */
 				
-				int statusOfUpdatePaths=profileCreationTrainingPartnerUpdateDataDao.updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(setPaths, managementAndStaffId);
+				
+				int statusOfUpdatePaths=profileCreationTrainingPartnerUpdateDataDao.updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(setPaths, managementAndStaffId,null);
 				
 				if(statusOfUpdatePaths==-1)
 				{

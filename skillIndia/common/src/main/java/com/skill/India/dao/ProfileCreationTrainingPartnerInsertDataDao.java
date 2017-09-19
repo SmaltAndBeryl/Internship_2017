@@ -190,8 +190,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				parameters.put("remarksOnStudentAdmissionDetails",profileCreationTrainingPartnerCenterDetailsDto.getRemarksOnStudentAdmissionDetails());
 				
 				LOGGER.info("Trying to execute database query to insert center level registration data of training partner");
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerCenterLevelDetails(),parameters);
-
+				return insert(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerCenterLevelDetails(),parameters,"trainingPartnerCenterId");
 			}
 			catch(Exception e)
 			{

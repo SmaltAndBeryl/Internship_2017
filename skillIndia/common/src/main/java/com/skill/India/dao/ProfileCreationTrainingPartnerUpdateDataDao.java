@@ -319,12 +319,13 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		 * Update cvPath & certificatePath in TrainingPartnerManagementAndStaffAndOfficialsDetails
 		 */
 	
-		public int updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(HashMap<String, String> setPaths,int managementAndStaffId)
+		public int updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(HashMap<String, String> setPaths,int managementAndStaffId,String trainingPartnerCenterId)
 		{
 			try{
 			Map<String, String> parameters = new HashMap<String, String>();
 			parameters.put("cVPath", setPaths.get("cVPath"));
 			parameters.put("certificatePath", setPaths.get("certificatePath"));
+			parameters.put("trainingPartnerCenterId", trainingPartnerCenterId);
 			parameters.put("managementAndStaffId", String.valueOf(managementAndStaffId));
 			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(), parameters);
 			}
@@ -336,5 +337,28 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		}
 
 	
+		/*
+		 * Update Path's in TrainingPartnerManagementAndStaffAndOfficialsDetails
+		 */
+	
+		public int updatePathsIntoTrainingPartnerCenterLevelDetails(HashMap<String, String> setPaths,int trainingPartnerCenterId)
+		{
+			try{
+			Map<String, String> parameters = new HashMap<String, String>();
+			parameters.put("classroomPicsPath", setPaths.get("classroomPicsPath"));
+			parameters.put("labPicsPath", setPaths.get("labPicsPath"));
+			parameters.put("workshopPicsPath", setPaths.get("workshopPicsPath"));
+			parameters.put("mandatoryToolKitAnnexurePath", setPaths.get("mandatoryToolKitAnnexurePath"));
+			parameters.put("mandatoryToolKitPicsPath", setPaths.get("mandatoryToolKitPicsPath"));
+			parameters.put("trainingPartnerCenterId", String.valueOf(trainingPartnerCenterId));
+			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsIntoTrainingPartnerCenterLevelDetails(), parameters);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				return -1;
+			}
+		}
+		
 	
 }

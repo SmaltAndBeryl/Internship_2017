@@ -27,6 +27,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateIntoTrainingPartnerPriorExperienceInSkillTraining;
 	private String updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
 	private String updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	private String updatePathsIntoTrainingPartnerCenterLevelDetails;
 	private String deleteFromTrainingPartnerInstituteGrant;
 	private String deleteFromTrainingPartnerInstituteRecognition;
 	private String deleteFromTrainingPartnerPriorExperienceInSkillTraining;
@@ -37,6 +38,19 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	
 	
 	
+	/**
+	 * @return the updatePathsIntoTrainingPartnerCenterLevelDetails
+	 */
+	public String getUpdatePathsIntoTrainingPartnerCenterLevelDetails() {
+		return updatePathsIntoTrainingPartnerCenterLevelDetails;
+	}
+	/**
+	 * @param updatePathsIntoTrainingPartnerCenterLevelDetails the updatePathsIntoTrainingPartnerCenterLevelDetails to set
+	 */
+	public void setUpdatePathsIntoTrainingPartnerCenterLevelDetails(
+			String updatePathsIntoTrainingPartnerCenterLevelDetails) {
+		this.updatePathsIntoTrainingPartnerCenterLevelDetails = updatePathsIntoTrainingPartnerCenterLevelDetails;
+	}
 	/**
 	 * @return the updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails
 	 */

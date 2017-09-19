@@ -149,6 +149,10 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			HashMap<String, HashMap<String, MultipartFile>> trainingPartnerCenterLevelDetailsFiles=userUploads.get("TrainingPartnerCenterLevelDetails");
 			HashMap<String, HashMap<String, String>> trainingPartnerCenterLevelDetailsDeletes=userDeletes.get("TrainingPartnerCenterLevelDetails");
 			
+			HashMap<String, HashMap<String, String>> trainingPartnerCenterLevelAHOCSPOCDetails = userData.get("TrainingPartnerCenterLevelAHOCSPOCDetails");
+			HashMap<String, HashMap<String, MultipartFile>> trainingPartnerCenterLevelAHOCSPOCDetailsFiles = userUploads.get("TrainingPartnerCenterLevelAHOCSPOCDetails");
+			
+			
 			HashMap<String, HashMap<String, String>> trainingPartnerInstituteGrant=userData.get("TrainingPartnerInstituteGrant");
 			HashMap<String, HashMap<String, String>> trainingPartnerInstituteGrantDeletes=userDeletes.get("TrainingPartnerInstituteGrant");
 			
