@@ -15,80 +15,47 @@
   color: #676a6c;
   color: var(--slate-grey);;
 }
-
-.grid1 {
-	margin-top:15px;
- margin-left:21px;
-	margin-right:24px;
-  height: 68px;
-  background-color: none;
+.tpMainDiv{
+	background-color: #EAEEEF;
+	padding:1em;
 }
 .title{
-
-  height: 15px;
   font-size: 14px;
-  padding-top: 20px;
-  padding-left: 25px;
   font-weight: 600;
   text-align: left;
   color: #676a6c;
-  color: (--slate-grey);
 	
 }
-.Rectangle-7-copy-11{
+.appStatusDiv{
 	background-color: White;
-	height: 150px;
-	margin-left:30px;
-	margin-right:30px;
-	margin-top:20px;
+	padding:1em;
+	margin-bottom:1em;
 }
 
 .presentBatchesBoxwrap {
   
-  height: 248px;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-top: 20px;
-  background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+    background-color: #fffefe;
+    padding:1em;
+    margin-bottom:1em;
 
 }
-.presentBatchesTable {
-  height: 15px;
-  font-size: 14px;
-  padding-top: 20px;
-  padding-left: 25px;
+.presentBatchesTable
+{
   font-weight: 600;
   text-align: left;
   color: #676a6c;
-  color: (--slate-grey);
 }
-.pastBatchesBoxwrap {
-  
-  height:248px;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-top: 20px;
+.pastBatchesBoxwrap 
+{
   background-color: #fffefe;
-  box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
+  padding:1em;
+  margin-bottom:1em;
 }
 .pastBatchesTable {
-  height: 15px;
-  font-size: 14px;
-  padding-top: 20px;
-  padding-left: 25px;
   font-weight: 600;
   text-align: left;
   color: #676a6c;
-  color: (--slate-grey);
 
-}
-.grid {
-  margin-left:21px;
-  margin-right:24px;
-  background-color: none;
-  border-width: '2px';
-  height: 190px;
 }
 
  .ui-grid-header-cell-wrapper {
@@ -152,7 +119,7 @@
     }
 .comment
 {
-	padding-top:5px;
+	
 }
 .Prostokt-2-kopia-2-copy-14 {
 	padding-top: 7px;
@@ -164,11 +131,14 @@
 .commoncell{
 	padding-left:10px;
 }
-.statuscell{
-	padding-left:10px;
+.statuscellred{
+	
 	color: Red;
 }
-
+.statuscellgreen{
+	
+	color: green;
+}
 
 .MainDivision {
   width: 1178px;

@@ -1,6 +1,6 @@
 var trainingPartner = angular.module("hello");
 
-trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScope){
+trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScope,$location){
     $scope.message = "Hi Training Partner";
     $scope.tpAppStatus = {
         enableColumnMenus: false,
@@ -28,7 +28,19 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
             {
                 name: 'applicationState',
                 displayName: 'Status',
-                cellClass: 'statuscell',
+                cellClass: function (grid, row, col, rowIndex, colIndex) {
+                    var val = grid.getCellValue(row, col);
+                    if (val === 'Approved') {
+                      return 'statuscellgreen';
+                    }
+                    else if (val === 'Incomplete') {
+                      return 'statuscellred';
+                    }
+                    else
+                    	{
+                    	return '';
+                    	}
+                  },
                 headerCellClass: 'Status'
             },
             {
@@ -37,7 +49,7 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
                 cellClass: 'Prostokt-2-kopia-2-copy-14',
                 width: 76,
                 headerCellClass: 'Action-copy',
-                cellTemplate: '<img src="icon/indexpageIcons/edit1.png" ng-show="1" ng-click="grid.appScope.myfunction(row)">'
+                cellTemplate: '<img src="icon/indexpageIcons/edit1.png" ng-show="1" ng-click="grid.appScope.editApplication(row)">'
             },
             {
                 name: 'comment',
@@ -54,13 +66,15 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
         window.alert(commentCheck);
 
     }
-    $scope.myfunction = function(rowData) {
-        var appState = Object.values(Object.values(rowData)[1])[3];
+    $scope.editApplication = function(rowData) {
+        var appState = rowData.entity.applicationState;
         if (appState == "Incomplete") {
             $location.path('/profileCreationTp');
             console.log("Please Edit the Form");
 
-        } else {
+        } 
+        else
+        {
             window.alert("Invalid Access");
         }
         console.log("Click is working" + appState);
