@@ -47,7 +47,7 @@ public class UserIdtoApplicationIdDao extends AbstractTransactionalDao {
 		catch(EmptyResultDataAccessException e)
 		{
 			/*
-			 * Application id doesnt exist i.e. no app id is returned corresponding to userId
+			 * Application id doesn't exist i.e. no app id is returned corresponding to userId
 			 */
 			LOGGER.info("Inside CATCH block");
 			
@@ -65,7 +65,6 @@ public class UserIdtoApplicationIdDao extends AbstractTransactionalDao {
 			LOGGER.info("Exception occurs in getting applicationId");
 			LOGGER.info("Returning -2 (Exception occurs )");
 			return -2;
-			// TODO: handle exception
 		}
 	}
 }

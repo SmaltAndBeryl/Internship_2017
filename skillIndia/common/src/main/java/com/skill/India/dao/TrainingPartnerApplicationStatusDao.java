@@ -62,7 +62,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(TrainingPartnerAppl
                 throws SQLException {
             String applicationID = resultSet.getString("applicationID");
             String dateOfSubmission = resultSet.getString("dateOfSubmission");
-            String trainingPartnerName = resultSet.getString("trainingPartnerName");
+            String trainingPartnerName = resultSet.getString("organizationName");
             String applicationState = resultSet.getString("applicationState");
             String comment = resultSet.getString("comment");
 

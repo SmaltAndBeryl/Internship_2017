@@ -60,7 +60,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentBodyAppli
                 throws SQLException {
             String applicationID = resultSet.getString("applicationID");
             String dateOfSubmission = resultSet.getString("dateOfSubmission");
-            String assessmentAgencyName = resultSet.getString("assessmentAgencyName");
+            String assessmentAgencyName = resultSet.getString("organizationName");
             String applicationState = resultSet.getString("applicationState");
             String comment = resultSet.getString("comment");
 
