@@ -2,14 +2,14 @@ package com.skill.India.service;
 
 import com.skill.India.dao.*;
 import com.skill.India.dto.*;
-import jdk.internal.util.xml.impl.Input;
+
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
-import sun.rmi.runtime.Log;
 
 import java.io.*;
 import java.util.Collection;
@@ -38,7 +38,6 @@ public class AssessmentBodyPdfService {
     @Autowired AssessmentBodyAffiliationDao assessmentBodyAffiliationDao;
 
     public int dataBeanCollection(String assessmentBodyRegistrationId) throws IOException {
-        final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(com.skill.India.service.AssessmentBodyPdfService.class);
 
         LOGGER.info("Creating collection for storing value from Dtos");
         Collection<RegionalOfficeDetailsDto> regionalOfficeDetailsDtos = regionalOfficeDetailsDao.dataBeanDtoCollectionRegionalOffice(assessmentBodyRegistrationId);
@@ -73,7 +72,7 @@ public class AssessmentBodyPdfService {
         LOGGER.info("Successfully created the JRBeanDataSources");
 
 
-        Map parameters = new HashMap();
+        Map<String, Object> parameters = new HashMap<>();
         LOGGER.info("Creating HashMap to pass JRBeanDatSource into the PDF as parameters");
         parameters.put("regionalOffice", regionalOfficeDataSource);
         parameters.put("registrationDetails", assessmentBodyRegistrationDetailsDataSource);
