@@ -1,7 +1,7 @@
 assessmentBodyApplicationStatus:
  selectSql: >
-  select A.applicationId,A.dateOfSubmission,T.assessmentAgencyName,A.applicationState,AC.comment 
-   from application as A,assessmentagencyregistration as T 
+  select A.applicationId,A.dateOfSubmission,T.organizationName,A.applicationState,AC.comment 
+   from application as A,AssessmentBodyRegistrationDetails as T 
     left join applicationcomments as AC on AC.applicationId=T.applicationId 
      where A.applicationId=T.applicationId 
       and T.applicationId=:applicationId 

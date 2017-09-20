@@ -1,27 +1,27 @@
 assessmentBodyHomepage:
  selectSqlpastBatchesAssessmentBodyHomepage: >
-  select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
-  from batch B, trainingpartner A, trainingpartnerregistration C, centre F
+  select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.landlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
+  from batch B, trainingpartner A, TrainingPartnerOrganizationDetails C, centre F
   where B.assessmentDate<curdate() and B.agencyId= :agencyId and B.trainingPartnerId = A.trainingPartnerId and B.centreId=F.centreId and F.trainingPartnerId=A.trainingPartnerId and A.applicationId=C.applicationId;
 
  selectSqlupcomingBatchesAssessmentBodyHomepage: >
-  select B.batchId, B.assessmentDate, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, CONCAT(F.district, ' | ', F.state) as location,B.totalCandidatesInBatch
-  from batch B, trainingpartner A, trainingpartnerregistration C, centre F
-  where B.agencyId IS null and B.batchEndDate > curdate() and B.trainingPartnerId = A.trainingPartnerId and  A.trainingPartnerId = C.tpId and B.centreId = F.centreId and  NOT EXISTS (Select SI.batchId from showinterest SI where B.batchId = SI.batchId and SI.agencyId = :agencyId) and NOT exists(Select BA.batchId from batchassignment BA where B.batchId = BA.batchId and BA.agencyId = :agencyId);
+  select B.batchId, B.assessmentDate, CONCAT(A.trainingPartnerName, ' | ', C.landlineNumber) as trainingPartnerDetails, CONCAT(F.district, ' | ', F.state) as location,B.totalCandidatesInBatch
+  from batch B, trainingpartner A, TrainingPartnerOrganizationDetails C, centre F
+  where B.agencyId IS null and B.batchEndDate > curdate() and B.trainingPartnerId = A.trainingPartnerId and  A.trainingPartnerId = C.trainingPartnerRegistrationId and B.centreId = F.centreId and  NOT EXISTS (Select SI.batchId from showinterest SI where B.batchId = SI.batchId and SI.agencyId = :agencyId) and NOT exists(Select BA.batchId from batchassignment BA where B.batchId = BA.batchId and BA.agencyId = :agencyId);
  
  selectSqlShownInterestBatchesAssessmentBodyHomepage: >
-  select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
-  from batch B, trainingpartnerregistration C, trainingpartner A, centre F
-  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and assessmentDate>curdate() and exists(Select batchId from showinterest where agencyId= :agencyId and batchId =B.batchId) and A.applicationId=C.applicationId;
+  select B.batchId, CONCAT(A.trainingPartnerName, ' | ', C.landlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
+  from batch B, TrainingPartnerOrganizationDetails C, trainingpartner A, centre F
+  where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and B.assessmentDate>curdate() and exists(Select batchId from showinterest where agencyId= :agencyId and batchId =B.batchId) and A.applicationId=C.applicationId;
 
  selectSqlassignedBatchesAssessmentBodyHomepage: >
-  select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
-  from batch B, trainingpartnerregistration C, trainingpartner A, centre F
+  select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.landlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
+  from batch B, TrainingPartnerOrganizationDetails C, trainingpartner A, centre F
   where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and assessmentDate>curdate() and exists(Select batchId from batchassignment where agencyId= :agencyId and batchId =B.batchId and responseType = 'proposed') and A.applicationId=C.applicationId
  
  selectSqlconfirmedBatchesAssessmentBodyHomepage: >
-  select B.batchId, CONCAT(A.trainingPartnerName,' | ', C.emailId, ' | ', C.LandlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
-   from batch B, trainingpartnerregistration C, trainingpartner A, centre F
+  select B.batchId, CONCAT(A.trainingPartnerName, ' | ', C.landlineNumber) as trainingPartnerDetails, B.assessmentDate, CONCAT(F.district, ' | ', F.state) as location, B.totalCandidatesInBatch
+   from batch B, TrainingPartnerOrganizationDetails C, trainingpartner A, centre F
    where B.centreId=F.centreId and B.trainingPartnerId = A.trainingPartnerId and B.agencyId= :agencyId and B.assessmentDate>curdate() and A.applicationId = C.applicationId and exists(Select batchId from batchassignment where agencyId = :agencyId and batchId = B.batchId and responseType = 'Approved');
 
  updateSqlShowInterest: >
