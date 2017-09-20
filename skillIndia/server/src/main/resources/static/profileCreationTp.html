@@ -1,7 +1,7 @@
 
 <div ng-controller="profileCreationTp">
 
-    <script type="text/ng-template">
+<!--     <script type="text/ng-template"> -->
         <div class="panel-heading">
             <h4 class="panel-title" style="background-color:aqua">
                 <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
@@ -16,27 +16,113 @@
         </div>
     </script>
 
-
     {{trainingPartner.userId}}
-    <uib-accordion>
-        <div uib-accordion-group class="panel-default" heading="Institution Level - Basic information">
-            <div ng-include src="'accordion1.html'"></div>
+    <div>
+    <accordion close-others="true">
+    <accordion-group is-open="status.open">
+                <accordion-heading>                    
+                        <div>
+                            STEP 1: BASIC INFORMATION
+                        </div>
+                        <div>
+                        	<i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+                        </div>
+                </accordion-heading>
+    <div>
+        <div class="col-md-9">
+            <h2>{{trainingPartner.organizationName}}</h2>
+        </div>
+        <div class="col-md-3">
+            <h2>{{trainingPartner.sPOCName}}</h2>
         </div>
 
-        <!-- <div uib-accordion-group class="panel-default" heading="Institution Level - Organization details">
-            <div ng-include src="'accordion2.html'"></div>
+    </div>
+
+	<div class="field1">
+        <div class="col-md-6">UserId</div>
+        <div class="col-md-6">
+            <input type="text" ng-model="trainingPartner.userId" value="{{userId}}" readonly>
         </div>
- -->
-  <!--       <div uib-accordion-group class="panel-default" heading="Institution Level - Personnel details">
-            <div ng-include src="'accordion3.html'"></div>
+    </div>
+    
+    <div class="field1">
+        <div class="col-md-6">OrganizationName</div>
+        <div class="col-md-6">
+            <input type="text" ng-model="trainingPartner.organizationName" value="{{organizationName}}" readonly>
         </div>
+    </div>
+            </accordion-group>
+            
+            <!--  ------------------------ACCORDION 2 ------------------  -->
+            <accordion-group is-open="status.open2">
+                <accordion-heading>                    
+                        <div>
+                            STEP 2 : ORGANISATION DETAILS
+                        </div>
+                        <div>
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
+                    </div>
+                </accordion-heading>
+                <div>
+				<!--                 accordion content to come here -->
+				</div>
 
-        <div uib-accordion-group class="panel-default" heading="Centre Level - Information">
-            <div ng-include src="'accordion4.html'"></div>
-        </div> -->
+            </accordion-group>
+            
+<!--  ------------------------ACCORDION 3 ------------------  -->
+            <accordion-group is-open="status.open3">
+                <accordion-heading>
+                    
+                        <div>
+                            STEP 3 : MANAGEMENT STAFF DETAILS
+                        </div>
+                        <div>
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
+                    </div>
+                </accordion-heading>
+                <div>
+		<!--                 accordion content to come here -->
+				</div>
+            </accordion-group>
+<!--  ------------------------ACCORDION 3 ------------------  -->            
+                        <accordion-group is-open="status.open4">
+                <accordion-heading>                    
+                        <div>
+                            STEP 4 : TRAINING STAFF DETAILS
+                        </div>
+                        <div>
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i>
+                    </div>
+                </accordion-heading>
+                <div>
+		<!--                 accordion content to come here -->
+		</div>
+            </accordion-group>
+	</accordion>   
+	<!--  ------------------------ACCORDION ENDS HERE ------------------  -->
+	<div>
+    	<button type="button" ng-click="save('save')" class="btn btn-warning">Save as Draft</button>
+    	<button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
+    </div>
+</div> 
+<!--     <uib-accordion> -->
+<!--         <div uib-accordion-group class="panel-default" heading="Institution Level - Basic information"> -->
+<!--             <div ng-include src="'accordion1.html'"></div> -->
+<!--         </div> -->
 
-    </uib-accordion>
+<!--         <div uib-accordion-group class="panel-default" heading="Institution Level - Organization details">
+<!--             <div ng-include src="'accordion2.html'"></div> -->
+<!--         </div> -->
+<!--  -->
+<!--   <!--       <div uib-accordion-group class="panel-default" heading="Institution Level - Personnel details"> -->
+<!--             <div ng-include src="'accordion3.html'"></div> -->
+<!--         </div> -->
 
-    <button type="button" ng-click="save('save')" class="btn btn-warning">Save as Draft</button>
-    <button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
+<!--         <div uib-accordion-group class="panel-default" heading="Centre Level - Information"> -->
+<!--             <div ng-include src="'accordion4.html'"></div> -->
+<!--         </div> -->
+
+<!--     </uib-accordion> -->
+	
+    
 </div>

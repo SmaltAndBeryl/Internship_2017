@@ -1,0 +1,78 @@
+
+<div ng-controller="profileCreationAb">
+        <div class="panel-heading">
+            <h4 class="panel-title" style="background-color:aqua">
+                <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+                  <span uib-accordion-header>
+                    {{heading}}
+                  </span>
+                </a>
+            </h4>
+        </div>
+        <div>
+        <accordion close-others="true">
+
+            <!--  ------------------------ACCORDION 1------------------  -->
+            <accordion-group is-open="status.open">
+                <accordion-heading>
+                      <div>
+                            STEP 1: BASIC INFORMTAION
+                        </div>
+                        <div>
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+                    </div>
+                </accordion-heading>
+                <div>
+<!--                 accordion content to come here -->
+                </div>
+            </accordion-group>
+            
+            <!--  ------------------------ACCORDION 2------------------  -->
+            <accordion-group is-open="status.open2">
+            <accordion-heading>
+                      <div>
+                            STEP 2: AGENCY DETAILS
+                        </div>
+                        <div>
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
+                    </div>
+                </accordion-heading>
+                <div>
+<!--                 accordion content to come here -->
+                </div>
+            </accordion-group>
+            <!--  ------------------------ACCORDION 3------------------  -->
+            <accordion-group is-open="status.open3">
+            <accordion-heading>
+                      <div>
+                            STEP 3: ORGANISATION DETAILS
+                        </div>
+                        <div>
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
+                    </div>
+                </accordion-heading>
+                <div>
+<!--                 accordion content to come here -->
+                </div>
+            </accordion-group>
+            
+            <!--  ------------------------ACCORDION 4------------------  -->
+            <accordion-group is-open="status.open4">
+            <accordion-heading>
+                      <div>
+                            STEP 4: MANAGEMENT STAFF DETAILS
+                        </div>
+                        <div>
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i>
+                    </div>
+                </accordion-heading>
+                <div>
+<!--                 accordion content to come here -->
+                </div>
+            </accordion-group>
+        </accordion>
+
+</div> 
+    <button type="button" ng-click="save('save')" class="btn btn-warning">Save as Draft</button>
+    <button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
+</div>
