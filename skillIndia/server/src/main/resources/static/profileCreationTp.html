@@ -46,16 +46,72 @@
                 <div class="field1">
                     <div class="col-md-6">UserId</div>
                     <div class="col-md-6">
-                        <input type="text" ng-model="trainingPartner.userId" value="{{userId}}" readonly>
+                        <input type="text" ng-model="trainingPartner.userId" value="{{userId}}">
                     </div>
                 </div>
 
                 <div class="field1">
-                    <div class="col-md-6">OrganizationName</div>
+                    <div class="col-md-6">City</div>
                     <div class="col-md-6">
-                        <input type="text" ng-model="trainingPartner.organizationName" value="{{organizationName}}" readonly>
+                        <input type="text" ng-model="trainingPartner.city" value="{{city}}">
                     </div>
                 </div>
+
+                <div class="field2">
+                    <div class="col-md-6">State</div>
+                    <div class="col-md-6">
+                        <input type="text" ng-model="trainingPartner.state" value="{{state}}">
+                    </div>
+                </div>
+
+                <div class="field3">
+                    <div class="col-md-6">Mobile Number</div>
+                    <div class="col-md-6">
+                        <input type="number" ng-model="trainingPartner.mobileNumber" value="{{mobileNumber}}" >
+                    </div>
+                </div>
+
+                <div class="field4">
+                    <div class="col-md-6">Alternate Mobile Number</div>
+                    <div class="col-md-6">
+                        <input type="number" ng-model="trainingPartner.alternateMobileNumber" value="{{alternateMobileNumber}}" >
+                    </div>
+                </div>
+
+                <div class="field5">
+                    <div class="col-md-6">Landline Number</div>
+                    <div class="col-md-6">
+                        <input type="number" ng-model="trainingPartner.landlineNumber" value="{{landlineNumber}}" >
+                    </div>
+                </div>
+
+                <div class="field6">
+                    <div class="col-md-6">Alternate Landline Number</div>
+                    <div class="col-md-6">
+                        <input type="number" ng-model="trainingPartner.alternateLandlineNumber" value="{{alternateLandlineNumber}}" >
+                    </div>
+                </div>
+
+                <div class="field7">
+                    <div class="col-md-6">Fax Number</div>
+                    <div class="col-md-6">
+                        <input type="number" ng-model="trainingPartner.faxNumber" value="{{faxNumber}}" >
+                    </div>
+                </div>
+
+                <div class="field8">
+                    <div class="col-md-6">Website</div>
+                    <div class="col-md-6">
+                        <input type="text" ng-model="trainingPartner.webistes" value="{{websites}}" >
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-lg-12">
+                        <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
+                    </div>
+                </div>
+
             </accordion-group>
 
             <!--  ------------------------ACCORDION 2 ------------------  -->
@@ -70,7 +126,162 @@
                 </accordion-heading>
                 <div>
                     <!--                 accordion content to come here -->
+                    <div class="field6">
+                        <div class="col-md-6">Year of Establishment</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="trainingPartner.yearOfEstablishment" value="{{yearOfEstablishment}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Qualification Packs</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="trainingPartner.qualificationPacks" value="{{qualificationPacks}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Is the institute NSDC funded?</div>
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="nSDCFunded" ng-model="trainingPartner.nSDCFunded" value="Yes"> Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="nSDCFunded" ng-model="trainingPartner.nSDCFunded" value="No" checked> No
+                            </label>
+
+                            <div ng-show="trainingPartner.nSDCFunded == 'Yes'">
+                                <label class="upload-file">Upload File</label>
+                                <input type="file">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Medium of instructions</div>
+                        <div class="col-md-6">
+                            <label class="medium">
+                                <input type="checkbox" ng-model="trainingPartner.mediumOfInstructions.english" value="English"> English
+                            </label>
+                            <label class="medium">
+                                <input type="checkbox" ng-model="trainingPartner.mediumOfInstructions.hindi" value="Hindi"> Hindi
+                            </label>
+                            <label class="medium">
+                                <input type="checkbox" ng-model="trainingPartner.mediumOfInstructions.others" value="Others"> Others
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Model of Insititution</div>
+                        <div class="col-md-6">
+                            <label class="model">
+                                <input type="checkbox" ng-model="selfOwnedInstitution"> Self Owned Institution
+                            </label>
+                            <div ng-show="selfOwnedInstitution">
+                                <label class="upload-file">Upload File</label>
+                                <input type="file">
+                                <label>
+                                    Total Number of Self Owned Centers<input type="number" ng-model="trainingPartner.selfOwnedInstitution" value="{{selfOwnedInstitution}}">
+                                </label>
+                            </div>
+
+                            <label class="model">
+                                <input type="checkbox" ng-model="franchiseOwnedInstitution"> Franchise Owned Institution
+                            </label>
+                            <div ng-show="franchiseOwnedInstitution">
+                                <label class="upload-file">Upload File</label>
+                                <input type="file">
+                                <label>
+                                    Total Number of Franchise Owned Centers <input type="number" ng-model="trainingPartner.franchiseOwnedInstitution" value="{{franchiseOwnedInstitution}}">
+                                </label>
+                            </div>
+
+                            <label class="model">
+                                <input type="checkbox" ng-model="mobileTrainingInstitution"> Mobile Training Institution
+                            </label>
+                            <div ng-show="mobileTrainingInstitution">
+                                <label class="upload-file">Upload File</label>
+                                <input type="file">
+                                <label>
+                                    Total Number of Mobile Centers Owned <input type="number" ng-model="trainingPartner.mobileTrainingInstitution" value="{{mobileTrainingInstitution}}">
+                                </label>
+                            </div>
+
+                            <div>
+                                <label>
+                                    Total Centers {{trainingPartner.franchiseOwnedInstitution + trainingPartner.franchiseOwnedInstitution + trainingPartner.franchiseOwnedInstitution}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">PAN</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="trainingPartner.panNumber" value="{{panNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">TAN</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="trainingPartner.tanNumber" value="{{tanNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Turnover of the institute</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="trainingPartner.turnOverOfInstitution" value="{{turnOverOfInstitution}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Does the institution received any grant?</div>
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="nSDCFunded" ng-model="trainingPartner.instituteReceivedAnyGrant" value="Yes"> Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="nSDCFunded" ng-model="trainingPartner.instituteReceivedAnyGrant" value="No" checked> No
+                            </label>
+                        </div>
+                        <div class="col-md-12" ng-show="trainingPartner.instituteReceivedAnyGrant == 'Yes'">
+                            <table>
+                                <tr ng-repeat="x in grantTable">
+                                    <td>{{x.sno}}</td>
+                                    <td>{{x.name}}</td>
+                                    <td>{{x.natureOfWork}}</td>
+                                    <td>{{x.remark}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Turnover of the institute</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="trainingPartner.turnOverOfInstitution" value="{{turnOverOfInstitution}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Turnover of the institute</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="trainingPartner.turnOverOfInstitution" value="{{turnOverOfInstitution}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Turnover of the institute</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="trainingPartner.turnOverOfInstitution" value="{{turnOverOfInstitution}}" >
+                        </div>
+                    </div>
                 </div>
+
+
 
             </accordion-group>
 

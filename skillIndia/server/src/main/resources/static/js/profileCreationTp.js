@@ -13,6 +13,18 @@ profileCreationTp.controller('profileCreationTp' , function($scope, $http){
 
     $scope.states = ["UP", "Uttarakhand", "MP", "Bihar"];
 
+    $scope.grantTable = [
+                            { sno : "1",
+                                name : "CII",
+                                natureOfWork : "Work",
+                                remark : "None"
+                            }
+    ];
+    
+    $scope.saveAccordionOne = function(){
+        console.log("Button Working " + JSON.stringify($scope.trainingPartner));
+    }
+
     $scope.grantTable = {
         enableGridMenus : false,
         enableSorting: false,
