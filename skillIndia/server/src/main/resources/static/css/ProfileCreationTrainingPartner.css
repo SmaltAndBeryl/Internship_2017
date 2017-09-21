@@ -10,3 +10,7 @@
 #address{
     width: 100%;
 }
+
+.panel-title{
+    cursor : pointer;
+}
