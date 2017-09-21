@@ -54,6 +54,18 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	@Autowired
 	private ProfileCreationTrainingPartnerInstituteGrantService profileCreationTrainingPartnerInstituteGrantService;
 	
+	@Autowired
+	private ProfileCreationTrainingPartnerInstituteRecognitionService profileCreationTrainingPartnerInstituteRecognitionService;
+	
+	@Autowired
+	private ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingService profileCreationTrainingPartnerPriorExperienceInSkillTrainingService;
+	
+	@Autowired
+	private ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsService profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsService;
+	
+	@Autowired
+	private ProfileCreationTrainingPartnerCenterDetailsService profileCreationTrainingPartnerCenterDetailsService;
+	
 	public String profileCreationSaveAsDraftAndSubmit(String type,HashMap<String, HashMap<String, HashMap<String, String>>> userData,HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads,HashMap<String, HashMap<String, HashMap<String, String>>> userDeletes)
 	{
 		try{
@@ -272,7 +284,74 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				 */
 				
 				String statusOfTrainingPartnerInstituteGrant = profileCreationTrainingPartnerInstituteGrantService.setTrainingPartnerInstituteGrant(trainingPartnerInstituteGrant,trainingPartnerInstituteGrantDeletes);
-			
+				if(statusOfTrainingPartnerInstituteGrant==null)
+				{
+					
+					/*
+					 * An error occurred while saving files and inserting data in database
+					 */
+					return null;
+				}
+				
+				/*
+				 * Calling service of TrainingPartnerInstituteRecognition 
+				 */
+				
+				String statusOfTrainingPartnerInstituteRecognition = profileCreationTrainingPartnerInstituteRecognitionService.setTrainingPartnerInstituteRecognition(trainingPartnerInstituteRecognition, trainingPartnerInstituteRecognitionDeletes);
+				if(statusOfTrainingPartnerInstituteRecognition==null)
+				{
+					
+					/*
+					 * An error occurred while saving files and inserting data in database
+					 */
+					return null;
+				}
+				
+				/*
+				 * Calling service of TrainingPartnerPriorExperienceInSkillTraining 
+				 */
+				
+				String statusOfTrainingPartnerPriorExperienceInSkillTraining = profileCreationTrainingPartnerPriorExperienceInSkillTrainingService.setTrainingPartnerPriorExperienceInSkillTraining(trainingPartnerPriorExperienceInSkillTraining, trainingPartnerPriorExperienceInSkillTrainingDeletes);
+				if(statusOfTrainingPartnerPriorExperienceInSkillTraining==null)
+				{
+					
+					/*
+					 * An error occurred while saving files and inserting data in database
+					 */
+					return null;
+				}
+				
+				
+				/*
+				 * Calling service of TrainingPartnerManagementAndStaffAndOfficialsDetails 
+				 */
+				
+				String statusOfTrainingPartnerManagementAndStaffAndOfficialsDetails = profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsService.setTrainingPartnerManagementAndStaffAndOfficialsDetails(trainingPartnerManagementAndStaffAndOfficialsDetails, trainingPartnerManagementAndStaffAndOfficialsDetailsDeletes, trainingPartnerManagementAndStaffAndOfficialsDetailsFiles, createDirectorsAndManagementTeamMembersFolder, createTrainingStaffCVFolder, createTrainingStaffCertificateFolder);
+				if(statusOfTrainingPartnerManagementAndStaffAndOfficialsDetails==null)
+				{
+					
+					/*
+					 * An error occurred while saving files and inserting data in database
+					 */
+					return null;
+				}
+
+				/*
+				 * Calling service of TrainingPartnerCenterLevelDetails 
+				 */
+				
+				String statusOfTrainingPartnerCenterLevelDetails = profileCreationTrainingPartnerCenterDetailsService.setTrainingPartnerCenterDetails(trainingPartnerCenterLevelDetails, trainingPartnerCenterLevelDetailsDeletes, trainingPartnerCenterLevelDetailsFiles, createCentersFolder, trainingPartnerCenterLevelAHOCSPOCDetails, trainingPartnerCenterLevelAHOCSPOCDetailsFiles);
+				if(statusOfTrainingPartnerCenterLevelDetails==null)
+				{
+					
+					/*
+					 * An error occurred while saving files and inserting data in database
+					 */
+					return null;
+				}
+				
+				
+				
 			}
 
 			
