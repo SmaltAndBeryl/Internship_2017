@@ -140,4 +140,28 @@ ProfileCreationAssessmentBody:
   UPDATE `scgj`.`assessmentbodyaffiliationdetails` SET `nameOfSectorSkillCouncil`=:nameOfSectorSkillCouncil 
   WHERE `affiliationId`=:affiliationId;
 
+ updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails: > 
+  UPDATE `scgj`.`assessmentbodydirectorsandmanagementteamdetails` SET `cVPath`=:cVPath WHERE `directorsAndManagementId`=:directorsAndManagementId;
 
+ updatePathsIntoAssessmentStaffDetails: >
+  UPDATE `scgj`.`AssessmentStaffDetails` SET `cVPath`=:cVPath, `certificatePath`=:certificatePath WHERE `assessmentStaffId`=:assessmentStaffId;
+
+ 
+ deleteFromAssessmentBodyRecognitions: >
+  DELETE FROM `scgj`.`assessmentbodyrecognitions` WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId;
+ 
+ deleteFromAssessmentsExperienceInTechnicalDomain: >
+  DELETE FROM `scgj`.`assessmentsexperienceintechnicaldomain` WHERE `assessmentExperienceId`=:assessmentExperienceId;
+ 
+ deleteFromAssessmentBodyDirectorsAndManagementTeamDetails: >
+  DELETE FROM `scgj`.`assessmentbodydirectorsandmanagementteamdetails` WHERE `directorsAndManagementId`=:directorsAndManagementId;
+ 
+ deleteFromAssessmentStaffDetails: >
+  DELETE FROM `scgj`.`assessmentstaffdetails` WHERE `assessmentStaffId`=:assessmentStaffId;
+ 
+ deleteFromAssessmentBodyRegionalOfficeDetails: >
+  DELETE FROM `scgj`.`assessmentbodyregionalofficedetails` WHERE `regionalOfficeId`=:regionalOfficeId;
+ 
+ deleteFromAssessmentBodyAffiliationDetails: >
+  DELETE FROM `scgj`.`assessmentbodyaffiliationdetails` WHERE `affiliationId`=:affiliationId;
+ 
