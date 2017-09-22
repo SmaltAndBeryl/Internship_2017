@@ -1,6 +1,6 @@
-var profileCreationTp = angular.module('hello');
+var profileCreationAb = angular.module('hello');
 
-profileCreationTp.controller('profileCreationAb' , function($scope, $http.$location){
+profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location){
 
 
      $scope.assessmentBody = {};

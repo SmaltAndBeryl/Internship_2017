@@ -1,78 +1,237 @@
-
 <div ng-controller="profileCreationAb">
+    <script type="text/ng-template">
         <div class="panel-heading">
             <h4 class="panel-title" style="background-color:aqua">
                 <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
-                  <span uib-accordion-header>
-                    {{heading}}
-                  </span>
+               <span uib-accordion-header>
+                 {{heading}}
+               </span>
                 </a>
             </h4>
         </div>
-        <div>
+        <div class="panel-collapse collapse" uib-collapse="!isOpen">
+            <div class="panel-body" ng-transclude></div>
+        </div>
+    </script>
+    <style>
+      .panel-heading{
+      cursor : pointer;
+      }
+   </style>
+    {{assessmentBody.userId}}
+    <div>
         <accordion close-others="true">
-
             <!--  ------------------------ACCORDION 1------------------  -->
             <accordion-group is-open="status.open">
                 <accordion-heading>
-                      <div>
-                            STEP 1: BASIC INFORMTAION
-                        </div>
-                        <div>
+                    <div>
+                        STEP 1: BASIC INFORMTAION
+                    </div>
+                    <div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
                     </div>
                 </accordion-heading>
                 <div>
-<!--                 accordion content to come here -->
+                    <!--                 accordion content to come here -->
+                    <div>
+                        <div class="col-md-9">
+                            <h2>{{assessmentBody.organizationName}}</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <h2>{{assessmentBody.sPOCName}}</h2>
+                        </div>
+
+                    </div>
+
+                    <div class="field1">
+                        <div class="col-md-6">UserId</div>
+                        <div class="col-md-6">
+                            <input type="text" ng-model="assessmentBody.userId" value="{{userId}}">
+                        </div>
+                    </div>
+
+                    <div class="field1">
+                        <div class="col-md-6">City</div>
+                        <div class="col-md-6">
+                            <input type="text" ng-model="assessmentBody.city" value="{{city}}">
+                        </div>
+                    </div>
+
+                    <div class="field2">
+                        <div class="col-md-6">State</div>
+                        <div class="col-md-6">
+                            <input type="text" ng-model="assessmentBody.state" value="{{state}}">
+                        </div>
+                    </div>
+
+                    <div class="field3">
+                        <div class="col-md-6">Mobile Number</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="assessmentBody.mobileNumber" value="{{mobileNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field4">
+                        <div class="col-md-6">Alternate Mobile Number</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="assessmentBody.alternateMobileNumber" value="{{alternateMobileNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field5">
+                        <div class="col-md-6">Landline Number</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="assessmentBody.landlineNumber" value="{{landlineNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Alternate Landline Number</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="assessmentBody.alternateLandlineNumber" value="{{alternateLandlineNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field7">
+                        <div class="col-md-6">Fax Number</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="assessmentBody.faxNumber" value="{{faxNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field8">
+                        <div class="col-md-6">Website</div>
+                        <div class="col-md-6">
+                            <input type="text" ng-model="assessmentBody.webistes" value="{{websites}}" >
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
+                        </div>
+                    </div>
                 </div>
             </accordion-group>
-            
             <!--  ------------------------ACCORDION 2------------------  -->
             <accordion-group is-open="status.open2">
-            <accordion-heading>
-                      <div>
-                            STEP 2: AGENCY DETAILS
-                        </div>
-                        <div>
+                <accordion-heading>
+                    <div>
+                        STEP 2: AGENCY DETAILS
+                    </div>
+                    <div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
                     </div>
                 </accordion-heading>
                 <div>
-<!--                 accordion content to come here -->
+                    <!--                 accordion content to come here -->
+                    <div class="field6">
+                        <div class="col-md-6">Year of Establishment</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="assessmentBody.yearOfEstablishment" value="{{yearOfEstablishment}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Assessment experience in any technical domain or renewable energy</div>
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.priorAssessmentExperience" value="Yes"> Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.priorAssessmentExperience" value="No" checked> No
+                            </label>
+
+                            <div ng-show="assessmentBody.priorAssessmentExperience == 'Yes'">
+                                A table to be shown
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">PAN</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="assessmentBody.panNumber" value="{{panNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">TAN</div>
+                        <div class="col-md-6">
+                            <input type="number" ng-model="assessmentBody.tanNumber" value="{{tanNumber}}" >
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Recognized with any Govt./Pvt. Agency</div>
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.insituteReceivedAnyRecognition" value="Yes"> Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.insituteReceivedAnyRecognition" value="No" checked> No
+                            </label>
+
+                            <div ng-show="assessmentBody.insituteReceivedAnyRecognition == 'Yes'">
+                                A table to be shown
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field6">
+                        <div class="col-md-6">Whether affiliated with any Sector Skill Council</div>
+                        <div class="col-md-6">
+                            <label class="radio-inline">
+                                <input type="radio" name="affiliatedToAnySectorSkillCouncil" ng-model="assessmentBody.affiliatedToAnySectorSkillCouncil" value="Yes"> Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="affiliatedToAnySectorSkillCouncil" ng-model="assessmentBody.affiliatedToAnySectorSkillCouncil" value="No" checked> No
+                            </label>
+
+                            <div ng-show="assessmentBody.affiliatedToAnySectorSkillCouncil == 'Yes'">
+                                A table to be shown
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()" >Next</button>
+                        </div>
+                    </div>
+
                 </div>
             </accordion-group>
             <!--  ------------------------ACCORDION 3------------------  -->
             <accordion-group is-open="status.open3">
-            <accordion-heading>
-                      <div>
-                            STEP 3: ORGANISATION DETAILS
-                        </div>
-                        <div>
+                <accordion-heading>
+                    <div>
+                        STEP 3: ORGANISATION DETAILS
+                    </div>
+                    <div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
                     </div>
                 </accordion-heading>
                 <div>
-<!--                 accordion content to come here -->
+                    <!--                 accordion content to come here -->
                 </div>
             </accordion-group>
-            
             <!--  ------------------------ACCORDION 4------------------  -->
             <accordion-group is-open="status.open4">
-            <accordion-heading>
-                      <div>
-                            STEP 4: MANAGEMENT STAFF DETAILS
-                        </div>
-                        <div>
+                <accordion-heading>
+                    <div>
+                        STEP 4: MANAGEMENT STAFF DETAILS
+                    </div>
+                    <div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i>
                     </div>
                 </accordion-heading>
                 <div>
-<!--                 accordion content to come here -->
+                    <!--                 accordion content to come here -->
                 </div>
             </accordion-group>
         </accordion>
-
-</div> 
+    </div>
     <button type="button" ng-click="save('save')" class="btn btn-warning">Save as Draft</button>
     <button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
 </div>

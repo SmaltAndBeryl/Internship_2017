@@ -20,7 +20,7 @@ profileCreationTp.controller('profileCreationTp' , function($scope, $http){
                                 remark : "None"
                             }
     ];
-    
+
     $scope.saveAccordionOne = function(){
         console.log("Button Working " + JSON.stringify($scope.trainingPartner));
     }
