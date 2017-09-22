@@ -66,6 +66,29 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	@Autowired
 	private ProfileCreationTrainingPartnerCenterDetailsService profileCreationTrainingPartnerCenterDetailsService;
 	
+	
+	@Autowired
+	private ProfileCreationAssessmentBodyRegistrationDetailsService profileCreationAssessmentBodyRegistrationDetailsService;
+	
+	@Autowired
+	private ProfileCreationAssessmentBodyRecognitionsService profileCreationAssessmentBodyRecognitionsService;
+	
+	@Autowired
+	private ProfileCreationAssessmentsExperienceInTechnicalDomainService profileCreationAssessmentsExperienceInTechnicalDomainService;
+	
+	@Autowired
+	private ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsService profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsService;
+	
+	@Autowired
+	private ProfileCreationAssessmentBodyRegionalOfficeDetailsService profileCreationAssessmentBodyRegionalOfficeDetailsService;
+	
+	@Autowired
+	private ProfileCreationAssessmentStaffDetailsService profileCreationAssessmentStaffDetailsService;
+	
+	@Autowired
+	private ProfileCreationAssessmentBodyAffiliationDetailsService profileCreationAssessmentBodyAffiliationDetailsService;
+	
+	
 	public String profileCreationSaveAsDraftAndSubmit(String type,HashMap<String, HashMap<String, HashMap<String, String>>> userData,HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads,HashMap<String, HashMap<String, HashMap<String, String>>> userDeletes)
 	{
 		try{
@@ -363,12 +386,27 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			 */
 			
 			HashMap<String, HashMap<String, String>> assessmentBodyRegistrationDetails=userData.get("AssessmentBodyRegistrationDetails");
+			HashMap<String, HashMap<String, MultipartFile>> assessmentBodyRegistrationDetailsFiles=userUploads.get("AssessmentBodyRegistrationDetails");
+			
 			HashMap<String, HashMap<String, String>> assessmentBodyRecognitions=userData.get("AssessmentBodyRecognitions");
+			HashMap<String, HashMap<String, String>> assessmentBodyRecognitionsDeletes=userDeletes.get("AssessmentBodyRecognitions");
+			
 			HashMap<String, HashMap<String, String>> assessmentsExperienceInTechnicalDomain=userData.get("AssessmentsExperienceInTechnicalDomain");
-			HashMap<String, HashMap<String, String>> assessmentBodyDirectorsAndManagementTeamDetail=userData.get("AssessmentBodyDirectorsAndManagementTeamDetails"); 
+			HashMap<String, HashMap<String, String>> assessmentsExperienceInTechnicalDomainDeletes=userDeletes.get("AssessmentsExperienceInTechnicalDomain");
+			
+			HashMap<String, HashMap<String, String>> assessmentBodyDirectorsAndManagementTeamDetails=userData.get("AssessmentBodyDirectorsAndManagementTeamDetails"); 
+			HashMap<String, HashMap<String, String>> assessmentBodyDirectorsAndManagementTeamDetailsDeletes=userDeletes.get("AssessmentBodyDirectorsAndManagementTeamDetails");
+			HashMap<String, HashMap<String, MultipartFile>> assessmentBodyDirectorsAndManagementTeamDetailsFiles=userUploads.get("AssessmentBodyDirectorsAndManagementTeamDetails");
+			
 			HashMap<String, HashMap<String, String>> assessmentStaffDetails=userData.get("AssessmentStaffDetails");
+			HashMap<String, HashMap<String, String>> assessmentStaffDetailsDeletes=userDeletes.get("AssessmentStaffDetails");
+			HashMap<String, HashMap<String, MultipartFile>> assessmentStaffDetailsFiles=userUploads.get("AssessmentStaffDetails");
+			
 			HashMap<String, HashMap<String, String>> assessmentBodyRegionalOfficeDetails=userData.get("AssessmentBodyRegionalOfficeDetails");
+			HashMap<String, HashMap<String, String>> assessmentBodyRegionalOfficeDetailsDeletes=userDeletes.get("AssessmentBodyRegionalOfficeDetails");
+			
 			HashMap<String, HashMap<String, String>> assessmentBodyAffiliationDetails=userData.get("AssessmentBodyAffiliationDetails"); 
+			HashMap<String, HashMap<String, String>> assessmentBodyAffiliationDetailsDeletes=userDeletes.get("AssessmentBodyAffiliationDetails");
 			
 			/*
 			 * Setting different Dto's
@@ -376,11 +414,168 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			
 
 			/*
-			 * Creating Folder Structure for Organization level details for saving files 
+			 * Creating Folder Structure for Assessment Body  
 			 */
 			
-
+			File createAssessmentBodyFolder = new File(readApplicationConstants.getProfileCreationAssessmentBodyFolder()+"//"+ applicationId);	
+			File createDirectorsAndManagementTeamMembersFolder = new File(createAssessmentBodyFolder.getAbsolutePath()+"//DirectorsAndManagementTeamMembers");
+			File createAssessmentStaffFolder = new File(createAssessmentBodyFolder.getAbsolutePath()+"//AssessmentStaff");
+			File createAssessmentStaffCVFolder = new File(createAssessmentStaffFolder.getAbsolutePath()+"//CV");
+			File createAssessmentStaffCertificateFolder = new File(createAssessmentStaffFolder.getAbsolutePath()+"//Certificate");
 			
+			
+			if(!createAssessmentBodyFolder.exists())
+			{
+				try{
+				if(!createAssessmentBodyFolder.mkdirs())
+				{
+				// directory creation failed 
+				}
+				if(!createDirectorsAndManagementTeamMembersFolder.mkdir())
+				{
+				// directory creation failed
+				}
+				if(!createAssessmentStaffFolder.mkdir())
+				{
+				// directory creation failed
+				}		
+				if(!createAssessmentStaffCVFolder.mkdir())
+				{
+				// directory creation failed
+				}
+				if(!createAssessmentStaffCertificateFolder.mkdir())
+				{
+				// directory creation failed
+				}
+			}
+			catch(Exception e)
+			{
+				/*
+				 * Exception occurs while creating folder Structure
+				 * Hence deleting the created folder Structure 
+				 */
+				e.printStackTrace();
+				FileUtils.deleteDirectory(createAssessmentBodyFolder);
+				return null;
+			}
+			}
+			else
+			{
+				/*
+				 * Folder with same name already  exists
+				 */
+			}
+			
+			
+			/*
+			 * End of Creating Folder Structure  
+			 */
+
+			/*
+			 * Start calling Services of various tables to store data in DB & save files 
+			 */
+			
+			/*
+			 * Calling service of AssessmentBodyRegistrationDetails
+			 */
+			
+			String statusOfAssessmentBodyRegistrationDetails= profileCreationAssessmentBodyRegistrationDetailsService.setAssessmentBodyRegistrationDetails(assessmentBodyRegistrationDetails, assessmentBodyRegistrationDetailsFiles, createAssessmentBodyFolder, userExists);
+			
+			if(statusOfAssessmentBodyRegistrationDetails==null)
+			{
+				/*
+				 * An error occurred while saving files and inserting data in database 
+				 */
+				return null;
+			}
+			
+			
+			/*
+			 * Calling service of AssessmentBodyRecognitions
+			 */
+			
+			String statusOfAssessmentBodyRecognitions= profileCreationAssessmentBodyRecognitionsService.setAssessmentBodyRecognitions(assessmentBodyRecognitions, assessmentBodyRecognitionsDeletes);
+			
+			if(statusOfAssessmentBodyRecognitions==null)
+			{
+				/*
+				 * An error occurred while saving files and inserting data in database 
+				 */
+				return null;
+			}
+			
+			/*
+			 * Calling service of AssessmentsExperienceInTechnicalDomain
+			 */
+			
+			String statusOfAssessmentsExperienceInTechnicalDomain= profileCreationAssessmentsExperienceInTechnicalDomainService.setAssessmentsExperienceInTechnicalDomain(assessmentsExperienceInTechnicalDomain, assessmentsExperienceInTechnicalDomainDeletes);
+			
+			if(statusOfAssessmentsExperienceInTechnicalDomain==null)
+			{
+				/*
+				 * An error occurred while saving files and inserting data in database 
+				 */
+				return null;
+			}
+			
+			
+			/*
+			 * Calling service of AssessmentBodyDirectorsAndManagementTeamDetails
+			 */
+			
+			String statusOfAssessmentBodyDirectorsAndManagementTeamDetails= profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsService.setAssessmentBodyDirectorsAndManagementTeamDetails(assessmentBodyDirectorsAndManagementTeamDetails, assessmentBodyDirectorsAndManagementTeamDetailsDeletes, assessmentBodyDirectorsAndManagementTeamDetailsFiles, createDirectorsAndManagementTeamMembersFolder);
+			
+			if(statusOfAssessmentBodyDirectorsAndManagementTeamDetails==null)
+			{
+				/*
+				 * An error occurred while saving files and inserting data in database 
+				 */
+				return null;
+			}
+			
+			/*
+			 * Calling service of AssessmentStaffDetails
+			 */
+			
+			String statusOfAssessmentStaffDetails= profileCreationAssessmentStaffDetailsService.setAssessmentStaffDetails(assessmentStaffDetails, assessmentStaffDetailsDeletes, assessmentStaffDetailsFiles, createAssessmentStaffCVFolder, createAssessmentStaffCertificateFolder);
+			
+			if(statusOfAssessmentStaffDetails==null)
+			{
+				/*
+				 * An error occurred while saving files and inserting data in database 
+				 */
+				return null;
+			}
+			
+			/*
+			 * Calling service of AssessmentBodyRegionalOfficeDetails
+			 */
+			
+			String statusOfAssessmentBodyRegionalOfficeDetails= profileCreationAssessmentBodyRegionalOfficeDetailsService.setAssessmentBodyRegionalOfficeDetails(assessmentBodyRegionalOfficeDetails, assessmentBodyRegionalOfficeDetailsDeletes);
+			
+			if(statusOfAssessmentBodyRegionalOfficeDetails==null)
+			{
+				/*
+				 * An error occurred while saving files and inserting data in database 
+				 */
+				return null;
+			}
+			
+			
+			/*
+			 * Calling service of AssessmentsExperienceInTechnicalDomain
+			 */
+			
+			String statusOfAssessmentBodyAffiliationDetails= profileCreationAssessmentBodyAffiliationDetailsService.setAssessmentBodyAffiliationDetails(assessmentBodyAffiliationDetails, assessmentBodyAffiliationDetailsDeletes);
+			
+			if(statusOfAssessmentBodyAffiliationDetails==null)
+			{
+				/*
+				 * An error occurred while saving files and inserting data in database 
+				 */
+				return null;
+			}
+	
 		}
 		else 
 		{

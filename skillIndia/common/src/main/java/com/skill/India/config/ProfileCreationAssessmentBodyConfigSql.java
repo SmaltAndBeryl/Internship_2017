@@ -31,10 +31,123 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	private String updateIntoAssessmentBodyRegionalOfficeDetails;
 	private String updateIntoAssessmentBodyAffiliationDetails;
 	private String updateIntoAssessmentsExperienceInTechnicalDomain;
+	private String updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails;
+	private String updatePathsIntoAssessmentStaffDetails;
+	private String deleteFromAssessmentBodyRecognitions;
+	private String deleteFromAssessmentsExperienceInTechnicalDomain;
+	private String deleteFromAssessmentBodyDirectorsAndManagementTeamDetails;
+	private String deleteFromAssessmentStaffDetails;
+	private String deleteFromAssessmentBodyRegionalOfficeDetails;
+	private String deleteFromAssessmentBodyAffiliationDetails;
+
 	
 	
 	
 	
+	/**
+	 * @return the updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails
+	 */
+	public String getUpdatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails() {
+		return updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails;
+	}
+	/**
+	 * @param updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails the updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails to set
+	 */
+	public void setUpdatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails(
+			String updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails) {
+		this.updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails = updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails;
+	}
+	/**
+	 * @return the updatePathsIntoAssessmentStaffDetails
+	 */
+	public String getUpdatePathsIntoAssessmentStaffDetails() {
+		return updatePathsIntoAssessmentStaffDetails;
+	}
+	/**
+	 * @param updatePathsIntoAssessmentStaffDetails the updatePathsIntoAssessmentStaffDetails to set
+	 */
+	public void setUpdatePathsIntoAssessmentStaffDetails(
+			String updatePathsIntoAssessmentStaffDetails) {
+		this.updatePathsIntoAssessmentStaffDetails = updatePathsIntoAssessmentStaffDetails;
+	}
+	/**
+	 * @return the deleteFromAssessmentBodyRecognitions
+	 */
+	public String getDeleteFromAssessmentBodyRecognitions() {
+		return deleteFromAssessmentBodyRecognitions;
+	}
+	/**
+	 * @param deleteFromAssessmentBodyRecognitions the deleteFromAssessmentBodyRecognitions to set
+	 */
+	public void setDeleteFromAssessmentBodyRecognitions(
+			String deleteFromAssessmentBodyRecognitions) {
+		this.deleteFromAssessmentBodyRecognitions = deleteFromAssessmentBodyRecognitions;
+	}
+	/**
+	 * @return the deleteFromAssessmentsExperienceInTechnicalDomain
+	 */
+	public String getDeleteFromAssessmentsExperienceInTechnicalDomain() {
+		return deleteFromAssessmentsExperienceInTechnicalDomain;
+	}
+	/**
+	 * @param deleteFromAssessmentsExperienceInTechnicalDomain the deleteFromAssessmentsExperienceInTechnicalDomain to set
+	 */
+	public void setDeleteFromAssessmentsExperienceInTechnicalDomain(
+			String deleteFromAssessmentsExperienceInTechnicalDomain) {
+		this.deleteFromAssessmentsExperienceInTechnicalDomain = deleteFromAssessmentsExperienceInTechnicalDomain;
+	}
+	/**
+	 * @return the deleteFromAssessmentBodyDirectorsAndManagementTeamDetails
+	 */
+	public String getDeleteFromAssessmentBodyDirectorsAndManagementTeamDetails() {
+		return deleteFromAssessmentBodyDirectorsAndManagementTeamDetails;
+	}
+	/**
+	 * @param deleteFromAssessmentBodyDirectorsAndManagementTeamDetails the deleteFromAssessmentBodyDirectorsAndManagementTeamDetails to set
+	 */
+	public void setDeleteFromAssessmentBodyDirectorsAndManagementTeamDetails(
+			String deleteFromAssessmentBodyDirectorsAndManagementTeamDetails) {
+		this.deleteFromAssessmentBodyDirectorsAndManagementTeamDetails = deleteFromAssessmentBodyDirectorsAndManagementTeamDetails;
+	}
+	/**
+	 * @return the deleteFromAssessmentStaffDetails
+	 */
+	public String getDeleteFromAssessmentStaffDetails() {
+		return deleteFromAssessmentStaffDetails;
+	}
+	/**
+	 * @param deleteFromAssessmentStaffDetails the deleteFromAssessmentStaffDetails to set
+	 */
+	public void setDeleteFromAssessmentStaffDetails(
+			String deleteFromAssessmentStaffDetails) {
+		this.deleteFromAssessmentStaffDetails = deleteFromAssessmentStaffDetails;
+	}
+	/**
+	 * @return the deleteFromAssessmentBodyRegionalOfficeDetails
+	 */
+	public String getDeleteFromAssessmentBodyRegionalOfficeDetails() {
+		return deleteFromAssessmentBodyRegionalOfficeDetails;
+	}
+	/**
+	 * @param deleteFromAssessmentBodyRegionalOfficeDetails the deleteFromAssessmentBodyRegionalOfficeDetails to set
+	 */
+	public void setDeleteFromAssessmentBodyRegionalOfficeDetails(
+			String deleteFromAssessmentBodyRegionalOfficeDetails) {
+		this.deleteFromAssessmentBodyRegionalOfficeDetails = deleteFromAssessmentBodyRegionalOfficeDetails;
+	}
+	/**
+	 * @return the deleteFromAssessmentBodyAffiliationDetails
+	 */
+	public String getDeleteFromAssessmentBodyAffiliationDetails() {
+		return deleteFromAssessmentBodyAffiliationDetails;
+	}
+	/**
+	 * @param deleteFromAssessmentBodyAffiliationDetails the deleteFromAssessmentBodyAffiliationDetails to set
+	 */
+	public void setDeleteFromAssessmentBodyAffiliationDetails(
+			String deleteFromAssessmentBodyAffiliationDetails) {
+		this.deleteFromAssessmentBodyAffiliationDetails = deleteFromAssessmentBodyAffiliationDetails;
+	}
 	/**
 	 * @return the getAssessmentBodyRegistrationIdUsingApplicationId
 	 */

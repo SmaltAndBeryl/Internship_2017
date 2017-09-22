@@ -27,7 +27,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 * Inserting data in Assessment Body Registration Details
 	 */
 	
-	public int insertIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto)
+	public int insertIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto,HashMap<String, String> getPaths)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
@@ -48,9 +48,9 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("yearOfEstablishment",profileCreationAssessmentBodyRegistrationDetailsDto.getYearOfEstablishment());
 			parameters.put("priorAssessmentExperience",profileCreationAssessmentBodyRegistrationDetailsDto.getPriorAssessmentExperience());
 			parameters.put("panNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumber());
-			parameters.put("panNumberPath",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumberPath());
+			parameters.put("panNumberPath",getPaths.get("panNumberPath"));
 			parameters.put("tanNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getTanNumber());
-			parameters.put("tanNumberPath",profileCreationAssessmentBodyRegistrationDetailsDto.getTanNumberPath());
+			parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
 			parameters.put("insituteReceivedAnyRecognition",profileCreationAssessmentBodyRegistrationDetailsDto.getInsituteReceivedAnyRecognition());	
 			parameters.put("numberOfTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfTechnicalAssessors());
 			parameters.put("numberOfNonTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfNonTechnicalAssessors());
@@ -132,8 +132,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("experience",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getExperience());
 			parameters.put("cVPath",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getcVPath());
 			
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyDirectorsAndManagementTeamDetails(),parameters);
-
+			return insert(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyDirectorsAndManagementTeamDetails(),parameters, "directorsAndManagementId");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -164,8 +163,8 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("experience",profileCreationAssessmentStaffDetailsDto.getExperience());
 			parameters.put("cVPath",profileCreationAssessmentStaffDetailsDto.getcVPath());
 			parameters.put("certificatePath",profileCreationAssessmentStaffDetailsDto.getCertificatePath());
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentStaffDetails(),parameters);
-
+			
+			return insert(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentStaffDetails(),parameters, "assessmentStaffId");
 		}catch(Exception e)
 		{
 			e.printStackTrace();

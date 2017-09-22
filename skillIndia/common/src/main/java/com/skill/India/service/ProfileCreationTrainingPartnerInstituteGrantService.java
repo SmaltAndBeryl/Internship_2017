@@ -64,14 +64,17 @@ public class ProfileCreationTrainingPartnerInstituteGrantService {
 		for(Map.Entry<String, HashMap<String, String>> deleteTrainingPartnerInstituteGrant:trainingPartnerInstituteGrantDeletes.entrySet())
 		{
 			HashMap<String, String> deleteInstituteGrantRecord=new HashMap<String, String>();
+			
 			/*
 			 * Getting value in deleteInstituteGrantRecord
 			 */
+			
 			deleteInstituteGrantRecord=deleteTrainingPartnerInstituteGrant.getValue();
 			
 			/*
-			 * Getting value of InstituteGrantId from Hashmap
+			 * Getting value of InstituteGrantId from HashMap
 			 */
+			
 			String instituteGrantId= deleteInstituteGrantRecord.get("instituteGrantId");
 			
 			/*
