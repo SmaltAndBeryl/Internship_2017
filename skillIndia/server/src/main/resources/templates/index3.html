@@ -64,27 +64,14 @@
 
 <body ng-app="hello" ng-cloak class="ng-cloak">
 <div ng-controller="navigation as nav" id="header">
-    <div ng-hide="authenticated"  class="login-background">
-        <div class="alert alert-danger" ng-show="error">
-            There was a problem logging in. Please try again.
-        </div>
-        <!--<form role="form" ng-submit="nav.login()">-->
-            <!--<div class="form-group">-->
-                <!--<label for="username">Username:</label>-->
-                <!--<input type="text" class="form-control" id="username" name="username" ng-model="nav.credentials.username"/>-->
-            <!--</div>-->
-            <!--<div class="form-group">-->
-                <!--<label for="password">Password:</label> <input type="password"-->
-                                                               <!--class="form-control" id="password" name="password" ng-model="nav.credentials.password"/>-->
-            <!--</div>-->
-            <!--<button type="submit" class="btn btn-primary">Submit</button>-->
-        <!--</form>-->
+    <div ng-hide="authenticated"  class="login-background col-md-12">
+        
         <div>
             <div class="row login-row">
-                <div class="col-md-2 col-md-offset-3">
-                    <div class="row panel-body"></div>
+                <div class="col-md-6 col-md-offset-5">
+                    
                     <div class="panel-login">
-                        <div class="logo"><img class="headerImage" src="images/SCGJLogo.png" height="90px" width="280px" />
+                        <div class="logo"><img class="headerImage" src="images/SCGJLogo.png" />
                         </div>
                         <div class="panel-heading">
                             <hr style="border-bottom: 1px dotted #ccc;background: white; margin-left:5px; margin-right:5px;" />
@@ -137,8 +124,8 @@
 
 
                                 <!-- SIGN UP FORM -->
-
-                                <form role="form" style="display: none;" data-toggle="validator" id="register-form">
+								<div style="display: none;" data-toggle="validator" id="register-form">
+                                <form role="form"  >
                                     <div class="form-group col-xs-6">
                                         <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="nav.newUser.organizationName" />
                                     </div>
@@ -156,8 +143,8 @@
                                         
                                     </div>
                                     <div class="form-group col-xs-12">
-                                            <input type="radio" ng-model="nav.newUser.userRole" value="TP" name="">Tranining Partner
-                                            <input type="radio" ng-model="nav.newUser.userRole" value="AB" name="">Assessment Body
+                                            <label><input type="radio" ng-model="nav.newUser.userRole" value="TP" name="" />Training Partner</label>
+                                            &nbsp; &nbsp; &nbsp; <label><input type="radio" ng-model="nav.newUser.userRole" value="AB" name="" />Assessment Body</label>
                                         </div>
                                     <div class="wrraper">
                                         <div class="form-group input-group">
@@ -178,12 +165,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="panel-footer">
-                                        &nbsp &nbsp By clicking signup,you agree to the SCGJ'S <b>"User Agreement</b>, <b>privacy policy,</b> and <b>cookie policy"	</b>
-                                    </div>
+                                    
                                 </form>
+                                <div class ="signup-footer">
+                                        &nbsp; &nbsp; &nbsp; By clicking signup,you agree to the SCGJ'S &nbsp;<b>"User Agreement</b>, <b>privacy policy,</b> and <b><br/>cookie policy"	</b>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>
