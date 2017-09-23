@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -22,7 +24,7 @@ public class ProfileCreationTrainingPartnerDao extends AbstractTransactionalDao{
 
 	private static final ProfileCreationRowMapper ROW_MAPPER_TPREG = new ProfileCreationRowMapper();
 	private static final ProfileCreationRowMapperUser ROW_MAPPER_USER = new ProfileCreationRowMapperUser();
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationTrainingPartnerDao.class);
 	public int profileCreationCheckUserIdExistence(String userId)
 	{
 		try{
@@ -41,13 +43,16 @@ public class ProfileCreationTrainingPartnerDao extends AbstractTransactionalDao{
 	public Collection<ProfileCreationTrainingPartnerDto> profileCreationGetDataFromTrainingPartnerRegistration(String userId)
 	{
 		try{
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("userId",userId);
-		System.out.println("Herrrrrrrrrrree");
-		return getJdbcTemplate().query(profileCreationConfigSql.getGetTrainingPartnerDataByUserId(),parameters,ROW_MAPPER_TPREG);
-		}
+			LOGGER.info("Trying to fetch data saved by user earlier");
+			LOGGER.info("Trying to request database to fetch data");
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("userId",userId);
+//		
+			return getJdbcTemplate().query(profileCreationConfigSql.getGetTrainingPartnerDataByUserId(),parameters,ROW_MAPPER_TPREG);
+			}
 		catch(Exception e)
 		{
+			LOGGER.error("Could not fetch data of user, an exception occured. Exception is - " + e);
 			e.printStackTrace();
 			return null;
 		}
@@ -58,6 +63,7 @@ public class ProfileCreationTrainingPartnerDao extends AbstractTransactionalDao{
 		@Override
 		public ProfileCreationTrainingPartnerDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
+			LOGGER.info("Trying to map database table columns to object");
 			String organizationName = resultSet.getString("organizationName");
 			String sPOCName = resultSet.getString("sPOCName");
 			String address = resultSet.getString("address");
@@ -79,12 +85,15 @@ public class ProfileCreationTrainingPartnerDao extends AbstractTransactionalDao{
 	public Collection<ProfileCreationTrainingPartnerDto> profileCreationGetDataFromUser(String userId)
 	{
 		try{
+			
+			LOGGER.info("Trying to fetch information from user table");
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("userId",userId);
 		return getJdbcTemplate().query(profileCreationConfigSql.getGetTrainingPartnerDataByUserIdFronUser(),parameters,ROW_MAPPER_USER);
 		}
 		catch(Exception e)
 		{
+			LOGGER.error("Could not fetch information from user table, an exception occured.Exception is - " + e);
 			e.printStackTrace();
 			return null;
 		}

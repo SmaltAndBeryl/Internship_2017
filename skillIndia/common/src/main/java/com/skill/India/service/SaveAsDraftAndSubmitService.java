@@ -40,7 +40,7 @@ public class SaveAsDraftAndSubmitService {
 		LOGGER.info("Making a Request to Dao to get data");
 		int userIdExists=userIdCheckInTrainingPartnerRegistration.userIdCheckInTrainingPartnerRegistration(profileCreationTrainingPartnerDto.getUserId());
 		LOGGER.info("Response received from Dao");
-		System.out.println("UserId status : "+userIdExists);
+		//System.out.println("UserId status : "+userIdExists);
 		if(userIdExists==0)
 		{
 			/*

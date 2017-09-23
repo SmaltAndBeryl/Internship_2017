@@ -43,12 +43,12 @@ public class ProfileCreationGetDataService {
 	@Autowired
 	private ProfileCreationAssessmentBodyGetDataDao profileCreationAssessmentBodyGetDataDao;
  	
-	public HashMap<String, Object> profileCreationGetData()
+	public HashMap<String, Object> profileCreationGetData(int applicationId)
 	{
 		HashMap<String , Object> userData = new HashMap<String, Object>();
 		try{
 			
-		int applicationId = sessionUserUtility.getApplicationId("Gagan.bhargav@sebiz.net");
+		//int applicationId = sessionUserUtility.getApplicationId("Gagan.bhargav@sebiz.net");
 		/*
 		 *  -1 is returned if appId doesn't exist for particular userId
 		 */
@@ -78,7 +78,7 @@ public class ProfileCreationGetDataService {
 			 * If control comes here then user already filled his/her profile once
 			 */
 			
-			String userRole=getUserRoleDao.getUserRole();
+			String userRole=getUserRoleDao.getUserRole(sessionUserUtility.getSessionMangementfromSession().getUsername());
 			
 			if(userRole.equalsIgnoreCase("TP"))
 			{

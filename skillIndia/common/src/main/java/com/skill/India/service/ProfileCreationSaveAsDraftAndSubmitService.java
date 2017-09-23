@@ -170,7 +170,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		 * Getting UserRole
 		 */
 		
-		String userRole=getUserRoleDao.getUserRole();
+		String userRole=getUserRoleDao.getUserRole(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		if(userRole.equalsIgnoreCase("TP"))
 		{
 			/*

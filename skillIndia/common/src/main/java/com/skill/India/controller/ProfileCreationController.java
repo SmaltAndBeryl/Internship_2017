@@ -1,4 +1,6 @@
 package com.skill.India.controller;
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.ProfileCreationTrainingPartnerDto;
+import com.skill.India.service.ProfileCreationGetDataService;
 import com.skill.India.service.ProfileCreationTrainingPartnerService;
 import com.skill.India.service.SaveAsDraftAndSubmitService;
 
@@ -19,6 +23,12 @@ public class ProfileCreationController {
 
 	@Autowired
 	private SaveAsDraftAndSubmitService saveAsDraftAndSubmitService;
+	
+	@Autowired
+	private ProfileCreationGetDataService profileCreationGetDataService;
+	
+	@Autowired
+	private SessionUserUtility sessionUserUtility;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationController.class);
 	/*	@Autowired
@@ -37,15 +47,22 @@ public class ProfileCreationController {
 
 	 }*/
 
-	@RequestMapping(value="/getTrainingPartnerData")
-	public ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerController()
+//	@RequestMapping(value="/getTrainingPartnerData")
+//	public ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerController()
+//	{
+//		LOGGER.info("In ProfileCreationController - profileCreationTrainingPartnerController");
+//		LOGGER.info("Request Received from front end to get data of Training Partner for Profile Creation");
+//		LOGGER.info("Sending Request to service");
+//		return profileCreationTrainingPartnerService.profileCreationTrainingPartner();
+//	}
+	@RequestMapping(value="/getDataNewUserProfileCreation")
+	public HashMap<String,Object> getData()
 	{
-		LOGGER.info("In ProfileCreationController - profileCreationTrainingPartnerController");
-		LOGGER.info("Request Received from front end to get data of Training Partner for Profile Creation");
-		LOGGER.info("Sending Request to service");
-		return profileCreationTrainingPartnerService.profileCreationTrainingPartner();
+		return profileCreationGetDataService.profileCreationGetData(sessionUserUtility
+				.getApplicationId(sessionUserUtility
+						.getSessionMangementfromSession().getUsername()));
 	}
-
+	
 	@RequestMapping(value="/saveAsDraftAndSubmit")
 	public String saveAsDraftAndSubmitController(@RequestBody ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerDto)
 	{

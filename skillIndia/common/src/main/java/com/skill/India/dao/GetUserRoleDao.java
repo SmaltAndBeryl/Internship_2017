@@ -19,7 +19,7 @@ public class GetUserRoleDao extends AbstractTransactionalDao {
 	@Autowired
 	private SessionUserUtility sessionUserUtility; 
 	
-	public String getUserRole()
+	public String getUserRole(String userId)
 	{
 		/*
 		 * Getting UserId from Session and returning UserRole 
@@ -28,7 +28,7 @@ public class GetUserRoleDao extends AbstractTransactionalDao {
 		try{
 		Map<String , Object> parameters = new HashMap<String, Object>();
 	//	parameters.put("userId",sessionUserUtility.getSessionMangementfromSession().getUsername());
-		parameters.put("userId", "rakshit@paramhansedu.in");
+		parameters.put("userId", userId);
 		return getJdbcTemplate().queryForObject(profileCreationTPABCommonConfigSql.getGetUserRole(), parameters, String.class);
 		}
 		catch(Exception e)

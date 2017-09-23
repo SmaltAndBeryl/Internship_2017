@@ -32,34 +32,37 @@ public class ProfileCreationTrainingPartnerService {
 		LOGGER.info("In ProfileCreationTrainingPartnerService - profileCreationTrainingPartner");
 			
 		try{
-			LOGGER.info("In TRY block");
-			LOGGER.info("getting user Id from session");
-			LOGGER.info("Making a Request to Dao to get data");
+			LOGGER.info("Trying to fetch userId from the session");
+			
 			String userId=sessionUserUtility.getSessionMangementfromSession().getUsername();
-			LOGGER.info("Response received from Dao");
+			LOGGER.info("User logged in has userId-" + userId);
 		/*
 		 * First checking if userId exists in tpReg table or not then getting data from respective tables
 		 */
-		LOGGER.info("Checking Existense of User Id in Training Partner Table");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.info("Checking if user has logged in for the first time");
+		
 		int userIdExists=userIdCheckInTrainingPartnerRegistration.userIdCheckInTrainingPartnerRegistration(userId);
-		LOGGER.info("Response received from Dao");
+		
 		if(userIdExists==1)
 		{
+			LOGGER.info("User has logged in before");
+			
 			LOGGER.info("Creating Collection to get data of Training Partner");
 			LOGGER.info("Making a Request to Dao to get data");
-		Collection<ProfileCreationTrainingPartnerDto> records= profileCreationTrainingPartnerDao.profileCreationGetDataFromTrainingPartnerRegistration(userId);
-		LOGGER.info("Data Received Successfully in collection");
-		LOGGER.info("Iterating every field from the received data ");
-		LOGGER.info("Returning Every Field to Controller");
-		for(ProfileCreationTrainingPartnerDto getRecord:records)
-			return getRecord;
+			Collection<ProfileCreationTrainingPartnerDto> records= profileCreationTrainingPartnerDao.profileCreationGetDataFromTrainingPartnerRegistration(userId);
+			LOGGER.info("Data Received Successfully in collection");
+			LOGGER.info("Iterating every field from the received data ");
+			LOGGER.info("Returning Every Field to Controller");
+			for(ProfileCreationTrainingPartnerDto getRecord:records)
+				return getRecord;
 		}
 		else if(userIdExists==0)
 		{
 			/*
 			 * Get data from user table
 			 */
+			LOGGER.info("User is logging in for the first time");
+			
 			LOGGER.info("Creating Collection to get data of Training Partner");
 			LOGGER.info("Making a Request to Dao to get data");
 			Collection<ProfileCreationTrainingPartnerDto> records= profileCreationTrainingPartnerDao.profileCreationGetDataFromUser(userId);
