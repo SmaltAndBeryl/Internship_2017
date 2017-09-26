@@ -249,28 +249,30 @@ $scope.myfunctionedit = function(rowData) {
         method: "POST",
         data: angular.toJson(editdetailsOfApplication)
     }).then(
+    		
         function(response) {
+        	$scope.successText = "Your comments have been captured for this application successfully";
+    		$scope.successTextColor = "green";
+        	
             $http.get('/approve')
                 .then(function(dataResponse) {
+                    
                     $scope.gridOptions.data = dataResponse.data.submitted;
+                    $scope.gridOptionsApproved.data = dataResponse.data.approved;
                     $scope.gridOptionsIncomplete.data = dataResponse.data.incomplete;
                     $scope.gridOptionsRejected.data = dataResponse.data.rejected;
-                    $scope.gridOptionsApproved.data = dataResponse.data.approved;
-                    var message = response.data.successMessage;
-                    console.log(response.data);
-                    $scope.message = response.data.successMessage;
-                    $scope.messagealert = true;
-                    var success = $scope.message;
-                    console.log('THIS IS THE RESPONSE IN THE COMMENT:' + success);
-                    alert(success);
+              
                 })
         },
         function(errorResponse, status) {
+        	
             $scope.message = errorResponse.data.errorMessage;
             $scope.messagealert = true;
             var failure = $scope.message;
+            $scope.successText = "Could not update comment for this application";
+    		$scope.successTextColor = "red";
             console.log('THIS IS THE RESPONSE IN THE COMMENT:' + failure);
-            alert(failure);
+            
         }
     )
 };
@@ -278,7 +280,7 @@ $scope.myfunctionedit = function(rowData) {
 
 $scope.myfunctionapprove = function(rowData) {
     $scope.messagealert = false;
-    alert("are you sure you want to accept this application")
+    
     var editDetailsOfApplication = {
         'applicationState': 'Approved',
         'applicationId': rowData.entity.applicationId,
@@ -295,6 +297,9 @@ $scope.myfunctionapprove = function(rowData) {
         method: "POST",
         data: angular.toJson(editDetailsOfApplication),
     }).then(function(response) {
+    	
+    	$scope.successText = "Application approved successfully";
+		$scope.successTextColor = "green";
             $http.get('/approve')
                 .then(function(dataResponse) {
                     $scope.gridOptions.data = dataResponse.data.submitted;
@@ -308,16 +313,17 @@ $scope.myfunctionapprove = function(rowData) {
                     $scope.messagelert = true;
                     var success = $scope.message;
                     console.log('THIS IS THE RESPONSE' + success);
-                    alert(success);
+                    
                 })
         },
         function(errorResponse, status) {
-            alert(error.data.errorMessage);
-            $scope.message = response.data.errorMessage;
-            $scope.messagealert = true;
+        	$scope.successText = "Could not approve this application";
+    		$scope.successTextColor = "red";
+            //$scope.message = response.data.errorMessage;
+            //$scope.messagealert = true;
             var failure = $scope.message;
             console.log('THIS IS THE RESPONSE :' + failure);
-            alert(failure);
+
 
         }
     )
@@ -329,8 +335,8 @@ $scope.myfunctionapprove = function(rowData) {
 //function for reject functionalities
 
 $scope.myfunctionreject = function(rowData) {
-    alert("are you sure you want to accept this application")
-    $scope.messagealert = false;
+    
+    //$scope.messagealert = false;
 
 
 
@@ -349,11 +355,10 @@ $scope.myfunctionreject = function(rowData) {
         method: "POST",
         data: angular.toJson(rejectApplicationData),
     }).then(function(response) {
-            $scope.message = response.data.successMessage;
-            $scope.messageAlert = true;
+            
+            $scope.successText = "Application rejected";
+    		$scope.successTextColor = "green";
             console.log(response.data.successMessage);
-
-
 
             $http.get('/approve')
                 .then(function(dataResponse) {
@@ -362,25 +367,28 @@ $scope.myfunctionreject = function(rowData) {
                     $scope.gridOptionsApproved.data = dataResponse.data.approved;
                     $scope.gridOptionsIncomplete.data = dataResponse.data.incomplete;
 
-                    var message = response.data.successMessage;
-                    console.log('THIS IS THE REPOSMSEEESEESESEESE' + response.data);
-                    $scope.message = response.data.successMessage;
-                    $scope.messagealert = true;
+
+
+                    //$scope.message = response.data.successMessage;
+                    //$scope.messagealert = true;
                     var success = $scope.message;
                     console.log('THIS IS THE RESPONSE' + success);
 
-                    alert(success);
+                    
 
 
                 })
         },
         function(errorResponse, status) {
             console.log(error.data.errorMessage);
+            $scope.successText = "Could not update reject this application";
+    		$scope.successTextColor = "red";
+    		
             $scope.message = error.data.errorMessage
             $scope.messageAlert = true;
             var failure = $scope.message;
             console.log('THIS IS THE RESPONSE :' + failure);
-            alert(failure);
+            
         }
     )
 };

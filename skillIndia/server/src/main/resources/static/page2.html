@@ -23,18 +23,18 @@
             <div  ui-grid="gridOptionsApproved" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
     </div>
-    <div ng-show="messagealert" ng-model="message" ng-controller="page2">{{message}}</div>
+    
     <div class="table-wrap">
         <h4 class="title"> Rejected Applications </h4>
         <div>
             <div ui-grid="gridOptionsRejected" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
     </div>
-    <div ng-show="messagealert" ng-model="message" ng-controller="page2">{{message}}</div>
+    
 
     <div class="table-wrap">
         <h4 class="title"> Incomplete Applications</h4>
-        <div ng-controller="page2">
+        <div>
             <div ui-grid="gridOptionsIncomplete" ui-grid-edit ui-grid-cellNav class="grid1"></div>
         </div>
     </div>
