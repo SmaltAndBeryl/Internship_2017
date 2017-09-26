@@ -1,7 +1,7 @@
 dashboard:
  selectSqlTotalCandidatesEnrolled: > 
   select SUM(totalCandidatesInBatch)
-   from batch
+   from batch WHERE batchStartDate <= curdate()
     
  selectSqlTotalCandidatesAccessed: > 
   select (SUM(totalPass) + SUM(totalFail))
