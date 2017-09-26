@@ -1,0 +1,4 @@
+use scgj;
+INSERT INTO `scgj`.`user` (`organizationName`, `sPOCName`, `userId`, `password`, `userRole`, `userStatus`) VALUES ('Skill Council for Green Jobs', 'Kamal Saxena', 'kamal@sscgj.in', 'kamal@scgj', 'SCGJ', 'Approved');
+
+INSERT INTO `scgj`.`user` (`organizationName`, `sPOCName`, `userId`, `password`, `userRole`, `userStatus`) VALUES ('Skill Council for Green Jobs', 'Prashant Wadhwa', 'prashant@sscgj.in', 'prashant@scgj', 'SCGJ', 'Approved');
