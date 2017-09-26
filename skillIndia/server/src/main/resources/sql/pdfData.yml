@@ -20,8 +20,8 @@ pdfData:
    WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlDirector: >
-  SELECT * from tpmanagement
-   WHERE tpId = :trainingPartnerRegistrationId;
+  SELECT * from trainingpartnermanagementandstaffandofficialsdetails
+   WHERE trainingPartnerRegistrationId = :trainingPartnerRegistrationId;
 
  selectSqlTrainingPartnerRegistrationId: >
   SELECT trainingPartnerRegistrationId from trainingpartnerorganizationdetails
