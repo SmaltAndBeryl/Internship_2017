@@ -101,7 +101,7 @@ public class DataBeanService {
 
         ClassPathResource resource = new ClassPathResource("/static/January.jasper");
 
-        File desktop = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + nameOfOrganization + ".pdf");
+        File desktop = new File("D://SCGJ.SDMS//NewApplicationTPAB" + File.separator + nameOfOrganization + ".pdf");
         String dest2 = desktop.getAbsolutePath();
         LOGGER.info("the output file on desktop is " + dest2);
         InputStream inputStream = resource.getInputStream();
@@ -139,6 +139,7 @@ public class DataBeanService {
             else {
                 LOGGER.info("Error in PDF generation due to error in Jrprint file");
             }
+            outputStream.close();
 
 
 

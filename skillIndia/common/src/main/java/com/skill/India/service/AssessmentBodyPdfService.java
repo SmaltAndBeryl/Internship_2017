@@ -87,7 +87,7 @@ public class AssessmentBodyPdfService {
 //        LOGGER.info("THE SOURCE FILE NAME IS " + sourceFileName);
 
         ClassPathResource resource = new ClassPathResource("/static/February.jasper");
-        File desktop = new File(System.getProperty("user.home") + File.separator + "Desktop" + File.separator + organizationName + ".pdf");
+        File desktop = new File("D://SCGJ.SDMS//NewApplicationTPAB" + File.separator + organizationName + ".pdf");
         String dest = desktop.getAbsolutePath();
         LOGGER.info("THE OUTPUT FILE IS "+ dest);
         LOGGER.info("Getting input stream");
@@ -112,6 +112,8 @@ public class AssessmentBodyPdfService {
             }
 
             LOGGER.info("Pdf generated successfully....!!!");
+            
+            outputStream.close();
         } catch (JRException e) {
             LOGGER.info("Exception caught, Error in generating PDF");
             e.printStackTrace();

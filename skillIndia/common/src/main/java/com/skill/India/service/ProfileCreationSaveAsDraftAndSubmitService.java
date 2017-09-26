@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +37,8 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillT
 
 @Service
 public class ProfileCreationSaveAsDraftAndSubmitService {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationSaveAsDraftAndSubmitService.class);
 
 	@Autowired
 	private SessionUserUtility sessionUserUtility;
@@ -64,8 +68,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	private ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsService profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsService;
 	
 	@Autowired
-	private ProfileCreationTrainingPartnerCenterDetailsService profileCreationTrainingPartnerCenterDetailsService;
-	
+	private ProfileCreationTrainingPartnerCenterDetailsService profileCreationTrainingPartnerCenterDetailsService;	
 	
 	@Autowired
 	private ProfileCreationAssessmentBodyRegistrationDetailsService profileCreationAssessmentBodyRegistrationDetailsService;
@@ -89,13 +92,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	private ProfileCreationAssessmentBodyAffiliationDetailsService profileCreationAssessmentBodyAffiliationDetailsService;
 	
 	
+	
 	public String profileCreationSaveAsDraftAndSubmit(String type,HashMap<String, HashMap<String, HashMap<String, String>>> userData,HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads,HashMap<String, HashMap<String, HashMap<String, String>>> userDeletes)
 	{
 		try{
 			/*
 			 * Inserting or updating Application Table
 			 */
-			
+			LOGGER.info("Trying to get application Id of the user from the session");
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		
 		if(userExists==-1)
@@ -103,6 +107,8 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			/*
 			 * User is logged in the system for first time
 			 */ 
+			LOGGER.info("User has logged in for the first time ");
+			LOGGER.info("Trying to create new application for the logged in user");
 			int applicationTableStatus=profileCreationTPABCommonDao.insertIntoApplication(type);
 			
 			if(applicationTableStatus ==-1)
@@ -110,6 +116,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				/*
 				 * Error in inserting record in ApplicationTable
 				 */
+				LOGGER.info("Could not create application for user.Error occuerd in creation of application");
 				return null;
 			}
 		}
@@ -118,6 +125,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			/*
 			 * An error occurred while getting applicationId 
 			 */
+			LOGGER.info("Could not find if user has logged in before. Error occured");
 			return null;
 		}
 		else
@@ -125,12 +133,16 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			/*
 			 * User already visited profile creation page once
 			 */
+			
+			LOGGER.info("Logged in user has already created an application.");
+			LOGGER.info("Trying to update the already creadted application");
 			int applicationTableStatus=profileCreationTPABCommonDao.updateIntoApplication(type);
 			if(applicationTableStatus ==-1)
 			{
 				/*
 				 * Error in updating record in ApplicationTable
 				 */
+				LOGGER.info("Could not update existing application of user. An error occured");
 				return null;
 			}
 		}
@@ -143,7 +155,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		/*
 		 * Getting applicationId 
 		 */
-		
+		LOGGER.info("Trying to get application Id created for user");
 		int applicationId = sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		
 		if(applicationId==-1)
@@ -152,6 +164,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			 * ApplicationId corresponding userId doesn't exists
 			 * (this case must not arise)
 			 */
+			LOGGER.info("There is no application created for the logged in user");
 			return null;
 		}
 		else if(applicationId==-2)
@@ -159,6 +172,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			/*
 			 * Error in fetching ApplicationId  
 			 */
+			LOGGER.info("Could not fetch application details for the logged in user");
 			return null;
 		}
 		
@@ -169,14 +183,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		/*
 		 * Getting UserRole
 		 */
-		
+		LOGGER.info("Trying to find the role type of the user TP/AB");		
 		String userRole=getUserRoleDao.getUserRole(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		if(userRole.equalsIgnoreCase("TP"))
 		{
 			/*
 			 * Iterating HashMap to set TP different dto's 
 			 */
-			
+			LOGGER.info("User role for logged in user is TP");
 			HashMap<String, HashMap<String, String>> trainingPartnerOrganizationDetails=userData.get("TrainingPartnerOrganizationDetails");
 			HashMap<String, HashMap<String, MultipartFile>> trainingPartnerOrganizationDetailsFiles=userUploads.get("TrainingPartnerOrganizationDetails");
 			
@@ -214,54 +228,75 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			if(userRole.equalsIgnoreCase("TP"))
 			{
 				/*
-				 * Creating folder Structure for Training Partner(Not of Centers)
+				 * Creating folder Structure paths for Training Partner(Not of Centers)
 				 */
-				
 				File createTrainingPartnerFolder = new File(readApplicationConstants.getProfileCreationTrainingPartnerFolder()+"//"+ applicationId);
-				File createInstituteGrantFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//InstituteGrant");
+				File createInstituteGrantFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//InstituteGrant");				
 				File createDirectorsAndManagementTeamMembersFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//DirectorsAndManagementTeamMembers");
 				File createTrainingStaffFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//TrainingStaff");
 				File createAnnexuresFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//Annexures");
-				File createTrainingStaffCVFolder = new File(createTrainingStaffFolder.getAbsolutePath()+"//CV");
+				File createTrainingStaffCVFolder = new File(createTrainingStaffFolder.getAbsolutePath()+"//CV");				
 				File createTrainingStaffCertificateFolder = new File(createTrainingStaffFolder.getAbsolutePath()+"//Certificate");
 				File createCentersFolder = new File(createTrainingPartnerFolder.getAbsolutePath()+"//Centers");
-				
-				
+								
 				if(!createTrainingPartnerFolder.exists())
 				{
-					try{
-					if(!createTrainingPartnerFolder.mkdirs())
-					{
-					// directory creation failed 
-					}
-					if(!createInstituteGrantFolder.mkdir())
-					{
-					// directory creation failed
-					}
-					if(!createDirectorsAndManagementTeamMembersFolder.mkdir())
-					{
-					// directory creation failed
-					}		
-					if(!createTrainingStaffFolder.mkdir())
-					{
-					// directory creation failed
-					}
-					if(!createAnnexuresFolder.mkdir())
-					{
-					// directory creation failed
-					}
-					if(!createTrainingStaffCVFolder.mkdir())
-					{
-					// directory creation failed
-					}
-					if(!createTrainingStaffCertificateFolder.mkdir())
-					{
-					// directory creation failed	
-					}
-					if(!createCentersFolder.mkdir())
-					{
-					// directory creation failed	
-					}
+					/*
+					 * Creating folder Structure for Training Partner(Not of Centers)
+					 */
+					LOGGER.info("Trying to create folder for user to upload files and save");
+						try
+						{
+							
+							LOGGER.info("Trying to create folder for user to save training partner details like PAN TAN");	
+							if(!createTrainingPartnerFolder.mkdirs())					
+							{
+								// directory creation failed 
+							}
+							LOGGER.info("Trying to create folder for user to save details regarding institution grants");
+							if(!createInstituteGrantFolder.mkdir())
+							{
+								LOGGER.info("Could not create folder for user to save details regarding institution grants. Some error occured");
+							// directory creation failed
+							}
+							LOGGER.info("Trying to create folder for user to save details of Director and other management staff");
+							if(!createDirectorsAndManagementTeamMembersFolder.mkdir())
+							{
+								LOGGER.info("Could not create folder for user to save details of Director and other management staff. An error occured");
+							// directory creation failed
+							}		
+							LOGGER.info("Trying to create folder for user to save details of Training staff");
+							if(!createTrainingStaffFolder.mkdir())
+							{
+								LOGGER.info("Colud not create folder for user to save details of Training staff. An error occured");
+							// directory creation failed
+							}
+							LOGGER.info("Trying to create folder for user to save Annexures");
+							if(!createAnnexuresFolder.mkdir())
+							{
+								LOGGER.info("Colud not create folder for user to save Annexures. An error occured");
+								// directory creation failed
+							}
+							
+							LOGGER.info("Trying to create folder for user to save training staff's CV");
+							if(!createTrainingStaffCVFolder.mkdir())
+							{
+								LOGGER.info("Trying to create folder for user to save training staff's CV");
+								// 	directory creation failed
+							}
+							
+							LOGGER.info("Trying to create folder for user to save details of Training staff certificates");
+							if(!createTrainingStaffCertificateFolder.mkdir())
+							{
+								LOGGER.info("Could not create foled for user to save details of Training staff certificates. An error occured");
+							// directory creation failed	
+							}
+							LOGGER.info("Trying to create folder for user to save details of centers");
+							if(!createCentersFolder.mkdir())
+							{
+								LOGGER.info("Could not create center folders. An error occured");
+								// directory creation failed	
+							}
 				}
 				catch(Exception e)
 				{
@@ -269,7 +304,8 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					 * Exception occurs while creating folder Structure
 					 * Hence deleting the created folder Structure 
 					 */
-					e.printStackTrace();
+					LOGGER.error("Exception in creating folders. The exception is -" + e);	
+					//e.printStackTrace();
 					FileUtils.deleteDirectory(createTrainingPartnerFolder);
 					return null;
 				}
@@ -277,6 +313,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				
 				else
 				{
+					LOGGER.info("Not creating folder strauctures as they already exists for logged in User.User can use the same");
 					// Do whatever is required Folder with name of applicationId is present 
 				}
 				

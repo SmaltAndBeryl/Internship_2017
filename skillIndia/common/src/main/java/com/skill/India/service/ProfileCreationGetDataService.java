@@ -2,6 +2,9 @@ package com.skill.India.service;
 
 import java.util.Collection;
 import java.util.HashMap;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,8 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillT
 @Service
 public class ProfileCreationGetDataService {
 	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationGetDataService.class);
+	
 	@Autowired
 	private SessionUserUtility sessionUserUtility;
 	
@@ -52,12 +57,13 @@ public class ProfileCreationGetDataService {
 		/*
 		 *  -1 is returned if appId doesn't exist for particular userId
 		 */
+			LOGGER.info("Trying to check if user has logged in for the first time");
 		if(applicationId== -1)
 		{
 			/*
 			 * Get data from user table
 			 */
-			
+			LOGGER.info("User has logged in for the first time and a new application is being created for the User");
 			Collection<ProfileCreationGetDataFromUserDto> profileCreationGetDataFromUserDto = profileCreationTPABCommonDao.profileCreationGetDataFromUser();
 			userData.put("userTableData", profileCreationGetDataFromUserDto);
 			return userData;
@@ -69,7 +75,7 @@ public class ProfileCreationGetDataService {
 			 * Exception occurred while getting application Id corresponding userId
 			 *  
 			 */
-			
+			LOGGER.info("Could not find if user has logged in before or not. An Error occured");
 			return null;
 		}
 		else
@@ -77,15 +83,18 @@ public class ProfileCreationGetDataService {
 			/*
 			 * If control comes here then user already filled his/her profile once
 			 */
-			
+			LOGGER.info("User has already logged in and filled application atleast once");
+			LOGGER.info("Trying to find user role for the logged in user");
 			String userRole=getUserRoleDao.getUserRole(sessionUserUtility.getSessionMangementfromSession().getUsername());
 			
 			if(userRole.equalsIgnoreCase("TP"))
 			{
+				
 				/*
 				 * Get trainingPartnerRegistrationId using applicationId 
 				 */
-				
+				LOGGER.info("Logged in user has filled application as a trianing partner");
+				LOGGER.info("Since logged in user has a role of TP.. Trying to getdata of training partner");
 				String trainingPartnerRegistrationId= profileCreationTrainingPartnerGetDataDao.profileCreationGetTrainingPartnerRegistrationIdUsingApplicationId(applicationId);
 				
 				/*
@@ -105,6 +114,8 @@ public class ProfileCreationGetDataService {
 				userData.put("InstituteRecognitionDetails", profileCreationTrainingPartnerInstituteRecognition);
 				userData.put("ManagementAndStaffAndOfficialDetails", profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails);
 				userData.put("PriorExperienceDetails", profileCreationTrainingPartnerPriorExperienceInSkillTraining);
+
+				LOGGER.info("Trying to display data fetched for training partner from database");
 				return userData;
 			}
 			
@@ -114,7 +125,8 @@ public class ProfileCreationGetDataService {
 				/*
 				 * get AssessmentBodyRegistrationId using ApplicationId
 				 */
-				
+				LOGGER.info("Logged in user has filled application as an assessment agency");
+				LOGGER.info("Since logged in user has a role of AB.. Trying to get data of assessment agency");
 				String assessmentBodyRegistrationId = profileCreationAssessmentBodyGetDataDao.profileCreationGetAssessmentBodyRegistrationIdUsingApplicationId(applicationId);
 				
 				Collection<ProfileCreationAssessmentBodyRegistrationDetailsDto> profileCreationAssessmentBodyRegistrationDetails=profileCreationAssessmentBodyGetDataDao.profileCreationGetDataFromAssessmentBodyRegistrationDetails(applicationId);;
@@ -132,6 +144,8 @@ public class ProfileCreationGetDataService {
 				userData.put("AssessmentStaffDetails", profileCreationAssessmentStaffDetails);
 				userData.put("AssessmentBodyRegionalOfficeDetails",profileCreationAssessmentBodyRegionalOfficeDetails );			
 				userData.put("AssessmentBodyAffiliationDetails", profileCreationAssessmentBodyAffiliationDetails);
+				
+				LOGGER.info("Trying to display data fetched for assessment body from database");
 				return userData;
 			}
 			else
@@ -139,6 +153,7 @@ public class ProfileCreationGetDataService {
 				/*
 				 * UserRole Not AB/TP (Problem in finding user role ) 
 				 */
+				LOGGER.info("Could not find user role for the logged in user. Error occured");
 				return null;
 			}
 
