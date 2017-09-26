@@ -1,0 +1,17 @@
+.field{
+    margin : 20px;
+}
+
+.col-centered{
+    float : none;
+    margin : 0 auto;
+}
+
+.fine-print{
+    font-size : 9px;
+    color : orange;
+}
+
+.right-align{
+    text-align : right;
+}

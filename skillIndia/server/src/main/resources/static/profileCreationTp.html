@@ -1,4 +1,6 @@
-
+<head>
+    <link rel="stylesheet" href="css/profileCreationTp.css">
+</head>
 <div ng-controller="profileCreationTp">
 
     <script type="text/ng-template">
@@ -21,7 +23,7 @@
             cursor : pointer;
         }
     </style>
-    {{trainingPartner.userId}}
+    <!--{{trainingPartner.userId}}-->
     <div>
         <accordion close-others="true">
             <accordion-group is-open="status.open">
@@ -33,83 +35,75 @@
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
                     </div>
                 </accordion-heading>
-                <div>
-                    <div class="col-md-9">
-                        <h2>{{trainingPartner.organizationName}}</h2>
-                    </div>
-                    <div class="col-md-3">
-                        <h2>{{trainingPartner.sPOCName}}</h2>
+
+                <div ng-repeat="x in trainingPartner.TrainingPartnerOrganizationDetails">
+                    <div>
+                        <div class="col-md-9">
+                            <h2>{{x.organizationName}}</h2>
+                        </div>
+                        <div class="col-md-3">
+                            <h2>{{x.sPOCName}}</h2>
+                        </div>
+
                     </div>
 
-                </div>
-
-                <div class="field1">
-                    <div class="col-md-6">UserId</div>
                     <div class="col-md-6">
-                        <input type="text" ng-model="trainingPartner.userId" value="{{userId}}">
-                    </div>
-                </div>
+                        <div class="field">
+                        <div class="col-md-6">UserId</div>
+                        <input ng-model="x.trainingPartnerRegistrationId" readonly>
+                        </div>
 
-                <div class="field1">
-                    <div class="col-md-6">City</div>
+                        <div class="field">
+                        <div class="col-md-6">City</div>
+                        <input ng-model="x.city">
+                        </div>
+
+                        <div class="field">
+                        <div class="col-md-6">State</div>
+                        <input ng-model="x.state">
+                        </div>
+
+                        <div class="field">
+                        <div class="col-md-6">Mobile Number</div>
+                        <input ng-model="x.mobileNumber">
+                        </div>
+
+                        <div class="field">
+                        <div class="col-md-6">Alternate Mobile Number</div>
+                        <input ng-model="x.alternateMobileNumber">
+                        </div>
+                    </div>
+
                     <div class="col-md-6">
-                        <input type="text" ng-model="trainingPartner.city" value="{{city}}">
-                    </div>
-                </div>
 
-                <div class="field2">
-                    <div class="col-md-6">State</div>
-                    <div class="col-md-6">
-                        <input type="text" ng-model="trainingPartner.state" value="{{state}}">
-                    </div>
-                </div>
+                        <div class="field">
+                            <div class="col-md-6">Landline Number</div>
+                            <input ng-model="x.landlineNumber">
+                        </div>
 
-                <div class="field3">
-                    <div class="col-md-6">Mobile Number</div>
-                    <div class="col-md-6">
-                        <input type="number" ng-model="trainingPartner.mobileNumber" value="{{mobileNumber}}" >
-                    </div>
-                </div>
+                        <div class="field">
+                        <div class="col-md-6">Alternate Landline Number</div>
+                        <input ng-model="x.alternateLandlineNumber">
+                        </div>
 
-                <div class="field4">
-                    <div class="col-md-6">Alternate Mobile Number</div>
-                    <div class="col-md-6">
-                        <input type="number" ng-model="trainingPartner.alternateMobileNumber" value="{{alternateMobileNumber}}" >
-                    </div>
-                </div>
+                        <div class="field">
+                        <div class="col-md-6">Fax Number</div>
+                        <input ng-model="x.faxNumber">
+                        </div>
 
-                <div class="field5">
-                    <div class="col-md-6">Landline Number</div>
-                    <div class="col-md-6">
-                        <input type="number" ng-model="trainingPartner.landlineNumber" value="{{landlineNumber}}" >
+                        <div class="field">
+                        <div class="col-md-6">Website</div>
+                        <input ng-model="x.websites">
+                        </div>
                     </div>
-                </div>
 
-                <div class="field6">
-                    <div class="col-md-6">Alternate Landline Number</div>
-                    <div class="col-md-6">
-                        <input type="number" ng-model="trainingPartner.alternateLandlineNumber" value="{{alternateLandlineNumber}}" >
-                    </div>
-                </div>
 
-                <div class="field7">
-                    <div class="col-md-6">Fax Number</div>
-                    <div class="col-md-6">
-                        <input type="number" ng-model="trainingPartner.faxNumber" value="{{faxNumber}}" >
+                    <div>
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="field8">
-                    <div class="col-md-6">Website</div>
-                    <div class="col-md-6">
-                        <input type="text" ng-model="trainingPartner.webistes" value="{{websites}}" >
-                    </div>
-                </div>
-
-                <div>
-                    <div class="col-lg-12">
-                        <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
-                    </div>
                 </div>
 
             </accordion-group>
@@ -118,170 +112,219 @@
             <accordion-group is-open="status.open2">
                 <accordion-heading>
                     <div>
-                        STEP 2 : ORGANISATION DETAILS
+                        STEP 2 : ORGANIZATION DETAILS
                     </div>
                     <div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
                     </div>
                 </accordion-heading>
-                <div>
-                    <!--                 accordion content to come here -->
-                    <div class="field6">
-                        <div class="col-md-6">Year of Establishment</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="trainingPartner.yearOfEstablishment" value="{{yearOfEstablishment}}" >
-                        </div>
+                <div class="col-centered" ng-repeat="x in trainingPartner.TrainingPartnerOrganizationDetails">
+                    <!--accordion content to come here -->
+
+                    <div class="field">
+                        <div class="col-md-6"><b>Year of Establishment</b></div>
+                        <input ng-model="x.yearOfEstablishment">
                     </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Qualification Packs</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="trainingPartner.qualificationPacks" value="{{qualificationPacks}}" >
-                        </div>
+                    <div class="field">
+                        <div class="col-md-6"><b>Medium of instruction</b></div>
+                        <input ng-model="x.mediumOfInstructions">
+                        <small class="fine-print">For multiple languages, use commas to separate them</small>
                     </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Is the institute NSDC funded?</div>
-                        <div class="col-md-6">
-                            <label class="radio-inline">
-                                <input type="radio" name="nSDCFunded" ng-model="trainingPartner.nSDCFunded" value="Yes"> Yes
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="nSDCFunded" ng-model="trainingPartner.nSDCFunded" value="No" checked> No
-                            </label>
+                    <div class="col-md-12 col-centered field">
+                        <h3>Model of Institution</h3>
+                        <div class="col-md-12">
+                            Self Owned Institution <input ng-model="x.selfOwnedInstitution">
 
-                            <div ng-show="trainingPartner.nSDCFunded == 'Yes'">
+                            <div ng-show="x.selfOwnedInstitution > '0'">
                                 <label class="upload-file">Upload File</label>
                                 <input type="file">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Medium of instructions</div>
-                        <div class="col-md-6">
-                            <label class="medium">
-                                <input type="checkbox" ng-model="trainingPartner.mediumOfInstructions.english" value="English"> English
-                            </label>
-                            <label class="medium">
-                                <input type="checkbox" ng-model="trainingPartner.mediumOfInstructions.hindi" value="Hindi"> Hindi
-                            </label>
-                            <label class="medium">
-                                <input type="checkbox" ng-model="trainingPartner.mediumOfInstructions.others" value="Others"> Others
-                            </label>
-                        </div>
-                    </div>
+                        <div class="col-md-12">
+                            Franchise Owned Institution <input ng-model="x.franchiseOwnedInstitution">
 
-                    <div class="field6">
-                        <div class="col-md-6">Model of Insititution</div>
-                        <div class="col-md-6">
-                            <label class="model">
-                                <input type="checkbox" ng-model="selfOwnedInstitution"> Self Owned Institution
-                            </label>
-                            <div ng-show="selfOwnedInstitution">
+                            <div ng-show="x.franchiseOwnedInstitution > '0'">
                                 <label class="upload-file">Upload File</label>
                                 <input type="file">
-                                <label>
-                                    Total Number of Self Owned Centers<input type="number" ng-model="trainingPartner.selfOwnedInstitution" value="{{selfOwnedInstitution}}">
-                                </label>
-                            </div>
-
-                            <label class="model">
-                                <input type="checkbox" ng-model="franchiseOwnedInstitution"> Franchise Owned Institution
-                            </label>
-                            <div ng-show="franchiseOwnedInstitution">
-                                <label class="upload-file">Upload File</label>
-                                <input type="file">
-                                <label>
-                                    Total Number of Franchise Owned Centers <input type="number" ng-model="trainingPartner.franchiseOwnedInstitution" value="{{franchiseOwnedInstitution}}">
-                                </label>
-                            </div>
-
-                            <label class="model">
-                                <input type="checkbox" ng-model="mobileTrainingInstitution"> Mobile Training Institution
-                            </label>
-                            <div ng-show="mobileTrainingInstitution">
-                                <label class="upload-file">Upload File</label>
-                                <input type="file">
-                                <label>
-                                    Total Number of Mobile Centers Owned <input type="number" ng-model="trainingPartner.mobileTrainingInstitution" value="{{mobileTrainingInstitution}}">
-                                </label>
-                            </div>
-
-                            <div>
-                                <label>
-                                    Total Centers {{trainingPartner.franchiseOwnedInstitution + trainingPartner.franchiseOwnedInstitution + trainingPartner.franchiseOwnedInstitution}}
-                                </label>
                             </div>
                         </div>
+
+                        <!--<form>-->
+                            <!--<div class="col-md-12">-->
+                                <!--Mobile Owned Institution <input ng-model="x.mobileTrainingInstitution">-->
+
+                                <!--<div ng-show="x.mobileTrainingInstitution > '0'">-->
+                                    <!--<div class="form-group">-->
+                                        <!--<input type="file" accept=".pdf" class="file" file-model="uploadAnnexure">-->
+                                        <!--<div class="input-group">-->
+                                            <!--<input type="file" class="form-control" ng-model="mobileAnnexureFile" placeholder="Please upload a PDF file" required>-->
+                                        <!--</div>-->
+                                        <!--<div class="input-group-btn">-->
+                                            <!--<button class="browse btn btn-primary input" type="button">Browse</button>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</form>-->
+
                     </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">PAN</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="trainingPartner.panNumber" value="{{panNumber}}" >
-                        </div>
+
+                    <div class="field">
+                        <div class="col-md-6 "><b>PAN</b></div>
+                        <input ng-model="x.panNumber" >
                     </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">TAN</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="trainingPartner.tanNumber" value="{{tanNumber}}" >
-                        </div>
+
+                    <div class="field">
+                        <div class="col-md-6 "><b>TAN</b></div>
+                        <input ng-model="x.tanNumber">
+
                     </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Turnover of the institute</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="trainingPartner.turnOverOfInstitution" value="{{turnOverOfInstitution}}" >
-                        </div>
+                    <div class="field">
+                        <div class="col-md-6 "><b>Turnover of the institute</b></div>
+                        <input ng-model="x.turnOverOfInstitution">
+
                     </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Does the institution received any grant?</div>
-                        <div class="col-md-6">
-                            <label class="radio-inline">
-                                <input type="radio" name="nSDCFunded" ng-model="trainingPartner.instituteReceivedAnyGrant" value="Yes"> Yes
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="nSDCFunded" ng-model="trainingPartner.instituteReceivedAnyGrant" value="No" checked> No
-                            </label>
-                        </div>
-                        <div class="col-md-12" ng-show="trainingPartner.instituteReceivedAnyGrant == 'Yes'">
+                    <div class="field">
+                        <div class="col-md-6 "><h3>Does the institution received any grant?</h3></div>
+
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="x.instituteReceivedAnyGrant" value="Yes"> Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="x.instituteReceivedAnyGrant" value="No" ng-click="removeAllGrant()" checked> No
+                        </label>
+                    </div>
+                    <form ng-submit="addNewGrant()">
+                        <div class="col-md-12" ng-show="x.instituteReceivedAnyGrant == 'Yes'">
                             <table>
-                                <tr ng-repeat="x in grantTable">
-                                    <td>{{x.sno}}</td>
-                                    <td>{{x.name}}</td>
-                                    <td>{{x.natureOfWork}}</td>
-                                    <td>{{x.sno}}</td>
-                                </tr>
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" ng-model="selectedAllGrant" ng-click="checkAllGrant()"></th>
+                                        <th>Name of Ministry</th>
+                                        <th>Nature of Work</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="grants in trainingPartner.InstituteGrantDetails">
+                                        <td><input type="checkbox" ng-model="grants.selected"></td>
+                                        <td><input ng-model="grants.nameOfMinistry" class="form-control" required></td>
+                                        <td><input ng-model="grants.natureOfWork" class="form-control" required></td>
+                                        <td><input ng-model="grants.remarks" class="form-control" required></td>
+                                    </tr>
+                                </tbody>
                             </table>
+                            <div class="form-group">
+                                <input ng-hide="!trainingPartner.InstituteGrantDetails.length" type="button" class="btn btn-danger" ng-click="removeGrant()" value="Remove">
+                                <input type="submit" class="btn btn-primary addNewGrant" value="Add New">
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="field">
+                        <div class="col-md-6 "><h3>Is the institute recognized with any bodies?</h3></div>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="x.instituteReceivedAnyRecognition" value="Yes"> Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="x.instituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()" checked> No
+                        </label>
+                    </div>
+                    <form ng-submit="addNewRecognition()">
+                        <div class="col-md-12" ng-show="x.instituteReceivedAnyRecognition == 'Yes'">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" ng-model="selectedAllRecognition" ng-click="checkAllRecognition()"></th>
+                                        <th>Name of Recognizing body</th>
+                                        <th>Recognition Number</th>
+                                        <th>Validity of Recognition</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="recognition in trainingPartner.InstituteRecognitionDetails">
+                                        <td><input type="checkbox" ng-model="recognition.selected"></td>
+                                        <td><input ng-model="recognition.nameOfRecognizingBody" class="form-control" required></td>
+                                        <td><input ng-model="recognition.recognitionNumber" class="form-control" required></td>
+                                        <td><input ng-model="recognition.validityOfRecognition" class="form-control" required></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <input ng-hide="!trainingPartner.InstituteRecognitionDetails.length" type="button" class="btn btn-danger" ng-click="removeRecognition()" value="Remove">
+                                <input type="submit" class="btn btn-primary addNewRecognition" value="Add New">
+                            </div>
+                        </div>
+                    </form>
+
+
+
+
+
+
+                    <div class="field">
+                        <div class="col-md-6 "><b>Does the institute have any prior experience in skill development?</b></div>
+                        <input ng-model="x.instituteReceivedAnyRecognition">
+                    </div>
+
+
+
+
+                    <div class="field">
+                        <div class="col-md-6 "><h3>Prior experience of institution in skill training(Related to QP)?</h3></div>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="x.anyPriorExperienceOfInstitutionInSkillTraining" value="Yes"> Yes
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" ng-model="x.anyPriorExperienceOfInstitutionInSkillTraining" value="No" ng-click="removeAll()" checked> No
+                        </label>
+                    </div>
+
+                    <form ng-submit="addNew()">
+                        <div class="col-md-12" ng-show="x.anyPriorExperienceOfInstitutionInSkillTraining == 'Yes'">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"></th>
+                                        <th>Name of Course</th>
+                                        <th>Number of Batches per year</th>
+                                        <th>Number of Students in each Batch</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="experience in trainingPartner.PriorExperienceDetails">
+                                    <td><input type="checkbox" ng-model="experience.selected"></td>
+                                    <td><input ng-model="experience.courseName" class="form-control" required></td>
+                                    <td><input ng-model="experience.numberOfBatchesPerYear" class="form-control" required></td>
+                                    <td><input ng-model="experience.numberOfStudentsInEachBatch" class="form-control" required></td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                            <div class="form-group">
+                                <input ng-hide="!trainingPartner.PriorExperienceDetails.length" type="button" class="btn btn-danger" ng-click="remove()" value="Remove">
+                                <input type="submit" class="btn btn-primary addNew" value="Add New">
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                    <div class="field">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
                         </div>
                     </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Turnover of the institute</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="trainingPartner.turnOverOfInstitution" value="{{turnOverOfInstitution}}" >
-                        </div>
-                    </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Turnover of the institute</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="trainingPartner.turnOverOfInstitution" value="{{turnOverOfInstitution}}" >
-                        </div>
-                    </div>
-
-                    <div class="field6">
-                        <div class="col-md-6">Turnover of the institute</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="trainingPartner.turnOverOfInstitution" value="{{turnOverOfInstitution}}" >
-                        </div>
-                    </div>
                 </div>
-
-
 
             </accordion-group>
 

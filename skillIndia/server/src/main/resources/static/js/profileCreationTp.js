@@ -1,16 +1,30 @@
 var profileCreationTp = angular.module('hello');
 
-profileCreationTp.controller('profileCreationTp' , function($scope, $http){
+profileCreationTp.controller('profileCreationTp' , function($scope, $http, fileUpload){
 
 //    $http.get('/url')
 //        .then(function(response){
 //
 //        });
 
-     $scope.trainingPartner = {};
+//     $scope.trainingPartner;
 
     // Store response.data into trainingPartner
 
+//    $scope.TrainingPartnerOrganizationDetails;
+
+    $http.get('/getDataNewUserProfileCreation')
+        .then(function(response){
+            console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+//            $scope.trainingPartner = response.data;
+
+            $scope.trainingPartner = response.data;
+            $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+            console.log("The training partner is to be filled " + JSON.stringify($scope.trainingPartner));
+            console.log("The training partner organization details are " + JSON.stringify($scope.trainingPartner.TrainingPartnerOrganizationDetails));
+            console.log("The training partner organization details are " + JSON.stringify($scope.TrainingPartnerOrganizationDetails));
+
+        });
     $scope.states = ["UP", "Uttarakhand", "MP", "Bihar"];
 
     $scope.grantTable = [
@@ -20,6 +34,126 @@ profileCreationTp.controller('profileCreationTp' , function($scope, $http){
                                 remark : "None"
                             }
     ];
+
+    $scope.addNew = function(experience){
+        console.log("data added successfully");
+        $scope.trainingPartner.PriorExperienceDetails.push({
+            'courseName' : "",
+            'numberOfBatchesPerYear' : "",
+            'numberOfStudentsInEachBatch' : ""
+        });
+    }
+
+    $scope.addNewRecognition = function(recognition){
+        console.log("data added successfully");
+        $scope.trainingPartner.InstituteRecognitionDetails.push({
+            'nameOfMinistry' : "",
+            'natureOfWork' : "",
+            'remarks' : ""
+        });
+    }
+
+    $scope.addNewGrant = function(experience){
+        console.log("data added successfully");
+        $scope.trainingPartner.InstituteGrantDetails.push({
+            'nameOfMinistry' : "",
+            'natureOfWork' : "",
+            'remarks' : ""
+        });
+    }
+
+
+
+//  Check All functionality for all the tables
+
+    $scope.checkAll = function () {
+        if (!$scope.selectedAll) {
+            $scope.selectedAll = true;
+        } else {
+            $scope.selectedAll = false;
+        }
+        angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(experience) {
+            experience.selected = $scope.selectedAll;
+        });
+    };
+
+    $scope.checkAllRecognition = function () {
+        if (!$scope.selectedAllRecognition) {
+            $scope.selectedAllRecognition = true;
+        } else {
+            $scope.selectedAllRecognition = false;
+        }
+        angular.forEach($scope.trainingPartner.InstituteRecognitionDetails, function(recognition) {
+            recognition.selected = $scope.selectedAllRecognition;
+        });
+    };
+
+    $scope.checkAllGrant = function () {
+        if (!$scope.selectedAllGrant) {
+            $scope.selectedAllGrant = true;
+        } else {
+            $scope.selectedAllGrant = false;
+        }
+        angular.forEach($scope.trainingPartner.InstituteGrantDetails, function(grants) {
+            recognition.selected = $scope.selectedAllGrant;
+        });
+    };
+
+
+
+
+// Remove functionality for all the tables
+
+    $scope.remove = function(){
+        var newDataList=[];
+        $scope.selectedAll = false;
+        angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(selected){
+            if(!selected.selected){
+                newDataList.push(selected);
+            }
+        });
+        $scope.trainingPartner.PriorExperienceDetails = newDataList;
+    };
+
+    $scope.removeRecognition = function(){
+        var newDataList=[];
+        $scope.selectedAllRecognition = false;
+        angular.forEach($scope.trainingPartner.InstituteRecognitionDetails, function(selected){
+            if(!selected.selected){
+                newDataList.push(selected);
+            }
+        });
+        $scope.trainingPartner.InstituteRecognitionDetails = newDataList;
+    };
+
+
+    $scope.removeGrant = function(){
+        var newDataList=[];
+        $scope.selectedAllGrant = false;
+        angular.forEach($scope.trainingPartner.InstituteGrantDetails, function(selected){
+            if(!selected.selected){
+                newDataList.push(selected);
+            }
+        });
+        $scope.trainingPartner.InstituteGrantDetails = newDataList;
+    };
+
+// Remove all functionality for all the tables
+
+    $scope.removeAll = function(){
+        console.log("Removing all the details..!");
+        $scope.trainingPartner.PriorExperienceDetails = [];
+    }
+
+    $scope.removeAllRecognition = function(){
+        console.log("Removing all the details..!");
+        $scope.trainingPartner.InstituteRecognitionDetails = [];
+    }
+
+    $scope.removeAllGrant = function(){
+        console.log("Removing all the details..!");
+        $scope.trainingPartner.InstituteGrantDetails = [];
+    }
 
     $scope.saveAccordionOne = function(){
         console.log("Button Working " + JSON.stringify($scope.trainingPartner));

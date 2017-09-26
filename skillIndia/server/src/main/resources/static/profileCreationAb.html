@@ -1,3 +1,6 @@
+<head>
+    <link rel="stylesheet" href="css/profileCreationAb.css">
+</head>
 <div ng-controller="profileCreationAb">
     <script type="text/ng-template">
         <div class="panel-heading">
@@ -18,100 +21,170 @@
       cursor : pointer;
       }
    </style>
-    {{assessmentBody.userId}}
+    <!--{{assessmentBody.userId}}-->
     <div>
         <accordion close-others="true">
             <!--  ------------------------ACCORDION 1------------------  -->
             <accordion-group is-open="status.open">
                 <accordion-heading>
                     <div>
-                        STEP 1: BASIC INFORMTAION
+                        STEP 1: BASIC INFORMATION
                     </div>
                     <div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
                     </div>
                 </accordion-heading>
-                <div>
-                    <!--                 accordion content to come here -->
+                <div ng-repeat="x in assessmentBody.AssessmentBodyRegistrationDetails">
                     <div>
                         <div class="col-md-9">
-                            <h2>{{assessmentBody.organizationName}}</h2>
+                            <h2>{{x.organizationName}}</h2>
                         </div>
                         <div class="col-md-3">
-                            <h2>{{assessmentBody.sPOCName}}</h2>
+                            <h2>{{x.sPOCName}}</h2>
                         </div>
 
                     </div>
 
-                    <div class="field1">
-                        <div class="col-md-6">UserId</div>
-                        <div class="col-md-6">
-                            <input type="text" ng-model="assessmentBody.userId" value="{{userId}}">
+                    <div class="col-md-6">
+                        <div class="field">
+                            <div class="col-md-6">UserId</div>
+                            <input ng-model="x.assessmentBodyRegistrationId" readonly>
+                        </div>
+
+                        <div class="field">
+                            <div class="col-md-6">City</div>
+                            <input ng-model="x.city">
+                        </div>
+
+                        <div class="field">
+                            <div class="col-md-6">State</div>
+                            <input ng-model="x.state">
+                        </div>
+
+                        <div class="field">
+                            <div class="col-md-6">Mobile Number</div>
+                            <input ng-model="x.mobileNumber">
+                        </div>
+
+                        <div class="field">
+                            <div class="col-md-6">Alternate Mobile Number</div>
+                            <input ng-model="x.alternateMobileNumber">
                         </div>
                     </div>
 
-                    <div class="field1">
-                        <div class="col-md-6">City</div>
-                        <div class="col-md-6">
-                            <input type="text" ng-model="assessmentBody.city" value="{{city}}">
+                    <div class="col-md-6">
+
+                        <div class="field">
+                            <div class="col-md-6">Landline Number</div>
+                            <input ng-model="x.landlineNumber">
+                        </div>
+
+                        <div class="field">
+                            <div class="col-md-6">Alternate Landline Number</div>
+                            <input ng-model="x.alternateLandlineNumber">
+                        </div>
+
+                        <div class="field">
+                            <div class="col-md-6">Fax Number</div>
+                            <input ng-model="x.faxNumber">
+                        </div>
+
+                        <div class="field">
+                            <div class="col-md-6">Website</div>
+                            <input ng-model="x.websites">
                         </div>
                     </div>
 
-                    <div class="field2">
-                        <div class="col-md-6">State</div>
-                        <div class="col-md-6">
-                            <input type="text" ng-model="assessmentBody.state" value="{{state}}">
-                        </div>
-                    </div>
-
-                    <div class="field3">
-                        <div class="col-md-6">Mobile Number</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="assessmentBody.mobileNumber" value="{{mobileNumber}}" >
-                        </div>
-                    </div>
-
-                    <div class="field4">
-                        <div class="col-md-6">Alternate Mobile Number</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="assessmentBody.alternateMobileNumber" value="{{alternateMobileNumber}}" >
-                        </div>
-                    </div>
-
-                    <div class="field5">
-                        <div class="col-md-6">Landline Number</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="assessmentBody.landlineNumber" value="{{landlineNumber}}" >
-                        </div>
-                    </div>
-
-                    <div class="field6">
-                        <div class="col-md-6">Alternate Landline Number</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="assessmentBody.alternateLandlineNumber" value="{{alternateLandlineNumber}}" >
-                        </div>
-                    </div>
-
-                    <div class="field7">
-                        <div class="col-md-6">Fax Number</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="assessmentBody.faxNumber" value="{{faxNumber}}" >
-                        </div>
-                    </div>
-
-                    <div class="field8">
-                        <div class="col-md-6">Website</div>
-                        <div class="col-md-6">
-                            <input type="text" ng-model="assessmentBody.webistes" value="{{websites}}" >
-                        </div>
-                    </div>
 
                     <div>
                         <div class="col-lg-12">
                             <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
                         </div>
                     </div>
+
                 </div>
+
+                <!--<div>-->
+                    <!--&lt;!&ndash;                 accordion content to come here &ndash;&gt;-->
+                    <!--<div>-->
+                        <!--<div class="col-md-9">-->
+                            <!--<h2>{{assessmentBody.organizationName}}</h2>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-3">-->
+                            <!--<h2>{{assessmentBody.sPOCName}}</h2>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+
+                    <!--<div class="field1">-->
+                        <!--<div class="col-md-6">UserId</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="text" ng-model="assessmentBody.userId" value="{{userId}}">-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="field1">-->
+                        <!--<div class="col-md-6">City</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="text" ng-model="assessmentBody.city" value="{{city}}">-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="field2">-->
+                        <!--<div class="col-md-6">State</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="text" ng-model="assessmentBody.state" value="{{state}}">-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="field3">-->
+                        <!--<div class="col-md-6">Mobile Number</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="number" ng-model="assessmentBody.mobileNumber" value="{{mobileNumber}}" >-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="field4">-->
+                        <!--<div class="col-md-6">Alternate Mobile Number</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="number" ng-model="assessmentBody.alternateMobileNumber" value="{{alternateMobileNumber}}" >-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="field5">-->
+                        <!--<div class="col-md-6">Landline Number</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="number" ng-model="assessmentBody.landlineNumber" value="{{landlineNumber}}" >-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="field6">-->
+                        <!--<div class="col-md-6">Alternate Landline Number</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="number" ng-model="assessmentBody.alternateLandlineNumber" value="{{alternateLandlineNumber}}" >-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="field7">-->
+                        <!--<div class="col-md-6">Fax Number</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="number" ng-model="assessmentBody.faxNumber" value="{{faxNumber}}" >-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="field8">-->
+                        <!--<div class="col-md-6">Website</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<input type="text" ng-model="assessmentBody.webistes" value="{{websites}}" >-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div>-->
+                        <!--<div class="col-lg-12">-->
+                            <!--<button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </accordion-group>
             <!--  ------------------------ACCORDION 2------------------  -->
             <accordion-group is-open="status.open2">
@@ -123,80 +196,161 @@
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
                     </div>
                 </accordion-heading>
-                <div>
+                <div class="col-centered" ng-repeat="x in assessmentBody.AssessmentBodyRegistrationDetails">
                     <!--                 accordion content to come here -->
-                    <div class="field6">
-                        <div class="col-md-6">Year of Establishment</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="assessmentBody.yearOfEstablishment" value="{{yearOfEstablishment}}" >
-                        </div>
-                    </div>
+                    <div class="container">
 
-                    <div class="field6">
-                        <div class="col-md-6">Assessment experience in any technical domain or renewable energy</div>
-                        <div class="col-md-6">
-                            <label class="radio-inline">
-                                <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.priorAssessmentExperience" value="Yes"> Yes
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.priorAssessmentExperience" value="No" checked> No
-                            </label>
-
-                            <div ng-show="assessmentBody.priorAssessmentExperience == 'Yes'">
-                                A table to be shown
+                        <div class="row row-margin">
+                            <div class="col-md-4">Year of Establishment</div>
+                            <div class="col-md-8">
+                                <input ng-model="x.yearOfEstablishment">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">PAN</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="assessmentBody.panNumber" value="{{panNumber}}" >
+                        <div class="row row-margin">
+                            <div class="col-md-4">Assessment experience in any technical domain or renewable energy</div>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="priorAssessmentExperience" ng-model="x.priorAssessmentExperience" value="Yes"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="priorAssessmentExperience" ng-model="x.priorAssessmentExperience" value="No" ng-click="removeAllExperience()" checked> No
+                                </label>
+                            </div>
+                            <form ng-submit="addNewExperience()" class="col-md-8 col-md-offset-4 table-top">
+                                <div ng-show="x.priorAssessmentExperience == 'Yes'">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <!--<th><input type="checkbox" ng-model="selectedAllExperience" ng-click="checkAllExperience()"></th>-->
+                                            <!--<th class="sno-pd-lft">S.no</th>-->
+                                            <th>Domain/Sector</th>
+                                            <th>No. of Assessments carried out</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="experience in assessmentBody.AssessmentsExperienceInTechnicalDomain">
+                                            <td><input ng-model="experience.domain" class="form-control" required></td>
+                                            <td><input ng-model="experience.numberOfAssessmentsDone" class="form-control" required></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="experience.selected"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="form-group add-btn">
+                                        <input ng-hide="!assessmentBody.AssessmentsExperienceInTechnicalDomain.length" type="button" class="btn btn-danger" ng-click="removeExperience()" value="Remove">
+                                        <input type="submit" class="btn btn-primary addNewExperience" value="Add New">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">TAN</div>
-                        <div class="col-md-6">
-                            <input type="number" ng-model="assessmentBody.tanNumber" value="{{tanNumber}}" >
-                        </div>
-                    </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Recognized with any Govt./Pvt. Agency</div>
-                        <div class="col-md-6">
-                            <label class="radio-inline">
-                                <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.insituteReceivedAnyRecognition" value="Yes"> Yes
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.insituteReceivedAnyRecognition" value="No" checked> No
-                            </label>
 
-                            <div ng-show="assessmentBody.insituteReceivedAnyRecognition == 'Yes'">
-                                A table to be shown
+
+
+
+
+                        <div class="row row-margin">
+                            <div class="col-md-4">PAN</div>
+                            <div class="col-md-8">
+                                <input ng-model="x.panNumber" required>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="field6">
-                        <div class="col-md-6">Whether affiliated with any Sector Skill Council</div>
-                        <div class="col-md-6">
-                            <label class="radio-inline">
-                                <input type="radio" name="affiliatedToAnySectorSkillCouncil" ng-model="assessmentBody.affiliatedToAnySectorSkillCouncil" value="Yes"> Yes
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="affiliatedToAnySectorSkillCouncil" ng-model="assessmentBody.affiliatedToAnySectorSkillCouncil" value="No" checked> No
-                            </label>
-
-                            <div ng-show="assessmentBody.affiliatedToAnySectorSkillCouncil == 'Yes'">
-                                A table to be shown
+                        <div class="row row-margin">
+                            <div class="col-md-4">TAN</div>
+                            <div class="col-md-8">
+                                <input ng-model="x.tanNumber" required>
                             </div>
                         </div>
-                    </div>
 
-                    <div>
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()" >Next</button>
+                        <div class="row row-margin">
+                            <div class="col-md-4">Recognized with any Govt./Pvt. Agency</div>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="x.insituteReceivedAnyRecognition" value="Yes"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="x.insituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition"checked> No
+                                </label>
+                            </div>
+                            <form ng-submit="addNewRecognition()" class="col-md-8 col-md-offset-4 table-top">
+                                <div ng-show="x.insituteReceivedAnyRecognition == 'Yes'">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <!--<th><input type="checkbox" ng-model="selectedAllRecognition" ng-click="checkAllRecognition()"></th>-->
+                                            <!--<th class="sno-pd-lft">S.no</th>-->
+                                            <th>Name of Recognizing Body</th>
+                                            <th>Recognition No.</th>
+                                            <th>Year of Recognition</th>
+                                            <th>Validity of Recognition</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="recognition in assessmentBody.AssessmentBodyRecognitions">
+
+                                            <td><input ng-model = "recognition.name" class="form-control" required></td>
+                                            <td><input ng-model = "recognition.number" class="form-control" required></td>
+                                            <td><input ng-model = "recognition.year" class="form-control" required></td>
+                                            <td><input ng-model = "recognition.validity" class="form-control" required></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="recognition.selected"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="form-group add-btn">
+                                        <input ng-hide="!assessmentBody.AssessmentBodyRecognitions.length" type="button" class="btn btn-danger" ng-click="removeRecognition()" value="Remove">
+                                        <input type="submit" class="btn btn-primary addNewRecognition" value="Add New">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+
+                        <div class="row row-margin">
+                            <div class="col-md-4">Whether affiliated with any Sector Skill Council</div>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="x.affiliatedToAnySectorSkillCouncil" value="Yes"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="x.affiliatedToAnySectorSkillCouncil" value="No" ng-click="removeAllAffiliation()" checked> No
+                                </label>
+                            </div>
+                            <form ng-submit="addNewAffiliation()" class="col-md-8 col-md-offset-4 table-top">
+                                <div ng-show="x.affiliatedToAnySectorSkillCouncil == 'Yes'">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <!--<th><input type="checkbox" ng-model="selectedAllExperience" ng-click="checkAllExperience()"></th>-->
+                                            <!--<th class="sno-pd-lft">S.no</th>-->
+                                            <th>Name of SSC</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="affiliation in assessmentBody.AssessmentBodyAffiliationDetails">
+
+                                            <td><input ng-model="affiliation.nameOfSectorSkillCouncil" class="form-control" required></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="affiliation.selected"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="form-group add-btn">
+                                        <input ng-hide="!assessmentBody.AssessmentBodyAffiliationDetails.length" type="button" class="btn btn-danger" ng-click="removeAffiliation()" value="Remove">
+                                        <input type="submit" class="btn btn-primary" value="Add New">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+                        <div class="row row-margin">
+                            <div class="col-lg-12">
+                                <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()" >Next</button>
+                            </div>
                         </div>
                     </div>
 
