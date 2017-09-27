@@ -1,17 +1,21 @@
-.field{
-    margin : 20px;
+.add-btn{
+    margin: 20px 0px;
 }
 
-.col-centered{
-    float : none;
-    margin : 0 auto;
+.btn-checkbox{
+    padding-left : 20px;
 }
 
-.fine-print{
-    font-size : 9px;
-    color : orange;
+.upload-btn{
+    margin-top : 15px;
+}
+.row-margin{
+    margin: 50px auto;
 }
 
-.right-align{
-    text-align : right;
+.table-top{
+    margin-top : 20px;
+}
+th{
+    padding-bottom: 15px;
 }

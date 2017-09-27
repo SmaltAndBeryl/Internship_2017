@@ -1,15 +1,19 @@
-//profileCreationTp.directive('fileModel', ['$parse', function($parse){
-//    return{
-//        restrict : 'A',
-//        link : function($scope, ele, attrs){
-//            var model = $parse(attrs.fileModel);
-//            var modeSetter = model.assign;
-//
-//            ele.bind('change', function(){
-//                $scope.$apply(function(){
-//                    modelSetter(scope, ele[0].files[0])
-//                });
-//            });
-//        }
-//    }
-//}]);
+profileCreationTp.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+            
+            element.bind('change', function() {
+                var files = [];
+                angular.forEach(element[0].files, function(file){
+                    files.push(file);
+                });
+                scope.$apply(function() {
+                    modelSetter(scope, files);
+                });
+            });
+        }
+    };
+}]);

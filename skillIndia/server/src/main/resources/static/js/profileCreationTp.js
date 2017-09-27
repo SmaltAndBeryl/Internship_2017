@@ -66,47 +66,12 @@ profileCreationTp.controller('profileCreationTp' , function($scope, $http, fileU
 
 //  Check All functionality for all the tables
 
-    $scope.checkAll = function () {
-        if (!$scope.selectedAll) {
-            $scope.selectedAll = true;
-        } else {
-            $scope.selectedAll = false;
-        }
-        angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(experience) {
-            experience.selected = $scope.selectedAll;
-        });
-    };
-
-    $scope.checkAllRecognition = function () {
-        if (!$scope.selectedAllRecognition) {
-            $scope.selectedAllRecognition = true;
-        } else {
-            $scope.selectedAllRecognition = false;
-        }
-        angular.forEach($scope.trainingPartner.InstituteRecognitionDetails, function(recognition) {
-            recognition.selected = $scope.selectedAllRecognition;
-        });
-    };
-
-    $scope.checkAllGrant = function () {
-        if (!$scope.selectedAllGrant) {
-            $scope.selectedAllGrant = true;
-        } else {
-            $scope.selectedAllGrant = false;
-        }
-        angular.forEach($scope.trainingPartner.InstituteGrantDetails, function(grants) {
-            recognition.selected = $scope.selectedAllGrant;
-        });
-    };
-
-
-
 
 // Remove functionality for all the tables
 
     $scope.remove = function(){
         var newDataList=[];
-        $scope.selectedAll = false;
+//        $scope.selectedAll = false;
         angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(selected){
             if(!selected.selected){
                 newDataList.push(selected);
@@ -117,7 +82,7 @@ profileCreationTp.controller('profileCreationTp' , function($scope, $http, fileU
 
     $scope.removeRecognition = function(){
         var newDataList=[];
-        $scope.selectedAllRecognition = false;
+//        $scope.selectedAllRecognition = false;
         angular.forEach($scope.trainingPartner.InstituteRecognitionDetails, function(selected){
             if(!selected.selected){
                 newDataList.push(selected);
@@ -129,7 +94,7 @@ profileCreationTp.controller('profileCreationTp' , function($scope, $http, fileU
 
     $scope.removeGrant = function(){
         var newDataList=[];
-        $scope.selectedAllGrant = false;
+//        $scope.selectedAllGrant = false;
         angular.forEach($scope.trainingPartner.InstituteGrantDetails, function(selected){
             if(!selected.selected){
                 newDataList.push(selected);
@@ -153,10 +118,33 @@ profileCreationTp.controller('profileCreationTp' , function($scope, $http, fileU
     $scope.removeAllGrant = function(){
         console.log("Removing all the details..!");
         $scope.trainingPartner.InstituteGrantDetails = [];
-    }
+    };
 
     $scope.saveAccordionOne = function(){
         console.log("Button Working " + JSON.stringify($scope.trainingPartner));
+    };
+
+//Upload File functionality
+    $scope.uploadFile = function(){
+        var file = $scope.myFile;
+        console.log("File is " + file);
+
+        var uploadUrl = "/fileUpload";
+        fileUpload.uploadFileToUrl(file, uploadUrl);
+    };
+
+    //Preview attachments
+    $scope.previewAttachments = function(event){
+        var files = event.target.files;
+        $scope.attachments = [];
+        angular.forEach(files, function(file){
+            $scope.attachments.push(file.name);
+            var reader = new FileReader();
+            reader.onload = function(){
+                $scope.$apply();
+            }
+            reader.readAsDataURL(file);
+        })
     }
 
     $scope.grantTable = {

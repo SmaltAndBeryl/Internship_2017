@@ -211,7 +211,7 @@
                             <div class="col-md-4">Assessment experience in any technical domain or renewable energy</div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" name="priorAssessmentExperience" ng-model="x.priorAssessmentExperience" value="Yes"> Yes
+                                    <input type="radio" name="priorAssessmentExperience" ng-model="x.priorAssessmentExperience" value="Yes" ng-click="addNewExperience()"> Yes
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" name="priorAssessmentExperience" ng-model="x.priorAssessmentExperience" value="No" ng-click="removeAllExperience()" checked> No
@@ -265,13 +265,13 @@
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Recognized with any Govt./Pvt. Agency</div>
-                            <div class="col-md-8">
+                            <div class="col-md-8">Recognized with any Govt./Pvt. Agency</div>
+                            <div class="col-md-4">
                                 <label class="radio-inline">
-                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="x.insituteReceivedAnyRecognition" value="Yes"> Yes
+                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="x.insituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="x.insituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition"checked> No
+                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="x.insituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()"checked> No
                                 </label>
                             </div>
                             <form ng-submit="addNewRecognition()" class="col-md-8 col-md-offset-4 table-top">
@@ -313,7 +313,7 @@
                             <div class="col-md-4">Whether affiliated with any Sector Skill Council</div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.affiliatedToAnySectorSkillCouncil" value="Yes"> Yes
+                                    <input type="radio" ng-model="x.affiliatedToAnySectorSkillCouncil" value="Yes" ng-click="addNewAffiliation()"> Yes
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" ng-model="x.affiliatedToAnySectorSkillCouncil" value="No" ng-click="removeAllAffiliation()" checked> No
