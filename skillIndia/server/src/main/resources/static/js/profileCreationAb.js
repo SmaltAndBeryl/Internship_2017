@@ -129,19 +129,37 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         console.log("here in save as draft");
 
 
-        var manageControllerURI = "/saveAsDraftAndSubmit";
+        var saveDraftAndSubmit = "/saveAsDraftAndSubmit";
         
-        console.log($scope.trainingPartner);
+        //console.log($scope.trainingPartner);
         
-        $scope.assessmentBody["type"] = "SaveAsDraft";
+//        $scope.profileCreationABTPDto = {
+//        		"type" : "Draft",
+//        		"userData" : null,
+//        		"userUploads" : null,
+//        		"userDeletes" : null
+//        }
+        $scope.userData = {
+        		"Key" : {
+        			"key" : {
+        				"key" : "value"
+        			}
+        		}
+        }
+        $scope.profileCreationABTPDto = {
+        		"type" : "Draft",
+        		"userData" :$scope.userData
+        }
         
-        console.log($scope.trainingPartner);
+       
+        
+        //console.log($scope.trainingPartner);
 
         $http({
-        	url : manageControllerURI,
+        	url: "/saveAsDraftAndSubmit",
         	method : "POST",
-        	data : $scope.assessmentBody
-        	/*data: angular.toJson(editdetailsOfApplication)*/
+        	data :  angular.toJson( $scope.profileCreationABTPDto)
+        	
         }).then(
         		function(response)
         		{
@@ -162,7 +180,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         		{
         			
         			
-        			console.log('THIS IS THE RESPONSE IN THE COMMENT:'+failure);	
+        			//console.log('THIS IS THE RESPONSE IN THE COMMENT:'+failure);	
         		  
         			
         		}
