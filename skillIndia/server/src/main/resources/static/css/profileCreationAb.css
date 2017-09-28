@@ -17,3 +17,13 @@
 th{
     padding-bottom: 15px;
 }
+
+.accordion-toggle{
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+}
+
+.acc-heading{
+    margin-right : 0px;
+}

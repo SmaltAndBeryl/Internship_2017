@@ -5,7 +5,7 @@
 
     <script type="text/ng-template">
         <div class="panel-heading">
-            <h4 class="panel-title" style="background-color:aqua">
+            <h4 class="panel-title">
                 <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
                   <span uib-accordion-header>
                     {{heading}}
@@ -18,104 +18,130 @@
         </div>
     </script>
 
-    <style>
-        .panel-heading{
-            cursor : pointer;
-        }
-    </style>
-    <!--{{trainingPartner.userId}}-->
     <div>
         <accordion close-others="true">
             <accordion-group is-open="status.open">
                 <accordion-heading>
-                    <div>
-                        STEP 1: BASIC INFORMATION
+                    <div class="container acc-heading">
+                        <div class="row">
+                            <div class="col-md-11">
+                                STEP 1: BASIC INFORMATION
+                            </div>
+                            <div class="col-md-1">
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
-                    </div>
+
+
                 </accordion-heading>
 
-                <div ng-repeat="x in trainingPartner.TrainingPartnerOrganizationDetails">
-                    <div>
-                        <div class="col-md-9">
-                            <h2>{{x.organizationName}}</h2>
+                <div class="container">
+                    <div ng-repeat="x in trainingPartner.TrainingPartnerOrganizationDetails">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h3>{{x.organizationName}}</h3>
+                            </div>
+                            <div class="col-md-3 col-md-offset-3">
+                                <h3>{{x.sPOCName}}</h3>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <h2>{{x.sPOCName}}</h2>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row row-margin">
+                                    <div class="col-md-4">UserId</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.trainingPartnerRegistrationId" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="row row-margin">
+                                    <div class="col-md-4">City</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.city">
+                                    </div>
+                                </div>
+
+                                <div class="row row-margin">
+                                    <div class="col-md-4">State</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.state">
+                                    </div>
+                                </div>
+
+                                <div class="row row-margin">
+                                    <div class="col-md-4">Mobile Number</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.mobileNumber">
+                                    </div>
+                                </div>
+
+                                <div class="row row-margin">
+                                    <div class="col-md-4">Alternate Mobile Number</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.alternateMobileNumber">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row row-margin">
+                                    <div class="col-md-4">Landline Number</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.landlineNumber">
+                                    </div>
+                                </div>
+
+                                <div class="row row-margin">
+                                    <div class="col-md-4">Alternate Landline Number</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.alternateLandlineNumber">
+                                    </div>
+                                </div>
+
+                                <div class="row row-margin">
+                                    <div class="col-md-4">Fax Number</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.faxNumber">
+                                    </div>
+                                </div>
+
+                                <div class="row row-margin">
+                                    <div class="col-md-4">Website</div>
+                                    <div class="col-md-8">
+                                        <input ng-model="x.websites">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
+                            </div>
                         </div>
 
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="field">
-                        <div class="col-md-6">UserId</div>
-                        <input ng-model="x.trainingPartnerRegistrationId" readonly>
-                        </div>
-
-                        <div class="field">
-                        <div class="col-md-6">City</div>
-                        <input ng-model="x.city">
-                        </div>
-
-                        <div class="field">
-                        <div class="col-md-6">State</div>
-                        <input ng-model="x.state">
-                        </div>
-
-                        <div class="field">
-                        <div class="col-md-6">Mobile Number</div>
-                        <input ng-model="x.mobileNumber">
-                        </div>
-
-                        <div class="field">
-                        <div class="col-md-6">Alternate Mobile Number</div>
-                        <input ng-model="x.alternateMobileNumber">
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-
-                        <div class="field">
-                            <div class="col-md-6">Landline Number</div>
-                            <input ng-model="x.landlineNumber">
-                        </div>
-
-                        <div class="field">
-                        <div class="col-md-6">Alternate Landline Number</div>
-                        <input ng-model="x.alternateLandlineNumber">
-                        </div>
-
-                        <div class="field">
-                        <div class="col-md-6">Fax Number</div>
-                        <input ng-model="x.faxNumber">
-                        </div>
-
-                        <div class="field">
-                        <div class="col-md-6">Website</div>
-                        <input ng-model="x.websites">
-                        </div>
-                    </div>
-
-
-                    <div>
-                        <div class="col-lg-12">
-                            <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
-                        </div>
-                    </div>
-
                 </div>
+
 
             </accordion-group>
 
             <!--  ------------------------ACCORDION 2 ------------------  -->
             <accordion-group is-open="status.open2">
                 <accordion-heading>
-                    <div>
-                        STEP 2 : ORGANIZATION DETAILS
-                    </div>
-                    <div>
-                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
+                    <div class="container acc-heading">
+                        <div class="row">
+                            <div class="col-md-11">
+                                STEP 2 : ORGANIZATION DETAILS
+                            </div>
+                            <div class="col-md-1">
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
+                            </div>
+                        </div>
                     </div>
                 </accordion-heading>
                 <div class="container">
@@ -245,7 +271,7 @@
                                         </tbody>
                                     </table>
                                     <div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.InstituteGrantDetails.length" type="button" class="btn btn-danger" ng-click="removeGrant()" value="Remove">
+                                        <input ng-hide="!trainingPartner.InstituteGrantDetails.length" type="button" class="btn btn-danger" ng-click="removeGrant()" value="Remove Selected">
                                         <input type="submit" class="btn btn-primary addNewGrant" value="Add New">
                                     </div>
                                 </div>
@@ -285,7 +311,7 @@
                                         </tbody>
                                     </table>
                                     <div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.InstituteRecognitionDetails.length" type="button" class="btn btn-danger" ng-click="removeRecognition()" value="Remove">
+                                        <input ng-hide="!trainingPartner.InstituteRecognitionDetails.length" type="button" class="btn btn-danger" ng-click="removeRecognition()" value="Remove Selected">
                                         <input type="submit" class="btn btn-primary addNewRecognition" value="Add New">
                                     </div>
                                 </div>
@@ -331,7 +357,7 @@
 
                                     </table>
                                     <div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.PriorExperienceDetails.length" type="button" class="btn btn-danger" ng-click="remove()" value="Remove">
+                                        <input ng-hide="!trainingPartner.PriorExperienceDetails.length" type="button" class="btn btn-danger" ng-click="remove()" value="Remove Selected">
                                         <input type="submit" class="btn btn-primary addNew" value="Add New">
                                     </div>
                                 </div>
@@ -355,11 +381,15 @@
             <accordion-group is-open="status.open3">
                 <accordion-heading>
 
-                    <div>
-                        STEP 3 : MANAGEMENT STAFF DETAILS
-                    </div>
-                    <div>
-                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
+                    <div class="container acc-heading">
+                        <div class="row">
+                            <div class="col-md-11">
+                                STEP 3 : MANAGEMENT STAFF DETAILS
+                            </div>
+                            <div class="col-md-1">
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
+                            </div>
+                        </div>
                     </div>
                 </accordion-heading>
                 <div>
@@ -369,11 +399,15 @@
             <!--  ------------------------ACCORDION 3 ------------------  -->
             <accordion-group is-open="status.open4">
                 <accordion-heading>
-                    <div>
-                        STEP 4 : TRAINING STAFF DETAILS
-                    </div>
-                    <div>
-                        <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i>
+                    <div class="container acc-heading">
+                        <div class="row">
+                            <div class="col-md-11">
+                                STEP 4 : TRAINING STAFF DETAILS
+                            </div>
+                            <div class="col-md-1">
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i>
+                            </div>
+                        </div>
                     </div>
                 </accordion-heading>
                 <div>

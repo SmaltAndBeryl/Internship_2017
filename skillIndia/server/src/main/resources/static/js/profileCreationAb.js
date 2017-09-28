@@ -109,7 +109,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         console.log("Removing all the details..!");
         $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain = [];
     }
-    $scope.removeAllAffiliation = function(){
+    $scope.removeAllRecognition = function(){
         console.log("Removing all the details..!");
         $scope.assessmentBody.AssessmentBodyRecognitions = [];
     }
