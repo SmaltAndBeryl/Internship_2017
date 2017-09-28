@@ -2,9 +2,8 @@
     <link rel="stylesheet" href="css/profileCreationTp.css">
 </head>
 <div ng-controller="profileCreationTp">
-
     <script type="text/ng-template">
-        <div class="panel-heading">
+        <div class="panel-heading panel-top">
             <h4 class="panel-title">
                 <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
                   <span uib-accordion-header>
@@ -17,6 +16,19 @@
             <div class="panel-body" ng-transclude></div>
         </div>
     </script>
+
+    <div class="container row-welcome-banner">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="welcome-text">
+                    <h3>Welcome <b>{{spockName}}</b></h3>
+                </div>
+                <div class="welcome-desc">
+                    Please fill out the following application form in order to apply as a Training Partner
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div>
         <accordion close-others="true">
@@ -421,24 +433,5 @@
             <button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
         </div>
     </div>
-    <!--     <uib-accordion> -->
-    <!--         <div uib-accordion-group class="panel-default" heading="Institution Level - Basic information"> -->
-    <!--             <div ng-include src="'accordion1.html'"></div> -->
-    <!--         </div> -->
-
-    <!--         <div uib-accordion-group class="panel-default" heading="Institution Level - Organization details">
-    <!--             <div ng-include src="'accordion2.html'"></div> -->
-    <!--         </div> -->
-    <!--  -->
-    <!--   <!--       <div uib-accordion-group class="panel-default" heading="Institution Level - Personnel details"> -->
-    <!--             <div ng-include src="'accordion3.html'"></div> -->
-    <!--         </div> -->
-
-    <!--         <div uib-accordion-group class="panel-default" heading="Centre Level - Information"> -->
-    <!--             <div ng-include src="'accordion4.html'"></div> -->
-    <!--         </div> -->
-
-    <!--     </uib-accordion> -->
-
 
 </div>

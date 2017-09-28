@@ -20,20 +20,15 @@ profileCreationTp.controller('profileCreationTp' , function($scope, $http, fileU
 
             $scope.trainingPartner = response.data;
             $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+            $scope.spocName = $scope.TrainingPartnerOrganizationDetails.sPOCName;
+            console.log("THE SPOC name is " + JSON.stringify($scope.spocName));
             console.log("The training partner is to be filled " + JSON.stringify($scope.trainingPartner));
             console.log("The training partner organization details are " + JSON.stringify($scope.trainingPartner.TrainingPartnerOrganizationDetails));
             console.log("The training partner organization details are " + JSON.stringify($scope.TrainingPartnerOrganizationDetails));
 
         });
     $scope.states = ["UP", "Uttarakhand", "MP", "Bihar"];
-
-    $scope.grantTable = [
-                            { sno : "1",
-                                name : "CII",
-                                natureOfWork : "Work",
-                                remark : "None"
-                            }
-    ];
 
     $scope.addNew = function(experience){
         console.log("data added successfully");

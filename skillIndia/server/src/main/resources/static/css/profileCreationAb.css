@@ -27,3 +27,14 @@ th{
 .acc-heading{
     margin-right : 0px;
 }
+
+.row-welcome-banner{
+    width: 100%;
+    background-color: deepskyblue;
+    color: white;
+    padding: 50px;
+}
+
+.welcome-desc{
+    margin-top : 15px;
+}

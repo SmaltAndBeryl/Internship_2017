@@ -33,3 +33,18 @@ th{
 .acc-heading{
     margin-right : 0px;
 }
+
+.panel-top{
+    background-color: #B9F6CA
+}
+
+.row-welcome-banner{
+    width: 100%;
+    background-color: lightcoral;
+    color: white;
+    padding: 50px;
+}
+
+.welcome-desc{
+    margin-top : 15px;
+}
