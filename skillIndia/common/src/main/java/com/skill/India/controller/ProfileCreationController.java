@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skill.India.common.SessionUserUtility;
+import com.skill.India.dto.ProfileCreationABTPDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerDto;
 import com.skill.India.service.ProfileCreationGetDataService;
 import com.skill.India.service.ProfileCreationSaveAsDraftAndSubmitService;
@@ -78,14 +79,16 @@ public class ProfileCreationController {
 	 * Method to implement save as draft and submit functionalities
 	 * */
 	
+	
 	@RequestMapping(value="/saveAsDraftAndSubmit" , method = RequestMethod.POST)
-	public void saveAsDraftAndSubmitController(@RequestBody String type, @RequestBody HashMap<String, HashMap<String, HashMap<String, String>>> userData,  @RequestBody HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads,  @RequestBody HashMap<String, HashMap<String, HashMap<String, String>>> userDeletes)
+	public void saveAsDraftAndSubmitController(@RequestBody ProfileCreationABTPDto profileCreationABTPDto)
 	{
-		LOGGER.debug("User type received from front end is"+ type);
-		LOGGER.debug("User type received from front end is"+ userData.toString());
-		LOGGER.debug("User type received from front end is"+ userUploads.toString());
-		LOGGER.debug("User type received from front end is"+ userDeletes.toString());
-		String result = profileCreationSaveAsDraftAndSubmitService.profileCreationSaveAsDraftAndSubmit(type,userData, userUploads, userDeletes);
+		
+		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getType().toString());
+		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserData().toString());
+		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserUploads().toString());
+		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserDeletes().toString());
+		String result = profileCreationSaveAsDraftAndSubmitService.profileCreationSaveAsDraftAndSubmit(profileCreationABTPDto.getType(),profileCreationABTPDto.getUserData(), profileCreationABTPDto.getUserUploads(), profileCreationABTPDto.getUserDeletes());
 		LOGGER.info("Response Received from Service" + result);
 		
 	}
