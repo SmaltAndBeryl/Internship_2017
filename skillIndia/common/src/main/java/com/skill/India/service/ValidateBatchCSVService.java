@@ -193,7 +193,7 @@ public class ValidateBatchCSVService {
 			 */
 			
 			LOGGER.info("Checking Validations of trainerId");
-			if(!ValidationUtils.numbersCheck(trainerId) || trainerId.equals(""))
+			if(!(ValidationUtils.numbersCheck(trainerId) || trainerId.equals("")))
 			{
 				errorStatus=1;
 				errorString=errorString +"Error in 'trainerId' column .";
@@ -258,13 +258,8 @@ public class ValidateBatchCSVService {
 			 * Checking for error in jobRoleCode column
 			 */
 			
-			LOGGER.info("Checking Validations of jobRoleCode");
-			if(jobRoleCode.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString + "Error in 'jobRoleCode' column .";
-			}
-			
+			LOGGER.info("Checking Validations of jobRoleCode (No validations )");
+
 			/*
 			 * Checking for error in maximumMarksTheory column
 			 */
@@ -292,7 +287,7 @@ public class ValidateBatchCSVService {
 			 */
 			
 			LOGGER.info("Checking Validations of level");
-			if(!ValidationUtils.numbersCheck(level))
+			if(!(ValidationUtils.numbersCheck(level) || level.equals("")))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in 'level' column .";
@@ -434,7 +429,18 @@ public class ValidateBatchCSVService {
 				 * Setting value of empty fields 
 				 */
 				LOGGER.info("Setting blank fields to null");
-				
+				if(trainerId.equals(""))
+				{
+					trainerId=null;
+				}
+				if(jobRoleCode.equals(""))
+				{
+					jobRoleCode=null;
+				}
+				if(level.equals(""))
+				{
+					level=null;
+				}
 				if(maximumMarksTheory.equals(""))
 				{
 					maximumMarksTheory=null;
@@ -604,6 +610,9 @@ public class ValidateBatchCSVService {
 					errorStatus=1;
 					errorString=errorString+ "centreId key mismatch .";
 				}
+				
+				if(!(getRecord.get("trainerId")==null))
+				{
 				LOGGER.info("Making a Request to Dao to get data");
 				status=dataImportBatchDao.dataImportBatchTrainerIdCheck(getRecord);
 				LOGGER.info("Response received from Dao");
@@ -613,7 +622,7 @@ public class ValidateBatchCSVService {
 					errorStatus=1;
 					errorString=errorString+ "trainerId key mismatch .";
 				}
-					
+				}	
 				if(!(getRecord.get("agencyId")==null))
 				{
 					LOGGER.info("Making a Request to Dao to get data");
