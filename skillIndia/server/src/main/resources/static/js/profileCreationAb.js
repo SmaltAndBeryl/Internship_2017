@@ -81,6 +81,34 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         });
     }
 
+
+    $scope.addNewOffice = function(office){
+        console.log("Data added successfully");
+        $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails.push({
+             'address' : "",
+             'state':"",
+             'contactNumber': '',
+             'pincode': '',
+             'contactNumber': '',
+             'alternateContactNumber': ''
+        });
+    }
+
+    $scope.addNewAssessor = function(assessor){
+        console.log("Data added successfully");
+        $scope.assessmentBody.AssessmentStaffDetails.push({
+             'name' : "",
+             'jobRoleCode':"",
+             'designation': '',
+             'contactNumber': '',
+             'emailId': '',
+             'state': '',
+             'city':'',
+             'educationalQualification' : '',
+             'experience' : ''
+        });
+    }
+
     //Remove functionality
     $scope.removeExperience = function(){
         var newDataList=[];
@@ -125,6 +153,27 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             }
         });
         $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails = newDataList;
+    };
+
+    $scope.removeOffice = function(){
+        var newDataList=[];
+        $scope.selectedAllExperience = false;
+        angular.forEach($scope.assessmentBody.AssessmentBodyRegionalOfficeDetails, function(selected){
+            if(!selected.selected){
+                newDataList.push(selected);
+            }
+        });
+        $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails = newDataList;
+    };
+
+    $scope.removeAssessor = function(){
+        var newDataList=[];
+        angular.forEach($scope.assessmentBody.AssessmentStaffDetails, function(selected){
+            if(!selected.selected){
+                newDataList.push(selected);
+            }
+        });
+        $scope.assessmentBody.AssessmentStaffDetails = newDataList;
     };
 
     //Remove all functionality

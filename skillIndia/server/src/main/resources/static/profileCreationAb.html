@@ -384,8 +384,106 @@
                         </div>
                     </div>
                 </accordion-heading>
-                <div>
+                <div class="container">
                     <!--                 accordion content to come here -->
+                    <div class="row" ng-repeat="x in assessmentBody.AssessmentBodyRegistrationDetails">
+                        Number of Assessors
+
+                        <div class="row">
+                            <div class="col-md-4">Technical Sector</div>
+                            <div class="col-md-8">
+                                <input ng-model="x.numberOfTechnicalAssessors" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">Non-Technical Sector</div>
+                            <div class="col-md-8">
+                                <input ng-model="x.numberOfNonTechnicalAssessors" required>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+                        <div class="row row-margin">SCGJ Certified Assessors</div>
+                        <div class="row row-margin">
+                            <form ng-submit="addNewAssessor()" class="col-md-12">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Job Role Code</th>
+                                        <th>Designation</th>
+                                        <th>Contact No.</th>
+                                        <th>Email Id</th>
+                                        <th>State</th>
+                                        <th>City</th>
+                                        <th>Educational Qualification</th>
+                                        <th>Experience</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr ng-repeat="assessor in assessmentBody.AssessmentStaffDetails">
+
+                                        <td><input ng-model="assessor.name" class="form-control" required></td>
+                                        <td><input ng-model="assessor.jobRoleCode" class="form-control" required></td>
+                                        <td><input ng-model="assessor.designation" class="form-control" required></td>
+                                        <td><input ng-model="assessor.contactNumber" class="form-control" required></td>
+                                        <td><input ng-model="assessor.emailId" class="form-control" required></td>
+                                        <td><input ng-model="assessor.state" class="form-control" required></td>
+                                        <td><input ng-model="assessor.city" class="form-control" required></td>
+                                        <td><input ng-model="assessor.educationalQualification" class="form-control" required></td>
+                                        <td><input ng-model="assessor.experience" class="form-control" required></td>
+                                        <td class="btn-checkbox"><input type="checkbox" ng-model="assessor.selected"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="form-group add-btn">
+                                    <input ng-hide="!assessmentBody.AssessmentStaffDetails.length" type="button" class="btn btn-danger" ng-click="removeAssessor()" value="Remove Selected">
+                                    <input type="submit" class="btn btn-primary addNewAssessor" value="Add New">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="row row-margin">Regional Office Details</div>
+                        <div class="row row-margin">
+                            <form ng-submit="addNewOffice()" class="col-md-12">
+                                <table>
+                                    <thead>
+                                    <tr>
+
+                                        <th>Address</th>
+                                        <th>State</th>
+                                        <th>Pincode</th>
+                                        <th>Contact No.</th>
+                                        <th>Alternate Contact No.</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr ng-repeat="office in assessmentBody.AssessmentBodyRegionalOfficeDetails">
+
+                                        <td><input ng-model="office.address" class="form-control" required></td>
+                                        <td><input ng-model="office.state" class="form-control" required></td>
+                                        <td><input ng-model="office.pincode" class="form-control" required></td>
+                                        <td><input ng-model="office.contactNumber" class="form-control" required></td>
+                                        <td><input ng-model="office.alternateContactNumber" class="form-control" required></td>
+                                        <td class="btn-checkbox"><input type="checkbox" ng-model="office.selected"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="form-group add-btn">
+                                    <input ng-hide="!assessmentBody.AssessmentBodyRegionalOfficeDetails.length" type="button" class="btn btn-danger" ng-click="removeOffice()" value="Remove Selected">
+                                    <input type="submit" class="btn btn-primary addNewOffice" value="Add New">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </accordion-group>
         </accordion>
