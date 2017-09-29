@@ -69,6 +69,17 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         });
     }
 
+    $scope.addNewDirectors = function(directors){
+        console.log("Data added successfully");
+        $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails.push({
+             'name' : "",
+             'designation':"",
+             'contactNumber': '',
+             'emailId': '',
+             'educationalQualification': '',
+             'experience': ''
+        });
+    }
 
     //Remove functionality
     $scope.removeExperience = function(){
@@ -102,6 +113,18 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             }
         });
         $scope.assessmentBody.AssessmentBodyAffiliationDetails = newDataList;
+    };
+
+
+    $scope.removeDirectors = function(){
+        var newDataList=[];
+//        $scope.selectedAllRecognition = false;
+        angular.forEach($scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails, function(selected){
+            if(!selected.selected){
+                newDataList.push(selected);
+            }
+        });
+        $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails = newDataList;
     };
 
     //Remove all functionality

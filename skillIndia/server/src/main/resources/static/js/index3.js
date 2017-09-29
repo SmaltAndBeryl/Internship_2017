@@ -51,9 +51,8 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
             url: "/getApplicationState"})
              .then(function(response){
             	 var appState = response.data.applicationState;
-                 alert("Application get successful, state = " + appState);
+//                 alert("Application get successful, state = " + appState);
                  if(appState == 'Draft'){
-                	 alert ()
                      $location.path(submitRoutingUrl);
                  }
 

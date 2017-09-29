@@ -240,8 +240,6 @@
                                     <table>
                                         <thead>
                                         <tr>
-                                            <!--<th><input type="checkbox" ng-model="selectedAllRecognition" ng-click="checkAllRecognition()"></th>-->
-                                            <!--<th class="sno-pd-lft">S.no</th>-->
                                             <th>Name of Recognizing Body</th>
                                             <th>Recognition No.</th>
                                             <th>Year of Recognition</th>
@@ -331,8 +329,45 @@
                         </div>
                     </div>
                 </accordion-heading>
-                <div>
+                <div class="container">
                     <!--                 accordion content to come here -->
+                    <div class="row row-margin">
+                        <div class="row row-margin">Details of directors and management team members</div>
+                        <div class="row row-margin">
+                            <form ng-submit="addNewDirectors()" class="col-md-12">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Designation</th>
+                                            <th>Contact Number</th>
+                                            <th>Email Id</th>
+                                            <th>Educational Qualification</th>
+                                            <th>Experience</th>
+                                            <!--<th>CV</th>-->
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr ng-repeat="directors in assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails">
+                                            <td><input ng-model="directors.name" class="form-control" required></td>
+                                            <td><input ng-model="directors.designation" class="form-control" required></td>
+                                            <td><input ng-model="directors.contactNumber" class="form-control" required></td>
+                                            <td><input ng-model="directors.emailId" class="form-control" required></td>
+                                            <td><input ng-model="directors.educationalQualification" class="form-control" required></td>
+                                            <td><input ng-model="directors.experience" class="form-control" required></td>
+                                            <!--<td><button type="button">Upload CV</button></td>-->
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="directors.selected"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="form-group add-btn">
+                                    <input ng-hide="!assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails.length" type="button" class="btn btn-danger" ng-click="removeDirectors()" value="Remove Selected">
+                                    <input type="submit" class="btn btn-primary addNewDirectors" value="Add New">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </accordion-group>
             <!--  ------------------------ACCORDION 4------------------  -->
