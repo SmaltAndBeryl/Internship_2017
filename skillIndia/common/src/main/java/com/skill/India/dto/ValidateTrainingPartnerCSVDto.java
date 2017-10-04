@@ -9,6 +9,21 @@ public class ValidateTrainingPartnerCSVDto {
 	private String trainingPartnerId;
 	private String applicationId;
 	private String trainingPartnerName;
+	private String batchType;
+	
+	
+	/**
+	 * @return the batchType
+	 */
+	public String getBatchType() {
+		return batchType;
+	}
+	/**
+	 * @param batchType the batchType to set
+	 */
+	public void setBatchType(String batchType) {
+		this.batchType = batchType;
+	}
 	/**
 	 * @return the trainingPartnerId
 	 */

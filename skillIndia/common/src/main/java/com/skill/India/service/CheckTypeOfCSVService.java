@@ -116,7 +116,7 @@ public class CheckTypeOfCSVService {
 				case "Training Partner":
 					LOGGER.info("CSV is of type Training Partner");
 					if(columns[0].equals("trainingPartnerId") && columns[1].equals("applicationId") && 
-							columns[2].equals("trainingPartnerName"))
+							columns[2].equals("trainingPartnerName") && columns[3].equals("batchType"))
 					{
 						LOGGER.info("Closing BufferedReader");
 						readColumnsOfCsv.close();

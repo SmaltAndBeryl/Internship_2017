@@ -160,7 +160,7 @@ public class ValidateBatchCSVService {
 			 */
 			
 			LOGGER.info("Checking Validations of batchType");
-			if(ValidationUtils.numbersCheck(batchType) || batchName.equals(""))
+			if(ValidationUtils.numbersCheck(batchType) || batchType.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString +"Error in 'batchType' column .";
