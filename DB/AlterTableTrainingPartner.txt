@@ -1,0 +1,1 @@
+alter table trainingpartner add batchType varchar(20) not null;
