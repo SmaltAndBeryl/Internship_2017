@@ -486,8 +486,23 @@
                     </div>
                 </div>
             </accordion-group>
+            <accordion-group is-open="status.open5">
+            <accordion-heading>
+            File upload testing accordion
+            </accordion-heading>
+            <table>
+            	<tr>
+            		<td>
+            			<input type="file" id="filePAN" name="PAN Number" onchange="angular.element(this).scope().getFileDetails(this)" /> 
+            		</td>
+            		<td>
+            			<input type="file" id="fileTAN" name="TAN Number" onchange="angular.element(this).scope().getFileDetails(this)" />
+            		</td>
+            	</tr>
+            </table>
+            </accordion-group>
         </accordion>
     </div>
-    <button type="button" ng-click="save()" class="btn btn-warning">Save as Draft</button>
+    <button type="button" ng-click="save()" class="btn btn-warning" tooltip="Click this if you want to save the details and fill rest of the details later">Save as Draft</button>
     <button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
 </div>

@@ -2,6 +2,56 @@ var profileCreationAb = angular.module('hello');
 
 profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location){
 
+	
+	var filesPAN = [];
+	var filesTAN = [];
+	var files = [];
+    var idName= [];
+     var status=0;
+     var i = 0;
+     // GET THE FILE INFORMATION.
+     
+     $scope.getFileDetails = function (e) {
+       
+     
+         $scope.$apply(function () {
+              console.log(i);
+             
+				var j=-1;
+             for(j;j<idName.length;j++)
+                 {
+                     console.log(e.id+"      "+idName[j]);
+                     if(e.id == "PAN")
+                         {
+                    	 filesPAN.push(e.files[0])
+                         }
+                     else if (e.id == "TAN")
+                         {
+                    	 filesTAN.push(e.files[0])
+                             //break;
+                         }
+                 }
+             
+//             if(status==1)
+//                 {
+//                     console.log("Value of J for if is : " + j);
+//                     files.splice(j,1,e.files[0]); 
+//                 }
+//             else if(status==0)
+//                 {
+//                     console.log("Value of J for else is : " + j);
+//                     idName.push(e.id); 
+//                     console.log("Hey Id is  : "+ e.id);
+//                     files.push(e.files[0]);
+//                     i++;  
+//                 }
+              
+                     
+             // STORE THE FILE OBJECT IN AN ARRAY.
+            
+                         
+         });
+     };
     $scope.assessmentBody = {};
 
     $scope.names = [
@@ -262,10 +312,27 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         	'AssessmentBodyAffiliationDetails':null
         }
         
+        
+        
+        var dataPAN = new FormData();
+        var recordPan="PanNumber";
+        console.log("PanNumber :"+filesPAN);
+        
+        dataPAN.append(recordPan+i, filesPAN);
+            console.log(filesPAN);
+        
+        
+        var dataTAN = new FormData();
+        var recordTAN="TanNumber";
+        console.log("TanNumber :"+filesTAN);
+        dataTAN.append(recordPan, filesTAN);
+            console.log(filesTAN);
+        
+        
         $scope.userUploads = {
         	'AssessmentBodyRegistrationDetails' :{
-        		'record1':{'PanNumber': $scope.something},
-        		'record2':{'TanNumber': $scope.something}
+        		'Record1': {dataPAN},
+        		'Record2': {dataTAN}
         	} ,
         	'AssessmentBodyDirectorsAndManagementTeamDetails' :{
         		'record1':{'CV':$scope.something} /*There will be more than one CV files uploaded for directors and management details*/
@@ -290,8 +357,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         $http({
         	url: "/saveAsDraftAndSubmit",
         	method : "POST",
-        	data :  angular.toJson( $scope.profileCreationABTPDto)
-        	
+        	data :  angular.toJson( $scope.profileCreationABTPDto),
+        	 headers: {'Content-Type': undefined}
         }).then(
         		function(response)
         		{
