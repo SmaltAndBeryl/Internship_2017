@@ -35,5 +35,17 @@ public class ProfileCreationABTPDto {
 	public void setUserData(HashMap<String, HashMap<String, HashMap<String, String>>> userData) {
 		this.userData = userData;
 	}
+	public ProfileCreationABTPDto()
+	{
+		super();
+	}
 	
+	public ProfileCreationABTPDto(String type, HashMap<String, HashMap<String, HashMap<String, String>>> userData, HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads, HashMap<String, HashMap<String, HashMap<String, String>>> userDeletes)
+	{
+		this.type= type;
+		this.userData = userData;
+		this.userDeletes = userDeletes;
+		this.userUploads = userUploads;
+		
+	}
 }
