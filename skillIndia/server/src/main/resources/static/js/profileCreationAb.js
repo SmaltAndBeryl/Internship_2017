@@ -235,29 +235,44 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         			'record' : {'tanNumberPath': 'C:\Users\Ruchi Pareek\Documents\ABESIT\TANNumber'},
         			'record' : {'numberOfTechnicalAssessors': '10'},
         			'record' : {'numberOfNonTechnicalAssessors': '76'},
-        			'record' : {'affiliatedToAnySectorSkillCouncil': 'no'},
+        			'record' : {'affiliatedToAnySectorSkillCouncil': 'no'}
         		},
-        		'AssessmentBodyRecognitions' : ,
-        		'AssessmentsExperienceInTechnicalDomain' :,
-        		'AssessmentBodyDirectorsAndManagementTeamDetails' : ,
-        		'AssessmentStaffDetails' :,
-        		'AssessmentBodyRegionalOfficeDetails' :,
-        		'AssessmentBodyAffiliationDetails' :
+        		'AssessmentBodyRecognitions' : null,
+        		'AssessmentsExperienceInTechnicalDomain' :null,
+        		'AssessmentBodyDirectorsAndManagementTeamDetails' : null,
+        		'AssessmentStaffDetails' :null,
+        		'AssessmentBodyRegionalOfficeDetails' :null,
+        		'AssessmentBodyAffiliationDetails' :null
         		
-        }
-        $scope.userDeletes{
-        	'AssessmentBodyRecognitions' : ,
-        	'AssessmentsExperienceInTechnicalDomain' :,
-        	'AssessmentBodyDirectorsAndManagementTeamDetails' :,
-        	'AssessmentStaffDetails' : ,
-        	'AssessmentBodyRegionalOfficeDetails' :,
-        	'AssessmentBodyAffiliationDetails':
+        };
+        $scope.userDeletes= {
+        	'AssessmentBodyRecognitions' :{
+        		'record' :{'assessmentBodyRecognitionId' : '1'},
+        		'record' :{'assessmentBodyRegistrationId' : '1'},
+        		'record' :{'nameOfRecognitionBody' : 'NSDC'},
+        		'record' :{'recognitionNumber' : '10101565'},
+        		'record' :{'yearOfRecognition' : '2011'},
+        		'record' :{'validityOfRecognition' : '12'}
+        		
+        	} ,
+        	'AssessmentsExperienceInTechnicalDomain' :null,
+        	'AssessmentBodyDirectorsAndManagementTeamDetails' :null,
+        	'AssessmentStaffDetails' :null ,
+        	'AssessmentBodyRegionalOfficeDetails' :null,
+        	'AssessmentBodyAffiliationDetails':null
         }
         
-        $scope.userUploads{
-        	'AssessmentBodyRegistrationDetails' : ,
-        	'AssessmentBodyDirectorsAndManagementTeamDetails' :,
-        	'AssessmentStaffDetails' :       	
+        $scope.userUploads = {
+        	'AssessmentBodyRegistrationDetails' :{
+        		'record1':{'PanNumber': $scope.something},
+        		'record2':{'TanNumber': $scope.something}
+        	} ,
+        	'AssessmentBodyDirectorsAndManagementTeamDetails' :{
+        		'record1':{'CV':$scope.something} /*There will be more than one CV files uploaded for directors and management details*/
+        	},
+        	'AssessmentStaffDetails' : {
+        		'record1' : {'CV':$scope.something} /*There will be more than one CV files uploaded for staff details*/
+        	}      	
         }
         
         $scope.profileCreationABTPDto = {
