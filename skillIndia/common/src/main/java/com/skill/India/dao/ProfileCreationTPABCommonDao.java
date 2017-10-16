@@ -105,13 +105,13 @@ private static final ProfileCreationGetDataFromUserRowMapper ROW_MAPPER_USERDETA
 		long millis=System.currentTimeMillis();
 		java.sql.Date date=new java.sql.Date(millis);
 		Map<String, Object> parameters=new HashMap<String, Object>();
-		if(type.equalsIgnoreCase("SaveAsDraft"))
+		if(type.equalsIgnoreCase("Draft"))
 		{
-			parameters.put("applicationState","Draft");
+			parameters.put("applicationState",type);
 		}
 		else if(type.equalsIgnoreCase("Submit"))
 		{
-			parameters.put("applicationState","Submit");
+			parameters.put("applicationState",type);
 		}
 		parameters.put("userId",sessionUserUtility.getSessionMangementfromSession().getUsername());
 		parameters.put("activeFlag","1");
