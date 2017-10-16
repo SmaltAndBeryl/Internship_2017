@@ -116,6 +116,7 @@ private static final ProfileCreationGetDataFromUserRowMapper ROW_MAPPER_USERDETA
 		parameters.put("userId",sessionUserUtility.getSessionMangementfromSession().getUsername());
 		parameters.put("activeFlag","1");
 		parameters.put("dateOfSubmission",date);
+		parameters.put("applicationId", sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername()));
 		return getJdbcTemplate().update(profileCreationTPABCommonConfigSql.getUpdateIntoApplication(), parameters);
 		}
 		catch(Exception e)
