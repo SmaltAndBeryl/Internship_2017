@@ -212,15 +212,60 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
 //        		"userDeletes" : null
 //        }
         $scope.userData = {
-        		"Key" : {
-        			"key" : {
-        				"key" : "value"
-        			}
-        		}
+        		'AssessmentBodyRegistrationDetails' :{
+        			'record' : {'assessmentBodyRegistrationId': '1'},
+        			'record' : {'applicationId': '4'},
+        			'record' : {'organizationName': 'ABESIT'},
+        			'record' : {'sPOCName': 'Ashu Goel'},
+        			'record' : {'address': 'NH 24 Vijay Nagar'},
+        			'record' : {'city': 'Ghaziabad'},
+        			'record' : {'state': 'UP'},
+        			'record' : {'pincode': '121212'},
+        			'record' : {'mobileNumber': '9898989876'},
+        			'record' : {'alternateMobileNumber': '9898877978'},
+        			'record' : {'landlineNumber': '0141333023'},
+        			'record' : {'alternateLandlineNumber': '0141333024'},
+        			'record' : {'faxNumber': '0141333024'},
+        			'record' : {'websites': 'www.abesit.in'},
+        			'record' : {'yearOfEstablishment': '2010'},
+        			'record' : {'priorAssessmentExperience': '5'},
+        			'record' : {'panNumber': 'CIPX9090'},
+        			'record' : {'panNumberPath': 'C:\Users\Ruchi Pareek\Documents\ABESIT\PANNumber'},
+        			'record' : {'tanNumber': '67676767'},
+        			'record' : {'tanNumberPath': 'C:\Users\Ruchi Pareek\Documents\ABESIT\TANNumber'},
+        			'record' : {'numberOfTechnicalAssessors': '10'},
+        			'record' : {'numberOfNonTechnicalAssessors': '76'},
+        			'record' : {'affiliatedToAnySectorSkillCouncil': 'no'},
+        		},
+        		'AssessmentBodyRecognitions' : ,
+        		'AssessmentsExperienceInTechnicalDomain' :,
+        		'AssessmentBodyDirectorsAndManagementTeamDetails' : ,
+        		'AssessmentStaffDetails' :,
+        		'AssessmentBodyRegionalOfficeDetails' :,
+        		'AssessmentBodyAffiliationDetails' :
+        		
         }
+        $scope.userDeletes{
+        	'AssessmentBodyRecognitions' : ,
+        	'AssessmentsExperienceInTechnicalDomain' :,
+        	'AssessmentBodyDirectorsAndManagementTeamDetails' :,
+        	'AssessmentStaffDetails' : ,
+        	'AssessmentBodyRegionalOfficeDetails' :,
+        	'AssessmentBodyAffiliationDetails':
+        }
+        
+        $scope.userUploads{
+        	'AssessmentBodyRegistrationDetails' : ,
+        	'AssessmentBodyDirectorsAndManagementTeamDetails' :,
+        	'AssessmentStaffDetails' :       	
+        }
+        
         $scope.profileCreationABTPDto = {
-        		"type" : "Draft",
-        		"userData" :$scope.userData
+        		'type' : 'Draft',
+        		'userData' :$scope.userData,
+        		'userDeletes' :$scope.userDeletes,
+        		'userUploads' :$scope.userUploads
+        		
         }
         
        
