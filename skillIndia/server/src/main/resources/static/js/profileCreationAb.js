@@ -3,9 +3,7 @@ var profileCreationAb = angular.module('hello');
 profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location){
 
 	
-	var filesPAN = [];
-	var filesTAN = [];
-	var files = [];
+	$scope.files=[];
     var idName= [];
      var status=0;
      var i = 0;
@@ -21,30 +19,33 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
              for(j;j<idName.length;j++)
                  {
                      console.log(e.id+"      "+idName[j]);
-                     if(e.id == "PAN")
+                     if(e.id == idName[j])
                          {
-                    	 filesPAN.push(e.files[0])
+                             console.log("In If ");
+                             status=1;   
+                             break;
                          }
-                     else if (e.id == "TAN")
+                     else
                          {
-                    	 filesTAN.push(e.files[0])
+                             status=0;
+                             console.log("In else");
                              //break;
                          }
                  }
              
-//             if(status==1)
-//                 {
-//                     console.log("Value of J for if is : " + j);
-//                     files.splice(j,1,e.files[0]); 
-//                 }
-//             else if(status==0)
-//                 {
-//                     console.log("Value of J for else is : " + j);
-//                     idName.push(e.id); 
-//                     console.log("Hey Id is  : "+ e.id);
-//                     files.push(e.files[0]);
-//                     i++;  
-//                 }
+             if(status==1)
+                 {
+                     console.log("Value of J for if is : " + j);
+                     $scope.files.splice(j,1,e.files[0]); 
+                 }
+             else if(status==0)
+                 {
+                     console.log("Value of J for else is : " + j);
+                     idName.push(e.id); 
+                     console.log("Hey Id is  : "+ e.id);
+                     $scope.files.push(e.files[0]);
+                     i++;  
+                 }
               
                      
              // STORE THE FILE OBJECT IN AN ARRAY.
@@ -314,25 +315,25 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         
         
         
-        var dataPAN = new FormData();
+        $scope.dataPAN = new FormData();
         var recordPan="PanNumber";
-        console.log("PanNumber :"+filesPAN);
+        console.log("PanNumber :"+$scope.files);
         
-        dataPAN.append(recordPan+i, filesPAN);
-            console.log(filesPAN);
+        $scope.dataPAN.append("PanNumber",$scope.files[0]);
+            console.log($scope.files[0]);
         
         
-        var dataTAN = new FormData();
+        $scope.dataTAN = new FormData();
         var recordTAN="TanNumber";
-        console.log("TanNumber :"+filesTAN);
-        dataTAN.append(recordPan, filesTAN);
-            console.log(filesTAN);
+        console.log("TanNumber :"+$scope.files);
+        $scope.dataTAN.append("TanNumber",$scope.files[1]);
+            console.log($scope.files[1]);
         
         
         $scope.userUploads = {
         	'AssessmentBodyRegistrationDetails' :{
-        		'Record1': {dataPAN},
-        		'Record2': {dataTAN}
+        		'Record1': {'PanNumber' : $scope.dataPAN},
+        		'Record2': {'TanNumber': $scope.dataTAN}
         	} ,
         	'AssessmentBodyDirectorsAndManagementTeamDetails' :{
         		'record1':{'CV':$scope.something} /*There will be more than one CV files uploaded for directors and management details*/
@@ -347,7 +348,6 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         		'userData' :$scope.userData,
         		'userDeletes' :$scope.userDeletes,
         		'userUploads' :$scope.userUploads
-        		
         }
         
        
@@ -358,7 +358,9 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         	url: "/saveAsDraftAndSubmit",
         	method : "POST",
         	data :  angular.toJson( $scope.profileCreationABTPDto),
-        	 headers: {'Content-Type': undefined}
+        	headers: { 'Content-Type': 'multipart/form-data', 'boundary' :'???' }
+        	//headers: { 'Accept': 'application/json', 'Content-Type': 'application/json; ; charset=UTF-8' }
+        
         }).then(
         		function(response)
         		{
