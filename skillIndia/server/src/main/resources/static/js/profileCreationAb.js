@@ -343,22 +343,53 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         	}      	
         }
         
+//        $scope.profileCreationABTPDto = {
+//        		'type' : 'Draft',
+//        		'userData' :$scope.userData,
+//        		'userDeletes' :$scope.userDeletes,
+//        		//'userUploads' :$scope.userUploads
+//        }
+        
+        $scope.profileCreationAssessmentBodyRegistrationDetailsDto = {
+			'assessmentBodyRegistrationId': '1',
+			'applicationId': '4',
+			'organizationName': 'ABESIT',
+			'sPOCName': 'Ashu Goel',
+			'address': 'NH 24 Vijay Nagar',
+			'city': 'Ghaziabad',
+			'state': 'UP',
+			'pincode': '121212',
+			'mobileNumber': '9898989876',
+			'alternateMobileNumber': '9898877978',
+			'landlineNumber': '0141333023',
+			'alternateLandlineNumber': '0141333024',
+			'faxNumber': '0141333024',
+			'websites': 'www.abesit.in',
+			'yearOfEstablishment': '2010',
+			'priorAssessmentExperience': '5',
+			'panNumber': 'CIPX9090',
+			'tanNumber': '67676767',
+			'numberOfTechnicalAssessors': '10',
+			'numberOfNonTechnicalAssessors': '76',
+			'affiliatedToAnySectorSkillCouncil': 'no'
+		}
+        
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
-        		'userData' :$scope.userData,
-        		'userDeletes' :$scope.userDeletes,
-        		'userUploads' :$scope.userUploads
+        		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.profileCreationAssessmentBodyRegistrationDetailsDto
         }
-        
+        $scope.ProfileCreationTestDto = {
+        		'name' : 'Ruchi'
+        }
        
         
         //console.log($scope.trainingPartner);
 
         $http({
-        	url: "/saveAsDraftAndSubmit",
+        	url: "/saveAsDraftAndSubmitAB",
         	method : "POST",
-        	data :  angular.toJson( $scope.profileCreationABTPDto),
-        	headers: { 'Content-Type': 'multipart/form-data', 'boundary' :'???' }
+        	data :  angular.toJson( $scope.profileCreationABTPDto)
+        	//headers: { 'Content-Type': 'multipart/form-data', 'boundary' :'???' }
         	//headers: { 'Accept': 'application/json', 'Content-Type': 'application/json; ; charset=UTF-8' }
         
         }).then(
