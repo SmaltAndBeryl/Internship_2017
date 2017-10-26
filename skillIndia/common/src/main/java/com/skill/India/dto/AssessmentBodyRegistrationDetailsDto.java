@@ -13,7 +13,6 @@ public class AssessmentBodyRegistrationDetailsDto {
     private final String alternateLandlineNumber;
     private final String faxNumber;
     private final String websites;
-
     private final String yearOfEstablishment;
     private final String priorAssessmentExperience;
     private final String panNumber;

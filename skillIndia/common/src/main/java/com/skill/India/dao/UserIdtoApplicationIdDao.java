@@ -29,19 +29,15 @@ public class UserIdtoApplicationIdDao extends AbstractTransactionalDao {
 		
 		try
 		{
-			LOGGER.info("Inside TRY block");
 			
-			LOGGER.info("Getting Application Id from User Id");
-			
-			LOGGER.info("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<>();
-			LOGGER.info("object created successfully");
+		
 	
-			LOGGER.info("Inserting parameters to HashMap object");
+			LOGGER.debug("Inserting parameters to HashMap object");
 			parameters.put("userId", userId);
-			LOGGER.info("Parameters inserted");
 			
-			LOGGER.info("Executing SQL query and returning response");
+			
+			LOGGER.debug("Executing SQL query and returning response to fetch applicatio Id");
 	        return getJdbcTemplate().queryForObject(userIdtoApplicationIdConfigSql.getSelectSql(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
@@ -49,21 +45,20 @@ public class UserIdtoApplicationIdDao extends AbstractTransactionalDao {
 			/*
 			 * Application id doesn't exist i.e. no app id is returned corresponding to userId
 			 */
-			LOGGER.info("Inside CATCH block");
-			
+					
 			LOGGER.error("ERROR: Encountered Exception - "+e);
 			
-			LOGGER.info("No Application Id found corresponding to UserId sent");
+			LOGGER.error("No Application Id found corresponding to UserId sent");
 			return -1;
 		}
 		catch (Exception e) {
 			
-			LOGGER.info("Inside CATCH block");
+			
 			
 			LOGGER.error("ERROR: Encountered Exception - "+e);
 			
-			LOGGER.info("Exception occurs in getting applicationId");
-			LOGGER.info("Returning -2 (Exception occurs )");
+			LOGGER.error("Exception occurs in getting applicationId");
+			LOGGER.error("Returning -2 (Exception occurs )");
 			return -2;
 		}
 	}

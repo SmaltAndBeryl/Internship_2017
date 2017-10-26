@@ -8,7 +8,7 @@ public class ProfileCreationABTPDto {
 
 	private String type;
 	private HashMap<String, HashMap<String, HashMap<String, String>>> userData;
-	private HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads;
+//	/private HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads;
 	private HashMap<String, HashMap<String, HashMap<String, String>>> userDeletes;
 	public String getType() {
 		return type;
@@ -17,12 +17,12 @@ public class ProfileCreationABTPDto {
 		this.type = type;
 	}
 
-	public HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> getUserUploads() {
-		return userUploads;
-	}
-	public void setUserUploads(HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads) {
-		this.userUploads = userUploads;
-	}
+//	public HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> getUserUploads() {
+//		return userUploads;
+//	}
+//	public void setUserUploads(HashMap<String, HashMap<String, HashMap<String, MultipartFile>>> userUploads) {
+//		this.userUploads = userUploads;
+//	}
 	public HashMap<String, HashMap<String, HashMap<String, String>>> getUserDeletes() {
 		return userDeletes;
 	}
@@ -45,7 +45,7 @@ public class ProfileCreationABTPDto {
 		this.type= type;
 		this.userData = userData;
 		this.userDeletes = userDeletes;
-		this.userUploads = userUploads;
+		//this.userUploads = userUploads;
 		
 	}
 }

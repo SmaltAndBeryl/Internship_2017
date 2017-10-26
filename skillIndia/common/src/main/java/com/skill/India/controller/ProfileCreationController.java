@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.ProfileCreationABTPDto;
+import com.skill.India.dto.ProfileCreationAssessmentBodyWrapperDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerDto;
 import com.skill.India.service.ProfileCreationGetDataService;
 import com.skill.India.service.ProfileCreationSaveAsDraftAndSubmitService;
@@ -87,10 +88,19 @@ public class ProfileCreationController {
 		
 		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getType().toString());
 		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserData().toString());
-		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserUploads());
+//		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserUploads());
 		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserDeletes().toString());
-		String result = profileCreationSaveAsDraftAndSubmitService.profileCreationSaveAsDraftAndSubmit(profileCreationABTPDto.getType(),profileCreationABTPDto.getUserData(), profileCreationABTPDto.getUserUploads(), profileCreationABTPDto.getUserDeletes());
-		LOGGER.info("Response Received from Service" + result);
+		//LOGGER.info("Name is :" +profileCreationTestDto.getName());
+		//String result = profileCreationSaveAsDraftAndSubmitService.profileCreationSaveAsDraftAndSubmit(profileCreationABTPDto.getType(),profileCreationABTPDto.getUserData(), profileCreationABTPDto.getUserUploads(), profileCreationABTPDto.getUserDeletes());
+		//LOGGER.info("Response Received from Service" + result);
+		
+	}
+	
+	@RequestMapping(value="/saveAsDraftAndSubmitAB", method = RequestMethod.POST)
+	public int saveAsDraftABController(@RequestBody ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
+	{
+		int status = profileCreationSaveAsDraftAndSubmitService.SaveAssessmentBody(profileCreationAssessmentBodyWrapperDto);
+		return status;
 		
 	}
 

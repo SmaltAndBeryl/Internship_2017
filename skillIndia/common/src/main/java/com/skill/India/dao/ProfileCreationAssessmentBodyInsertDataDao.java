@@ -2,7 +2,8 @@ package com.skill.India.dao;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +20,8 @@ import com.skill.India.dto.ProfileCreationAssessmentsExperienceInTechnicalDomain
 @Repository
 public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransactionalDao {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationAssessmentBodyInsertDataDao.class);
+	
 	@Autowired
 	private ProfileCreationAssessmentBodyConfigSql profileCreationAssessmentBodyConfigSql;
 	
@@ -27,7 +30,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	 * Inserting data in Assessment Body Registration Details
 	 */
 	
-	public int insertIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto,HashMap<String, String> getPaths)
+	public int insertIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
@@ -48,9 +51,9 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("yearOfEstablishment",profileCreationAssessmentBodyRegistrationDetailsDto.getYearOfEstablishment());
 			parameters.put("priorAssessmentExperience",profileCreationAssessmentBodyRegistrationDetailsDto.getPriorAssessmentExperience());
 			parameters.put("panNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumber());
-			parameters.put("panNumberPath",getPaths.get("panNumberPath"));
+			//parameters.put("panNumberPath",getPaths.get("panNumberPath"));
 			parameters.put("tanNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getTanNumber());
-			parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
+			//parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
 			parameters.put("insituteReceivedAnyRecognition",profileCreationAssessmentBodyRegistrationDetailsDto.getInsituteReceivedAnyRecognition());	
 			parameters.put("numberOfTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfTechnicalAssessors());
 			parameters.put("numberOfNonTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfNonTechnicalAssessors());
@@ -60,7 +63,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 
 		}catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An Exception occured " + e);
 			return -1;
 		}
 		

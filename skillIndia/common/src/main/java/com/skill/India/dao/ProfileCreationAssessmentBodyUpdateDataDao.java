@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.ProfileCreationAssessmentBodyConfigSql;
 import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
@@ -19,6 +21,8 @@ import com.skill.India.dto.ProfileCreationAssessmentsExperienceInTechnicalDomain
 @Repository
 public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransactionalDao{
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationAssessmentBodyUpdateDataDao.class);
+	
 	@Autowired
 	private ProfileCreationAssessmentBodyConfigSql profileCreationAssessmentBodyConfigSql;
 	
@@ -26,7 +30,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 	 * Updating data in Assessment Body Registration Details
 	 */
 	
-	public int updateIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto,HashMap<String, String> getPaths)
+	public int updateIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto)
 	{
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
@@ -47,9 +51,9 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			parameters.put("yearOfEstablishment",profileCreationAssessmentBodyRegistrationDetailsDto.getYearOfEstablishment());
 			parameters.put("priorAssessmentExperience",profileCreationAssessmentBodyRegistrationDetailsDto.getPriorAssessmentExperience());
 			parameters.put("panNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumber());
-			parameters.put("panNumberPath",getPaths.get("panNumberPath"));
+			//parameters.put("panNumberPath",getPaths.get("panNumberPath"));
 			parameters.put("tanNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getTanNumber());
-			parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
+			//parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
 			parameters.put("insituteReceivedAnyRecognition",profileCreationAssessmentBodyRegistrationDetailsDto.getInsituteReceivedAnyRecognition());	
 			parameters.put("numberOfTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfTechnicalAssessors());
 			parameters.put("numberOfNonTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfNonTechnicalAssessors());
@@ -59,7 +63,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 
 		}catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An Exception occured while updating Assessment body registration details" + e);
 			return -1;
 		}
 		
