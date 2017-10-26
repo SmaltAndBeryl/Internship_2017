@@ -29,8 +29,8 @@ ProfileCreationAssessmentBody:
      values(:applicationState,:activeFlag,:dateOfSubmission,:userId)
 
  insertIntoAssessmentBodyRegistrationDetails: >
-  INSERT INTO `scgj`.`assessmentbodyregistrationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `priorAssessmentExperience`, `panNumber`, `panNumberPath`, `tanNumber`, `tanNumberPath`, `insituteReceivedAnyRecognition`, `numberOfTechnicalAssessors`, `numberOfNonTechnicalAssessors`, `affiliatedToAnySectorSkillCouncil`) VALUES 
-  (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:priorAssessmentExperience,:panNumber,:panNumberPath,:tanNumber,:tanNumberPath,:insituteReceivedAnyRecognition,:numberOfTechnicalAssessors,:numberOfNonTechnicalAssessors,:affiliatedToAnySectorSkillCouncil);
+  INSERT INTO `scgj`.`assessmentbodyregistrationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `priorAssessmentExperience`, `panNumber`, `tanNumber`, `insituteReceivedAnyRecognition`, `numberOfTechnicalAssessors`, `numberOfNonTechnicalAssessors`, `affiliatedToAnySectorSkillCouncil`) VALUES 
+  (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:priorAssessmentExperience,:panNumber, :tanNumber, :insituteReceivedAnyRecognition,:numberOfTechnicalAssessors,:numberOfNonTechnicalAssessors,:affiliatedToAnySectorSkillCouncil);
 
 
  insertIntoAssessmentBodyRecognitions: >
@@ -76,9 +76,7 @@ ProfileCreationAssessmentBody:
   `yearOfEstablishment`=:yearOfEstablishment,
   `priorAssessmentExperience`=:priorAssessmentExperience,
   `panNumber`=:panNumber,
-  `panNumberPath`=:panNumberPath,
   `tanNumber`=:tanNumber,
-  `tanNumberPath`=:tanNumberPath,
   `insituteReceivedAnyRecognition`=:insituteReceivedAnyRecognition, 
   `numberOfTechnicalAssessors`=:numberOfTechnicalAssessors,
   `numberOfNonTechnicalAssessors`=:numberOfNonTechnicalAssessors,
