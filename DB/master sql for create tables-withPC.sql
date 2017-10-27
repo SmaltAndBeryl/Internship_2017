@@ -455,6 +455,7 @@ nameOfRecognitionBody varchar(200),
 recognitionNumber varchar(50),
 yearOfRecognition int(4),
 validityOfRecognition varchar(50),
+isActive boolean,
 foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
 
@@ -482,6 +483,7 @@ emailId varchar(100),
 educationalQualification varchar(100),
 experience int(3),
 cVPath varchar(200),
+isActive boolean,
 foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
 
@@ -526,5 +528,6 @@ create table if not exists AssessmentBodyAffiliationDetails
 affiliationId int(5) primary key auto_increment,
 assessmentBodyRegistrationId int(5),
 nameOfSectorSkillCouncil varchar(150),
+isActive boolean,
 foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
