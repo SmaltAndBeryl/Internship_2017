@@ -7,7 +7,7 @@ ProfileCreationAssessmentBody:
   select * from AssessmentBodyRegistrationDetails where applicationId=:applicationId;
  
  getDataFromAssessmentBodyRecognitions: >
-  select * from AssessmentBodyRecognitions where assessmentBodyRegistrationId=:assessmentBodyRegistrationId;
+  select * from AssessmentBodyRecognitions where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
 
  getDataFromAssessmentsExperienceInTechnicalDomain: >
   select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
@@ -30,6 +30,9 @@ ProfileCreationAssessmentBody:
  isManagementPresent: >
   SELECT EXISTS(SELECT * FROM scgj.assessmentbodydirectorsandmanagementteamdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and directorsAndManagementId=:directorsAndManagementId);
   
+ isRecognitionPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.assessmentbodydirectorsandmanagementteamdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and assessmentBodyRecognitionId=:assessmentBodyRecognitionId);
+  
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
      values(:applicationState,:activeFlag,:dateOfSubmission,:userId)
@@ -40,7 +43,7 @@ ProfileCreationAssessmentBody:
 
 
  insertIntoAssessmentBodyRecognitions: >
-  INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `nameOfRecognitionBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`) VALUES (:assessmentBodyRegistrationId,:nameOfRecognitionBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition);
+  INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `nameOfRecognitionBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`, `isActive`) VALUES (:assessmentBodyRegistrationId,:nameOfRecognitionBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition, :isActive);
 
 
  insertIntoAssessmentsExperienceInTechnicalDomain: >
@@ -96,7 +99,8 @@ ProfileCreationAssessmentBody:
   `recognitionNumber`=:recognitionNumber, 
   `yearOfRecognition`=:yearOfRecognition, 
   `validityOfRecognition`=:validityOfRecognition
-  WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId;
+  `isActive` = :isActive
+  WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId and `assessmentBodyRegistrationId` =:assessmentBodyRegistrationId;
 
 
  updateIntoAssessmentsExperienceInTechnicalDomain: >

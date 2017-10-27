@@ -416,12 +416,20 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             'experience': '4',
             'isActive' :1
         }]
-        
+        $scope.pcabrecognition = [{
+        	'assessmentBodyRecognitionId' : '1',
+        	'assessmentBodyRegistrationId' :'1',
+        	'nameOfRecognitionBody' : 'NSDC',
+        	'recognitionNumber' : 'h7y8',
+        	'yearOfRecognition' : '2012',
+        	'validityOfRecognition' : 'forever'
+        }]
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
         		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.profileCreationAssessmentBodyRegistrationDetailsDto,
         		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.pcabAffiliation,
-        		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.pcabManagement
+        		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.pcabManagement,
+        		'profileCreationAssessmentBodyRecognitionsDto' : $scope.pcabrecognition
         }
         $scope.ProfileCreationTestDto = {
         		'name' : 'Ruchi'
