@@ -52,14 +52,14 @@
                     </div>
                 </accordion-heading>
                 <div class="container">
-                    <div ng-repeat="x in assessmentBody.AssessmentBodyRegistrationDetails">
+                    <div>
 
                         <div class="row">
                             <div class="col-md-3">
-                                <h2>{{x.organizationName}}</h2>
+                                <h2>{{assessmentBody.AssessmentBodyRegistrationDetails.organizationName}}</h2>
                             </div>
                             <div class="col-md-3 col-md-offset-3">
-                                <h2>{{x.sPOCName}}</h2>
+                                <h2>{{assessmentBody.AssessmentBodyRegistrationDetails.sPOCName}}</h2>
                             </div>
                         </div>
 
@@ -69,35 +69,35 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4">UserId</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.assessmentBodyRegistrationId" readonly>
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.assessmentBodyRegistrationId" readonly>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">City</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.city">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.city">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">State</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.state">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.state">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Mobile Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.mobileNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Alternate Mobile Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.alternateMobileNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateMobileNumber">
                                     </div>
                                 </div>
 
@@ -106,28 +106,28 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4">Landline Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.landlineNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.landlineNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Alternate Landline Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.alternateLandlineNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateLandlineNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Fax Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.faxNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.faxNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Website</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.websites">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.websites">
                                     </div>
                                 </div>
                             </div>
@@ -157,14 +157,14 @@
                         </div>
                     </div>
                 </accordion-heading>
-                <div class="col-centered" ng-repeat="x in assessmentBody.AssessmentBodyRegistrationDetails">
+                <div class="col-centered">
                     <!--                 accordion content to come here -->
                     <div class="container">
 
                         <div class="row row-margin">
                             <div class="col-md-4">Year of Establishment</div>
                             <div class="col-md-8">
-                                <input ng-model="x.yearOfEstablishment">
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.yearOfEstablishment">
                             </div>
                         </div>
 
@@ -172,14 +172,14 @@
                             <div class="col-md-4">Assessment experience in any technical domain or renewable energy</div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" name="priorAssessmentExperience" ng-model="x.priorAssessmentExperience" value="Yes" ng-click="addNewExperience()"> Yes
+                                    <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience" value="Yes" ng-click="addNewExperience()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="priorAssessmentExperience" ng-model="x.priorAssessmentExperience" value="No" ng-click="removeAllExperience()" checked> No
+                                    <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience" value="No" ng-click="removeAllExperience()" checked> No
                                 </label>
                             </div>
                             <form ng-submit="addNewExperience()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="x.priorAssessmentExperience == 'Yes'">
+                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience == 'Yes'">
                                     <table>
                                         <thead>
                                         <tr>
@@ -214,14 +214,14 @@
                         <div class="row row-margin">
                             <div class="col-md-4">PAN</div>
                             <div class="col-md-8">
-                                <input ng-model="x.panNumber" required>
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.panNumber" required>
                             </div>
                         </div>
 
                         <div class="row row-margin">
                             <div class="col-md-4">TAN</div>
                             <div class="col-md-8">
-                                <input ng-model="x.tanNumber" required>
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.tanNumber" required>
                             </div>
                         </div>
 
@@ -229,14 +229,14 @@
                             <div class="col-md-4">Recognized with any Govt./Pvt. Agency</div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="x.insituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
+                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="x.insituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()"checked> No
+                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()"checked> No
                                 </label>
                             </div>
                             <form ng-submit="addNewRecognition()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="x.insituteReceivedAnyRecognition == 'Yes'">
+                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition == 'Yes'">
                                     <table>
                                         <thead>
                                         <tr>
@@ -272,14 +272,14 @@
                             <div class="col-md-4">Whether affiliated with any Sector Skill Council</div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.affiliatedToAnySectorSkillCouncil" value="Yes" ng-click="addNewAffiliation()"> Yes
+                                    <input type="radio" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil" value="Yes" ng-click="addNewAffiliation()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.affiliatedToAnySectorSkillCouncil" value="No" ng-click="removeAllAffiliation()" checked> No
+                                    <input type="radio" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil" value="No" ng-click="removeAllAffiliation()" checked> No
                                 </label>
                             </div>
                             <form ng-submit="addNewAffiliation()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="x.affiliatedToAnySectorSkillCouncil == 'Yes'">
+                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil == 'Yes'">
                                     <table>
                                         <thead>
                                         <tr>
@@ -386,20 +386,20 @@
                 </accordion-heading>
                 <div class="container">
                     <!--                 accordion content to come here -->
-                    <div class="row" ng-repeat="x in assessmentBody.AssessmentBodyRegistrationDetails">
+                    <div class="row">
                         Number of Assessors
 
                         <div class="row">
                             <div class="col-md-4">Technical Sector</div>
                             <div class="col-md-8">
-                                <input ng-model="x.numberOfTechnicalAssessors" required>
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfTechnicalAssessors" required>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">Non-Technical Sector</div>
                             <div class="col-md-8">
-                                <input ng-model="x.numberOfNonTechnicalAssessors" required>
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfNonTechnicalAssessors" required>
                             </div>
                         </div>
 

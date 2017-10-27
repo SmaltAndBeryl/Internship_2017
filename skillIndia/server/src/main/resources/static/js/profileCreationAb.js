@@ -373,10 +373,30 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
 			'numberOfNonTechnicalAssessors': '76',
 			'affiliatedToAnySectorSkillCouncil': 'no'
 		}
+        $scope.pcabAffiliation = [{
+        		'assessmentBodyRegistrationId': '1',
+        		'affiliationId' :'1',
+        		'nameOfSectorSkillCouncil' : 'SSCD',
+        		'isActive' : 1
+        },
+        {
+        	'assessmentBodyRegistrationId': '1',
+        	'affiliationId' :'2',
+    		'nameOfSectorSkillCouncil' : 'ruchi',
+    		'isActive' : 1
+        },
+        {
+        	'assessmentBodyRegistrationId': '1',
+        	'affiliationId' :'3',
+    		'nameOfSectorSkillCouncil' : 'tuvhi',
+    		'isActive' : 0
+        }
+        ]
         
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
-        		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.profileCreationAssessmentBodyRegistrationDetailsDto
+        		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.profileCreationAssessmentBodyRegistrationDetailsDto,
+        		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.pcabAffiliation
         }
         $scope.ProfileCreationTestDto = {
         		'name' : 'Ruchi'
