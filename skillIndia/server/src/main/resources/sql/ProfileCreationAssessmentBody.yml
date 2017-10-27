@@ -13,7 +13,7 @@ ProfileCreationAssessmentBody:
   select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
  
  getDataFromAssessmentBodyDirectorsAndManagementTeamDetails: > 
-  select * from AssessmentBodyDirectorsAndManagementTeamDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+  select * from AssessmentBodyDirectorsAndManagementTeamDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
 
  getDataFromAssessmentStaffDetails: >
   select * from AssessmentStaffDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
@@ -26,7 +26,10 @@ ProfileCreationAssessmentBody:
  
  isAffiliationPresent: >
   SELECT EXISTS(SELECT * FROM scgj.AssessmentBodyAffiliationDetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and affiliationId=:affiliationId);
-
+ 
+ isManagementPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.assessmentbodydirectorsandmanagementteamdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and directorsAndManagementId=:directorsAndManagementId);
+  
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
      values(:applicationState,:activeFlag,:dateOfSubmission,:userId)
@@ -139,7 +142,7 @@ ProfileCreationAssessmentBody:
 
  updateIntoAssessmentBodyAffiliationDetails: >
   UPDATE `scgj`.`assessmentbodyaffiliationdetails` SET `nameOfSectorSkillCouncil`=:nameOfSectorSkillCouncil , `isActive` =:isActive 
-  WHERE `affiliationId`=:affiliationId;
+  WHERE `affiliationId`=:affiliationId and `assessmentBodyRegistrationId` =:assessmentBodyRegistrationId;
 
  updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails: > 
   UPDATE `scgj`.`assessmentbodydirectorsandmanagementteamdetails` SET `cVPath`=:cVPath WHERE `directorsAndManagementId`=:directorsAndManagementId;

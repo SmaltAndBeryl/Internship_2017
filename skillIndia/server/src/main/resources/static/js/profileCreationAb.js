@@ -53,7 +53,9 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                          
          });
      };
-    $scope.assessmentBody = {};
+    $scope.assessmentBody = {
+    		
+    };
 
     $scope.names = [
         {
@@ -392,11 +394,34 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     		'isActive' : 0
         }
         ]
+        $scope.pcabManagement = [{
+        	'directorsAndManagementId' : "2",
+        	'assessmentBodyRegistrationId' : '1',
+        	'name' : 'Ruchi Pareek',
+            'designation':"Co-founder",
+            'contactNumber': '98989898989',
+            'emailId': 'ruchi@smaltandberyl.com',
+            'educationalQualification': 'BTech.',
+            'experience': '4',
+            'isActive' :1
+        },
+        {
+        	'directorsAndManagementId' : "3",
+        	'assessmentBodyRegistrationId' : '1',
+        	'name' : 'Falaana',
+            'designation':"Co-founder",
+            'contactNumber': '98989898989',
+            'emailId': 'falaana@smaltandberyl.com',
+            'educationalQualification': 'BTech.',
+            'experience': '4',
+            'isActive' :1
+        }]
         
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
-        		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.profileCreationAssessmentBodyRegistrationDetailsDto,
-        		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.pcabAffiliation
+        		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.profileCreationAssessmentBodyRegistrationDetailsDto,
+        		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.pcabAffiliation,
+        		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.pcabManagement
         }
         $scope.ProfileCreationTestDto = {
         		'name' : 'Ruchi'
