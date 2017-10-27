@@ -79,6 +79,8 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	
 	public int insertIntoAssessmentBodyRecognitions(ProfileCreationAssessmentBodyRecognitionsDto profileCreationAssessmentBodyRecognitionsDto)
 	{
+		int status = 0;
+		
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -87,15 +89,16 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("recognitionNumber",profileCreationAssessmentBodyRecognitionsDto.getRecognitionNumber());
 			parameters.put("yearOfRecognition",profileCreationAssessmentBodyRecognitionsDto.getValidityOfRecognition());
 			parameters.put("validityOfRecognition",profileCreationAssessmentBodyRecognitionsDto.getYearOfRecognition());
-						
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyRecognitions(),parameters);
+			parameters.put("isActive", profileCreationAssessmentBodyRecognitionsDto.getIsActive());
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyRecognitions(),parameters);
 
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
 		}
-		
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while inserting assessment body recognition " + e );
+			status = -1;
+		}
+		return status;
 	}
 	
 	/*

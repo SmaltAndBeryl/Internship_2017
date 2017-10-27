@@ -383,6 +383,28 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		
 	}
 	
+	public int isRecognitionPresent(String assessmentBodyRegistrationId, String assessmentBodyRecognitionId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
+			parameters.put("assessmentBodyRecognitionId", assessmentBodyRecognitionId);
+			status =  getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsRecognitionPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("Could not find value of recogniton details " +e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured " +e);
+			status = -2;
+		}
+		return status;
+	}
 	public static class ProfileCreationAssessmentBodyAffiliationDetailsRowMapper implements RowMapper<ProfileCreationAssessmentBodyAffiliationDetailsDto> {
 
 		@Override

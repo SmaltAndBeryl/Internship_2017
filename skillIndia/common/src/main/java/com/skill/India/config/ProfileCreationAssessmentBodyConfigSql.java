@@ -41,6 +41,7 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	private String deleteFromAssessmentBodyAffiliationDetails;
 	private String isAffiliationPresent;
     private String isManagementPresent;
+    private String isRecognitionPresent;
 	
 	
 	
@@ -470,6 +471,12 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	}
 	public void setIsManagementPresent(String isManagementPresent) {
 		this.isManagementPresent = isManagementPresent;
+	}
+	public String getIsRecognitionPresent() {
+		return isRecognitionPresent;
+	}
+	public void setIsRecognitionPresent(String isRecognitionPresent) {
+		this.isRecognitionPresent = isRecognitionPresent;
 	}
 	
 	

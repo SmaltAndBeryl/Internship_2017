@@ -8,6 +8,7 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 	private String recognitionNumber;
 	private String yearOfRecognition;
 	private String validityOfRecognition;
+	private Boolean isActive;
 	
 	
 	/**
@@ -110,6 +111,12 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 	 */
 	public void setValidityOfRecognition(String validityOfRecognition) {
 		this.validityOfRecognition = validityOfRecognition;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	

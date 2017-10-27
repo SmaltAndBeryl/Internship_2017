@@ -76,6 +76,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 	
 	public int updateIntoAssessmentBodyRecognitions(ProfileCreationAssessmentBodyRecognitionsDto profileCreationAssessmentBodyRecognitionsDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -84,15 +85,17 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			parameters.put("recognitionNumber",profileCreationAssessmentBodyRecognitionsDto.getRecognitionNumber());
 			parameters.put("yearOfRecognition",profileCreationAssessmentBodyRecognitionsDto.getValidityOfRecognition());
 			parameters.put("validityOfRecognition",profileCreationAssessmentBodyRecognitionsDto.getYearOfRecognition());
-						
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyRecognitions(),parameters);
+			parameters.put("isActive",profileCreationAssessmentBodyRecognitionsDto.getIsActive());
+			parameters.put("assessmentBodyRegistrationId", profileCreationAssessmentBodyRecognitionsDto.getAssessmentBodyRegistrationId());
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyRecognitions(),parameters);
 
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
 		}
-		
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while updating recognitions");
+			status = -1;
+		}
+		return status;
 	}
 	
 	/*

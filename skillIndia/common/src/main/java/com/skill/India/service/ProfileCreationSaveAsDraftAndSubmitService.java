@@ -107,7 +107,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	//To save the complete object to database
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
-		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId =0;
+		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0;
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		//New user
 		if (userExists == -1)
@@ -128,9 +128,13 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			}
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto().isEmpty())
 			{
+				for(ProfileCreationAssessmentBodyRecognitionsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto())
+				{
+					assessmentBodyRecognition = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRecognitions(item);
+				}
 				
 			}
-			if (status == -1 || applicationTableStatus == -1 || affiliationInsertionStatus == -1 || directorsAndManagementId == -1)
+			if (status == -1 || applicationTableStatus == -1 || affiliationInsertionStatus == -1 || directorsAndManagementId == -1 || assessmentBodyRecognition ==-1)
 			{
 				returnStatus = -1;
 			}
@@ -189,6 +193,25 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 						{
 							LOGGER.debug("Could not update details of Assessment body Management due to some exception");
 						}
+				}
+				
+			}
+			
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto().isEmpty())
+			{
+				for(ProfileCreationAssessmentBodyRecognitionsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto())
+				{
+					LOGGER.info("recognitionID" + item.getAssessmentBodyRecognitionId());
+					LOGGER.info("registrationId" + item.getAssessmentBodyRegistrationId());
+					int recognitionABStatus = profileCreationAssessmentBodyGetDataDao.isRecognitionPresent(item.getAssessmentBodyRegistrationId(), item.getAssessmentBodyRecognitionId());
+					if(recognitionABStatus == 0)
+					{
+						int insertIntoAssessmentBodyRecognitionStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRecognitions(item);
+					}
+					else if(recognitionABStatus == 1)
+					{
+						int updateIntoAssessmentBodyRecognitionStatus = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRecognitions(item);
+					}
 				}
 				
 			}
