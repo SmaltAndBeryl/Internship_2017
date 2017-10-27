@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.skill.India.common.ReadApplicationConstants;
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dao.GetUserRoleDao;
+import com.skill.India.dao.ProfileCreationAssessmentBodyGetDataDao;
 import com.skill.India.dao.ProfileCreationAssessmentBodyInsertDataDao;
 import com.skill.India.dao.ProfileCreationAssessmentBodyUpdateDataDao;
 import com.skill.India.dao.ProfileCreationTPABCommonDao;
@@ -48,6 +49,9 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	
 	@Autowired
 	private ProfileCreationTPABCommonDao profileCreationTPABCommonDao;
+	
+	@Autowired
+	private ProfileCreationAssessmentBodyGetDataDao profileCreationAssessmentBodyGetDataDao;
 	
 	@Autowired
 	private GetUserRoleDao getUserRoleDao;
@@ -100,15 +104,21 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	@Autowired
 	private ProfileCreationAssessmentBodyUpdateDataDao profileCreationAssessmentBodyUpdateDataDao;
 	
+	//To save the complete object to database
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
-		int returnStatus = 0, applicationTableStatus =0 , status =0;
+		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationIsnsertionStatus =0, affiliationStatus = 0;
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		if (userExists == -1)
 		{
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
 			status=profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
-			if (status == -1 || applicationTableStatus == -1)
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto().isEmpty())
+			{
+				for (ProfileCreationAssessmentBodyAffiliationDetailsDto profileCreationAssessmentBodyAffiliationDetailsDto:profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto())
+				affiliationIsnsertionStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(profileCreationAssessmentBodyAffiliationDetailsDto);
+			}
+			if (status == -1 || applicationTableStatus == -1 || affiliationIsnsertionStatus == -1 )
 			{
 				returnStatus = -1;
 			}
@@ -121,6 +131,30 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		{
 			applicationTableStatus=profileCreationTPABCommonDao.updateIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
 			status = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
+			
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto().isEmpty())
+			{
+				for(ProfileCreationAssessmentBodyAffiliationDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto())
+				{
+					 int affiliationPresent = profileCreationAssessmentBodyGetDataDao.isAffiliationPresent(item.getAssessmentBodyRegistrationId(), item.getAffiliationId());
+					if(affiliationPresent == 0)
+					{
+						LOGGER.info("AffiliationId" + item.getAffiliationId());
+						LOGGER.info("abregId" + item.getAssessmentBodyRegistrationId());
+						LOGGER.info("sector skil council" + item.getNameOfSectorSkillCouncil());
+						int insertIntoAssessmentBodyAffiliationDetailsStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(item);
+					}
+					else if (affiliationPresent == 1)
+					{
+						profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyAffiliationDetails(item);
+					}
+					else 
+					{
+						
+					}
+					
+				}
+			}
 			if (applicationTableStatus == -1 || status == -1)
 			{
 				returnStatus = -1;
@@ -129,12 +163,8 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		
 		return returnStatus;
 	}
+
 	
-	
-	private void SaveAssessmentBodyAffiliationData(Collection<ProfileCreationAssessmentBodyAffiliationDetailsDto> profileCreationAssessmentBodyAffiliationDetailsDto)
-	{
-		
-	}
 	private void SaveAssessmentBodyRegistrationData(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto)
 	{
 		//profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyRegistrationDetailsDto, getPaths)

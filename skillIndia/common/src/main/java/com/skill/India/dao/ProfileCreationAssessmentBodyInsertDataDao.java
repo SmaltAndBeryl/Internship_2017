@@ -1,7 +1,9 @@
 package com.skill.India.dao;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,18 +208,22 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	
 	public int insertIntoAssessmentBodyAffiliationDetails(ProfileCreationAssessmentBodyAffiliationDetailsDto profileCreationAssessmentBodyAffiliationDetailsDto)
 	{
+		int status =0;
 		try{
-			Map<String, Object> parameters=new HashMap<String, Object>();
 			
-			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyAffiliationDetailsDto.getAssessmentBodyRegistrationId());
-			parameters.put("nameOfSectorSkillCouncil",profileCreationAssessmentBodyAffiliationDetailsDto.getNameOfSectorSkillCouncil());
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyAffiliationDetails(),parameters);
+				Map<String, Object> parameters=new HashMap<String, Object>();
+				parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyAffiliationDetailsDto.getAssessmentBodyRegistrationId());
+				parameters.put("nameOfSectorSkillCouncil",profileCreationAssessmentBodyAffiliationDetailsDto.getNameOfSectorSkillCouncil());
+				parameters.put("isActive",profileCreationAssessmentBodyAffiliationDetailsDto.getIsActive());
+				status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyAffiliationDetails(),parameters);
 
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
 		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while inserting affiliation details of Assessment body " + e);
+			status = -1;
+		}
+		return status;
 	}
 	
 	

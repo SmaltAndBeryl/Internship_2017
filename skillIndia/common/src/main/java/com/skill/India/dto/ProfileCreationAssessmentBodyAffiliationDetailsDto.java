@@ -5,6 +5,7 @@ public class ProfileCreationAssessmentBodyAffiliationDetailsDto {
 	private String affiliationId;
 	private String assessmentBodyRegistrationId;
 	private String nameOfSectorSkillCouncil;
+	private Boolean isActive;
 	
 	
 	
@@ -22,11 +23,12 @@ public class ProfileCreationAssessmentBodyAffiliationDetailsDto {
 	 */
 	public ProfileCreationAssessmentBodyAffiliationDetailsDto(
 			String affiliationId, String assessmentBodyRegistrationId,
-			String nameOfSectorSkillCouncil) {
+			String nameOfSectorSkillCouncil, Boolean isActive) {
 		super();
 		this.affiliationId = affiliationId;
 		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
 		this.nameOfSectorSkillCouncil = nameOfSectorSkillCouncil;
+		this.isActive = isActive;
 	}
 	/**
 	 * @return the affiliationId
@@ -63,6 +65,12 @@ public class ProfileCreationAssessmentBodyAffiliationDetailsDto {
 	 */
 	public void setNameOfSectorSkillCouncil(String nameOfSectorSkillCouncil) {
 		this.nameOfSectorSkillCouncil = nameOfSectorSkillCouncil;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	

@@ -6,7 +6,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -24,6 +28,7 @@ import com.skill.India.dto.ProfileCreationAssessmentsExperienceInTechnicalDomain
 @Repository
 public class ProfileCreationAssessmentBodyGetDataDao extends AbstractTransactionalDao {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationAssessmentBodyGetDataDao.class);
 	@Autowired
 	private ProfileCreationAssessmentBodyConfigSql profileCreationAssessmentBodyConfigSql;
 	
@@ -43,10 +48,12 @@ public class ProfileCreationAssessmentBodyGetDataDao extends AbstractTransaction
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An xception occured "+ e);
 			return null;
 		}
  	}
+	
+	
 
 	/*
 	 * Getting data from table 1 ProfileCreationAssessmentBodyRegistrationDetails 
@@ -322,11 +329,34 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An Exception occured" + e);
 			return null;
 		}
  	}
 	
+	public int isAffiliationPresent(String assessmentBodyRegistrationId, String affiliationId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
+			parameters.put("affiliationId", affiliationId);
+			status =  getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsAffiliationPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("An excpetion occured " +e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured " +e);
+			status = -2;
+		}
+		
+		return status;
+	}
 	public static class ProfileCreationAssessmentBodyAffiliationDetailsRowMapper implements RowMapper<ProfileCreationAssessmentBodyAffiliationDetailsDto> {
 
 		@Override
@@ -336,8 +366,9 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 			String affiliationId = resultSet.getString("affiliationId");
 			String assessmentBodyRegistrationId = resultSet.getString("assessmentBodyRegistrationId");
 			String nameOfSectorSkillCouncil = resultSet.getString("nameOfSectorSkillCouncil");
+			boolean isActive = resultSet.getBoolean("isActive");
 			return new ProfileCreationAssessmentBodyAffiliationDetailsDto(affiliationId,assessmentBodyRegistrationId,
-					nameOfSectorSkillCouncil);
+					nameOfSectorSkillCouncil, isActive);
 		}
 
 }

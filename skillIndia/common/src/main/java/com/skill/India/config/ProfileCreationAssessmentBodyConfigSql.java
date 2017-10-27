@@ -39,6 +39,7 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	private String deleteFromAssessmentStaffDetails;
 	private String deleteFromAssessmentBodyRegionalOfficeDetails;
 	private String deleteFromAssessmentBodyAffiliationDetails;
+	private String isAffiliationPresent;
 
 	
 	
@@ -457,6 +458,12 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	public void setUpdateIntoAssessmentsExperienceInTechnicalDomain(
 			String updateIntoAssessmentsExperienceInTechnicalDomain) {
 		this.updateIntoAssessmentsExperienceInTechnicalDomain = updateIntoAssessmentsExperienceInTechnicalDomain;
+	}
+	public String getIsAffiliationPresent() {
+		return isAffiliationPresent;
+	}
+	public void setIsAffiliationPresent(String isAffiliationPresent) {
+		this.isAffiliationPresent = isAffiliationPresent;
 	}
 	
 	

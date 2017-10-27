@@ -210,11 +210,13 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			
 			parameters.put("affiliationId",profileCreationAssessmentBodyAffiliationDetailsDto.getAffiliationId());
 			parameters.put("nameOfSectorSkillCouncil",profileCreationAssessmentBodyAffiliationDetailsDto.getNameOfSectorSkillCouncil());
+			parameters.put("isActive",profileCreationAssessmentBodyAffiliationDetailsDto.getIsActive());
 			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyAffiliationDetails(),parameters);
 
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An exception occured while updating affiliation of assessment body" + e);
 			return -1;
 		}
 	}
