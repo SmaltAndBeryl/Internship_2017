@@ -22,7 +22,10 @@ ProfileCreationAssessmentBody:
   select * from AssessmentBodyRegionalOfficeDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
 
  getDataFromAssessmentBodyAffiliationDetails: >
-  select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+  select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
+ 
+ isAffiliationPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.AssessmentBodyAffiliationDetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and affiliationId=:affiliationId);
 
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
@@ -54,7 +57,7 @@ ProfileCreationAssessmentBody:
 
 
  insertIntoAssessmentBodyAffiliationDetails: >
-  INSERT INTO `scgj`.`assessmentbodyaffiliationdetails` (`assessmentBodyRegistrationId`, `nameOfSectorSkillCouncil`) VALUES (:assessmentBodyRegistrationId,:nameOfSectorSkillCouncil);
+  INSERT INTO `scgj`.`assessmentbodyaffiliationdetails` (`assessmentBodyRegistrationId`, `nameOfSectorSkillCouncil`, `isActive`) VALUES (:assessmentBodyRegistrationId,:nameOfSectorSkillCouncil, :isActive);
 
  updateDataInApplication: >
   update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
@@ -135,7 +138,7 @@ ProfileCreationAssessmentBody:
 
 
  updateIntoAssessmentBodyAffiliationDetails: >
-  UPDATE `scgj`.`assessmentbodyaffiliationdetails` SET `nameOfSectorSkillCouncil`=:nameOfSectorSkillCouncil 
+  UPDATE `scgj`.`assessmentbodyaffiliationdetails` SET `nameOfSectorSkillCouncil`=:nameOfSectorSkillCouncil , `isActive` =:isActive 
   WHERE `affiliationId`=:affiliationId;
 
  updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails: > 
