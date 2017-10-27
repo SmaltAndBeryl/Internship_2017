@@ -34,6 +34,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	
 	public int insertIntoAssessmentBodyRegistrationDetails(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -53,22 +54,22 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("yearOfEstablishment",profileCreationAssessmentBodyRegistrationDetailsDto.getYearOfEstablishment());
 			parameters.put("priorAssessmentExperience",profileCreationAssessmentBodyRegistrationDetailsDto.getPriorAssessmentExperience());
 			parameters.put("panNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumber());
-			//parameters.put("panNumberPath",getPaths.get("panNumberPath"));
+			parameters.put("panNumberPath",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumberPath());
 			parameters.put("tanNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getTanNumber());
-			//parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
+			parameters.put("tanNumberPath",profileCreationAssessmentBodyRegistrationDetailsDto.getTanNumberPath());
 			parameters.put("insituteReceivedAnyRecognition",profileCreationAssessmentBodyRegistrationDetailsDto.getInsituteReceivedAnyRecognition());	
 			parameters.put("numberOfTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfTechnicalAssessors());
 			parameters.put("numberOfNonTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfNonTechnicalAssessors());
 			parameters.put("affiliatedToAnySectorSkillCouncil",profileCreationAssessmentBodyRegistrationDetailsDto.getAffiliatedToAnySectorSkillCouncil());
-			
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyRegistrationDetails(),parameters);
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyRegistrationDetails(),parameters);
 
-		}catch(Exception e)
+		}
+		catch(Exception e)
 		{
 			LOGGER.error("An Exception occured " + e);
-			return -1;
+			status = -1;
 		}
-		
+		return status;
 	}
 	
 	
@@ -125,6 +126,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	
 	public int insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -136,14 +138,15 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("educationalQualification",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getEducationalQualification());
 			parameters.put("experience",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getExperience());
 			parameters.put("cVPath",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getcVPath());
-			
-			return insert(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyDirectorsAndManagementTeamDetails(),parameters, "directorsAndManagementId");
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
+			parameters.put("isActive", profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getIsActive());
+			status = insert(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyDirectorsAndManagementTeamDetails(),parameters, "directorsAndManagementId");
 		}
-		
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured" + e);
+			status = -1;
+		}
+		return status;
 	}
 	
 	
@@ -153,6 +156,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	
 	public int insertIntoAssessmentStaffDetails(ProfileCreationAssessmentStaffDetailsDto profileCreationAssessmentStaffDetailsDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -169,12 +173,14 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("cVPath",profileCreationAssessmentStaffDetailsDto.getcVPath());
 			parameters.put("certificatePath",profileCreationAssessmentStaffDetailsDto.getCertificatePath());
 			
-			return insert(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentStaffDetails(),parameters, "assessmentStaffId");
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
+			status = insert(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentStaffDetails(),parameters, "assessmentStaffId");
 		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured" + e);
+			status = -1;
+		}
+		return status;
 	}
 	
 	
@@ -184,6 +190,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	
 	public int insertIntoAssessmentBodyRegionalOfficeDetails(ProfileCreationAssessmentBodyRegionalOfficeDetailsDto profileCreationAssessmentBodyRegionalOfficeDetailsDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -193,13 +200,15 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("pincode",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getPincode());
 			parameters.put("contactNumber",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getContactNumber());
 			parameters.put("alternateContactNumber",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getAlternateContactNumber());
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyRegionalOfficeDetails(),parameters);
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyRegionalOfficeDetails(),parameters);
 
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
 		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured" + e);
+			status = -1;
+		}
+		return status;
 	}
 	
 	/*

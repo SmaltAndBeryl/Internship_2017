@@ -107,8 +107,9 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	//To save the complete object to database
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
-		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationIsnsertionStatus =0, affiliationStatus = 0;
+		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId =0;
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
+		//New user
 		if (userExists == -1)
 		{
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
@@ -116,22 +117,36 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto().isEmpty())
 			{
 				for (ProfileCreationAssessmentBodyAffiliationDetailsDto profileCreationAssessmentBodyAffiliationDetailsDto:profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto())
-				affiliationIsnsertionStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(profileCreationAssessmentBodyAffiliationDetailsDto);
+				affiliationInsertionStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(profileCreationAssessmentBodyAffiliationDetailsDto);
 			}
-			if (status == -1 || applicationTableStatus == -1 || affiliationIsnsertionStatus == -1 )
+			if (! profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto().isEmpty())
+			{
+				for (ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto())
+				{
+					directorsAndManagementId = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(item);
+				}
+			}
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto().isEmpty())
+			{
+				
+			}
+			if (status == -1 || applicationTableStatus == -1 || affiliationInsertionStatus == -1 || directorsAndManagementId == -1)
 			{
 				returnStatus = -1;
 			}
 		}
+		//An error occurred while checking if user is new or already registered
 		else if(userExists == -2)
 		{
 			/*Exception occurred*/
 		}
+		//User is old
 		else
 		{
 			applicationTableStatus=profileCreationTPABCommonDao.updateIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
 			status = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
 			
+			/* Assessment Body Affiliation Details */
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto().isEmpty())
 			{
 				for(ProfileCreationAssessmentBodyAffiliationDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto())
@@ -142,7 +157,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 						LOGGER.info("AffiliationId" + item.getAffiliationId());
 						LOGGER.info("abregId" + item.getAssessmentBodyRegistrationId());
 						LOGGER.info("sector skil council" + item.getNameOfSectorSkillCouncil());
-						int insertIntoAssessmentBodyAffiliationDetailsStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(item);
+						profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(item);
 					}
 					else if (affiliationPresent == 1)
 					{
@@ -150,11 +165,35 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					}
 					else 
 					{
-						
+						LOGGER.debug("Could not update details of Assessment body affiliation due to some exception");
 					}
 					
 				}
 			}
+			
+			/*Assessment Body Directors and Management Details */
+			if (! profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto().isEmpty())
+			{
+				for (ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto())
+				{
+						int managmentStatus = profileCreationAssessmentBodyGetDataDao.isManagementPresent(item.getAssessmentBodyRegistrationId(), item.getDirectorsAndManagementId());	
+						if(managmentStatus == 0)
+						{
+							profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(item);
+						}
+						else if (managmentStatus == 1)
+						{
+							profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyDirectorsAndManagementTeamDetails(item);
+						}
+						else 
+						{
+							LOGGER.debug("Could not update details of Assessment body Management due to some exception");
+						}
+				}
+				
+			}
+			
+			/* Return status as -1 */
 			if (applicationTableStatus == -1 || status == -1)
 			{
 				returnStatus = -1;

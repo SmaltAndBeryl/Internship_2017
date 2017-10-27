@@ -11,6 +11,7 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	private String educationalQualification;
 	private String experience;
 	private String cVPath;
+	private Boolean isActive;
 	
 	
 	
@@ -35,7 +36,7 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 			String directorsAndManagementId,
 			String assessmentBodyRegistrationId, String name,
 			String designation, String contactNumber, String emailId,
-			String educationalQualification, String experience, String cVPath) {
+			String educationalQualification, String experience, String cVPath, Boolean isActive) {
 		super();
 		this.directorsAndManagementId = directorsAndManagementId;
 		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
@@ -46,6 +47,7 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 		this.educationalQualification = educationalQualification;
 		this.experience = experience;
 		this.cVPath = cVPath;
+		this.isActive = isActive;
 	}
 	/**
 	 * @return the directorsAndManagementId
@@ -154,6 +156,12 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	 */
 	public void setcVPath(String cVPath) {
 		this.cVPath = cVPath;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 

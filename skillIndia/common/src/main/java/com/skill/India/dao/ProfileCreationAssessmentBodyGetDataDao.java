@@ -220,9 +220,9 @@ private static final ProfileCreationAssessmentBodyDirectorsAndManagementTeamDeta
 			String educationalQualification = resultSet.getString("educationalQualification");
 			String experience = resultSet.getString("experience");
 			String cVPath = resultSet.getString("cVPath");
-			
+			Boolean isActive = resultSet.getBoolean("isActive");
 				return new ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto(directorsAndManagementId,assessmentBodyRegistrationId,
-						name,designation,contactNumber,emailId,educationalQualification,experience,cVPath);
+						name,designation,contactNumber,emailId,educationalQualification,experience,cVPath, isActive);
 		}
 
 }
@@ -334,6 +334,7 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		}
  	}
 	
+	/* To check presence of Affiliation data of Assesment body*/
 	public int isAffiliationPresent(String assessmentBodyRegistrationId, String affiliationId)
 	{
 		int status = 0;
@@ -357,6 +358,31 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		
 		return status;
 	}
+	public int isManagementPresent(String assessmentBodyRegistrationId, String directorsAndManagementId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
+			parameters.put("directorsAndManagementId", directorsAndManagementId);
+			status =  getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsManagementPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("Could not find value of management staff " +e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured " +e);
+			status = -2;
+		}
+		
+		return status;
+		
+	}
+	
 	public static class ProfileCreationAssessmentBodyAffiliationDetailsRowMapper implements RowMapper<ProfileCreationAssessmentBodyAffiliationDetailsDto> {
 
 		@Override

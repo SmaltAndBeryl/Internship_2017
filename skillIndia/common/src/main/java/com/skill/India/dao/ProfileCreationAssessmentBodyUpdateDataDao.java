@@ -51,9 +51,9 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			parameters.put("yearOfEstablishment",profileCreationAssessmentBodyRegistrationDetailsDto.getYearOfEstablishment());
 			parameters.put("priorAssessmentExperience",profileCreationAssessmentBodyRegistrationDetailsDto.getPriorAssessmentExperience());
 			parameters.put("panNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumber());
-			//parameters.put("panNumberPath",getPaths.get("panNumberPath"));
+			//parameters.put("panNumberPath",profileCreationAssessmentBodyRegistrationDetailsDto.getPanNumberPath());
 			parameters.put("tanNumber",profileCreationAssessmentBodyRegistrationDetailsDto.getTanNumber());
-			//parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
+			//parameters.put("tanNumberPath",profileCreationAssessmentBodyRegistrationDetailsDto.getTanNumberPath());
 			parameters.put("insituteReceivedAnyRecognition",profileCreationAssessmentBodyRegistrationDetailsDto.getInsituteReceivedAnyRecognition());	
 			parameters.put("numberOfTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfTechnicalAssessors());
 			parameters.put("numberOfNonTechnicalAssessors",profileCreationAssessmentBodyRegistrationDetailsDto.getNumberOfNonTechnicalAssessors());
@@ -63,7 +63,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 
 		}catch(Exception e)
 		{
-			LOGGER.error("An Exception occured while updating Assessment body registration details" + e);
+			LOGGER.error("An Exception occured while updating Assessment body registration details " + e);
 			return -1;
 		}
 		
@@ -123,6 +123,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 	
 	public int updateIntoAssessmentBodyDirectorsAndManagementTeamDetails(ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -134,15 +135,16 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			parameters.put("educationalQualification",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getEducationalQualification());
 			parameters.put("experience",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getExperience());
 			parameters.put("cVPath",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getcVPath());
-			
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyDirectorsAndManagementTeamDetails(),parameters);
-
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
+			parameters.put("isActive",profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto.getIsActive());
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyDirectorsAndManagementTeamDetails(),parameters);
 		}
-		
+		catch(Exception e)
+		{
+			LOGGER.error("An Exception Occured while updating directors and management staff details of Assessmnet body " +e);
+			status = -1;
+			
+		}
+		return status;
 	}
 	
 	/*
@@ -210,6 +212,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			
 			parameters.put("affiliationId",profileCreationAssessmentBodyAffiliationDetailsDto.getAffiliationId());
 			parameters.put("nameOfSectorSkillCouncil",profileCreationAssessmentBodyAffiliationDetailsDto.getNameOfSectorSkillCouncil());
+			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyAffiliationDetailsDto.getAssessmentBodyRegistrationId());
 			parameters.put("isActive",profileCreationAssessmentBodyAffiliationDetailsDto.getIsActive());
 			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyAffiliationDetails(),parameters);
 
