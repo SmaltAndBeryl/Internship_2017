@@ -422,14 +422,28 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         	'nameOfRecognitionBody' : 'NSDC',
         	'recognitionNumber' : 'h7y8',
         	'yearOfRecognition' : '2012',
-        	'validityOfRecognition' : 'forever'
+        	'validityOfRecognition' : '2013',
+        	'isActive' :1
         }]
+        
+        $scope.pcabregionalOffice = [{
+        	'assessmentBodyRegistrationId' : '1',
+        	'regionalOfficeId' :'1',
+        	'address' : 'NH 24 Vijay Nagar',
+        	'state' : 'Uttar Pradesh',
+        	'pincode' : '333023',
+        	'contactNumber' : '9898989',
+        	'alternateContactNumber' : '7677767657',
+        	'isActive' : 1
+        }]
+        
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
         		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.profileCreationAssessmentBodyRegistrationDetailsDto,
         		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.pcabAffiliation,
         		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.pcabManagement,
-        		'profileCreationAssessmentBodyRecognitionsDto' : $scope.pcabrecognition
+        		'profileCreationAssessmentBodyRecognitionsDto' : $scope.pcabrecognition,
+        		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.pcabregionalOffice
         }
         $scope.ProfileCreationTestDto = {
         		'name' : 'Ruchi'

@@ -19,7 +19,7 @@ ProfileCreationAssessmentBody:
   select * from AssessmentStaffDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
  
  getDataFromAssessmentBodyRegionalOfficeDetails: > 
-  select * from AssessmentBodyRegionalOfficeDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+  select * from AssessmentBodyRegionalOfficeDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
 
  getDataFromAssessmentBodyAffiliationDetails: >
   select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
@@ -31,8 +31,11 @@ ProfileCreationAssessmentBody:
   SELECT EXISTS(SELECT * FROM scgj.assessmentbodydirectorsandmanagementteamdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and directorsAndManagementId=:directorsAndManagementId);
   
  isRecognitionPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.assessmentbodydirectorsandmanagementteamdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and assessmentBodyRecognitionId=:assessmentBodyRecognitionId);
-  
+  SELECT EXISTS(SELECT * FROM scgj.assessmentbodyrecognitions WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and assessmentBodyRecognitionId=:assessmentBodyRecognitionId);
+ 
+ isRegionalOfficePresent: >
+  SELECT EXISTS(SELECT * FROM scgj.assessmentbodyregionalofficedetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and regionalOfficeId=:regionalOfficeId);
+ 
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
      values(:applicationState,:activeFlag,:dateOfSubmission,:userId)
@@ -59,7 +62,7 @@ ProfileCreationAssessmentBody:
 
 
  insertIntoAssessmentBodyRegionalOfficeDetails: >
-  INSERT INTO `scgj`.`assessmentbodyregionalofficedetails` (`assessmentBodyRegistrationId`, `address`, `state`, `pincode`, `contactNumber`, `alternateContactNumber`) VALUES (:assessmentBodyRegistrationId,:address,:state,:pincode,:contactNumber,:alternateContactNumber);
+  INSERT INTO `scgj`.`assessmentbodyregionalofficedetails` (`assessmentBodyRegistrationId`, `address`, `state`, `pincode`, `contactNumber`, `alternateContactNumber`, `isActive`) VALUES (:assessmentBodyRegistrationId,:address,:state,:pincode,:contactNumber,:alternateContactNumber, :isActive);
 
 
  insertIntoAssessmentBodyAffiliationDetails: >
@@ -98,9 +101,9 @@ ProfileCreationAssessmentBody:
   UPDATE `scgj`.`assessmentbodyrecognitions` SET `nameOfRecognitionBody`=:nameOfRecognitionBody, 
   `recognitionNumber`=:recognitionNumber, 
   `yearOfRecognition`=:yearOfRecognition, 
-  `validityOfRecognition`=:validityOfRecognition
-  `isActive` = :isActive
-  WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId and `assessmentBodyRegistrationId` =:assessmentBodyRegistrationId;
+  `validityOfRecognition`=:validityOfRecognition,
+  `isActive` =:isActive
+  WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId and `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId;
 
 
  updateIntoAssessmentsExperienceInTechnicalDomain: >
@@ -140,8 +143,9 @@ ProfileCreationAssessmentBody:
   `state`=:state, 
   `pincode`=:pincode, 
   `contactNumber`=:contactNumber, 
-  `alternateContactNumber`=:alternateContactNumber 
-  WHERE `regionalOfficeId`=:regionalOfficeId;
+  `alternateContactNumber`=:alternateContactNumber,
+  `isActive` =:isActive
+  WHERE `regionalOfficeId`=:regionalOfficeId and assessmentBodyRegistrationId = :assessmentBodyRegistrationId;
 
 
  updateIntoAssessmentBodyAffiliationDetails: >
