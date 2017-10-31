@@ -518,6 +518,7 @@ state varchar(30),
 pincode int(6),
 contactNumber bigint,
 alternateContactNumber bigint,
+isActive boolean,
 foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
 
