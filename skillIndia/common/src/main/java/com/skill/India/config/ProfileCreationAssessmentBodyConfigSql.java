@@ -42,6 +42,7 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	private String isAffiliationPresent;
     private String isManagementPresent;
     private String isRecognitionPresent;
+    private String isRegionalOfficePresent;
 	
 	
 	
@@ -477,6 +478,12 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	}
 	public void setIsRecognitionPresent(String isRecognitionPresent) {
 		this.isRecognitionPresent = isRecognitionPresent;
+	}
+	public String getIsRegionalOfficePresent() {
+		return isRegionalOfficePresent;
+	}
+	public void setIsRegionalOfficePresent(String isRegionalOfficePresent) {
+		this.isRegionalOfficePresent = isRegionalOfficePresent;
 	}
 	
 	

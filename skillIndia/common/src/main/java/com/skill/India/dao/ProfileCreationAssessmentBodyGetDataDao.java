@@ -405,6 +405,33 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		}
 		return status;
 	}
+	
+	public int isRegionalOfficePresent(String assessmentBodyRegistrationId, String regionalOfficeId)
+	{
+		int status =0;
+		try
+		{
+			Map<String,Object> parameters = new HashMap<String,Object>();
+			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
+			parameters.put("regionalOfficeId", regionalOfficeId);
+			status = getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsRegionalOfficePresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("An exception occured while checking if regional office is present or not " + e);
+			status =-1;
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while checking if regional office is present or not " + e);
+			status =-2;
+		}
+		;
+		
+		return status;
+	}
+	
+	
 	public static class ProfileCreationAssessmentBodyAffiliationDetailsRowMapper implements RowMapper<ProfileCreationAssessmentBodyAffiliationDetailsDto> {
 
 		@Override

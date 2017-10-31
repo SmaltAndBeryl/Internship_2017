@@ -107,7 +107,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	//To save the complete object to database
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
-		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0;
+		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0, assessmentBodyRegionalOffice =0;
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		//New user
 		if (userExists == -1)
@@ -134,7 +134,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				}
 				
 			}
-			if (status == -1 || applicationTableStatus == -1 || affiliationInsertionStatus == -1 || directorsAndManagementId == -1 || assessmentBodyRecognition ==-1)
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegionalOfficeDetailsDto().isEmpty())
+			{
+				for (ProfileCreationAssessmentBodyRegionalOfficeDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegionalOfficeDetailsDto())
+				{
+					assessmentBodyRegionalOffice = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegionalOfficeDetails(item);
+				}
+			}
+			if (status == -1 || applicationTableStatus == -1 || affiliationInsertionStatus == -1 || directorsAndManagementId == -1 || assessmentBodyRecognition ==-1 || assessmentBodyRegionalOffice ==-1)
 			{
 				returnStatus = -1;
 			}
@@ -196,7 +203,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				}
 				
 			}
-			
+			/*Assessment Body Recognition details*/
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto().isEmpty())
 			{
 				for(ProfileCreationAssessmentBodyRecognitionsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto())
@@ -216,8 +223,28 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				
 			}
 			
+			/*Assessment Body regional office details*/
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegionalOfficeDetailsDto().isEmpty())
+			{
+				for (ProfileCreationAssessmentBodyRegionalOfficeDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegionalOfficeDetailsDto())
+				{
+					int regionalOfficeStatus = profileCreationAssessmentBodyGetDataDao.isRegionalOfficePresent(item.getAssessmentBodyRegistrationId(), item.getRegionalOfficeId());
+					LOGGER.info("Regional office check value is " +regionalOfficeStatus);
+					if(regionalOfficeStatus == 0)
+					{
+						assessmentBodyRegionalOffice = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegionalOfficeDetails(item);
+					}
+					else if (regionalOfficeStatus == 1)
+					{
+						LOGGER.info("This is item" + item);
+						assessmentBodyRegionalOffice = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegionalOfficeDetails(item);
+					}
+				}
+				
+			}
+			
 			/* Return status as -1 */
-			if (applicationTableStatus == -1 || status == -1)
+			if (applicationTableStatus == -1 || status == -1 || assessmentBodyRegionalOffice == -1)
 			{
 				returnStatus = -1;
 			}

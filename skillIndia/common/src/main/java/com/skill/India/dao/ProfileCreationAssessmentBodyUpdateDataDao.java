@@ -92,7 +92,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 		}
 		catch(Exception e)
 		{
-			LOGGER.error("An exception occured while updating recognitions");
+			LOGGER.error("An exception occured while updating recognitions" + e);
 			status = -1;
 		}
 		return status;
@@ -186,6 +186,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 	
 	public int updateIntoAssessmentBodyRegionalOfficeDetails(ProfileCreationAssessmentBodyRegionalOfficeDetailsDto profileCreationAssessmentBodyRegionalOfficeDetailsDto)
 	{
+		int status =0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -195,13 +196,18 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			parameters.put("pincode",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getPincode());
 			parameters.put("contactNumber",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getContactNumber());
 			parameters.put("alternateContactNumber",profileCreationAssessmentBodyRegionalOfficeDetailsDto.getAlternateContactNumber());
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyRegionalOfficeDetails(),parameters);
-
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
+			parameters.put("assessmentBodyRegistrationId", profileCreationAssessmentBodyRegionalOfficeDetailsDto.getAssessmentBodyRegistrationId());
+			parameters.put("isActive", profileCreationAssessmentBodyRegionalOfficeDetailsDto.getIsActive());
+			LOGGER.info("These are the parametrs " + parameters);
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyRegionalOfficeDetails(),parameters);
+			
 		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured "+ e);
+			status = -1;
+		}
+		return status;
 	}
 	
 	/*
@@ -210,6 +216,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 	
 	public int updateIntoAssessmentBodyAffiliationDetails(ProfileCreationAssessmentBodyAffiliationDetailsDto profileCreationAssessmentBodyAffiliationDetailsDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -217,14 +224,15 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			parameters.put("nameOfSectorSkillCouncil",profileCreationAssessmentBodyAffiliationDetailsDto.getNameOfSectorSkillCouncil());
 			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyAffiliationDetailsDto.getAssessmentBodyRegistrationId());
 			parameters.put("isActive",profileCreationAssessmentBodyAffiliationDetailsDto.getIsActive());
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyAffiliationDetails(),parameters);
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentBodyAffiliationDetails(),parameters);
 
 		}
 		catch(Exception e)
 		{
 			LOGGER.error("An exception occured while updating affiliation of assessment body" + e);
-			return -1;
+			status  =-1;
 		}
+		return status;
 	}
 	 
 	

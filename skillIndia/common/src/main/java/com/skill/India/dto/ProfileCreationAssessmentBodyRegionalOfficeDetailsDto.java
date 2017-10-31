@@ -9,6 +9,7 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 	private String pincode;
 	private String contactNumber;
 	private String alternateContactNumber;
+	private Boolean isActive;
 	
 	
 	/**
@@ -122,6 +123,12 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 	 */
 	public void setAlternateContactNumber(String alternateContactNumber) {
 		this.alternateContactNumber = alternateContactNumber;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 		
