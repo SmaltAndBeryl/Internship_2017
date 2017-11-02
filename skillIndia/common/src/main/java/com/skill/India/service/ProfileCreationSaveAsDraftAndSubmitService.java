@@ -107,7 +107,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	//To save the complete object to database
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
-		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0, assessmentBodyRegionalOffice =0;
+		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0, assessmentBodyRegionalOffice =0, assessmentBodyExperienceinTechnical =0, assessmentStaff =0;
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		//New user
 		if (userExists == -1)
@@ -141,6 +141,23 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					assessmentBodyRegionalOffice = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegionalOfficeDetails(item);
 				}
 			}
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentsExperienceInTechnicalDomainDto().isEmpty())
+			{
+				for(ProfileCreationAssessmentsExperienceInTechnicalDomainDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentsExperienceInTechnicalDomainDto())
+				{
+					assessmentBodyExperienceinTechnical =profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentsExperienceInTechnicalDomain(item);
+				}
+				
+			}
+			
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentStaffDetailsDto().isEmpty())
+			{
+				for(ProfileCreationAssessmentStaffDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentStaffDetailsDto())
+				{
+					assessmentStaff = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentStaffDetails(item);
+				}
+			}
+			
 			if (status == -1 || applicationTableStatus == -1 || affiliationInsertionStatus == -1 || directorsAndManagementId == -1 || assessmentBodyRecognition ==-1 || assessmentBodyRegionalOffice ==-1)
 			{
 				returnStatus = -1;
@@ -213,11 +230,11 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					int recognitionABStatus = profileCreationAssessmentBodyGetDataDao.isRecognitionPresent(item.getAssessmentBodyRegistrationId(), item.getAssessmentBodyRecognitionId());
 					if(recognitionABStatus == 0)
 					{
-						int insertIntoAssessmentBodyRecognitionStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRecognitions(item);
+						assessmentBodyRecognition = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRecognitions(item);
 					}
 					else if(recognitionABStatus == 1)
 					{
-						int updateIntoAssessmentBodyRecognitionStatus = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRecognitions(item);
+						assessmentBodyRecognition = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRecognitions(item);
 					}
 				}
 				
@@ -243,6 +260,53 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				
 			}
 			
+			/*Assessment Body Experience in technical domain details*/
+			
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentsExperienceInTechnicalDomainDto().isEmpty())
+			{
+				
+				for(ProfileCreationAssessmentsExperienceInTechnicalDomainDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentsExperienceInTechnicalDomainDto())
+				{
+					int experienceinTechnical = profileCreationAssessmentBodyGetDataDao.isExperiencePresent(item.getAssessmentBodyRegistrationId(), item.getAssessmentExperienceId());
+					if(experienceinTechnical == 0)
+					{
+						LOGGER.debug("Experience does not exist, need to create new entry in database");
+						assessmentBodyExperienceinTechnical =profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentsExperienceInTechnicalDomain(item);
+						
+					}
+					else if(experienceinTechnical == 1)
+					{
+						LOGGER.debug("Experience exists, need to update in database");
+						assessmentBodyExperienceinTechnical = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentsExperienceInTechnicalDomain(item);
+					}
+					else
+					{
+						LOGGER.error("An error occured while finding if experience of assement already exists in database");
+					}
+					
+				}
+				
+			}
+			
+			/* Assessment Staff*/
+			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentStaffDetailsDto().isEmpty())
+			{
+				for(ProfileCreationAssessmentStaffDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentStaffDetailsDto())
+				{
+					int assessmentStaffPresent = profileCreationAssessmentBodyGetDataDao.isStaffPresent(item.getAssessmentBodyRegistrationId(), item.getAssessmentStaffId());
+					if(assessmentStaffPresent == 0)
+					{
+						assessmentStaff = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentStaffDetails(item);
+					}
+					else if(assessmentStaffPresent == 1)
+					{
+						assessmentStaff = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentStaffDetails(item);
+					}
+							
+				}
+			}
+			
+			
 			/* Return status as -1 */
 			if (applicationTableStatus == -1 || status == -1 || assessmentBodyRegionalOffice == -1)
 			{
@@ -251,33 +315,6 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		}
 		
 		return returnStatus;
-	}
-
-	
-	private void SaveAssessmentBodyRegistrationData(ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto)
-	{
-		//profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyRegistrationDetailsDto, getPaths)
-	}
-	private void SaveAssessmentBodyRecognitionData(Collection<ProfileCreationAssessmentBodyRecognitionsDto> profileCreationAssessmentBodyRecognitionsDto)
-	{
-		
-	}
-	
-	private void SaveAssessmentBodyManagmentStaffData(Collection<ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto> ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto)
-	{
-		
-	}
-	private void SaveAssessmentBodyAssessmentStaffData(Collection<ProfileCreationAssessmentStaffDetailsDto> ProfileCreationAssessmentStaffDetailsDto)
-	{
-		
-	}
-	private void SaveAssessmentBodyExperienceInTechnicalDomainData()
-	{
-		
-	}
-	private void SaveAssessmentBodyRegionalOfficeData()
-	{
-		
 	}
 
 }

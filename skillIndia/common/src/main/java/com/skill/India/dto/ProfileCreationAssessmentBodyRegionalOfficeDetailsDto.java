@@ -26,11 +26,12 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 	 * @param pincode
 	 * @param contactNumber
 	 * @param alternateContactNumber
+	 * @param isActive
 	 */
 	public ProfileCreationAssessmentBodyRegionalOfficeDetailsDto(
 			String regionalOfficeId, String assessmentBodyRegistrationId,
 			String address, String state, String pincode, String contactNumber,
-			String alternateContactNumber) {
+			String alternateContactNumber, Boolean isActive) {
 		super();
 		this.regionalOfficeId = regionalOfficeId;
 		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
@@ -39,6 +40,7 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 		this.pincode = pincode;
 		this.contactNumber = contactNumber;
 		this.alternateContactNumber = alternateContactNumber;
+		this.isActive = isActive;
 	}
 	/**
 	 * @return the regionalOfficeId

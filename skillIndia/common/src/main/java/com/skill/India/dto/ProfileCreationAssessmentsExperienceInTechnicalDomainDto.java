@@ -6,6 +6,7 @@ public class ProfileCreationAssessmentsExperienceInTechnicalDomainDto {
 	private String assessmentBodyRegistrationId;
 	private String domain;
 	private String numberOfAssessmentsDone;
+	private Boolean isActive;
 	
 	
 	/**
@@ -19,15 +20,17 @@ public class ProfileCreationAssessmentsExperienceInTechnicalDomainDto {
 	 * @param assessmentBodyRegistrationId
 	 * @param domain
 	 * @param numberOfAssessmentsDone
+	 * @param isActive
 	 */
 	public ProfileCreationAssessmentsExperienceInTechnicalDomainDto(
 			String assessmentExperienceId, String assessmentBodyRegistrationId,
-			String domain, String numberOfAssessmentsDone) {
+			String domain, String numberOfAssessmentsDone, Boolean isActive) {
 		super();
 		this.assessmentExperienceId = assessmentExperienceId;
 		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
 		this.domain = domain;
 		this.numberOfAssessmentsDone = numberOfAssessmentsDone;
+		this.isActive = isActive;
 	}
 	/**
 	 * @return the assessmentExperienceId
@@ -76,6 +79,12 @@ public class ProfileCreationAssessmentsExperienceInTechnicalDomainDto {
 	 */
 	public void setNumberOfAssessmentsDone(String numberOfAssessmentsDone) {
 		this.numberOfAssessmentsDone = numberOfAssessmentsDone;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 

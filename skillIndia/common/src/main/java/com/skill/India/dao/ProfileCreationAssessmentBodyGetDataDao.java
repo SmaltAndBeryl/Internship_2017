@@ -142,8 +142,9 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 			String recognitionNumber = resultSet.getString("recognitionNumber");
 			String yearOfRecognition = resultSet.getString("yearOfRecognition");
 			String validityOfRecognition = resultSet.getString("validityOfRecognition");
+			Boolean isActive = resultSet.getBoolean("isActive");
 				return new ProfileCreationAssessmentBodyRecognitionsDto(assessmentBodyRecognitionId,assessmentBodyRegistrationId,nameOfRecognitionBody,
-						recognitionNumber,yearOfRecognition,validityOfRecognition);
+						recognitionNumber,yearOfRecognition,validityOfRecognition, isActive);
 		}
 
 }
@@ -179,8 +180,9 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 			String assessmentBodyRegistrationId = resultSet.getString("assessmentBodyRegistrationId");
 			String domain = resultSet.getString("domain");
 			String numberOfAssessmentsDone = resultSet.getString("numberOfAssessmentsDone");
+			Boolean isActive = resultSet.getBoolean("isActive");
 				return new ProfileCreationAssessmentsExperienceInTechnicalDomainDto(assessmentExperienceId,assessmentBodyRegistrationId,
-						domain,numberOfAssessmentsDone);
+						domain,numberOfAssessmentsDone, isActive);
 		}
 
 }
@@ -266,9 +268,10 @@ private static final ProfileCreationAssessmentStaffDetailsRowMapper ROW_MAPPER_A
 			String experience = resultSet.getString("experience");
 			String cVPath = resultSet.getString("cVPath");
 			String certificatePath = resultSet.getString("certificatePath");
+			Boolean isActive = resultSet.getBoolean("isActive");
 				return new ProfileCreationAssessmentStaffDetailsDto(assessmentStaffId,assessmentBodyRegistrationId,
 						name,jobRoleCode,designation,contactNumber,emailId,state,city,educationalQualification,
-						experience,cVPath,certificatePath);
+						experience,cVPath,certificatePath, isActive);
 		}
 
 }
@@ -308,8 +311,9 @@ private static final ProfileCreationAssessmentBodyRegionalOfficeDetailsRowMapper
 			String pincode = resultSet.getString("pincode");
 			String contactNumber = resultSet.getString("contactNumber");
 			String alternateContactNumber = resultSet.getString("alternateContactNumber");
+			Boolean isActive = resultSet.getBoolean("isActive");
 			return new ProfileCreationAssessmentBodyRegionalOfficeDetailsDto(regionalOfficeId,assessmentBodyRegistrationId,
-					address,state,pincode,contactNumber,alternateContactNumber);
+					address,state,pincode,contactNumber,alternateContactNumber, isActive);
 		}
 
 }
@@ -431,6 +435,55 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		return status;
 	}
 	
+	public int isExperiencePresent(String assessmentBodyRegistrationId, String assessmentExperienceId)
+	{
+		int status =0;
+		try
+		{
+			Map<String,Object> parameters = new HashMap<String,Object>();
+			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
+			parameters.put("assessmentExperienceId", assessmentExperienceId);
+			status = getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsAssessmentExperiencePresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("An exception occured while checking if experience of assessment body is present or not " + e);
+			status =-1;
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while checking if experience of assessment body is present or not " + e);
+			status =-2;
+		}
+		;
+		
+		return status;
+	}
+	
+	public int isStaffPresent(String assessmentBodyRegistrationId, String assessmentStaffId)
+	{
+		int status =0;
+		try
+		{
+			Map<String,Object> parameters = new HashMap<String,Object>();
+			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
+			parameters.put("assessmentStaffId", assessmentStaffId);
+			status = getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsAssessmentStaffPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("An exception occured while checking if assessment staff of assessment body is present or not " + e);
+			status =-1;
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while checking if assessment staff of assessment body is present or not " + e);
+			status =-2;
+		}
+		;
+		
+		return status;
+	}
 	
 	public static class ProfileCreationAssessmentBodyAffiliationDetailsRowMapper implements RowMapper<ProfileCreationAssessmentBodyAffiliationDetailsDto> {
 

@@ -107,20 +107,22 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 	
 	public int insertIntoAssessmentsExperienceInTechnicalDomain(ProfileCreationAssessmentsExperienceInTechnicalDomainDto profileCreationAssessmentsExperienceInTechnicalDomainDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
 			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentsExperienceInTechnicalDomainDto.getAssessmentBodyRegistrationId());
 			parameters.put("domain",profileCreationAssessmentsExperienceInTechnicalDomainDto.getDomain());
 			parameters.put("numberOfAssessmentsDone",profileCreationAssessmentsExperienceInTechnicalDomainDto.getNumberOfAssessmentsDone());			
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentsExperienceInTechnicalDomain(),parameters);
+			parameters.put("isActive",profileCreationAssessmentsExperienceInTechnicalDomainDto.getIsActive());
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentsExperienceInTechnicalDomain(),parameters);
 
 		}catch(Exception e)
 		{
-			e.printStackTrace();
-			return -1;
+			LOGGER.error("An exception occured while inserting experience of Assessment Body " + e);
+			status = -1;
 		}
-		
+		return status;
 	}
 	
 	/*
@@ -175,12 +177,13 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("experience",profileCreationAssessmentStaffDetailsDto.getExperience());
 			parameters.put("cVPath",profileCreationAssessmentStaffDetailsDto.getcVPath());
 			parameters.put("certificatePath",profileCreationAssessmentStaffDetailsDto.getCertificatePath());
+			parameters.put("isActive",profileCreationAssessmentStaffDetailsDto.getIsActive());
 			
 			status = insert(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentStaffDetails(),parameters, "assessmentStaffId");
 		}
 		catch(Exception e)
 		{
-			LOGGER.error("An exception occured" + e);
+			LOGGER.error("An exception occured while inserting assessment staff " + e);
 			status = -1;
 		}
 		return status;

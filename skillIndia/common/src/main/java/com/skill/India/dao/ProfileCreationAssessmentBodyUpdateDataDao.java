@@ -104,20 +104,22 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 	
 	public int updateIntoAssessmentsExperienceInTechnicalDomain(ProfileCreationAssessmentsExperienceInTechnicalDomainDto profileCreationAssessmentsExperienceInTechnicalDomainDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
 			parameters.put("assessmentExperienceId",profileCreationAssessmentsExperienceInTechnicalDomainDto.getAssessmentExperienceId());
 			parameters.put("domain",profileCreationAssessmentsExperienceInTechnicalDomainDto.getDomain());
-			parameters.put("numberOfAssessmentsDone",profileCreationAssessmentsExperienceInTechnicalDomainDto.getNumberOfAssessmentsDone());			
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentsExperienceInTechnicalDomain(),parameters);
+			parameters.put("numberOfAssessmentsDone",profileCreationAssessmentsExperienceInTechnicalDomainDto.getNumberOfAssessmentsDone());
+			parameters.put("isActive", profileCreationAssessmentsExperienceInTechnicalDomainDto.getIsActive());
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentsExperienceInTechnicalDomain(),parameters);
 
 		}catch(Exception e)
 		{
-			e.printStackTrace();
-			return -1;
+			LOGGER.error("An exception occured while updating experience of assessment body " + e);
+			status = -1;
 		}
-		
+		return status;
 	}
 	
 	/*
@@ -156,6 +158,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 	
 	public int updateIntoAssessmentStaffDetails(ProfileCreationAssessmentStaffDetailsDto profileCreationAssessmentStaffDetailsDto)
 	{
+		int status = 0;
 		try{
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
@@ -171,13 +174,17 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			parameters.put("experience",profileCreationAssessmentStaffDetailsDto.getExperience());
 			parameters.put("cVPath",profileCreationAssessmentStaffDetailsDto.getcVPath());
 			parameters.put("certificatePath",profileCreationAssessmentStaffDetailsDto.getCertificatePath());
-			return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentStaffDetails(),parameters);
+			parameters.put("isActive",profileCreationAssessmentStaffDetailsDto.getIsActive());
+			
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateIntoAssessmentStaffDetails(),parameters);
 
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
 		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while updating Assessment Body Staff" + e);
+			status = -1;
+		}
+		return status;
 	}
 	
 	/*

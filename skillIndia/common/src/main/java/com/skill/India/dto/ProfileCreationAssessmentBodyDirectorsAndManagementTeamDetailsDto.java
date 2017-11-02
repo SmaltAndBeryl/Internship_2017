@@ -31,6 +31,7 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	 * @param educationalQualification
 	 * @param experience
 	 * @param cVPath
+	 * @param isActive
 	 */
 	public ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto(
 			String directorsAndManagementId,

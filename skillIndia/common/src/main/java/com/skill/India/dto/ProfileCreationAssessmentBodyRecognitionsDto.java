@@ -24,12 +24,13 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 	 * @param recognitionNumber
 	 * @param yearOfRecognition
 	 * @param validityOfRecognition
+	 * @param isActive
 	 */
 	public ProfileCreationAssessmentBodyRecognitionsDto(
 			String assessmentBodyRecognitionId,
 			String assessmentBodyRegistrationId, String nameOfRecognitionBody,
 			String recognitionNumber, String yearOfRecognition,
-			String validityOfRecognition) {
+			String validityOfRecognition, Boolean isActive) {
 		super();
 		this.assessmentBodyRecognitionId = assessmentBodyRecognitionId;
 		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
@@ -37,6 +38,7 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 		this.recognitionNumber = recognitionNumber;
 		this.yearOfRecognition = yearOfRecognition;
 		this.validityOfRecognition = validityOfRecognition;
+		this.isActive = isActive;
 	}
 	/**
 	 * @return the assessmentBodyRecognitionId
