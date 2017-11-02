@@ -466,6 +466,7 @@ assessmentExperienceId int(5) primary key auto_increment,
 assessmentBodyRegistrationId int(5),
 domain varchar(50),
 numberOfAssessmentsDone	int(5),
+isActive boolean,
 foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
 
@@ -504,6 +505,7 @@ educationalQualification varchar(100),
 experience int(3),
 cVPath varchar(200),
 certificatePath	varchar(200),
+isActive boolean,
 foreign key(assessmentBodyRegistrationId) references AssessmentBodyRegistrationDetails(assessmentBodyRegistrationId)
 );
 
