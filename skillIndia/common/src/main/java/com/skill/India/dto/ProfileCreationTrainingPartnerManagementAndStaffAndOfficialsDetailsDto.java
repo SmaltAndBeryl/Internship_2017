@@ -15,6 +15,7 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	private String experience;
 	private String cVPath;
 	private String certificatePath;
+	private Boolean isActive;
 	
 	
 	
@@ -36,13 +37,14 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	 * @param experience
 	 * @param cVPath
 	 * @param certificatePath
+	 * @param isActive
 	 */
 	public ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(
 			String managementAndStaffId,String trainingPartnerRegistrationId,String trainingPartnerCenterId,
 			String type, String name, String designation, String emailId,
 			String contactNumber, String educationalQualification,
 			String regularOrVisiting, String experience, String cVPath,
-			String certificatePath) {
+			String certificatePath,Boolean isActive) {
 		super();
 		this.managementAndStaffId=managementAndStaffId;
 		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
@@ -57,6 +59,7 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 		this.experience = experience;
 		this.cVPath = cVPath;
 		this.certificatePath = certificatePath;
+		this.isActive = isActive;
 	}
 	
 	
@@ -217,6 +220,12 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	 */
 	public void setCertificatePath(String certificatePath) {
 		this.certificatePath = certificatePath;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	

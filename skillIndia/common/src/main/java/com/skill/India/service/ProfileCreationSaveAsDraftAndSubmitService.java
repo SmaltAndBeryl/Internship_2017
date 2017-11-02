@@ -38,6 +38,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerOrganizationDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+import com.skill.India.dto.ProfileCreationTrainingPartnerWrapperDto;
 
 @Service
 public class ProfileCreationSaveAsDraftAndSubmitService {
@@ -316,5 +317,30 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		
 		return returnStatus;
 	}
+	
+	public int saveTrainingPartner(ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
+	{
+		int status =0;
+		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
+		if(userExists == -1)
+		{
+			int applicationTableStatus =0;
+			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
+			if(applicationTableStatus == 0)
+			{
+				
+			}
+		}
+		else if(userExists == -2)
+		{
+			
+		}
+		else 
+		{
+			
+		}
+		return status;
+	}
+	
 
 }

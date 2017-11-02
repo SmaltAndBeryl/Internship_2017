@@ -8,6 +8,7 @@ public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
 	private String recognitionNumber;
 	private String yearOfRecognition;
 	private String validityOfRecognition;
+	private Boolean isActive;
 	
 	/**
 	 * 
@@ -20,11 +21,12 @@ public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
 	 * @param recognitionNumber
 	 * @param yearOfRecognition
 	 * @param validityOfRecognition
+	 * @param isActive
 	 */
 	public ProfileCreationTrainingPartnerInstituteRecognitionDto(
 			String instituteRecognitionId, String trainingPartnerRegistrationId,
 			String nameOfRecognizingBody, String recognitionNumber,
-			String yearOfRecognition, String validityOfRecognition) {
+			String yearOfRecognition, String validityOfRecognition, Boolean isActive) {
 		super();
 		this.instituteRecognitionId=instituteRecognitionId;
 		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
@@ -32,6 +34,7 @@ public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
 		this.recognitionNumber = recognitionNumber;
 		this.yearOfRecognition = yearOfRecognition;
 		this.validityOfRecognition = validityOfRecognition;
+		this.setIsActive(isActive);
 	}
 	
 	
@@ -108,6 +111,12 @@ public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
 	 */
 	public void setValidityOfRecognition(String validityOfRecognition) {
 		this.validityOfRecognition = validityOfRecognition;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	

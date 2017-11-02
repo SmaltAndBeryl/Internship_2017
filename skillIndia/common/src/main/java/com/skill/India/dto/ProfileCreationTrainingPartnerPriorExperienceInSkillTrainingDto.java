@@ -7,6 +7,7 @@ public class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto {
 	private String courseName;
 	private String numberOfBatchesPerYear;
 	private String numberOfStudentsInEachBatch;
+	private Boolean isActive;
 	
 	
 	/**
@@ -19,18 +20,20 @@ public class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto {
 	 * @param courseName
 	 * @param numberOfBatchesPerYear
 	 * @param numberOfStudentsInEachBatch
+	 * @param isActive
 	 */
 	public ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto(
 			String priorExperienceInSkillTrainingId,
 			String trainingPartnerRegistrationId,
 			String courseName, String numberOfBatchesPerYear,
-			String numberOfStudentsInEachBatch) {
+			String numberOfStudentsInEachBatch, Boolean isActive) {
 		super();
 		this.courseName = courseName;
 		this.numberOfBatchesPerYear = numberOfBatchesPerYear;
 		this.numberOfStudentsInEachBatch = numberOfStudentsInEachBatch;
 		this.priorExperienceInSkillTrainingId=priorExperienceInSkillTrainingId;
 		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
+		this.isActive = isActive;
 	}
 	
 	
@@ -96,6 +99,12 @@ public class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto {
 	 */
 	public void setNumberOfStudentsInEachBatch(String numberOfStudentsInEachBatch) {
 		this.numberOfStudentsInEachBatch = numberOfStudentsInEachBatch;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	

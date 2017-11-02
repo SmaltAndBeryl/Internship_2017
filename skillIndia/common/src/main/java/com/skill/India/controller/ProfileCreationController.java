@@ -16,6 +16,7 @@ import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.ProfileCreationABTPDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyWrapperDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerDto;
+import com.skill.India.dto.ProfileCreationTrainingPartnerWrapperDto;
 import com.skill.India.service.ProfileCreationGetDataService;
 import com.skill.India.service.ProfileCreationSaveAsDraftAndSubmitService;
 import com.skill.India.service.ProfileCreationTrainingPartnerService;
@@ -103,7 +104,13 @@ public class ProfileCreationController {
 		return status;
 		
 	}
-
+	@RequestMapping(value="/saveAsDraftAndSubmitTP", method = RequestMethod.POST)
+	public int saveAsDraftTP(@RequestBody ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
+	{
+		int status = profileCreationSaveAsDraftAndSubmitService.saveTrainingPartner(profileCreationTrainingPartnerWrapperDto);
+		return status;
+		
+	}
 	
 }
 

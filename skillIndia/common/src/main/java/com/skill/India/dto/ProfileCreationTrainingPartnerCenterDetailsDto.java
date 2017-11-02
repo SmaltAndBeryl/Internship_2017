@@ -52,10 +52,7 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	private String safeCustodyOfStudentDocuments;
 	private String studentAgreementWithInstitution;
 	private String remarksOnStudentAdmissionDetails;
-	
-	
-	
-	
+	private Boolean isActive;
 	
 	/**
 	 * 
@@ -114,6 +111,7 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	 * @param remarksOnStudentAdmissionDetails
 	 * @param trainingPartnerRegistrationId
 	 * @param trainingPartnerCenterId
+	 * @param isActive
 	 */
 	public ProfileCreationTrainingPartnerCenterDetailsDto(
 			String trainingPartnerCenterId,
@@ -151,7 +149,8 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 			String documentedPolicyAndProcedures, String concessionPolicy,
 			String safeCustodyOfStudentDocuments,
 			String studentAgreementWithInstitution,
-			String remarksOnStudentAdmissionDetails
+			String remarksOnStudentAdmissionDetails,
+			Boolean isActive
 			) {
 		super();
 		this.nameOfCenter = nameOfCenter;
@@ -204,6 +203,7 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 		this.remarksOnStudentAdmissionDetails = remarksOnStudentAdmissionDetails;
 		this.trainingPartnerCenterId=trainingPartnerCenterId;
 		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
+		this.isActive = isActive;
 		
 	}
 	
@@ -824,6 +824,12 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	public void setRemarksOnStudentAdmissionDetails(
 			String remarksOnStudentAdmissionDetails) {
 		this.remarksOnStudentAdmissionDetails = remarksOnStudentAdmissionDetails;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	

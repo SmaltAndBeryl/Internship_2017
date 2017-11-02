@@ -195,6 +195,7 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 			String safeCustodyOfStudentDocuments = resultSet.getString("safeCustodyOfStudentDocuments");
 			String studentAgreementWithInstitution = resultSet.getString("studentAgreementWithInstitution");
 			String remarksOnStudentAdmissionDetails = resultSet.getString("remarksOnStudentAdmissionDetails");
+			Boolean isActive = resultSet.getBoolean("isActive");
 			return new ProfileCreationTrainingPartnerCenterDetailsDto(trainingPartnerCenterId,trainingPartnerRegistrationId,nameOfCenter,numberOfPermanentOfficeManager,numberOftemporaryOfficeManager,
 				numberOfPermanentOfficeStaff,numberOfTemporaryOfficeStaff,numberOfPermanentLabAssistants,numberOfTemporaryLabAssistants,
 				numberOfPermanentAccountants,numberOfTemporaryAccountants,numberOfPermanentSupportStaff,numberOfTemporarySupportStaff,
@@ -204,7 +205,7 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 				numberOfTechnicalBooks,numberOfNonTechnicalBooks,numberOfMagazines,numberOfDailies,remarksOnInfrastructureDetails,
 				sufficientClassroomIlluminationLevel,sufficientClassroomVentilationLevel,sufficientCenterCleanliness,centerWeatherProtected,
 				remarksOnLearningEnviornment,printedBrochureOrProspectus,documentedPolicyAndProcedures,concessionPolicy,safeCustodyOfStudentDocuments,
-				studentAgreementWithInstitution,remarksOnStudentAdmissionDetails);
+				studentAgreementWithInstitution,remarksOnStudentAdmissionDetails,isActive);
 		}
 
 }
@@ -241,7 +242,8 @@ private static final ProfileCreationTrainingPartnerInstituteGrantRowMapper ROW_M
 			String nameOfMinistry = resultSet.getString("nameOfMinistry");
 			String natureOfWork = resultSet.getString("natureOfWork");
 			String remarks = resultSet.getString("remarks");
-			return new ProfileCreationTrainingPartnerInstituteGrantDto(instituteGrantId,trainingPartnerRegistrationId,nameOfMinistry,natureOfWork,remarks);
+			Boolean isActive = resultSet.getBoolean("isActive");
+			return new ProfileCreationTrainingPartnerInstituteGrantDto(instituteGrantId,trainingPartnerRegistrationId,nameOfMinistry,natureOfWork,remarks,isActive);
 		}
 
 }
@@ -277,7 +279,8 @@ private static final ProfileCreationTrainingPartnerInstituteRecognitionRowMapper
 			String recognitionNumber = resultSet.getString("recognitionNumber");
 			String yearOfRecognition = resultSet.getString("yearOfRecognition");
 			String validityOfRecognition = resultSet.getString("validityOfRecognition");
-			return new ProfileCreationTrainingPartnerInstituteRecognitionDto(instituteRecognitionId,trainingPartnerRegistrationId,nameOfRecognizingBody,recognitionNumber,yearOfRecognition,validityOfRecognition);
+			Boolean isActive = resultSet.getBoolean("isActive");
+			return new ProfileCreationTrainingPartnerInstituteRecognitionDto(instituteRecognitionId,trainingPartnerRegistrationId,nameOfRecognizingBody,recognitionNumber,yearOfRecognition,validityOfRecognition,isActive);
 		}
 
 }
@@ -313,7 +316,8 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 			String courseName = resultSet.getString("courseName");
 			String numberOfBatchesPerYear = resultSet.getString("numberOfBatchesPerYear");
 			String numberOfStudentsInEachBatch = resultSet.getString("numberOfStudentsInEachBatch");
-			return new ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto(priorExperienceInSkillTrainingId,trainingPartnerRegistrationId,courseName,numberOfBatchesPerYear,numberOfStudentsInEachBatch);
+			Boolean isActive = resultSet.getBoolean("isActive");
+			return new ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto(priorExperienceInSkillTrainingId,trainingPartnerRegistrationId,courseName,numberOfBatchesPerYear,numberOfStudentsInEachBatch,isActive);
 		}
 
 }
@@ -355,9 +359,10 @@ private static final ProfileCreationTrainingPartnerManagementAndStaffAndOfficial
 			String regularOrVisiting = resultSet.getString("regularOrVisiting");;
 			String experience = resultSet.getString("experience");;
 			String cVPath = resultSet.getString("cVPath");;
-			String certificatePath = resultSet.getString("certificatePath");;
+			String certificatePath = resultSet.getString("certificatePath");
+			Boolean isActive = resultSet.getBoolean("isActive");
 			return new ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(managementAndStaffId,trainingPartnerRegistrationId,trainingPartnerCenterId,type,name,designation,emailId,contactNumber,
-					educationalQualification,regularOrVisiting,experience,cVPath,certificatePath);
+					educationalQualification,regularOrVisiting,experience,cVPath,certificatePath,isActive);
 		}
 
 }	

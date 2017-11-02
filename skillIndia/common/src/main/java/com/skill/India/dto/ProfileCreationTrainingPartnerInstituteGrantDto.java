@@ -7,6 +7,7 @@ public class ProfileCreationTrainingPartnerInstituteGrantDto {
 	private String nameOfMinistry;
 	private String natureOfWork;
 	private String remarks;
+	private Boolean isActive;
 	
 	
 	/**
@@ -21,13 +22,14 @@ public class ProfileCreationTrainingPartnerInstituteGrantDto {
 	 * @param remarks
 	 */
 	public ProfileCreationTrainingPartnerInstituteGrantDto(String instituteGrantId, String trainingPartnerRegistrationId ,String nameOfMinistry,
-			String natureOfWork, String remarks) {
+			String natureOfWork, String remarks, Boolean isActive) {
 		super();
 		this.instituteGrantId=instituteGrantId;
 		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
 		this.nameOfMinistry = nameOfMinistry;
 		this.natureOfWork = natureOfWork;
 		this.remarks = remarks;
+		this.isActive = isActive;
 	}
 	
 
@@ -91,6 +93,12 @@ public class ProfileCreationTrainingPartnerInstituteGrantDto {
 	 */
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	
 	
