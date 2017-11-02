@@ -7,19 +7,19 @@ ProfileCreationTrainingPartner:
   select * from TrainingPartnerOrganizationDetails where applicationId=:applicationId;
 
  getDataFromTrainingPartnerCenterLevelDetails: >
-  select * from TrainingPartnerCenterLevelDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+  select * from TrainingPartnerCenterLevelDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1;
 
  getDataFromTrainingPartnerInstituteGrant: >
-  select * from TrainingPartnerInstituteGrant where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+  select * from TrainingPartnerInstituteGrant where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive=1;
 
  getDataFromTrainingPartnerInstituteRecognition: >
-  select * from TrainingPartnerInstituteRecognition where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+  select * from TrainingPartnerInstituteRecognition where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1;
 
  getDataFromTrainingPartnerPriorExperienceInSkillTraining: >
-  select * from TrainingPartnerPriorExperienceInSkillTraining where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+  select * from TrainingPartnerPriorExperienceInSkillTraining where trainingPartnerRegistrationId=:trainingPartnerRegistrationId isActive =1;
 
  getDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails: >
-  select * from TrainingPartnerManagementAndStaffAndOfficialsDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId;
+  select * from TrainingPartnerManagementAndStaffAndOfficialsDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId isActive =1;
 
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
