@@ -356,6 +356,7 @@ concessionPolicy varchar(3),
 safeCustodyOfStudentDocuments varchar(3),
 studentAgreementWithInstitution varchar(3),
 remarksOnStudentAdmissionDetails varchar(1000),
+isActive boolean,
 foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
 );
 
@@ -368,6 +369,7 @@ trainingPartnerRegistrationId int(5),
 nameOfMinistry varchar(100),
 natureOfWork varchar(100),
 remarks varchar(1000),
+isActive boolean,
 foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
 );
 
@@ -381,6 +383,7 @@ nameOfRecognizingBody varchar(200),
 recognitionNumber varchar(50),
 yearOfRecognition int(4),
 validityOfRecognition varchar(50),
+isActive boolean,
 foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
 );
 
@@ -393,6 +396,7 @@ trainingPartnerRegistrationId int(5),
 courseName varchar(200),
 numberOfBatchesPerYear int(4),
 numberOfStudentsInEachBatch int(4),
+isActive boolean,
 foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
 
 );
@@ -413,6 +417,7 @@ regularOrVisiting varchar(20),
 experience int(3),
 cVPath varchar(200),
 certificatePath varchar(200),
+isActive boolean,
 foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId),
 foreign key(trainingPartnerCenterId) references TrainingPartnerCenterLevelDetails(trainingPartnerCenterId)
 );
