@@ -10,13 +10,13 @@ ProfileCreationAssessmentBody:
   select * from AssessmentBodyRecognitions where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
 
  getDataFromAssessmentsExperienceInTechnicalDomain: >
-  select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+  select * from AssessmentsExperienceInTechnicalDomain where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
  
  getDataFromAssessmentBodyDirectorsAndManagementTeamDetails: > 
   select * from AssessmentBodyDirectorsAndManagementTeamDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
 
  getDataFromAssessmentStaffDetails: >
-  select * from AssessmentStaffDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId ;
+  select * from AssessmentStaffDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
  
  getDataFromAssessmentBodyRegionalOfficeDetails: > 
   select * from AssessmentBodyRegionalOfficeDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
@@ -35,38 +35,44 @@ ProfileCreationAssessmentBody:
  
  isRegionalOfficePresent: >
   SELECT EXISTS(SELECT * FROM scgj.assessmentbodyregionalofficedetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and regionalOfficeId=:regionalOfficeId);
+  
+ isAssessmentExperiencePresent: >
+     SELECT EXISTS(SELECT * FROM scgj.assessmentsexperienceintechnicaldomain WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and assessmentExperienceId=:assessmentExperienceId);
+ 
+ isAssessmentStaffPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.assessmentstaffdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and assessmentStaffId=:assessmentStaffId);
  
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
      values(:applicationState,:activeFlag,:dateOfSubmission,:userId)
-
+ 
  insertIntoAssessmentBodyRegistrationDetails: >
   INSERT INTO `scgj`.`assessmentbodyregistrationdetails` (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `priorAssessmentExperience`, `panNumber`, `tanNumber`, `insituteReceivedAnyRecognition`, `numberOfTechnicalAssessors`, `numberOfNonTechnicalAssessors`, `affiliatedToAnySectorSkillCouncil`) VALUES 
   (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:priorAssessmentExperience,:panNumber, :tanNumber, :insituteReceivedAnyRecognition,:numberOfTechnicalAssessors,:numberOfNonTechnicalAssessors,:affiliatedToAnySectorSkillCouncil);
 
 
  insertIntoAssessmentBodyRecognitions: >
-  INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `nameOfRecognitionBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`, `isActive`) VALUES (:assessmentBodyRegistrationId,:nameOfRecognitionBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition, :isActive);
+  INSERT INTO `scgj`.`assessmentbodyrecognitions` (`assessmentBodyRegistrationId`, `nameOfRecognitionBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`, `isActive`) VALUES (:assessmentBodyRegistrationId,:nameOfRecognitionBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition,:isActive);
 
 
  insertIntoAssessmentsExperienceInTechnicalDomain: >
-  INSERT INTO `scgj`.`assessmentsexperienceintechnicaldomain` (`assessmentBodyRegistrationId`, `domain`, `numberOfAssessmentsDone`) VALUES (:assessmentBodyRegistrationId,:domain,:numberOfAssessmentsDone);
+  INSERT INTO `scgj`.`assessmentsexperienceintechnicaldomain` (`assessmentBodyRegistrationId`, `domain`, `numberOfAssessmentsDone`, `isActive`) VALUES (:assessmentBodyRegistrationId,:domain,:numberOfAssessmentsDone,:isActive);
 
 
  insertIntoAssessmentBodyDirectorsAndManagementTeamDetails: >
-  INSERT INTO `scgj`.`assessmentbodydirectorsandmanagementteamdetails` (`assessmentBodyRegistrationId`, `name`, `designation`, `contactNumber`, `emailId`, `educationalQualification`, `experience`, `cVPath`) VALUES (:assessmentBodyRegistrationId,:name,:designation,:contactNumber,:emailId,:educationalQualification,:experience,:cVPath);
+  INSERT INTO `scgj`.`assessmentbodydirectorsandmanagementteamdetails` (`assessmentBodyRegistrationId`, `name`, `designation`, `contactNumber`, `emailId`, `educationalQualification`, `experience`, `cVPath`, `isActive`) VALUES (:assessmentBodyRegistrationId,:name,:designation,:contactNumber,:emailId,:educationalQualification,:experience,:cVPath,:isActive);
 
 
  insertIntoAssessmentStaffDetails: >
-  INSERT INTO `scgj`.`assessmentstaffdetails` (`assessmentBodyRegistrationId`, `name`, `jobRoleCode`, `designation`, `contactNumber`, `emailId`, `state`, `city`, `educationalQualification`, `experience`, `cVPath`, `certificatePath`) VALUES(:assessmentBodyRegistrationId,:name,:jobRoleCode,:designation,:contactNumber,:emailId,:state,:city,:educationalQualification,:experience,:cVPath,:certificatePath);
+  INSERT INTO `scgj`.`assessmentstaffdetails` (`assessmentBodyRegistrationId`, `name`, `jobRoleCode`, `designation`, `contactNumber`, `emailId`, `state`, `city`, `educationalQualification`, `experience`, `cVPath`, `certificatePath`, `isActive`) VALUES(:assessmentBodyRegistrationId,:name,:jobRoleCode,:designation,:contactNumber,:emailId,:state,:city,:educationalQualification,:experience,:cVPath,:certificatePath,:isActive);
 
 
  insertIntoAssessmentBodyRegionalOfficeDetails: >
-  INSERT INTO `scgj`.`assessmentbodyregionalofficedetails` (`assessmentBodyRegistrationId`, `address`, `state`, `pincode`, `contactNumber`, `alternateContactNumber`, `isActive`) VALUES (:assessmentBodyRegistrationId,:address,:state,:pincode,:contactNumber,:alternateContactNumber, :isActive);
+  INSERT INTO `scgj`.`assessmentbodyregionalofficedetails` (`assessmentBodyRegistrationId`, `address`, `state`, `pincode`, `contactNumber`, `alternateContactNumber`, `isActive`) VALUES (:assessmentBodyRegistrationId,:address,:state,:pincode,:contactNumber,:alternateContactNumber,:isActive);
 
 
  insertIntoAssessmentBodyAffiliationDetails: >
-  INSERT INTO `scgj`.`assessmentbodyaffiliationdetails` (`assessmentBodyRegistrationId`, `nameOfSectorSkillCouncil`, `isActive`) VALUES (:assessmentBodyRegistrationId,:nameOfSectorSkillCouncil, :isActive);
+  INSERT INTO `scgj`.`assessmentbodyaffiliationdetails` (`assessmentBodyRegistrationId`, `nameOfSectorSkillCouncil`, `isActive`) VALUES (:assessmentBodyRegistrationId,:nameOfSectorSkillCouncil,:isActive);
 
  updateDataInApplication: >
   update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
@@ -102,13 +108,14 @@ ProfileCreationAssessmentBody:
   `recognitionNumber`=:recognitionNumber, 
   `yearOfRecognition`=:yearOfRecognition, 
   `validityOfRecognition`=:validityOfRecognition,
-  `isActive` =:isActive
+  `isActive`=:isActive
   WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId and `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId;
 
 
  updateIntoAssessmentsExperienceInTechnicalDomain: >
   UPDATE `scgj`.`assessmentsexperienceintechnicaldomain` SET `domain`=:domain, 
-  `numberOfAssessmentsDone`=:numberOfAssessmentsDone
+  `numberOfAssessmentsDone`=:numberOfAssessmentsDone,
+  `isActive`=:isActive
   WHERE `assessmentExperienceId`=:assessmentExperienceId;
 
 
@@ -119,7 +126,8 @@ ProfileCreationAssessmentBody:
   `emailId`=:emailId,
   `educationalQualification`=:educationalQualification,
   `experience`=:experience,
-  `cVPath`=:cVPath
+  `cVPath`=:cVPath,
+  `isActive`=:isActive
   WHERE `directorsAndManagementId`=:directorsAndManagementId;
 
 
@@ -134,7 +142,8 @@ ProfileCreationAssessmentBody:
   `educationalQualification`=:educationalQualification, 
   `experience`=:experience, 
   `cVPath`=:cVPath, 
-  `certificatePath`=:certificatePath 
+  `certificatePath`=:certificatePath ,
+  `isActive`=:isActive
   WHERE `assessmentStaffId`=:assessmentStaffId;
 
 

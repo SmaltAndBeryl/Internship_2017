@@ -437,13 +437,40 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         	'isActive' : 1
         }]
         
+        $scope.pcabAssessmentStaff = [{
+        	'assessmentBodyRegistrationId' : '1',
+        	'assessmentStaffId' :'1',
+        	'name' : 'Ruchi',
+        	'jobRoleCode' : '123',
+        	'designation' : 'kjk',
+        	'contactNumber' : '9898989',
+        	'emailId' : 'ruchi@smaltandberyl.com',
+        	'state' : 'Uttar Pradesh',
+        	'city' : 'Noida',
+        	'educationalQualification' : 'B Tech.',
+        	'experience' : '2',
+        	'cVPath' : null,
+        	'certificatePath' : null,
+        	'isActive' : 1
+        }]
+        
+        $scope.pcabTechnicalExperience = [{
+        	'assessmentBodyRegistrationId' : '1',
+        	'assessmentExperienceId' :'1',
+        	'domain' : 'nahi h',
+        	'numberOfAssessmentsDone' : '2',
+        	'isActive' : 1
+        }]
+        
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
         		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.profileCreationAssessmentBodyRegistrationDetailsDto,
         		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.pcabAffiliation,
         		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.pcabManagement,
         		'profileCreationAssessmentBodyRecognitionsDto' : $scope.pcabrecognition,
-        		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.pcabregionalOffice
+        		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.pcabregionalOffice,
+        		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.pcabTechnicalExperience,
+        		'profileCreationAssessmentStaffDetailsDto': $scope.pcabAssessmentStaff
         }
         $scope.ProfileCreationTestDto = {
         		'name' : 'Ruchi'
