@@ -298,10 +298,6 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
 
         console.log("Inside Save as Draft function");
 
-
-        var manageControllerURI = "/saveAsDraftAndSubmit";
-
-
         console.log("The data from the training partner JSON object is ");
         console.log("Scope.data is " + JSON.stringify($scope.trainingPartner));
 
@@ -427,21 +423,112 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         		'TrainingPartnerCenterLevelAHOCSPOCDetails':null,
         		'TrainingPartnerManagementAndStaffAndOfficialsDetails' :null
         }
-        
+        $scope.pctpOrgDetails = {
+        		'trainingPartnerRegistrationId' :'1',
+    			'applicationId' : '2',
+    			'organizationName' : 'Smalt and Beryl',
+    			'sPOCName' : 'Ruchi Pareek',
+    			'address' : 'NH 24, near Vijay Nagar',
+    			'city':'Ghazibad',
+    			'state':'UP',
+    			'pincode':'201301',
+    			'mobileNumber':'87789979',
+    			'alternateMobileNumber':'98000909',
+    			'landlineNumber':'014123234',
+    			'alternateLandlineNumber':'014189890',
+    			'faxNumber':'014189890',
+    			'websites':'www.smaltandberyl.com',
+    			'yearOfEstablishment':'2012',
+    			'qualificationPacks':'abc',
+    			'qualificationPacksAnnexurePath':null,
+    			'nSDCFunded':'no',
+    			'nSDCFundedCertificatePath':null,
+    			'mediumOfInstructions':null,
+    			'selfOwnedInstitution':null,
+    			'selfOwnedInstitutionAnnexurePath':null,
+    			'franchiseOwnedInstitution':null,
+    			'franchiseOwnedInstitutionAnnexurePath':null,
+    			'mobileTrainingInstitution':'3',
+    			'mobileTrainingInstitutionAnnexurePath':null,
+    			'panNumber':'CIXPP90909',
+    			'panNumberPath':null,
+    			'tanNumber':'NI898989',
+    			'tanNumberPath':null,
+    			'turnOverOfInstitution':'56',
+    			'turnOverOfInstitutionBalanceSheetPath':null,
+    			'instituteReceivedAnyGrant':'no',
+    			'instituteReceivedAnyRecognition':'no',
+    			'priorExperienceOfInstitutionInSkillDevelopment':'12',
+    			'trainingStaffDetailsAnnexurePath':null
+        }
+        $scope.pctpCenterDetails =[
+                                   {
+                                	   'trainingPartnerCenterId' :1,
+                                	   'trainingPartnerRegistrationId' : 1,
+                                	   'nameOfCenter' : 'Smalt and beryl business solution center',
+                                	   'numberOfPermanentOfficeManager' : 1,
+                                	   'numberOftemporaryOfficeManager': null,
+                                	   'numberOfPermanentOfficeStaff' : null,
+                                	   'numberOfTemporaryOfficeStaff': 3,
+                                	   'numberOfPermanentLabAssistants' : 4,
+                                	   'numberOfTemporaryLabAssistants' : 56,
+                                	   'numberOfPermanentAccountants' :4,
+                                	   'numberOfTemporaryAccountants' :5,
+                                	   'numberOfPermanentSupportStaff' : 6,
+                                	   'numberOfTemporarySupportStaff' : 0,
+                                	   'numberOfPermanentOtherEmployees' : 8,
+                                	   'numberOfTemporaryOtherEmployees' :0,
+                                	   'areaOfInstitute':345,
+                                	   'buildingType' :self,
+                                	   'sizeOfClassrooms':45,
+                                	   'classroomPicsPath':null,
+                                	   'numberOfClassrooms': null,
+                                	   'sizeOfLabs': null,
+                                	   'labPicsPath': null,
+                                	   'numberOfLabs': 12,
+                                	   'sizeOfWorkshops':null,
+                                	   'workshopPicsPath':null,
+                                	   'numberOfWorkshops' :null,
+                                	   'mandatoryToolKitpresent':null,
+                                	   'mandatoryToolKitAnnexurePath':null,
+                                	   'mandatoryToolKitPicsPath':null,
+                                	   'safeDrinkingWater':null,
+                                	   'powerBackup':1,
+                                	   'separateToilets': 1,
+                                	   'transportFacility':1,
+                                	   'presenceOfLibrary':1,
+                                	   'numberOfTechnicalBooks':120,
+                                	   'numberOfNonTechnicalBooks':5,
+                                	   'numberOfMagazines': 5,
+                                	   'numberOfDailies':3,
+                                	   'remarksOnInfrastructureDetails':6,
+                                	   'sufficientClassroomIlluminationLevel':1,
+                                	   'sufficientClassroomVentilationLevel': 1,
+                                	   'sufficientCenterCleanliness':1,
+                                	   'centerWeatherProtected':1,
+                                	   'remarksOnLearningEnviornment':1,
+                                	   'printedBrochureOrProspectus':1,
+                                	   'documentedPolicyAndProcedures':1,
+                                	   'concessionPolicy':1,
+                                	   'safeCustodyOfStudentDocuments':1,
+                                	   'studentAgreementWithInstitution':1,
+                                	   'remarksOnStudentAdmissionDetails':1,
+                                	   'isActive':1
+                                   }
+                                 ]
         $scope.postValue = {
             'type' : 'Draft',
-            'userData' : $scope.trainingPartnerUserData,
-            'userUploads' :  $scope.trainingPartnerUserUploads,
-            'userDeletes' : $scope.trainingPartnerUserDeletes
+            'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+            'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.pctpCenterDetails
         }
-//     
-
-        console.log("The values to be posted are " + JSON.stringify($scope.postValue));
+        var saveUrl = '/saveAsDraftAndSubmitTP';
+        var saveMethod = 'POST';
+        //console.log("The values to be posted are " + JSON.stringify($scope.postValue));
         console.log("Preparing to post the values.............");
         $http({
-                url: manageControllerURI,
-                method: "POST",
-                data: $scope.postValue
+                url: saveUrl,
+                method: saveMethod,
+                data: angular.toJson($scope.postValue)
                 /*data: angular.toJson(editdetailsOfApplication)*/
             }).then(
                 function successCallback(response) {
@@ -469,7 +556,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         console.log("here in submit");
 
 
-        var manageControllerURI = "/saveAsDraftAndSubmit";
+        var manageControllerURI = "/saveAsDraftAndSubmitTP";
 
         console.log($scope.trainingPartner);
 
@@ -477,7 +564,9 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
                                                    {type : "SaveAsDraft"}
                                                  ]);*/
 
-        $scope.trainingPartner["type"] = "Submit";
+        $scope.trainingPartner = {
+        		'type' : "Save"
+        }
 
         console.log($scope.trainingPartner);
         $http({

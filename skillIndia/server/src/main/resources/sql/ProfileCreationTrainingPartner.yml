@@ -16,21 +16,25 @@ ProfileCreationTrainingPartner:
   select * from TrainingPartnerInstituteRecognition where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1;
 
  getDataFromTrainingPartnerPriorExperienceInSkillTraining: >
-  select * from TrainingPartnerPriorExperienceInSkillTraining where trainingPartnerRegistrationId=:trainingPartnerRegistrationId isActive =1;
+  select * from TrainingPartnerPriorExperienceInSkillTraining where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1;
 
  getDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails: >
-  select * from TrainingPartnerManagementAndStaffAndOfficialsDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId isActive =1;
+  select * from TrainingPartnerManagementAndStaffAndOfficialsDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1;
+
+ isTrainingCenterPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnercenterleveldetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and trainingPartnerCenterId=:trainingPartnerCenterId);
+
 
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
    values(:applicationState,:activeFlag,:dateOfSubmission,:userId)  
   
  insertIntoTrainingPartnerOrganizationDetails: >
-  INSERT INTO trainingpartnerorganizationdetails (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `qualificationPacks`, `qualificationPacksAnnexurePath`, `nSDCFunded`, `nSDCFundedCertificatePath`, `mediumOfInstructions`, `selfOwnedInstitution`, `selfOwnedInstitutionAnnexurePath`, `franchiseOwnedInstitution`, `franchiseOwnedInstitutionAnnexurePath`, `mobileTrainingInstitution`, `mobileTrainingInstitutionAnnexurePath`, `panNumber`, `panNumberPath`, `tanNumber`, `tanNumberPath`, `turnOverOfInstitution`, `turnOverOfInstitutionBalanceSheetPath`, `instituteReceivedAnyGrant`, `instituteReceivedAnyRecognition`, `priorExperienceOfInstitutionInSkillDevelopment`, `anyPriorExperienceOfInstitutionInSkillTraining`, `trainingStaffDetailsAnnexurePath`) VALUES (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:qualificationPacks,:qualificationPacksAnnexurePath,:nSDCFunded,:nSDCFundedCertificatePath,:mediumOfInstructions,:selfOwnedInstitution,:selfOwnedInstitutionAnnexurePath,:franchiseOwnedInstitution,:franchiseOwnedInstitutionAnnexurePath,:mobileTrainingInstitution,:mobileTrainingInstitutionAnnexurePath,:panNumber,:panNumberPath,:tanNumber,:tanNumberPath,:turnOverOfInstitution,:turnOverOfInstitutionBalanceSheetPath,:instituteReceivedAnyGrant,:instituteReceivedAnyRecognition,:priorExperienceOfInstitutionInSkillDevelopment,:anyPriorExperienceOfInstitutionInSkillTraining,:trainingStaffDetailsAnnexurePath);
+  INSERT INTO trainingpartnerorganizationdetails (`applicationId`, `organizationName`, `sPOCName`, `address`, `city`, `state`, `pincode`, `mobileNumber`, `alternateMobileNumber`, `landlineNumber`, `alternateLandlineNumber`, `faxNumber`, `websites`, `yearOfEstablishment`, `qualificationPacks`, `nSDCFunded`, `mediumOfInstructions`, `selfOwnedInstitution`,`franchiseOwnedInstitution`,`mobileTrainingInstitution`, `panNumber`,`tanNumber`,`turnOverOfInstitution`,`instituteReceivedAnyGrant`, `instituteReceivedAnyRecognition`, `priorExperienceOfInstitutionInSkillDevelopment`, `anyPriorExperienceOfInstitutionInSkillTraining`) VALUES (:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:yearOfEstablishment,:qualificationPacks,:nSDCFunded,:mediumOfInstructions,:selfOwnedInstitution,:franchiseOwnedInstitution,:mobileTrainingInstitution,:panNumber,:tanNumber,:turnOverOfInstitution,:instituteReceivedAnyGrant,:instituteReceivedAnyRecognition,:priorExperienceOfInstitutionInSkillDevelopment,:anyPriorExperienceOfInstitutionInSkillTraining);
 
 
  insertIntoTrainingPartnerCenterLevelDetails: >
-  INSERT INTO `scgj`.`trainingpartnercenterleveldetails` (`trainingPartnerRegistrationId`, `nameOfCenter`, `numberOfPermanentOfficeManager`, `numberOftemporaryOfficeManager`, `numberOfPermanentOfficeStaff`, `numberOfTemporaryOfficeStaff`, `numberOfPermanentLabAssistants`, `numberOfTemporaryLabAssistants`, `numberOfPermanentAccountants`, `numberOfTemporaryAccountants`, `numberOfPermanentSupportStaff`, `numberOfTemporarySupportStaff`, `numberOfPermanentOtherEmployees`, `numberOfTemporaryOtherEmployees`, `areaOfInstitute`, `buildingType`, `sizeOfClassrooms`, `classroomPicsPath`, `numberOfClassrooms`, `sizeOfLabs`, `labPicsPath`, `numberOfLabs`, `sizeOfWorkshops`, `workshopPicsPath`, `numberOfWorkshops`, `mandatoryToolKitpresent`, `mandatoryToolKitAnnexurePath`, `mandatoryToolKitPicsPath`, `safeDrinkingWater`, `powerBackup`, `separateToilets`, `transportFacility`, `presenceOfLibrary`, `numberOfTechnicalBooks`, `numberOfNonTechnicalBooks`, `numberOfMagazines`, `numberOfDailies`, `remarksOnInfrastructureDetails`, `sufficientClassroomIlluminationLevel`, `sufficientClassroomVentilationLevel`, `sufficientCenterCleanliness`, `centerWeatherProtected`, `remarksOnLearningEnviornment`, `printedBrochureOrProspectus`, `documentedPolicyAndProcedures`, `concessionPolicy`, `safeCustodyOfStudentDocuments`, `studentAgreementWithInstitution`, `remarksOnStudentAdmissionDetails`) VALUES(:trainingPartnerRegistrationId,:nameOfCenter, :numberOfPermanentOfficeManager, :numberOftemporaryOfficeManager, :numberOfPermanentOfficeStaff, :numberOfTemporaryOfficeStaff, :numberOfPermanentLabAssistants, :numberOfTemporaryLabAssistants, :numberOfPermanentAccountants, :numberOfTemporaryAccountants, :numberOfPermanentSupportStaff, :numberOfTemporarySupportStaff,  :numberOfPermanentOtherEmployees, :numberOfTemporaryOtherEmployees, :areaOfInstitute, :buildingType, :sizeOfClassrooms, :classroomPicsPath, :numberOfClassrooms, :sizeOfLabs, :labPicsPath, :numberOfLabs, :sizeOfWorkshops, :workshopPicsPath, :numberOfWorkshops, :mandatoryToolKitpresent, :mandatoryToolKitAnnexurePath, :mandatoryToolKitPicsPath, :safeDrinkingWater, :powerBackup, :separateToilets, :transportFacility, :presenceOfLibrary, :numberOfTechnicalBooks, :numberOfNonTechnicalBooks, :numberOfMagazines, :numberOfDailies, :remarksOnInfrastructureDetails, :sufficientClassroomIlluminationLevel, :sufficientClassroomVentilationLevel, :sufficientCenterCleanliness, :centerWeatherProtected, :remarksOnLearningEnviornment, :printedBrochureOrProspectus, :documentedPolicyAndProcedures, :concessionPolicy, :safeCustodyOfStudentDocuments, :studentAgreementWithInstitution, :remarksOnStudentAdmissionDetails);
+  INSERT INTO `scgj`.`trainingpartnercenterleveldetails` (`trainingPartnerRegistrationId`, `nameOfCenter`, `numberOfPermanentOfficeManager`, `numberOftemporaryOfficeManager`, `numberOfPermanentOfficeStaff`, `numberOfTemporaryOfficeStaff`, `numberOfPermanentLabAssistants`, `numberOfTemporaryLabAssistants`, `numberOfPermanentAccountants`, `numberOfTemporaryAccountants`, `numberOfPermanentSupportStaff`, `numberOfTemporarySupportStaff`, `numberOfPermanentOtherEmployees`, `numberOfTemporaryOtherEmployees`, `areaOfInstitute`, `buildingType`, `sizeOfClassrooms`, `classroomPicsPath`, `numberOfClassrooms`, `sizeOfLabs`, `labPicsPath`, `numberOfLabs`, `sizeOfWorkshops`, `workshopPicsPath`, `numberOfWorkshops`, `mandatoryToolKitpresent`, `mandatoryToolKitAnnexurePath`, `mandatoryToolKitPicsPath`, `safeDrinkingWater`, `powerBackup`, `separateToilets`, `transportFacility`, `presenceOfLibrary`, `numberOfTechnicalBooks`, `numberOfNonTechnicalBooks`, `numberOfMagazines`, `numberOfDailies`, `remarksOnInfrastructureDetails`, `sufficientClassroomIlluminationLevel`, `sufficientClassroomVentilationLevel`, `sufficientCenterCleanliness`, `centerWeatherProtected`, `remarksOnLearningEnviornment`, `printedBrochureOrProspectus`, `documentedPolicyAndProcedures`, `concessionPolicy`, `safeCustodyOfStudentDocuments`, `studentAgreementWithInstitution`, `remarksOnStudentAdmissionDetails`, `isActive`) VALUES(:trainingPartnerRegistrationId,:nameOfCenter, :numberOfPermanentOfficeManager, :numberOftemporaryOfficeManager, :numberOfPermanentOfficeStaff, :numberOfTemporaryOfficeStaff, :numberOfPermanentLabAssistants, :numberOfTemporaryLabAssistants, :numberOfPermanentAccountants, :numberOfTemporaryAccountants, :numberOfPermanentSupportStaff, :numberOfTemporarySupportStaff,  :numberOfPermanentOtherEmployees, :numberOfTemporaryOtherEmployees, :areaOfInstitute, :buildingType, :sizeOfClassrooms, :classroomPicsPath, :numberOfClassrooms, :sizeOfLabs, :labPicsPath, :numberOfLabs, :sizeOfWorkshops, :workshopPicsPath, :numberOfWorkshops, :mandatoryToolKitpresent, :mandatoryToolKitAnnexurePath, :mandatoryToolKitPicsPath, :safeDrinkingWater, :powerBackup, :separateToilets, :transportFacility, :presenceOfLibrary, :numberOfTechnicalBooks, :numberOfNonTechnicalBooks, :numberOfMagazines, :numberOfDailies, :remarksOnInfrastructureDetails, :sufficientClassroomIlluminationLevel, :sufficientClassroomVentilationLevel, :sufficientCenterCleanliness, :centerWeatherProtected, :remarksOnLearningEnviornment, :printedBrochureOrProspectus, :documentedPolicyAndProcedures, :concessionPolicy, :safeCustodyOfStudentDocuments, :studentAgreementWithInstitution, :remarksOnStudentAdmissionDetails, :isActive);
 
 
 
@@ -67,18 +71,18 @@ ProfileCreationTrainingPartner:
   `websites`=:websites, 
   `yearOfEstablishment`=:yearOfEstablishment, 
   `qualificationPacks`=:qualificationPacks, 
-  `qualificationPacksAnnexurePath`=:qualificationPacksAnnexurePath, 
   `nSDCFunded`=:nSDCFunded, 
-  `nSDCFundedCertificatePath`=:nSDCFundedCertificatePath, 
   `mediumOfInstructions`=:mediumOfInstructions, 
   `selfOwnedInstitution`=:selfOwnedInstitution, 
-  `selfOwnedInstitutionAnnexurePath`=:selfOwnedInstitutionAnnexurePath, `franchiseOwnedInstitution`=:franchiseOwnedInstitution, `franchiseOwnedInstitutionAnnexurePath`=:franchiseOwnedInstitutionAnnexurePath, `mobileTrainingInstitution`=:mobileTrainingInstitution, `mobileTrainingInstitutionAnnexurePath`=:mobileTrainingInstitutionAnnexurePath, 
+  `franchiseOwnedInstitution`=:franchiseOwnedInstitution,
+  `mobileTrainingInstitution`=:mobileTrainingInstitution, 
   `panNumber`=:panNumber, 
-  `panNumberPath`=:panNumberPath, 
-  `tanNumber`=:tanNumber, 
-  `tanNumberPath`=:tanNumberPath, 
+  `tanNumber`=:tanNumber,  
   `turnOverOfInstitution`=:turnOverOfInstitution,
-  `turnOverOfInstitutionBalanceSheetPath`=:turnOverOfInstitutionBalanceSheetPath, `instituteReceivedAnyGrant`=:instituteReceivedAnyGrant, `instituteReceivedAnyRecognition`=:instituteReceivedAnyRecognition, `priorExperienceOfInstitutionInSkillDevelopment`=:priorExperienceOfInstitutionInSkillDevelopment, `anyPriorExperienceOfInstitutionInSkillTraining`=:anyPriorExperienceOfInstitutionInSkillTraining, `trainingStaffDetailsAnnexurePath`=:trainingStaffDetailsAnnexurePath 
+  `instituteReceivedAnyGrant`=:instituteReceivedAnyGrant,
+  `instituteReceivedAnyRecognition`=:instituteReceivedAnyRecognition,
+  `priorExperienceOfInstitutionInSkillDevelopment`=:priorExperienceOfInstitutionInSkillDevelopment,
+  `anyPriorExperienceOfInstitutionInSkillTraining`=:anyPriorExperienceOfInstitutionInSkillTraining
   WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;  
 
 
@@ -129,7 +133,8 @@ ProfileCreationTrainingPartner:
   `concessionPolicy`=:concessionPolicy, 
   `safeCustodyOfStudentDocuments`=:safeCustodyOfStudentDocuments, 
   `studentAgreementWithInstitution`=:studentAgreementWithInstitution, 
-  `remarksOnStudentAdmissionDetails`=:remarksOnStudentAdmissionDetails 
+  `remarksOnStudentAdmissionDetails`=:remarksOnStudentAdmissionDetails,
+  `isActive`=:isActive
    WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId;
 
 
