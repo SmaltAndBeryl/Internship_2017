@@ -71,10 +71,11 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 	
 	*/
 	
-	public int insertIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto,HashMap<String, String> getPaths)
+	public int insertIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto)
 	{
+		int status = 0;
 		try{
-			LOGGER.info("Trying to construct database query to insert organisation level registration data of training partner into database");
+			LOGGER.debug("Trying to construct database query to insert organisation level registration data of training partner into database");
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			parameters.put("applicationId",profileCreationTrainingPartnerOrganizationDetailsDto.getApplicationId());
 			parameters.put("organizationName",profileCreationTrainingPartnerOrganizationDetailsDto.getOrganizationName());
@@ -91,39 +92,39 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 			parameters.put("websites",profileCreationTrainingPartnerOrganizationDetailsDto.getWebsites());
 			parameters.put("yearOfEstablishment",profileCreationTrainingPartnerOrganizationDetailsDto.getYearOfEstablishment());
 			parameters.put("qualificationPacks",profileCreationTrainingPartnerOrganizationDetailsDto.getQualificationPacks());
-			parameters.put("qualificationPacksAnnexurePath",getPaths.get("qualificationPacksAnnexurePath"));
+			//parameters.put("qualificationPacksAnnexurePath",getPaths.get("qualificationPacksAnnexurePath"));
 			parameters.put("nSDCFunded",profileCreationTrainingPartnerOrganizationDetailsDto.getnSDCFunded());
-			parameters.put("nSDCFundedCertificatePath",getPaths.get("nSDCFundedCertificatePath"));
+			//parameters.put("nSDCFundedCertificatePath",getPaths.get("nSDCFundedCertificatePath"));
 			parameters.put("mediumOfInstructions",profileCreationTrainingPartnerOrganizationDetailsDto.getMediumOfInstructions());
 			parameters.put("selfOwnedInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getSelfOwnedInstitution());
-			parameters.put("selfOwnedInstitutionAnnexurePath",getPaths.get("selfOwnedInstitutionAnnexurePath"));
+			//parameters.put("selfOwnedInstitutionAnnexurePath",getPaths.get("selfOwnedInstitutionAnnexurePath"));
 			parameters.put("franchiseOwnedInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getFranchiseOwnedInstitution());
-			parameters.put("franchiseOwnedInstitutionAnnexurePath",getPaths.get("franchiseOwnedInstitutionAnnexurePath"));
+			//parameters.put("franchiseOwnedInstitutionAnnexurePath",getPaths.get("franchiseOwnedInstitutionAnnexurePath"));
 			parameters.put("mobileTrainingInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getMobileTrainingInstitution());
-			parameters.put("mobileTrainingInstitutionAnnexurePath",getPaths.get("mobileTrainingInstitutionAnnexurePath"));
+			//parameters.put("mobileTrainingInstitutionAnnexurePath",getPaths.get("mobileTrainingInstitutionAnnexurePath"));
 			parameters.put("panNumber",profileCreationTrainingPartnerOrganizationDetailsDto.getPanNumber());
-			parameters.put("panNumberPath",getPaths.get("panNumberPath"));
+			//parameters.put("panNumberPath",getPaths.get("panNumberPath"));
 			parameters.put("tanNumber",profileCreationTrainingPartnerOrganizationDetailsDto.getTanNumber());
-			parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
+			//parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
 			parameters.put("turnOverOfInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getTurnOverOfInstitution());
-			parameters.put("turnOverOfInstitutionBalanceSheetPath",getPaths.get("turnOverOfInstitutionBalanceSheetPath"));
+			//parameters.put("turnOverOfInstitutionBalanceSheetPath",getPaths.get("turnOverOfInstitutionBalanceSheetPath"));
 			parameters.put("instituteReceivedAnyGrant",profileCreationTrainingPartnerOrganizationDetailsDto.getInstituteReceivedAnyGrant());
 			parameters.put("instituteReceivedAnyRecognition",profileCreationTrainingPartnerOrganizationDetailsDto.getInstituteReceivedAnyRecognition());
 			parameters.put("priorExperienceOfInstitutionInSkillDevelopment",profileCreationTrainingPartnerOrganizationDetailsDto.getPriorExperienceOfInstitutionInSkillDevelopment());
 			parameters.put("anyPriorExperienceOfInstitutionInSkillTraining",profileCreationTrainingPartnerOrganizationDetailsDto.getAnyPriorExperienceOfInstitutionInSkillTraining());
-			parameters.put("trainingStaffDetailsAnnexurePath",getPaths.get("trainingStaffDetailsAnnexurePath"));
+			//parameters.put("trainingStaffDetailsAnnexurePath",getPaths.get("trainingStaffDetailsAnnexurePath"));
 			
-			LOGGER.info("Trying to execute database query to insert organisation level registration data of training partner");
-			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerOrganizationDetails(),parameters);
+			LOGGER.debug("Trying to execute database query to insert organisation level registration data of training partner");
+			status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerOrganizationDetails(),parameters);
 
 		}
 		catch(Exception e)
 		{
-			LOGGER.debug("Exception occured during inserting organisation level details of training partner in database,the exception is -"+e);
-			e.printStackTrace();
-			return -1;
+			LOGGER.error("Exception occured during inserting organisation level details of training partner in database,the exception is - "+e);
+			
+			status = -1;
 		}
-		
+		return status;
 	}
 	
 	/*
@@ -135,6 +136,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 	
 		public int insertIntoTrainingPartnerCenterLevelDetails(ProfileCreationTrainingPartnerCenterDetailsDto profileCreationTrainingPartnerCenterDetailsDto)
 		{
+			int status =0;
 			try{
 				LOGGER.info("Trying to construct database query to insert center level registration data of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
@@ -188,17 +190,18 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				parameters.put("safeCustodyOfStudentDocuments",profileCreationTrainingPartnerCenterDetailsDto.getSafeCustodyOfStudentDocuments());
 				parameters.put("studentAgreementWithInstitution",profileCreationTrainingPartnerCenterDetailsDto.getStudentAgreementWithInstitution());
 				parameters.put("remarksOnStudentAdmissionDetails",profileCreationTrainingPartnerCenterDetailsDto.getRemarksOnStudentAdmissionDetails());
+				parameters.put("isActive",profileCreationTrainingPartnerCenterDetailsDto.getIsActive());
 				
-				LOGGER.info("Trying to execute database query to insert center level registration data of training partner");
-				return insert(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerCenterLevelDetails(),parameters,"trainingPartnerCenterId");
+				LOGGER.debug("Trying to execute database query to insert center level registration data of training partner");
+				status = insert(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerCenterLevelDetails(),parameters,"trainingPartnerCenterId");
 			}
 			catch(Exception e)
 			{
-				LOGGER.debug("Exception occured during inserting center level registration data of training partner. The exception is -" + e);
-				e.printStackTrace();
-				return -1;
+				LOGGER.error("Exception occured during inserting center level registration data of training partner. The exception is -" + e);
+				
+				status = -1;
 			}
-			
+			return status;
 		}
 	
 	

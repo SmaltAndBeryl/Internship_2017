@@ -7,8 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.common.SessionUserUtility;
@@ -23,6 +26,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillT
 @Repository
 public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransactionalDao{
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationTrainingPartnerGetDataDao.class);
 	@Autowired
 	private ProfileCreationTrainingPartnerConfigSql profileCreationTrainingPartnerConfigSql;
 	
@@ -42,7 +46,7 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An exception occured while finding training partner registration id using application Id "+ e);
 			return null;
 		}
  	}
@@ -63,7 +67,7 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An exception occured "+ e);
 			return null;
 		}
  	}
@@ -110,7 +114,7 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 			String priorExperienceOfInstitutionInSkillDevelopment = resultSet.getString("priorExperienceOfInstitutionInSkillDevelopment");
 			String anyPriorExperienceOfInstitutionInSkillTraining = resultSet.getString("anyPriorExperienceOfInstitutionInSkillTraining");
 			String trainingStaffDetailsAnnexurePath = resultSet.getString("trainingStaffDetailsAnnexurePath");
-			//String type=resultSet.getString("type");
+			
 			return new ProfileCreationTrainingPartnerOrganizationDetailsDto(trainingPartnerRegistrationId,applicationId,organizationName,sPOCName,address,city,state,pincode,
 				mobileNumber,alternateMobileNumber,landlineNumber,alternateLandlineNumber,faxNumber,websites,yearOfEstablishment,qualificationPacks,qualificationPacksAnnexurePath,nSDCFunded,nSDCFundedCertificatePath,
 				mediumOfInstructions,selfOwnedInstitution,selfOwnedInstitutionAnnexurePath,franchiseOwnedInstitution,franchiseOwnedInstitutionAnnexurePath,mobileTrainingInstitution,mobileTrainingInstitutionAnnexurePath,
@@ -135,7 +139,7 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An exception occured while fetching trainingpartner center level details "+ e);
 			return null;
 		}
  	}
@@ -305,6 +309,28 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 			return null;
 		}
  	}
+	public int isTrainingCenterPresent(String trainingPartnerRegistrationId, String trainingPartnerCenterId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("trainingPartnerCenterId", trainingPartnerCenterId);
+			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
+			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingCenterPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("Could not find value of management staff " +e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured " +e);
+			status = -2;
+		}
+		return status;
+	}
 	
 	public static class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingRowMapper implements RowMapper<ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> {
 
@@ -337,7 +363,7 @@ private static final ProfileCreationTrainingPartnerManagementAndStaffAndOfficial
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An exception occured while getting data for training partner managemnet details " + e);
 			return null;
 		}
  	}

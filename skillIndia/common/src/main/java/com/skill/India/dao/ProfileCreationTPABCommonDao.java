@@ -92,7 +92,7 @@ private static final ProfileCreationGetDataFromUserRowMapper ROW_MAPPER_USERDETA
 			/*
 			 * In case error occurs 
 			 */
-			LOGGER.error("An Exception Occured"+ e);
+			LOGGER.error("An Exception Occured "+ e);
 			return -1;
 		}
 	}

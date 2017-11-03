@@ -35,7 +35,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String deleteFromTrainingPartnerCenterLevelDetails;
 	private String insertDataInApplication;
 	private String updateDataInApplication;
-	
+	private String isTrainingCenterPresent;
 	
 	
 	/**
@@ -400,6 +400,12 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	public void setUpdateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(
 			String updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails) {
 		this.updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails = updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	}
+	public String getIsTrainingCenterPresent() {
+		return isTrainingCenterPresent;
+	}
+	public void setIsTrainingCenterPresent(String isTrainingCenterPresent) {
+		this.isTrainingCenterPresent = isTrainingCenterPresent;
 	}
 
 

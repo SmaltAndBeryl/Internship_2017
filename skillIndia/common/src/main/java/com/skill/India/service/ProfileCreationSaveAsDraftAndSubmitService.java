@@ -22,6 +22,7 @@ import com.skill.India.dao.ProfileCreationAssessmentBodyGetDataDao;
 import com.skill.India.dao.ProfileCreationAssessmentBodyInsertDataDao;
 import com.skill.India.dao.ProfileCreationAssessmentBodyUpdateDataDao;
 import com.skill.India.dao.ProfileCreationTPABCommonDao;
+import com.skill.India.dao.ProfileCreationTrainingPartnerGetDataDao;
 import com.skill.India.dao.ProfileCreationTrainingPartnerInsertDataDao;
 import com.skill.India.dao.ProfileCreationTrainingPartnerUpdateDataDao;
 import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
@@ -79,31 +80,19 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	private ProfileCreationTrainingPartnerCenterDetailsService profileCreationTrainingPartnerCenterDetailsService;	
 	
 	@Autowired
-	private ProfileCreationAssessmentBodyRegistrationDetailsService profileCreationAssessmentBodyRegistrationDetailsService;
-	
-	@Autowired
-	private ProfileCreationAssessmentBodyRecognitionsService profileCreationAssessmentBodyRecognitionsService;
-	
-	@Autowired
-	private ProfileCreationAssessmentsExperienceInTechnicalDomainService profileCreationAssessmentsExperienceInTechnicalDomainService;
-	
-	@Autowired
-	private ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsService profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsService;
-	
-	@Autowired
-	private ProfileCreationAssessmentBodyRegionalOfficeDetailsService profileCreationAssessmentBodyRegionalOfficeDetailsService;
-	
-	@Autowired
-	private ProfileCreationAssessmentStaffDetailsService profileCreationAssessmentStaffDetailsService;
-	
-	@Autowired
-	private ProfileCreationAssessmentBodyAffiliationDetailsService profileCreationAssessmentBodyAffiliationDetailsService;
-
-	@Autowired
 	private ProfileCreationAssessmentBodyInsertDataDao profileCreationAssessmentBodyInsertDataDao;
 	
 	@Autowired
 	private ProfileCreationAssessmentBodyUpdateDataDao profileCreationAssessmentBodyUpdateDataDao;
+	
+	@Autowired
+	private ProfileCreationTrainingPartnerInsertDataDao profileCreationTrainingPartnerInsertDataDao;
+	
+	@Autowired
+	private ProfileCreationTrainingPartnerUpdateDataDao profileCreationTrainingPartnerUpdateDataDao;
+	
+	@Autowired
+	private ProfileCreationTrainingPartnerGetDataDao profileCreationTrainingPartnerGetDataDao;
 	
 	//To save the complete object to database
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
@@ -317,27 +306,67 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		
 		return returnStatus;
 	}
-	
+	/*
+	 * Method to save data of Training Partner*/
 	public int saveTrainingPartner(ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{
-		int status =0;
+		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0;;
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		if(userExists == -1)
 		{
-			int applicationTableStatus =0;
+			
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
-			if(applicationTableStatus == 0)
+			status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto().isEmpty())
 			{
-				
+			
+				for(ProfileCreationTrainingPartnerCenterDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto())
+				{
+					trainingPartnerCenterDetails = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerCenterLevelDetails(item);
+				}
+			}
+			if(applicationTableStatus == -1 || status == -1 || trainingPartnerCenterDetails == -1)
+			{
+				LOGGER.error("Could not insert details of Training partner in the databse. An exception occured");
 			}
 		}
 		else if(userExists == -2)
 		{
+			LOGGER.error("Error occured while finding application Id of logged in user");
 			
 		}
+		
 		else 
 		{
-			
+			applicationTableStatus = profileCreationTPABCommonDao.updateIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
+			status = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+			/*
+			 * Training Center Details*/
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto().isEmpty())
+			{
+				int doesTrainingCenterExists = 0;
+				for(ProfileCreationTrainingPartnerCenterDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto())
+				{
+					doesTrainingCenterExists = profileCreationTrainingPartnerGetDataDao.isTrainingCenterPresent(item.getTrainingPartnerRegistrationId(), item.getTrainingPartnerCenterId());
+					if(doesTrainingCenterExists == 0)
+					{
+						trainingPartnerCenterDetails = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerCenterLevelDetails(item);
+					}
+					else if(doesTrainingCenterExists == 1)
+					{
+						trainingPartnerCenterDetails = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerCenterLevelDetails(item);
+					}
+					else
+					{
+						LOGGER.error("Could not save data for training partner center level details");
+					}
+				}
+			}
+			else
+			{
+				LOGGER.debug("Training center array is empty");
+			}
+		
 		}
 		return status;
 	}

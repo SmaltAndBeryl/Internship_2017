@@ -67,8 +67,9 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	 * 
 	 */
 	
-	public int updateIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto,HashMap<String, String> getPaths)
+	public int updateIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto)
 	{
+		int updateStaus = 0;
 		try{
 			LOGGER.info("Trying to construct database query to update data of organisation details in Training Partner");
 			Map<String, Object> parameters=new HashMap<String, Object>();
@@ -89,39 +90,29 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			parameters.put("websites",profileCreationTrainingPartnerOrganizationDetailsDto.getWebsites());
 			parameters.put("yearOfEstablishment",profileCreationTrainingPartnerOrganizationDetailsDto.getYearOfEstablishment());
 			parameters.put("qualificationPacks",profileCreationTrainingPartnerOrganizationDetailsDto.getQualificationPacks());
-			parameters.put("qualificationPacksAnnexurePath",getPaths.get("qualificationPacksAnnexurePath"));
 			parameters.put("nSDCFunded",profileCreationTrainingPartnerOrganizationDetailsDto.getnSDCFunded());
-			parameters.put("nSDCFundedCertificatePath",getPaths.get("nSDCFundedCertificatePath"));
 			parameters.put("mediumOfInstructions",profileCreationTrainingPartnerOrganizationDetailsDto.getMediumOfInstructions());
 			parameters.put("selfOwnedInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getSelfOwnedInstitution());
-			parameters.put("selfOwnedInstitutionAnnexurePath",getPaths.get("selfOwnedInstitutionAnnexurePath"));
 			parameters.put("franchiseOwnedInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getFranchiseOwnedInstitution());
-			parameters.put("franchiseOwnedInstitutionAnnexurePath",getPaths.get("franchiseOwnedInstitutionAnnexurePath"));
 			parameters.put("mobileTrainingInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getMobileTrainingInstitution());
-			parameters.put("mobileTrainingInstitutionAnnexurePath",getPaths.get("mobileTrainingInstitutionAnnexurePath"));
 			parameters.put("panNumber",profileCreationTrainingPartnerOrganizationDetailsDto.getPanNumber());
-			parameters.put("panNumberPath",getPaths.get("panNumberPath"));
 			parameters.put("tanNumber",profileCreationTrainingPartnerOrganizationDetailsDto.getTanNumber());
-			parameters.put("tanNumberPath",getPaths.get("tanNumberPath"));
 			parameters.put("turnOverOfInstitution",profileCreationTrainingPartnerOrganizationDetailsDto.getTurnOverOfInstitution());
-			parameters.put("turnOverOfInstitutionBalanceSheetPath",getPaths.get("turnOverOfInstitutionBalanceSheetPath"));
 			parameters.put("instituteReceivedAnyGrant",profileCreationTrainingPartnerOrganizationDetailsDto.getInstituteReceivedAnyGrant());
 			parameters.put("instituteReceivedAnyRecognition",profileCreationTrainingPartnerOrganizationDetailsDto.getInstituteReceivedAnyRecognition());
 			parameters.put("priorExperienceOfInstitutionInSkillDevelopment",profileCreationTrainingPartnerOrganizationDetailsDto.getPriorExperienceOfInstitutionInSkillDevelopment());
-			parameters.put("anyPriorExperienceOfInstitutionInSkillTraining",profileCreationTrainingPartnerOrganizationDetailsDto.getAnyPriorExperienceOfInstitutionInSkillTraining());
-			parameters.put("trainingStaffDetailsAnnexurePath",getPaths.get("trainingStaffDetailsAnnexurePath"));
-			
-			LOGGER.info("Trying to execute database query to update data of organisation details in Training Partner");
-			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerOrganizationDetails(),parameters);
+			parameters.put("anyPriorExperienceOfInstitutionInSkillTraining",profileCreationTrainingPartnerOrganizationDetailsDto.getAnyPriorExperienceOfInstitutionInSkillTraining());			
+			LOGGER.debug("Trying to execute database query to update data of organisation details in Training Partner");
+			updateStaus = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerOrganizationDetails(),parameters);
 
 		}
 		catch(Exception e)
 		{
-			LOGGER.debug("Exception occured while updating data of organisation details in Training Partner. Exception is -" +e);
-			e.printStackTrace();
-			return -1;
+			LOGGER.error("Exception occured while updating data of organisation details in Training Partner. Exception is -" +e);
+			
+			updateStaus = -1;
 		}
-		
+		return updateStaus;
 	}
 
 	
@@ -134,6 +125,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	
 		public int updateIntoTrainingPartnerCenterLevelDetails(ProfileCreationTrainingPartnerCenterDetailsDto profileCreationTrainingPartnerCenterDetailsDto)
 		{
+			int status = 0;
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				
@@ -190,15 +182,17 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 				parameters.put("safeCustodyOfStudentDocuments",profileCreationTrainingPartnerCenterDetailsDto.getSafeCustodyOfStudentDocuments());
 				parameters.put("studentAgreementWithInstitution",profileCreationTrainingPartnerCenterDetailsDto.getStudentAgreementWithInstitution());
 				parameters.put("remarksOnStudentAdmissionDetails",profileCreationTrainingPartnerCenterDetailsDto.getRemarksOnStudentAdmissionDetails());
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerCenterLevelDetails(),parameters);
+				parameters.put("isActive",profileCreationTrainingPartnerCenterDetailsDto.getIsActive());
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerCenterLevelDetails(),parameters);
 
 			}
 			catch(Exception e)
 			{
-				e.printStackTrace();
-				return -1;
+				LOGGER.error("An Exception occured while updating traing center details" + e);
+				status = -1;
 			}
-			
+			return status;
 		}
 	
 		
