@@ -310,8 +310,10 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	 * Method to save data of Training Partner*/
 	public int saveTrainingPartner(ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{
-		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0;;
+		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, trainingStaff =0;
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
+		
+		//New User
 		if(userExists == -1)
 		{
 			
@@ -325,17 +327,41 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					trainingPartnerCenterDetails = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerCenterLevelDetails(item);
 				}
 			}
-			if(applicationTableStatus == -1 || status == -1 || trainingPartnerCenterDetails == -1)
+			
+			if(! profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto().isEmpty())
+			{
+				for(ProfileCreationTrainingPartnerInstituteGrantDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto())
+				{
+					trainingPartnerInstituteGrant = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteGrant(item);					
+				}
+			}
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteRecognitionDto().isEmpty())
+			{
+				for(ProfileCreationTrainingPartnerInstituteRecognitionDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteRecognitionDto())
+				{
+					trainingPartnerRecognition = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteRecognition(item);
+				}
+				
+			}
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto().isEmpty())
+			{
+				for(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto())
+				{
+					trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item);
+				}
+			}
+			if(applicationTableStatus == -1 || status == -1 || trainingPartnerCenterDetails == -1 || trainingPartnerInstituteGrant == -1)
 			{
 				LOGGER.error("Could not insert details of Training partner in the databse. An exception occured");
 			}
 		}
+		//Error in finding application Id
 		else if(userExists == -2)
 		{
 			LOGGER.error("Error occured while finding application Id of logged in user");
-			
 		}
 		
+		/*Old User*/
 		else 
 		{
 			applicationTableStatus = profileCreationTPABCommonDao.updateIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
@@ -362,11 +388,76 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					}
 				}
 			}
-			else
+			
+			/*Training Partner Institute Grant*/
+			
+			if(! profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto().isEmpty())
 			{
-				LOGGER.debug("Training center array is empty");
+				int doesInstitueGrantExists = 0;
+				
+				for(ProfileCreationTrainingPartnerInstituteGrantDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto())
+				{
+					doesInstitueGrantExists = profileCreationTrainingPartnerGetDataDao.isInstituteGrantPresent(item.getTrainingPartnerRegistrationId(), item.getInstituteGrantId());
+					if(doesInstitueGrantExists == 0)
+					{
+						trainingPartnerInstituteGrant = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteGrant(item);
+					}
+					else if (doesInstitueGrantExists == 1)
+					{
+						trainingPartnerInstituteGrant = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerInstituteGrant(item);
+					}
+					else
+					{
+						LOGGER.error("Could not insert value of institute grant into database due to some error");
+					}
+										
+				}
 			}
-		
+			/*Training Partner Institute recognitions details*/
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteRecognitionDto().isEmpty())
+			{
+				int doesRecognitionExists = 0; 
+				for(ProfileCreationTrainingPartnerInstituteRecognitionDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteRecognitionDto())
+				{
+					doesRecognitionExists = profileCreationTrainingPartnerGetDataDao.isInstituteGrantPresent(item.getTrainingPartnerRegistrationId(),item.getInstituteRecognitionId());
+					if(doesRecognitionExists ==0)
+					{
+						trainingPartnerRecognition = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteRecognition(item);
+					}
+					else if (doesRecognitionExists == 1)
+					{
+						trainingPartnerRecognition = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerInstituteRecognition(item);
+					}
+					else
+					{
+						LOGGER.error("Could not update recognition in the database");
+					}
+				}
+				
+			}
+			
+			/*Training Partner Training staff details*/
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto().isEmpty())
+			{
+				int doesTrainingStaffExists = 0;
+				for(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto())
+				{
+					doesTrainingStaffExists = profileCreationTrainingPartnerGetDataDao.isTrainingStaffPresent(item.getTrainingPartnerRegistrationId(), item.getManagementAndStaffId());
+					if(doesTrainingStaffExists == 0)
+					{
+						trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item);
+					}
+					else if(doesTrainingStaffExists == 1)
+					{
+						trainingStaff = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item);
+					}
+					else
+					{
+						
+					}
+					
+				}
+			}
 		}
 		return status;
 	}

@@ -321,7 +321,7 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		}
 		catch(EmptyResultDataAccessException e)
 		{
-			LOGGER.error("Could not find value of management staff " +e);
+			LOGGER.error("Could not find if training center already exists" +e);
 			status = -1;
 		}
 		catch (Exception e)
@@ -332,6 +332,75 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		return status;
 	}
 	
+	//to find out if Institute grant exists or not
+	public int isInstituteGrantPresent(String trainingPartnerRegistrationId, String instituteGrantId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("instituteGrantId", instituteGrantId);
+			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
+			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsInstituteGrantPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("Could not find value of Institute Grant " +e.getMessage());
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An exception occured while finding if institute grant already exists in database " + e);
+			status = -2;
+		}
+		return status;
+	}
+	
+	public int isInstituteRecognitionPresent(String trainingPartnerRegistrationId, String instituteRecognitionId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("instituteRecognitionId", instituteRecognitionId);
+			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
+			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsRecognitnionPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("Could not find value of Institute recognition " +e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured while finding if institute recognition already exists in database " + e);
+			status = -2;
+		}
+		return status;
+	}
+	
+	public int isTrainingStaffPresent(String trainingPartnerRegistrationId, String managementAndStaffId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("managementAndStaffId", managementAndStaffId);
+			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
+			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingStaffPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("Could not find value of Institute Grant " + e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured while finding if institute grant already exists in database " +e);
+			status = -2;
+		}
+		return status;
+	}
 	public static class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingRowMapper implements RowMapper<ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> {
 
 		@Override

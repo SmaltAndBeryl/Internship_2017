@@ -211,6 +211,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 	
 		public int insertIntoTrainingPartnerInstituteGrant(ProfileCreationTrainingPartnerInstituteGrantDto profileCreationTrainingPartnerInstituteGrantDto)
 		{
+			int status = 0;
 			try{
 				LOGGER.info("Trying to construct database query to insert details of institution grant of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
@@ -219,17 +220,19 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				parameters.put("nameOfMinistry",profileCreationTrainingPartnerInstituteGrantDto.getNameOfMinistry());
 				parameters.put("natureOfWork",profileCreationTrainingPartnerInstituteGrantDto.getNatureOfWork());
 				parameters.put("remarks",profileCreationTrainingPartnerInstituteGrantDto.getRemarks());
+				parameters.put("isActive",profileCreationTrainingPartnerInstituteGrantDto.getIsActive());
 				
-				LOGGER.info("Trying to execute database query to insert details of institution grant of training partner");
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerInstituteGrant(),parameters);
+				LOGGER.debug("Trying to execute database query to insert details of institution grant of training partner");
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerInstituteGrant(),parameters);
 
-			}catch(Exception e)
-			{
-				LOGGER.debug("Exception occured during insertion of details of institution grant of training partner. The exception is -" + e);
-				e.printStackTrace();
-				return -1;
 			}
-	
+			catch(Exception e)
+			{
+				LOGGER.error("Exception occured during insertion of details of institution grant of training partner. The exception is -" + e);
+				
+				status = -1;
+			}
+			return status;
 		}
 	
 
@@ -239,6 +242,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 	
 		public int insertIntoTrainingPartnerInstituteRecognition(ProfileCreationTrainingPartnerInstituteRecognitionDto profileCreationTrainingPartnerInstituteRecognitionDto)
 		{
+			int status =0;
 			try{
 				LOGGER.info("Trying to construct database query to insert details of institution recognition of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
@@ -252,17 +256,20 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				parameters.put("recognitionNumber",profileCreationTrainingPartnerInstituteRecognitionDto.getRecognitionNumber());
 				parameters.put("yearOfRecognition",profileCreationTrainingPartnerInstituteRecognitionDto.getYearOfRecognition());
 				parameters.put("validityOfRecognition",profileCreationTrainingPartnerInstituteRecognitionDto.getValidityOfRecognition());
+				parameters.put("isActive",profileCreationTrainingPartnerInstituteRecognitionDto.getIsActive());
 				
-				LOGGER.info("Trying to execute database query to insert details of institution recognition of training partner");
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerInstituteRecognition(),parameters);
+				
+				LOGGER.debug("Trying to execute database query to insert details of recognitions of training partner");
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerInstituteRecognition(),parameters);
 
-			}catch(Exception e)
-			{
-				LOGGER.debug("Execption occured during insertion of details of institution recognition of training partner. The exception is -"+ e);
-				e.printStackTrace();
-				return -1;
 			}
-	
+			catch(Exception e)
+			{
+				LOGGER.error("Execption occured during insertion of details of institution recognition of training partner. The exception is -"+ e);
+				
+				status = -1;
+			}
+	return status;
 		}
 	
 	
@@ -272,6 +279,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		
 		public int insertIntoTrainingPartnerPriorExperienceInSkillTraining(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto)
 		{
+			int status =0;
 			try{
 				LOGGER.info("Trying to construct database query to insert details of prior experience of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
@@ -279,16 +287,18 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				parameters.put("courseName",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getCourseName());
 				parameters.put("numberOfBatchesPerYear",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getNumberOfBatchesPerYear());
 				parameters.put("numberOfStudentsInEachBatch",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getNumberOfStudentsInEachBatch());
-				LOGGER.info("Trying to execute database query to insert details of prior experience of training partner");
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerPriorExperienceInSkillTraining(),parameters);
+				parameters.put("isActive",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getIsActive());
+				
+				LOGGER.debug("Trying to execute database query to insert details of prior experience of training partner");
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerPriorExperienceInSkillTraining(),parameters);
 
-			}catch(Exception e)
-			{
-				LOGGER.debug("Exception occured during insertion of details of prior experience of training partner. The exception is -" + e);
-				e.printStackTrace();
-				return -1;
 			}
-	
+			catch(Exception e)
+			{
+				LOGGER.error("Exception occured during insertion of details of prior experience of training partner. The exception is -" + e);
+				status = -1;
+			}
+			return status;
 		}
 		
 		
@@ -299,8 +309,9 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		
 		public int insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto)
 		{
+			int status =0;
 			try{
-				LOGGER.info("Trying to construct database query to insert details of management and training staff of training partner");
+				LOGGER.debug("Trying to construct database query to insert details of management and training staff of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 
 				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getTrainingPartnerRegistrationId());
@@ -315,16 +326,19 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				parameters.put("experience",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getExperience());
 				parameters.put("cVPath",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getcVPath());
 				parameters.put("certificatePath",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getCertificatePath());
-				LOGGER.info("Trying to execute database query to insert details of management and training staff of training partner and get back the managementAndStaffId");
-				return insert(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(),parameters, "managementAndStaffId");
+				parameters.put("isActive",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getIsActive());
+				
+				LOGGER.debug("Trying to execute database query to insert details of management and training staff of training partner and get back the managementAndStaffId");
+				
+				status = insert(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(),parameters, "managementAndStaffId");
 
-			}catch(Exception e)
-			{
-				LOGGER.debug("Exception occured during insertion of details of management and training staff of training partner. The exception is" +e);
-				e.printStackTrace();
-				return -1;
 			}
-	
+			catch(Exception e)
+			{
+				LOGGER.error("Exception occured during insertion of details of management and training staff of training partner. The exception is" +e);
+				status  =-1;
+			}
+				return status;
 		}
 	
 }

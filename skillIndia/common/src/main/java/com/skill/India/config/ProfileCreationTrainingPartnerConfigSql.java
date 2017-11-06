@@ -36,6 +36,9 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String insertDataInApplication;
 	private String updateDataInApplication;
 	private String isTrainingCenterPresent;
+	private String isInstituteGrantPresent;
+	private String isRecognitnionPresent;
+	private String isTrainingStaffPresent;
 	
 	
 	/**
@@ -406,6 +409,24 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	}
 	public void setIsTrainingCenterPresent(String isTrainingCenterPresent) {
 		this.isTrainingCenterPresent = isTrainingCenterPresent;
+	}
+	public String getIsInstituteGrantPresent() {
+		return isInstituteGrantPresent;
+	}
+	public void setIsInstituteGrantPresent(String isInstituteGrantPresent) {
+		this.isInstituteGrantPresent = isInstituteGrantPresent;
+	}
+	public String getIsRecognitnionPresent() {
+		return isRecognitnionPresent;
+	}
+	public void setIsRecognitnionPresent(String isRecognitnionPresent) {
+		this.isRecognitnionPresent = isRecognitnionPresent;
+	}
+	public String getIsTrainingStaffPresent() {
+		return isTrainingStaffPresent;
+	}
+	public void setIsTrainingStaffPresent(String isTrainingStaffPresent) {
+		this.isTrainingStaffPresent = isTrainingStaffPresent;
 	}
 
 

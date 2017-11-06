@@ -202,6 +202,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	
 		public int updateIntoTrainingPartnerInstituteGrant(ProfileCreationTrainingPartnerInstituteGrantDto profileCreationTrainingPartnerInstituteGrantDto)
 		{
+			int status = 0;
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
 
@@ -210,14 +211,17 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 				parameters.put("nameOfMinistry",profileCreationTrainingPartnerInstituteGrantDto.getNameOfMinistry());
 				parameters.put("natureOfWork",profileCreationTrainingPartnerInstituteGrantDto.getNatureOfWork());
 				parameters.put("remarks",profileCreationTrainingPartnerInstituteGrantDto.getRemarks());
+				parameters.put("isActive",profileCreationTrainingPartnerInstituteGrantDto.getIsActive());
 				
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerInstituteGrant(),parameters);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerInstituteGrant(),parameters);
 
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-				return -1;
 			}
+			catch(Exception e)
+			{
+				LOGGER.error("An exception occured while updating institute grant in database " + e);
+				status = -1;
+			}
+			return status;
 	
 		}
 	
@@ -228,6 +232,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	
 		public int updateIntoTrainingPartnerInstituteRecognition(ProfileCreationTrainingPartnerInstituteRecognitionDto profileCreationTrainingPartnerInstituteRecognitionDto)
 		{
+			int status =0;
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				
@@ -237,14 +242,18 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 				parameters.put("recognitionNumber",profileCreationTrainingPartnerInstituteRecognitionDto.getRecognitionNumber());
 				parameters.put("yearOfRecognition",profileCreationTrainingPartnerInstituteRecognitionDto.getYearOfRecognition());
 				parameters.put("validityOfRecognition",profileCreationTrainingPartnerInstituteRecognitionDto.getValidityOfRecognition());
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerInstituteRecognition(),parameters);
+				parameters.put("isActive",profileCreationTrainingPartnerInstituteRecognitionDto.getIsActive());
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerInstituteRecognition(),parameters);
 
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-				return -1;
 			}
-	
+			catch(Exception e)
+			{
+				LOGGER.error("An exception occured while updating recognitions of training partner");
+				
+				status = -1;
+			}
+			return status;
 		}
 	
 	
@@ -254,6 +263,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		
 		public int updateIntoTrainingPartnerPriorExperienceInSkillTraining(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto)
 		{
+			int status = 0;
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
 
@@ -262,13 +272,16 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 				parameters.put("courseName",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getCourseName());
 				parameters.put("numberOfBatchesPerYear",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getNumberOfBatchesPerYear());
 				parameters.put("numberOfStudentsInEachBatch",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getNumberOfStudentsInEachBatch());
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerPriorExperienceInSkillTraining(),parameters);
+				parameters.put("isActive",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getIsActive());
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerPriorExperienceInSkillTraining(),parameters);
 
 			}catch(Exception e)
 			{
-				e.printStackTrace();
-				return -1;
+				LOGGER.error("An exception occured while updating Prior experience of training partner " + e);
+				status = -1;
 			}
+			return status;
 	
 		}
 		
@@ -282,6 +295,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		
 		public int updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto)
 		{
+			int status = 0;
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
 
@@ -298,15 +312,17 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 				parameters.put("experience",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getExperience());
 				parameters.put("cVPath",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getcVPath());
 				parameters.put("certificatePath",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getCertificatePath());
+				parameters.put("isActive",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getIsActive());
 				
-				return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(),parameters);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(),parameters);
 
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-				return -1;
 			}
-	
+			catch(Exception e)
+			{
+				LOGGER.error("An exception occured while updating management staff details of training partner " + e);
+				status = -1;
+			}
+			return status;
 		}
 		
 		/*
@@ -315,19 +331,23 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	
 		public int updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(HashMap<String, String> setPaths,int managementAndStaffId,String trainingPartnerCenterId)
 		{
+			int status = 0;
 			try{
 			Map<String, String> parameters = new HashMap<String, String>();
 			parameters.put("cVPath", setPaths.get("cVPath"));
 			parameters.put("certificatePath", setPaths.get("certificatePath"));
 			parameters.put("trainingPartnerCenterId", trainingPartnerCenterId);
 			parameters.put("managementAndStaffId", String.valueOf(managementAndStaffId));
-			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(), parameters);
+			
+			
+			status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(), parameters);
 			}
 			catch(Exception e)
 			{
-				e.printStackTrace();
-				return -1;
+				LOGGER.error("An exception occured while updating office details of traing partner management staff details " + e);
+				status = -1;
 			}
+			return status;
 		}
 
 	
@@ -337,6 +357,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	
 		public int updatePathsIntoTrainingPartnerCenterLevelDetails(HashMap<String, String> setPaths,int trainingPartnerCenterId)
 		{
+			int status = 0;
 			try{
 			Map<String, String> parameters = new HashMap<String, String>();
 			parameters.put("classroomPicsPath", setPaths.get("classroomPicsPath"));
@@ -345,13 +366,14 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			parameters.put("mandatoryToolKitAnnexurePath", setPaths.get("mandatoryToolKitAnnexurePath"));
 			parameters.put("mandatoryToolKitPicsPath", setPaths.get("mandatoryToolKitPicsPath"));
 			parameters.put("trainingPartnerCenterId", String.valueOf(trainingPartnerCenterId));
-			return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsIntoTrainingPartnerCenterLevelDetails(), parameters);
+			status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsIntoTrainingPartnerCenterLevelDetails(), parameters);
 			}
 			catch(Exception e)
 			{
-				e.printStackTrace();
-				return -1;
+				LOGGER.error("An exception occured while updating path of training partner management staff details");
+				status = -1;
 			}
+			return status;
 		}
 		
 	
