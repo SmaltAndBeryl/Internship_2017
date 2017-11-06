@@ -465,7 +465,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
                                    {
                                 	   'trainingPartnerCenterId' :1,
                                 	   'trainingPartnerRegistrationId' : 1,
-                                	   'nameOfCenter' : 'Smalt and beryl business solution center',
+                                	   'nameOfCenter' : 'Smalt and beryl Business Solution center',
                                 	   'numberOfPermanentOfficeManager' : 1,
                                 	   'numberOftemporaryOfficeManager': null,
                                 	   'numberOfPermanentOfficeStaff' : null,
@@ -516,20 +516,79 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
                                 	   'isActive':1
                                    }
                                  ]
+        
+        $scope.pctpInstituteGrantDetail = [
+        {
+        	'instituteGrantId': '2',
+        	'trainingPartnerRegistrationId':'1',
+        	'nameOfMinistry' : 'M.H.Rr.D',
+        	'natureOfWork': 'Aenwaii 2',
+        	'remarks': 'no remakrs 2',
+        	'isActive': true
+        }]
+        $scope.pctpRecognition = [{
+        	'trainingPartnerRegistrationId':1,
+        	'instituteRecognitionId' :1,
+        	'nameOfRecognizingBody': 'SSCGJJ',
+        	'recognitionNumber': '1213212',
+        	'yearOfRecognition':'2323',
+        	'validityOfRecognition':'33',
+        	'isActive': false
+        
+        },
+        {
+        	'trainingPartnerRegistrationId':1,
+        	'instituteRecognitionId' :2,
+        	'nameOfRecognizingBody': 'dfcecd',
+        	'recognitionNumber': '1213212',
+        	'yearOfRecognition':'43434',
+        	'validityOfRecognition':'453',
+        	'isActive': true
+        
+        },
+        {
+        	'trainingPartnerRegistrationId':1,
+        	'instituteRecognitionId' :3,
+        	'nameOfRecognizingBody': 'dfcecd',
+        	'recognitionNumber': '1213212',
+        	'yearOfRecognition':'43434',
+        	'validityOfRecognition':'453',
+        	'isActive': true
+        
+        }]
+        $scope.pctpTrainingStaff = [{
+        	'managementAndStaffId' : '1',
+        	'trainingPartnerRegistrationId': 1,
+        	'trainingPartnerCenterId':1,
+        	'type':'no type',
+        	'name':'Ruchi Pareek',
+        	'designation':'CLO',
+        	'emailId':'ruchi@smaltandberyl.com',
+        	'contactNumber':989898989,
+        	'educationalQualification': 'B Tech.',
+        	'regularOrVisiting': 'regular',
+        	'experience':'12',
+        	'isActive':1
+        	
+        }]
+        
         $scope.postValue = {
             'type' : 'Draft',
             'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
-            'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.pctpCenterDetails
+            'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.pctpCenterDetails,
+            'profileCreationTrainingPartnerInstituteGrantDto' : $scope.pctpInstituteGrantDetail,
+            'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.pctpRecognition,
+            'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff
         }
         var saveUrl = '/saveAsDraftAndSubmitTP';
         var saveMethod = 'POST';
-        //console.log("The values to be posted are " + JSON.stringify($scope.postValue));
+        
         console.log("Preparing to post the values.............");
         $http({
                 url: saveUrl,
                 method: saveMethod,
                 data: angular.toJson($scope.postValue)
-                /*data: angular.toJson(editdetailsOfApplication)*/
+        
             }).then(
                 function successCallback(response) {
                     console.log("SUCCESS 123");
@@ -547,10 +606,10 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
                 });
     };
 
-
+    	//Submit button Method
     $scope.submit = function(response) {
         alert("Data saved successfully.. " + response);
-        //POST function to post into backend
+       
 
 
         console.log("here in submit");
@@ -560,10 +619,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
 
         console.log($scope.trainingPartner);
 
-        /* $scope.trainingPartner = $scope.trainingPartner.concat([
-                                                   {type : "SaveAsDraft"}
-                                                 ]);*/
-
+       
         $scope.trainingPartner = {
         		'type' : "Save"
         }
@@ -608,19 +664,4 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         )
     };
 
-
-
-//    $http.get('/getTrainingPartnerData')
-//        .then(function(response) {
-//            console.log("In Get  Function ");
-//            console.log(response.data);
-//            $scope.trainingPartner = response.data;
-//            console.log($scope.trainingPartner);
-//            console.log(response.data.pincode);
-//            console.log($scope.trainingPartner.sPOCName);
-//            console.log($scope.trainingPartner.pincode);
-//            /*if($scope.profileTp.pincode==0)
-//            	  $scope.profileTp.pincode=null;*/
-//
-//        });
 });

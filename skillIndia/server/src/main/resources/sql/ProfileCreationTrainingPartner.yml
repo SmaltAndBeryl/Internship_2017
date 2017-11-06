@@ -23,8 +23,13 @@ ProfileCreationTrainingPartner:
 
  isTrainingCenterPresent: >
   SELECT EXISTS(SELECT * FROM scgj.trainingpartnercenterleveldetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and trainingPartnerCenterId=:trainingPartnerCenterId);
-
-
+ 
+ isInstituteGrantPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerinstitutegrant WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and instituteGrantId=:instituteGrantId);
+ 
+ isRecognitnionPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerinstituterecognition WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and instituteRecognitionId=:instituteRecognitionId);
+ 
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
    values(:applicationState,:activeFlag,:dateOfSubmission,:userId)  
@@ -39,19 +44,19 @@ ProfileCreationTrainingPartner:
 
 
  insertIntoTrainingPartnerInstituteGrant: >
-  INSERT INTO `scgj`.`trainingpartnerinstitutegrant` (`trainingPartnerRegistrationId`, `nameOfMinistry`, `natureOfWork`, `remarks`) VALUES (:trainingPartnerRegistrationId,:nameOfMinistry,:natureOfWork,:remarks);
+  INSERT INTO `scgj`.`trainingpartnerinstitutegrant` (`trainingPartnerRegistrationId`, `nameOfMinistry`, `natureOfWork`, `remarks`, `isActive`) VALUES (:trainingPartnerRegistrationId,:nameOfMinistry,:natureOfWork,:remarks,:isActive);
 
 
  insertIntoTrainingPartnerInstituteRecognition: >
-  INSERT INTO `scgj`.`trainingpartnerinstituterecognition` (`trainingPartnerRegistrationId`, `nameOfRecognizingBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`) VALUES (:trainingPartnerRegistrationId,:nameOfRecognizingBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition);
+  INSERT INTO `scgj`.`trainingpartnerinstituterecognition` (`trainingPartnerRegistrationId`, `nameOfRecognizingBody`, `recognitionNumber`, `yearOfRecognition`, `validityOfRecognition`, `isActive`) VALUES (:trainingPartnerRegistrationId,:nameOfRecognizingBody,:recognitionNumber,:yearOfRecognition,:validityOfRecognition,:isActive);
 
 
  insertIntoTrainingPartnerPriorExperienceInSkillTraining: >
-  INSERT INTO `scgj`.`trainingpartnerpriorexperienceinskilltraining` (`trainingPartnerRegistrationId`, `courseName`, `numberOfBatchesPerYear`, `numberOfStudentsInEachBatch`) VALUES (:trainingPartnerRegistrationId,:courseName,:numberOfBatchesPerYear,:numberOfStudentsInEachBatch);
+  INSERT INTO `scgj`.`trainingpartnerpriorexperienceinskilltraining` (`trainingPartnerRegistrationId`, `courseName`, `numberOfBatchesPerYear`, `numberOfStudentsInEachBatch`, `isActive`) VALUES (:trainingPartnerRegistrationId,:courseName,:numberOfBatchesPerYear,:numberOfStudentsInEachBatch,:isActive);
 
 
  insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails: >
-  INSERT INTO `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` (`trainingPartnerRegistrationId`, `trainingPartnerCenterId`, `type`, `name`, `designation`, `emailId`, `contactNumber`, `educationalQualification`, `regularOrVisiting`, `experience`, `cVPath`, `certificatePath`) VALUES (:trainingPartnerRegistrationId,:trainingPartnerCenterId,:type,:name,:designation,:emailId,:contactNumber,:educationalQualification,:regularOrVisiting,:experience,:cVPath,:certificatePath);
+  INSERT INTO `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` (`trainingPartnerRegistrationId`, `trainingPartnerCenterId`, `type`, `name`, `designation`, `emailId`, `contactNumber`, `educationalQualification`, `regularOrVisiting`, `experience`, `cVPath`, `certificatePath`,`isActive`) VALUES (:trainingPartnerRegistrationId,:trainingPartnerCenterId,:type,:name,:designation,:emailId,:contactNumber,:educationalQualification,:regularOrVisiting,:experience,:cVPath,:certificatePath,:isActive);
 
 
  updateDataInApplication: >
@@ -135,31 +140,31 @@ ProfileCreationTrainingPartner:
   `studentAgreementWithInstitution`=:studentAgreementWithInstitution, 
   `remarksOnStudentAdmissionDetails`=:remarksOnStudentAdmissionDetails,
   `isActive`=:isActive
-   WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId;
-
-
-
+   WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
 
  updateIntoTrainingPartnerInstituteGrant: >
   UPDATE `scgj`.`trainingpartnerinstitutegrant` SET `nameOfMinistry`=:nameOfMinistry,
   `natureOfWork`=:natureOfWork,
-  `remarks`=:remarks 
-    WHERE `instituteGrantId`=:instituteGrantId;
+  `remarks`=:remarks,
+  `isActive`=:isActive
+    WHERE `instituteGrantId`=:instituteGrantId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
 
 
  updateIntoTrainingPartnerInstituteRecognition: >
-  UPDATE `scgj`.`trainingpartnerinstituterecognition` SET `nameOfRecognizingBody`=:nameOfRecognizingBody, `recognitionNumber`=:recognitionNumber, 
+  UPDATE `scgj`.`trainingpartnerinstituterecognition` SET `instituteRecognitionId`=:instituteRecognitionId, `nameOfRecognizingBody`=:nameOfRecognizingBody, `recognitionNumber`=:recognitionNumber, 
   `yearOfRecognition`=:yearOfRecognition, 
-  `validityOfRecognition`=:validityOfRecognition 
-   WHERE `instituteRecognitionId`=:instituteRecognitionId;
+  `validityOfRecognition`=:validityOfRecognition,
+  `isActive`=:isActive
+   WHERE `instituteRecognitionId`=:instituteRecognitionId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
 
 
 
  updateIntoTrainingPartnerPriorExperienceInSkillTraining: >
   UPDATE `scgj`.`trainingpartnerpriorexperienceinskilltraining` SET `courseName`=:courseName,
   `numberOfBatchesPerYear`=:numberOfBatchesPerYear,
-  `numberOfStudentsInEachBatch`=:numberOfStudentsInEachBatch 
-   WHERE `priorExperienceInSkillTrainingId`=:priorExperienceInSkillTrainingId;
+  `numberOfStudentsInEachBatch`=:numberOfStudentsInEachBatch,
+  `isActive`=:isActive
+   WHERE `priorExperienceInSkillTrainingId`=:priorExperienceInSkillTrainingId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
 
 
 
@@ -173,8 +178,9 @@ ProfileCreationTrainingPartner:
   `regularOrVisiting`=:regularOrVisiting, 
   `experience`=:experience, 
   `cVPath`=:cVPath, 
-  `certificatePath`=:certificatePath 
-   WHERE `managementAndStaffId`=:managementAndStaffId;
+  `certificatePath`=:certificatePath,
+  `isActive`=:isActive
+   WHERE `managementAndStaffId`=:managementAndStaffId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
 
    
  deleteFromTrainingPartnerInstituteGrant: >
