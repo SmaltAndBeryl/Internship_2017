@@ -310,13 +310,12 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	 * Method to save data of Training Partner*/
 	public int saveTrainingPartner(ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{
-		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, trainingStaff =0;
+		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, trainingStaff =0, experienceInTraining =0;
 		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		
 		//New User
 		if(userExists == -1)
 		{
-			
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
 			status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto().isEmpty())
@@ -330,6 +329,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			
 			if(! profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto().isEmpty())
 			{
+				
 				for(ProfileCreationTrainingPartnerInstituteGrantDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto())
 				{
 					trainingPartnerInstituteGrant = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteGrant(item);					
@@ -348,6 +348,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				for(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto())
 				{
 					trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item);
+				}
+			}
+			
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto().isEmpty())
+			{
+				for(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto())
+				{
+					experienceInTraining = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerPriorExperienceInSkillTraining(item);
 				}
 			}
 			if(applicationTableStatus == -1 || status == -1 || trainingPartnerCenterDetails == -1 || trainingPartnerInstituteGrant == -1)
@@ -370,7 +378,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			 * Training Center Details*/
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto().isEmpty())
 			{
-				int doesTrainingCenterExists = 0;
+				int doesTrainingCenterExists = 10;
 				for(ProfileCreationTrainingPartnerCenterDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto())
 				{
 					doesTrainingCenterExists = profileCreationTrainingPartnerGetDataDao.isTrainingCenterPresent(item.getTrainingPartnerRegistrationId(), item.getTrainingPartnerCenterId());
@@ -393,7 +401,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			
 			if(! profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto().isEmpty())
 			{
-				int doesInstitueGrantExists = 0;
+				int doesInstitueGrantExists = 10;
 				
 				for(ProfileCreationTrainingPartnerInstituteGrantDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto())
 				{
@@ -406,9 +414,13 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					{
 						trainingPartnerInstituteGrant = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerInstituteGrant(item);
 					}
+					else if(doesInstitueGrantExists == -1)
+					{
+						LOGGER.debug("Could not insert value of institute grant into database due to some error");
+					}
 					else
 					{
-						LOGGER.error("Could not insert value of institute grant into database due to some error");
+						LOGGER.debug("Do nothing");
 					}
 										
 				}
@@ -419,9 +431,10 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				int doesRecognitionExists = 0; 
 				for(ProfileCreationTrainingPartnerInstituteRecognitionDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteRecognitionDto())
 				{
-					doesRecognitionExists = profileCreationTrainingPartnerGetDataDao.isInstituteGrantPresent(item.getTrainingPartnerRegistrationId(),item.getInstituteRecognitionId());
+					doesRecognitionExists = profileCreationTrainingPartnerGetDataDao.isInstituteRecognitionPresent(item.getTrainingPartnerRegistrationId(),item.getInstituteRecognitionId());
 					if(doesRecognitionExists ==0)
 					{
+						LOGGER.debug("Returned 0");
 						trainingPartnerRecognition = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteRecognition(item);
 					}
 					else if (doesRecognitionExists == 1)
@@ -439,7 +452,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			/*Training Partner Training staff details*/
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto().isEmpty())
 			{
-				int doesTrainingStaffExists = 0;
+				int doesTrainingStaffExists =10;
 				for(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto())
 				{
 					doesTrainingStaffExists = profileCreationTrainingPartnerGetDataDao.isTrainingStaffPresent(item.getTrainingPartnerRegistrationId(), item.getManagementAndStaffId());
@@ -453,11 +466,34 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					}
 					else
 					{
-						
+						LOGGER.debug("Could not insert Traing Partner Management and staff details in databse");
 					}
 					
 				}
 			}
+			/*
+			 * Training Partner Experience in prior training */
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto().isEmpty())
+			{
+				int doesExperienceExists = 10;
+				for(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto())
+				{
+					doesExperienceExists = profileCreationTrainingPartnerGetDataDao.isTrainingExperiencePresent(item.getTrainingPartnerRegistrationId(), item.getPriorExperienceInSkillTrainingId());
+					if(doesExperienceExists == 0)
+					{
+						experienceInTraining = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerPriorExperienceInSkillTraining(item);
+					}
+					else if(doesExperienceExists == 1)
+					{
+						experienceInTraining = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerPriorExperienceInSkillTraining(item);
+					}
+					else
+					{
+						LOGGER.error("Could not add experience in database");
+					}
+				}
+			}
+			
 		}
 		return status;
 	}

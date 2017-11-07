@@ -39,6 +39,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String isInstituteGrantPresent;
 	private String isRecognitnionPresent;
 	private String isTrainingStaffPresent;
+	private String isTrainingExperiencePresent;
 	
 	
 	/**
@@ -427,6 +428,13 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	}
 	public void setIsTrainingStaffPresent(String isTrainingStaffPresent) {
 		this.isTrainingStaffPresent = isTrainingStaffPresent;
+	}
+	public String getIsTrainingExperiencePresent() {
+		return isTrainingExperiencePresent;
+	}
+	public void setIsTrainingExperiencePresent(
+			String isTrainingExperiencePresent) {
+		this.isTrainingExperiencePresent = isTrainingExperiencePresent;
 	}
 
 

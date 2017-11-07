@@ -231,7 +231,7 @@ private static final ProfileCreationTrainingPartnerInstituteGrantRowMapper ROW_M
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("Exception occured while creating row mapper for Institute Grant " + e);
 			return null;
 		}
  	}
@@ -267,7 +267,7 @@ private static final ProfileCreationTrainingPartnerInstituteRecognitionRowMapper
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An exception occured "+ e);
 			return null;
 		}
  	}
@@ -311,7 +311,7 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
  	}
 	public int isTrainingCenterPresent(String trainingPartnerRegistrationId, String trainingPartnerCenterId)
 	{
-		int status = 0;
+		int status = 10;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
@@ -335,30 +335,32 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 	//to find out if Institute grant exists or not
 	public int isInstituteGrantPresent(String trainingPartnerRegistrationId, String instituteGrantId)
 	{
-		int status = 0;
+		int status = 10;
 		try
 		{
-			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("instituteGrantId", instituteGrantId);
+			Map<String,Object> parameters = new HashMap<String,Object>();
 			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
-			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsInstituteGrantPresent(), parameters, Integer.class);
+			parameters.put("instituteGrantId", instituteGrantId);
+			status = getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsInstituteGrantPresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
 		{
-			LOGGER.debug("Could not find value of Institute Grant " +e.getMessage());
 			status = -1;
+			LOGGER.debug("Could not find value of Institute Grant " +e);
+			
 		}
 		catch (Exception e)
 		{
-			LOGGER.error("An exception occured while finding if institute grant already exists in database " + e);
 			status = -2;
+			LOGGER.error("An exception occured while finding if institute grant already exists in database " + e);
+			
 		}
 		return status;
 	}
 	
 	public int isInstituteRecognitionPresent(String trainingPartnerRegistrationId, String instituteRecognitionId)
 	{
-		int status = 0;
+		int status = 10;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
@@ -381,7 +383,7 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 	
 	public int isTrainingStaffPresent(String trainingPartnerRegistrationId, String managementAndStaffId)
 	{
-		int status = 0;
+		int status = 10;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
@@ -391,16 +393,40 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		}
 		catch(EmptyResultDataAccessException e)
 		{
-			LOGGER.error("Could not find value of Institute Grant " + e);
+			LOGGER.error("Could not find value of Training Staff" + e);
 			status = -1;
 		}
 		catch (Exception e)
 		{
-			LOGGER.error("An excpetion occured while finding if institute grant already exists in database " +e);
+			LOGGER.error("An excpetion occured while finding if traing staff already exists in database " +e);
 			status = -2;
 		}
 		return status;
 	}
+	
+	public int isTrainingExperiencePresent(String trainingPartnerRegistrationId, String priorExperienceInSkillTrainingId)
+	{
+		int status = 10;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("priorExperienceInSkillTrainingId", priorExperienceInSkillTrainingId);
+			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
+			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingExperiencePresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("Could not find value of Training Experience" + e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured while finding if traing experience already exists in database " +e);
+			status = -2;
+		}
+		return status;
+	}
+	
 	public static class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingRowMapper implements RowMapper<ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> {
 
 		@Override
