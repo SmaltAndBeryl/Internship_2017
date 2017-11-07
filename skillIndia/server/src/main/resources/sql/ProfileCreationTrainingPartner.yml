@@ -25,10 +25,16 @@ ProfileCreationTrainingPartner:
   SELECT EXISTS(SELECT * FROM scgj.trainingpartnercenterleveldetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and trainingPartnerCenterId=:trainingPartnerCenterId);
  
  isInstituteGrantPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerinstitutegrant WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and instituteGrantId=:instituteGrantId);
+  SELECT EXISTS(SELECT * FROM scgj.TrainingPartnerInstituteGrant WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and instituteGrantId=:instituteGrantId);
  
  isRecognitnionPresent: >
   SELECT EXISTS(SELECT * FROM scgj.trainingpartnerinstituterecognition WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and instituteRecognitionId=:instituteRecognitionId);
+  
+ isTrainingStaffPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnermanagementandstaffandofficialsdetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and managementAndStaffId=:managementAndStaffId);
+ 
+ isTrainingExperiencePresent: >
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerpriorexperienceinskilltraining WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and priorExperienceInSkillTrainingId=:priorExperienceInSkillTrainingId);
  
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)

@@ -519,7 +519,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         
         $scope.pctpInstituteGrantDetail = [
         {
-        	'instituteGrantId': '2',
+        	'instituteGrantId': '1',
         	'trainingPartnerRegistrationId':'1',
         	'nameOfMinistry' : 'M.H.Rr.D',
         	'natureOfWork': 'Aenwaii 2',
@@ -535,26 +535,6 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         	'validityOfRecognition':'33',
         	'isActive': false
         
-        },
-        {
-        	'trainingPartnerRegistrationId':1,
-        	'instituteRecognitionId' :2,
-        	'nameOfRecognizingBody': 'dfcecd',
-        	'recognitionNumber': '1213212',
-        	'yearOfRecognition':'43434',
-        	'validityOfRecognition':'453',
-        	'isActive': true
-        
-        },
-        {
-        	'trainingPartnerRegistrationId':1,
-        	'instituteRecognitionId' :3,
-        	'nameOfRecognizingBody': 'dfcecd',
-        	'recognitionNumber': '1213212',
-        	'yearOfRecognition':'43434',
-        	'validityOfRecognition':'453',
-        	'isActive': true
-        
         }]
         $scope.pctpTrainingStaff = [{
         	'managementAndStaffId' : '1',
@@ -567,9 +547,17 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         	'contactNumber':989898989,
         	'educationalQualification': 'B Tech.',
         	'regularOrVisiting': 'regular',
-        	'experience':'12',
+        	'experience':'10',
         	'isActive':1
         	
+        }]
+        $scope.pctpTrainingExperience =[{
+        	'priorExperienceInSkillTrainingId' : '1',
+        	'trainingPartnerRegistrationId' : '1',
+        	'courseName' : 'Course Name 1',
+        	'numberOfBatchesPerYear' : '123',
+        	'numberOfStudentsInEachBatch' : '43',
+        	'isActive' : 1
         }]
         
         $scope.postValue = {
@@ -578,7 +566,8 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
             'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.pctpCenterDetails,
             'profileCreationTrainingPartnerInstituteGrantDto' : $scope.pctpInstituteGrantDetail,
             'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.pctpRecognition,
-            'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff
+            'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+            'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.pctpTrainingExperience
         }
         var saveUrl = '/saveAsDraftAndSubmitTP';
         var saveMethod = 'POST';
