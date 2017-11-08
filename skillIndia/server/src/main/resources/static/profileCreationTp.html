@@ -49,14 +49,14 @@
                 </accordion-heading>
 
                 <div class="container">
-                    <div ng-repeat="x in trainingPartner.TrainingPartnerOrganizationDetails">
+                    <div>
 
                         <div class="row">
                             <div class="col-md-3">
-                                <h3>{{x.organizationName}}</h3>
+                                <h3>{{trainingPartner.TrainingPartnerOrganizationDetails.organizationName}}</h3>
                             </div>
                             <div class="col-md-3 col-md-offset-3">
-                                <h3>{{x.sPOCName}}</h3>
+                                <h3>{{trainingPartner.TrainingPartnerOrganizationDetails.sPOCName}}</h3>
                             </div>
                         </div>
 
@@ -66,35 +66,35 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4">UserId</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.trainingPartnerRegistrationId" readonly>
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.trainingPartnerRegistrationId" readonly>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">City</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.city">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.city">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">State</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.state">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.state">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Mobile Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.mobileNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Alternate Mobile Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.alternateMobileNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber">
                                     </div>
                                 </div>
 
@@ -103,28 +103,28 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4">Landline Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.landlineNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Alternate Landline Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.alternateLandlineNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateLandlineNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Fax Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.faxNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.faxNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Website</div>
                                     <div class="col-md-8">
-                                        <input ng-model="x.websites">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.websites">
                                     </div>
                                 </div>
                             </div>
@@ -157,20 +157,20 @@
                     </div>
                 </accordion-heading>
                 <div class="container">
-                    <div ng-repeat="x in trainingPartner.TrainingPartnerOrganizationDetails">
+                    <div>
                         <!--accordion content to come here -->
 
                         <div class="row row-margin">
                             <div class="col-md-4">Year of Establishment</div>
                             <div class="col-md-8">
-                                <input ng-model="x.yearOfEstablishment">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment">
                             </div>
                         </div>
 
                         <div class="row row-margin">
                             <div class="col-md-4">Medium of instruction</div>
                             <div class="col-md-8">
-                                <input ng-model="x.mediumOfInstructions">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mediumOfInstructions">
                                 <small class="fine-print">For multiple languages, use commas to separate them</small>
                             </div>
                         </div>
@@ -186,9 +186,9 @@
                                 Self Owned Institution
                             </div>
                             <div class="col-md-8">
-                                <input ng-model="x.selfOwnedInstitution">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution">
 
-                                <div ng-show="x.selfOwnedInstitution > '0'" class="upload-btn">
+                                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution > '0'" class="upload-btn">
                                     Upload File
                                     <input type="file">
                                 </div>
@@ -201,9 +201,9 @@
                                 Franchise Owned Institution
                             </div>
                             <div class="col-md-8">
-                                <input ng-model="x.franchiseOwnedInstitution">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution">
 
-                                <div ng-show="x.franchiseOwnedInstitution > '0'" class="upload-btn">
+                                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution > '0'" class="upload-btn">
                                     Upload File
                                     <input type="file">
                                 </div>
@@ -215,11 +215,11 @@
                                 Mobile Owned Institution
                             </div>
                             <div class="col-md-8">
-                                <input ng-model="x.mobileTrainingInstitution">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution">
                                 <form>
-                                    <div ng-show="x.mobileTrainingInstitution > '0'" class="upload-btn">
+                                    <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution > '0'" class="upload-btn">
                                         <div class="form-group">
-                                            <input id = "attachments" type="file" file-model="x.mobileTrainingInstitutionAnnexurePath"
+                                            <input id = "attachments" type="file" file-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitutionAnnexurePath"
                                                    onchange="angular.element(this).scope().previewAttachments(event)" multiple accept="application/pdf">
                                             <button ng-click="uploadFile()" class="btn btn-success">Upload Files</button>
                                             <ul>
@@ -237,18 +237,18 @@
 
                         <div class="row row-margin">
                             <div class="col-md-4">PAN</div>
-                            <div class="col-md-8"><input ng-model="x.panNumber"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.panNumber"></div>
                         </div>
 
 
                         <div class="row row-margin">
                             <div class="col-md-4">TAN</div>
-                            <div class="col-md-8"><input ng-model="x.tanNumber"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.tanNumber"></div>
                         </div>
 
                         <div class="row row-margin">
                             <div class="col-md-4">Turnover of the institute</div>
-                            <div class="col-md-8"><input ng-model="x.turnOverOfInstitution"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.turnOverOfInstitution"></div>
                         </div>
 
                         <div class="row row-margin">
@@ -256,14 +256,14 @@
 
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.instituteReceivedAnyGrant" value="Yes" ng-click="addNewGrant()"> Yes
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant" value="Yes" ng-click="addNewGrant()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.instituteReceivedAnyGrant" value="No" ng-click="removeAllGrant()" checked> No
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant" value="No" ng-click="removeAllGrant()" checked> No
                                 </label>
                             </div>
                             <form ng-submit="addNewGrant()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="x.instituteReceivedAnyGrant == 'Yes'">
+                                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant == 'Yes'">
                                     <table>
                                         <thead>
                                         <tr>
@@ -296,14 +296,14 @@
                             <div class="col-md-4">Is the institute recognized with any bodies?</div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.instituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.instituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()" checked> No
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()" checked> No
                                 </label>
                             </div>
                             <form ng-submit="addNewRecognition()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="x.instituteReceivedAnyRecognition == 'Yes'">
+                                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition == 'Yes'">
                                     <table>
                                         <thead>
                                         <tr>
@@ -334,7 +334,7 @@
 
                         <div class="row row-margin">
                             <div class="col-md-4">Does the institute have any prior experience in skill development?</div>
-                            <div class="col-md-8"><input ng-model="x.priorExperienceOfInstitutionInSkillDevelopment"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.priorExperienceOfInstitutionInSkillDevelopment"></div>
                         </div>
 
 
@@ -342,14 +342,14 @@
                             <div class="col-md-4">Prior experience of institution in skill training(Related to QP)?</div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.anyPriorExperienceOfInstitutionInSkillTraining" value="Yes" ng-click="addNew()"> Yes
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="Yes" ng-click="addNew()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="x.anyPriorExperienceOfInstitutionInSkillTraining" value="No" ng-click="removeAll()" checked> No
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="No" ng-click="removeAll()" checked> No
                                 </label>
                             </div>
                             <form ng-submit="addNew()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="x.anyPriorExperienceOfInstitutionInSkillTraining == 'Yes'">
+                                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining == 'Yes'">
                                     <table>
                                         <thead>
                                         <tr>
