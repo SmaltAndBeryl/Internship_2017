@@ -57,13 +57,13 @@ public class ProfileCreationGetDataService {
 		/*
 		 *  -1 is returned if appId doesn't exist for particular userId
 		 */
-			LOGGER.info("Trying to check if user has logged in for the first time");
+			LOGGER.debug("Trying to check if user has logged in for the first time");
 		if(applicationId== -1)
 		{
 			/*
 			 * Get data from user table
 			 */
-			LOGGER.info("User has logged in for the first time and a new application is being created for the User");
+			LOGGER.debug("User has logged in for the first time and a new application is being created for the User");
 			Collection<ProfileCreationGetDataFromUserDto> profileCreationGetDataFromUserDto = profileCreationTPABCommonDao.profileCreationGetDataFromUser();
 			userData.put("userTableData", profileCreationGetDataFromUserDto);
 			return userData;
@@ -75,7 +75,7 @@ public class ProfileCreationGetDataService {
 			 * Exception occurred while getting application Id corresponding userId
 			 *  
 			 */
-			LOGGER.info("Could not find if user has logged in before or not. An Error occured");
+			LOGGER.debug("Could not find if user has logged in before or not. An Error occured");
 			return null;
 		}
 		else
@@ -83,8 +83,8 @@ public class ProfileCreationGetDataService {
 			/*
 			 * If control comes here then user already filled his/her profile once
 			 */
-			LOGGER.info("User has already logged in and filled application atleast once");
-			LOGGER.info("Trying to find user role for the logged in user");
+			LOGGER.debug("User has already logged in and filled application atleast once");
+			LOGGER.debug("Trying to find user role for the logged in user");
 			String userRole=getUserRoleDao.getUserRole(sessionUserUtility.getSessionMangementfromSession().getUsername());
 			
 			if(userRole.equalsIgnoreCase("TP"))
@@ -93,29 +93,32 @@ public class ProfileCreationGetDataService {
 				/*
 				 * Get trainingPartnerRegistrationId using applicationId 
 				 */
-				LOGGER.info("Logged in user has filled application as a trianing partner");
-				LOGGER.info("Since logged in user has a role of TP.. Trying to getdata of training partner");
+				LOGGER.debug("Logged in user has filled application as a trianing partner");
+				LOGGER.debug("Since logged in user has a role of TP.. Trying to getdata of training partner");
 				String trainingPartnerRegistrationId= profileCreationTrainingPartnerGetDataDao.profileCreationGetTrainingPartnerRegistrationIdUsingApplicationId(applicationId);
 				
 				/*
 				 * Get data from Training Partner Tables 
 				 */
 				
-				Collection<ProfileCreationTrainingPartnerOrganizationDetailsDto> profileCreationOrganizationLevelDetails=profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerOrganizationDetails(applicationId);
+				//Collection<ProfileCreationTrainingPartnerOrganizationDetailsDto> profileCreationOrganizationLevelDetails=;
 				Collection<ProfileCreationTrainingPartnerCenterDetailsDto> profileCreationTrainingPartnerCenterDetails=profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerCenterLevelDetails(trainingPartnerRegistrationId);
 				Collection<ProfileCreationTrainingPartnerInstituteGrantDto> profileCreationTrainingPartnerInstituteGrant =profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerInstituteGrant(trainingPartnerRegistrationId);
 				Collection<ProfileCreationTrainingPartnerInstituteRecognitionDto> profileCreationTrainingPartnerInstituteRecognition=profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerInstituteRecognition(trainingPartnerRegistrationId);
 				Collection<ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto> profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails =profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails(trainingPartnerRegistrationId);
 				Collection<ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> profileCreationTrainingPartnerPriorExperienceInSkillTraining =profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerPriorExperienceInSkillTraining(trainingPartnerRegistrationId);
-				
-				userData.put("TrainingPartnerOrganizationDetails", profileCreationOrganizationLevelDetails);
+				for(ProfileCreationTrainingPartnerOrganizationDetailsDto item : profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerOrganizationDetails(applicationId))
+				{
+					userData.put("TrainingPartnerOrganizationDetails",item);
+				}
+				//userData.put("TrainingPartnerOrganizationDetails", profileCreationOrganizationLevelDetails);
 				userData.put("TrainingPartnerCenterDetails", profileCreationTrainingPartnerCenterDetails);
 				userData.put("InstituteGrantDetails", profileCreationTrainingPartnerInstituteGrant);
 				userData.put("InstituteRecognitionDetails", profileCreationTrainingPartnerInstituteRecognition);
 				userData.put("ManagementAndStaffAndOfficialDetails", profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails);
 				userData.put("PriorExperienceDetails", profileCreationTrainingPartnerPriorExperienceInSkillTraining);
 
-				LOGGER.info("Trying to display data fetched for training partner from database");
+				LOGGER.debug("Trying to display data fetched for training partner from database");
 				return userData;
 			}
 			
@@ -125,11 +128,11 @@ public class ProfileCreationGetDataService {
 				/*
 				 * get AssessmentBodyRegistrationId using ApplicationId
 				 */
-				LOGGER.info("Logged in user has filled application as an assessment agency");
-				LOGGER.info("Since logged in user has a role of AB.. Trying to get data of assessment agency");
+				LOGGER.debug("Logged in user has filled application as an assessment agency");
+				LOGGER.debug("Since logged in user has a role of AB.. Trying to get data of assessment agency");
 				String assessmentBodyRegistrationId = profileCreationAssessmentBodyGetDataDao.profileCreationGetAssessmentBodyRegistrationIdUsingApplicationId(applicationId);
 				
-				Collection<ProfileCreationAssessmentBodyRegistrationDetailsDto> profileCreationAssessmentBodyRegistrationDetails=profileCreationAssessmentBodyGetDataDao.profileCreationGetDataFromAssessmentBodyRegistrationDetails(applicationId);
+//				Collection<ProfileCreationAssessmentBodyRegistrationDetailsDto> profileCreationAssessmentBodyRegistrationDetails=profileCreationAssessmentBodyGetDataDao.profileCreationGetDataFromAssessmentBodyRegistrationDetails(applicationId);
 				Collection<ProfileCreationAssessmentBodyRecognitionsDto> profileCreationAssessmentBodyRecognitions=profileCreationAssessmentBodyGetDataDao.profileCreationGetDataFromAssessmentBodyRecognitions(assessmentBodyRegistrationId);
 				Collection<ProfileCreationAssessmentsExperienceInTechnicalDomainDto> profileCreationAssessmentsExperienceInTechnicalDomain=profileCreationAssessmentBodyGetDataDao.profileCreationGetDataFromAssessmentsExperienceInTechnicalDomain(assessmentBodyRegistrationId);
 				Collection<ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto> profileCreationAssessmentBodyDirectorsAndManagementTeamDetails=profileCreationAssessmentBodyGetDataDao.profileCreationGetDataFromAssessmentBodyDirectorsAndManagementTeamDetails(assessmentBodyRegistrationId);
@@ -149,7 +152,7 @@ public class ProfileCreationGetDataService {
 				userData.put("AssessmentBodyRegionalOfficeDetails",profileCreationAssessmentBodyRegionalOfficeDetails );			
 				userData.put("AssessmentBodyAffiliationDetails", profileCreationAssessmentBodyAffiliationDetails);
 				
-				LOGGER.info("Trying to display data fetched for assessment body from database");
+				LOGGER.debug("Trying to display data fetched for assessment body from database");
 				return userData;
 			}
 			else
@@ -157,7 +160,7 @@ public class ProfileCreationGetDataService {
 				/*
 				 * UserRole Not AB/TP (Problem in finding user role ) 
 				 */
-				LOGGER.info("Could not find user role for the logged in user. Error occured");
+				LOGGER.debug("Could not find user role for the logged in user. Error occured");
 				return null;
 			}
 
@@ -169,7 +172,7 @@ public class ProfileCreationGetDataService {
 			/*
 			 * Error occurred while getting data from User/TP/AB tables
 			 */
-			e.printStackTrace();
+			LOGGER.error("An Exception occured while fetching data for the user " + e);
 			return null;
 		}
 	}
