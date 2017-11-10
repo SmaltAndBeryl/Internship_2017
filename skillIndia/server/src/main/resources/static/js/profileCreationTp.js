@@ -19,6 +19,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
             //            $scope.trainingPartner = response.data;
 
             $scope.trainingPartner = response.data;
+            console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
             $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
 
 //            $scope.spocName = $scope.TrainingPartnerOrganizationDetails.sPOCName;
@@ -29,6 +30,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
 
         });
     $scope.states = ["UP", "Uttarakhand", "MP", "Bihar"];
+    $scope.type = ["regular", "visiting"];
 
     $scope.addNew = function(experience) {
         console.log("data added successfully");
@@ -70,7 +72,19 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         });
         $scope.trainingPartner.PriorExperienceDetails = newDataList;
     };
+    //remove from management and training staff
+    $scope.remove = function() {
+        var newDataList = [];
+        //        $scope.selectedAll = false;
+        angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(selected) {
+            if (!selected.selected) {
+                newDataList.push(selected);
+            }
+        });
+        $scope.trainingPartner.PriorExperienceDetails = newDataList;
+    };
 
+    
     $scope.removeRecognition = function() {
         var newDataList = [];
         //        $scope.selectedAllRecognition = false;
@@ -292,137 +306,14 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
     };*/
 
     $scope.save = function(response) {
-        //        alert("Data saved successfully.. " + response);
-        //POST function to post into backend
-
-
-        console.log("Inside Save as Draft function");
-
-        console.log("The data from the training partner JSON object is ");
-        console.log("Scope.data is " + JSON.stringify($scope.trainingPartner));
-
-        $scope.trainingPartnerUserData = {
-        		'TrainingPartnerOrganizationDetails' : {
-        			'record': {'trainingPartnerRegistrationId' :'1'},
-        			'record': {'applicationId' : '2'},
-        			'record': {'organizationName' : 'Smalt and Beryl'},
-        			'record': {'sPOCName' : 'Ruchi Pareek'},
-        			'record': {'address' : 'NH 24, near Vijay Nagar'},
-        			'record': {'city':'Ghazibad'},
-        			'record': {'state':'UP'},
-        			'record': {'pincode':'201301'},
-        			'record': {'mobileNumber':'9811040283'},
-        			'record': {'alternateMobileNumber':'98000909'},
-        			'record': {'landlineNumber':'014123234'},
-        			'record': {'alternateLandlineNumber':'014189890'},
-        			'record': {'faxNumber':'014189890'},
-        			'record': {'websites':'www.smaltandberyl.com'},
-        			'record': {'yearOfEstablishment':'2012'},
-        			'record': {'qualificationPacks':'abc'},
-        			'record': {'qualificationPacksAnnexurePath':null},
-        			'record': {'nSDCFunded':'no'},
-        			'record': {'nSDCFundedCertificatePath':null},
-        			'record': {'mediumOfInstructions':null},
-        			'record': {'selfOwnedInstitution':null},
-        			'record': {'selfOwnedInstitutionAnnexurePath':null},
-        			'record': {'franchiseOwnedInstitution':null},
-        			'record': {'franchiseOwnedInstitutionAnnexurePath':null},
-        			'record': {'mobileTrainingInstitution':'3'},
-        			'record': {'mobileTrainingInstitutionAnnexurePath':null},
-        			'record': {'panNumber':'CIXPP90909'},
-        			'record': {'panNumberPath':null},
-        			'record': {'tanNumber':'NI898989'},
-        			'record': {'tanNumberPath':null},
-        			'record': {'turnOverOfInstitution':'56crore'},
-        			'record': {'turnOverOfInstitutionBalanceSheetPath':null},
-        			'record': {'instituteReceivedAnyGrant':'no'},
-        			'record': {'instituteReceivedAnyRecognition':'no'},
-        			'record': {'priorExperienceOfInstitutionInSkillDevelopment':'12years'},
-        			'record': {'trainingStaffDetailsAnnexurePath':null}
-        			
-        		},
-        		'TrainingPartnerCenterLevelDetails' :null,
-        		'TrainingPartnerCenterLevelAHOCSPOCDetails' :null,
-        		'TrainingPartnerInstituteGrant' :null,
-        		'TrainingPartnerInstituteRecognition' :null,
-        		'TrainingPartnerPriorExperienceInSkillTraining' :null,
-        		'TrainingPartnerManagementAndStaffAndOfficialsDetails' :null
-        }
-        $scope.trainingPartnerUserDeletes = {
-        		'TrainingPartnerCenterLevelDetails' :{
-        			'record': {'trainingPartnerCenterId':'1'},
-        			'record': {'trainingPartnerRegistrationId':'1'},
-        			'record': {'nameOfCenter':'Smalt and Beryl business solution center'},
-        			'record': {'numberOfPermanentOfficeManager':'1'},
-        			'record': {'numberOftemporaryOfficeManager':'1'},
-        			'record': {'numberOfPermanentOfficeStaff':'1'},
-        			'record': {'numberOfTemporaryOfficeStaff':'1'},
-        			'record': {'numberOfPermanentLabAssistants':'1'},
-        			'record': {'numberOfTemporaryLabAssistants':'1'},
-        			'record': {'numberOfPermanentAccountants':'1'},
-        			'record': {'numberOfTemporaryAccountants':'1'},
-        			'record': {'numberOfPermanentSupportStaff':'1'},
-        			'record': {'numberOfTemporarySupportStaff':'1'},
-        			'record': {'numberOfPermanentOtherEmployees':'1'},
-        			'record': {'numberOfTemporaryOtherEmployees':'1'},
-        			'record': {'areaOfInstitute':'5000sq.ft.'},
-        			'record': {'buildingType':'self'},
-        			'record': {'sizeOfClassrooms':'1'},
-        			'record': {'classroomPicsPath':'C:\Users\Ruchi Pareek\Documents\Smalt and Beryl\classroomPicsPath'},
-        			'record': {'numberOfClassrooms':'1'},
-        			'record': {'sizeOfLabs':'100sq.ft.'},
-        			'record': {'labPicsPath':'C:\Users\Ruchi Pareek\Documents\Smalt and Beryl\labPicsPath'},
-        			'record': {'numberOfLabs':'5'},
-        			'record': {'sizeOfWorkshops':'450sq.ft.'},
-        			'record': {'workshopPicsPath':'C:\Users\Ruchi Pareek\Documents\Smalt and Beryl\workshopPicsPath'},
-        			'record': {'numberOfWorkshops':'2'},
-        			'record': {'mandatoryToolKitpresent':'1'},
-        			'record': {'mandatoryToolKitAnnexurePath':'C:\Users\Ruchi Pareek\Documents\Smalt and Beryl\mandatoryToolKitAnnexurePath'},
-        			'record': {'mandatoryToolKitPicsPath':'C:\Users\Ruchi Pareek\Documents\Smalt and Beryl\mandatoryToolKitPicsPath'},
-        			'record': {'safeDrinkingWater':'yes'},
-        			'record': {'powerBackup':'yes'},
-        			'record': {'separateToilets':'yes'},
-        			'record': {'transportFacility':'yes'},
-        			'record': {'presenceOfLibrary':'yes'},
-        			'record': {'numberOfTechnicalBooks':'600'},
-        			'record': {'numberOfNonTechnicalBooks':'200'},
-        			'record': {'numberOfMagazines':'30'},
-        			'record': {'numberOfDailies':'6'},
-        			'record': {'remarksOnInfrastructureDetails':'none'},
-        			'record': {'sufficientClassroomIlluminationLevel':'yes'},
-        			'record': {'sufficientClassroomVentilationLevel':'yes'},
-        			'record': {'sufficientCenterCleanliness':'yes'},
-        			'record': {'centerWeatherProtected':'yes'},
-        			'record': {'remarksOnLearningEnviornment':'none'},
-        			'record': {'printedBrochureOrProspectus':'yes'},
-        			'record': {'documentedPolicyAndProcedures':'yes'},
-        			'record': {'concessionPolicy':'yes'},
-        			'record': {'safeCustodyOfStudentDocuments':'yes'},
-        			'record': {'studentAgreementWithInstitution':'yes'},
-        			'record': {'remarksOnStudentAdmissionDetails':'none'}
-        		},
-        		'TrainingPartnerInstituteGrant' :null,
-        		'TrainingPartnerInstituteRecognition' :null,
-        		'TrainingPartnerPriorExperienceInSkillTraining' :null,
-        		'TrainingPartnerManagementAndStaffAndOfficialsDetails':null
-        }
+    	
+    	$scope.dataPAN = new FormData();
+        var recordPan="PanNumber";
+        console.log("PanNumber :"+$scope.file);
         
-        $scope.trainingPartnerUserUploads = {
-        		'TrainingPartnerOrganizationDetails' :{
-        			'record1': {'PanNumber':null},
-        			'record2': {'TanNumber':null},
-        			'record3': {'TurnOver':null},
-        			'record4': {'QualificationPacksAnnexure':null},
-        			'record5': {'NSDCFundedCertificate':null},
-        			'record6': {'SelfOwnedInstitutionAnnexure':null},
-        			'record7': {'FranchiseOwnedInstitutionAnnexure':null},
-        			'record8': {'MobileTrainingInstitutionAnnexure':null},
-        			'record9': {'TrainingStaffDetailsAnnexure':null}
-        		},
-        		'TrainingPartnerCenterLevelDetails' :null,
-        		'TrainingPartnerCenterLevelAHOCSPOCDetails':null,
-        		'TrainingPartnerManagementAndStaffAndOfficialsDetails' :null
-        }
+        $scope.dataPAN.append("PanNumber",$scope.file);
+            console.log($scope.file);
+
         $scope.pctpOrgDetails = {
         		'trainingPartnerRegistrationId' :'1',
     			'applicationId' : '2',
