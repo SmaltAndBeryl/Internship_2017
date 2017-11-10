@@ -89,11 +89,9 @@ public class ProfileCreationController {
 		
 		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getType().toString());
 		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserData().toString());
-//		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserUploads());
+
 		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserDeletes().toString());
-		//LOGGER.info("Name is :" +profileCreationTestDto.getName());
-		//String result = profileCreationSaveAsDraftAndSubmitService.profileCreationSaveAsDraftAndSubmit(profileCreationABTPDto.getType(),profileCreationABTPDto.getUserData(), profileCreationABTPDto.getUserUploads(), profileCreationABTPDto.getUserDeletes());
-		//LOGGER.info("Response Received from Service" + result);
+		
 		
 	}
 	
