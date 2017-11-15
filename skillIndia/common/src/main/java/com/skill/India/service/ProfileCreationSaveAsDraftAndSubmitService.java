@@ -498,5 +498,18 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return status;
 	}
 	
-
+	/*Method to save TAN of Training Partner*/
+	public int saveTPTAN(MultipartFile TrainingPartnerPan)
+	{
+		int status = 0;
+		
+		return status;
+	}
+	
+	/*Method to save PAN of Training Partner*/
+	public int saveTPPAN(MultipartFile TrainingPartnerPan)
+	{
+		int status = 0;
+		return status;
+	}
 }

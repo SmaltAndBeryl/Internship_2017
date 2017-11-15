@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -108,6 +109,23 @@ public class ProfileCreationController {
 		int status = profileCreationSaveAsDraftAndSubmitService.saveTrainingPartner(profileCreationTrainingPartnerWrapperDto);
 		return status;
 		
+	}
+	
+	@RequestMapping(value="/fileUploadTPPAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
+	public int saveFilePAN(@RequestParam(value="pan") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		return status;
+	}
+	
+	@RequestMapping(value="/fileUploadTPTAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
+	public int saveFileTAN(@RequestParam(value="tan") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveTPTAN(file);
+		return status;
 	}
 	
 }
