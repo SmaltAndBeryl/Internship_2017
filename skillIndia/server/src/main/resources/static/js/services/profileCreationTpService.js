@@ -1,21 +1,20 @@
 profileCreationTp.service('fileUpload', ['$http', function($http){
-    this.uploadFileToUrl = function(file, uploadUrl){
+    this.uploadFileToUrl = function(file, uploadUrl,key){
        var fd = new FormData();
-
-       angular.forEach(form.attachedFiles, function(file, key){
-            var fileName = 'attached-file' + key;
-            fd.append(fileName, file)
-       })
-
+       
+            fd.append(key, file)
+       
+var method = "POST";
        $http.post(uploadUrl, fd, {
           transformRequest: angular.identity,
           headers: {'Content-Type': undefined}
        })
-
        .then(function(response){
             console.log("The file was uploaded successfully");
+            console.log(response);
        },function errorCallback(response){
             console.log(JSON.stringify(response.data));
        });
+      
     }
  }]);

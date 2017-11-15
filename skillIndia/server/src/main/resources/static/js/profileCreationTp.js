@@ -129,15 +129,25 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         console.log("Button Working " + JSON.stringify($scope.trainingPartner));
     };
 
-    //Upload File functionality
-    $scope.uploadFile = function() {
-        var file = $scope.myFile;
+    //Upload PAN
+    $scope.uploadFilePan = function() {
+        var file = $scope.trainingPartner.pan;
         console.log("File is " + file);
 
-        var uploadUrl = "/fileUpload";
-        fileUpload.uploadFileToUrl(file, uploadUrl);
+        var uploadPAN = "/fileUploadTPPAN";
+        fileUpload.uploadFileToUrl(file, uploadPAN, "pan");
     };
+    
+    //Upload TAN
+    $scope.uploadTan = function()
+    {
+    	var file = $scope.trainingPartner.tan;
+    	console.log("File is "+ file);
+    	var uploadTAN = "/fileUploadTPTAN";
+    	fileUpload.uploadFileToUrl(file, uploadTAN, "tan");
+    }
 
+    
     //Preview attachments
     $scope.previewAttachments = function(event) {
         var files = event.target.files;

@@ -461,19 +461,39 @@
                     </div>
                 </accordion-heading>
                 <div>
-                <!--                 accordion content to come here -->
+               <!-- Upload PAN -->
                 <form>
                   <div class="upload-btn">
-                      <div class="form-group">
-                           <input id = "attachments" type="file" file-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitutionAnnexurePath"
-                                       onchange="angular.element(this).scope().previewAttachments(event)" multiple accept="application/pdf">
-                                      <button ng-click="uploadFile()" class="btn btn-success">Upload Files</button>
-                                       <ul>
-                                           <h4>Uploaded Files</h4>
-                                               <li class="attachment-list" ng-repeat="attachment in attachments">
-                                                  {{attachment}}
-                                               </li>
-                                        </ul>
+                      <div class="form-group">                   
+                      	 <div class="col-md-4">Upload Pan Card</div>                      	 
+                     <div>
+	                     <div class="col-md-6">
+	                     	<input id = "attachments" type="file" file-model="trainingPartner.pan"
+	                                       onchange="angular.element(this).scope().previewAttachments(event)" accept="application/pdf" />
+	                     </div>
+                     	<div class="col-md-3">
+                     		<button ng-click="uploadFilePan()" class="btn btn-success">Upload Pan</button>
+                     	</div>
+                     </div>
+
+                        </div>
+                                    </div>
+                                </form>
+                <!-- Uplaod TAN -->
+                <form>
+                  <div class="upload-btn">
+                      <div class="form-group">                   
+                      	 <div class="col-md-4">Upload Pan Card</div>                      	 
+                     <div>
+	                     <div class="col-md-6">
+	                     	<input id = "attachments" type="file" file-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitutionAnnexurePath"
+	                                       onchange="angular.element(this).scope().previewAttachments(event)" accept="application/pdf" />
+	                     </div>
+                     	<div class="col-md-3">
+                     		<button ng-click="uploadFile()" class="btn btn-success">Upload Pan</button>
+                     	</div>
+                     </div>
+
                         </div>
                                     </div>
                                 </form>
@@ -484,7 +504,7 @@
             
             
             <!-- ----------------ACCORDION 6-------------- -->
-            <accordion-group is-open="status.open5">
+            <accordion-group is-open="status.open6">
                 <accordion-heading>
                     <div class="container acc-heading">
                         <div class="row">
@@ -492,7 +512,7 @@
                                 STEP 6 : ANNEXURE UPLOADS
                             </div>
                             <div class="col-md-1">
-                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open5, 'glyphicon-plus': !status.open5}"></i>
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open6, 'glyphicon-plus': !status.open6}"></i>
                             </div>
                         </div>
                     </div>
