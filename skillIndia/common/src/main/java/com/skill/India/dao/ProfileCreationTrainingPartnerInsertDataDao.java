@@ -1,5 +1,6 @@
 package com.skill.India.dao;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,8 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.skill.India.common.AbstractTransactionalDao;
+import com.skill.India.common.ReadApplicationConstants;
 import com.skill.India.config.ProfileCreationTrainingPartnerConfigSql;
 import com.skill.India.dto.ProfileCreationTrainingPartnerCenterDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteGrantDto;
@@ -24,6 +27,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 	@Autowired
 	private ProfileCreationTrainingPartnerConfigSql profileCreationTrainingPartnerConfigSql;
 	
+	private ReadApplicationConstants readApplicationConstants;
 	
 	/*
 	 * 
@@ -31,45 +35,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 	 * 
 	 */
 	
-	
-	/*
-	 * Insert into Application table 
-	 */
-/*	
-	public int insertIntoApplication(String type)
-	{
-		try{
-		long millis=System.currentTimeMillis();
-		java.sql.Date date=new java.sql.Date(millis);
-		Map<String, Object> parameters=new HashMap<String, Object>();
-		
-		
-		 *Getting userId here from session 
-		 
-		String userId="";
-		
-		
-		if(type.equalsIgnoreCase("SaveAsDraft"))
-		{
-			parameters.put("applicationState","Draft");
-		}
-		else if(type.equalsIgnoreCase("Submit"))
-		{
-		parameters.put("applicationState","Submit");
-		}
-		parameters.put("userId",userId);
-		parameters.put("activeFlag","1");
-		parameters.put("dateOfSubmission",date);
-		return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getInsertDataInApplication(), parameters);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
-		}
-	}
-	
-	*/
+
 	
 	public int insertIntoTrainingPartnerOrganizationDetails(ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganizationDetailsDto)
 	{
@@ -340,6 +306,8 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 			}
 				return status;
 		}
+		
+		
 	
 }
 	

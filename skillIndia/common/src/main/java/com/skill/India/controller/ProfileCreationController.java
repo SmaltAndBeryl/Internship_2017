@@ -62,9 +62,9 @@ public class ProfileCreationController {
 //	@RequestMapping(value="/getTrainingPartnerData")
 //	public ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerController()
 //	{
-//		LOGGER.info("In ProfileCreationController - profileCreationTrainingPartnerController");
-//		LOGGER.info("Request Received from front end to get data of Training Partner for Profile Creation");
-//		LOGGER.info("Sending Request to service");
+//		LOGGER.debug("In ProfileCreationController - profileCreationTrainingPartnerController");
+//		LOGGER.debug("Request Received from front end to get data of Training Partner for Profile Creation");
+//		LOGGER.debug("Sending Request to service");
 //		return profileCreationTrainingPartnerService.profileCreationTrainingPartner();
 //	}
 	/*
@@ -88,10 +88,10 @@ public class ProfileCreationController {
 	public void saveAsDraftAndSubmitController(@RequestBody ProfileCreationABTPDto profileCreationABTPDto)
 	{
 		
-		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getType().toString());
-		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserData().toString());
+		LOGGER.debug("User type received from front end is"+ profileCreationABTPDto.getType().toString());
+		LOGGER.debug("User type received from front end is"+ profileCreationABTPDto.getUserData().toString());
 
-		LOGGER.info("User type received from front end is"+ profileCreationABTPDto.getUserDeletes().toString());
+		LOGGER.debug("User type received from front end is"+ profileCreationABTPDto.getUserDeletes().toString());
 		
 		
 	}
@@ -116,6 +116,7 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveTPPAN(file, "pan");
 		return status;
 	}
 	
@@ -124,7 +125,7 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		LOGGER.debug("File has been received from front end " + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveTPTAN(file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveTPTAN(file, "tan");
 		return status;
 	}
 	

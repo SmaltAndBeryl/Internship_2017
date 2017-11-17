@@ -40,6 +40,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String isRecognitnionPresent;
 	private String isTrainingStaffPresent;
 	private String isTrainingExperiencePresent;
+	private String updatePanPath;
 	
 	
 	/**
@@ -435,6 +436,12 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	public void setIsTrainingExperiencePresent(
 			String isTrainingExperiencePresent) {
 		this.isTrainingExperiencePresent = isTrainingExperiencePresent;
+	}
+	public String getUpdatePanPath() {
+		return updatePanPath;
+	}
+	public void setUpdatePanPath(String updatePanPath) {
+		this.updatePanPath = updatePanPath;
 	}
 
 

@@ -1,14 +1,7 @@
 package com.skill.India.service;
 
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skill.India.common.ReadApplicationConstants;
+
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dao.GetUserRoleDao;
 import com.skill.India.dao.ProfileCreationAssessmentBodyGetDataDao;
@@ -29,7 +23,7 @@ import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyRecognitionsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyRegionalOfficeDetailsDto;
-import com.skill.India.dto.ProfileCreationAssessmentBodyRegistrationDetailsDto;
+
 import com.skill.India.dto.ProfileCreationAssessmentBodyWrapperDto;
 import com.skill.India.dto.ProfileCreationAssessmentStaffDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentsExperienceInTechnicalDomainDto;
@@ -37,7 +31,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerCenterDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteGrantDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
-import com.skill.India.dto.ProfileCreationTrainingPartnerOrganizationDetailsDto;
+
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerWrapperDto;
 
@@ -62,24 +56,6 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	private ReadApplicationConstants readApplicationConstants;
 	
 	@Autowired
-	private ProfileCreationTrainingPartnerOrganizationDetailsService profileCreationTrainingPartnerOrganizationDetailsService;
-	
-	@Autowired
-	private ProfileCreationTrainingPartnerInstituteGrantService profileCreationTrainingPartnerInstituteGrantService;
-	
-	@Autowired
-	private ProfileCreationTrainingPartnerInstituteRecognitionService profileCreationTrainingPartnerInstituteRecognitionService;
-	
-	@Autowired
-	private ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingService profileCreationTrainingPartnerPriorExperienceInSkillTrainingService;
-	
-	@Autowired
-	private ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsService profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsService;
-	
-	@Autowired
-	private ProfileCreationTrainingPartnerCenterDetailsService profileCreationTrainingPartnerCenterDetailsService;	
-	
-	@Autowired
 	private ProfileCreationAssessmentBodyInsertDataDao profileCreationAssessmentBodyInsertDataDao;
 	
 	@Autowired
@@ -98,7 +74,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
 		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0, assessmentBodyRegionalOffice =0, assessmentBodyExperienceinTechnical =0, assessmentStaff =0;
-		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
+		int userExists=getApplicationId();
 		//New user
 		if (userExists == -1)
 		{
@@ -172,9 +148,9 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					 int affiliationPresent = profileCreationAssessmentBodyGetDataDao.isAffiliationPresent(item.getAssessmentBodyRegistrationId(), item.getAffiliationId());
 					if(affiliationPresent == 0)
 					{
-						LOGGER.info("AffiliationId" + item.getAffiliationId());
-						LOGGER.info("abregId" + item.getAssessmentBodyRegistrationId());
-						LOGGER.info("sector skil council" + item.getNameOfSectorSkillCouncil());
+						LOGGER.debug("AffiliationId" + item.getAffiliationId());
+						LOGGER.debug("abregId" + item.getAssessmentBodyRegistrationId());
+						LOGGER.debug("sector skil council" + item.getNameOfSectorSkillCouncil());
 						profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(item);
 					}
 					else if (affiliationPresent == 1)
@@ -215,8 +191,8 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for(ProfileCreationAssessmentBodyRecognitionsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto())
 				{
-					LOGGER.info("recognitionID" + item.getAssessmentBodyRecognitionId());
-					LOGGER.info("registrationId" + item.getAssessmentBodyRegistrationId());
+					LOGGER.debug("recognitionID" + item.getAssessmentBodyRecognitionId());
+					LOGGER.debug("registrationId" + item.getAssessmentBodyRegistrationId());
 					int recognitionABStatus = profileCreationAssessmentBodyGetDataDao.isRecognitionPresent(item.getAssessmentBodyRegistrationId(), item.getAssessmentBodyRecognitionId());
 					if(recognitionABStatus == 0)
 					{
@@ -236,14 +212,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				for (ProfileCreationAssessmentBodyRegionalOfficeDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegionalOfficeDetailsDto())
 				{
 					int regionalOfficeStatus = profileCreationAssessmentBodyGetDataDao.isRegionalOfficePresent(item.getAssessmentBodyRegistrationId(), item.getRegionalOfficeId());
-					LOGGER.info("Regional office check value is " +regionalOfficeStatus);
+					LOGGER.debug("Regional office check value is " +regionalOfficeStatus);
 					if(regionalOfficeStatus == 0)
 					{
 						assessmentBodyRegionalOffice = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegionalOfficeDetails(item);
 					}
 					else if (regionalOfficeStatus == 1)
 					{
-						LOGGER.info("This is item" + item);
+						LOGGER.debug("This is item" + item);
 						assessmentBodyRegionalOffice = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegionalOfficeDetails(item);
 					}
 				}
@@ -311,7 +287,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	public int saveTrainingPartner(ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{
 		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, trainingStaff =0, experienceInTraining =0;
-		int userExists=sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
+		int userExists=getApplicationId();
 		
 		//New User
 		if(userExists == -1)
@@ -499,17 +475,76 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	}
 	
 	/*Method to save TAN of Training Partner*/
-	public int saveTPTAN(MultipartFile TrainingPartnerPan)
+	public int saveTPTAN(MultipartFile TrainingPartnerPan, String key)
 	{
-		int status = 0;
-		
-		return status;
+		int panPathUpdated = 0, status =0, applicationId =0;
+		applicationId = getApplicationId();
+		if(applicationId > 0)
+		{
+			String tpPanPath = saveFile(key, applicationId, TrainingPartnerPan);
+			panPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updatePanPath(tpPanPath,applicationId);
+		}
+		return panPathUpdated;
 	}
 	
 	/*Method to save PAN of Training Partner*/
-	public int saveTPPAN(MultipartFile TrainingPartnerPan)
+	public int saveTPPAN(MultipartFile TrainingPartnerPan, String key)
 	{
-		int status = 0;
-		return status;
+		int tanPathUpdated = 0;
+		String tanPath = "";
+		int applicationId = getApplicationId();
+		try
+		{
+			tanPath = saveFile(key, applicationId, TrainingPartnerPan);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while saving file " + e);
+		}
+		
+		tanPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updateTanPath(tanPath, applicationId);
+		return tanPathUpdated;
 	}
+	/*Method to get application Id from userId*/
+	private int getApplicationId()
+	{
+		int applicationId = sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
+		return applicationId;
+	}
+	
+	
+	/*Method to save file */
+	private String saveFile(String key, int applicationId, MultipartFile file)
+	{
+		int folderCreated = 0;
+		String pathToFolder ="";
+		try
+		{
+			pathToFolder = readApplicationConstants.getProfileCreationTrainingPartnerFolder() + applicationId;
+			File folder = new File (pathToFolder);
+			if(!folder.exists())
+			{
+				
+					if(folder.mkdirs() || folder.canWrite())
+					{
+						folderCreated = 1;
+						LOGGER.debug("File name is " + file.getOriginalFilename());
+						LOGGER.debug("Directory "+ folder + " to store files created successfully");
+					}
+					else
+					{
+						folderCreated = -1;
+						LOGGER.debug("Could not create or write to directory "+ pathToFolder);
+					}
+			}
+			
+		}
+		catch(Exception e)
+		{
+			folderCreated = -2;
+			LOGGER.error("An exception occured while creating folder"+ pathToFolder);
+		}
+		return pathToFolder;
+	}
+	
 }

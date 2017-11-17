@@ -24,43 +24,6 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	@Autowired
 	private ProfileCreationTrainingPartnerConfigSql profileCreationTrainingPartnerConfigSql;
 
-	/*
-	 * Update into Application table 
-	 */
-	
-	/*public int insertIntoApplication(String type)
-	{
-		try{
-		long millis=System.currentTimeMillis();
-		java.sql.Date date=new java.sql.Date(millis);
-		Map<String, Object> parameters=new HashMap<String, Object>();
-		
-		
-		 *Getting userId here from session 
-		 
-		String userId="";
-		
-		
-		if(type.equalsIgnoreCase("SaveAsDraft"))
-		{
-			parameters.put("applicationState","Draft");
-		}
-		else if(type.equalsIgnoreCase("Submit"))
-		{
-		parameters.put("applicationState","Submit");
-		}
-		parameters.put("userId",userId);
-		parameters.put("activeFlag","1");
-		parameters.put("dateOfSubmission",date);
-		return getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateDataInApplication(), parameters);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			return -1;
-		}
-	}
-	*/
 	
 	/*
 	 * update table Training Partner Organization Details 
@@ -375,6 +338,51 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			}
 			return status;
 		}
+		
+		/*Method to update pan number path*/
+		
+		public int updatePanPath(String panPath, int applicationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("panNumberPath" , panPath);
+				parameters.put("applicationId" , applicationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePanPath(), parameters);
+				LOGGER.debug("Value of status in panNumber update " + status);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating pan path of training partner " + e);
+			}
+			return status;
+		}
+		
+		/*
+		 * Method to updat Tan number path*/
+		
+		public int updateTanPath(String panPath, int applicationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("panNumberPath" , panPath);
+				parameters.put("applicationId" , applicationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePanPath(), parameters);
+				LOGGER.debug("Value of status in panNumber update " + status);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating pan path of training partner " + e);
+			}
+			return status;
+		}
+		
+		
 		
 	
 }
