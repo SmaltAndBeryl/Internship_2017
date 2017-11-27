@@ -1,6 +1,10 @@
 package com.skill.India.service;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skill.India.common.ReadApplicationConstants;
-
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dao.GetUserRoleDao;
 import com.skill.India.dao.ProfileCreationAssessmentBodyGetDataDao;
@@ -23,7 +26,6 @@ import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyRecognitionsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyRegionalOfficeDetailsDto;
-
 import com.skill.India.dto.ProfileCreationAssessmentBodyWrapperDto;
 import com.skill.India.dto.ProfileCreationAssessmentStaffDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentsExperienceInTechnicalDomainDto;
@@ -31,7 +33,6 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerCenterDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteGrantDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
-
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerWrapperDto;
 
@@ -490,20 +491,21 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	/*Method to save PAN of Training Partner*/
 	public int saveTPPAN(MultipartFile TrainingPartnerPan, String key)
 	{
-		int tanPathUpdated = 0;
-		String tanPath = "";
+		int panPathUpdated = 0;
+		String panPath = "";
 		int applicationId = getApplicationId();
 		try
 		{
-			tanPath = saveFile(key, applicationId, TrainingPartnerPan);
+			panPath = saveFile(key, applicationId, TrainingPartnerPan);
+			LOGGER.debug("Pan path is " + panPath);
 		}
 		catch(Exception e)
 		{
 			LOGGER.error("An exception occured while saving file " + e);
 		}
 		
-		tanPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updateTanPath(tanPath, applicationId);
-		return tanPathUpdated;
+		panPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updatePanPath(panPath, applicationId);
+		return panPathUpdated;
 	}
 	/*Method to get application Id from userId*/
 	private int getApplicationId()
@@ -516,35 +518,56 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	/*Method to save file */
 	private String saveFile(String key, int applicationId, MultipartFile file)
 	{
-		int folderCreated = 0;
-		String pathToFolder ="";
-		try
-		{
-			pathToFolder = readApplicationConstants.getProfileCreationTrainingPartnerFolder() + applicationId;
-			File folder = new File (pathToFolder);
-			if(!folder.exists())
+		int folderCreated = 0;		
+		String pathToFolder ="", pathOfUploadedFile = "";
+		if(!file.isEmpty())
+		{	
+			String fileName=file.getOriginalFilename();
+			int indexOfDot=fileName.indexOf(".");
+			try
 			{
-				
-					if(folder.mkdirs() || folder.canWrite())
-					{
-						folderCreated = 1;
-						LOGGER.debug("File name is " + file.getOriginalFilename());
-						LOGGER.debug("Directory "+ folder + " to store files created successfully");
-					}
-					else
-					{
-						folderCreated = -1;
-						LOGGER.debug("Could not create or write to directory "+ pathToFolder);
-					}
+				pathToFolder = readApplicationConstants.getProfileCreationTrainingPartnerFolder() + applicationId+ "//";
+				File folder = new File (pathToFolder);
+				if(!folder.exists())
+				{
+						if(folder.mkdirs() || folder.canWrite())
+						{
+							folderCreated = 1;
+							LOGGER.debug("File name is " + file.getOriginalFilename());
+							LOGGER.debug("Directory "+ folder + " to store files created successfully");
+						}
+						else
+						{
+							folderCreated = -1;
+							LOGGER.debug("Could not create or write to directory "+ pathToFolder);
+						}
+				}
+				byte[] bytes = file.getBytes();		                  
+		         String fileNameToBeSaved= key + fileName.substring(indexOfDot);	
+		         LOGGER.debug("fileNameToBeSaved" + fileNameToBeSaved);
+		         
+		         Path path = Paths.get( pathToFolder + fileNameToBeSaved);       
+		         LOGGER.debug( " pathToFolder+fileNameToBeSaved " +pathToFolder + fileNameToBeSaved);
+		         
+		         pathOfUploadedFile = pathToFolder + fileNameToBeSaved;
+		         
+		         LOGGER.debug(pathOfUploadedFile);
+		         
+		         Files.write(path, bytes);
 			}
 			
-		}
-		catch(Exception e)
-		{
-			folderCreated = -2;
-			LOGGER.error("An exception occured while creating folder"+ pathToFolder);
-		}
-		return pathToFolder;
+			catch(IOException e)
+			{
+				folderCreated = -1;
+				LOGGER.error("An excpetion occured while saving file to location "+ pathToFolder);
+			}
+			catch(Exception e)
+			{
+				folderCreated = -2;
+				LOGGER.error("An exception occured while saving file to the disk at location " + pathToFolder);
+			}
 	}
-	
+		return pathOfUploadedFile;
+
+	}
 }

@@ -33,23 +33,23 @@ public class SaveUploadedFileService {
 
 	public String saveUploadedFile(MultipartFile file,String type,String userId)
 	{	 
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In SaveUploadedFileService - saveUploadedFile");
-		LOGGER.info("Parameters Received from front end are - 'file': "+file+" 'type': "+type+" 'userId': ",userId);
-		LOGGER.info("Setting CONSTANT path for saving the uploaded file on local machine");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In SaveUploadedFileService - saveUploadedFile");
+		LOGGER.debug("Parameters Received from front end are - 'file': "+file+" 'type': "+type+" 'userId': ",userId);
+		LOGGER.debug("Setting CONSTANT path for saving the uploaded file on local machine");
 		String UPLOADED_FOLDER = readApplicationConstants.getSaveCSVAtLocation();
 		
 		if (file.isEmpty()) {
-			LOGGER.info("The inputted file is empty");
-			LOGGER.info("Returning with error message as String");
+			LOGGER.debug("The inputted file is empty");
+			LOGGER.debug("Returning with error message as String");
             return "Uploaded file is empty. Kindly upload a valid file";
         }
 		
 		try {
-			LOGGER.info("In TRY block");
-			LOGGER.info("Creating LocalDateTime object");
+			LOGGER.debug("In TRY block");
+			LOGGER.debug("Creating LocalDateTime object");
 			LocalDateTime getDateAndTime = LocalDateTime.now();
-			LOGGER.info("Successfully created and initialized");
+			LOGGER.debug("Successfully created and initialized");
 			int year = getDateAndTime.getYear();
 			int month = getDateAndTime.getMonthValue();
 			int day = getDateAndTime.getDayOfMonth();
@@ -59,9 +59,9 @@ public class SaveUploadedFileService {
 			
 	           String fileNameReceived=file.getOriginalFilename();
 	           int indexOfDot=fileNameReceived.indexOf(".");
-	           LOGGER.info("Creating byte array object to write file");
+	           LOGGER.debug("Creating byte array object to write file");
 	           byte[] bytes = file.getBytes();
-	           LOGGER.info("Successfully Created and Initialized");
+	           LOGGER.debug("Successfully Created and Initialized");
 	           
 	           
 	       String[] fileNameArray={fileNameReceived.substring(0, indexOfDot),
@@ -76,18 +76,18 @@ public class SaveUploadedFileService {
            
            try
            {
-        	   LOGGER.info("Inside TRY block");
-        	   LOGGER.info("Writing file");
+        	   LOGGER.debug("Inside TRY block");
+        	   LOGGER.debug("Writing file");
         	   Files.write(path, bytes);
-        	   LOGGER.info("Exiting TRY block");
+        	   LOGGER.debug("Exiting TRY block");
            }
            catch(Exception e)
            {
-        	   LOGGER.info("In CATCH block");
+        	   LOGGER.debug("In CATCH block");
         	   LOGGER.error("ERROR: Encountered an Exception - ",e);
    			   return "Error Saving file on Local Machine.Try Again later ";
            }
-           LOGGER.info("Sending Request to service to check its type");
+           LOGGER.debug("Sending Request to service to check its type");
            return checkTypeOfService.checkTypeOfCSV(type,pathOfUploadedFile,userId,fileNameToBeSaved);
         
            /* for saving a message in session or on server side
@@ -97,9 +97,9 @@ public class SaveUploadedFileService {
            
        } 
       catch (Exception e) {
-    	  	LOGGER.info("In CATCH block");
+    	  	LOGGER.debug("In CATCH block");
 			LOGGER.error("ERROR: Encountered an Exception - ",e);
-			e.printStackTrace();
+			//e.printStackTrace();
 			return "Error uploading CSV File. Kindly try again.";
        }
     

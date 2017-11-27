@@ -30,18 +30,18 @@ public class SaveCertificateFileService {
 	
 	public String saveUploadedFile(MultipartFile file,Integer batchId,String userId)
 	{
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In SaveCertificateFileService - saveUploadedFile");
-		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId+" 'MultipartFile': "+file+ " 'userId': "+userId);
-		LOGGER.info("Initializing the default path for uploading certificates");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In SaveCertificateFileService - saveUploadedFile");
+		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId+" 'MultipartFile': "+file+ " 'userId': "+userId);
+		LOGGER.debug("Initializing the default path for uploading certificates");
 		String UPLOADED_FOLDER = readApplicationConstants.getSaveCertificateAtLocation();
-		LOGGER.info("Successfully Initialized");
+		LOGGER.debug("Successfully Initialized");
 		String pathOfUploadedFile="";
 		String fileNameReceived="";
 		String fileNameToBeSaved="";
 		
 	try {
-			LOGGER.info("In TRY block");
+			LOGGER.debug("In TRY block");
 			
            fileNameReceived=file.getOriginalFilename();
            int indexOfDot=fileNameReceived.indexOf(".");
@@ -54,42 +54,42 @@ public class SaveCertificateFileService {
        fileNameToBeSaved=fileNameArray[0]+ batchId +fileNameArray[1];
        if(!fileNameArray[1].equals(".zip"))
        {
-    	   LOGGER.info("Inside IF block");
+    	   LOGGER.debug("Inside IF block");
     	   LOGGER.error("Uploaded file is not in ZIP format");
-    	   LOGGER.info("Returning ERROR message string : Kindly Upload a .zip file");
+    	   LOGGER.debug("Returning ERROR message string : Kindly Upload a .zip file");
     	   return "Kindly Upload a .zip file";
        }
        
        Path path = Paths.get(UPLOADED_FOLDER +fileNameToBeSaved);
-       LOGGER.info("Initializing the full path with file name for uploading certificates file");
+       LOGGER.debug("Initializing the full path with file name for uploading certificates file");
        pathOfUploadedFile=UPLOADED_FOLDER+fileNameToBeSaved;
-       LOGGER.info("Path is - "+pathOfUploadedFile);
-       LOGGER.info("Creating File object");
+       LOGGER.debug("Path is - "+pathOfUploadedFile);
+       LOGGER.debug("Creating File object");
        File checkFileExistence = new File(pathOfUploadedFile);
-       LOGGER.info("Successfully Created and Initialized");
-       LOGGER.info("Checking if file already exists");
+       LOGGER.debug("Successfully Created and Initialized");
+       LOGGER.debug("Checking if file already exists");
        if(checkFileExistence.exists() && !checkFileExistence.isDirectory()) 
        {
-    	   LOGGER.info("Creating File object for deleting file");
+    	   LOGGER.debug("Creating File object for deleting file");
         File deleteUploadedFile = new File(pathOfUploadedFile);
-        LOGGER.info("Successfully Created and Initialized");
-        LOGGER.info("Initializing delete request");
+        LOGGER.debug("Successfully Created and Initialized");
+        LOGGER.debug("Initializing delete request");
         deleteUploadedFile.delete();
-        LOGGER.info("Successfully Deleted");
+        LOGGER.debug("Successfully Deleted");
        }
        
-       LOGGER.info("Creating byte array object to write file");
+       LOGGER.debug("Creating byte array object to write file");
        byte[] bytes = file.getBytes();
-       LOGGER.info("Successfully Created and Initialized");
+       LOGGER.debug("Successfully Created and Initialized");
        try{
-    	   LOGGER.info("Inside TRY block");
-    	   LOGGER.info("Writing file");
+    	   LOGGER.debug("Inside TRY block");
+    	   LOGGER.debug("Writing file");
        Files.write(path, bytes);
-       LOGGER.info("Exiting TRY block");
+       LOGGER.debug("Exiting TRY block");
        }
        catch(Exception e)
        {
-    	   LOGGER.info("In CATCH block");
+    	   LOGGER.debug("In CATCH block");
 			LOGGER.error("ERROR: Encountered an Exception - "+e);
 			e.printStackTrace();
     	   return "Error Saving file on Local Machine.Try Again later ";
@@ -98,11 +98,11 @@ public class SaveCertificateFileService {
 	}
 	catch (Exception e) {
 	       e.printStackTrace();
-	       LOGGER.info("Creating File object for deleting file");
+	       LOGGER.debug("Creating File object for deleting file");
 	       File deleteUploadedFile = new File(pathOfUploadedFile);
-	       LOGGER.info("Initializing delete request");
+	       LOGGER.debug("Initializing delete request");
 	       deleteUploadedFile.delete();
-	       LOGGER.info("Successfully Deleted");
+	       LOGGER.debug("Successfully Deleted");
 	       return "Error uploading Zip File. Kindly try again.";
 	   }
         
@@ -111,14 +111,14 @@ public class SaveCertificateFileService {
 		 */		
 		
 	try{
-		LOGGER.info("Inside TRY block");
-		LOGGER.info("Creating Date object");
+		LOGGER.debug("Inside TRY block");
+		LOGGER.debug("Creating Date object");
 		Date date=new Date(System.currentTimeMillis());
-		LOGGER.info("Successfully created and initialized");
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Successfully created and initialized");
+		LOGGER.debug("Creating HashMap object");
 		Map<String,Object> uploadedFileInfo= new HashMap<String, Object>();
-		LOGGER.info("Successfully created");
-		LOGGER.info("Inserting data into HashMap created");
+		LOGGER.debug("Successfully created");
+		LOGGER.debug("Inserting data into HashMap created");
 		uploadedFileInfo.put("certificateName",fileNameToBeSaved);
 		uploadedFileInfo.put("batchId",batchId);
 		uploadedFileInfo.put("certificateUploadDate",date);
@@ -128,34 +128,34 @@ public class SaveCertificateFileService {
 		/*
 		 * Checking for valid UserId (Foreign key constraint)
 		 */
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Making a Request to Dao to get data");
 		int status=dataImportCertificateDao.dataImportCertificateForeignKeyConstraintCheck(uploadedFileInfo);
-		LOGGER.info("Response received from Dao");
+		LOGGER.debug("Response received from Dao");
 		if(status==0 || status==2)
 		{
-			LOGGER.info("Foreign Key Constraint check Failed");
-			LOGGER.info("Creating File object for deleting file");
+			LOGGER.debug("Foreign Key Constraint check Failed");
+			LOGGER.debug("Creating File object for deleting file");
 		File deleteUploadedFile = new File(pathOfUploadedFile);
-		LOGGER.info("Successfully created and initialized");
-		LOGGER.info("Initializing delete request");
+		LOGGER.debug("Successfully created and initialized");
+		LOGGER.debug("Initializing delete request");
 		deleteUploadedFile.delete();	
-		LOGGER.info("Successfully Deleted");
+		LOGGER.debug("Successfully Deleted");
 		return "Invalid User or BatchId Id . Action Aborted";	
 		}
 		
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Making a Request to Dao to get data");
 		int insertDataStatus=dataImportCertificateDao.insertDataInCertificate(uploadedFileInfo);
-		LOGGER.info("Response received from Dao");
+		LOGGER.debug("Response received from Dao");
 		if(!(insertDataStatus>0))
 		{
-			LOGGER.info("Unable to insert the details into table - deleting file");
-			LOGGER.info("Creating File object for deleting file");
+			LOGGER.debug("Unable to insert the details into table - deleting file");
+			LOGGER.debug("Creating File object for deleting file");
 		
 		File deleteUploadedFile = new File(pathOfUploadedFile);
-		LOGGER.info("Successfully created and initialized");
-		LOGGER.info("Initializing delete request");
+		LOGGER.debug("Successfully created and initialized");
+		LOGGER.debug("Initializing delete request");
 		deleteUploadedFile.delete();
-		LOGGER.info("Successfully Deleted");
+		LOGGER.debug("Successfully Deleted");
 		return "Some Error occured while inserting data in 'certificate uploaded by' table . Kindly try again ."; 
 		}
 		
@@ -164,15 +164,15 @@ public class SaveCertificateFileService {
 	
 		catch(Exception e)
 		{
-			LOGGER.info("In CATCH block");
+			LOGGER.debug("In CATCH block");
 			LOGGER.error("ERROR: Encountered an Exception - "+e);
 						e.printStackTrace();
-			LOGGER.info("Creating File object for deleting file");
+			LOGGER.debug("Creating File object for deleting file");
 			File deleteUploadedFile = new File(pathOfUploadedFile);
-			LOGGER.info("Successfully created and initialized");
-			LOGGER.info("Initializing delete request");
+			LOGGER.debug("Successfully created and initialized");
+			LOGGER.debug("Initializing delete request");
 			deleteUploadedFile.delete();
-			LOGGER.info("Successfully Deleted");
+			LOGGER.debug("Successfully Deleted");
 			return "Error updating data of Uploader .Kindly try again .";
 		}
 }
