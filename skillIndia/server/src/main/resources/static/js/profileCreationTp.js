@@ -139,7 +139,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
     };
     
     //Upload TAN
-    $scope.uploadTan = function()
+    $scope.uploadFileTAN = function()
     {
     	var file = $scope.trainingPartner.tan;
     	console.log("File is "+ file);
