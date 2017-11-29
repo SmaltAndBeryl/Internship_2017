@@ -188,8 +188,11 @@ ProfileCreationTrainingPartner:
   `isActive`=:isActive
    WHERE `managementAndStaffId`=:managementAndStaffId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
 
-  updatePanPath: >
-   UPDATE scgj.TrainingPartnerOrganizationDetails SET panNumberPath = :panNumberPath where applicationId = :applicationId;
+ updatePanPath: >
+  UPDATE scgj.TrainingPartnerOrganizationDetails SET panNumberPath = :panNumberPath where applicationId = :applicationId;
+   
+ updateTanPath: >
+  UPDATE scgj.TrainingPartnerOrganizationDetails SET tanNumberPath = :tanNumberPath where applicationId = :applicationId;
    
  deleteFromTrainingPartnerInstituteGrant: >
   DELETE FROM `scgj`.`trainingpartnerinstitutegrant` WHERE `instituteGrantId`=:instituteGrantId;

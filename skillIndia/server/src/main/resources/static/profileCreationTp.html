@@ -464,37 +464,41 @@
                <!-- Upload PAN -->
                 <form>
                   <div class="upload-btn">
-                      <div class="form-group">                   
+                 <div class="form-horizonatl">
+                 <div class="form-group">                   
                       	 <div class="col-md-4">Upload Pan Card</div>                      	 
-                     <div>
+                     
 	                     <div class="col-md-6">
-	                     	<input id = "attachments" type="file" file-model="trainingPartner.pan"
-	                                       onchange="angular.element(this).scope().previewAttachments(event)" accept="application/pdf" />
+	                     	<input id = "pan" type="file" file-model="trainingPartner.pan" accept="application/pdf" />
 	                     </div>
-                     	<div class="col-md-3">
+                     	<div class="col-md-2">
                      		<button ng-click="uploadFilePan()" class="btn btn-success">Upload Pan</button>
                      	</div>
-                     </div>
+                    
 
                         </div>
-                                    </div>
+                 </div>
+                             </div>
                                 </form>
                 <!-- Uplaod TAN -->
                 <form>
                   <div class="upload-btn">
-                      <div class="form-group">                   
+                  <div class="form-horizontal">
+                  <div class="form-group">                   
                       	 <div class="col-md-4">Upload Tan</div>                      	 
                      <div>
 	                     <div class="col-md-6">
-	                     	<input id = "attachments" type="file" file-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitutionAnnexurePath"
+	                     	<input id = "tan" type="file" file-model="trainingPartner.tan"
 	                                       onchange="angular.element(this).scope().previewAttachments(event)" accept="application/pdf" />
 	                     </div>
-                     	<div class="col-md-3">
+                     	<div class="col-md-2">
                      		<button ng-click="uploadFileTAN()" class="btn btn-success">Upload Tan</button>
                      	</div>
                      </div>
 
                         </div>
+                  </div>
+                      
                                     </div>
                                 </form>
                 
