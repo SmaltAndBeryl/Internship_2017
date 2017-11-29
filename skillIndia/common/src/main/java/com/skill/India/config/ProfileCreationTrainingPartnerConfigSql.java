@@ -41,6 +41,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String isTrainingStaffPresent;
 	private String isTrainingExperiencePresent;
 	private String updatePanPath;
+	private String updateTanPath;
 	
 	
 	/**
@@ -442,6 +443,12 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	}
 	public void setUpdatePanPath(String updatePanPath) {
 		this.updatePanPath = updatePanPath;
+	}
+	public String getUpdateTanPath() {
+		return updateTanPath;
+	}
+	public void setUpdateTanPath(String updateTanPath) {
+		this.updateTanPath = updateTanPath;
 	}
 
 

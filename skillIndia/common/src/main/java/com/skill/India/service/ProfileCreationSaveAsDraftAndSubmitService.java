@@ -476,16 +476,16 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	}
 	
 	/*Method to save TAN of Training Partner*/
-	public int saveTPTAN(MultipartFile TrainingPartnerPan, String key)
+	public int saveTPTAN(MultipartFile TrainingPartnerTan, String key)
 	{
-		int panPathUpdated = 0, status =0, applicationId =0;
+		int tanPathUpdated = 0, status =0, applicationId =0;
 		applicationId = getApplicationId();
 		if(applicationId > 0)
 		{
-			String tpPanPath = saveFile(key, applicationId, TrainingPartnerPan);
-			panPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updatePanPath(tpPanPath,applicationId);
+			String tpTanPath = saveFile(key, applicationId, TrainingPartnerTan);
+			tanPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updateTanPath(tpTanPath,applicationId);
 		}
-		return panPathUpdated;
+		return tanPathUpdated;
 	}
 	
 	/*Method to save PAN of Training Partner*/
@@ -547,9 +547,10 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		         LOGGER.debug("fileNameToBeSaved" + fileNameToBeSaved);
 		         
 		         Path path = Paths.get( pathToFolder + fileNameToBeSaved);       
-		         LOGGER.debug( " pathToFolder+fileNameToBeSaved " +pathToFolder + fileNameToBeSaved);
+		         LOGGER.debug( " pathToFolder + fileNameToBeSaved " +pathToFolder + fileNameToBeSaved);
 		         
-		         pathOfUploadedFile = pathToFolder + fileNameToBeSaved;
+		         //pathOfUploadedFile = pathToFolder + fileNameToBeSaved;
+		         pathOfUploadedFile = path.toAbsolutePath().toString();
 		         
 		         LOGGER.debug(pathOfUploadedFile);
 		         

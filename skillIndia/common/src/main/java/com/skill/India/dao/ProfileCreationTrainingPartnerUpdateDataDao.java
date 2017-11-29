@@ -361,23 +361,23 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		}
 		
 		/*
-		 * Method to updat Tan number path*/
+		 * Method to update Tan number path*/
 		
-		public int updateTanPath(String panPath, int applicationId)
+		public int updateTanPath(String tanPath, int applicationId)
 		{
 			int status = 0;
 			try
 			{
 				Map<String, Object> parameters = new HashMap<String, Object>();
-				parameters.put("panNumberPath" , panPath);
+				parameters.put("tanNumberPath" , tanPath);
 				parameters.put("applicationId" , applicationId);
-				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePanPath(), parameters);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateTanPath(), parameters);
 				LOGGER.debug("Value of status in panNumber update " + status);
 			}
 			catch(Exception e)
 			{
 				status = -2;
-				LOGGER.error("An exception occured while updating pan path of training partner " + e);
+				LOGGER.error("An exception occured while updating tan path of training partner " + e);
 			}
 			return status;
 		}
