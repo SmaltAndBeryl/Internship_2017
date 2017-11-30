@@ -43,30 +43,8 @@ public class ProfileCreationController {
 	private ProfileCreationSaveAsDraftAndSubmitService profileCreationSaveAsDraftAndSubmitService;
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileCreationController.class);
-	/*	@Autowired
-	private ProfileCreationTpService profileCreationTpService;
-*/
-/*	 @RequestMapping(value= "/setprofilecreation",method=RequestMethod.POST, consumes=MediaType.ALL_VALUE)
-	 public @ResponseBody String  set(@RequestBody ProfileCreationTpDto profileCreationTpDto)
-	 {
-
-
-		 Boolean status= profileCreationTpService.set(profileCreationTpDto);
-		 if(status)
-			 return "save as draft successfull ";
-		 else
-			 return "error";
-
-	 }*/
-
-//	@RequestMapping(value="/getTrainingPartnerData")
-//	public ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerController()
-//	{
-//		LOGGER.debug("In ProfileCreationController - profileCreationTrainingPartnerController");
-//		LOGGER.debug("Request Received from front end to get data of Training Partner for Profile Creation");
-//		LOGGER.debug("Sending Request to service");
-//		return profileCreationTrainingPartnerService.profileCreationTrainingPartner();
-//	}
+	
+	
 	/*
 	 * Method to get data for Profile creation of assessment body and training partner
 	 * */
@@ -116,7 +94,7 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		LOGGER.debug("File has been received from front end " + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveTPPAN(file, "pan");
+		status = profileCreationSaveAsDraftAndSubmitService.saveTPPAN(file, "pan" );
 		return status;
 	}
 	
@@ -136,6 +114,14 @@ public class ProfileCreationController {
 		LOGGER.debug("Trying to upload nsdc certifiacte" + file);
 		status = profileCreationSaveAsDraftAndSubmitService.saveTPNSDCCertificate(file, "nsdcCertificate");
 		return status;
+	}
+	
+	@RequestMapping(value="/fileuploadTPSelfOwned", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileSelfOwnedAnnexure(@RequestParam(value = "selfOwnedAnnexure")MultipartFile file)
+	{
+		int status = 0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveSelfOwnedAnnexure(file, "selfOwnedAnnexure");
+		return status ;
 	}
 	
 }

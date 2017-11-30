@@ -478,8 +478,8 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	/*Method to save TAN of Training Partner*/
 	public int saveTPTAN(MultipartFile TrainingPartnerTan, String key)
 	{
-		int tanPathUpdated = 0, status =0, applicationId =0;
-		applicationId = getApplicationId();
+		int tanPathUpdated = 0, status =0;
+		int applicationId = getApplicationId();
 		if(applicationId > 0)
 		{
 			String tpTanPath = saveFile(key, applicationId, TrainingPartnerTan);
@@ -492,8 +492,9 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	public int saveTPPAN(MultipartFile TrainingPartnerPan, String key)
 	{
 		int panPathUpdated = 0;
-		String panPath = "";
 		int applicationId = getApplicationId();
+		String panPath = "";
+
 		try
 		{
 			panPath = saveFile(key, applicationId, TrainingPartnerPan);
@@ -512,34 +513,49 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	public int saveTPNSDCCertificate(MultipartFile nsdcCertificate, String key)
 	{
 		int nsdcCertifiacte = 0;
-		String certificatePath = "";
 		int applicationId = getApplicationId();
+		String certificatePath = "";
+
 		try
 		{
 			certificatePath = saveFile(key, applicationId, nsdcCertificate);
 			LOGGER.debug("nsdc certificate path is " + certificatePath);
+			nsdcCertifiacte = profileCreationTrainingPartnerUpdateDataDao.updateNsdcCertificatePath(certificatePath, applicationId);
 		}
 		catch(Exception e)
 		{
 			LOGGER.error("An exception occured while saving file " + e);
 		}
 		
-		nsdcCertifiacte = profileCreationTrainingPartnerUpdateDataDao.updateNsdcCertificatePath(certificatePath, applicationId);
+		
 		return nsdcCertifiacte;
 	}
 	
-	/*Method to get application Id from userId*/
-	private int getApplicationId()
+	/*
+	 * Method to save self owned Institution Annexure to disk*/
+	public int saveSelfOwnedAnnexure(MultipartFile selfOwnedAnnexure, String key)
 	{
-		int applicationId = sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
-		return applicationId;
+		int statusSelfOwnedAnnexureUpload = 0;
+		int applicationId = getApplicationId();
+		String selfOwnedAnnexurePath = "";
+
+		try
+		{
+			selfOwnedAnnexurePath = saveFile(key, applicationId,selfOwnedAnnexure);
+			statusSelfOwnedAnnexureUpload = profileCreationTrainingPartnerUpdateDataDao.updateSelfOwnedAnnexure(selfOwnedAnnexurePath, applicationId);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An error occured while upload self owned institution annexure path");
+		}
+		return statusSelfOwnedAnnexureUpload;
 	}
-	
 	
 	/*Method to save file */
 	private String saveFile(String key, int applicationId, MultipartFile file)
 	{
-		int folderCreated = 0;		
+		int folderCreated = 0;	
+		
 		String pathToFolder ="", pathOfUploadedFile = "";
 		if(!file.isEmpty())
 		{	
@@ -590,6 +606,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			}
 	}
 		return pathOfUploadedFile;
+
+	}
+	
+	private int getApplicationId()
+	{
+		int applicationId = -10;
+		applicationId = sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
+		return applicationId;
 
 	}
 }

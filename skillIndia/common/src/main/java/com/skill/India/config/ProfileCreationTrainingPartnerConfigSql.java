@@ -43,6 +43,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updatePanPath;
 	private String updateTanPath;
 	private String updateNSDCCertificatePath;
+	private String updateSelfOwnedAnnexurePath;
 	
 	
 	/**
@@ -456,6 +457,13 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	}
 	public void setUpdateNSDCCertificatePath(String updateNSDCCertificatePath) {
 		this.updateNSDCCertificatePath = updateNSDCCertificatePath;
+	}
+	public String getUpdateSelfOwnedAnnexurePath() {
+		return updateSelfOwnedAnnexurePath;
+	}
+	public void setUpdateSelfOwnedAnnexurePath(
+			String updateSelfOwnedAnnexurePath) {
+		this.updateSelfOwnedAnnexurePath = updateSelfOwnedAnnexurePath;
 	}
 
 

@@ -382,6 +382,26 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		}
 		
 		/*
+		 * Method to update self owned institution annexure path*/
+		public int updateSelfOwnedAnnexure(String selfOwnedAnnexurePath, int applicationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("selfOwnedInstitutionAnnexurePath" , selfOwnedAnnexurePath);
+				parameters.put("applicationId" , applicationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateSelfOwnedAnnexurePath(), parameters);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating self owned institution path of training partner " + e);
+			}
+			return status;
+		}
+		
+		/*
 		 * Method to update Tan number path*/
 		
 		public int updateTanPath(String tanPath, int applicationId)
