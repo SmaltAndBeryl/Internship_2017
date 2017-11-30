@@ -464,7 +464,7 @@
                <!-- Upload PAN -->
                 <form>
                   <div class="upload-btn">
-                 <div class="form-horizonatl">
+                 <div class="form-horizontal">
                  <div class="form-group">                   
                       	 <div class="col-md-4">Upload Pan Card</div>                      	 
                      
@@ -472,7 +472,7 @@
 	                     	<input id = "pan" type="file" file-model="trainingPartner.pan" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
-                     		<button ng-click="uploadFilePan()" class="btn btn-success">Upload Pan</button>
+                     		<button ng-click="uploadFilePan()" class="btn btn-pc-upload">Upload Pan</button>
                      	</div>
                     
 
@@ -488,11 +488,10 @@
                       	 <div class="col-md-4">Upload Tan</div>                      	 
                      <div>
 	                     <div class="col-md-6">
-	                     	<input id = "tan" type="file" file-model="trainingPartner.tan"
-	                                       onchange="angular.element(this).scope().previewAttachments(event)" accept="application/pdf" />
+	                     	<input id = "tan" type="file" file-model="trainingPartner.tan" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
-                     		<button ng-click="uploadFileTAN()" class="btn btn-success">Upload Tan</button>
+                     		<button ng-click="uploadFileTAN()" class="btn btn-pc-upload">Upload Tan</button>
                      	</div>
                      </div>
 
@@ -501,8 +500,39 @@
                       
                                     </div>
                                 </form>
-                
+                <!-- UPLOAD NSDC Certificate -->
+                    <form>
+                    <div class="upload-btn">
+                    	<div class="form-horizontal">
+                    		<div class="form-group">
+                    			<div class="col-md-4">
+                    			<label>Is Institute NSDC Funded?</label>
+                    			</div>
+                    			<div class="col-md-6">
+                    			<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingPartner.IsNsdcFunded" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingPartner.IsNsdcFunded" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    			</div>
+                    		</div>
                     
+                    	</div>
+                    			<div class="form-group form-horizontal" ng-show="trainingPartner.IsNsdcFunded == 'Yes' ">                   
+                      	 <div class="col-md-4">Upload NSDC certificate</div>                      	 
+                     <div>
+	                     <div class="col-md-6">
+	                     	<input id = "nsdcCertificate" type="file" file-model="trainingPartner.nsdcCertificateFile" accept="application/pdf" />
+	                     </div>
+                     	<div class="col-md-2">
+                     		<button ng-click="uploadFileNSDCCertificate()" class="btn btn-pc-upload">Upload</button>
+                     	</div>
+                     </div>
+
+                        </div>
+                    </div>
+                    </form>
                 </div>
             </accordion-group>
             
@@ -524,20 +554,11 @@
                 <div>
                 <!--                 accordion content to come here -->
                 <form>
-                  <div class="upload-btn">
-                      <div class="form-group">
-                           <input id = "attachments" type="file" file-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitutionAnnexurePath"
-                                       onchange="angular.element(this).scope().previewAttachments(event)" multiple accept="application/pdf">
-                                      <button ng-click="uploadFile()" class="btn btn-success">Upload Files</button>
-                                       <ul>
-                                           <h4>Uploaded Files</h4>
-                                               <li class="attachment-list" ng-repeat="attachment in attachments">
-                                                  {{attachment}}
-                                               </li>
-                                        </ul>
-                        </div>
-                                    </div>
-                                </form>
+                <div class="form-horizontal">
+                <div class="form-group">
+                </div>
+                </div>
+                </form>
                 
                     
                 </div>
@@ -553,10 +574,15 @@
         
         
         
-        <div>
+        <div class="form-group form-horizontal col-md-offset-8">
             <!--<button type="button" ng-click="save('save')" class="btn btn-warning">Save as Draft</button>-->
-            <button type="button" ng-click="save()" class="btn btn-warning">Save as Draft</button>
-            <button type="submit" ng-click="submit()" class="btn btn-success">Submit</button>
+            <div class="col-md-2">
+            <button type="button" ng-click="save()" class="btn btn-pc-save">Save as Draft</button>
+            </div>
+            <div class="col-md-2 col-md-offset-4">
+            	<button type="submit" ng-click="submit()" class="btn btn-pc-submit">Submit</button>
+            </div>
+            
         </div>
     </div>
 

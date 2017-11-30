@@ -146,8 +146,25 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
     	var uploadTAN = "/fileUploadTPTAN";
     	fileUpload.uploadFileToUrl(file, uploadTAN, "tan");
     }
-
+//Upload NSDC Certificate
+    $scope.uploadNSDCCertificate = function()
+    {
+    	
+    }
     
+    //Update no in nsdc funded
+    $scope.updateNoInNSDCCertifiacte = function()
+    {
+    	$scope.trainingPartner.TrainingPartnerOrganizationDetails.nsdcFunded = "no";
+    }
+    
+    $scope.uploadFileNSDCCertificate = function()
+    {
+    	var file = $scope.trainingPartner.nsdcCertificateFile;
+    	console.log("File is "+ file);
+    	var uploadNSDCCertificate = "/fileUploadTPNSDC";
+    	fileUpload.uploadFileToUrl(file, uploadNSDCCertificate, "nsdcCertificate");
+    }
     //Preview attachments
     $scope.previewAttachments = function(event) {
         var files = event.target.files;

@@ -12,7 +12,24 @@
 .row-margin{
     margin: 50px auto;
 }
-
+.btn-pc-upload
+{
+  text-align: left;
+  color: #ffffff;
+  background: #26b4ce;
+}
+.btn-pc-save
+{
+	text-align: left;
+  color: #ffffff;
+  background: #f49417;
+}
+.btn-pc-submit
+{
+	text-align: left;
+  color: #ffffff;
+	 background: #1ab394;
+}
 .table-top{
     margin-top : 20px;
 }

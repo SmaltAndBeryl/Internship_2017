@@ -193,7 +193,10 @@ ProfileCreationTrainingPartner:
    
  updateTanPath: >
   UPDATE scgj.TrainingPartnerOrganizationDetails SET tanNumberPath = :tanNumberPath where applicationId = :applicationId;
-   
+ 
+ updateNSDCCertificatePath: >
+  UPDATE scgj.TrainingPartnerOrganizationDetails SET nSDCFunded = :nSDCFunded , nSDCFundedCertificatePath = :nSDCFundedCertificatePath where applicationId = :applicationId;
+ 
  deleteFromTrainingPartnerInstituteGrant: >
   DELETE FROM `scgj`.`trainingpartnerinstitutegrant` WHERE `instituteGrantId`=:instituteGrantId;
   
