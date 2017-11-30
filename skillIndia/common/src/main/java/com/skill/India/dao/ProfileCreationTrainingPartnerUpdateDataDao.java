@@ -361,6 +361,27 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		}
 		
 		/*
+		 * Method to update NSDC certificate path*/
+		public int updateNsdcCertificatePath(String nsdcCertifiactePath, int applicationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("nSDCFundedCertificatePath" , nsdcCertifiactePath);
+				parameters.put("nSDCFunded" , "Yes" );
+				parameters.put("applicationId" , applicationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateNSDCCertificatePath(), parameters);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating nsdc certificate path of training partner " + e);
+			}
+			return status;
+		}
+		
+		/*
 		 * Method to update Tan number path*/
 		
 		public int updateTanPath(String tanPath, int applicationId)

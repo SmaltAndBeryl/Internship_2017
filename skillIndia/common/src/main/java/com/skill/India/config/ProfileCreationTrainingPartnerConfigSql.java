@@ -42,6 +42,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String isTrainingExperiencePresent;
 	private String updatePanPath;
 	private String updateTanPath;
+	private String updateNSDCCertificatePath;
 	
 	
 	/**
@@ -449,6 +450,12 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	}
 	public void setUpdateTanPath(String updateTanPath) {
 		this.updateTanPath = updateTanPath;
+	}
+	public String getUpdateNSDCCertificatePath() {
+		return updateNSDCCertificatePath;
+	}
+	public void setUpdateNSDCCertificatePath(String updateNSDCCertificatePath) {
+		this.updateNSDCCertificatePath = updateNSDCCertificatePath;
 	}
 
 

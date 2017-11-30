@@ -129,5 +129,14 @@ public class ProfileCreationController {
 		return status;
 	}
 	
+	@RequestMapping(value="/fileUploadTPNSDC", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileNSDCCertificate(@RequestParam(value="nsdcCertificate") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("Trying to upload nsdc certifiacte" + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveTPNSDCCertificate(file, "nsdcCertificate");
+		return status;
+	}
+	
 }
 

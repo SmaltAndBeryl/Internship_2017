@@ -507,6 +507,27 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		panPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updatePanPath(panPath, applicationId);
 		return panPathUpdated;
 	}
+	
+	/*Method to save NSDC Certificate*/
+	public int saveTPNSDCCertificate(MultipartFile nsdcCertificate, String key)
+	{
+		int nsdcCertifiacte = 0;
+		String certificatePath = "";
+		int applicationId = getApplicationId();
+		try
+		{
+			certificatePath = saveFile(key, applicationId, nsdcCertificate);
+			LOGGER.debug("nsdc certificate path is " + certificatePath);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while saving file " + e);
+		}
+		
+		nsdcCertifiacte = profileCreationTrainingPartnerUpdateDataDao.updateNsdcCertificatePath(certificatePath, applicationId);
+		return nsdcCertifiacte;
+	}
+	
 	/*Method to get application Id from userId*/
 	private int getApplicationId()
 	{
