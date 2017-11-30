@@ -171,10 +171,26 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
     {
     	var file = $scope.trainingPartner.selfOwnedAnnexureFile;
     	console.log("File is "+ file);
-    	var uploadNSDCCertificate = "/fileuploadTPSelfOwned";
-    	fileUpload.uploadFileToUrl(file, uploadNSDCCertificate, "selfOwnedAnnexure");
+    	var uploadSelfOwnedAnnexure = "/fileuploadTPSelfOwned";
+    	fileUpload.uploadFileToUrl(file, uploadSelfOwnedAnnexure, "selfOwnedAnnexure");
     }
     
+    
+    //Upload franchisee model annexure
+    $scope.uploadFilefranchiseeAnnexure = function()
+    {
+    	var file  = $scope.trainingPartner.franchiseeAnnexureFile;
+    	console.log("File is "+ file);
+    	var uploadFranchisee = "/fileuploadTPFranchisee";
+    	fileUpload.uploadFileToUrl(file, uploadFranchisee, "fileuploadTPFranchisee");
+    }
+    
+    //Upload Mobile Model Annexure 
+    $scope.uploadFilemobileAnnexure = function()
+    {
+    	var file = $scope.trainingPartner.mobileFile;
+    	var uploadMobile = "/fileUploadTPMobile"
+    }
     
     //Preview attachments
     $scope.previewAttachments = function(event) {

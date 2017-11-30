@@ -553,6 +553,7 @@
                 </accordion-heading>
                 <div>
                 <!--                 accordion content to come here -->
+                <!-- Self Owned Model -->
                 <form>
                 <div class="form-horizontal">
                 <div class="form-group">
@@ -562,19 +563,30 @@
                 </div>
                 </div>
                 </form>
-                
-                    
+                <!-- Franchisee Model -->
+                <form>
+                <div class="form-horizontal">
+                <div class="form-group">
+                	<div class="col-md-4"><label>Franchisee Model</label></div>
+                	<div class="col-md-6"><input id = "frnachisee" type="file" file-model="trainingPartner.franchiseeAnnexureFile" accept="application/pdf" /></div>
+                	<div class="col-md-2"><button ng-click="uploadFilefranchiseeAnnexure()" class="btn btn-pc-upload">Upload</button></div>
+                </div>
+                </div>
+                </form>
+                <!-- Mobile Model -->
+                <form>
+                <div class="form-horizontal">
+                <div class="form-group">
+                	<div class="col-md-4"><label>Mobile Model</label></div>
+                	<div class="col-md-6"><input id = "mobile" type="file" file-model="trainingPartner.mobileFile" accept="application/pdf" /></div>
+                	<div class="col-md-2"><button ng-click="uploadFilemobileAnnexure()" class="btn btn-pc-upload">Upload</button></div>
+                </div>
+                </div>
+                </form>
                 </div>
             </accordion-group>
         </accordion>
         <!--  ------------------------ACCORDION ENDS HERE ------------------  -->
-        
-        
-        
-        
-        
-        
-        
         
         
         <div class="form-group form-horizontal col-md-offset-8">
