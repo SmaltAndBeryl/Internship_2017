@@ -165,6 +165,17 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
     	var uploadNSDCCertificate = "/fileUploadTPNSDC";
     	fileUpload.uploadFileToUrl(file, uploadNSDCCertificate, "nsdcCertificate");
     }
+    
+    //Upload self owned annexure
+    $scope.uploadFileselfOwnedAnnexure = function()
+    {
+    	var file = $scope.trainingPartner.selfOwnedAnnexureFile;
+    	console.log("File is "+ file);
+    	var uploadNSDCCertificate = "/fileuploadTPSelfOwned";
+    	fileUpload.uploadFileToUrl(file, uploadNSDCCertificate, "selfOwnedAnnexure");
+    }
+    
+    
     //Preview attachments
     $scope.previewAttachments = function(event) {
         var files = event.target.files;

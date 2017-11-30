@@ -466,13 +466,13 @@
                   <div class="upload-btn">
                  <div class="form-horizontal">
                  <div class="form-group">                   
-                      	 <div class="col-md-4">Upload Pan Card</div>                      	 
+                      	 <div class="col-md-4"><label>Pan Card</label></div>                      	 
                      
 	                     <div class="col-md-6">
 	                     	<input id = "pan" type="file" file-model="trainingPartner.pan" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
-                     		<button ng-click="uploadFilePan()" class="btn btn-pc-upload">Upload Pan</button>
+                     		<button ng-click="uploadFilePan()" class="btn btn-pc-upload">Upload</button>
                      	</div>
                     
 
@@ -485,13 +485,13 @@
                   <div class="upload-btn">
                   <div class="form-horizontal">
                   <div class="form-group">                   
-                      	 <div class="col-md-4">Upload Tan</div>                      	 
+                      	 <div class="col-md-4"><label>Tan</label></div>                      	 
                      <div>
 	                     <div class="col-md-6">
 	                     	<input id = "tan" type="file" file-model="trainingPartner.tan" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
-                     		<button ng-click="uploadFileTAN()" class="btn btn-pc-upload">Upload Tan</button>
+                     		<button ng-click="uploadFileTAN()" class="btn btn-pc-upload">Upload</button>
                      	</div>
                      </div>
 
@@ -520,7 +520,7 @@
                     
                     	</div>
                     			<div class="form-group form-horizontal" ng-show="trainingPartner.IsNsdcFunded == 'Yes' ">                   
-                      	 <div class="col-md-4">Upload NSDC certificate</div>                      	 
+                      	 <div class="col-md-4">NSDC certificate</div>                      	 
                      <div>
 	                     <div class="col-md-6">
 	                     	<input id = "nsdcCertificate" type="file" file-model="trainingPartner.nsdcCertificateFile" accept="application/pdf" />
@@ -556,6 +556,9 @@
                 <form>
                 <div class="form-horizontal">
                 <div class="form-group">
+                	<div class="col-md-4"><label>Self-Owned Model</label></div>
+                	<div class="col-md-6"><input id = "selfOwned" type="file" file-model="trainingPartner.selfOwnedAnnexureFile" accept="application/pdf" /></div>
+                	<div class="col-md-2"><button ng-click="uploadFileselfOwnedAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
                 </div>
                 </form>

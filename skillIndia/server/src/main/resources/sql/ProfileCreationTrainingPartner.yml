@@ -196,7 +196,9 @@ ProfileCreationTrainingPartner:
  
  updateNSDCCertificatePath: >
   UPDATE scgj.TrainingPartnerOrganizationDetails SET nSDCFunded = :nSDCFunded , nSDCFundedCertificatePath = :nSDCFundedCertificatePath where applicationId = :applicationId;
- 
+ updateSelfOwnedAnnexurePath: >
+  UPDATE scgj.TrainingPartnerOrganizationDetails SET selfOwnedInstitutionAnnexurePath = :selfOwnedInstitutionAnnexurePath where applicationId = :applicationId;
+
  deleteFromTrainingPartnerInstituteGrant: >
   DELETE FROM `scgj`.`trainingpartnerinstitutegrant` WHERE `instituteGrantId`=:instituteGrantId;
   
