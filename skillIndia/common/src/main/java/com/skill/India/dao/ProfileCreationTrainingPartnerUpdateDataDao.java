@@ -402,6 +402,46 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 		}
 		
 		/*
+		 * Method to update Franchisee Annexure Path*/
+		public int updateFrnachiseeAnnexurePath(String franchiseeAnnexurePath, int applicationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String,Object> parameters = new HashMap<String,Object>();
+				parameters.put("franchiseeAnnexurePath", franchiseeAnnexurePath);
+				parameters.put("applicationId" , applicationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateFranchiseeAnnexurePath(), parameters);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating franchise model annexure path" + e);
+			}
+			return status;
+		}
+		
+		/*
+		 * Method to update Mobile Annexure Path*/
+		public int updateMobileAnnexurePath(String mobileTrainingInstitutionAnnexurePath, int applicationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String,Object> parameters = new HashMap<String,Object>();
+				parameters.put("mobileTrainingInstitutionAnnexurePath", mobileTrainingInstitutionAnnexurePath);
+				parameters.put("applicationId" , applicationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateMobileAnnexurePath(), parameters);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating mobile model annexure path" + e);
+			}
+			return status;
+		}
+		
+		/*
 		 * Method to update Tan number path*/
 		
 		public int updateTanPath(String tanPath, int applicationId)

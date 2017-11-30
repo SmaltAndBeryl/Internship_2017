@@ -124,5 +124,20 @@ public class ProfileCreationController {
 		return status ;
 	}
 	
+	@RequestMapping(value="/fileuploadTPFranchisee", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileFrnachiseeAnnexure(@RequestParam(value = "fileuploadTPFranchisee")MultipartFile file)
+	{
+		int status = 0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveFranchiseeAnnexure(file, "fileuploadTPFranchisee");
+		return status ;
+	}
+
+	@RequestMapping(value="/fileuploadTPMobile", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileMobileAnnexure(@RequestParam(value = "fileuploadTPMobile")MultipartFile file)
+	{
+		int status = 0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveMobileAnnexure(file, "fileuploadTPMobile");
+		return status ;
+	}
 }
 

@@ -546,11 +546,51 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		}
 		catch(Exception e)
 		{
+			statusSelfOwnedAnnexureUpload = -2;
 			LOGGER.error("An error occured while upload self owned institution annexure path");
 		}
 		return statusSelfOwnedAnnexureUpload;
 	}
 	
+	/*
+	 * Method to save franchisee model annexure*/
+	public int saveFranchiseeAnnexure(MultipartFile franchiseeAnnexure, String key)
+	{
+		int statusFranchiseeAnnexure = 0;
+		int applicationId = getApplicationId();
+		String franchiseAnnexurePath = "";
+		try
+		{
+			franchiseAnnexurePath = saveFile(key, applicationId, franchiseeAnnexure);
+			statusFranchiseeAnnexure = profileCreationTrainingPartnerUpdateDataDao.updateFrnachiseeAnnexurePath(franchiseAnnexurePath, applicationId);
+		}
+		catch(Exception e)
+		{
+			statusFranchiseeAnnexure = -2;
+			LOGGER.error("An error occured while upload self owned institution annexure path");
+		}
+		return statusFranchiseeAnnexure;
+	}
+	
+	/*
+	 * Method to save Mobile annexure*/
+	public int saveMobileAnnexure(MultipartFile mobileAnnexure, String key)
+	{
+		int statusMobileAnnexure = 0;
+		int applicationId = getApplicationId();
+		String mobileAnnexurePath = "";
+		try
+		{
+			mobileAnnexurePath = saveFile(key, applicationId, mobileAnnexure);
+			statusMobileAnnexure = profileCreationTrainingPartnerUpdateDataDao.updateMobileAnnexurePath(mobileAnnexurePath, applicationId);
+		}
+		catch(Exception e)
+		{
+			statusMobileAnnexure = -2;
+			LOGGER.error("An error occured while upload self owned institution annexure path");
+		}
+		return statusMobileAnnexure;
+	}
 	/*Method to save file */
 	private String saveFile(String key, int applicationId, MultipartFile file)
 	{

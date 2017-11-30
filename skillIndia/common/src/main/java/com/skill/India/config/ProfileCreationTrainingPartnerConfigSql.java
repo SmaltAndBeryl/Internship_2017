@@ -44,7 +44,8 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateTanPath;
 	private String updateNSDCCertificatePath;
 	private String updateSelfOwnedAnnexurePath;
-	
+	private String updateFranchiseeAnnexurePath;
+	private String updateMobileAnnexurePath;
 	
 	/**
 	 * @return the updatePathsIntoTrainingPartnerCenterLevelDetails
@@ -464,6 +465,19 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	public void setUpdateSelfOwnedAnnexurePath(
 			String updateSelfOwnedAnnexurePath) {
 		this.updateSelfOwnedAnnexurePath = updateSelfOwnedAnnexurePath;
+	}
+	public String getUpdateFranchiseeAnnexurePath() {
+		return updateFranchiseeAnnexurePath;
+	}
+	public void setUpdateFranchiseeAnnexurePath(
+			String updateFranchiseeAnnexurePath) {
+		this.updateFranchiseeAnnexurePath = updateFranchiseeAnnexurePath;
+	}
+	public String getUpdateMobileAnnexurePath() {
+		return updateMobileAnnexurePath;
+	}
+	public void setUpdateMobileAnnexurePath(String updateMobileAnnexurePath) {
+		this.updateMobileAnnexurePath = updateMobileAnnexurePath;
 	}
 
 
