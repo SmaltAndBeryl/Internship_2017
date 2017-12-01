@@ -31,7 +31,12 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
             'numberOfStudentsInEachBatch': ""
         });
     }
-
+$scope.AddCenter = function()
+{
+	$scope.trainingPartner.TrainingPartnerCenterDetails.push({
+		'nameOfCenter' :""
+	});
+	}
     $scope.addNewRecognition = function(recognition) {
         console.log("data added successfully");
         $scope.trainingPartner.InstituteRecognitionDetails.push({

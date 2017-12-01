@@ -544,26 +544,231 @@
                     </div>
                     </div>
                     <!-- Separate toilets for boys and girls -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Are there separate toilets for boys and girls?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.separateToilets" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.separateToilets" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Provision of transport facility -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is public transport available?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.transportFacility" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.transportFacility" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Presence of Library -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is library present?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.presenceOfLibrary" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.presenceOfLibrary" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Classroom Illumination Level -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is classroom Illumination level sufficient?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.sufficientClassroomIlluminationLevel" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.sufficientClassroomIlluminationLevel" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Classroom Ventilation Level -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Are classrooms ventilated?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.sufficientClassroomVentilationLevel" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.sufficientClassroomVentilationLevel" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Cleanliness -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Does center maintains required cleanliness level?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.sufficientCenterCleanliness" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.sufficientCenterCleanliness" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Weather Protection -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is center's weather protected?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.centerWeatherProtected" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.centerWeatherProtected" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Learning enviornment remark -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Any Remarks on Learning enviornment</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<input type="text" ng-model="trainingCenter.remarksOnLearningEnviornment">
+                    </div>
+                    </div>
+                    </div>
                     <!-- Printed brochures -->
-                    <!-- Documented Po,icy for admission -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Are printed brochures and prospectus available?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.printedBrochureOrProspectus" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.printedBrochureOrProspectus" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Documented Policy for admission -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Are documented poicies and procedures for admission present?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.documentedPolicyAndProcedures" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.documentedPolicyAndProcedures" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Concession Policy -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is concession policy present?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.concessionPolicy" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.concessionPolicy" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Process fo safe custody of documents -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Does center provide safe custody to students' documents?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.safeCustodyOfStudentDocuments" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.safeCustodyOfStudentDocuments" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Student agreement with Institution -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is there an agreement between center and students?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.studentAgreementWithInstitution" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.studentAgreementWithInstitution" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
                     <!-- Studnet admission remark -->
-                    <!-- Next Button -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Any Remarks on Students Admission process</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<input type="text" ng-model="trainingCenter.remarksOnStudentAdmissionDetails">
+                    </div>
+                    </div>
+                    </div>
+                    
                 </div>
      
-                  
-                    
-                    <div class="row">
-                            <div class="col-lg-12">
+                  <!-- Add new center button -->
+                  <div class="form-horizontal">
+                            <div class="col-lg-12 form-group">
+                                <button type="button" class="btn btn-primary next" ng-click="AddCenter()">Add Center</button>
+                            </div>
+                        </div>
+                    <!-- Next Button -->
+                    <div class="form-horizontal">
+                            <div class="col-lg-12 form-group">
                                 <button type="button" class="btn btn-primary next" ng-click="saveCenter()">Next</button>
                             </div>
                         </div>
