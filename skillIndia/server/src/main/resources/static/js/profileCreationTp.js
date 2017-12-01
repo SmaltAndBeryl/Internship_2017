@@ -37,6 +37,7 @@ $scope.AddCenter = function()
 		'nameOfCenter' :""
 	});
 	}
+
     $scope.addNewRecognition = function(recognition) {
         console.log("data added successfully");
         $scope.trainingPartner.InstituteRecognitionDetails.push({
@@ -361,9 +362,9 @@ $scope.AddCenter = function()
     {
     	console.log("Inside save center function");
     	
-    	angular.foreach($scope.trainingPartner.TrainingPartnerCenterDetails, function(selected){
-    		selected.nameOfCenter
-    	})
+    	angular.foreach($scope.trainingPartner.TrainingPartnerCenterDetails, function(){
+    		console.log($scope.trainingPartner.TrainingPartnerCenterDetails.name);
+    	});
     	
     	
     	$scope.postValue = {
