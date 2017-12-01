@@ -37,7 +37,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 1: BASIC INFORMATION
+                                STEP 1: Institution Level - Basic Information
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
@@ -148,7 +148,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 2 : ORGANIZATION DETAILS
+                                STEP 2 : Institution Level - Organisation Details
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
@@ -382,7 +382,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 3 : MANAGEMENT STAFF DETAILS
+                                STEP 3 : Institution Level - Personnel Details
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
@@ -433,7 +433,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 4 : TRAINING STAFF DETAILS
+                                STEP 4 :Center Level - Information
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i>
@@ -442,9 +442,135 @@
                     </div>
                 </accordion-heading>
                 <div>
-                    <!--                 accordion content to come here -->
+                  <!--     accordion content to come here -->
+                <div ng-repeat="trainingCenter in trainingPartner.TrainingPartnerCenterDetails" class="div-center">
+                	 <!-- Name of Center -->
+                	<div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Name of Center</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<input type="text" ng-model="trainingCenter.nameOfCenter" class="txt-center">
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Area of Institute -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Area of Institute Premises</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<input type="text" ng-model="trainingCenter.areaOfInstitute">sq.ft.
+                    </div>
+                    </div>
+                    </div>
+                     <!-- Number of Classrooms -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Number of Classrooms</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<input type="text" ng-model="trainingCenter.numberOfClassrooms">
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Number of Labs -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Number of Labs</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<input type="text" ng-model="trainingCenter.numberOfLabs">
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Number of workshops -->
+                     <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Number of Work shops</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<input type="text" ng-model="trainingCenter.numberOfWorkshops">
+                    </div>
+                    </div>
+                    </div>
+                    
+                    <!--Mandatory Toolkit -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is mandatory Toolkit present?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<input type="text" ng-model="trainingCenter.mandatoryToolKitpresent">
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Safe drinking water -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is safe drinking water present?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.safeDrinkingWater" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.safeDrinkingWater" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Power backup -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Is Power Backup present?</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.safeDrinkingWater" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.safeDrinkingWater" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Separate toilets for boys and girls -->
+                    <!-- Provision of transport facility -->
+                    <!-- Presence of Library -->
+                    <!-- Classroom Illumination Level -->
+                    <!-- Classroom Ventilation Level -->
+                    <!-- Cleanliness -->
+                    <!-- Weather Protection -->
+                    <!-- Learning enviornment remark -->
+                    <!-- Printed brochures -->
+                    <!-- Documented Po,icy for admission -->
+                    <!-- Concession Policy -->
+                    <!-- Process fo safe custody of documents -->
+                    <!-- Student agreement with Institution -->
+                    <!-- Studnet admission remark -->
+                    <!-- Next Button -->
+                </div>
+     
+                  
+                    
+                    <div class="row">
+                            <div class="col-lg-12">
+                                <button type="button" class="btn btn-primary next" ng-click="saveCenter()">Next</button>
+                            </div>
+                        </div>
                 </div>
             </accordion-group>
+            
+            
             
             <!-- ---------------------------ACCORDION 5 ------------------- -->
             <accordion-group is-open="status.open5">
@@ -519,7 +645,8 @@
                     		</div>
                     
                     	</div>
-                    			<div class="form-group form-horizontal" ng-show="trainingPartner.IsNsdcFunded == 'Yes' ">                   
+                    	<div class="form-horizontal">
+                    			<div class="form-group" ng-show="trainingPartner.IsNsdcFunded == 'Yes' ">                   
                       	 <div class="col-md-4">NSDC certificate</div>                      	 
                      <div>
 	                     <div class="col-md-6">
@@ -531,6 +658,61 @@
                      </div>
 
                         </div>
+                        </div>
+                    </div>
+                    </form>
+                    <!-- Upload balance sheet of last 3 years -->
+                    <form>
+                    <div class="upload-button">
+                    	<div class="form-horizontal">
+                    		<div class="form-group">
+                    			<div class="col-md-4">
+                    			<label>Balance sheet of last 3 years</label>
+                    			</div>
+                    			<div class="col-md-6">
+                    				<input id = "balanceSheet" type="file" file-model="trainingPartner.balanceSheet" accept="application/zip" />
+                    			</div>
+                    			<div class="col-md-2">
+                    				<button ng-click="uploadFileBalanceSheet()" class="btn btn-pc-upload">Upload</button>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </div>
+                    </form>
+                    <!-- Upload CV's zip file -->
+                    <form>
+                    <div class="upload-button">
+                    	<div class="form-horizontal">
+                    		<div class="form-group">
+                    			<div class="col-md-4">
+                    			<label>All Certificates related to QP</label>
+                    			</div>
+                    			<div class="col-md-6">
+                    				<input id = "certificatesQP" type="file" file-model="trainingPartner.certificatesQP" accept="application/zip" />
+                    			</div>
+                    			<div class="col-md-2">
+                    				<button ng-click="uploadFileCertificatesQP()" class="btn btn-pc-upload">Upload</button>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </div>
+                    </form>
+                    <!-- Upload CVs of Management staff -->
+                    <form>
+                    <div class="upload-button">
+                    	<div class="form-horizontal">
+                    		<div class="form-group">
+                    			<div class="col-md-4">
+                    			<label>CV's of staff</label>
+                    			</div>
+                    			<div class="col-md-6">
+                    				<input id = "managementStaffCV" type="file" file-model="trainingPartner.managementStaffCV" accept="application/zip" />
+                    			</div>
+                    			<div class="col-md-2">
+                    				<button ng-click="uploadFileManagementStaffCV()" class="btn btn-pc-upload">Upload</button>
+                    			</div>
+                    		</div>
+                    	</div>
                     </div>
                     </form>
                 </div>
@@ -583,6 +765,25 @@
                 </div>
                 </div>
                 </form>
+                </div>
+            </accordion-group>
+            <!-------------------- ACCORDION 7 -------------------->
+            <accordion-group is-open="status.open7">
+                <accordion-heading>
+                    <div class="container acc-heading">
+                        <div class="row">
+                            <div class="col-md-11">
+                                STEP 6 : INFRASTRUCTURE AND LOGISTICS
+                            </div>
+                            <div class="col-md-1">
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open7, 'glyphicon-plus': !status.open7}"></i>
+                            </div>
+                        </div>
+                    </div>
+                </accordion-heading>
+                <div>
+                <!--                 accordion content to come here -->
+                
                 </div>
             </accordion-group>
         </accordion>

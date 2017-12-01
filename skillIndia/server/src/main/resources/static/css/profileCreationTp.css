@@ -18,6 +18,17 @@
   color: #ffffff;
   background: #26b4ce;
 }
+.txt-center
+{
+	width:100%;
+}
+.div-center
+{
+	 border:1px solid slategrey;
+	 border-radius:1em;
+	 margin-bottom:1em;
+	 padding : 1em;
+}
 .btn-pc-save
 {
 	text-align: left;
