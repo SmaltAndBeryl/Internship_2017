@@ -39,16 +39,18 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 	
 	public String profileCreationGetTrainingPartnerRegistrationIdUsingApplicationId(int applicationId)
 	{
+		String trainingPartnerRegistrationId = null;
 		try{
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("applicationId",applicationId);
-		return getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getGetTrainingPartnerRegistrationIdUsingApplicationId(), parameters, String.class);
+		trainingPartnerRegistrationId =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getGetTrainingPartnerRegistrationIdUsingApplicationId(), parameters, String.class);
 		}
 		catch(Exception e)
 		{
 			LOGGER.error("An exception occured while finding training partner registration id using application Id "+ e);
-			return null;
+			
 		}
+		return trainingPartnerRegistrationId;
  	}
 	
 	

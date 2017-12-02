@@ -28,31 +28,31 @@ public class ProfileCreationTrainingPartnerService {
 
 	public ProfileCreationTrainingPartnerDto profileCreationTrainingPartner()
 	{
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In ProfileCreationTrainingPartnerService - profileCreationTrainingPartner");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In ProfileCreationTrainingPartnerService - profileCreationTrainingPartner");
 			
 		try{
-			LOGGER.info("Trying to fetch userId from the session");
+			LOGGER.debug("Trying to fetch userId from the session");
 			
 			String userId=sessionUserUtility.getSessionMangementfromSession().getUsername();
-			LOGGER.info("User logged in has userId-" + userId);
+			LOGGER.debug("User logged in has userId-" + userId);
 		/*
 		 * First checking if userId exists in tpReg table or not then getting data from respective tables
 		 */
-		LOGGER.info("Checking if user has logged in for the first time");
+		LOGGER.debug("Checking if user has logged in for the first time");
 		
 		int userIdExists=userIdCheckInTrainingPartnerRegistration.userIdCheckInTrainingPartnerRegistration(userId);
 		
 		if(userIdExists==1)
 		{
-			LOGGER.info("User has logged in before");
+			LOGGER.debug("User has logged in before");
 			
-			LOGGER.info("Creating Collection to get data of Training Partner");
-			LOGGER.info("Making a Request to Dao to get data");
+			LOGGER.debug("Creating Collection to get data of Training Partner");
+			LOGGER.debug("Making a Request to Dao to get data");
 			Collection<ProfileCreationTrainingPartnerDto> records= profileCreationTrainingPartnerDao.profileCreationGetDataFromTrainingPartnerRegistration(userId);
-			LOGGER.info("Data Received Successfully in collection");
-			LOGGER.info("Iterating every field from the received data ");
-			LOGGER.info("Returning Every Field to Controller");
+			LOGGER.debug("Data Received Successfully in collection");
+			LOGGER.debug("Iterating every field from the received data ");
+			LOGGER.debug("Returning Every Field to Controller");
 			for(ProfileCreationTrainingPartnerDto getRecord:records)
 				return getRecord;
 		}
@@ -61,13 +61,13 @@ public class ProfileCreationTrainingPartnerService {
 			/*
 			 * Get data from user table
 			 */
-			LOGGER.info("User is logging in for the first time");
+			LOGGER.debug("User is logging in for the first time");
 			
-			LOGGER.info("Creating Collection to get data of Training Partner");
-			LOGGER.info("Making a Request to Dao to get data");
+			LOGGER.debug("Creating Collection to get data of Training Partner");
+			LOGGER.debug("Making a Request to Dao to get data");
 			Collection<ProfileCreationTrainingPartnerDto> records= profileCreationTrainingPartnerDao.profileCreationGetDataFromUser(userId);
-			LOGGER.info("Data Received Successfully in collection");
-			LOGGER.info("Iterating every field from the received data ");
+			LOGGER.debug("Data Received Successfully in collection");
+			LOGGER.debug("Iterating every field from the received data ");
 			for(ProfileCreationTrainingPartnerDto getRecord:records)
 				return getRecord;
 		}
@@ -76,10 +76,10 @@ public class ProfileCreationTrainingPartnerService {
 		}
 		catch(Exception e)
 		{
-			LOGGER.info("In CATCH Block");
+			LOGGER.debug("In CATCH Block");
 			LOGGER.error("Error : Encountered an Exception - ",e);
-			LOGGER.info("Returning NULL");
-			e.printStackTrace();
+			LOGGER.debug("Returning NULL");
+			//e.printStackTrace();
 			return null;
 		}
 

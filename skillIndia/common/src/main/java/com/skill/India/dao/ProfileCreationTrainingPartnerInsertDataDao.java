@@ -100,14 +100,15 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 	
 	
 	
-		public int insertIntoTrainingPartnerCenterLevelDetails(ProfileCreationTrainingPartnerCenterDetailsDto profileCreationTrainingPartnerCenterDetailsDto)
+		public int insertIntoTrainingPartnerCenterLevelDetails(ProfileCreationTrainingPartnerCenterDetailsDto profileCreationTrainingPartnerCenterDetailsDto, String trainingPartnerRegistrationId)
 		{
 			int status =0;
+			
 			try{
 				LOGGER.info("Trying to construct database query to insert center level registration data of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 		
-				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerCenterDetailsDto.getTrainingPartnerRegistrationId());
+				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
 				parameters.put("nameOfCenter",profileCreationTrainingPartnerCenterDetailsDto.getNameOfCenter());
 				parameters.put("numberOfPermanentOfficeManager",profileCreationTrainingPartnerCenterDetailsDto.getNumberOfPermanentOfficeManager());
 				parameters.put("numberOftemporaryOfficeManager",profileCreationTrainingPartnerCenterDetailsDto.getNumberOftemporaryOfficeManager());
@@ -175,14 +176,14 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		 * Insert data in Institute grant Table
 		 */
 	
-		public int insertIntoTrainingPartnerInstituteGrant(ProfileCreationTrainingPartnerInstituteGrantDto profileCreationTrainingPartnerInstituteGrantDto)
+		public int insertIntoTrainingPartnerInstituteGrant(ProfileCreationTrainingPartnerInstituteGrantDto profileCreationTrainingPartnerInstituteGrantDto, String trainingPartnerRegistrationId)
 		{
 			int status = 0;
 			try{
 				LOGGER.info("Trying to construct database query to insert details of institution grant of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				
-				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerInstituteGrantDto.getTrainingPartnerRegistrationId());
+				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 				parameters.put("nameOfMinistry",profileCreationTrainingPartnerInstituteGrantDto.getNameOfMinistry());
 				parameters.put("natureOfWork",profileCreationTrainingPartnerInstituteGrantDto.getNatureOfWork());
 				parameters.put("remarks",profileCreationTrainingPartnerInstituteGrantDto.getRemarks());
@@ -206,7 +207,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		 * Insert data in Institute Recognition Table
 		 */
 	
-		public int insertIntoTrainingPartnerInstituteRecognition(ProfileCreationTrainingPartnerInstituteRecognitionDto profileCreationTrainingPartnerInstituteRecognitionDto)
+		public int insertIntoTrainingPartnerInstituteRecognition(ProfileCreationTrainingPartnerInstituteRecognitionDto profileCreationTrainingPartnerInstituteRecognitionDto, String trainingPartnerRegistrationId)
 		{
 			int status =0;
 			try{
@@ -214,10 +215,10 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				
 				/*
-				 * Get TPREGID using App Id nd pass it on to This function
+				 * Get TPREGID using App Id and pass it on to This function
 				 */
 				
-				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerInstituteRecognitionDto.getTrainingPartnerRegistrationId());
+				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 				parameters.put("nameOfRecognizingBody",profileCreationTrainingPartnerInstituteRecognitionDto.getNameOfRecognizingBody());
 				parameters.put("recognitionNumber",profileCreationTrainingPartnerInstituteRecognitionDto.getRecognitionNumber());
 				parameters.put("yearOfRecognition",profileCreationTrainingPartnerInstituteRecognitionDto.getYearOfRecognition());
@@ -243,13 +244,13 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		 * Insert data in Training Partner Prior Experience In Skill Training Table
 		 */
 		
-		public int insertIntoTrainingPartnerPriorExperienceInSkillTraining(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto)
+		public int insertIntoTrainingPartnerPriorExperienceInSkillTraining(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto, String trainingPartnerRegistrationId)
 		{
 			int status =0;
 			try{
 				LOGGER.info("Trying to construct database query to insert details of prior experience of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
-				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getTrainingPartnerRegistrationId());
+				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 				parameters.put("courseName",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getCourseName());
 				parameters.put("numberOfBatchesPerYear",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getNumberOfBatchesPerYear());
 				parameters.put("numberOfStudentsInEachBatch",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getNumberOfStudentsInEachBatch());
@@ -273,14 +274,14 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		 * Insert data in Training Partner ManagementAndStaffAndOfficialsDetails Table 
 		 */
 		
-		public int insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto)
+		public int insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto , String trainingPartnerRegistrationId)
 		{
 			int status =0;
 			try{
 				LOGGER.debug("Trying to construct database query to insert details of management and training staff of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 
-				parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getTrainingPartnerRegistrationId());
+				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 				parameters.put("trainingPartnerCenterId",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getTrainingPartnerCenterId());
 				parameters.put("type",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getType());
 				parameters.put("name",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getName());
@@ -306,8 +307,6 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 			}
 				return status;
 		}
-		
-		
 	
 }
 	

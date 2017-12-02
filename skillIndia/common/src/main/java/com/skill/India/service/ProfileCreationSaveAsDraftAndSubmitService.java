@@ -74,13 +74,18 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	//To save the complete object to database
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
-		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0, assessmentBodyRegionalOffice =0, assessmentBodyExperienceinTechnical =0, assessmentStaff =0;
-		int userExists=getApplicationId();
+		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0, assessmentBodyRegionalOffice =0, assessmentBodyExperienceinTechnical =0, assessmentStaff =0, applicationIdAfterInsertion =0;
+		int userExists = getApplicationId();
 		//New user
 		if (userExists == -1)
 		{
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
 			status=profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
+
+			//Once applicationId has been created
+			
+			applicationIdAfterInsertion = getApplicationId();
+			
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto().isEmpty())
 			{
 				for (ProfileCreationAssessmentBodyAffiliationDetailsDto profileCreationAssessmentBodyAffiliationDetailsDto:profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto())
@@ -288,19 +293,22 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	public int saveTrainingPartner(ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{
 		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, trainingStaff =0, experienceInTraining =0;
-		int userExists=getApplicationId();
-		
+		int userExists = getApplicationId();
+		String applicationIdAfterCreation = null;
 		//New User
 		if(userExists == -1)
 		{
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
 			status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+			
+			//get applicationId once it is created
+			applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto().isEmpty())
 			{
 			
 				for(ProfileCreationTrainingPartnerCenterDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto())
 				{
-					trainingPartnerCenterDetails = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerCenterLevelDetails(item);
+					trainingPartnerCenterDetails = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerCenterLevelDetails(item, applicationIdAfterCreation);
 				}
 			}
 			
@@ -309,14 +317,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				
 				for(ProfileCreationTrainingPartnerInstituteGrantDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto())
 				{
-					trainingPartnerInstituteGrant = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteGrant(item);					
+					trainingPartnerInstituteGrant = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteGrant(item, applicationIdAfterCreation);					
 				}
 			}
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteRecognitionDto().isEmpty())
 			{
 				for(ProfileCreationTrainingPartnerInstituteRecognitionDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteRecognitionDto())
 				{
-					trainingPartnerRecognition = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteRecognition(item);
+					trainingPartnerRecognition = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteRecognition(item , applicationIdAfterCreation);
 				}
 				
 			}
@@ -324,7 +332,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto())
 				{
-					trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item);
+					trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item , applicationIdAfterCreation);
 				}
 			}
 			
@@ -332,7 +340,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto())
 				{
-					experienceInTraining = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerPriorExperienceInSkillTraining(item);
+					experienceInTraining = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerPriorExperienceInSkillTraining(item , applicationIdAfterCreation);
 				}
 			}
 			if(applicationTableStatus == -1 || status == -1 || trainingPartnerCenterDetails == -1 || trainingPartnerInstituteGrant == -1)
@@ -349,6 +357,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		/*Old User*/
 		else 
 		{
+			applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
 			applicationTableStatus = profileCreationTPABCommonDao.updateIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
 			status = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
 			/*
@@ -361,7 +370,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					doesTrainingCenterExists = profileCreationTrainingPartnerGetDataDao.isTrainingCenterPresent(item.getTrainingPartnerRegistrationId(), item.getTrainingPartnerCenterId());
 					if(doesTrainingCenterExists == 0)
 					{
-						trainingPartnerCenterDetails = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerCenterLevelDetails(item);
+						trainingPartnerCenterDetails = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerCenterLevelDetails(item ,applicationIdAfterCreation);
 					}
 					else if(doesTrainingCenterExists == 1)
 					{
@@ -385,7 +394,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					doesInstitueGrantExists = profileCreationTrainingPartnerGetDataDao.isInstituteGrantPresent(item.getTrainingPartnerRegistrationId(), item.getInstituteGrantId());
 					if(doesInstitueGrantExists == 0)
 					{
-						trainingPartnerInstituteGrant = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteGrant(item);
+						trainingPartnerInstituteGrant = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteGrant(item , applicationIdAfterCreation);
 					}
 					else if (doesInstitueGrantExists == 1)
 					{
@@ -397,7 +406,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					}
 					else
 					{
-						LOGGER.debug("Do nothing");
+						LOGGER.debug("Some error has occured");
 					}
 										
 				}
@@ -411,8 +420,8 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					doesRecognitionExists = profileCreationTrainingPartnerGetDataDao.isInstituteRecognitionPresent(item.getTrainingPartnerRegistrationId(),item.getInstituteRecognitionId());
 					if(doesRecognitionExists ==0)
 					{
-						LOGGER.debug("Returned 0");
-						trainingPartnerRecognition = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteRecognition(item);
+						
+						trainingPartnerRecognition = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteRecognition(item , applicationIdAfterCreation);
 					}
 					else if (doesRecognitionExists == 1)
 					{
@@ -435,7 +444,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					doesTrainingStaffExists = profileCreationTrainingPartnerGetDataDao.isTrainingStaffPresent(item.getTrainingPartnerRegistrationId(), item.getManagementAndStaffId());
 					if(doesTrainingStaffExists == 0)
 					{
-						trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item);
+						trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item , applicationIdAfterCreation);
 					}
 					else if(doesTrainingStaffExists == 1)
 					{
@@ -458,7 +467,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					doesExperienceExists = profileCreationTrainingPartnerGetDataDao.isTrainingExperiencePresent(item.getTrainingPartnerRegistrationId(), item.getPriorExperienceInSkillTrainingId());
 					if(doesExperienceExists == 0)
 					{
-						experienceInTraining = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerPriorExperienceInSkillTraining(item);
+						experienceInTraining = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerPriorExperienceInSkillTraining(item , applicationIdAfterCreation);
 					}
 					else if(doesExperienceExists == 1)
 					{
@@ -655,5 +664,19 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		applicationId = sessionUserUtility.getApplicationId(sessionUserUtility.getSessionMangementfromSession().getUsername());
 		return applicationId;
 
+	}
+	private String getTrainingPartnerRegistrationId(int applicationId)
+	{
+		
+		String trainingPartnerRegistrationId = null;
+		try
+		{
+			trainingPartnerRegistrationId = profileCreationTrainingPartnerGetDataDao.profileCreationGetTrainingPartnerRegistrationIdUsingApplicationId(applicationId);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while finding registration Id for training partner " + e);
+		}
+		return trainingPartnerRegistrationId;
 	}
 }
