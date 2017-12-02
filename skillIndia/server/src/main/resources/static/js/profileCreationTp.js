@@ -17,7 +17,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
     $scope.states = ["UP", "Uttarakhand", "MP", "Bihar"];
     $scope.type = ["regular", "visiting"];
     $scope.pctpCenterDetails = [];
-    $scope.pctpOrgDetails = [];
+    
     $scope.pctpInstituteGrantDetail = [];
     $scope.pctpRecognition = [];
     $scope.pctpTrainingStaff = [];
@@ -361,22 +361,34 @@ $scope.AddCenter = function()
     $scope.saveCenter = function()
     {
     	console.log("Inside save center function");
-    	
-    	angular.foreach($scope.trainingPartner.TrainingPartnerCenterDetails, function(){
-    		console.log($scope.trainingPartner.TrainingPartnerCenterDetails.name);
-    	});
-    	
-    	
+    	console.log("Training Partner cenetr is " +  $scope.trainingPartner.TrainingPartnerCenterDetails);
     	$scope.postValue = {
                 'type' : 'Draft',
                 'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
-                'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.pctpCenterDetails,
+                'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                 'profileCreationTrainingPartnerInstituteGrantDto' : $scope.pctpInstituteGrantDetail,
                 'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.pctpRecognition,
                 'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
                 'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.pctpTrainingExperience
             }
+    	
+    	console.log("post data is " + $scope.postValue)
+    	var saveUrl = '/saveAsDraftAndSubmitTP';
+        var saveMethod = 'POST';
+        $http({
+        	url : saveUrl,
+        	method  : saveMethod,
+        	data : angular.toJson($scope.postValue)
+        }).then(function(){
+        	console.log("Successful");
+        },
+        function(){
+        	console.log("Not successful");
+        })
     }
+
+    
+    //Method to be called on save button
     $scope.save = function(response) {
     	var saveUrl = '/saveAsDraftAndSubmitTP';
         var saveMethod = 'POST';
