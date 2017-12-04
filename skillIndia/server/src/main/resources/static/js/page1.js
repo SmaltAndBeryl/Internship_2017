@@ -199,13 +199,13 @@ page.controller('page' , function($scope,$http){
                                 enabled: false
                             },
                             title: {
-                                text: 'Total Trainings in Each Sector',
+                                text: 'Total % of Trainings for each Job Role',
                                 style: {
                                     fontSize: '15px'
                                 }
                             },
                             tooltip: {
-                                pointFormat: '{series.name}: <b>{point.percentage:.0f}</b>'
+                            	pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
                             },
                             plotOptions: {
                                 pie: {
@@ -217,7 +217,7 @@ page.controller('page' , function($scope,$http){
                                         itemStyle: {
                                             font: '3pt sans-serif'
                                         },
-                                        format: '<b>{point.name}</b>: {point.percentage:.0f} ',
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                                         style: {
                                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                                         }
@@ -255,7 +255,7 @@ page.controller('page' , function($scope,$http){
                                     type: "column"
                                 },
                                 title: {
-                                    text: "Top 5 States having maximum training centers",
+                                    text: "Top 5 States having Maximum Training Centres",
                                     style: {
                                         fontSize: '15px'
                                     }
@@ -342,7 +342,7 @@ page.controller('page' , function($scope,$http){
                                     }
                                 },
                                 subtitle: {
-                                    text: 'Source: SCGJ.in'
+                                    text: ''
                                 },
                                 xAxis: {
                                     categories: year,
