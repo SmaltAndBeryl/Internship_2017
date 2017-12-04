@@ -309,6 +309,27 @@ create table if not exists TrainingPartnerCenterLevelDetails
 trainingPartnerCenterId int(5) primary key auto_increment,
 trainingPartnerRegistrationId int(5),
 nameOfCenter varchar(200),
+nameOperationHead varchar(200),
+designationOperationHead varchar(200),
+emailOperationHead varchar(200),
+contactNumberOperationHead bigint,
+educationalQualificationOperationHead varchar(200),
+experienceOperationHead varchar(200),
+cvOperationHeadPath varchar(200),
+nameAffiliationCoordinator varchar(200),
+designationAffiliationCoordinator varchar(200),
+emailAffiliationCoordinator varchar(200),
+contactNumberAffiliationCoordinator bigint,
+educationalQualificationAffiliationCoordinator varchar(200),
+experienceAffiliationCoordinator varchar(200),
+cvAffiliationCoordinatorPath varchar(200),
+nameSPOC varchar(200),
+designationSPOC varchar(200),
+emailSPOC varchar(200),
+contactNumberSPOC bigint,
+educationalQualificationSPOC varchar(200),
+experienceSPOC varchar(200),
+cvSPOCPath varchar(200),
 numberOfPermanentOfficeManager int(3),
 numberOftemporaryOfficeManager int(3),
 numberOfPermanentOfficeStaff int(3),
@@ -406,22 +427,34 @@ create table if not exists TrainingPartnerManagementAndStaffAndOfficialsDetails
 (
 managementAndStaffId int(5) primary key auto_increment,
 trainingPartnerRegistrationId int(5),
-trainingPartnerCenterId int(5),
-type varchar(20),
 name varchar(100),
 designation varchar(50),
 emailId varchar(100),
 contactNumber bigint,
+educationalQualification varchar(100),
+experience int(3),
+cVPath varchar(200),
+isActive boolean,
+foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
+);
+
+
+/*create table TrainingPartnerTrainingStaffDetails*/
+create table if not exists TrainingPartnerTrainingStaffDetails
+(
+trainingStaffId int(5) primary key auto_increment,
+trainingPartnerRegistrationId int(5),
+name varchar(100),
+designation varchar(50),
+emailId varchar(100),
 educationalQualification varchar(100),
 regularOrVisiting varchar(20),
 experience int(3),
 cVPath varchar(200),
 certificatePath varchar(200),
 isActive boolean,
-foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId),
-foreign key(trainingPartnerCenterId) references TrainingPartnerCenterLevelDetails(trainingPartnerCenterId)
+foreign key(trainingPartnerRegistrationId) references TrainingPartnerOrganizationDetails(trainingPartnerRegistrationId)
 );
-
 
 /*create table if exists AssessmentBodyRegistrationDetails*/
 create table if not exists AssessmentBodyRegistrationDetails (
