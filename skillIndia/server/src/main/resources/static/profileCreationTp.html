@@ -414,7 +414,7 @@
                                             <td><input ng-model="managementStaff.contactNumber" class="form-control" placeholder="Contact Number" required /></td>                                            
                                             <td><input ng-model="managementStaff.educationalQualification" placeholder="Education Qualification" class="form-control" required /></td>
                                             <td><input ng-model="managementStaff.experience" class="form-control"  placeholder="Experience" required /></td>
-                                            <td class="btn-checkbox"><input type="checkbox" ng-model="type.selected" /></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="management.selected" /></td>
                                         </tr>
                                         </tbody>
 
@@ -439,7 +439,55 @@
                 <!-- Training Staff -->
                 <div class="form-horizontal">
                 <div class="form-group">
-                	
+                	 <div class="col-md-12"><label>Details of Training Staff</label></div>
+                    
+                    <div class="col-md-12" >
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="trainingStaff in trainingPartner.TrainingStaff">
+                                            <td><input ng-model="trainingStaff.name" class="form-control" placeholder ="Name" required /></td>
+                                            <td><input ng-model="trainingStaff.designation" class="form-control" placeholder="Designation" required /></td>
+                                            <td><input ng-model="trainingStaff.emailId" class="form-control" placeholder="emailId" required /></td>
+                                            <td>
+                                            <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingStaff.regularOrVisiting" value="regular" ng-click="uploadNSDCCertificate()" />Regular
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingStaff.regularOrVisiting" value="visiting" ng-click="updateNoInNSDCCertifiacte()" checked />Visiting
+                                </label>
+                                            </td>                                            
+                                            <td><input ng-model="trainingStaff.educationalQualification" placeholder="Education Qualification" class="form-control" required /></td>
+                                            <td><input ng-model="trainingStaff.experience" class="form-control"  placeholder="Experience" required /></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="trainer.selected" /></td>
+                                        </tr>
+                                        </tbody>
+
+                                    </table>
+                                    <div class="form-horizontal">
+                                    	<p ng-show = "trainingPartner.TrainingStaff.length > '0' " class="upload-annexure-msg">We would ask you to upload CVs for all these management team members later in Upload document section</p>
+                                    </div>
+                                    <div class="form-horizontal">
+                                    	<div class="form-group add-btn">
+                                        <input ng-hide="!trainingPartner.TrainingStaff.length" type="button" class="btn btn-danger" ng-click="removeTrainer()" value="Remove Selected" />
+                                        <input type="button" class="btn btn-primary addNew" value="Add New Trainer" ng-click="addTrainer()"/>
+                                    </div>
+                                    </div>
+                                    <div class="form-horizontal">
+                            <div class="col-lg-12 form-group">
+                                <button type="button" class="btn btn-primary next" ng-click="save()">Next</button>
+                            </div>
+                        </div>
+                </div>
                 </div>
                 </div>
             </accordion-group>

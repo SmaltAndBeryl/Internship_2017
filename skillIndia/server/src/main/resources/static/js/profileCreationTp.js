@@ -42,12 +42,20 @@ $scope.addManagement = function(){
 		'name' : ""
 	})
 }
-//Remove Management Staff function 
-$scope.removeManagement = function(){
+
+$scope.addTrainer = function(){
+	$scope.trainingPartner.TrainingStaff.push({
+		name:""
+	})
+}
+
+
+//Remove Trainer 
+$scope.removeTrainer = function(){
 	console.log("Inside remove training center function");
 	
 	
-    angular.forEach(trainingPartner.ManagementAndStaffAndOfficialDetails, function(selected) {
+    angular.forEach($scope.trainingPartner.TrainingStaff, function(selected) {
     	console.log("Inside function" + selected.nameOfCenter);
         if (selected.selected) {
             console.log("Is active" + selected.isActive)
@@ -62,7 +70,56 @@ $scope.removeManagement = function(){
                     'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                     'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
                     'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                    'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                    'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                    'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
+                }
+            $http({
+            	url : url,
+            	method : method,
+            	data  : angular.toJson($scope.postValue)
+            }).then(function(response){
+            	console.log("response success " + response)
+            	$http.get('/getDataNewUserProfileCreation')
+                .then(function(response) {
+                    console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                    $scope.trainingPartner = response.data;
+                    console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
+                    $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+
+                });
+            },function(errorResponse){
+            	console.log("error response" + errorResponse)
+            })
+        }
+    });     
+}
+
+
+
+
+//Remove Management Staff function 
+$scope.removeManagement = function(){
+	console.log("Inside remove training center function");
+	
+	
+    angular.forEach($scope.trainingPartner.ManagementAndStaffAndOfficialDetails, function(selected) {
+    	console.log("Inside function" + selected.nameOfCenter);
+        if (selected.selected) {
+            console.log("Is active" + selected.isActive)
+            selected.selected.isActive = false;
+            console.log("Is active center" + selected.isActive)
+            var url = '/saveAsDraftAndSubmitTP';
+            var method = 'POST';
+            $scope.postValue = {
+                    'type' : 'Draft',
+                    'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
+                    'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
+                    'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
+                    'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
+                    'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
+                    'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                    'profileCreationTrainingPartnerTrainingStaffDetailsDto': $scope.trainingPartner.TrainingStaff
                 }
             $http({
             	url : url,
@@ -106,7 +163,8 @@ $scope.removeManagement = function(){
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
                         'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
                     }
                 $http({
                 	url : url,
@@ -134,12 +192,10 @@ $scope.removeManagement = function(){
     $scope.addNewRecognition = function(recognition) {
         console.log("data added successfully");
         $scope.trainingPartner.InstituteRecognitionDetails.push({
-            'nameOfMinistry': "",
-            'natureOfWork': "",
-            'remarks': ""
+            'nameOfRecognizingBody': ""
         });
     }
-
+//add new grant
     $scope.addNewGrant = function(experience) {
         console.log("data added successfully");
         $scope.trainingPartner.InstituteGrantDetails.push({
@@ -168,7 +224,8 @@ $scope.removeManagement = function(){
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
                         'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
                     }
                 $http({
                 	url : url,
@@ -192,7 +249,7 @@ $scope.removeManagement = function(){
         });
         $scope.trainingPartner.PriorExperienceDetails = newDataList;
     };
-    //remove from management and training staff
+    //remove from prior experience
     $scope.remove = function() {
         var newDataList = [];
         //        $scope.selectedAll = false;
@@ -209,7 +266,8 @@ $scope.removeManagement = function(){
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
                         'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
                     }
                 $http({
                 	url : url,
@@ -250,7 +308,8 @@ $scope.removeManagement = function(){
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
                         'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
                     }
                 $http({
                 	url : url,
@@ -292,7 +351,8 @@ $scope.removeManagement = function(){
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
                         'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
                     }
                 $http({
                 	url : url,
@@ -322,7 +382,7 @@ $scope.removeManagement = function(){
         var newDataList = [];
         //        $scope.selectedAllGrant = false;
         angular.forEach($scope.trainingPartner.InstituteGrantDetails, function(selected) {
-            if (!selected.selected) {
+            if (selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
                 selected.selected.isActive = 0;
                 var url = '/saveAsDraftAndSubmitTP';
@@ -334,7 +394,8 @@ $scope.removeManagement = function(){
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
                         'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
                     }
                 $http({
                 	url : url,
@@ -614,34 +675,35 @@ $scope.removeManagement = function(){
     
     
     //Save Center details
-    $scope.saveCenter = function()
-    {
-    	console.log("Inside save center function");
-    	console.log("Training Partner cenetr is " +  $scope.trainingPartner.TrainingPartnerCenterDetails);
-    	$scope.postValue = {
-                'type' : 'Draft',
-                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
-                'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
-                'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
-                'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.pctpRecognition,
-                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
-            }
-    	
-    	console.log("post data is " + $scope.postValue)
-    	var saveUrl = '/saveAsDraftAndSubmitTP';
-        var saveMethod = 'POST';
-        $http({
-        	url : saveUrl,
-        	method  : saveMethod,
-        	data : angular.toJson($scope.postValue)
-        }).then(function(){
-        	console.log("Successful");
-        },
-        function(){
-        	console.log("Not successful");
-        })
-    }
+//    $scope.saveCenter = function()
+//    {
+//    	console.log("Inside save center function");
+//    	console.log("Training Partner cenetr is " +  $scope.trainingPartner.TrainingPartnerCenterDetails);
+//    	$scope.postValue = {
+//                'type' : 'Draft',
+//                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
+//                'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
+//                'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
+//                'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.pctpRecognition,
+//                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
+//                'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+//                'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
+//            }
+//    	
+//    	console.log("post data is " + $scope.postValue)
+//    	var saveUrl = '/saveAsDraftAndSubmitTP';
+//        var saveMethod = 'POST';
+//        $http({
+//        	url : saveUrl,
+//        	method  : saveMethod,
+//        	data : angular.toJson($scope.postValue)
+//        }).then(function(){
+//        	console.log("Successful");
+//        },
+//        function(){
+//        	console.log("Not successful");
+//        })
+//    }
 
     
     //Method to be called on save button
@@ -657,7 +719,8 @@ $scope.removeManagement = function(){
             'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
             'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
             'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-            'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+            'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+            'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
         }
         
         console.log("Preparing to post the values.............");
@@ -695,7 +758,8 @@ $scope.removeManagement = function(){
                 'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                 'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
                 'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
             }
     	$http({
     		url : url,
