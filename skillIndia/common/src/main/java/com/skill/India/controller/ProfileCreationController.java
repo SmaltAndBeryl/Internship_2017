@@ -117,10 +117,12 @@ public class ProfileCreationController {
 	}
 	
 	@RequestMapping(value="/fileuploadTPSelfOwned", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
-	public int saveFileSelfOwnedAnnexure(@RequestParam(value = "selfOwnedAnnexure")MultipartFile file)
+	public int saveFileSelfOwnedAnnexure(@RequestParam(value = "selfOwnedAnnexure")MultipartFile file , @RequestParam(value = "postvalue") ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{
 		int status = 0;
-		status = profileCreationSaveAsDraftAndSubmitService.saveSelfOwnedAnnexure(file, "selfOwnedAnnexure");
+		LOGGER.debug("Received file is " + file);
+		LOGGER.debug("Received object is" + profileCreationTrainingPartnerWrapperDto );
+		//status = profileCreationSaveAsDraftAndSubmitService.saveSelfOwnedAnnexure(file, "selfOwnedAnnexure");
 		return status ;
 	}
 	

@@ -154,6 +154,27 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 			String trainingPartnerCenterId = resultSet.getString("trainingPartnerCenterId");
 			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
 			String nameOfCenter = resultSet.getString("nameOfCenter");
+			 String nameOperationHead = resultSet.getString("nameOperationHead");
+			String designationOperationHead= resultSet.getString("designationOperationHead");
+			String emailOperationHead= resultSet.getString("emailOperationHead");
+			String contactNumberOperationHead= resultSet.getString("contactNumberOperationHead");
+			String educationalQualificationOperationHead= resultSet.getString("educationalQualificationOperationHead");
+			String experienceOperationHead= resultSet.getString("experienceOperationHead");
+			String cvOperationHeadPath= resultSet.getString("cvOperationHeadPath");
+			String nameAffiliationCoordinator= resultSet.getString("nameAffiliationCoordinator");
+			String designationAffiliationCoordinator= resultSet.getString("designationAffiliationCoordinator");
+			String emailAffiliationCoordinator= resultSet.getString("emailAffiliationCoordinator");
+			String contactNumberAffiliationCoordinator= resultSet.getString("contactNumberAffiliationCoordinator");
+			String educationalQualificationAffiliationCoordinator= resultSet.getString("educationalQualificationAffiliationCoordinator");
+			String experienceAffiliationCoordinator= resultSet.getString("experienceAffiliationCoordinator");
+			String cvAffiliationCoordinatorPath= resultSet.getString("cvAffiliationCoordinatorPath");
+			String nameSPOC= resultSet.getString("nameSPOC");
+			String designationSPOC= resultSet.getString("designationSPOC");
+			String emailSPOC= resultSet.getString("emailSPOC");
+			String contactNumberSPOC= resultSet.getString("contactNumberSPOC");
+			String educationalQualificationSPOC= resultSet.getString("educationalQualificationSPOC");
+			String experienceSPOC= resultSet.getString("experienceSPOC");
+			String cvSPOCPath= resultSet.getString("cvSPOCPath");
 			String numberOfPermanentOfficeManager = resultSet.getString("numberOfPermanentOfficeManager");
 			String numberOftemporaryOfficeManager = resultSet.getString("numberOftemporaryOfficeManager");
 			String numberOfPermanentOfficeStaff = resultSet.getString("numberOfPermanentOfficeStaff");
@@ -202,8 +223,11 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 			String studentAgreementWithInstitution = resultSet.getString("studentAgreementWithInstitution");
 			String remarksOnStudentAdmissionDetails = resultSet.getString("remarksOnStudentAdmissionDetails");
 			Boolean isActive = resultSet.getBoolean("isActive");
-			return new ProfileCreationTrainingPartnerCenterDetailsDto(trainingPartnerCenterId,trainingPartnerRegistrationId,nameOfCenter,numberOfPermanentOfficeManager,numberOftemporaryOfficeManager,
-				numberOfPermanentOfficeStaff,numberOfTemporaryOfficeStaff,numberOfPermanentLabAssistants,numberOfTemporaryLabAssistants,
+			return new ProfileCreationTrainingPartnerCenterDetailsDto(trainingPartnerCenterId,trainingPartnerRegistrationId,nameOfCenter,nameOperationHead, designationOperationHead, 
+				emailOperationHead,  contactNumberOperationHead,educationalQualificationOperationHead, experienceOperationHead, cvOperationHeadPath,nameAffiliationCoordinator,
+				designationAffiliationCoordinator, emailAffiliationCoordinator, contactNumberAffiliationCoordinator, educationalQualificationAffiliationCoordinator,
+				experienceAffiliationCoordinator,cvAffiliationCoordinatorPath,nameSPOC,	designationSPOC,emailSPOC,contactNumberSPOC,educationalQualificationSPOC,
+			    experienceSPOC,	cvSPOCPath, numberOfPermanentOfficeManager, numberOftemporaryOfficeManager,	numberOfPermanentOfficeStaff,numberOfTemporaryOfficeStaff,numberOfPermanentLabAssistants,numberOfTemporaryLabAssistants,
 				numberOfPermanentAccountants,numberOfTemporaryAccountants,numberOfPermanentSupportStaff,numberOfTemporarySupportStaff,
 				numberOfPermanentOtherEmployees,numberOfTemporaryOtherEmployees,areaOfInstitute,buildingType,sizeOfClassrooms,classroomPicsPath,
 				numberOfClassrooms,sizeOfLabs,labPicsPath,numberOfLabs,sizeOfWorkshops,workshopPicsPath,numberOfWorkshops,mandatoryToolKitpresent,
@@ -472,20 +496,20 @@ private static final ProfileCreationTrainingPartnerManagementAndStaffAndOfficial
 				throws SQLException {
 			String managementAndStaffId = resultSet.getString("managementAndStaffId");
 			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
-			String trainingPartnerCenterId = resultSet.getString("trainingPartnerCenterId");
-			String type = resultSet.getString("type");
+			//String trainingPartnerCenterId = resultSet.getString("trainingPartnerCenterId");
+			//String type = resultSet.getString("type");
 			String name = resultSet.getString("name");;
 			String designation = resultSet.getString("designation");;
 			String emailId = resultSet.getString("emailId");;
 			String contactNumber = resultSet.getString("contactNumber");;
 			String educationalQualification = resultSet.getString("educationalQualification");;
-			String regularOrVisiting = resultSet.getString("regularOrVisiting");;
+			//String regularOrVisiting = resultSet.getString("regularOrVisiting");
 			String experience = resultSet.getString("experience");;
 			String cVPath = resultSet.getString("cVPath");;
-			String certificatePath = resultSet.getString("certificatePath");
+			//String certificatePath = resultSet.getString("certificatePath");
 			Boolean isActive = resultSet.getBoolean("isActive");
-			return new ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(managementAndStaffId,trainingPartnerRegistrationId,trainingPartnerCenterId,type,name,designation,emailId,contactNumber,
-					educationalQualification,regularOrVisiting,experience,cVPath,certificatePath,isActive);
+			return new ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(managementAndStaffId,trainingPartnerRegistrationId,name,designation,emailId,contactNumber,
+					educationalQualification,experience,cVPath, isActive);
 		}
 
 }	

@@ -14,32 +14,42 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String getDataFromTrainingPartnerInstituteRecognition;
 	private String getDataFromTrainingPartnerPriorExperienceInSkillTraining;
 	private String getDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	private String getDataFromTrainingPartnerTrainingStaffDetails;
+	
+	private String insertIntoTrainingPartnerTrainingStaff;
 	private String insertIntoTrainingPartnerOrganizationDetails;
 	private String insertIntoTrainingPartnerCenterLevelDetails;
 	private String insertIntoTrainingPartnerInstituteGrant;
 	private String insertIntoTrainingPartnerInstituteRecognition;
 	private String insertIntoTrainingPartnerPriorExperienceInSkillTraining;
 	private String insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	
 	private String updateIntoTrainingPartnerOrganizationDetails;
 	private String updateIntoTrainingPartnerCenterLevelDetails;
 	private String updateIntoTrainingPartnerInstituteGrant;
 	private String updateIntoTrainingPartnerInstituteRecognition;
 	private String updateIntoTrainingPartnerPriorExperienceInSkillTraining;
 	private String updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
+	private String updateIntoTrainingStaff;
 	private String updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
 	private String updatePathsIntoTrainingPartnerCenterLevelDetails;
+	
 	private String deleteFromTrainingPartnerInstituteGrant;
 	private String deleteFromTrainingPartnerInstituteRecognition;
 	private String deleteFromTrainingPartnerPriorExperienceInSkillTraining;
 	private String deleteFromTrainingPartnerManagementAndStaffAndOfficialsDetails;
 	private String deleteFromTrainingPartnerCenterLevelDetails;
+	
 	private String insertDataInApplication;
 	private String updateDataInApplication;
+	
 	private String isTrainingCenterPresent;
 	private String isInstituteGrantPresent;
 	private String isRecognitnionPresent;
 	private String isTrainingStaffPresent;
 	private String isTrainingExperiencePresent;
+	private String isTrainingPartnerStaffTrainingStaffPresent;
+	
 	private String updatePanPath;
 	private String updateTanPath;
 	private String updateNSDCCertificatePath;
@@ -478,6 +488,33 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	}
 	public void setUpdateMobileAnnexurePath(String updateMobileAnnexurePath) {
 		this.updateMobileAnnexurePath = updateMobileAnnexurePath;
+	}
+	public String getGetDataFromTrainingPartnerTrainingStaffDetails() {
+		return getDataFromTrainingPartnerTrainingStaffDetails;
+	}
+	public void setGetDataFromTrainingPartnerTrainingStaffDetails(
+			String getDataFromTrainingPartnerTrainingStaffDetails) {
+		this.getDataFromTrainingPartnerTrainingStaffDetails = getDataFromTrainingPartnerTrainingStaffDetails;
+	}
+	public String getIsTrainingPartnerStaffTrainingStaffPresent() {
+		return isTrainingPartnerStaffTrainingStaffPresent;
+	}
+	public void setIsTrainingPartnerStaffTrainingStaffPresent(
+			String isTrainingPartnerStaffTrainingStaffPresent) {
+		this.isTrainingPartnerStaffTrainingStaffPresent = isTrainingPartnerStaffTrainingStaffPresent;
+	}
+	public String getUpdateIntoTrainingStaff() {
+		return updateIntoTrainingStaff;
+	}
+	public void setUpdateIntoTrainingStaff(String updateIntoTrainingStaff) {
+		this.updateIntoTrainingStaff = updateIntoTrainingStaff;
+	}
+	public String getInsertIntoTrainingPartnerTrainingStaff() {
+		return insertIntoTrainingPartnerTrainingStaff;
+	}
+	public void setInsertIntoTrainingPartnerTrainingStaff(
+			String insertIntoTrainingPartnerTrainingStaff) {
+		this.insertIntoTrainingPartnerTrainingStaff = insertIntoTrainingPartnerTrainingStaff;
 	}
 
 

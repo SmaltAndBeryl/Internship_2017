@@ -4,17 +4,14 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 
 	private String managementAndStaffId;
 	private String trainingPartnerRegistrationId;
-	private String trainingPartnerCenterId;
-	private String type;
 	private String name;
 	private String designation;
 	private String emailId;
 	private String contactNumber;
 	private String educationalQualification;
-	private String regularOrVisiting;
+	//private String regularOrVisiting;
 	private String experience;
 	private String cVPath;
-	private String certificatePath;
 	private Boolean isActive;
 	
 	
@@ -40,25 +37,23 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	 * @param isActive
 	 */
 	public ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(
-			String managementAndStaffId,String trainingPartnerRegistrationId,String trainingPartnerCenterId,
-			String type, String name, String designation, String emailId,
+			String managementAndStaffId,String trainingPartnerRegistrationId, String name, String designation, String emailId,
 			String contactNumber, String educationalQualification,
-			String regularOrVisiting, String experience, String cVPath,
-			String certificatePath,Boolean isActive) {
+			 String experience, String cVPath,
+			Boolean isActive) {
 		super();
 		this.managementAndStaffId=managementAndStaffId;
 		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
-		this.trainingPartnerCenterId=trainingPartnerCenterId;
-		this.type = type;
+		//this.trainingPartnerCenterId=trainingPartnerCenterId;
+
 		this.name = name;
 		this.designation = designation;
 		this.emailId = emailId;
 		this.contactNumber = contactNumber;
 		this.educationalQualification = educationalQualification;
-		this.regularOrVisiting = regularOrVisiting;
+		//this.regularOrVisiting = regularOrVisiting;
 		this.experience = experience;
 		this.cVPath = cVPath;
-		this.certificatePath = certificatePath;
 		this.isActive = isActive;
 	}
 	
@@ -92,27 +87,27 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	/**
 	 * @return the trainingPartnerCenterId
 	 */
-	public String getTrainingPartnerCenterId() {
-		return trainingPartnerCenterId;
-	}
+//	public String getTrainingPartnerCenterId() {
+//		return trainingPartnerCenterId;
+//	}
 	/**
 	 * @param trainingPartnerCenterId the trainingPartnerCenterId to set
 	 */
-	public void setTrainingPartnerCenterId(String trainingPartnerCenterId) {
-		this.trainingPartnerCenterId = trainingPartnerCenterId;
-	}
+//	public void setTrainingPartnerCenterId(String trainingPartnerCenterId) {
+//		this.trainingPartnerCenterId = trainingPartnerCenterId;
+//	}
 	/**
 	 * @return the type
 	 */
-	public String getType() {
-		return type;
-	}
+//	public String getType() {
+//		return type;
+//	}
 	/**
 	 * @param type the type to set
 	 */
-	public void setType(String type) {
-		this.type = type;
-	}
+//	public void setType(String type) {
+//		this.type = type;
+//	}
 	/**
 	 * @return the name
 	 */
@@ -176,15 +171,15 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	/**
 	 * @return the regularOrVisiting
 	 */
-	public String getRegularOrVisiting() {
-		return regularOrVisiting;
-	}
+//	public String getRegularOrVisiting() {
+//		return regularOrVisiting;
+//	}
 	/**
 	 * @param regularOrVisiting the regularOrVisiting to set
 	 */
-	public void setRegularOrVisiting(String regularOrVisiting) {
-		this.regularOrVisiting = regularOrVisiting;
-	}
+//	public void setRegularOrVisiting(String regularOrVisiting) {
+//		this.regularOrVisiting = regularOrVisiting;
+//	}
 	/**
 	 * @return the experience
 	 */
@@ -212,15 +207,15 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	/**
 	 * @return the certificatePath
 	 */
-	public String getCertificatePath() {
-		return certificatePath;
-	}
+//	public String getCertificatePath() {
+//		return certificatePath;
+//	}
 	/**
 	 * @param certificatePath the certificatePath to set
 	 */
-	public void setCertificatePath(String certificatePath) {
-		this.certificatePath = certificatePath;
-	}
+//	public void setCertificatePath(String certificatePath) {
+//		this.certificatePath = certificatePath;
+//	}
 	public Boolean getIsActive() {
 		return isActive;
 	}

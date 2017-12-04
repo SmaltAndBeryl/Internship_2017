@@ -5,6 +5,27 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	private String trainingPartnerCenterId;
 	private String trainingPartnerRegistrationId;
 	private String nameOfCenter;
+	private String nameOperationHead;
+	private String designationOperationHead;
+	private String emailOperationHead;
+	private String contactNumberOperationHead;
+	private String educationalQualificationOperationHead;
+	private String experienceOperationHead;
+	private String cvOperationHeadPath;
+	private String nameAffiliationCoordinator;
+	private String designationAffiliationCoordinator;
+	private String emailAffiliationCoordinator;
+	private String contactNumberAffiliationCoordinator;
+	private String educationalQualificationAffiliationCoordinator;
+	private String experienceAffiliationCoordinator;
+	private String cvAffiliationCoordinatorPath;
+	private String nameSPOC;
+	private String designationSPOC;
+	private String emailSPOC;
+	private String contactNumberSPOC;
+	private String educationalQualificationSPOC;
+	private String experienceSPOC;
+	private String cvSPOCPath;
 	private String numberOfPermanentOfficeManager;
 	private String numberOftemporaryOfficeManager;
 	private String numberOfPermanentOfficeStaff;
@@ -117,6 +138,27 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 			String trainingPartnerCenterId,
 			String trainingPartnerRegistrationId,
 			String nameOfCenter,
+			 String nameOperationHead,
+			 String designationOperationHead,
+			 String emailOperationHead,
+			 String contactNumberOperationHead,
+			 String educationalQualificationOperationHead,
+			 String experienceOperationHead,
+			 String cvOperationHeadPath,
+			 String nameAffiliationCoordinator,
+			 String designationAffiliationCoordinator,
+			 String emailAffiliationCoordinator,
+			 String contactNumberAffiliationCoordinator,
+			 String educationalQualificationAffiliationCoordinator,
+			 String experienceAffiliationCoordinator,
+			 String cvAffiliationCoordinatorPath,
+			 String nameSPOC,
+			 String designationSPOC,
+			 String emailSPOC,
+			 String contactNumberSPOC,
+			 String educationalQualificationSPOC,
+			 String experienceSPOC,
+			 String cvSPOCPath,
 			String numberOfPermanentOfficeManager,
 			String numberOftemporaryOfficeManager,
 			String numberOfPermanentOfficeStaff,
@@ -154,6 +196,27 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 			) {
 		super();
 		this.nameOfCenter = nameOfCenter;
+		this.nameOperationHead=nameOperationHead;
+				 this.designationOperationHead= designationOperationHead;
+				 this.emailOperationHead=emailOperationHead;
+				 this.contactNumberOperationHead=contactNumberOperationHead;
+				 this.educationalQualificationOperationHead=educationalQualificationOperationHead;
+				 this.experienceOperationHead=experienceOperationHead;
+				 this.cvOperationHeadPath=cvOperationHeadPath;
+				 this.nameAffiliationCoordinator=nameAffiliationCoordinator;
+				 this.designationAffiliationCoordinator=designationAffiliationCoordinator;
+				 this.emailAffiliationCoordinator=emailAffiliationCoordinator;
+				 this.contactNumberAffiliationCoordinator=contactNumberAffiliationCoordinator;
+				 this.educationalQualificationAffiliationCoordinator=educationalQualificationAffiliationCoordinator;
+				 this.experienceAffiliationCoordinator=experienceAffiliationCoordinator;
+				 this.cvAffiliationCoordinatorPath=cvAffiliationCoordinatorPath;
+				 this.nameSPOC=nameSPOC;
+				 this.designationSPOC=designationSPOC;
+				 this.emailSPOC=emailSPOC;
+				 this.contactNumberSPOC=contactNumberSPOC;
+				 this.educationalQualificationSPOC=educationalQualificationSPOC;
+				 this.experienceSPOC=experienceSPOC;
+				 this.cvSPOCPath=cvSPOCPath;
 		this.numberOfPermanentOfficeManager = numberOfPermanentOfficeManager;
 		this.numberOftemporaryOfficeManager = numberOftemporaryOfficeManager;
 		this.numberOfPermanentOfficeStaff = numberOfPermanentOfficeStaff;
@@ -830,6 +893,140 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	}
 	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
+	}
+	public String getNameOperationHead() {
+		return nameOperationHead;
+	}
+	public void setNameOperationHead(String nameOperationHead) {
+		this.nameOperationHead = nameOperationHead;
+	}
+	public String getDesignationOperationHead() {
+		return designationOperationHead;
+	}
+	public void setDesignationOperationHead(String designationOperationHead) {
+		this.designationOperationHead = designationOperationHead;
+	}
+	public String getEmailOperationHead() {
+		return emailOperationHead;
+	}
+	public void setEmailOperationHead(String emailOperationHead) {
+		this.emailOperationHead = emailOperationHead;
+	}
+	public String getContactNumberOperationHead() {
+		return contactNumberOperationHead;
+	}
+	public void setContactNumberOperationHead(String contactNumberOperationHead) {
+		this.contactNumberOperationHead = contactNumberOperationHead;
+	}
+	public String getEducationalQualificationOperationHead() {
+		return educationalQualificationOperationHead;
+	}
+	public void setEducationalQualificationOperationHead(
+			String educationalQualificationOperationHead) {
+		this.educationalQualificationOperationHead = educationalQualificationOperationHead;
+	}
+	public String getCvOperationHeadPath() {
+		return cvOperationHeadPath;
+	}
+	public void setCvOperationHeadPath(String cvOperationHeadPath) {
+		this.cvOperationHeadPath = cvOperationHeadPath;
+	}
+	public String getExperienceOperationHead() {
+		return experienceOperationHead;
+	}
+	public void setExperienceOperationHead(String experienceOperationHead) {
+		this.experienceOperationHead = experienceOperationHead;
+	}
+	public String getNameAffiliationCoordinator() {
+		return nameAffiliationCoordinator;
+	}
+	public void setNameAffiliationCoordinator(String nameAffiliationCoordinator) {
+		this.nameAffiliationCoordinator = nameAffiliationCoordinator;
+	}
+	public String getEmailAffiliationCoordinator() {
+		return emailAffiliationCoordinator;
+	}
+	public void setEmailAffiliationCoordinator(
+			String emailAffiliationCoordinator) {
+		this.emailAffiliationCoordinator = emailAffiliationCoordinator;
+	}
+	public String getDesignationAffiliationCoordinator() {
+		return designationAffiliationCoordinator;
+	}
+	public void setDesignationAffiliationCoordinator(
+			String designationAffiliationCoordinator) {
+		this.designationAffiliationCoordinator = designationAffiliationCoordinator;
+	}
+	public String getContactNumberAffiliationCoordinator() {
+		return contactNumberAffiliationCoordinator;
+	}
+	public void setContactNumberAffiliationCoordinator(
+			String contactNumberAffiliationCoordinator) {
+		this.contactNumberAffiliationCoordinator = contactNumberAffiliationCoordinator;
+	}
+	public String getEducationalQualificationAffiliationCoordinator() {
+		return educationalQualificationAffiliationCoordinator;
+	}
+	public void setEducationalQualificationAffiliationCoordinator(
+			String educationalQualificationAffiliationCoordinator) {
+		this.educationalQualificationAffiliationCoordinator = educationalQualificationAffiliationCoordinator;
+	}
+	public String getExperienceAffiliationCoordinator() {
+		return experienceAffiliationCoordinator;
+	}
+	public void setExperienceAffiliationCoordinator(
+			String experienceAffiliationCoordinator) {
+		this.experienceAffiliationCoordinator = experienceAffiliationCoordinator;
+	}
+	public String getCvAffiliationCoordinatorPath() {
+		return cvAffiliationCoordinatorPath;
+	}
+	public void setCvAffiliationCoordinatorPath(
+			String cvAffiliationCoordinatorPath) {
+		this.cvAffiliationCoordinatorPath = cvAffiliationCoordinatorPath;
+	}
+	public String getNameSPOC() {
+		return nameSPOC;
+	}
+	public void setNameSPOC(String nameSPOC) {
+		this.nameSPOC = nameSPOC;
+	}
+	public String getDesignationSPOC() {
+		return designationSPOC;
+	}
+	public void setDesignationSPOC(String designationSPOC) {
+		this.designationSPOC = designationSPOC;
+	}
+	public String getEmailSPOC() {
+		return emailSPOC;
+	}
+	public void setEmailSPOC(String emailSPOC) {
+		this.emailSPOC = emailSPOC;
+	}
+	public String getContactNumberSPOC() {
+		return contactNumberSPOC;
+	}
+	public void setContactNumberSPOC(String contactNumberSPOC) {
+		this.contactNumberSPOC = contactNumberSPOC;
+	}
+	public String getEducationalQualificationSPOC() {
+		return educationalQualificationSPOC;
+	}
+	public void setEducationalQualificationSPOC(
+			String educationalQualificationSPOC) {
+		this.educationalQualificationSPOC = educationalQualificationSPOC;
+	}
+	public String getExperienceSPOC() {
+		return experienceSPOC;
+	}
+	public void setExperienceSPOC(String experienceSPOC) {
+		this.experienceSPOC = experienceSPOC;
+	}
+	public String getCvSPOCPath() {
+		return cvSPOCPath;
+	}
+	public void setCvSPOCPath(String cvSPOCPath) {
+		this.cvSPOCPath = cvSPOCPath;
 	}
 	
 	
