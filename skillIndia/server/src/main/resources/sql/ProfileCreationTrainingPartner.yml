@@ -20,6 +20,9 @@ ProfileCreationTrainingPartner:
 
  getDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails: >
   select * from TrainingPartnerManagementAndStaffAndOfficialsDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1;
+ 
+ getDataFromTrainingPartnerTrainingStaffDetails: >
+  select * from TrainingPartnerTrainingStaffDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1
 
  isTrainingCenterPresent: >
   SELECT EXISTS(SELECT * FROM scgj.trainingpartnercenterleveldetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and trainingPartnerCenterId=:trainingPartnerCenterId);
@@ -36,6 +39,9 @@ ProfileCreationTrainingPartner:
  isTrainingExperiencePresent: >
   SELECT EXISTS(SELECT * FROM scgj.trainingpartnerpriorexperienceinskilltraining WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and priorExperienceInSkillTrainingId=:priorExperienceInSkillTrainingId);
  
+ isTrainingPartnerStaffTrainingStaffPresent: >
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnertrainingstaffdetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and trainingStaffId=:trainingStaffId);
+ 
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
    values(:applicationState,:activeFlag,:dateOfSubmission,:userId)  
@@ -45,7 +51,7 @@ ProfileCreationTrainingPartner:
 
 
  insertIntoTrainingPartnerCenterLevelDetails: >
-  INSERT INTO `scgj`.`trainingpartnercenterleveldetails` (`trainingPartnerRegistrationId`, `nameOfCenter`, `numberOfPermanentOfficeManager`, `numberOftemporaryOfficeManager`, `numberOfPermanentOfficeStaff`, `numberOfTemporaryOfficeStaff`, `numberOfPermanentLabAssistants`, `numberOfTemporaryLabAssistants`, `numberOfPermanentAccountants`, `numberOfTemporaryAccountants`, `numberOfPermanentSupportStaff`, `numberOfTemporarySupportStaff`, `numberOfPermanentOtherEmployees`, `numberOfTemporaryOtherEmployees`, `areaOfInstitute`, `buildingType`, `sizeOfClassrooms`, `classroomPicsPath`, `numberOfClassrooms`, `sizeOfLabs`, `labPicsPath`, `numberOfLabs`, `sizeOfWorkshops`, `workshopPicsPath`, `numberOfWorkshops`, `mandatoryToolKitpresent`, `mandatoryToolKitAnnexurePath`, `mandatoryToolKitPicsPath`, `safeDrinkingWater`, `powerBackup`, `separateToilets`, `transportFacility`, `presenceOfLibrary`, `numberOfTechnicalBooks`, `numberOfNonTechnicalBooks`, `numberOfMagazines`, `numberOfDailies`, `remarksOnInfrastructureDetails`, `sufficientClassroomIlluminationLevel`, `sufficientClassroomVentilationLevel`, `sufficientCenterCleanliness`, `centerWeatherProtected`, `remarksOnLearningEnviornment`, `printedBrochureOrProspectus`, `documentedPolicyAndProcedures`, `concessionPolicy`, `safeCustodyOfStudentDocuments`, `studentAgreementWithInstitution`, `remarksOnStudentAdmissionDetails`, `isActive`) VALUES(:trainingPartnerRegistrationId,:nameOfCenter, :numberOfPermanentOfficeManager, :numberOftemporaryOfficeManager, :numberOfPermanentOfficeStaff, :numberOfTemporaryOfficeStaff, :numberOfPermanentLabAssistants, :numberOfTemporaryLabAssistants, :numberOfPermanentAccountants, :numberOfTemporaryAccountants, :numberOfPermanentSupportStaff, :numberOfTemporarySupportStaff,  :numberOfPermanentOtherEmployees, :numberOfTemporaryOtherEmployees, :areaOfInstitute, :buildingType, :sizeOfClassrooms, :classroomPicsPath, :numberOfClassrooms, :sizeOfLabs, :labPicsPath, :numberOfLabs, :sizeOfWorkshops, :workshopPicsPath, :numberOfWorkshops, :mandatoryToolKitpresent, :mandatoryToolKitAnnexurePath, :mandatoryToolKitPicsPath, :safeDrinkingWater, :powerBackup, :separateToilets, :transportFacility, :presenceOfLibrary, :numberOfTechnicalBooks, :numberOfNonTechnicalBooks, :numberOfMagazines, :numberOfDailies, :remarksOnInfrastructureDetails, :sufficientClassroomIlluminationLevel, :sufficientClassroomVentilationLevel, :sufficientCenterCleanliness, :centerWeatherProtected, :remarksOnLearningEnviornment, :printedBrochureOrProspectus, :documentedPolicyAndProcedures, :concessionPolicy, :safeCustodyOfStudentDocuments, :studentAgreementWithInstitution, :remarksOnStudentAdmissionDetails, :isActive);
+  INSERT INTO `scgj`.`trainingpartnercenterleveldetails` (`trainingPartnerRegistrationId`, `nameOfCenter`, `nameOperationHead` , `designationOperationHead` , `emailOperationHead` ,  `contactNumberOperationHead` ,   `educationalQualificationOperationHead` , `experienceOperationHead` , `cvOperationHeadPath` , `nameAffiliationCoordinator` , `designationAffiliationCoordinator` , `emailAffiliationCoordinator` , `contactNumberAffiliationCoordinator` ,  `educationalQualificationAffiliationCoordinator` , `experienceAffiliationCoordinator` , `cvAffiliationCoordinatorPath` , `nameSPOC`, `designationSPOC` , `emailSPOC` , `contactNumberSPOC` , `educationalQualificationSPOC` , `experienceSPOC` , `cvSPOCPath` , `numberOfPermanentOfficeManager`, `numberOftemporaryOfficeManager`, `numberOfPermanentOfficeStaff`, `numberOfTemporaryOfficeStaff`, `numberOfPermanentLabAssistants`, `numberOfTemporaryLabAssistants`, `numberOfPermanentAccountants`, `numberOfTemporaryAccountants`, `numberOfPermanentSupportStaff`, `numberOfTemporarySupportStaff`, `numberOfPermanentOtherEmployees`, `numberOfTemporaryOtherEmployees`, `areaOfInstitute`, `buildingType`, `sizeOfClassrooms`, `classroomPicsPath`, `numberOfClassrooms`, `sizeOfLabs`, `labPicsPath`, `numberOfLabs`, `sizeOfWorkshops`, `workshopPicsPath`, `numberOfWorkshops`, `mandatoryToolKitpresent`, `mandatoryToolKitAnnexurePath`, `mandatoryToolKitPicsPath`, `safeDrinkingWater`, `powerBackup`, `separateToilets`, `transportFacility`, `presenceOfLibrary`, `numberOfTechnicalBooks`, `numberOfNonTechnicalBooks`, `numberOfMagazines`, `numberOfDailies`, `remarksOnInfrastructureDetails`, `sufficientClassroomIlluminationLevel`, `sufficientClassroomVentilationLevel`, `sufficientCenterCleanliness`, `centerWeatherProtected`, `remarksOnLearningEnviornment`, `printedBrochureOrProspectus`, `documentedPolicyAndProcedures`, `concessionPolicy`, `safeCustodyOfStudentDocuments`, `studentAgreementWithInstitution`, `remarksOnStudentAdmissionDetails`, `isActive`) VALUES(:trainingPartnerRegistrationId,:nameOfCenter, :nameOperationHead, :designationOperationHead, :emailOperationHead, :contactNumberOperationHead, :educationalQualificationOperationHead, :experienceOperationHead, :cvOperationHeadPath, :nameAffiliationCoordinator, :designationAffiliationCoordinator, :emailAffiliationCoordinator,:contactNumberAffiliationCoordinator, :educationalQualificationAffiliationCoordinator, :experienceAffiliationCoordinator, :cvAffiliationCoordinatorPath, :nameSPOC, :designationSPOC, :emailSPOC, :contactNumberSPOC, :educationalQualificationSPOC, :experienceSPOC, :cvSPOCPath, :numberOfPermanentOfficeManager, :numberOftemporaryOfficeManager, :numberOfPermanentOfficeStaff, :numberOfTemporaryOfficeStaff, :numberOfPermanentLabAssistants, :numberOfTemporaryLabAssistants, :numberOfPermanentAccountants, :numberOfTemporaryAccountants, :numberOfPermanentSupportStaff, :numberOfTemporarySupportStaff,  :numberOfPermanentOtherEmployees, :numberOfTemporaryOtherEmployees, :areaOfInstitute, :buildingType, :sizeOfClassrooms, :classroomPicsPath, :numberOfClassrooms, :sizeOfLabs, :labPicsPath, :numberOfLabs, :sizeOfWorkshops, :workshopPicsPath, :numberOfWorkshops, :mandatoryToolKitpresent, :mandatoryToolKitAnnexurePath, :mandatoryToolKitPicsPath, :safeDrinkingWater, :powerBackup, :separateToilets, :transportFacility, :presenceOfLibrary, :numberOfTechnicalBooks, :numberOfNonTechnicalBooks, :numberOfMagazines, :numberOfDailies, :remarksOnInfrastructureDetails, :sufficientClassroomIlluminationLevel, :sufficientClassroomVentilationLevel, :sufficientCenterCleanliness, :centerWeatherProtected, :remarksOnLearningEnviornment, :printedBrochureOrProspectus, :documentedPolicyAndProcedures, :concessionPolicy, :safeCustodyOfStudentDocuments, :studentAgreementWithInstitution, :remarksOnStudentAdmissionDetails, :isActive);
 
 
 
@@ -62,8 +68,10 @@ ProfileCreationTrainingPartner:
 
 
  insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails: >
-  INSERT INTO `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` (`trainingPartnerRegistrationId`, `trainingPartnerCenterId`, `type`, `name`, `designation`, `emailId`, `contactNumber`, `educationalQualification`, `regularOrVisiting`, `experience`, `cVPath`, `certificatePath`,`isActive`) VALUES (:trainingPartnerRegistrationId,:trainingPartnerCenterId,:type,:name,:designation,:emailId,:contactNumber,:educationalQualification,:regularOrVisiting,:experience,:cVPath,:certificatePath,:isActive);
-
+  INSERT INTO `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` (`trainingPartnerRegistrationId`, `name`, `designation`, `emailId`, `contactNumber`, `educationalQualification`, `experience`, `cVPath`, `isActive`) VALUES (:trainingPartnerRegistrationId,:name,:designation,:emailId,:contactNumber,:educationalQualification,:experience,:cVPath,:isActive);
+ 
+ insertIntoTrainingPartnerTrainingStaff: >
+  INSERT INTO `scgj`.`trainingpartnertrainingstaffdetails` (`trainingPartnerRegistrationId`, `name`, `designation`, `emailId`, `educationalQualification` , `regularOrVisiting` , `experience` , `cVPath` , `certificatePath`, `isActive`) VALUES (:trainingPartnerRegistrationId,:name,:designation,:emailId,:eduqationalQualification,:regularOrVisiting,:experience,:cVPath,:certificatePath,:isActive);
 
  updateDataInApplication: >
   update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
@@ -96,10 +104,29 @@ ProfileCreationTrainingPartner:
   `anyPriorExperienceOfInstitutionInSkillTraining`=:anyPriorExperienceOfInstitutionInSkillTraining
   WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;  
 
-
-
  updateIntoTrainingPartnerCenterLevelDetails: >
-  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `nameOfCenter`=:nameOfCenter, `numberOfPermanentOfficeManager`=:numberOfPermanentOfficeManager,
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `nameOperationHead` =:nameOperationHead,
+  `designationOperationHead` =:designationOperationHead,
+  `emailOperationHead` =:emailOperationHead,
+  `contactNumberOperationHead` =:contactNumberOperationHead,
+  `educationalQualificationOperationHead` =:educationalQualificationOperationHead,
+  `experienceOperationHead` =:experienceOperationHead,
+  `cvOperationHeadPath` =:cvOperationHeadPath,
+  `nameAffiliationCoordinator` =:nameAffiliationCoordinator,
+  `designationAffiliationCoordinator` =:designationAffiliationCoordinator,
+  `emailAffiliationCoordinator` =:emailAffiliationCoordinator,
+  `contactNumberAffiliationCoordinator` =:contactNumberAffiliationCoordinator,
+  `educationalQualificationAffiliationCoordinator` =:educationalQualificationAffiliationCoordinator,
+  `experienceAffiliationCoordinator` =:experienceAffiliationCoordinator,
+  `cvAffiliationCoordinatorPath` =:cvAffiliationCoordinatorPath,
+  `nameSPOC` =:nameSPOC,
+  `designationSPOC` =:designationSPOC,
+  `emailSPOC` =:emailSPOC,
+  `contactNumberSPOC` =:contactNumberSPOC,
+  `educationalQualificationSPOC` =:educationalQualificationSPOC,
+  `experienceSPOC` =:experienceSPOC,
+  `cvSPOCPath` =:cvSPOCPath,
+  `nameOfCenter`=:nameOfCenter, `numberOfPermanentOfficeManager`=:numberOfPermanentOfficeManager,
   `numberOftemporaryOfficeManager`=:numberOftemporaryOfficeManager, 
   `numberOfPermanentOfficeStaff`=:numberOfPermanentOfficeStaff, 
   `numberOfTemporaryOfficeStaff`=:numberOfTemporaryOfficeStaff, 
@@ -175,19 +202,29 @@ ProfileCreationTrainingPartner:
 
 
  updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails: >
-  UPDATE `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` SET `type`=:type, 
+  UPDATE `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` SET  
+  `name`=:name, 
+  `designation`=:designation, 
+  `emailId`=:emailId, 
+  `contactNumber`=:contactNumber, 
+  `educationalQualification`=:educationalQualification,	
+  `cVPath`=:cVPath, 
+  `isActive`=:isActive
+   WHERE `managementAndStaffId`=:managementAndStaffId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
+ 
+ updateIntoTrainingStaff: >
+  UPDATE `scgj`.`trainingpartnertrainingstaffdetails` SET 
   `name`=:name, 
   `designation`=:designation, 
   `emailId`=:emailId, 
   `contactNumber`=:contactNumber, 
   `educationalQualification`=:educationalQualification, 
-  `regularOrVisiting`=:regularOrVisiting, 
-  `experience`=:experience, 
+  `regularOrVisiting`=:regularOrVisiting,
   `cVPath`=:cVPath, 
   `certificatePath`=:certificatePath,
   `isActive`=:isActive
-   WHERE `managementAndStaffId`=:managementAndStaffId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
-
+   WHERE `trainingStaffId`=:trainingStaffId and `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;
+ 
  updatePanPath: >
   UPDATE scgj.TrainingPartnerOrganizationDetails SET panNumberPath = :panNumberPath where applicationId = :applicationId;
    
@@ -222,7 +259,7 @@ ProfileCreationTrainingPartner:
   DELETE FROM `scgj`.`trainingpartnerCenterlevelDetails` WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId; 
  
  updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails: >
-  UPDATE `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` SET `cVPath`=:cVPath, `certificatePath`=:certificatePath,`trainingPartnerCenterId`=:trainingPartnerCenterId WHERE `managementAndStaffId`=:managementAndStaffId;
+  UPDATE `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` SET `cVPath`=:cVPath, `certificatePath`=:certificatePath WHERE `managementAndStaffId`=:managementAndStaffId;
       
  updatePathsIntoTrainingPartnerCenterLevelDetails: >
   UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `classroomPicsPath`=:classroomPicsPath, `labPicsPath`=:labPicsPath, `workshopPicsPath`=:workshopPicsPath, `mandatoryToolKitAnnexurePath`=:mandatoryToolKitAnnexurePath, `mandatoryToolKitPicsPath`=:mandatoryToolKitPicsPath WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId;

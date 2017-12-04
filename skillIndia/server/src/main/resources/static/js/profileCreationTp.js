@@ -186,6 +186,47 @@ $scope.AddCenter = function()
        
     };
 
+    $scope.removeManagement = function() {
+        var newDataList = [];
+        //        $scope.selectedAll = false;
+        angular.forEach($scope.trainingPartner.ManagementAndStaffAndOfficialDetails, function(selected) {
+            if (!selected.selected) {
+            	console.log("Name of selected center" + selected.nameOfCenter)
+                selected.selected.isActive = 0;
+                var url = '/saveAsDraftAndSubmitTP';
+                var method = 'POST';
+                $scope.postValue = {
+                        'type' : 'Draft',
+                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
+                        'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
+                        'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
+                        'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
+                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                    }
+                $http({
+                	url : url,
+                	method : method,
+                	data  : angular.toJson($scope.postValue)
+                }).then(function(response){
+                	console.log("response success " + response)
+                	$http.get('/getDataNewUserProfileCreation')
+                    .then(function(response) {
+                        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                        $scope.trainingPartner = response.data;
+                        console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
+                        $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+
+                    });
+                },function(errorResponse){
+                	console.log("error response" + errorResponse)
+                })
+            }
+        });
+       
+    };
+
     
     $scope.removeRecognition = function() {
         var newDataList = [];
@@ -198,7 +239,7 @@ $scope.AddCenter = function()
                 var method = 'POST';
                 $scope.postValue = {
                         'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
                         'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
@@ -240,7 +281,7 @@ $scope.AddCenter = function()
                 var method = 'POST';
                 $scope.postValue = {
                         'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
                         'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
@@ -335,6 +376,7 @@ $scope.AddCenter = function()
     	var file = $scope.trainingPartner.selfOwnedAnnexureFile;
     	console.log("File is "+ file);
     	var uploadSelfOwnedAnnexure = "/fileuploadTPSelfOwned";
+    	
     	fileUpload.uploadFileToUrl(file, uploadSelfOwnedAnnexure, "selfOwnedAnnexure");
     }
     
@@ -530,7 +572,7 @@ $scope.AddCenter = function()
     	console.log("Training Partner cenetr is " +  $scope.trainingPartner.TrainingPartnerCenterDetails);
     	$scope.postValue = {
                 'type' : 'Draft',
-                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
                 'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                 'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                 'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.pctpRecognition,
@@ -562,7 +604,7 @@ $scope.AddCenter = function()
     	$scope.postValue = {
     			
             'type' : 'Draft',
-            'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+            'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
             'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
             'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
             'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
@@ -600,7 +642,7 @@ $scope.AddCenter = function()
     	
     	$scope.postValue = {
                 'type' : 'Submit',
-                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
                 'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                 'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                 'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,

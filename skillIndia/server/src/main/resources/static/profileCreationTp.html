@@ -189,8 +189,7 @@
                                 <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution">
 
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution > '0'" class="upload-btn">
-                                    Upload File
-                                    <input type="file">
+                                    <p class="upload-annexure-msg">We will ask you to upload Annexure later in coming sections below</p>
                                 </div>
                             </div>
 
@@ -204,8 +203,7 @@
                                 <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution">
 
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution > '0'" class="upload-btn">
-                                    Upload File
-                                    <input type="file">
+                                    <p class="upload-annexure-msg">We will ask you to upload Annexure later in coming sections below</p>
                                 </div>
                             </div>
                         </div>
@@ -216,7 +214,9 @@
                             </div>
                             <div class="col-md-8">
                                 <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution">
-                                
+                                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution > '0'" class="upload-btn">
+                                <p class="upload-annexure-msg">We will ask you to upload Annexure later in coming sections below</p>
+                                </div>
                             </div>
                         </div>
 
@@ -392,7 +392,7 @@
                 </accordion-heading>
                 <div>
                     <div class="row-margin">
-                     <div class="col-md-6">Details of Directors and Management Team Members</div>
+                     <div class="col-md-6"><label>Details of Directors and Management Team Members</label></div>
                     
                     <div class="col-md-12" ng-show="trainingPartner.ManagementAndStaffAndOfficialDetails.length > '0' ">
                                     <table>
@@ -420,7 +420,7 @@
 
                                     </table>
                                     <div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.ManagementAndStaffAndOfficialDetails.length" type="button" class="btn btn-danger" ng-click="remove()" value="Remove Selected">
+                                        <input ng-hide="!trainingPartner.ManagementAndStaffAndOfficialDetails.length" type="button" class="btn btn-danger" ng-click="removeManagement()" value="Remove Selected">
                                         <input type="submit" class="btn btn-primary addNew" value="Add New">
                                     </div>
                                 </div>
