@@ -37,6 +37,54 @@ $scope.AddCenter = function()
 		'nameOfCenter' :""
 	});
 	}
+$scope.addManagement = function(){
+	$scope.trainingPartner.ManagementAndStaffAndOfficialDetails.push({
+		'name' : ""
+	})
+}
+//Remove Management Staff function 
+$scope.removeManagement = function(){
+	console.log("Inside remove training center function");
+	
+	
+    angular.forEach(trainingPartner.ManagementAndStaffAndOfficialDetails, function(selected) {
+    	console.log("Inside function" + selected.nameOfCenter);
+        if (selected.selected) {
+            console.log("Is active" + selected.isActive)
+            selected.selected.isActive = false;
+            console.log("Is active center" + selected.isActive)
+            var url = '/saveAsDraftAndSubmitTP';
+            var method = 'POST';
+            $scope.postValue = {
+                    'type' : 'Draft',
+                    'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
+                    'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
+                    'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
+                    'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
+                    'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
+                    'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
+                }
+            $http({
+            	url : url,
+            	method : method,
+            	data  : angular.toJson($scope.postValue)
+            }).then(function(response){
+            	console.log("response success " + response)
+            	$http.get('/getDataNewUserProfileCreation')
+                .then(function(response) {
+                    console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                    $scope.trainingPartner = response.data;
+                    console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
+                    $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+
+                });
+            },function(errorResponse){
+            	console.log("error response" + errorResponse)
+            })
+        }
+    });     
+}
 
 	//Remove training partner center
 	$scope.RemoveCenter = function(){
@@ -53,11 +101,11 @@ $scope.AddCenter = function()
                 var method = 'POST';
                 $scope.postValue = {
                         'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
                         'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
                         'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
                     }
                 $http({
@@ -115,11 +163,11 @@ $scope.AddCenter = function()
                 var method = 'POST';
                 $scope.postValue = {
                         'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
                         'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
                         'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
                     }
                 $http({
@@ -156,11 +204,11 @@ $scope.AddCenter = function()
                 var method = 'POST';
                 $scope.postValue = {
                         'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.pctpOrgDetails,
+                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
                         'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
                         'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
                     }
                 $http({
@@ -201,7 +249,7 @@ $scope.AddCenter = function()
                         'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
                         'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
                     }
                 $http({
@@ -243,7 +291,7 @@ $scope.AddCenter = function()
                         'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
                         'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
                     }
                 $http({
@@ -285,7 +333,7 @@ $scope.AddCenter = function()
                         'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                         'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                         'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
                         'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
                     }
                 $http({
@@ -576,7 +624,7 @@ $scope.AddCenter = function()
                 'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                 'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                 'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.pctpRecognition,
-                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
                 'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
             }
     	
@@ -608,7 +656,7 @@ $scope.AddCenter = function()
             'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
             'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
             'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-            'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+            'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
             'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
         }
         
@@ -646,7 +694,7 @@ $scope.AddCenter = function()
                 'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
                 'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
                 'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.pctpTrainingStaff,
+                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
                 'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails
             }
     	$http({

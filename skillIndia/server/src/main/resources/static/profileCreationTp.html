@@ -37,7 +37,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 1: Institution Level - Basic Information
+                                STEP 1: INSTITUTION LEVEL - BASIC INFORMATION
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open, 'glyphicon-plus': !status.open}"></i>
@@ -129,10 +129,10 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
+                    <!-- Next Button -->
+                    <div class="form-horizontal">
+                            <div class="col-lg-12 form-group">
+                                <button type="button" class="btn btn-primary next" ng-click="save()">Next</button>
                             </div>
                         </div>
 
@@ -148,7 +148,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 2 : Institution Level - Organisation Details
+                                STEP 2 : INSTITUTION LEVEL -ORGANISATION DETAILS
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open2, 'glyphicon-plus': !status.open2}"></i>
@@ -163,7 +163,7 @@
                         <div class="row row-margin">
                             <div class="col-md-4">Year of Establishment</div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment" />
                             </div>
                         </div>
 
@@ -364,7 +364,7 @@
 
                         <div class="row row-margin">
                             <div class="col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
+                                <button type="button" class="btn btn-primary next" ng-click="save()">Next</button>
                             </div>
                         </div>
 
@@ -382,7 +382,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 3 : Institution Level - Personnel Details
+                                STEP 3 : INSTITUTION LEVEL - PERSONNEL DETAILS
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
@@ -390,41 +390,57 @@
                         </div>
                     </div>
                 </accordion-heading>
-                <div>
+                <div class="form-horizontal">
                     <div class="row-margin">
-                     <div class="col-md-6"><label>Details of Directors and Management Team Members</label></div>
+                     <div class="col-md-12"><label>Details of Directors and Management Team Members</label></div>
                     
-                    <div class="col-md-12" ng-show="trainingPartner.ManagementAndStaffAndOfficialDetails.length > '0' ">
+                    <div class="col-md-12" >
                                     <table>
                                         <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Designation</th>
-                                            <th>Email Id</th>
-                                            <th>Contact Number</th>
-                                            <th>Educational Qualification</th>
-                                            <th>Experience</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr ng-repeat="managementStaff in trainingPartner.ManagementAndStaffAndOfficialDetails">
-                                            <td><input ng-model="managementStaff.name" class="form-control" required></td>
-                                            <td><input ng-model="managementStaff.designation" class="form-control" required></td>
-                                            <td><input ng-model="managementStaff.emailId" class="form-control" required></td>
-                                            <td><input ng-model="managementStaff.contactNumber" class="form-control" required></td>                                            
-                                            <td><input ng-model="managementStaff.educationalQualification" class="form-control" required></td>
-                                            <td><select ng-model="managementStaff.types" ng-options ="x for x in type" class="form-control" ></select></td>
-                                            <td class="btn-checkbox"><input type="checkbox" ng-model="type.selected"></td>
+                                            <td><input ng-model="managementStaff.name" class="form-control" placeholder ="Name" required /></td>
+                                            <td><input ng-model="managementStaff.designation" class="form-control" placeholder="Designation" required /></td>
+                                            <td><input ng-model="managementStaff.emailId" class="form-control" placeholder="emailId" required /></td>
+                                            <td><input ng-model="managementStaff.contactNumber" class="form-control" placeholder="Contact Number" required /></td>                                            
+                                            <td><input ng-model="managementStaff.educationalQualification" placeholder="Education Qualification" class="form-control" required /></td>
+                                            <td><input ng-model="managementStaff.experience" class="form-control"  placeholder="Experience" required /></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="type.selected" /></td>
                                         </tr>
                                         </tbody>
 
                                     </table>
-                                    <div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.ManagementAndStaffAndOfficialDetails.length" type="button" class="btn btn-danger" ng-click="removeManagement()" value="Remove Selected">
-                                        <input type="submit" class="btn btn-primary addNew" value="Add New">
+                                    <div class="form-horizontal">
+                                    	<p ng-show = "trainingPartner.ManagementAndStaffAndOfficialDetails.length > '0' " class="upload-annexure-msg">We would ask you to upload CVs for all these management team members later in Upload document section</p>
                                     </div>
+                                    <div class="form-horizontal">
+                                    	<div class="form-group add-btn">
+                                        <input ng-hide="!trainingPartner.ManagementAndStaffAndOfficialDetails.length" type="button" class="btn btn-danger" ng-click="removeManagement()" value="Remove Selected" />
+                                        <input type="button" class="btn btn-primary addNew" value="Add New" ng-click="addManagement()"/>
+                                    </div>
+                                    </div>
+                                    <div class="form-horizontal">
+                            <div class="col-lg-12 form-group">
+                                <button type="button" class="btn btn-primary next" ng-click="save()">Next</button>
+                            </div>
+                        </div>
                                 </div>
                     </div>
+                </div>
+                <!-- Training Staff -->
+                <div class="form-horizontal">
+                <div class="form-group">
+                	
+                </div>
                 </div>
             </accordion-group>
             <!--  ------------------------ACCORDION 4 ------------------  -->
@@ -433,7 +449,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 4 :Center Level - Information
+                                STEP 4 :CENTRE LEVEL - INFORMATION
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i>
@@ -446,7 +462,7 @@
                   
                 <div ng-repeat="trainingCenter in trainingPartner.TrainingPartnerCenterDetails" class="div-center">
                 <div class="form-horizontal form-group">
-                  <input type="checkbox" ng-model="center.selected">
+                  <input type="checkbox" ng-model="center.selected" />Click to select training center
                   </div>
                 	 <!-- Name of Center -->
                 	<div class="form-horizontal">
@@ -455,9 +471,132 @@
                     <label>Name of Center</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.nameOfCenter" class="txt-center">
+                    	<input type="text" ng-model="trainingCenter.nameOfCenter" class="txt-center form-control" placeholder="Name of Training Center" >
                     </div>
                     </div>
+                    </div>
+                    <!-- Details of Operation head Affiliation Coordinator and SPOC -->
+                    <div class="form-horizontal">
+                    	<div class="form-group col-md-12">
+                    	<label>Details of Operation Head(OH), Affiliation Coordinator(AC) and SPOC of center</label>
+                    	</div>
+                    	<div class="col-md-12">
+                    	<table>
+                    	<thead></thead>
+                    	<tbody>
+                    	<tr>
+                    			<td><input type="text" ng-model="trainingCenter.nameOperationHead" class="form-control" placeholder = "Operation Head Name" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.designationOperationHead" class="form-control" placeholder = "desgination(OH)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.emailOperationHead" class="form-control" placeholder = "email(OH)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.contactNumberOperationHead" class="form-control" placeholder = "contact number(OH)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.educationalQualificationOperationHead" class="form-control" placeholder = "education qualification(OH)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.experienceOperationHead" class="form-control" placeholder = "experience (OH)" required/></td>
+                    		</tr>
+                    		<tr>
+                    			<td><input type="text" ng-model="trainingCenter.nameAffiliationCoordinator" class="form-control" placeholder = "Name (AC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.designationAffiliationCoordinator" class="form-control" placeholder = "desgination(AC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.emailAffiliationCoordinator" class="form-control" placeholder = "email(AC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.contactNumberAffiliationCoordinator" class="form-control" placeholder = "contact number(AC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.educationalQualificationAffiliationCoordinator" class="form-control" placeholder = "education qualification(AC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.experienceAffiliationCoordinator" class="form-control" placeholder = "experience (AC)" required/></td>
+                    		</tr>
+                    		<tr>
+                    			<td><input type="text" ng-model="trainingCenter.nameSPOC" class="form-control" placeholder = "Name (SPOC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.designationSPOC" class="form-control" placeholder = "desgination(SPOC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.emailSPOC" class="form-control" placeholder = "email(SPOC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.contactNumberSPOC" class="form-control" placeholder = "contact number(SPOC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.educationalQualificationSPOC" class="form-control" placeholder = "education qualification(SPOC)" required/></td>
+                    			<td><input type="text" ng-model="trainingCenter.experienceSPOC" class="form-control" placeholder = "experience (SPOC)" required/></td>
+                    		</tr>
+                    	</tbody>
+                    	</table>
+                    	</div>
+                    </div>
+                    <!-- Details of Other Employees -->
+                    <div class="form-horizontal">
+                    <div class="form-group">
+                    	<div class="col-md-12">
+                    	<label>Number of Administrative and Support Staff in Center</label>
+                    	</div>
+                    </div>
+                    </div>
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    		<div class="col-md-4">
+                    		<p>Office Manager</p>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfPermanentOfficeManager" placeholder="Total permanent Office Manager" class="form-control"/>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOftemporaryOfficeManager" placeholder="Total temporary Office Managers"  class="form-control"/>
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    		<div class="col-md-4">
+                    		<p>Office Staff</p>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfPermanentOfficeStaff" placeholder="Total permanent Office Staff" class="form-control"/>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfTemporaryOfficeStaff" placeholder="Total temporary Office Staff" class="form-control" />
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    		<div class="col-md-4">
+                    		<p>Lab Attendants</p>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfPermanentLabAssistants" placeholder="Total permanent Lab Attendants" class="form-control"/>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfTemporaryLabAssistants" placeholder="Total temporaray Lab Attendants" class="form-control" />
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    		<div class="col-md-4">
+                    		<p>Accountants</p>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfPermanentAccountants" placeholder="Total permanent Accountants" class="form-control"/>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfTemporaryAccountants" placeholder="Total temporaray Accountants" class="form-control" />
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    		<div class="col-md-4">
+                    		<p>Support Staff</p>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfPermanentSupportStaff" placeholder="Total permanent Support Staff" class="form-control"/>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfTemporarySupportStaff" placeholder="Total temporaray Support Staff" class="form-control"/>
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    		<div class="col-md-4">
+                    		<p>Others</p>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfPermanentOtherEmployees" placeholder="Other permanent Staff" class="form-control"/>
+                    		</div>
+                    		<div class="col-md-4">
+                    		<input type="text" ng-model="trainingCenter.numberOfTemporaryOtherEmployees" placeholder="Total temporaray Staff" class="form-control" />
+                    		</div>
+                    	</div>
                     </div>
                     <!-- Area of Institute -->
                     <div class="form-horizontal">
@@ -466,7 +605,7 @@
                     <label>Area of Institute Premises</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.areaOfInstitute">sq.ft.
+                    	<input type="text" ng-model="trainingCenter.areaOfInstitute" class="form-control" placeholder = "area of institute premises in sq. ft." />sq.ft.
                     </div>
                     </div>
                     </div>
@@ -477,7 +616,7 @@
                     <label>Number of Classrooms</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.numberOfClassrooms">
+                    	<input type="text" ng-model="trainingCenter.numberOfClassrooms" class="form-control" />
                     </div>
                     </div>
                     </div>
@@ -488,7 +627,7 @@
                     <label>Number of Labs</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.numberOfLabs">
+                    	<input type="text" ng-model="trainingCenter.numberOfLabs" class="form-control" />
                     </div>
                     </div>
                     </div>
@@ -499,7 +638,7 @@
                     <label>Number of Work shops</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.numberOfWorkshops">
+                    	<input type="text" ng-model="trainingCenter.numberOfWorkshops" class="form-control" />
                     </div>
                     </div>
                     </div>
@@ -511,7 +650,12 @@
                     <label>Is mandatory Toolkit present?</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.mandatoryToolKitpresent">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.mandatoryToolKitpresent" value="Yes" ng-click="uploadNSDCCertificate()" /> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.mandatoryToolKitpresent" value="No" ng-click="updateNoInNSDCCertifiacte()" checked /> No
+                                </label>
                     </div>
                     </div>
                     </div>
@@ -559,6 +703,21 @@
                                 </label>
                                 <label class="radio-inline">
                                     <input type="radio" ng-model="trainingCenter.separateToilets" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
+                                </label>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Are Fire Safety measures Available</label>
+                    </div>
+                    <div class="col-md-6">
+                    	<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.fireSafety" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingCenter.fireSafety" value="No" ng-click="updateNoInNSDCCertifiacte()" checked> No
                                 </label>
                     </div>
                     </div>
@@ -776,7 +935,7 @@
                     <!-- Next Button -->
                     <div class="form-horizontal">
                             <div class="col-lg-12 form-group">
-                                <button type="button" class="btn btn-primary next" ng-click="saveCenter() status.open5">Next</button>
+                                <button type="button" class="btn btn-primary next" ng-click="save()">Next</button>
                             </div>
                         </div>
                 </div>

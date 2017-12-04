@@ -25,22 +25,22 @@ ProfileCreationTrainingPartner:
   select * from TrainingPartnerTrainingStaffDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1
 
  isTrainingCenterPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.trainingpartnercenterleveldetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and trainingPartnerCenterId=:trainingPartnerCenterId);
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnercenterleveldetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and nameOfCenter=:nameOfCenter and isActive=1);
  
  isInstituteGrantPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.TrainingPartnerInstituteGrant WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and instituteGrantId=:instituteGrantId);
+  SELECT EXISTS(SELECT * FROM scgj.TrainingPartnerInstituteGrant WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and nameOfMinistry=:nameOfMinistry and isActive=1);
  
  isRecognitnionPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerinstituterecognition WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and instituteRecognitionId=:instituteRecognitionId);
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerinstituterecognition WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and nameOfRecognizingBody=:nameOfRecognizingBody and isActive=1);
   
  isTrainingStaffPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.trainingpartnermanagementandstaffandofficialsdetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and managementAndStaffId=:managementAndStaffId);
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnermanagementandstaffandofficialsdetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and emailId=:emailId and isActive=1);
  
  isTrainingExperiencePresent: >
-  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerpriorexperienceinskilltraining WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and priorExperienceInSkillTrainingId=:priorExperienceInSkillTrainingId);
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerpriorexperienceinskilltraining WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and courseName=:courseName and isActive=1);
  
  isTrainingPartnerStaffTrainingStaffPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.trainingpartnertrainingstaffdetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and trainingStaffId=:trainingStaffId);
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnertrainingstaffdetails WHERE trainingPartnerRegistrationId=:trainingPartnerRegistrationId and emailId=:emailId and isActive=1);
  
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
@@ -51,8 +51,7 @@ ProfileCreationTrainingPartner:
 
 
  insertIntoTrainingPartnerCenterLevelDetails: >
-  INSERT INTO `scgj`.`trainingpartnercenterleveldetails` (`trainingPartnerRegistrationId`, `nameOfCenter`, `nameOperationHead` , `designationOperationHead` , `emailOperationHead` ,  `contactNumberOperationHead` ,   `educationalQualificationOperationHead` , `experienceOperationHead` , `cvOperationHeadPath` , `nameAffiliationCoordinator` , `designationAffiliationCoordinator` , `emailAffiliationCoordinator` , `contactNumberAffiliationCoordinator` ,  `educationalQualificationAffiliationCoordinator` , `experienceAffiliationCoordinator` , `cvAffiliationCoordinatorPath` , `nameSPOC`, `designationSPOC` , `emailSPOC` , `contactNumberSPOC` , `educationalQualificationSPOC` , `experienceSPOC` , `cvSPOCPath` , `numberOfPermanentOfficeManager`, `numberOftemporaryOfficeManager`, `numberOfPermanentOfficeStaff`, `numberOfTemporaryOfficeStaff`, `numberOfPermanentLabAssistants`, `numberOfTemporaryLabAssistants`, `numberOfPermanentAccountants`, `numberOfTemporaryAccountants`, `numberOfPermanentSupportStaff`, `numberOfTemporarySupportStaff`, `numberOfPermanentOtherEmployees`, `numberOfTemporaryOtherEmployees`, `areaOfInstitute`, `buildingType`, `sizeOfClassrooms`, `classroomPicsPath`, `numberOfClassrooms`, `sizeOfLabs`, `labPicsPath`, `numberOfLabs`, `sizeOfWorkshops`, `workshopPicsPath`, `numberOfWorkshops`, `mandatoryToolKitpresent`, `mandatoryToolKitAnnexurePath`, `mandatoryToolKitPicsPath`, `safeDrinkingWater`, `powerBackup`, `separateToilets`, `transportFacility`, `presenceOfLibrary`, `numberOfTechnicalBooks`, `numberOfNonTechnicalBooks`, `numberOfMagazines`, `numberOfDailies`, `remarksOnInfrastructureDetails`, `sufficientClassroomIlluminationLevel`, `sufficientClassroomVentilationLevel`, `sufficientCenterCleanliness`, `centerWeatherProtected`, `remarksOnLearningEnviornment`, `printedBrochureOrProspectus`, `documentedPolicyAndProcedures`, `concessionPolicy`, `safeCustodyOfStudentDocuments`, `studentAgreementWithInstitution`, `remarksOnStudentAdmissionDetails`, `isActive`) VALUES(:trainingPartnerRegistrationId,:nameOfCenter, :nameOperationHead, :designationOperationHead, :emailOperationHead, :contactNumberOperationHead, :educationalQualificationOperationHead, :experienceOperationHead, :cvOperationHeadPath, :nameAffiliationCoordinator, :designationAffiliationCoordinator, :emailAffiliationCoordinator,:contactNumberAffiliationCoordinator, :educationalQualificationAffiliationCoordinator, :experienceAffiliationCoordinator, :cvAffiliationCoordinatorPath, :nameSPOC, :designationSPOC, :emailSPOC, :contactNumberSPOC, :educationalQualificationSPOC, :experienceSPOC, :cvSPOCPath, :numberOfPermanentOfficeManager, :numberOftemporaryOfficeManager, :numberOfPermanentOfficeStaff, :numberOfTemporaryOfficeStaff, :numberOfPermanentLabAssistants, :numberOfTemporaryLabAssistants, :numberOfPermanentAccountants, :numberOfTemporaryAccountants, :numberOfPermanentSupportStaff, :numberOfTemporarySupportStaff,  :numberOfPermanentOtherEmployees, :numberOfTemporaryOtherEmployees, :areaOfInstitute, :buildingType, :sizeOfClassrooms, :classroomPicsPath, :numberOfClassrooms, :sizeOfLabs, :labPicsPath, :numberOfLabs, :sizeOfWorkshops, :workshopPicsPath, :numberOfWorkshops, :mandatoryToolKitpresent, :mandatoryToolKitAnnexurePath, :mandatoryToolKitPicsPath, :safeDrinkingWater, :powerBackup, :separateToilets, :transportFacility, :presenceOfLibrary, :numberOfTechnicalBooks, :numberOfNonTechnicalBooks, :numberOfMagazines, :numberOfDailies, :remarksOnInfrastructureDetails, :sufficientClassroomIlluminationLevel, :sufficientClassroomVentilationLevel, :sufficientCenterCleanliness, :centerWeatherProtected, :remarksOnLearningEnviornment, :printedBrochureOrProspectus, :documentedPolicyAndProcedures, :concessionPolicy, :safeCustodyOfStudentDocuments, :studentAgreementWithInstitution, :remarksOnStudentAdmissionDetails, :isActive);
-
+  INSERT INTO `scgj`.`trainingpartnercenterleveldetails` (`trainingPartnerRegistrationId`, `nameOfCenter`, `nameOperationHead` , `designationOperationHead` , `emailOperationHead` ,  `contactNumberOperationHead` ,   `educationalQualificationOperationHead` , `experienceOperationHead` , `cvOperationHeadPath` , `nameAffiliationCoordinator` , `designationAffiliationCoordinator` , `emailAffiliationCoordinator` , `contactNumberAffiliationCoordinator` ,  `educationalQualificationAffiliationCoordinator` , `experienceAffiliationCoordinator` , `cvAffiliationCoordinatorPath` , `nameSPOC`, `designationSPOC` , `emailSPOC` , `contactNumberSPOC` , `educationalQualificationSPOC` , `experienceSPOC` , `cvSPOCPath` , `numberOfPermanentOfficeManager`, `numberOftemporaryOfficeManager`, `numberOfPermanentOfficeStaff`, `numberOfTemporaryOfficeStaff`, `numberOfPermanentLabAssistants`, `numberOfTemporaryLabAssistants`, `numberOfPermanentAccountants`, `numberOfTemporaryAccountants`, `numberOfPermanentSupportStaff`, `numberOfTemporarySupportStaff`, `numberOfPermanentOtherEmployees`, `numberOfTemporaryOtherEmployees`, `areaOfInstitute`, `buildingType`, `sizeOfClassrooms`, `classroomPicsPath`, `numberOfClassrooms`, `sizeOfLabs`, `labPicsPath`, `numberOfLabs`, `sizeOfWorkshops`, `workshopPicsPath`, `numberOfWorkshops`, `mandatoryToolKitpresent`, `mandatoryToolKitAnnexurePath`, `mandatoryToolKitPicsPath`, `safeDrinkingWater`, `powerBackup`, `separateToilets`, `transportFacility`, `fireSafety` ,`presenceOfLibrary`, `numberOfTechnicalBooks`, `numberOfNonTechnicalBooks`, `numberOfMagazines`, `numberOfDailies`, `remarksOnInfrastructureDetails`, `sufficientClassroomIlluminationLevel`, `sufficientClassroomVentilationLevel`, `sufficientCenterCleanliness`, `centerWeatherProtected`, `remarksOnLearningEnviornment`, `printedBrochureOrProspectus`, `documentedPolicyAndProcedures`, `concessionPolicy`, `safeCustodyOfStudentDocuments`, `studentAgreementWithInstitution`, `remarksOnStudentAdmissionDetails`, `isActive`) VALUES(:trainingPartnerRegistrationId,:nameOfCenter, :nameOperationHead, :designationOperationHead, :emailOperationHead, :contactNumberOperationHead, :educationalQualificationOperationHead, :experienceOperationHead, :cvOperationHeadPath, :nameAffiliationCoordinator, :designationAffiliationCoordinator, :emailAffiliationCoordinator,:contactNumberAffiliationCoordinator, :educationalQualificationAffiliationCoordinator, :experienceAffiliationCoordinator, :cvAffiliationCoordinatorPath, :nameSPOC, :designationSPOC, :emailSPOC, :contactNumberSPOC, :educationalQualificationSPOC, :experienceSPOC, :cvSPOCPath, :numberOfPermanentOfficeManager, :numberOftemporaryOfficeManager, :numberOfPermanentOfficeStaff, :numberOfTemporaryOfficeStaff, :numberOfPermanentLabAssistants, :numberOfTemporaryLabAssistants, :numberOfPermanentAccountants, :numberOfTemporaryAccountants, :numberOfPermanentSupportStaff, :numberOfTemporarySupportStaff,  :numberOfPermanentOtherEmployees, :numberOfTemporaryOtherEmployees, :areaOfInstitute, :buildingType, :sizeOfClassrooms, :classroomPicsPath, :numberOfClassrooms, :sizeOfLabs, :labPicsPath, :numberOfLabs, :sizeOfWorkshops, :workshopPicsPath, :numberOfWorkshops, :mandatoryToolKitpresent, :mandatoryToolKitAnnexurePath, :mandatoryToolKitPicsPath, :safeDrinkingWater, :powerBackup, :separateToilets, :transportFacility, :fireSafety ,:presenceOfLibrary, :numberOfTechnicalBooks, :numberOfNonTechnicalBooks, :numberOfMagazines, :numberOfDailies, :remarksOnInfrastructureDetails, :sufficientClassroomIlluminationLevel, :sufficientClassroomVentilationLevel, :sufficientCenterCleanliness, :centerWeatherProtected, :remarksOnLearningEnviornment, :printedBrochureOrProspectus, :documentedPolicyAndProcedures, :concessionPolicy, :safeCustodyOfStudentDocuments, :studentAgreementWithInstitution, :remarksOnStudentAdmissionDetails, :isActive);
 
 
  insertIntoTrainingPartnerInstituteGrant: >
@@ -71,7 +70,7 @@ ProfileCreationTrainingPartner:
   INSERT INTO `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` (`trainingPartnerRegistrationId`, `name`, `designation`, `emailId`, `contactNumber`, `educationalQualification`, `experience`, `cVPath`, `isActive`) VALUES (:trainingPartnerRegistrationId,:name,:designation,:emailId,:contactNumber,:educationalQualification,:experience,:cVPath,:isActive);
  
  insertIntoTrainingPartnerTrainingStaff: >
-  INSERT INTO `scgj`.`trainingpartnertrainingstaffdetails` (`trainingPartnerRegistrationId`, `name`, `designation`, `emailId`, `educationalQualification` , `regularOrVisiting` , `experience` , `cVPath` , `certificatePath`, `isActive`) VALUES (:trainingPartnerRegistrationId,:name,:designation,:emailId,:eduqationalQualification,:regularOrVisiting,:experience,:cVPath,:certificatePath,:isActive);
+  INSERT INTO `scgj`.`trainingpartnertrainingstaffdetails` (`trainingPartnerRegistrationId`, `name`, `designation`, `emailId`, `educationalQualification` , `regularOrVisiting` , `experience` , `cVPath` , `certificatePath`, `isActive`) VALUES (:trainingPartnerRegistrationId,:name,:designation,:emailId,:educationalQualification,:regularOrVisiting,:experience,:cVPath,:certificatePath,:isActive);
 
  updateDataInApplication: >
   update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
@@ -155,6 +154,7 @@ ProfileCreationTrainingPartner:
   `powerBackup`=:powerBackup, 
   `separateToilets`=:separateToilets, 
   `transportFacility`=:transportFacility, 
+  `fireSafety` =:fireSafety,
   `presenceOfLibrary`=:presenceOfLibrary, 
   `numberOfTechnicalBooks`=:numberOfTechnicalBooks, 
   `numberOfNonTechnicalBooks`=:numberOfNonTechnicalBooks, 
@@ -217,7 +217,6 @@ ProfileCreationTrainingPartner:
   `name`=:name, 
   `designation`=:designation, 
   `emailId`=:emailId, 
-  `contactNumber`=:contactNumber, 
   `educationalQualification`=:educationalQualification, 
   `regularOrVisiting`=:regularOrVisiting,
   `cVPath`=:cVPath, 
