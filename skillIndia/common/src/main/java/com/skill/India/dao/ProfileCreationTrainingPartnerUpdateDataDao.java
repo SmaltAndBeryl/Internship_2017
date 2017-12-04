@@ -16,6 +16,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerOrganizationDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+import com.skill.India.dto.ProfileCreationTrainingPartnerTrainingStaffDetailsDto;
 
 @Repository
 public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransactionalDao{
@@ -300,6 +301,34 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 				parameters.put("isActive",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getIsActive());
 				
 				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(),parameters);
+
+			}
+			catch(Exception e)
+			{
+				LOGGER.error("An exception occured while updating management staff details of training partner " + e);
+				status = -1;
+			}
+			return status;
+		}
+		
+		public int updateIntoTrainingPartnerTrainingStaff(ProfileCreationTrainingPartnerTrainingStaffDetailsDto profileCreationTrainingPartnerTrainingStaffDetailsDto)
+		{
+			int status = 0;
+			try{
+				Map<String, Object> parameters=new HashMap<String, Object>();
+
+				//parameters.put("trainingPartnerRegistrationId", profileCreationTrainingPartnerTrainingStaffDetailsDto.getTrainingPartnerRegistrationId());
+				parameters.put("name",profileCreationTrainingPartnerTrainingStaffDetailsDto.getName());
+				parameters.put("designation",profileCreationTrainingPartnerTrainingStaffDetailsDto.getDesignation());
+				parameters.put("emailId",profileCreationTrainingPartnerTrainingStaffDetailsDto.getEmailId().toLowerCase());
+				parameters.put("regularOrVisiting",profileCreationTrainingPartnerTrainingStaffDetailsDto.getRegularOrVisiting());
+				parameters.put("educationalQualification",profileCreationTrainingPartnerTrainingStaffDetailsDto.getEducationalQualification());
+				parameters.put("experience",profileCreationTrainingPartnerTrainingStaffDetailsDto.getExperience());
+				parameters.put("cVPath",profileCreationTrainingPartnerTrainingStaffDetailsDto.getcVPath());
+				parameters.put("certificatePath",profileCreationTrainingPartnerTrainingStaffDetailsDto.getCertificatePath());
+				parameters.put("isActive",profileCreationTrainingPartnerTrainingStaffDetailsDto.getIsActive());
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateIntoTrainingStaff(),parameters);
 
 			}
 			catch(Exception e)

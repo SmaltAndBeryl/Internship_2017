@@ -22,6 +22,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerOrganizationDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+import com.skill.India.dto.ProfileCreationTrainingPartnerTrainingStaffDetailsDto;
 
 @Repository
 public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransactionalDao{
@@ -358,7 +359,41 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		}
 		return status;
 	}
+	private static final ProfileCreationTrainingStaffRowMapper ROW_MAPPER_TPREG_TRSTAFF = new ProfileCreationTrainingStaffRowMapper();
+	public Collection<ProfileCreationTrainingPartnerTrainingStaffDetailsDto> getTrainingStaffData(String trainingPartnerRegistrationId)
+	{
+		try{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+			return getJdbcTemplate().query(profileCreationTrainingPartnerConfigSql.getGetDataFromTrainingPartnerTrainingStaffDetails(),parameters, ROW_MAPPER_TPREG_TRSTAFF);
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+				return null;
+			}
+	}
 	
+	public static class ProfileCreationTrainingStaffRowMapper implements RowMapper<ProfileCreationTrainingPartnerTrainingStaffDetailsDto> {
+
+		@Override
+		public ProfileCreationTrainingPartnerTrainingStaffDetailsDto mapRow(ResultSet resultSet, int rowNum)
+				throws SQLException {
+			String trainingStaffId = resultSet.getString("trainingStaffId");
+			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
+			String name = resultSet.getString("name");
+			String designation = resultSet.getString("designation");
+			String emailId = resultSet.getString("emailId").toLowerCase();
+			String educationalQualification = resultSet.getString("educationalQualification");
+			String regularOrVisiting = resultSet.getString("regularOrVisiting");
+			String experience =resultSet.getString("experience");
+			String cVPath = resultSet.getString("cVPath");
+			String certificatePath = resultSet.getString("certificatePath");
+			Boolean isActive = resultSet.getBoolean("isActive");
+			return new ProfileCreationTrainingPartnerTrainingStaffDetailsDto(trainingStaffId , trainingPartnerRegistrationId , name,designation,emailId, educationalQualification, regularOrVisiting,experience,cVPath, certificatePath, isActive);
+		}
+
+}
 	//to find out if Institute grant exists or not
 	public int isInstituteGrantPresent(String trainingPartnerRegistrationId, String nameOfMinistry)
 	{
@@ -416,7 +451,7 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("emailId", email);
 			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
-			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingStaffPresent(), parameters, Integer.class);
+			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingPartnerStaffTrainingStaffPresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
 		{
@@ -437,8 +472,8 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("priorExperienceInSkillTrainingId", courseName);
-			parameters.put("courseName", trainingPartnerRegistrationId);
+			parameters.put("courseName", courseName);
+			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingExperiencePresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)

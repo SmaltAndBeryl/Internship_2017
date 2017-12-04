@@ -19,6 +19,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerOrganizationDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+import com.skill.India.dto.ProfileCreationTrainingPartnerTrainingStaffDetailsDto;
 
 @Repository
 public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransactionalDao {
@@ -325,6 +326,40 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 			catch(Exception e)
 			{
 				LOGGER.error("Exception occured during insertion of details of management and training staff of training partner. The exception is" +e);
+				status  =-1;
+			}
+				return status;
+		}
+		/*
+		 * Insert data in Training Partner ManagementAndStaffAndOfficialsDetails Table 
+		 */
+		
+		public int insertIntoTrainingPartnerTrainingStaff(ProfileCreationTrainingPartnerTrainingStaffDetailsDto profileCreationTrainingPartnerTrainingStaffDetailsDto , String trainingPartnerRegistrationId)
+		{
+			int status =0;
+			try{
+				LOGGER.debug("Trying to construct database query to insert details of management and training staff of training partner");
+				Map<String, Object> parameters=new HashMap<String, Object>();
+
+				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
+				parameters.put("name",profileCreationTrainingPartnerTrainingStaffDetailsDto.getName());
+				parameters.put("designation",profileCreationTrainingPartnerTrainingStaffDetailsDto.getDesignation());
+				parameters.put("emailId",profileCreationTrainingPartnerTrainingStaffDetailsDto.getEmailId().toLowerCase());
+				parameters.put("regularOrVisiting",profileCreationTrainingPartnerTrainingStaffDetailsDto.getRegularOrVisiting());
+				parameters.put("educationalQualification",profileCreationTrainingPartnerTrainingStaffDetailsDto.getEducationalQualification());
+				parameters.put("experience",profileCreationTrainingPartnerTrainingStaffDetailsDto.getExperience());
+				parameters.put("cVPath",profileCreationTrainingPartnerTrainingStaffDetailsDto.getcVPath());
+				parameters.put("certificatePath",profileCreationTrainingPartnerTrainingStaffDetailsDto.getCertificatePath());
+				parameters.put("isActive",1);
+				
+				LOGGER.debug("Trying to execute database query to insert details oftrainer training partner and get back the managementAndStaffId");
+				
+				status = insert(profileCreationTrainingPartnerConfigSql.getInsertIntoTrainingPartnerTrainingStaff(),parameters,"trainingStaffId");
+
+			}
+			catch(Exception e)
+			{
+				LOGGER.error("Exception occured during insertion of details of trainer. The exception is" +e);
 				status  =-1;
 			}
 				return status;

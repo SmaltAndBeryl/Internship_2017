@@ -89,7 +89,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("recognitionNumber",profileCreationAssessmentBodyRecognitionsDto.getRecognitionNumber());
 			parameters.put("yearOfRecognition",profileCreationAssessmentBodyRecognitionsDto.getValidityOfRecognition());
 			parameters.put("validityOfRecognition",profileCreationAssessmentBodyRecognitionsDto.getYearOfRecognition());
-			parameters.put("isActive", profileCreationAssessmentBodyRecognitionsDto.getIsActive());
+			parameters.put("isActive", 1);
 			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentBodyRecognitions(),parameters);
 
 		}
@@ -114,7 +114,7 @@ public class ProfileCreationAssessmentBodyInsertDataDao extends AbstractTransact
 			parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentsExperienceInTechnicalDomainDto.getAssessmentBodyRegistrationId());
 			parameters.put("domain",profileCreationAssessmentsExperienceInTechnicalDomainDto.getDomain());
 			parameters.put("numberOfAssessmentsDone",profileCreationAssessmentsExperienceInTechnicalDomainDto.getNumberOfAssessmentsDone());			
-			parameters.put("isActive",profileCreationAssessmentsExperienceInTechnicalDomainDto.getIsActive());
+			parameters.put("isActive",1);
 			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getInsertIntoAssessmentsExperienceInTechnicalDomain(),parameters);
 
 		}catch(Exception e)

@@ -27,6 +27,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerOrganizationDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+import com.skill.India.dto.ProfileCreationTrainingPartnerTrainingStaffDetailsDto;
 
 @Service
 public class ProfileCreationGetDataService {
@@ -107,6 +108,7 @@ public class ProfileCreationGetDataService {
 				Collection<ProfileCreationTrainingPartnerInstituteRecognitionDto> profileCreationTrainingPartnerInstituteRecognition=profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerInstituteRecognition(trainingPartnerRegistrationId);
 				Collection<ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto> profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails =profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails(trainingPartnerRegistrationId);
 				Collection<ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> profileCreationTrainingPartnerPriorExperienceInSkillTraining =profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerPriorExperienceInSkillTraining(trainingPartnerRegistrationId);
+				Collection<ProfileCreationTrainingPartnerTrainingStaffDetailsDto> profileCreationTrainingPartnerTrainingStaff = profileCreationTrainingPartnerGetDataDao.getTrainingStaffData(trainingPartnerRegistrationId);
 				for(ProfileCreationTrainingPartnerOrganizationDetailsDto item : profileCreationTrainingPartnerGetDataDao.profileCreationGetDataFromTrainingPartnerOrganizationDetails(applicationId))
 				{
 					userData.put("TrainingPartnerOrganizationDetails",item);
@@ -117,6 +119,7 @@ public class ProfileCreationGetDataService {
 				userData.put("InstituteRecognitionDetails", profileCreationTrainingPartnerInstituteRecognition);
 				userData.put("ManagementAndStaffAndOfficialDetails", profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails);
 				userData.put("PriorExperienceDetails", profileCreationTrainingPartnerPriorExperienceInSkillTraining);
+				userData.put("TrainingStaff", profileCreationTrainingPartnerTrainingStaff);
 
 				LOGGER.debug("Trying to display data fetched for training partner from database");
 				return userData;

@@ -11,6 +11,7 @@ public class ProfileCreationTrainingPartnerWrapperDto {
 	private Collection<ProfileCreationTrainingPartnerInstituteRecognitionDto> profileCreationTrainingPartnerInstituteRecognitionDto;
 	private Collection<ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto> profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
 	private Collection <ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+	private Collection<ProfileCreationTrainingPartnerTrainingStaffDetailsDto> profileCreationTrainingPartnerTrainingStaffDetailsDto;
 	
 	public ProfileCreationTrainingPartnerWrapperDto()
 	{
@@ -23,7 +24,8 @@ public class ProfileCreationTrainingPartnerWrapperDto {
 			Collection<ProfileCreationTrainingPartnerInstituteGrantDto> profileCreationTrainingPartnerInstituteGrantDto,
 			Collection<ProfileCreationTrainingPartnerInstituteRecognitionDto> profileCreationTrainingPartnerInstituteRecognitionDto,
 			Collection<ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto> profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto,
-			Collection <ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto)
+			Collection <ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto,
+			Collection<ProfileCreationTrainingPartnerTrainingStaffDetailsDto> profileCreationTrainingPartnerTrainingStaffDetailsDto)
 	{
 		super();
 		this.type = type;
@@ -32,6 +34,7 @@ public class ProfileCreationTrainingPartnerWrapperDto {
 		this.profileCreationTrainingPartnerInstituteGrantDto = profileCreationTrainingPartnerInstituteGrantDto;
 		this.profileCreationTrainingPartnerInstituteRecognitionDto = profileCreationTrainingPartnerInstituteRecognitionDto;
 		this.profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto = profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+		this.setProfileCreationTrainingPartnerTrainingStaffDetailsDto(profileCreationTrainingPartnerTrainingStaffDetailsDto);
 	}
 	
 	public String getType() {
@@ -81,6 +84,15 @@ public class ProfileCreationTrainingPartnerWrapperDto {
 	public void setProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto(
 			Collection <ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto> profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto) {
 		this.profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto = profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+	}
+
+	public Collection<ProfileCreationTrainingPartnerTrainingStaffDetailsDto> getProfileCreationTrainingPartnerTrainingStaffDetailsDto() {
+		return profileCreationTrainingPartnerTrainingStaffDetailsDto;
+	}
+
+	public void setProfileCreationTrainingPartnerTrainingStaffDetailsDto(
+			Collection<ProfileCreationTrainingPartnerTrainingStaffDetailsDto> profileCreationTrainingPartnerTrainingStaffDetailsDto) {
+		this.profileCreationTrainingPartnerTrainingStaffDetailsDto = profileCreationTrainingPartnerTrainingStaffDetailsDto;
 	}
 	
 	

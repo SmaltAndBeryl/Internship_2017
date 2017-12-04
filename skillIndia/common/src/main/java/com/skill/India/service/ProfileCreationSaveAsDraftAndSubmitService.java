@@ -34,6 +34,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteGrantDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
+import com.skill.India.dto.ProfileCreationTrainingPartnerTrainingStaffDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerWrapperDto;
 
 @Service
@@ -292,7 +293,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	 * Method to save data of Training Partner*/
 	public int saveTrainingPartner(ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{
-		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, trainingStaff =0, experienceInTraining =0;
+		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, trainingStaff =0, experienceInTraining =0, trainer = 0;
 		int userExists = getApplicationId();
 		String applicationIdAfterCreation = null;
 		//New User
@@ -341,6 +342,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				for(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto())
 				{
 					experienceInTraining = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerPriorExperienceInSkillTraining(item , applicationIdAfterCreation);
+				}
+			}
+			
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerTrainingStaffDetailsDto().isEmpty())
+			{
+				for(ProfileCreationTrainingPartnerTrainingStaffDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerTrainingStaffDetailsDto())
+				{
+					trainer = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerTrainingStaff(item , applicationIdAfterCreation);
 				}
 			}
 			if(applicationTableStatus == -1 || status == -1 || trainingPartnerCenterDetails == -1 || trainingPartnerInstituteGrant == -1)
@@ -477,6 +486,25 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					{
 						LOGGER.error("Could not add experience in database");
 					}
+				}
+			}
+			/*Training Partner's Trainers*/
+			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerTrainingStaffDetailsDto().isEmpty())
+			{
+				int doesTrainingStaffExists = 10;
+				
+				for(ProfileCreationTrainingPartnerTrainingStaffDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerTrainingStaffDetailsDto())
+				{
+					doesTrainingStaffExists = profileCreationTrainingPartnerGetDataDao.isTrainingStaffPresent(item.getTrainingPartnerRegistrationId(), item.getEmailId());
+					if(doesTrainingStaffExists == 0)
+					{
+						trainer = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerTrainingStaff(item , applicationIdAfterCreation);
+					}
+					else if(doesTrainingStaffExists == 1)
+					{
+						trainer = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerTrainingStaff(item);
+					}
+					
 				}
 			}
 			

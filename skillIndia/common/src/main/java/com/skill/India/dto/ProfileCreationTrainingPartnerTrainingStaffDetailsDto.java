@@ -37,6 +37,7 @@ public class ProfileCreationTrainingPartnerTrainingStaffDetailsDto {
 				this.certificatePath = certificatePath;
 				this.isActive = isActive;
 			}
+	
 	public String getTrainingStaffId() {
 		return trainingStaffId;
 	}
