@@ -367,7 +367,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				int doesTrainingCenterExists = 10;
 				for(ProfileCreationTrainingPartnerCenterDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto())
 				{
-					doesTrainingCenterExists = profileCreationTrainingPartnerGetDataDao.isTrainingCenterPresent(item.getTrainingPartnerRegistrationId(), item.getTrainingPartnerCenterId());
+					doesTrainingCenterExists = profileCreationTrainingPartnerGetDataDao.isTrainingCenterPresent(item.getTrainingPartnerRegistrationId(), item.getNameOfCenter());
 					if(doesTrainingCenterExists == 0)
 					{
 						trainingPartnerCenterDetails = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerCenterLevelDetails(item ,applicationIdAfterCreation);
@@ -391,7 +391,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				
 				for(ProfileCreationTrainingPartnerInstituteGrantDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteGrantDto())
 				{
-					doesInstitueGrantExists = profileCreationTrainingPartnerGetDataDao.isInstituteGrantPresent(item.getTrainingPartnerRegistrationId(), item.getInstituteGrantId());
+					doesInstitueGrantExists = profileCreationTrainingPartnerGetDataDao.isInstituteGrantPresent(item.getTrainingPartnerRegistrationId(), item.getNameOfMinistry());
 					if(doesInstitueGrantExists == 0)
 					{
 						trainingPartnerInstituteGrant = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerInstituteGrant(item , applicationIdAfterCreation);
@@ -417,7 +417,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				int doesRecognitionExists = 0; 
 				for(ProfileCreationTrainingPartnerInstituteRecognitionDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerInstituteRecognitionDto())
 				{
-					doesRecognitionExists = profileCreationTrainingPartnerGetDataDao.isInstituteRecognitionPresent(item.getTrainingPartnerRegistrationId(),item.getInstituteRecognitionId());
+					doesRecognitionExists = profileCreationTrainingPartnerGetDataDao.isInstituteRecognitionPresent(item.getTrainingPartnerRegistrationId(),item.getNameOfRecognizingBody());
 					if(doesRecognitionExists ==0)
 					{
 						
@@ -441,7 +441,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				int doesTrainingStaffExists =10;
 				for(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto())
 				{
-					doesTrainingStaffExists = profileCreationTrainingPartnerGetDataDao.isTrainingStaffPresent(item.getTrainingPartnerRegistrationId(), item.getManagementAndStaffId());
+					doesTrainingStaffExists = profileCreationTrainingPartnerGetDataDao.isTrainingStaffPresent(item.getTrainingPartnerRegistrationId(), item.getEmailId());
 					if(doesTrainingStaffExists == 0)
 					{
 						trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item , applicationIdAfterCreation);
@@ -464,7 +464,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				int doesExperienceExists = 10;
 				for(ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto item :profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto())
 				{
-					doesExperienceExists = profileCreationTrainingPartnerGetDataDao.isTrainingExperiencePresent(item.getTrainingPartnerRegistrationId(), item.getPriorExperienceInSkillTrainingId());
+					doesExperienceExists = profileCreationTrainingPartnerGetDataDao.isTrainingExperiencePresent(item.getTrainingPartnerRegistrationId(), item.getCourseName());
 					if(doesExperienceExists == 0)
 					{
 						experienceInTraining = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerPriorExperienceInSkillTraining(item , applicationIdAfterCreation);

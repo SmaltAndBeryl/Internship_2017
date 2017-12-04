@@ -205,6 +205,7 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 			String powerBackup = resultSet.getString("powerBackup");
 			String separateToilets = resultSet.getString("separateToilets");
 			String transportFacility = resultSet.getString("transportFacility");
+			String fireSafety = resultSet.getString("fireSafety");
 			String presenceOfLibrary = resultSet.getString("presenceOfLibrary");
 			String numberOfTechnicalBooks = resultSet.getString("numberOfTechnicalBooks");
 			String numberOfNonTechnicalBooks = resultSet.getString("numberOfNonTechnicalBooks");
@@ -231,7 +232,7 @@ private static final ProfileCreationTrainingPartnerCenterLevelDetailsRowMapper R
 				numberOfPermanentAccountants,numberOfTemporaryAccountants,numberOfPermanentSupportStaff,numberOfTemporarySupportStaff,
 				numberOfPermanentOtherEmployees,numberOfTemporaryOtherEmployees,areaOfInstitute,buildingType,sizeOfClassrooms,classroomPicsPath,
 				numberOfClassrooms,sizeOfLabs,labPicsPath,numberOfLabs,sizeOfWorkshops,workshopPicsPath,numberOfWorkshops,mandatoryToolKitpresent,
-				mandatoryToolKitAnnexurePath,mandatoryToolKitPicsPath,safeDrinkingWater,powerBackup,separateToilets,transportFacility,presenceOfLibrary,
+				mandatoryToolKitAnnexurePath,mandatoryToolKitPicsPath,safeDrinkingWater,powerBackup,separateToilets,transportFacility,fireSafety,presenceOfLibrary,
 				numberOfTechnicalBooks,numberOfNonTechnicalBooks,numberOfMagazines,numberOfDailies,remarksOnInfrastructureDetails,
 				sufficientClassroomIlluminationLevel,sufficientClassroomVentilationLevel,sufficientCenterCleanliness,centerWeatherProtected,
 				remarksOnLearningEnviornment,printedBrochureOrProspectus,documentedPolicyAndProcedures,concessionPolicy,safeCustodyOfStudentDocuments,
@@ -335,13 +336,13 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 			return null;
 		}
  	}
-	public int isTrainingCenterPresent(String trainingPartnerRegistrationId, String trainingPartnerCenterId)
+	public int isTrainingCenterPresent(String trainingPartnerRegistrationId, String nameOfCenter)
 	{
 		int status = 10;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("trainingPartnerCenterId", trainingPartnerCenterId);
+			parameters.put("nameOfCenter", nameOfCenter);
 			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingCenterPresent(), parameters, Integer.class);
 		}
@@ -359,14 +360,14 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 	}
 	
 	//to find out if Institute grant exists or not
-	public int isInstituteGrantPresent(String trainingPartnerRegistrationId, String instituteGrantId)
+	public int isInstituteGrantPresent(String trainingPartnerRegistrationId, String nameOfMinistry)
 	{
 		int status = 10;
 		try
 		{
 			Map<String,Object> parameters = new HashMap<String,Object>();
 			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
-			parameters.put("instituteGrantId", instituteGrantId);
+			parameters.put("nameOfMinistry", nameOfMinistry);
 			status = getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsInstituteGrantPresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
@@ -384,13 +385,13 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		return status;
 	}
 	
-	public int isInstituteRecognitionPresent(String trainingPartnerRegistrationId, String instituteRecognitionId)
+	public int isInstituteRecognitionPresent(String trainingPartnerRegistrationId, String nameOfRecognizingBody)
 	{
 		int status = 10;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("instituteRecognitionId", instituteRecognitionId);
+			parameters.put("nameOfRecognizingBody", nameOfRecognizingBody);
 			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsRecognitnionPresent(), parameters, Integer.class);
 		}
@@ -407,13 +408,13 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		return status;
 	}
 	
-	public int isTrainingStaffPresent(String trainingPartnerRegistrationId, String managementAndStaffId)
+	public int isTrainingStaffPresent(String trainingPartnerRegistrationId, String email)
 	{
 		int status = 10;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("managementAndStaffId", managementAndStaffId);
+			parameters.put("emailId", email);
 			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingStaffPresent(), parameters, Integer.class);
 		}
@@ -430,14 +431,14 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		return status;
 	}
 	
-	public int isTrainingExperiencePresent(String trainingPartnerRegistrationId, String priorExperienceInSkillTrainingId)
+	public int isTrainingExperiencePresent(String trainingPartnerRegistrationId, String courseName)
 	{
 		int status = 10;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("priorExperienceInSkillTrainingId", priorExperienceInSkillTrainingId);
-			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
+			parameters.put("priorExperienceInSkillTrainingId", courseName);
+			parameters.put("courseName", trainingPartnerRegistrationId);
 			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingExperiencePresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
@@ -460,7 +461,7 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 				throws SQLException {
 			String priorExperienceInSkillTrainingId = resultSet.getString("priorExperienceInSkillTrainingId");
 			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
-			String courseName = resultSet.getString("courseName");
+			String courseName = resultSet.getString("courseName").toUpperCase();
 			String numberOfBatchesPerYear = resultSet.getString("numberOfBatchesPerYear");
 			String numberOfStudentsInEachBatch = resultSet.getString("numberOfStudentsInEachBatch");
 			Boolean isActive = resultSet.getBoolean("isActive");

@@ -56,6 +56,7 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	private String powerBackup;
 	private String separateToilets;
 	private String transportFacility;
+	private String fireSafety;
 	private String presenceOfLibrary;
 	private String numberOfTechnicalBooks;
 	private String numberOfNonTechnicalBooks;
@@ -179,7 +180,7 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 			String mandatoryToolKitAnnexurePath,
 			String mandatoryToolKitPicsPath, String safeDrinkingWater,
 			String powerBackup, String separateToilets,
-			String transportFacility, String presenceOfLibrary,
+			String transportFacility, String fireSafety, String presenceOfLibrary,
 			String numberOfTechnicalBooks, String numberOfNonTechnicalBooks,
 			String numberOfMagazines, String numberOfDailies,
 			String remarksOnInfrastructureDetails,
@@ -247,6 +248,7 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 		this.powerBackup = powerBackup;
 		this.separateToilets = separateToilets;
 		this.transportFacility = transportFacility;
+		this.fireSafety = fireSafety;
 		this.presenceOfLibrary = presenceOfLibrary;
 		this.numberOfTechnicalBooks = numberOfTechnicalBooks;
 		this.numberOfNonTechnicalBooks = numberOfNonTechnicalBooks;
@@ -1027,6 +1029,12 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	}
 	public void setCvSPOCPath(String cvSPOCPath) {
 		this.cvSPOCPath = cvSPOCPath;
+	}
+	public String getFireSafety() {
+		return fireSafety;
+	}
+	public void setFireSafety(String fireSafety) {
+		this.fireSafety = fireSafety;
 	}
 	
 	

@@ -109,7 +109,28 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				Map<String, Object> parameters=new HashMap<String, Object>();
 		
 				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
-				parameters.put("nameOfCenter",profileCreationTrainingPartnerCenterDetailsDto.getNameOfCenter());
+				parameters.put("nameOfCenter",profileCreationTrainingPartnerCenterDetailsDto.getNameOfCenter().toUpperCase());
+				parameters.put("nameOperationHead", profileCreationTrainingPartnerCenterDetailsDto.getNameOperationHead());
+				parameters.put("designationOperationHead", profileCreationTrainingPartnerCenterDetailsDto.getDesignationOperationHead());
+				parameters.put("emailOperationHead", profileCreationTrainingPartnerCenterDetailsDto.getEmailOperationHead());
+				parameters.put("contactNumberOperationHead", profileCreationTrainingPartnerCenterDetailsDto.getContactNumberOperationHead());
+				parameters.put("educationalQualificationOperationHead", profileCreationTrainingPartnerCenterDetailsDto.getEducationalQualificationOperationHead());
+				parameters.put("experienceOperationHead", profileCreationTrainingPartnerCenterDetailsDto.getExperienceOperationHead());
+				parameters.put("cvOperationHeadPath", profileCreationTrainingPartnerCenterDetailsDto.getCvOperationHeadPath());
+				parameters.put("nameAffiliationCoordinator", profileCreationTrainingPartnerCenterDetailsDto.getNameAffiliationCoordinator());
+				parameters.put("designationAffiliationCoordinator", profileCreationTrainingPartnerCenterDetailsDto.getDesignationAffiliationCoordinator());
+				parameters.put("emailAffiliationCoordinator", profileCreationTrainingPartnerCenterDetailsDto.getEmailAffiliationCoordinator());
+				parameters.put("contactNumberAffiliationCoordinator", profileCreationTrainingPartnerCenterDetailsDto.getContactNumberAffiliationCoordinator());
+				parameters.put("educationalQualificationAffiliationCoordinator", profileCreationTrainingPartnerCenterDetailsDto.getEducationalQualificationAffiliationCoordinator());
+				parameters.put("experienceAffiliationCoordinator", profileCreationTrainingPartnerCenterDetailsDto.getExperienceAffiliationCoordinator());
+				parameters.put("cvAffiliationCoordinatorPath", profileCreationTrainingPartnerCenterDetailsDto.getCvAffiliationCoordinatorPath());
+				parameters.put("nameSPOC", profileCreationTrainingPartnerCenterDetailsDto.getNameSPOC());
+				parameters.put("designationSPOC", profileCreationTrainingPartnerCenterDetailsDto.getDesignationSPOC());
+				parameters.put("emailSPOC", profileCreationTrainingPartnerCenterDetailsDto.getEmailSPOC());
+				parameters.put("contactNumberSPOC", profileCreationTrainingPartnerCenterDetailsDto.getContactNumberSPOC());
+				parameters.put("educationalQualificationSPOC", profileCreationTrainingPartnerCenterDetailsDto.getEducationalQualificationSPOC());
+				parameters.put("experienceSPOC", profileCreationTrainingPartnerCenterDetailsDto.getExperienceSPOC());
+				parameters.put("cvSPOCPath", profileCreationTrainingPartnerCenterDetailsDto.getCvSPOCPath());
 				parameters.put("numberOfPermanentOfficeManager",profileCreationTrainingPartnerCenterDetailsDto.getNumberOfPermanentOfficeManager());
 				parameters.put("numberOftemporaryOfficeManager",profileCreationTrainingPartnerCenterDetailsDto.getNumberOftemporaryOfficeManager());
 				parameters.put("numberOfPermanentOfficeStaff",profileCreationTrainingPartnerCenterDetailsDto.getNumberOfPermanentOfficeStaff());
@@ -140,6 +161,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				parameters.put("powerBackup",profileCreationTrainingPartnerCenterDetailsDto.getPowerBackup());
 				parameters.put("separateToilets",profileCreationTrainingPartnerCenterDetailsDto.getSeparateToilets());
 				parameters.put("transportFacility",profileCreationTrainingPartnerCenterDetailsDto.getTransportFacility());
+				parameters.put("fireSafety",profileCreationTrainingPartnerCenterDetailsDto.getFireSafety());
 				parameters.put("presenceOfLibrary",profileCreationTrainingPartnerCenterDetailsDto.getPresenceOfLibrary());
 				parameters.put("numberOfTechnicalBooks",profileCreationTrainingPartnerCenterDetailsDto.getNumberOfNonTechnicalBooks());
 				parameters.put("numberOfNonTechnicalBooks",profileCreationTrainingPartnerCenterDetailsDto.getNumberOfNonTechnicalBooks());
@@ -184,7 +206,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				
 				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
-				parameters.put("nameOfMinistry",profileCreationTrainingPartnerInstituteGrantDto.getNameOfMinistry());
+				parameters.put("nameOfMinistry",profileCreationTrainingPartnerInstituteGrantDto.getNameOfMinistry().toUpperCase());
 				parameters.put("natureOfWork",profileCreationTrainingPartnerInstituteGrantDto.getNatureOfWork());
 				parameters.put("remarks",profileCreationTrainingPartnerInstituteGrantDto.getRemarks());
 				parameters.put("isActive",1);
@@ -219,7 +241,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				 */
 				
 				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
-				parameters.put("nameOfRecognizingBody",profileCreationTrainingPartnerInstituteRecognitionDto.getNameOfRecognizingBody());
+				parameters.put("nameOfRecognizingBody",profileCreationTrainingPartnerInstituteRecognitionDto.getNameOfRecognizingBody().toUpperCase());
 				parameters.put("recognitionNumber",profileCreationTrainingPartnerInstituteRecognitionDto.getRecognitionNumber());
 				parameters.put("yearOfRecognition",profileCreationTrainingPartnerInstituteRecognitionDto.getYearOfRecognition());
 				parameters.put("validityOfRecognition",profileCreationTrainingPartnerInstituteRecognitionDto.getValidityOfRecognition());
@@ -251,7 +273,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				LOGGER.info("Trying to construct database query to insert details of prior experience of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
-				parameters.put("courseName",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getCourseName());
+				parameters.put("courseName",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getCourseName().toUpperCase());
 				parameters.put("numberOfBatchesPerYear",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getNumberOfBatchesPerYear());
 				parameters.put("numberOfStudentsInEachBatch",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getNumberOfStudentsInEachBatch());
 				parameters.put("isActive",1);
@@ -286,7 +308,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 				//parameters.put("type",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getType());
 				parameters.put("name",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getName());
 				parameters.put("designation",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getDesignation());
-				parameters.put("emailId",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getEmailId());
+				parameters.put("emailId",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getEmailId().toLowerCase());
 				parameters.put("contactNumber",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getContactNumber());
 				parameters.put("educationalQualification",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getEducationalQualification());
 				//parameters.put("regularOrVisiting",profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto.getRegularOrVisiting());
