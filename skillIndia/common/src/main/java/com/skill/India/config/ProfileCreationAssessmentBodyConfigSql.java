@@ -35,6 +35,8 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	private String updatePathsIntoAssessmentStaffDetails;
 	private String panPath;
 	private String tanPathUpdate;
+	private String updateAssessmentManagementCvPath;
+	private String updateAssessmentStaffEducationCertificatePath;
 	private String deleteFromAssessmentBodyRecognitions;
 	private String deleteFromAssessmentsExperienceInTechnicalDomain;
 	private String deleteFromAssessmentBodyDirectorsAndManagementTeamDetails;
@@ -513,6 +515,20 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	}
 	public void setTanPathUpdate(String tanPathUpdate) {
 		this.tanPathUpdate = tanPathUpdate;
+	}
+	public String getUpdateAssessmentManagementCvPath() {
+		return updateAssessmentManagementCvPath;
+	}
+	public void setUpdateAssessmentManagementCvPath(
+			String updateAssessmentManagementCvPath) {
+		this.updateAssessmentManagementCvPath = updateAssessmentManagementCvPath;
+	}
+	public String getUpdateAssessmentStaffEducationCertificatePath() {
+		return updateAssessmentStaffEducationCertificatePath;
+	}
+	public void setUpdateAssessmentStaffEducationCertificatePath(
+			String updateAssessmentStaffEducationCertificatePath) {
+		this.updateAssessmentStaffEducationCertificatePath = updateAssessmentStaffEducationCertificatePath;
 	}
 	
 	

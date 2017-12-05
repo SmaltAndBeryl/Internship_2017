@@ -525,6 +525,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	{
 		int tanPathUpdated = 0, status =0;
 		int applicationId = getApplicationId();
+		
 		if(applicationId > 0)
 		{
 			String tpTanPath = saveFile(key, applicationId, TrainingPartnerTan, readApplicationConstants.getProfileCreationTrainingPartnerFolder());
@@ -552,42 +553,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		
 		panPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updatePanPath(panPath, applicationId);
 		return panPathUpdated;
-	}
-	
-	/*Method to save PAN of Assessment Body*/
-	public int saveABPAN(MultipartFile assessmentBodyPan, String key)
-	{
-		int panPathUpdated = 0;
-		int applicationId = getApplicationId();
-		String panPath = "";
-
-		try
-		{
-			panPath = saveFile(key, applicationId, assessmentBodyPan, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
-			LOGGER.debug("Pan path is " + panPath);
-		}
-		catch(Exception e)
-		{
-			LOGGER.error("An exception occured while saving file " + e);
-		}
-		
-		panPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updatePanPath(panPath, applicationId );
-		return panPathUpdated;
-	}
-	/*
-	 * Methid ti save tan number of assessment body*/
-	public int saveABTan(MultipartFile assessmentBodyTan , String key)
-	{
-		int tanPathUpdated = 0, status =0;
-		int applicationId = getApplicationId();
-		if(applicationId > 0)
-		{
-			String abTanPath = saveFile(key, applicationId, assessmentBodyTan, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
-			tanPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updateTanPath(abTanPath,applicationId);
-		}
-		return tanPathUpdated;
-	}
-	
+	}	
 	
 	/*Method to save NSDC Certificate*/
 	public int saveTPNSDCCertificate(MultipartFile nsdcCertificate, String key)
@@ -671,6 +637,83 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		}
 		return statusMobileAnnexure;
 	}
+	
+	/*Method to save PAN of Assessment Body*/
+	public int saveABPAN(MultipartFile assessmentBodyPan, String key)
+	{
+		int panPathUpdated = 0;
+		int applicationId = getApplicationId();
+		String panPath = "";
+
+		try
+		{
+			panPath = saveFile(key, applicationId, assessmentBodyPan, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+			LOGGER.debug("Pan path is " + panPath);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while saving file " + e);
+		}
+		
+		panPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updatePanPath(panPath, applicationId );
+		return panPathUpdated;
+	}
+	/*
+	 * Method to save tan number of assessment body*/
+	public int saveABTan(MultipartFile assessmentBodyTan , String key)
+	{
+		int tanPathUpdated = 0, status =0;
+		int applicationId = getApplicationId();
+		if(applicationId > 0)
+		{
+			String abTanPath = saveFile(key, applicationId, assessmentBodyTan, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+			tanPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updateTanPath(abTanPath,applicationId);
+		}
+		return tanPathUpdated;
+	}
+	
+	/*
+	 * Method to save Assessment body management Cv */
+	public int saveAbManagementCv(MultipartFile assessmentBodyManagementCv , String key)
+	{
+		int abManagementCvUpdated = 0, status =0;
+		int applicationId = getApplicationId();
+		String assessmentBodyRegisterId = getAssessmentBodyRegistrationId(applicationId);
+			String abManagementCvPath = saveFile(key, applicationId, assessmentBodyManagementCv, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+			abManagementCvUpdated = profileCreationAssessmentBodyUpdateDataDao.updatePathAssessmentManagementCv(abManagementCvPath,assessmentBodyRegisterId);
+		
+		return abManagementCvUpdated;
+	}
+	
+	/*
+	 * Method to save Assessment body Assessment Staff Cv */
+	public int saveAbAssessmentStaffCv(MultipartFile assessmentBodyAssessmentStaffCv , String key)
+	{
+		int abAssessmnetStaffCv = 0, status =0;
+		int applicationId = getApplicationId();
+		String assessmentBodyRegisterId = getAssessmentBodyRegistrationId(applicationId);
+		
+			String abAssessmentStaffPath = saveFile(key, applicationId, assessmentBodyAssessmentStaffCv, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+			abAssessmnetStaffCv = profileCreationAssessmentBodyUpdateDataDao.updatePathAssessmentStaffCv(abAssessmentStaffPath,assessmentBodyRegisterId);
+		
+		return abAssessmnetStaffCv;
+	}
+	
+	/*
+	 * Method to save Assessment body Assessment staff education certificates Cv */
+	public int saveAbAssessmentStaffEducationCertificates(MultipartFile assessmentBodyAssessmentStaffCertificates , String key)
+	{
+		int abAssessmentStaffEducationCertificate = 0, status =0;
+		int applicationId = getApplicationId();
+		String assessmentBodyRegisterId = getAssessmentBodyRegistrationId(applicationId);
+		
+			String abAssessmentStaffEducationCertificatePath = saveFile(key, applicationId, assessmentBodyAssessmentStaffCertificates, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+			abAssessmentStaffEducationCertificate = profileCreationAssessmentBodyUpdateDataDao.updatePathAssessmentStaffEducationCertificate(abAssessmentStaffEducationCertificatePath,assessmentBodyRegisterId);
+	
+		return abAssessmentStaffEducationCertificate;
+	}
+	
+	
 	/*Method to save file */
 	private String saveFile(String key, int applicationId, MultipartFile file, String pathToFolder)
 	{

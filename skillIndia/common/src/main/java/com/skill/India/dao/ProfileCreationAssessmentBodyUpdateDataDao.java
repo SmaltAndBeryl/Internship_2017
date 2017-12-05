@@ -280,7 +280,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 		return status;
 	}
 	
-	/*Update Tan Number pah*/
+	/*Update Tan Number path*/
 	public int updateTanPath(String tanPath, int applicationId)
 	{
 		int status = 0;
@@ -301,21 +301,58 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 	}
 	
 	/*
-	 * Updating paths in table AssessmentStaffDetails
+	 * Updating paths in table AssessmentStaff Cv
 	 */
 	
-	public int updatePathsIntoAssessmentStaffDetails(HashMap<String, String> setPaths,int assessmentStaffId)
+	public int updatePathAssessmentStaffCv(String pathToBeUpdated, String assessmentBodyId)
 	{
 		try{
 		Map<String, String> parameters = new HashMap<String, String>();
-		parameters.put("cVPath", setPaths.get("cVPath"));
-		parameters.put("certificatePath",setPaths.get("certificatePath"));
-		parameters.put("assessmentStaffId", String.valueOf(assessmentStaffId));
+		parameters.put("cVPath", pathToBeUpdated);
+		parameters.put("assessmentBodyRegistrationId", assessmentBodyId);
 		return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdatePathsIntoAssessmentStaffDetails(), parameters);
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An exception occured while updating Assessmnet staff cv path in database " + e);
+			return -1;
+		}
+	}
+	
+	/*
+	 * Updating paths in table Assessment Body Management Cv
+	 */
+	
+	public int updatePathAssessmentManagementCv(String pathToBeUpdated, String assessmentBodyId)
+	{
+		try{
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("cVPath", pathToBeUpdated);
+		parameters.put("assessmentBodyRegistrationId", assessmentBodyId);
+		return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateAssessmentManagementCvPath(), parameters);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while updating Assessmnet staff cv path in database " + e);
+			return -1;
+		}
+	}
+	
+	/*
+	 * Updating paths in table Assessment Staff Education certificate
+	 */
+	
+	public int updatePathAssessmentStaffEducationCertificate(String pathToBeUpdated, String assessmentBodyId)
+	{
+		try{
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("educationalQualification", pathToBeUpdated);
+		parameters.put("assessmentBodyRegistrationId", assessmentBodyId);
+		return getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getUpdateAssessmentStaffEducationCertificatePath(), parameters);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while updating Assessmnet staff cv path in database " + e);
 			return -1;
 		}
 	}

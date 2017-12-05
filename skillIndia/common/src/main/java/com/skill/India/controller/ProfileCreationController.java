@@ -99,23 +99,6 @@ public class ProfileCreationController {
 		return status;
 	}
 	
-	@RequestMapping(value="/fileUploadABPAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
-	public int saveFilePANAB(@RequestParam(value="pan") MultipartFile file)
-	{
-		int status = 0;
-		LOGGER.debug("File has been received from front end " + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveABPAN(file, "pan");
-		return status;
-	}
-	@RequestMapping(value="/fileUploadABTAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
-	public int saveFileTanAB(@RequestParam(value="tan") MultipartFile file)
-	{
-		int status = 0;
-		LOGGER.debug("File has been received from front end " + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveABTan(file, "tan");
-		return status;
-	}
-	
 	@RequestMapping(value="/fileUploadTPTAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
 	public int saveFileTAN(@RequestParam(value="tan") MultipartFile file)
 	{
@@ -158,6 +141,67 @@ public class ProfileCreationController {
 		int status = 0;
 		status = profileCreationSaveAsDraftAndSubmitService.saveMobileAnnexure(file, "fileuploadTPMobile");
 		return status ;
+	}
+	
+	@RequestMapping(value="/fileUploadABPAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
+	public int saveFilePANAB(@RequestParam(value="pan") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveABPAN(file, "pan");
+		return status;
+	}
+	@RequestMapping(value="/fileUploadABTAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
+	public int saveFileTanAB(@RequestParam(value="tan") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveABTan(file, "tan");
+		return status;
+	}
+	
+	//Save CV of TrainingPartner Management Staff
+//		@RequestMapping(value="/fileUploadTpMgmtCv" , method  =RequestMethod.POST , consumes=MediaType.ALL_VALUE)
+//		public int saveFileTpManagementCv(@RequestParam(value="TrainingPartnerManagementCV") MultipartFile file)
+//		{
+//			int status = 0;
+//			LOGGER.debug("File has been received from front end " + file);
+//			status = profileCreationSaveAsDraftAndSubmitService.(file, "TrainingPartnerManagementCV");
+//			return status;
+//		}
+	
+		
+		
+		
+	//Save Cv of Assessment Body Management Staff
+	
+	@RequestMapping(value="/fileUploadAbMgmtCv" , method  =RequestMethod.POST , consumes=MediaType.ALL_VALUE)
+	public int saveFileAbManagementCv(@RequestParam(value="AssessmentBodyManagementCV") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveAbManagementCv(file, "AssessmentBodyManagementStaffCV");
+		return status;
+	}
+	
+	//Save CV of Assessment Body Assessment staff cv
+	@RequestMapping(value="/fileUploadAbAssessorCv" , method  =RequestMethod.POST , consumes=MediaType.ALL_VALUE)
+	public int saveFileAbAssessmentStaffCv(@RequestParam(value="AssessmentBodyAssessmentStaffCV") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveAbAssessmentStaffCv(file, "AssessmentBodyAssessmentStaffCV");
+		return status;
+	}
+	
+	//Save CV of Assessment Body Assessment staff cv
+	@RequestMapping(value="/fileUploadAbAssessorCertificate" , method  =RequestMethod.POST , consumes=MediaType.ALL_VALUE)
+	public int saveFileAbAssessmentStaffEducationCertificate(@RequestParam(value="AssessmentBodyAssessmentStaffEducationCertificate") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveAbAssessmentStaffEducationCertificates(file,"AssessmentBodyAssessmentStaffEducationCertificate");
+		return status;
 	}
 }
 
