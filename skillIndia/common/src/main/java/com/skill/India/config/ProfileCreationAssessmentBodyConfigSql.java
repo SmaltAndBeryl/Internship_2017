@@ -33,6 +33,8 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	private String updateIntoAssessmentsExperienceInTechnicalDomain;
 	private String updatePathsIntoAssessmentBodyDirectorsAndManagementTeamDetails;
 	private String updatePathsIntoAssessmentStaffDetails;
+	private String panPath;
+	private String tanPathUpdate;
 	private String deleteFromAssessmentBodyRecognitions;
 	private String deleteFromAssessmentsExperienceInTechnicalDomain;
 	private String deleteFromAssessmentBodyDirectorsAndManagementTeamDetails;
@@ -499,6 +501,18 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	}
 	public void setIsAssessmentStaffPresent(String isAssessmentStaffPresent) {
 		this.isAssessmentStaffPresent = isAssessmentStaffPresent;
+	}
+	public String getPanPath() {
+		return panPath;
+	}
+	public void setPanPath(String panPath) {
+		this.panPath = panPath;
+	}
+	public String getTanPathUpdate() {
+		return tanPathUpdate;
+	}
+	public void setTanPathUpdate(String tanPathUpdate) {
+		this.tanPathUpdate = tanPathUpdate;
 	}
 	
 	

@@ -94,6 +94,7 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 			String alternateLandlineNumber = resultSet.getString("alternateLandlineNumber");
 			String faxNumber = resultSet.getString("faxNumber");
 			String websites = resultSet.getString("websites");
+			String yearOfEstablishment = resultSet.getString("yearOfEstablishment");
 			String priorAssessmentExperience = resultSet.getString("priorAssessmentExperience");
 			String panNumber = resultSet.getString("panNumber");
 			String panNumberPath = resultSet.getString("panNumberPath");
@@ -103,8 +104,8 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 			String numberOfTechnicalAssessors = resultSet.getString("numberOfTechnicalAssessors");
 			String numberOfNonTechnicalAssessors = resultSet.getString("numberOfNonTechnicalAssessors");
 			String affiliatedToAnySectorSkillCouncil=resultSet.getString("affiliatedToAnySectorSkillCouncil");
-			return new ProfileCreationAssessmentBodyRegistrationDetailsDto(assessmentBodyRegistrationId,applicationId,organizationName,sPOCName,address,city,state,pincode,priorAssessmentExperience,
-				mobileNumber,alternateMobileNumber,landlineNumber,alternateLandlineNumber,faxNumber,websites,priorAssessmentExperience,panNumber,panNumberPath,tanNumber,tanNumberPath,
+			return new ProfileCreationAssessmentBodyRegistrationDetailsDto(assessmentBodyRegistrationId,applicationId,organizationName,sPOCName,address,city,state,pincode,mobileNumber,
+				alternateMobileNumber,landlineNumber,alternateLandlineNumber,faxNumber,websites,yearOfEstablishment,priorAssessmentExperience,panNumber,panNumberPath,tanNumber,tanNumberPath,
 				insituteReceivedAnyRecognition,numberOfTechnicalAssessors,numberOfNonTechnicalAssessors,affiliatedToAnySectorSkillCouncil);
 		}
 
@@ -339,14 +340,14 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
  	}
 	
 	/* To check presence of Affiliation data of Assesment body*/
-	public int isAffiliationPresent(String assessmentBodyRegistrationId, String affiliationId)
+	public int isAffiliationPresent(String assessmentBodyRegistrationId, String nameOfSectorSkillCouncil)
 	{
 		int status = 0;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
-			parameters.put("affiliationId", affiliationId);
+			parameters.put("nameOfSectorSkillCouncil", nameOfSectorSkillCouncil);
 			status =  getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsAffiliationPresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
@@ -362,14 +363,14 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		
 		return status;
 	}
-	public int isManagementPresent(String assessmentBodyRegistrationId, String directorsAndManagementId)
+	public int isManagementPresent(String assessmentBodyRegistrationId, String email)
 	{
 		int status = 0;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
-			parameters.put("directorsAndManagementId", directorsAndManagementId);
+			parameters.put("emailId", email);
 			status =  getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsManagementPresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
@@ -387,14 +388,14 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		
 	}
 	
-	public int isRecognitionPresent(String assessmentBodyRegistrationId, String assessmentBodyRecognitionId)
+	public int isRecognitionPresent(String assessmentBodyRegistrationId, String nameOfRecognizingBody)
 	{
 		int status = 0;
 		try
 		{
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
-			parameters.put("assessmentBodyRecognitionId", assessmentBodyRecognitionId);
+			parameters.put("nameOfRecognitionBody", nameOfRecognizingBody);
 			status =  getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsRecognitionPresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
@@ -410,14 +411,14 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		return status;
 	}
 	
-	public int isRegionalOfficePresent(String assessmentBodyRegistrationId, String regionalOfficeId)
+	public int isRegionalOfficePresent(String assessmentBodyRegistrationId, String pincode)
 	{
 		int status =0;
 		try
 		{
 			Map<String,Object> parameters = new HashMap<String,Object>();
 			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
-			parameters.put("regionalOfficeId", regionalOfficeId);
+			parameters.put("pincode", pincode);
 			status = getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsRegionalOfficePresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
@@ -435,14 +436,14 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		return status;
 	}
 	
-	public int isExperiencePresent(String assessmentBodyRegistrationId, String assessmentExperienceId)
+	public int isExperiencePresent(String assessmentBodyRegistrationId, String domain)
 	{
 		int status =0;
 		try
 		{
 			Map<String,Object> parameters = new HashMap<String,Object>();
 			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
-			parameters.put("assessmentExperienceId", assessmentExperienceId);
+			parameters.put("domain", domain);
 			status = getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsAssessmentExperiencePresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
@@ -460,14 +461,14 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		return status;
 	}
 	
-	public int isStaffPresent(String assessmentBodyRegistrationId, String assessmentStaffId)
+	public int isStaffPresent(String assessmentBodyRegistrationId, String emailId)
 	{
 		int status =0;
 		try
 		{
 			Map<String,Object> parameters = new HashMap<String,Object>();
 			parameters.put("assessmentBodyRegistrationId", assessmentBodyRegistrationId);
-			parameters.put("assessmentStaffId", assessmentStaffId);
+			parameters.put("emailId", emailId);
 			status = getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsAssessmentStaffPresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)

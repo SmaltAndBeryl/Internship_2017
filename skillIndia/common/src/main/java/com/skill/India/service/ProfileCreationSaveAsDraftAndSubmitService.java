@@ -72,10 +72,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	@Autowired
 	private ProfileCreationTrainingPartnerGetDataDao profileCreationTrainingPartnerGetDataDao;
 	
+	@Autowired
+	private ProfileCreationAssessmentBodyUpdateDataDao ProfileCreationAssessmentBodyUpdateDataDao;
+	
 	//To save the complete object to database
 	public int SaveAssessmentBody(ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
-		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0, assessmentBodyRegionalOffice =0, assessmentBodyExperienceinTechnical =0, assessmentStaff =0, applicationIdAfterInsertion =0;
+		int returnStatus = 0, applicationTableStatus =0 , status =0, affiliationInsertionStatus =0, directorsAndManagementId = 0, assessmentBodyRecognition = 0, assessmentBodyRegionalOffice =0, assessmentBodyExperienceinTechnical =0, assessmentStaff =0;
+		String applicationIdAfterInsertion =null;
 		int userExists = getApplicationId();
 		//New user
 		if (userExists == -1)
@@ -85,25 +89,25 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 
 			//Once applicationId has been created
 			
-			applicationIdAfterInsertion = getApplicationId();
+			applicationIdAfterInsertion = getAssessmentBodyRegistrationId(getApplicationId());
 			
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto().isEmpty())
 			{
 				for (ProfileCreationAssessmentBodyAffiliationDetailsDto profileCreationAssessmentBodyAffiliationDetailsDto:profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto())
-				affiliationInsertionStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(profileCreationAssessmentBodyAffiliationDetailsDto);
+				affiliationInsertionStatus = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(profileCreationAssessmentBodyAffiliationDetailsDto, applicationIdAfterInsertion);
 			}
 			if (! profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto().isEmpty())
 			{
 				for (ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto())
 				{
-					directorsAndManagementId = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(item);
+					directorsAndManagementId = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(item, applicationIdAfterInsertion);
 				}
 			}
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto().isEmpty())
 			{
 				for(ProfileCreationAssessmentBodyRecognitionsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto())
 				{
-					assessmentBodyRecognition = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRecognitions(item);
+					assessmentBodyRecognition = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRecognitions(item, applicationIdAfterInsertion);
 				}
 				
 			}
@@ -111,14 +115,14 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for (ProfileCreationAssessmentBodyRegionalOfficeDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegionalOfficeDetailsDto())
 				{
-					assessmentBodyRegionalOffice = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegionalOfficeDetails(item);
+					assessmentBodyRegionalOffice = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegionalOfficeDetails(item, applicationIdAfterInsertion);
 				}
 			}
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentsExperienceInTechnicalDomainDto().isEmpty())
 			{
 				for(ProfileCreationAssessmentsExperienceInTechnicalDomainDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentsExperienceInTechnicalDomainDto())
 				{
-					assessmentBodyExperienceinTechnical =profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentsExperienceInTechnicalDomain(item);
+					assessmentBodyExperienceinTechnical =profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentsExperienceInTechnicalDomain(item, applicationIdAfterInsertion);
 				}
 				
 			}
@@ -127,7 +131,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for(ProfileCreationAssessmentStaffDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentStaffDetailsDto())
 				{
-					assessmentStaff = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentStaffDetails(item);
+					assessmentStaff = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentStaffDetails(item , applicationIdAfterInsertion);
 				}
 			}
 			
@@ -146,19 +150,19 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		{
 			applicationTableStatus=profileCreationTPABCommonDao.updateIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
 			status = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
-			
+			applicationIdAfterInsertion = getAssessmentBodyRegistrationId(getApplicationId());
 			/* Assessment Body Affiliation Details */
 			if(!profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto().isEmpty())
 			{
 				for(ProfileCreationAssessmentBodyAffiliationDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyAffiliationDetailsDto())
 				{
-					 int affiliationPresent = profileCreationAssessmentBodyGetDataDao.isAffiliationPresent(item.getAssessmentBodyRegistrationId(), item.getAffiliationId());
+					 int affiliationPresent = profileCreationAssessmentBodyGetDataDao.isAffiliationPresent(item.getAssessmentBodyRegistrationId(), item.getNameOfSectorSkillCouncil());
 					if(affiliationPresent == 0)
 					{
 						LOGGER.debug("AffiliationId" + item.getAffiliationId());
 						LOGGER.debug("abregId" + item.getAssessmentBodyRegistrationId());
 						LOGGER.debug("sector skil council" + item.getNameOfSectorSkillCouncil());
-						profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(item);
+						profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(item, applicationIdAfterInsertion);
 					}
 					else if (affiliationPresent == 1)
 					{
@@ -177,10 +181,10 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for (ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto())
 				{
-						int managmentStatus = profileCreationAssessmentBodyGetDataDao.isManagementPresent(item.getAssessmentBodyRegistrationId(), item.getDirectorsAndManagementId());	
+						int managmentStatus = profileCreationAssessmentBodyGetDataDao.isManagementPresent(item.getAssessmentBodyRegistrationId(), item.getEmailId());	
 						if(managmentStatus == 0)
 						{
-							profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(item);
+							profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyDirectorsAndManagementTeamDetails(item , applicationIdAfterInsertion);
 						}
 						else if (managmentStatus == 1)
 						{
@@ -200,10 +204,10 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				{
 					LOGGER.debug("recognitionID" + item.getAssessmentBodyRecognitionId());
 					LOGGER.debug("registrationId" + item.getAssessmentBodyRegistrationId());
-					int recognitionABStatus = profileCreationAssessmentBodyGetDataDao.isRecognitionPresent(item.getAssessmentBodyRegistrationId(), item.getAssessmentBodyRecognitionId());
+					int recognitionABStatus = profileCreationAssessmentBodyGetDataDao.isRecognitionPresent(item.getAssessmentBodyRegistrationId(), item.getNameOfRecognitionBody());
 					if(recognitionABStatus == 0)
 					{
-						assessmentBodyRecognition = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRecognitions(item);
+						assessmentBodyRecognition = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRecognitions(item, applicationIdAfterInsertion);
 					}
 					else if(recognitionABStatus == 1)
 					{
@@ -218,11 +222,11 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for (ProfileCreationAssessmentBodyRegionalOfficeDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegionalOfficeDetailsDto())
 				{
-					int regionalOfficeStatus = profileCreationAssessmentBodyGetDataDao.isRegionalOfficePresent(item.getAssessmentBodyRegistrationId(), item.getRegionalOfficeId());
+					int regionalOfficeStatus = profileCreationAssessmentBodyGetDataDao.isRegionalOfficePresent(item.getAssessmentBodyRegistrationId(), item.getPincode());
 					LOGGER.debug("Regional office check value is " +regionalOfficeStatus);
 					if(regionalOfficeStatus == 0)
 					{
-						assessmentBodyRegionalOffice = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegionalOfficeDetails(item);
+						assessmentBodyRegionalOffice = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegionalOfficeDetails(item , applicationIdAfterInsertion);
 					}
 					else if (regionalOfficeStatus == 1)
 					{
@@ -240,11 +244,11 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				
 				for(ProfileCreationAssessmentsExperienceInTechnicalDomainDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentsExperienceInTechnicalDomainDto())
 				{
-					int experienceinTechnical = profileCreationAssessmentBodyGetDataDao.isExperiencePresent(item.getAssessmentBodyRegistrationId(), item.getAssessmentExperienceId());
+					int experienceinTechnical = profileCreationAssessmentBodyGetDataDao.isExperiencePresent(item.getAssessmentBodyRegistrationId(), item.getDomain());
 					if(experienceinTechnical == 0)
 					{
 						LOGGER.debug("Experience does not exist, need to create new entry in database");
-						assessmentBodyExperienceinTechnical =profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentsExperienceInTechnicalDomain(item);
+						assessmentBodyExperienceinTechnical =profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentsExperienceInTechnicalDomain(item , applicationIdAfterInsertion);
 						
 					}
 					else if(experienceinTechnical == 1)
@@ -266,10 +270,10 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for(ProfileCreationAssessmentStaffDetailsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentStaffDetailsDto())
 				{
-					int assessmentStaffPresent = profileCreationAssessmentBodyGetDataDao.isStaffPresent(item.getAssessmentBodyRegistrationId(), item.getAssessmentStaffId());
+					int assessmentStaffPresent = profileCreationAssessmentBodyGetDataDao.isStaffPresent(item.getAssessmentBodyRegistrationId(), item.getEmailId());
 					if(assessmentStaffPresent == 0)
 					{
-						assessmentStaff = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentStaffDetails(item);
+						assessmentStaff = profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentStaffDetails(item , applicationIdAfterInsertion);
 					}
 					else if(assessmentStaffPresent == 1)
 					{
@@ -523,7 +527,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		int applicationId = getApplicationId();
 		if(applicationId > 0)
 		{
-			String tpTanPath = saveFile(key, applicationId, TrainingPartnerTan);
+			String tpTanPath = saveFile(key, applicationId, TrainingPartnerTan, readApplicationConstants.getProfileCreationTrainingPartnerFolder());
 			tanPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updateTanPath(tpTanPath,applicationId);
 		}
 		return tanPathUpdated;
@@ -538,7 +542,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 
 		try
 		{
-			panPath = saveFile(key, applicationId, TrainingPartnerPan);
+			panPath = saveFile(key, applicationId, TrainingPartnerPan , readApplicationConstants.getProfileCreationTrainingPartnerFolder());
 			LOGGER.debug("Pan path is " + panPath);
 		}
 		catch(Exception e)
@@ -550,6 +554,41 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return panPathUpdated;
 	}
 	
+	/*Method to save PAN of Assessment Body*/
+	public int saveABPAN(MultipartFile assessmentBodyPan, String key)
+	{
+		int panPathUpdated = 0;
+		int applicationId = getApplicationId();
+		String panPath = "";
+
+		try
+		{
+			panPath = saveFile(key, applicationId, assessmentBodyPan, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+			LOGGER.debug("Pan path is " + panPath);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while saving file " + e);
+		}
+		
+		panPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updatePanPath(panPath, applicationId );
+		return panPathUpdated;
+	}
+	/*
+	 * Methid ti save tan number of assessment body*/
+	public int saveABTan(MultipartFile assessmentBodyTan , String key)
+	{
+		int tanPathUpdated = 0, status =0;
+		int applicationId = getApplicationId();
+		if(applicationId > 0)
+		{
+			String abTanPath = saveFile(key, applicationId, assessmentBodyTan, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+			tanPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updateTanPath(abTanPath,applicationId);
+		}
+		return tanPathUpdated;
+	}
+	
+	
 	/*Method to save NSDC Certificate*/
 	public int saveTPNSDCCertificate(MultipartFile nsdcCertificate, String key)
 	{
@@ -559,7 +598,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 
 		try
 		{
-			certificatePath = saveFile(key, applicationId, nsdcCertificate);
+			certificatePath = saveFile(key, applicationId, nsdcCertificate , readApplicationConstants.getProfileCreationTrainingPartnerFolder());
 			LOGGER.debug("nsdc certificate path is " + certificatePath);
 			nsdcCertifiacte = profileCreationTrainingPartnerUpdateDataDao.updateNsdcCertificatePath(certificatePath, applicationId);
 		}
@@ -582,7 +621,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 
 		try
 		{
-			selfOwnedAnnexurePath = saveFile(key, applicationId,selfOwnedAnnexure);
+			selfOwnedAnnexurePath = saveFile(key, applicationId,selfOwnedAnnexure, readApplicationConstants.getProfileCreationTrainingPartnerFolder());
 			statusSelfOwnedAnnexureUpload = profileCreationTrainingPartnerUpdateDataDao.updateSelfOwnedAnnexure(selfOwnedAnnexurePath, applicationId);
 		}
 		catch(Exception e)
@@ -602,7 +641,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		String franchiseAnnexurePath = "";
 		try
 		{
-			franchiseAnnexurePath = saveFile(key, applicationId, franchiseeAnnexure);
+			franchiseAnnexurePath = saveFile(key, applicationId, franchiseeAnnexure , readApplicationConstants.getProfileCreationTrainingPartnerFolder());
 			statusFranchiseeAnnexure = profileCreationTrainingPartnerUpdateDataDao.updateFrnachiseeAnnexurePath(franchiseAnnexurePath, applicationId);
 		}
 		catch(Exception e)
@@ -622,7 +661,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		String mobileAnnexurePath = "";
 		try
 		{
-			mobileAnnexurePath = saveFile(key, applicationId, mobileAnnexure);
+			mobileAnnexurePath = saveFile(key, applicationId, mobileAnnexure, readApplicationConstants.getProfileCreationTrainingPartnerFolder());
 			statusMobileAnnexure = profileCreationTrainingPartnerUpdateDataDao.updateMobileAnnexurePath(mobileAnnexurePath, applicationId);
 		}
 		catch(Exception e)
@@ -633,19 +672,19 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return statusMobileAnnexure;
 	}
 	/*Method to save file */
-	private String saveFile(String key, int applicationId, MultipartFile file)
+	private String saveFile(String key, int applicationId, MultipartFile file, String pathToFolder)
 	{
 		int folderCreated = 0;	
-		
-		String pathToFolder ="", pathOfUploadedFile = "";
+		String pathTillApplicationId = "";
+		String pathOfUploadedFile = "";
 		if(!file.isEmpty())
 		{	
 			String fileName=file.getOriginalFilename();
 			int indexOfDot=fileName.indexOf(".");
 			try
 			{
-				pathToFolder = readApplicationConstants.getProfileCreationTrainingPartnerFolder() + applicationId+ "//";
-				File folder = new File (pathToFolder);
+				pathTillApplicationId = pathToFolder+ applicationId+ "//";
+				File folder = new File (pathTillApplicationId);
 				if(!folder.exists())
 				{
 						if(folder.mkdirs() || folder.canWrite())
@@ -657,15 +696,15 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 						else
 						{
 							folderCreated = -1;
-							LOGGER.debug("Could not create or write to directory "+ pathToFolder);
+							LOGGER.debug("Could not create or write to directory "+ pathTillApplicationId);
 						}
 				}
 				byte[] bytes = file.getBytes();		                  
 		         String fileNameToBeSaved= key + fileName.substring(indexOfDot);	
 		         LOGGER.debug("fileNameToBeSaved" + fileNameToBeSaved);
 		         
-		         Path path = Paths.get( pathToFolder + fileNameToBeSaved);       
-		         LOGGER.debug( " pathToFolder + fileNameToBeSaved " +pathToFolder + fileNameToBeSaved);
+		         Path path = Paths.get( pathTillApplicationId + fileNameToBeSaved);       
+		         LOGGER.debug( " pathToFolder + fileNameToBeSaved " +pathTillApplicationId + fileNameToBeSaved);
 		         
 		         //pathOfUploadedFile = pathToFolder + fileNameToBeSaved;
 		         pathOfUploadedFile = path.toAbsolutePath().toString();
@@ -678,12 +717,12 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			catch(IOException e)
 			{
 				folderCreated = -1;
-				LOGGER.error("An excpetion occured while saving file to location "+ pathToFolder);
+				LOGGER.error("An excpetion occured while saving file to location "+ pathTillApplicationId);
 			}
 			catch(Exception e)
 			{
 				folderCreated = -2;
-				LOGGER.error("An exception occured while saving file to the disk at location " + pathToFolder);
+				LOGGER.error("An exception occured while saving file to the disk at location " + pathTillApplicationId);
 			}
 	}
 		return pathOfUploadedFile;
@@ -697,6 +736,8 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return applicationId;
 
 	}
+	/*
+	 * Get training partner registration id*/
 	private String getTrainingPartnerRegistrationId(int applicationId)
 	{
 		
@@ -710,5 +751,18 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			LOGGER.error("An exception occured while finding registration Id for training partner " + e);
 		}
 		return trainingPartnerRegistrationId;
+	}
+	/*
+	 * Get Assessment body registration id*/
+	private String getAssessmentBodyRegistrationId(int applicationId)
+	{
+		String assessmentBodyRegistrationId = null;
+		try{
+			assessmentBodyRegistrationId = profileCreationAssessmentBodyGetDataDao.profileCreationGetAssessmentBodyRegistrationIdUsingApplicationId(applicationId);
+		}
+		catch(Exception e){
+			LOGGER.error("An exception occured while finding assessment body registration Id " + e);
+		}
+		return assessmentBodyRegistrationId;
 	}
 }

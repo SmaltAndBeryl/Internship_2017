@@ -5,9 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import com.skill.India.common.AbstractTransactionalDao;
 import com.skill.India.config.ProfileCreationAssessmentBodyConfigSql;
 import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
@@ -261,8 +261,44 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			return -1;
 		}
 	}
+	public int updatePanPath(String panPath, int applicationId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("panNumberPath" , panPath);
+			parameters.put("applicationId" , applicationId);
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getPanPath(), parameters);
+			LOGGER.debug("Value of status in panNumber update " + status);
+		}
+		catch(Exception e)
+		{
+			status = -2;
+			LOGGER.error("An exception occured while updating pan path of training partner " + e);
+		}
+		return status;
+	}
 	
-	
+	/*Update Tan Number pah*/
+	public int updateTanPath(String tanPath, int applicationId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("tanNumberPath" , tanPath);
+			parameters.put("applicationId" , applicationId);
+			status = getJdbcTemplate().update(profileCreationAssessmentBodyConfigSql.getTanPathUpdate(), parameters);
+			LOGGER.debug("Value of status in panNumber update " + status);
+		}
+		catch(Exception e)
+		{
+			status = -2;
+			LOGGER.error("An exception occured while updating tan path of training partner " + e);
+		}
+		return status;
+	}
 	
 	/*
 	 * Updating paths in table AssessmentStaffDetails

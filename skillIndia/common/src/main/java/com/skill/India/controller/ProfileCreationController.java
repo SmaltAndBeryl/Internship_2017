@@ -77,6 +77,7 @@ public class ProfileCreationController {
 	@RequestMapping(value="/saveAsDraftAndSubmitAB", method = RequestMethod.POST)
 	public int saveAsDraftABController(@RequestBody ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
+		LOGGER.debug("Response fro organisation as received from front end " + profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
 		int status = profileCreationSaveAsDraftAndSubmitService.SaveAssessmentBody(profileCreationAssessmentBodyWrapperDto);
 		return status;
 		
@@ -95,6 +96,23 @@ public class ProfileCreationController {
 		int status = 0;
 		LOGGER.debug("File has been received from front end " + file);
 		status = profileCreationSaveAsDraftAndSubmitService.saveTPPAN(file, "pan" );
+		return status;
+	}
+	
+	@RequestMapping(value="/fileUploadABPAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
+	public int saveFilePANAB(@RequestParam(value="pan") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveABPAN(file, "pan");
+		return status;
+	}
+	@RequestMapping(value="/fileUploadABTAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
+	public int saveFileTanAB(@RequestParam(value="tan") MultipartFile file)
+	{
+		int status = 0;
+		LOGGER.debug("File has been received from front end " + file);
+		status = profileCreationSaveAsDraftAndSubmitService.saveABTan(file, "tan");
 		return status;
 	}
 	
