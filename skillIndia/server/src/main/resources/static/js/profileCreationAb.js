@@ -41,13 +41,6 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
 
     });
 
-
-    //Save the data on the click of next button
-
-    $scope.saveAccordionOne = function(){
-        console.log("Button Working " + JSON.stringify($scope.assessmentBody));
-    }
-
     // Add new row functionality for the tables
     $scope.addNewExperience = function(experience){
         console.log("data added successfully");
@@ -98,7 +91,42 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
             if(selected.selected){
             	console.log(selected.domain);
             	selected.isActive = 0;
-            	
+            	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
+                var RequestMethod = "POST";
+                $scope.profileCreationABTPDto = {
+                		'type' : 'Draft',
+                		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
+                		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
+                		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
+                		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
+                		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
+                		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
+                		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
+                }  
+                
+                $http({
+                	url: saveDraftAndSubmit,
+                	method : RequestMethod,
+                	data :  angular.toJson( $scope.profileCreationABTPDto)
+                
+                }).then(
+                		function(response)
+                		{
+                			//Get the data from backend
+                		    $http.get('/getDataNewUserProfileCreation')
+                		    .then(function(response){
+                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        $scope.assessmentBody = response.data;
+                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+
+                		    });
+                
+                		},
+                		function(errorResponse, status)
+                		{
+                			console.log("Failed "+ errorResponse)
+                		}
+                		)
             }
         });
         //$scope.assessmentBody.AssessmentsExperienceInTechnicalDomain = newDataList;
@@ -110,16 +138,91 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
         angular.forEach($scope.assessmentBody.AssessmentBodyRecognitions, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
+            	console.log(selected.domain);
+            	selected.isActive = 0;
+            	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
+                var RequestMethod = "POST";
+                $scope.profileCreationABTPDto = {
+                		'type' : 'Draft',
+                		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
+                		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
+                		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
+                		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
+                		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
+                		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
+                		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
+                }  
+                
+                $http({
+                	url: saveDraftAndSubmit,
+                	method : RequestMethod,
+                	data :  angular.toJson( $scope.profileCreationABTPDto)
+                
+                }).then(
+                		function(response)
+                		{
+                			//Get the data from backend
+                		    $http.get('/getDataNewUserProfileCreation')
+                		    .then(function(response){
+                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        $scope.assessmentBody = response.data;
+                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+
+                		    });
+                
+                		},
+                		function(errorResponse, status)
+                		{
+                			console.log("Failed "+ errorResponse)
+                		}
+                		)
             }
         });
     };
 
     $scope.removeAffiliation = function(){
-        var newDataList=[];
-//        $scope.selectedAllRecognition = false;
+       
         angular.forEach($scope.assessmentBody.AssessmentBodyAffiliationDetails, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
+            	console.log(selected.domain);
+            	selected.isActive = 0;
+            	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
+                var RequestMethod = "POST";
+                $scope.profileCreationABTPDto = {
+                		'type' : 'Draft',
+                		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
+                		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
+                		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
+                		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
+                		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
+                		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
+                		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
+                }  
+                
+                $http({
+                	url: saveDraftAndSubmit,
+                	method : RequestMethod,
+                	data :  angular.toJson( $scope.profileCreationABTPDto)
+                
+                }).then(
+                		function(response)
+                		{
+                			//Get the data from backend
+                		    $http.get('/getDataNewUserProfileCreation')
+                		    .then(function(response){
+                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        $scope.assessmentBody = response.data;
+                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+
+                		    });
+                
+                		},
+                		function(errorResponse, status)
+                		{
+                			console.log("Failed "+ errorResponse)
+                		}
+                		)
             }
         });
         
@@ -127,11 +230,47 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
 
 
     $scope.removeDirectors = function(){
-        var newDataList=[];
-//        $scope.selectedAllRecognition = false;
         angular.forEach($scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
+            	console.log(selected.domain);
+            	selected.isActive = 0;
+            	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
+                var RequestMethod = "POST";
+                $scope.profileCreationABTPDto = {
+                		'type' : 'Draft',
+                		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
+                		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
+                		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
+                		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
+                		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
+                		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
+                		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
+                }  
+                
+                $http({
+                	url: saveDraftAndSubmit,
+                	method : RequestMethod,
+                	data :  angular.toJson( $scope.profileCreationABTPDto)
+                
+                }).then(
+                		function(response)
+                		{
+                			//Get the data from backend
+                		    $http.get('/getDataNewUserProfileCreation')
+                		    .then(function(response){
+                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        $scope.assessmentBody = response.data;
+                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+
+                		    });
+                
+                		},
+                		function(errorResponse, status)
+                		{
+                			console.log("Failed "+ errorResponse)
+                		}
+                		)
             }
         });
     };
@@ -142,6 +281,44 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
         angular.forEach($scope.assessmentBody.AssessmentBodyRegionalOfficeDetails, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
+            	console.log(selected.domain);
+            	selected.isActive = 0;
+            	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
+                var RequestMethod = "POST";
+                $scope.profileCreationABTPDto = {
+                		'type' : 'Draft',
+                		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
+                		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
+                		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
+                		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
+                		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
+                		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
+                		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
+                }  
+                
+                $http({
+                	url: saveDraftAndSubmit,
+                	method : RequestMethod,
+                	data :  angular.toJson( $scope.profileCreationABTPDto)
+                
+                }).then(
+                		function(response)
+                		{
+                			//Get the data from backend
+                		    $http.get('/getDataNewUserProfileCreation')
+                		    .then(function(response){
+                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        $scope.assessmentBody = response.data;
+                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+
+                		    });
+                
+                		},
+                		function(errorResponse, status)
+                		{
+                			console.log("Failed "+ errorResponse)
+                		}
+                		)
             }
         });
     };
@@ -151,6 +328,44 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
         angular.forEach($scope.assessmentBody.AssessmentStaffDetails, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
+            	console.log(selected.domain);
+            	selected.isActive = 0;
+            	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
+                var RequestMethod = "POST";
+                $scope.profileCreationABTPDto = {
+                		'type' : 'Draft',
+                		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
+                		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
+                		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
+                		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
+                		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
+                		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
+                		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
+                }  
+                
+                $http({
+                	url: saveDraftAndSubmit,
+                	method : RequestMethod,
+                	data :  angular.toJson( $scope.profileCreationABTPDto)
+                
+                }).then(
+                		function(response)
+                		{
+                			//Get the data from backend
+                		    $http.get('/getDataNewUserProfileCreation')
+                		    .then(function(response){
+                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        $scope.assessmentBody = response.data;
+                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+
+                		    });
+                
+                		},
+                		function(errorResponse, status)
+                		{
+                			console.log("Failed "+ errorResponse)
+                		}
+                		)
             }
         });
     };
@@ -192,26 +407,33 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
     	 fileUpload.uploadFileToUrl(file, uploadFileUrl, "tan");
     ;}
     
-    $scope.save = function(response){
-       // alert("Data saved successfully.. " + response);
-
-        console.log("here in save as draft");
-
-
-        var saveDraftAndSubmit = "/saveAsDraftAndSubmit";
-        
-        //console.log($scope.trainingPartner);
-        
-//        $scope.profileCreationABTPDto = {
-//        		"type" : "Draft",
-//        		"userData" : null,
-//        		"userUploads" : null,
-//        		"userDeletes" : null
-//        }
+    //Upload Management Staff CV
+    $scope.uploadCvMgmt = function(){
+    	var file = $scope.assessmentBody.ManagementResume;
+    	var uploadURl = "/fileUploadAbMgmtCv";
+    	fileUpload.uploadFileToUrl(file, uploadURl, "AssessmentBodyManagementCV");
+    }
     
-        
+  //Upload Assessor CV
+    $scope.uploadCvAssessor = function(){
+    	var file = $scope.assessmentBody.AssessmentResume;
+    	var uploadURl = "/fileUploadAbAssessorCv";
+    	fileUpload.uploadFileToUrl(file, uploadURl, "AssessmentBodyAssessmentStaffCV");
+    }
+    
+    //Upload Assessment staff certificate 
+    $scope.uploadAssessmentStaffCertificate = function(){
+    	var file = $scope.assessmentBody.AssessmentStaffCertificate;
+    	var uploadURl = "/fileUploadAbAssessorCertificate";
+    	fileUpload.uploadFileToUrl(file, uploadURl, "AssessmentBodyAssessmentStaffEducationCertificate");
+    }
+    
+    //Save as draft function
+    $scope.save = function(response){
+       
 
-        
+        var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
+        var RequestMethod = "POST";
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
         		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
@@ -221,56 +443,37 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
         		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
         		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
         		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
-        }
-        $scope.ProfileCreationTestDto = {
-        		'name' : 'Ruchi'
-        }
-       
+        }  
         
-        //console.log($scope.trainingPartner);
-
         $http({
-        	url: "/saveAsDraftAndSubmitAB",
-        	method : "POST",
+        	url: saveDraftAndSubmit,
+        	method : RequestMethod,
         	data :  angular.toJson( $scope.profileCreationABTPDto)
-        	//headers: { 'Content-Type': 'multipart/form-data', 'boundary' :'???' }
-        	//headers: { 'Accept': 'application/json', 'Content-Type': 'application/json; ; charset=UTF-8' }
         
         }).then(
         		function(response)
         		{
-        			console.log("SUCCESS 123");
-        			console.log("RESPONSE COMING FROM SERVER IS  : "+ response);
-        			
-        			console.log("RESPONSE COMING FROM SERVER IS  : "+ response.data);
-        		 if(response.data == "" )
-        			 {
-        			 console.log("NULL DATA I.E. ERROR");
-        			 }
-        		 else
-        			 console.log("ELSE");
-        			
+        			console.log("Success " + response)
+        			//Get the data from backend
+        		    $http.get('/getDataNewUserProfileCreation')
+        		    .then(function(response){
+        		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+        		        $scope.assessmentBody = response.data;
+        		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+
+        		    });
+       			
         
         		},
         		function(errorResponse, status)
         		{
-        			
-        			
-        			//console.log('THIS IS THE RESPONSE IN THE COMMENT:'+failure);	
-        		  
-        			
+        			console.log("Failed "+ errorResponse)
         		}
         		)
         };
    
         $scope.submit = function(response){
-            alert("Data saved successfully.. " + response);
-            //
-    		
-
-            console.log("here in submit");
-
-
+          
             var manageControllerURI = "/saveAsDraftAndSubmitAB";
             $scope.profileCreationABTPDto = {
             		'type' : 'Submit',
@@ -311,30 +514,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
             			
             		}
             		)
-            };
-        
-        
-        
-            $http.get()
-            .then(function(response){
-            	console.log("In Get  Function ");
-            	console.log(response.data);
-            	$scope.assessmentBody=response.data;
-              console.log($scope.assessmentBody);
-              console.log(response.data.pincode);
-              console.log($scope.assessmentBody.sPOCName);
-              console.log($scope.assessmentBody.pincode);
-              /*if($scope.profileTp.pincode==0)
-            	  $scope.profileTp.pincode=null;*/
-             
-          });
-        
-        
-        
-        
-        
-        
-        
-        
+            };    
+    
         
 });

@@ -135,7 +135,7 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()">Next</button>
+                                <button type="button" class="btn btn-primary next" ng-click="save()">Next</button>
                             </div>
                         </div>
 
@@ -303,12 +303,10 @@
                                 </div>
                             </form>
                         </div>
-
-
-
-                        <div class="row row-margin">
-                            <div class="col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="saveAccordionOne()" >Next</button>
+                        <!-- Next button -->
+                        <div class="form-horizontal">
+                            <div class="form-group col-lg-12">
+                                <button type="button" class="btn btn-primary next" ng-click="save()" >Next</button>
                             </div>
                         </div>
                     </div>
@@ -368,6 +366,11 @@
                             </form>
                         </div>
                     </div>
+                    <div class="form-horizontal">
+                            <div class="form-group col-lg-12">
+                                <button type="button" class="btn btn-primary next" ng-click="save()" >Next</button>
+                            </div>
+                        </div>
                 </div>
             </accordion-group>
             <!--  ------------------------ACCORDION 4------------------  -->
@@ -484,6 +487,11 @@
                             </form>
                         </div>
                     </div>
+                    <div class="form-horizontal">
+                            <div class="form-group col-lg-12">
+                                <button type="button" class="btn btn-primary next" ng-click="save()" >Next</button>
+                            </div>
+                        </div>
                 </div>
             </accordion-group>
             <accordion-group is-open="status.open5">
@@ -510,7 +518,7 @@
 	                     	<input id = "pan" type="file" file-model="assessmentBody.pan" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
-                     		<button ng-click="uploadFilePan()" class="btn btn-pc-upload">Upload</button>
+                     		<button ng-click="uploadFilePan()" class="btn btn-pc-upload">Upload PAN</button>
                      	</div>
                     
 
@@ -528,14 +536,49 @@
 	                     	<input id = "tan" type="file" file-model="assessmentBody.tan" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
-                     		<button ng-click="uploadFileTan()" class="btn btn-pc-upload">Upload</button>
+                     		<button ng-click="uploadFileTan()" class="btn btn-pc-upload">Upload TAN</button>
                      	</div>
                     
 
                         </div>
                  </div>
-                             </div>
-                                </form>
+                 </div>
+                </form>
+                <!-- Management staff CV -->
+                <form>                
+                <div class="form-horizontal">
+                	<div class="form-group">
+                		<div class="col-md-5"><label>Upload zip file of Managment staff's CV</label></div>
+                		<div class="col-md-5"><input type="file" file-model="assessmentBody.ManagementResume" accept="application/zip"/></div>
+                		<div class="col-md-2"><button ng-click="uploadCvMgmt()" class="btn btn-pc-upload">Upload CV</button></div>
+                	</div>
+                </div>
+                </form>
+                <!-- Assessment staff CV -->
+                <form>                
+                <div class="form-horizontal">
+                	<div class="form-group">
+                		<div class="col-md-5"><label>Upload zip file of Assessors' CV</label></div>
+                		<div class="col-md-5"><input type="file" file-model="assessmentBody.AssessmentResume" accept="application/zip"/></div>
+                		<div class="col-md-2"><button ng-click="uploadCvAssessor()" class="btn btn-pc-upload">Upload CV</button></div>
+                	</div>
+                </div>
+                </form>
+                <!-- Assessment staff Certificate -->
+                <form>                
+                <div class="form-horizontal">
+                	<div class="form-group">
+                		<div class="col-md-5"><label>Upload zip file of Assessment staff's education qualification dertificate</label></div>
+                		<div class="col-md-5"><input type="file" file-model="assessmentBody.AssessmentStaffCertificate" accept="application/zip"/></div>
+                		<div class="col-md-2"><button ng-click="uploadAssessmentStaffCertificate()" class="btn btn-pc-upload">Upload CV</button></div>
+                	</div>
+                </div>
+                </form>
+                <div class="form-horizontal">
+                            <div class="form-group col-lg-12">
+                                <button type="button" class="btn btn-primary next" ng-click="save()" >Next</button>
+                            </div>
+                        </div>
             </div>
             </accordion-group>
         </accordion>

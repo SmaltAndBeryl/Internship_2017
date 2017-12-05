@@ -170,9 +170,14 @@ ProfileCreationAssessmentBody:
   UPDATE `scgj`.`assessmentbodydirectorsandmanagementteamdetails` SET `cVPath`=:cVPath WHERE `directorsAndManagementId`=:directorsAndManagementId;
 
  updatePathsIntoAssessmentStaffDetails: >
-  UPDATE `scgj`.`AssessmentStaffDetails` SET `cVPath`=:cVPath, `certificatePath`=:certificatePath WHERE `assessmentStaffId`=:assessmentStaffId;
-
+  UPDATE `scgj`.`assessmentstaffdetails` SET `cVPath`=:cVPath WHERE `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId and isActive=1;
  
+ updateAssessmentStaffEducationCertificatePath: >
+  UPDATE `scgj`.`AssessmentStaffDetails` SET `certificatePath`=:certificatePath WHERE `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId and isActive=1;
+ 
+ updateAssessmentManagementCvPath: >
+  UPDATE `scgj`.`assessmentbodydirectorsandmanagementteamdetails` SET `cVPath`=:cVPath WHERE `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId and isActive=1;
+  
  deleteFromAssessmentBodyRecognitions: >
   DELETE FROM `scgj`.`assessmentbodyrecognitions` WHERE `assessmentBodyRecognitionId`=:assessmentBodyRecognitionId;
  
