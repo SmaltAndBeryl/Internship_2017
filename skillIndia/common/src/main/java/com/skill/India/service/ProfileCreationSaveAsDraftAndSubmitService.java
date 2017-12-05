@@ -293,7 +293,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	 * Method to save data of Training Partner*/
 	public int saveTrainingPartner(ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{
-		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, trainingStaff =0, experienceInTraining =0, trainer = 0;
+		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, managementStaff =0, experienceInTraining =0, trainer = 0;
 		int userExists = getApplicationId();
 		String applicationIdAfterCreation = null;
 		//New User
@@ -304,6 +304,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			
 			//get applicationId once it is created
 			applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
+			LOGGER.debug("Training Parter RegistrationId in if part " + applicationIdAfterCreation);
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto().isEmpty())
 			{
 			
@@ -333,7 +334,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto())
 				{
-					trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item , applicationIdAfterCreation);
+					managementStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item , applicationIdAfterCreation);
 				}
 			}
 			
@@ -367,6 +368,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		else 
 		{
 			applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
+			LOGGER.debug("Training Partner RegistrationId in else part "+ applicationIdAfterCreation);
 			applicationTableStatus = profileCreationTPABCommonDao.updateIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
 			status = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
 			/*
@@ -444,20 +446,21 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				
 			}
 			
-			/*Training Partner Training staff details*/
+			/*Training Partner MAnagement details*/
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto().isEmpty())
 			{
-				int doesTrainingStaffExists =10;
+				int doesManagementPresent =10;
 				for(ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto())
 				{
-					doesTrainingStaffExists = profileCreationTrainingPartnerGetDataDao.isTrainingStaffPresent(item.getTrainingPartnerRegistrationId(), item.getEmailId());
-					if(doesTrainingStaffExists == 0)
+					doesManagementPresent = profileCreationTrainingPartnerGetDataDao.isTrainingPartnerManagementStaffPresent(item.getTrainingPartnerRegistrationId(), item.getEmailId());
+					LOGGER.debug("Value of ispresent is" + doesManagementPresent);
+					if(doesManagementPresent == 0)
 					{
-						trainingStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item , applicationIdAfterCreation);
+						managementStaff = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item , applicationIdAfterCreation);
 					}
-					else if(doesTrainingStaffExists == 1)
+					else if(doesManagementPresent == 1)
 					{
-						trainingStaff = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item);
+						managementStaff = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails(item);
 					}
 					else
 					{
@@ -491,16 +494,17 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			/*Training Partner's Trainers*/
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerTrainingStaffDetailsDto().isEmpty())
 			{
-				int doesTrainingStaffExists = 10;
+				int doesTrainingPartnerTrainerExists = 10;
 				
 				for(ProfileCreationTrainingPartnerTrainingStaffDetailsDto item : profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerTrainingStaffDetailsDto())
 				{
-					doesTrainingStaffExists = profileCreationTrainingPartnerGetDataDao.isTrainingStaffPresent(item.getTrainingPartnerRegistrationId(), item.getEmailId());
-					if(doesTrainingStaffExists == 0)
+					doesTrainingPartnerTrainerExists = profileCreationTrainingPartnerGetDataDao.isTrainerPresent(item.getTrainingPartnerRegistrationId(), item.getEmailId());
+					LOGGER.debug("Value of trainer exists" + doesTrainingPartnerTrainerExists);
+					if(doesTrainingPartnerTrainerExists == 0)
 					{
 						trainer = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerTrainingStaff(item , applicationIdAfterCreation);
 					}
-					else if(doesTrainingStaffExists == 1)
+					else if(doesTrainingPartnerTrainerExists == 1)
 					{
 						trainer = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerTrainingStaff(item);
 					}

@@ -443,7 +443,7 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		return status;
 	}
 	
-	public int isTrainingStaffPresent(String trainingPartnerRegistrationId, String email)
+	public int isTrainingPartnerManagementStaffPresent(String trainingPartnerRegistrationId, String email)
 	{
 		int status = 10;
 		try
@@ -451,16 +451,39 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("emailId", email);
 			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
-			status =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingPartnerStaffTrainingStaffPresent(), parameters, Integer.class);
+			status = getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingStaffPresent(), parameters, Integer.class);
 		}
 		catch(EmptyResultDataAccessException e)
 		{
-			LOGGER.error("Could not find value of Training Staff" + e);
+			LOGGER.error("Could not find value of Training PArtnerManagement" + e);
 			status = -1;
 		}
 		catch (Exception e)
 		{
-			LOGGER.error("An excpetion occured while finding if traing staff already exists in database " +e);
+			LOGGER.error("An excpetion occured while finding if training Partner Management already exists in database " +e);
+			status = -2;
+		}
+		return status;
+	}
+	
+	public int isTrainerPresent(String trainingPartnerRegistrationId, String email)
+	{
+		int status = 10;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("emailId", email);
+			parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
+			status = getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsTrainingPartnerStaffTrainingStaffPresent(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("Could not find if Trainer exists" + e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured while finding if Trainer already exists in database " +e);
 			status = -2;
 		}
 		return status;
