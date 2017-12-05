@@ -59,7 +59,7 @@ $scope.removeTrainer = function(){
     	console.log("Inside function" + selected.nameOfCenter);
         if (selected.selected) {
             console.log("Is active" + selected.isActive)
-            selected.selected.isActive = false;
+            selected.isActive = false;
             console.log("Is active center" + selected.isActive)
             var url = '/saveAsDraftAndSubmitTP';
             var method = 'POST';
@@ -107,7 +107,7 @@ $scope.removeManagement = function(){
     	console.log("Inside function" + selected.nameOfCenter);
         if (selected.selected) {
             console.log("Is active" + selected.isActive)
-            selected.selected.isActive = false;
+            selected.isActive = false;
             console.log("Is active center" + selected.isActive)
             var url = '/saveAsDraftAndSubmitTP';
             var method = 'POST';
@@ -152,7 +152,7 @@ $scope.removeManagement = function(){
         	console.log("Inside function" + selected.nameOfCenter);
             if (selected.selected) {
                 console.log("Is active" + selected.isActive)
-                selected.selected.isActive = false;
+                selected.isActive = false;
                 console.log("Is active center" + selected.isActive)
                 var url = '/saveAsDraftAndSubmitTP';
                 var method = 'POST';
@@ -214,7 +214,7 @@ $scope.removeManagement = function(){
         angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(selected) {
             if (selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
-                selected.selected.isActive = 0;
+                selected.isActive = 0;
                 var url = '/saveAsDraftAndSubmitTP';
                 var method = 'POST';
                 $scope.postValue = {
@@ -256,7 +256,7 @@ $scope.removeManagement = function(){
         angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(selected) {
             if (!selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
-                selected.selected.isActive = 0;
+                selected.isActive = 0;
                 var url = '/saveAsDraftAndSubmitTP';
                 var method = 'POST';
                 $scope.postValue = {
@@ -298,7 +298,7 @@ $scope.removeManagement = function(){
         angular.forEach($scope.trainingPartner.ManagementAndStaffAndOfficialDetails, function(selected) {
             if (!selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
-                selected.selected.isActive = 0;
+                selected.isActive = 0;
                 var url = '/saveAsDraftAndSubmitTP';
                 var method = 'POST';
                 $scope.postValue = {
@@ -341,7 +341,7 @@ $scope.removeManagement = function(){
         angular.forEach($scope.trainingPartner.InstituteRecognitionDetails, function(selected) {
             if (!selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
-                selected.selected.isActive = 0;
+                selected.isActive = 0;
                 var url = '/saveAsDraftAndSubmitTP';
                 var method = 'POST';
                 $scope.postValue = {
@@ -384,7 +384,7 @@ $scope.removeManagement = function(){
         angular.forEach($scope.trainingPartner.InstituteGrantDetails, function(selected) {
             if (selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
-                selected.selected.isActive = 0;
+                selected.isActive = 0;
                 var url = '/saveAsDraftAndSubmitTP';
                 var method = 'POST';
                 $scope.postValue = {

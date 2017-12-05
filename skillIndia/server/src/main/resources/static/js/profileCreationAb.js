@@ -1,58 +1,8 @@
 var profileCreationAb = angular.module('hello');
 
-profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location){
+profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileUpload){
 
-	
-	$scope.files=[];
-    var idName= [];
-     var status=0;
-     var i = 0;
-     // GET THE FILE INFORMATION.
-     
-     $scope.getFileDetails = function (e) {
-       
-     
-         $scope.$apply(function () {
-              console.log(i);
-             
-				var j=-1;
-             for(j;j<idName.length;j++)
-                 {
-                     console.log(e.id+"      "+idName[j]);
-                     if(e.id == idName[j])
-                         {
-                             console.log("In If ");
-                             status=1;   
-                             break;
-                         }
-                     else
-                         {
-                             status=0;
-                             console.log("In else");
-                             //break;
-                         }
-                 }
-             
-             if(status==1)
-                 {
-                     console.log("Value of J for if is : " + j);
-                     $scope.files.splice(j,1,e.files[0]); 
-                 }
-             else if(status==0)
-                 {
-                     console.log("Value of J for else is : " + j);
-                     idName.push(e.id); 
-                     console.log("Hey Id is  : "+ e.id);
-                     $scope.files.push(e.files[0]);
-                     i++;  
-                 }
-              
-                     
-             // STORE THE FILE OBJECT IN AN ARRAY.
-            
-                         
-         });
-     };
+
     $scope.assessmentBody = {
     		
     };
@@ -102,17 +52,13 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     $scope.addNewExperience = function(experience){
         console.log("data added successfully");
         $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain.push({
-            'domain' : "",
-            'numberOfAssessmentsDone' : ""
+            'domain' : ""
         });
     }
     $scope.addNewRecognition = function(recognition){
         console.log("data added successfully");
         $scope.assessmentBody.AssessmentBodyRecognitions.push({
-            'name' : "",
-            'number' : "",
-            'year' : "",
-            'validity' : ""
+            'name' : ""
         });
     }
     $scope.addNewAffiliation = function(affiliation){
@@ -125,12 +71,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     $scope.addNewDirectors = function(directors){
         console.log("Data added successfully");
         $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails.push({
-             'name' : "",
-             'designation':"",
-             'contactNumber': '',
-             'emailId': '',
-             'educationalQualification': '',
-             'experience': ''
+             'name' : ""
         });
     }
 
@@ -138,62 +79,50 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     $scope.addNewOffice = function(office){
         console.log("Data added successfully");
         $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails.push({
-             'address' : "",
-             'state':"",
-             'contactNumber': '',
-             'pincode': '',
-             'contactNumber': '',
-             'alternateContactNumber': ''
+             'address' : ""
         });
     }
 
     $scope.addNewAssessor = function(assessor){
         console.log("Data added successfully");
         $scope.assessmentBody.AssessmentStaffDetails.push({
-             'name' : "",
-             'jobRoleCode':"",
-             'designation': '',
-             'contactNumber': '',
-             'emailId': '',
-             'state': '',
-             'city':'',
-             'educationalQualification' : '',
-             'experience' : ''
+             'name' : ""
         });
     }
 
     //Remove functionality
     $scope.removeExperience = function(){
-        var newDataList=[];
-        $scope.selectedAllExperience = false;
+        
+        
         angular.forEach($scope.assessmentBody.AssessmentsExperienceInTechnicalDomain, function(selected){
-            if(!selected.selected){
-                newDataList.push(selected);
+            if(selected.selected){
+            	console.log(selected.domain);
+            	selected.isActive = 0;
+            	
             }
         });
-        $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain = newDataList;
+        //$scope.assessmentBody.AssessmentsExperienceInTechnicalDomain = newDataList;
     };
 
     $scope.removeRecognition = function(){
         var newDataList=[];
         $scope.selectedAllRecognition = false;
         angular.forEach($scope.assessmentBody.AssessmentBodyRecognitions, function(selected){
-            if(!selected.selected){
-                newDataList.push(selected);
+        	if(selected.selected){
+            	selected.isActive = 0;
             }
         });
-        $scope.assessmentBody.AssessmentBodyRecognitions = newDataList;
     };
 
     $scope.removeAffiliation = function(){
         var newDataList=[];
 //        $scope.selectedAllRecognition = false;
         angular.forEach($scope.assessmentBody.AssessmentBodyAffiliationDetails, function(selected){
-            if(!selected.selected){
-                newDataList.push(selected);
+        	if(selected.selected){
+            	selected.isActive = 0;
             }
         });
-        $scope.assessmentBody.AssessmentBodyAffiliationDetails = newDataList;
+        
     };
 
 
@@ -201,32 +130,29 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         var newDataList=[];
 //        $scope.selectedAllRecognition = false;
         angular.forEach($scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails, function(selected){
-            if(!selected.selected){
-                newDataList.push(selected);
+        	if(selected.selected){
+            	selected.isActive = 0;
             }
         });
-        $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails = newDataList;
     };
 
     $scope.removeOffice = function(){
         var newDataList=[];
         $scope.selectedAllExperience = false;
         angular.forEach($scope.assessmentBody.AssessmentBodyRegionalOfficeDetails, function(selected){
-            if(!selected.selected){
-                newDataList.push(selected);
+        	if(selected.selected){
+            	selected.isActive = 0;
             }
         });
-        $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails = newDataList;
     };
 
     $scope.removeAssessor = function(){
         var newDataList=[];
         angular.forEach($scope.assessmentBody.AssessmentStaffDetails, function(selected){
-            if(!selected.selected){
-                newDataList.push(selected);
+        	if(selected.selected){
+            	selected.isActive = 0;
             }
         });
-        $scope.assessmentBody.AssessmentStaffDetails = newDataList;
     };
 
     //Remove all functionality
@@ -248,8 +174,26 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     $scope.update = function(){
         console.log("The updated JSON is " + JSON.stringify($scope.names));
     };
+    
+    //Upload file
+    $scope.uploadFilePan = function() {
+        var file = $scope.assessmentBody.pan;
+        console.log("File is " + file);
+
+        var uploadPAN = "/fileUploadABPAN";
+        fileUpload.uploadFileToUrl(file, uploadPAN, "pan");
+    };
+    
+    //Upload tan number
+    $scope.uploadFileTan = function()
+    {
+    	var file = $scope.assessmentBody.tan; 
+    	var uploadFileUrl = "/fileUploadABTAN";
+    	 fileUpload.uploadFileToUrl(file, uploadFileUrl, "tan");
+    ;}
+    
     $scope.save = function(response){
-        alert("Data saved successfully.. " + response);
+       // alert("Data saved successfully.. " + response);
 
         console.log("here in save as draft");
 
@@ -264,164 +208,19 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
 //        		"userUploads" : null,
 //        		"userDeletes" : null
 //        }
-       
-              
+    
         
-        
-        $scope.dataPAN = new FormData();
-        var recordPan="PanNumber";
-        console.log("PanNumber :"+$scope.files);
-        
-        $scope.dataPAN.append("PanNumber",$scope.files[0]);
-            console.log($scope.files[0]);
-        
-        
-        $scope.dataTAN = new FormData();
-        var recordTAN="TanNumber";
-        console.log("TanNumber :"+$scope.files);
-        $scope.dataTAN.append("TanNumber",$scope.files[1]);
-            console.log($scope.files[1]);
-        
-        
-        $scope.userUploads = {
-        	'AssessmentBodyRegistrationDetails' :{
-        		'Record1': {'PanNumber' : $scope.dataPAN},
-        		'Record2': {'TanNumber': $scope.dataTAN}
-        	} ,
-        	'AssessmentBodyDirectorsAndManagementTeamDetails' :{
-        		'record1':{'CV':$scope.something} /*There will be more than one CV files uploaded for directors and management details*/
-        	},
-        	'AssessmentStaffDetails' : {
-        		'record1' : {'CV':$scope.something} /*There will be more than one CV files uploaded for staff details*/
-        	}      	
-        }
-        
-//        $scope.profileCreationABTPDto = {
-//        		'type' : 'Draft',
-//        		'userData' :$scope.userData,
-//        		'userDeletes' :$scope.userDeletes,
-//        		//'userUploads' :$scope.userUploads
-//        }
-        
-        $scope.profileCreationAssessmentBodyRegistrationDetailsDto = {
-			'assessmentBodyRegistrationId': '1',
-			'applicationId': '4',
-			'organizationName': 'ABESIT',
-			'sPOCName': 'Ashu Goel',
-			'address': 'NH 24 Vijay Nagar',
-			'city': 'Ghaziabad',
-			'state': 'UP',
-			'pincode': '121212',
-			'mobileNumber': '9898989876',
-			'alternateMobileNumber': '9898877978',
-			'landlineNumber': '0141333023',
-			'alternateLandlineNumber': '0141333024',
-			'faxNumber': '0141333024',
-			'websites': 'www.abesit.in',
-			'yearOfEstablishment': '2010',
-			'priorAssessmentExperience': '5',
-			'panNumber': 'CIPX9090',
-			'tanNumber': '67676767',
-			'numberOfTechnicalAssessors': '10',
-			'numberOfNonTechnicalAssessors': '76',
-			'affiliatedToAnySectorSkillCouncil': 'no'
-		}
-        $scope.pcabAffiliation = [{
-        		'assessmentBodyRegistrationId': '1',
-        		'affiliationId' :'1',
-        		'nameOfSectorSkillCouncil' : 'SSCD',
-        		'isActive' : 1
-        },
-        {
-        	'assessmentBodyRegistrationId': '1',
-        	'affiliationId' :'2',
-    		'nameOfSectorSkillCouncil' : 'ruchi',
-    		'isActive' : 1
-        },
-        {
-        	'assessmentBodyRegistrationId': '1',
-        	'affiliationId' :'3',
-    		'nameOfSectorSkillCouncil' : 'tuvhi',
-    		'isActive' : 0
-        }
-        ]
-        $scope.pcabManagement = [{
-        	'directorsAndManagementId' : "2",
-        	'assessmentBodyRegistrationId' : '1',
-        	'name' : 'Ruchi Pareek',
-            'designation':"Co-founder",
-            'contactNumber': '98989898989',
-            'emailId': 'ruchi@smaltandberyl.com',
-            'educationalQualification': 'BTech.',
-            'experience': '4',
-            'isActive' :1
-        },
-        {
-        	'directorsAndManagementId' : "3",
-        	'assessmentBodyRegistrationId' : '1',
-        	'name' : 'Falaana',
-            'designation':"Co-founder",
-            'contactNumber': '98989898989',
-            'emailId': 'falaana@smaltandberyl.com',
-            'educationalQualification': 'BTech.',
-            'experience': '4',
-            'isActive' :1
-        }]
-        $scope.pcabrecognition = [{
-        	'assessmentBodyRecognitionId' : '1',
-        	'assessmentBodyRegistrationId' :'1',
-        	'nameOfRecognitionBody' : 'NSDC',
-        	'recognitionNumber' : 'h7y8',
-        	'yearOfRecognition' : '2012',
-        	'validityOfRecognition' : '2013',
-        	'isActive' :1
-        }]
-        
-        $scope.pcabregionalOffice = [{
-        	'assessmentBodyRegistrationId' : '1',
-        	'regionalOfficeId' :'1',
-        	'address' : 'NH 24 Vijay Nagar',
-        	'state' : 'Uttar Pradesh',
-        	'pincode' : '333023',
-        	'contactNumber' : '9898989',
-        	'alternateContactNumber' : '7677767657',
-        	'isActive' : 1
-        }]
-        
-        $scope.pcabAssessmentStaff = [{
-        	'assessmentBodyRegistrationId' : '1',
-        	'assessmentStaffId' :'1',
-        	'name' : 'Ruchi',
-        	'jobRoleCode' : '123',
-        	'designation' : 'kjk',
-        	'contactNumber' : '9898989',
-        	'emailId' : 'ruchi@smaltandberyl.com',
-        	'state' : 'Uttar Pradesh',
-        	'city' : 'Noida',
-        	'educationalQualification' : 'B Tech.',
-        	'experience' : '2',
-        	'cVPath' : null,
-        	'certificatePath' : null,
-        	'isActive' : 1
-        }]
-        
-        $scope.pcabTechnicalExperience = [{
-        	'assessmentBodyRegistrationId' : '1',
-        	'assessmentExperienceId' :'1',
-        	'domain' : 'nahi h',
-        	'numberOfAssessmentsDone' : '2',
-        	'isActive' : 1
-        }]
+
         
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
-        		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.profileCreationAssessmentBodyRegistrationDetailsDto,
-        		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.pcabAffiliation,
-        		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.pcabManagement,
-        		'profileCreationAssessmentBodyRecognitionsDto' : $scope.pcabrecognition,
-        		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.pcabregionalOffice,
-        		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.pcabTechnicalExperience,
-        		'profileCreationAssessmentStaffDetailsDto': $scope.pcabAssessmentStaff
+        		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
+        		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
+        		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
+        		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
+        		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
+        		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
+        		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
         }
         $scope.ProfileCreationTestDto = {
         		'name' : 'Ruchi'
@@ -463,8 +262,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         		}
         		)
         };
-        
-        
+   
         $scope.submit = function(response){
             alert("Data saved successfully.. " + response);
             //
@@ -473,19 +271,28 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             console.log("here in submit");
 
 
-            var manageControllerURI = "/saveAsDraftAndSubmit";
-            
+            var manageControllerURI = "/saveAsDraftAndSubmitAB";
+            $scope.profileCreationABTPDto = {
+            		'type' : 'Submit',
+            		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.profileCreationAssessmentBodyRegistrationDetailsDto,
+            		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
+            		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
+            		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
+            		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
+            		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
+            		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
+            }
             console.log($scope.assessmentBody);
             
           
-            $scope.assessmentBody["type"] = "Submit";
+            //$scope.assessmentBody["type"] = "Submit";
             
             console.log($scope.assessmentBody);
 
             $http({
             	url : manageControllerURI,
             	method : "POST",
-            	data : $scope.assessmentBody
+            	data : angular.toJson($scope.profileCreationABTPDto)
             	/*data: angular.toJson(editdetailsOfApplication)*/
             }).then(
             		function(response)

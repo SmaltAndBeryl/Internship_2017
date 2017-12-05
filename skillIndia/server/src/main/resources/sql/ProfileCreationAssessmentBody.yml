@@ -25,22 +25,22 @@ ProfileCreationAssessmentBody:
   select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
  
  isAffiliationPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.AssessmentBodyAffiliationDetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and affiliationId=:affiliationId);
+  SELECT EXISTS(SELECT * FROM scgj.AssessmentBodyAffiliationDetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and nameOfSectorSkillCouncil=:nameOfSectorSkillCouncil and isActive=1);
  
  isManagementPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.assessmentbodydirectorsandmanagementteamdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and directorsAndManagementId=:directorsAndManagementId);
+  SELECT EXISTS(SELECT * FROM scgj.assessmentbodydirectorsandmanagementteamdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and emailId=:emailId and isActive=1);
   
  isRecognitionPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.assessmentbodyrecognitions WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and assessmentBodyRecognitionId=:assessmentBodyRecognitionId);
+  SELECT EXISTS(SELECT * FROM scgj.assessmentbodyrecognitions WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and nameOfRecognitionBody=:nameOfRecognitionBody and isActive=1);
  
  isRegionalOfficePresent: >
-  SELECT EXISTS(SELECT * FROM scgj.assessmentbodyregionalofficedetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and regionalOfficeId=:regionalOfficeId);
+  SELECT EXISTS(SELECT * FROM scgj.assessmentbodyregionalofficedetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and pincode=:pincode and isActive=1	);
   
  isAssessmentExperiencePresent: >
-     SELECT EXISTS(SELECT * FROM scgj.assessmentsexperienceintechnicaldomain WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and assessmentExperienceId=:assessmentExperienceId);
+     SELECT EXISTS(SELECT * FROM scgj.assessmentsexperienceintechnicaldomain WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and domain=:domain and isActive=1);
  
  isAssessmentStaffPresent: >
-  SELECT EXISTS(SELECT * FROM scgj.assessmentstaffdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and assessmentStaffId=:assessmentStaffId);
+  SELECT EXISTS(SELECT * FROM scgj.assessmentstaffdetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and emailId=:emailId);
  
  insertDataInApplication: >
   insert into application(applicationState,activeFlag,dateOfSubmission,userId)
@@ -77,7 +77,12 @@ ProfileCreationAssessmentBody:
  updateDataInApplication: >
   update Application set applicationState=:applicationState,activeFlag=:activeFlag,dateOfSubmission=:dateOfSubmission
     where userId=:userId
-
+ panPath: >
+  UPDATE `scgj`.`assessmentbodyregistrationdetails` SET `panNumberPath` =:panNumberPath WHERE applicationId = :applicationId; 
+  
+ tanPathUpdate: >
+  UPDATE `scgj`.`assessmentbodyregistrationdetails` SET `tanNumberPath` =:tanNumberPath WHERE applicationId = :applicationId;
+  
  updateIntoAssessmentBodyRegistrationDetails: >
   UPDATE `scgj`.`assessmentbodyregistrationdetails` SET `organizationName`=:organizationName, 
   `sPOCName`=:sPOCName, 

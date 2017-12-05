@@ -90,7 +90,7 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4">Mobile Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber" />
                                     </div>
                                 </div>
 
@@ -178,8 +178,8 @@
                                     <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience" value="No" ng-click="removeAllExperience()" checked> No
                                 </label>
                             </div>
-                            <form ng-submit="addNewExperience()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience == 'Yes'">
+                            <form class="col-md-8 col-md-offset-4 table-top">
+                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience.length >'0'">
                                     <table>
                                         <thead>
                                         <tr>
@@ -199,7 +199,7 @@
                                     </table>
                                     <div class="form-group add-btn">
                                         <input ng-hide="!assessmentBody.AssessmentsExperienceInTechnicalDomain.length" type="button" class="btn btn-danger" ng-click="removeExperience()" value="Remove Selected">
-                                        <input type="submit" class="btn btn-primary addNewExperience" value="Add New">
+                                        <input ng-show = "assessmentBody.AssessmentsExperienceInTechnicalDomain.length > '0' " type="button" class="btn btn-primary addNewExperience" value="Add New" ng-click="addNewExperience()" />
                                     </div>
                                 </div>
                             </form>
@@ -488,18 +488,55 @@
             </accordion-group>
             <accordion-group is-open="status.open5">
             <accordion-heading>
-            File upload testing accordion
+            <div class="container acc-heading">
+                        <div class="row">
+                            <div class="col-md-11">
+                                STEP 5 : UPLOAD DOCUMENTS
+                            </div>
+                            <div class="col-md-1">
+                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open3, 'glyphicon-plus': !status.open3}"></i>
+                            </div>
+                        </div>
+                    </div>
             </accordion-heading>
-            <table>
-            	<tr>
-            		<td>
-            			<input type="file" id="filePAN" name="PAN Number" onchange="angular.element(this).scope().getFileDetails(this)" /> 
-            		</td>
-            		<td>
-            			<input type="file" id="fileTAN" name="TAN Number" onchange="angular.element(this).scope().getFileDetails(this)" />
-            		</td>
-            	</tr>
-            </table>
+            <div>
+            <form>
+                  <div class="upload-btn">
+                 <div class="form-horizontal">
+                 <div class="form-group">                   
+                      	 <div class="col-md-4"><label>Pan Card</label></div>                      	 
+                     
+	                     <div class="col-md-6">
+	                     	<input id = "pan" type="file" file-model="assessmentBody.pan" accept="application/pdf" />
+	                     </div>
+                     	<div class="col-md-2">
+                     		<button ng-click="uploadFilePan()" class="btn btn-pc-upload">Upload</button>
+                     	</div>
+                    
+
+                        </div>
+                 </div>
+                             </div>
+                                </form>
+                  <form>
+                  <div class="upload-btn">
+                 <div class="form-horizontal">
+                 <div class="form-group">                   
+                      	 <div class="col-md-4"><label>Tan</label></div>                      	 
+                     
+	                     <div class="col-md-6">
+	                     	<input id = "tan" type="file" file-model="assessmentBody.tan" accept="application/pdf" />
+	                     </div>
+                     	<div class="col-md-2">
+                     		<button ng-click="uploadFileTan()" class="btn btn-pc-upload">Upload</button>
+                     	</div>
+                    
+
+                        </div>
+                 </div>
+                             </div>
+                                </form>
+            </div>
             </accordion-group>
         </accordion>
     </div>
