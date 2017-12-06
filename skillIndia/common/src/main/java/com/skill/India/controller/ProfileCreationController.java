@@ -142,6 +142,40 @@ public class ProfileCreationController {
 		status = profileCreationSaveAsDraftAndSubmitService.saveMobileAnnexure(file, "fileuploadTPMobile");
 		return status ;
 	}
+	/*
+	 * Method to upload Education certificates of Training staff*/
+	@RequestMapping(value="/fileUploadTpEducationCertificates", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileEducationCertificateTp(@RequestParam(value = "fileuploadTPEducationCertificate")MultipartFile file)
+	{
+		int status = 0;
+		//status = profileCreationSaveAsDraftAndSubmitService.;
+		return status ;
+	}
+	
+	/*
+	 * Method to upload training staff Cv*/
+	
+	@RequestMapping(value="/fileUploadTrainingStaffCv", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileTrainingStaffCv(@RequestParam(value = "fileuploadTrainingStaffCv")MultipartFile file)
+	{
+		int status = 0;
+		//status = profileCreationSaveAsDraftAndSubmitService.;
+		return status ;
+	}
+	
+	/*
+	 * Method to upload Training Partner Management Staff*/
+	
+	@RequestMapping(value= "/fileUploadManagementStaffCv" , method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileManagementStaffCv(@RequestParam(value="fileUploadTpManagementCv") MultipartFile file)
+	{
+		int status = 0;
+		//status = profileCreationSaveAsDraftAndSubmitService.;
+		return status ;
+	}
+	
+	/*
+	 * Method to upload Pan Card pdf of Assessment Body*/
 	
 	@RequestMapping(value="/fileUploadABPAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
 	public int saveFilePANAB(@RequestParam(value="pan") MultipartFile file)
@@ -151,6 +185,9 @@ public class ProfileCreationController {
 		status = profileCreationSaveAsDraftAndSubmitService.saveABPAN(file, "pan");
 		return status;
 	}
+	
+	/*
+	 * Method to upload Tan Pdf of Assessment Body*/
 	@RequestMapping(value="/fileUploadABTAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
 	public int saveFileTanAB(@RequestParam(value="tan") MultipartFile file)
 	{
