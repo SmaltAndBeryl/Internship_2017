@@ -1118,7 +1118,8 @@
                     	<div class="form-horizontal">
                     		<div class="form-group">
                     			<div class="col-md-6">
-                    			<label>All Certificates related to QP</label>
+                    			<label>Education Certificates of Trainers related to QP</label>
+                    			<br><small class="fine-print">Upload a zip file having all the pdfs of Qp related certificates</small>
                     			</div>
                     			<div class="col-md-4">
                     				<input id = "certificatesQP" type="file" file-model="trainingPartner.certificatesQP" accept="application/zip" />
@@ -1130,13 +1131,33 @@
                     	</div>
                     </div>
                     </form>
+                    <!-- Upload CVs of Training Staffs -->
+                    <form>
+                    <div class="upload-button">
+                    	<div class="form-horizontal">
+                    		<div class="form-group">
+                    			<div class="col-md-6">
+                    			<label>CV's of Training Staff </label>
+                    			<br><small class="fine-print">Upload a zip file having all the pdfs of CVs</small>
+                    			</div>
+                    			<div class="col-md-4">
+                    				<input id = "trainingStaffCV" type="file" file-model="trainingPartner.trainingStaffCV" accept="application/zip" />
+                    			</div>
+                    			<div class="col-md-2">
+                    				<button ng-click="uploadFileTrainingStaffCV()" class="btn btn-pc-upload">Upload</button>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </div>
+                    </form>
                     <!-- Upload CVs of Management staff -->
                     <form>
                     <div class="upload-button">
                     	<div class="form-horizontal">
                     		<div class="form-group">
                     			<div class="col-md-6">
-                    			<label>CV's of staff</label>
+                    			<label>CV's of Management staff</label>
+                    			<br><small class="fine-print">Upload a zip file having all the pdfs of CVs</small>
                     			</div>
                     			<div class="col-md-4">
                     				<input id = "managementStaffCV" type="file" file-model="trainingPartner.managementStaffCV" accept="application/zip" />
@@ -1148,6 +1169,8 @@
                     	</div>
                     </div>
                     </form>
+                    <!-- Upload Cvs of Training center heads -->
+                    
                 </div>
             </accordion-group>
             

@@ -504,21 +504,35 @@ $scope.removeManagement = function(){
     {
     	var file = $scope.trainingPartner.mobileFile;
     	var uploadMobile = "/fileUploadTPMobile"
+    		fileUpload.uploadFileToUrl(file, uploadFranchisee, "fileuploadTPFranchisee");
     }
     
-    //Preview attachments
-//    $scope.previewAttachments = function(event) {
-//        var files = event.target.files;
-//        $scope.attachments = [];
-//        angular.forEach(files, function(file) {
-//            $scope.attachments.push(file.name);
-//            var reader = new FileReader();
-//            reader.onload = function() {
-//                $scope.$apply();
-//            }
-//            reader.readAsDataURL(file);
-//        })
-//    }
+    //Upload Education certificates
+    $scope.uploadFileCertificatesQP = function()
+    {
+    	var file = $scope.trainingPartner.certificatesQP;
+    	var uploadEducationCertificates = "";
+    	fileUpload.uploadFileToUrl(file, uploadEducationCertificates, "fileuploadTPEducationCertificate");
+    	
+    }
+    
+    //Upload Training Staff Cvs
+    $scope.uploadFileTrainingStaffCV = function()
+    {
+    	var file = $scope.trainingPartner.trainingStaffCV;
+    	var uploadTrainingStaffCvUrl = "/fileUploadTrainingStaffCv";
+    	fileUpload.uploadFileToUrl(file, uploadTrainingStaffCvUrl, "fileuploadTrainingStaffCv");
+    }
+    
+    
+    //Upload Cv of Training Partner Management Staff
+   $scope.uploadFileManagementStaffCV = function()
+   {
+	   var file = $scope.trainingPartner.managementStaffCV;
+	   var uploadTpManagementStaffCvUrl = "/fileUploadManagementStaffCv";
+	   fileUpload.uploadFileToUrl(file, uploadTpManagementStaffCvUrl, "fileUploadTpManagementCv");
+		  
+   }
 
     $scope.grantTable = {
         enableGridMenus: false,
