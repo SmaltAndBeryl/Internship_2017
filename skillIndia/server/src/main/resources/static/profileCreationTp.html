@@ -1,7 +1,8 @@
 <head>
     <link rel="stylesheet" href="css/profileCreationTp.css">
 </head>
-<div ng-controller="profileCreationTp">
+<form id="profileCreationTrainingPartner" name="profileCreationTrainingPartner" ng-submit="profileCreationTrainingPartner.$valid && submit()" ng-controller="profileCreationTp">
+<div>
     <script type="text/ng-template">
         <div class="panel-heading panel-top">
             <h4 class="panel-title">
@@ -92,14 +93,14 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4">Mobile Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileNumber" ng-required="true" />
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4">Alternate Mobile Number</div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" ng-required="true" />
                                     </div>
                                 </div>
 
@@ -970,7 +971,7 @@
                     </div>
                     </div>
                     </div>
-                    <!-- Studnet admission remark -->
+                    <!-- Student admission remark -->
                     <div class="form-horizontal">
                     	<div class="form-group">
                     	<div class="col-md-6">
@@ -1220,10 +1221,11 @@
             <button type="button" ng-click="save()" class="btn btn-pc-save">Save as Draft</button>
             </div>
             <div class="col-md-2 col-md-offset-4">
-            	<button type="submit" ng-click="submit()" class="btn btn-pc-submit">Submit</button>
+            	<input type="submit" class="btn btn-pc-submit" value="submit" name="submit" />
             </div>
             
         </div>
     </div>
 
 </div>
+</form>
