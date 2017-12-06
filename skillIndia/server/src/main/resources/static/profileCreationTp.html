@@ -29,7 +29,7 @@
             </div>
              
              <div class="col-md-2">
-                <a href="/guidelines/Guidelines_SCGJ_TrainingPartner.pdf" download>Guidelines</a>
+                <a href="/guidelines/Guidelines_SCGJ_TrainingPartner.pdf" target="_blank"><h4>Guidelines</h4></a>
                 </div>
                 
         </div>
@@ -168,7 +168,15 @@
                         <div class="row row-margin">
                             <div class="col-md-4">Year of Establishment</div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment" />
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment" placeholder="year"/>
+                            </div>
+                        </div>
+                        <div class="row row-margin">
+                            <div class="col-md-4">Qualification Pack<br>
+                            <small class="fine-print">Please refer Guideliness for available QPs</small></div>
+                            <div class="col-md-8">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.qualificationPacks" placeholder="multile Qps separated by comma"/>
+                                
                             </div>
                         </div>
 
@@ -182,7 +190,7 @@
 
                         <div class="row row-margin">
                             <div class="col-md-12">
-                                Model of Institution
+                                <label>Model of Institution</label>
                             </div>
                         </div>
 
@@ -1016,9 +1024,9 @@
                   <div class="upload-btn">
                  <div class="form-horizontal">
                  <div class="form-group">                   
-                      	 <div class="col-md-4"><label>Pan Card</label></div>                      	 
+                      	 <div class="col-md-6"><label>Pan Card</label></div>                      	 
                      
-	                     <div class="col-md-6">
+	                     <div class="col-md-4">
 	                     	<input id = "pan" type="file" file-model="trainingPartner.pan" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
@@ -1035,9 +1043,9 @@
                   <div class="upload-btn">
                   <div class="form-horizontal">
                   <div class="form-group">                   
-                      	 <div class="col-md-4"><label>Tan</label></div>                      	 
+                      	 <div class="col-md-6"><label>Tan</label></div>                      	 
                      <div>
-	                     <div class="col-md-6">
+	                     <div class="col-md-4">
 	                     	<input id = "tan" type="file" file-model="trainingPartner.tan" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
@@ -1055,10 +1063,10 @@
                     <div class="upload-btn">
                     	<div class="form-horizontal">
                     		<div class="form-group">
-                    			<div class="col-md-4">
+                    			<div class="col-md-6">
                     			<label>Is Institute NSDC Funded?</label>
                     			</div>
-                    			<div class="col-md-6">
+                    			<div class="col-md-4">
                     			<label class="radio-inline">
                                     <input type="radio" ng-model="trainingPartner.IsNsdcFunded" value="Yes" ng-click="uploadNSDCCertificate()"> Yes
                                 </label>
@@ -1071,9 +1079,9 @@
                     	</div>
                     	<div class="form-horizontal">
                     			<div class="form-group" ng-show="trainingPartner.IsNsdcFunded == 'Yes' ">                   
-                      	 <div class="col-md-4">NSDC certificate</div>                      	 
+                      	 <div class="col-md-6">NSDC certificate</div>                      	 
                      <div>
-	                     <div class="col-md-6">
+	                     <div class="col-md-4">
 	                     	<input id = "nsdcCertificate" type="file" file-model="trainingPartner.nsdcCertificateFile" accept="application/pdf" />
 	                     </div>
                      	<div class="col-md-2">
@@ -1090,10 +1098,10 @@
                     <div class="upload-button">
                     	<div class="form-horizontal">
                     		<div class="form-group">
-                    			<div class="col-md-4">
-                    			<label>Balance sheet of last 3 years</label>
-                    			</div>
                     			<div class="col-md-6">
+                    			<label>Balance sheet of last 3 years</label><br><small class="fine-print">Upload a zip with last 3 years balance sheet</small>
+                    			</div>
+                    			<div class="col-md-4">
                     				<input id = "balanceSheet" type="file" file-model="trainingPartner.balanceSheet" accept="application/zip" />
                     			</div>
                     			<div class="col-md-2">
@@ -1108,10 +1116,10 @@
                     <div class="upload-button">
                     	<div class="form-horizontal">
                     		<div class="form-group">
-                    			<div class="col-md-4">
+                    			<div class="col-md-6">
                     			<label>All Certificates related to QP</label>
                     			</div>
-                    			<div class="col-md-6">
+                    			<div class="col-md-4">
                     				<input id = "certificatesQP" type="file" file-model="trainingPartner.certificatesQP" accept="application/zip" />
                     			</div>
                     			<div class="col-md-2">
@@ -1126,10 +1134,10 @@
                     <div class="upload-button">
                     	<div class="form-horizontal">
                     		<div class="form-group">
-                    			<div class="col-md-4">
+                    			<div class="col-md-6">
                     			<label>CV's of staff</label>
                     			</div>
-                    			<div class="col-md-6">
+                    			<div class="col-md-4">
                     				<input id = "managementStaffCV" type="file" file-model="trainingPartner.managementStaffCV" accept="application/zip" />
                     			</div>
                     			<div class="col-md-2">
@@ -1160,56 +1168,48 @@
                 <div>
                 <!--                 accordion content to come here -->
                 <!-- Self Owned Model -->
+                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution > '0'">
                 <form>
                 <div class="form-horizontal">
                 <div class="form-group">
-                	<div class="col-md-4"><label>Self-Owned Model</label></div>
-                	<div class="col-md-6"><input id = "selfOwned" type="file" file-model="trainingPartner.selfOwnedAnnexureFile" accept="application/pdf" /></div>
+                	<div class="col-md-6"><label>Self-Owned Model</label></div>
+                	<div class="col-md-4"><input id = "selfOwned" type="file" file-model="trainingPartner.selfOwnedAnnexureFile" accept="application/pdf" /></div>
                 	<div class="col-md-2"><button ng-click="uploadFileselfOwnedAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
                 </div>
                 </form>
+                </div>
+                
                 <!-- Franchisee Model -->
+                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution > '0'">
+                
                 <form>
                 <div class="form-horizontal">
                 <div class="form-group">
-                	<div class="col-md-4"><label>Franchisee Model</label></div>
-                	<div class="col-md-6"><input id = "frnachisee" type="file" file-model="trainingPartner.franchiseeAnnexureFile" accept="application/pdf" /></div>
+                	<div class="col-md-6"><label>Franchisee Model</label></div>
+                	<div class="col-md-4"><input id = "frnachisee" type="file" file-model="trainingPartner.franchiseeAnnexureFile" accept="application/pdf" /></div>
                 	<div class="col-md-2"><button ng-click="uploadFilefranchiseeAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
                 </div>
                 </form>
+                </div>
+                
                 <!-- Mobile Model -->
-                <form>
+                <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution > '0'">
+                 <form>
                 <div class="form-horizontal">
                 <div class="form-group">
-                	<div class="col-md-4"><label>Mobile Model</label></div>
-                	<div class="col-md-6"><input id = "mobile" type="file" file-model="trainingPartner.mobileFile" accept="application/pdf" /></div>
+                	<div class="col-md-6"><label>Mobile Model</label></div>
+                	<div class="col-md-4"><input id = "mobile" type="file" file-model="trainingPartner.mobileFile" accept="application/pdf" /></div>
                 	<div class="col-md-2"><button ng-click="uploadFilemobileAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
                 </div>
                 </form>
                 </div>
-            </accordion-group>
-            <!-------------------- ACCORDION 7 -------------------->
-            <accordion-group is-open="status.open7">
-                <accordion-heading>
-                    <div class="container acc-heading">
-                        <div class="row">
-                            <div class="col-md-11">
-                                STEP 6 : INFRASTRUCTURE AND LOGISTICS
-                            </div>
-                            <div class="col-md-1">
-                                <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open7, 'glyphicon-plus': !status.open7}"></i>
-                            </div>
-                        </div>
-                    </div>
-                </accordion-heading>
-                <div>
-                <!--                 accordion content to come here -->
-                
+               
                 </div>
             </accordion-group>
+           
         </accordion>
         <!--  ------------------------ACCORDION ENDS HERE ------------------  -->
         
