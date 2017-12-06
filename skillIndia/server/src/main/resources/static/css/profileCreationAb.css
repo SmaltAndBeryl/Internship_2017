@@ -37,9 +37,9 @@ th{
 
 .row-welcome-banner{
     width: 100%;
-    background-color: deepskyblue;
+    background-color: grey;
     color: white;
-    padding: 50px;
+    padding: 2em;
 }
 
 .welcome-desc{
