@@ -511,7 +511,7 @@ $scope.removeManagement = function(){
     $scope.uploadFileCertificatesQP = function()
     {
     	var file = $scope.trainingPartner.certificatesQP;
-    	var uploadEducationCertificates = "";
+    	var uploadEducationCertificates = "/fileUploadTpEducationCertificates";
     	fileUpload.uploadFileToUrl(file, uploadEducationCertificates, "fileuploadTPEducationCertificate");
     	
     }
@@ -530,8 +530,36 @@ $scope.removeManagement = function(){
    {
 	   var file = $scope.trainingPartner.managementStaffCV;
 	   var uploadTpManagementStaffCvUrl = "/fileUploadManagementStaffCv";
-	   fileUpload.uploadFileToUrl(file, uploadTpManagementStaffCvUrl, "fileUploadTpManagementCv");
+	   fileUpload.uploadFileToUrl(file, uploadUrl, "fileUploadTpManagementCv");
 		  
+   }
+   
+   //Upload Operation Head Cv
+   $scope.uploadFileOperationHeadCv = function(selected)
+   {
+	   var file = $scope.trainingPartner.OperationHeadCv;
+	   var uploadUrl = "/fileUploadOperationHeadCv";
+	   console.log("Clicked name of center is " + selected.nameOfCenter);
+//	   var fd = new FormData();
+//       fd.append("file", file)
+//       fd.append($scope.)
+	   //fileUpload.uploadFileToUrl(file, uploadUrl, "operationHeadCv");
+   }
+   
+   //Upload AffiliationCoordinator Cv
+   $scope.uploadFileAffiliationCoordinatorCv = function()
+   {
+	   var file = $scope.trainingPartner.affiliationCoordinatorCv;
+	   var uploadUrl = "/fileUploadAffiliationCoordinatorCv";
+	   fileUpload.uploadFileToUrl(file, uploadUrl, "affiliationCoordinatorCv");
+   }
+   
+   //Upload SPOC Cv
+   $scope.uploadFileSPOCCv = function()
+   {
+	   var file = $scope.trainingPartner.trainingPartner.SPOCCv;
+	   var uploadUrl = "/fileUploadSPOCCv";
+	   fileUpload.uploadFileToUrl(file, uploadUrl, "SPOCCv");
    }
 
     $scope.grantTable = {

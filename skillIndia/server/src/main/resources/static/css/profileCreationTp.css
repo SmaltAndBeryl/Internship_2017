@@ -12,6 +12,11 @@
 .row-margin{
     margin: 50px auto;
 }
+.here-txt
+{
+	color:black;
+	padding:0em;
+}
 .btn-pc-upload
 {
   text-align: left;

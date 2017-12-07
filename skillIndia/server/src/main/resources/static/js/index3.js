@@ -57,7 +57,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
                  }
 
                  else{
-                     alert("Not routing to pc " + appState);
+                     //alert("Not routing to pc " + appState);
                      $location.path(acceptedRoutingUrl);
                  }
 
@@ -178,15 +178,23 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 			     console.log(response.data);
 		     var signupAction=response.data;
 		     var userName=signupAction.userId;
-		     if(userName=="null" || signupAction.organizationName=="null" || signupAction.sPOCName=="null"){
-		    	alert("User already exist");
+		     if(userName=="null" || signupAction.organizationName=="null" || signupAction.sPOCName=="null")
+		     {
+		    	
 		    	$scope.errorMessagesForSignUp = "Organisation name is already in use."
 		    	 }
-		     else{
-		    	 alert("User created with userId - "+self.newUser.userId); 
+		     else
+		     {
+		    	 //alert("User created with userId - "+self.newUser.userId); 
+		    	 $scope.errorMessagesForSignUp = "User created successfully.Please login now."
+		    	 window.location.href ="/";
 		     }
-		     window.location.href ="/";
+		     //window.location.href ="/";
 		    	 
+			  },
+			  function(errorResponse)
+			  {
+				  $scope.errorMessagesForSignUp = "Could not create your account as of now .Please try later"
 			  });
     }
     self.login = function() {

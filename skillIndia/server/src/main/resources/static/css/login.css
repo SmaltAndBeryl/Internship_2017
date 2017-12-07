@@ -15,6 +15,13 @@
     padding-left: 1em;
     font-size: larger;
 }
+.successMessageLoginPage
+{
+	display: inline;
+    color: green;
+    padding-left: 1em;
+    font-size: larger;
+}
 
 .panel-login {
     border-color: #ccc;
@@ -216,7 +223,7 @@ label p{
 /*     line-height: 20px; */
     font-size: 1em;    
     text-align: center;
-    height:4em;
+/*     height:4em; */
     
     vertical-align:middle;
     margin-left: -1.6em;

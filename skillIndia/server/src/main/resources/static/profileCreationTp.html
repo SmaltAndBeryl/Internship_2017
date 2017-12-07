@@ -1022,7 +1022,7 @@
                 <div>
                <!-- Upload PAN -->
                 <form>
-                  <div class="upload-btn">
+                  <div class="upload-btn div-center">
                  <div class="form-horizontal">
                  <div class="form-group">                   
                       	 <div class="col-md-6"><label>Pan Card</label></div>                      	 
@@ -1041,7 +1041,7 @@
                                 </form>
                 <!-- Uplaod TAN -->
                 <form>
-                  <div class="upload-btn">
+                  <div class="upload-btn div-center">
                   <div class="form-horizontal">
                   <div class="form-group">                   
                       	 <div class="col-md-6"><label>Tan</label></div>                      	 
@@ -1061,7 +1061,7 @@
                                 </form>
                 <!-- UPLOAD NSDC Certificate -->
                     <form>
-                    <div class="upload-btn">
+                    <div class="upload-btn div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
                     			<div class="col-md-6">
@@ -1096,7 +1096,7 @@
                     </form>
                     <!-- Upload balance sheet of last 3 years -->
                     <form>
-                    <div class="upload-button">
+                    <div class="upload-button div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
                     			<div class="col-md-6">
@@ -1112,9 +1112,10 @@
                     	</div>
                     </div>
                     </form>
-                    <!-- Upload CV's zip file -->
+                    <!-- Upload training staff education certificate zip file -->
+                    <div ng-show="trainingPartner.TrainingStaff > '0'">
                     <form>
-                    <div class="upload-button">
+                    <div class="upload-button div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
                     			<div class="col-md-6">
@@ -1131,9 +1132,12 @@
                     	</div>
                     </div>
                     </form>
+                    </div>
+                    
                     <!-- Upload CVs of Training Staffs -->
+                    <div ng-show="trainingPartner.TrainingStaff > '0'">
                     <form>
-                    <div class="upload-button">
+                    <div class="upload-button div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
                     			<div class="col-md-6">
@@ -1150,9 +1154,13 @@
                     	</div>
                     </div>
                     </form>
+                    </div>
+                    
+                    
                     <!-- Upload CVs of Management staff -->
+                    <div ng-show="trainingPartner.ManagementAndStaffAndOfficialDetails > '0'">
                     <form>
-                    <div class="upload-button">
+                    <div class="upload-button div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
                     			<div class="col-md-6">
@@ -1169,6 +1177,46 @@
                     	</div>
                     </div>
                     </form>
+                    </div>
+                    <!-- Operation head cv -->
+                    
+                    
+                    <div class="upload-button div-center" ng-repeat="trainingcenter in trainingPartner.TrainingPartnerCenterDetails">
+                    <div class="form-horizontal form-group">
+                    <label>{{trainingcenter.nameOfCenter}}</label>
+                    </div>
+                  	<div class="form-horizontal" ng-show="trainingcenter.nameOperationHead.length">
+                	<div class="form-group col-md-12">
+                		<label>{{trainingcenter.nameOperationHead}}</label>
+                	</div>
+                	<div class="form-group">
+                		<div class="col-md-8"><input id ="OperationHeadCv" type="file" file-model="trainingPartner.OperationHeadCv" accept="application/pdf" /></div>
+                		<div class="col-md-4"><button ng-click="uploadFileOperationHeadCv()" class="btn btn-pc-upload">Upload Cv</button></div>
+                	</div>
+               		</div>
+               		<div class="form-horizontal" ng-show="trainingcenter.nameAffiliationCoordinator.length">
+                	<div class="form-group col-md-12">
+                		<label>{{trainingcenter.nameAffiliationCoordinator}}</label>
+                	</div>
+                	<div class="form-group">
+                		<div class="col-md-8"><input id ="affiliationCoordinatorCv" type="file" file-model="trainingPartner.affiliationCoordinatorCv" accept="application/pdf" /></div>
+                		<div class="col-md-4"><button ng-click="" class="btn btn-pc-upload">Upload Cv</button></div>
+                	</div>
+               		</div>
+               		<div class="form-horizontal" ng-show="trainingcenter.nameSPOC.length">
+                	<div class="form-group col-md-12">
+                		<label>{{trainingcenter.nameSPOC}}</label>
+                	</div>
+                	<div class="form-group">
+                		<div class="col-md-8"><input id ="SPOCCv" type="file" file-model="trainingPartner.SPOCCv" accept="application/pdf" /></div>
+                		<div class="col-md-4"><button ng-click="" class="btn btn-pc-upload">Upload Cv</button></div>
+                	</div>
+               		</div>
+               		</div>
+               		
+                    
+               		
+                    
                     <!-- Upload Cvs of Training center heads -->
                     
                 </div>
@@ -1194,9 +1242,12 @@
                 <!-- Self Owned Model -->
                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution > '0'">
                 <form>
-                <div class="form-horizontal">
+                <div class="form-horizontal div-center">
+                <div class="form-group col-md-12">
+                <label>Self-Owned Model</label>
+                </div>
                 <div class="form-group">
-                	<div class="col-md-6"><label>Self-Owned Model</label></div>
+                	<div class="col-md-6"><small class="fine-print">Please download format of annexure <a href="/Annexures/TrainingPartner/Annexure_self_owned_centres.docx" target="_blank" class="here-txt">here</a></small></div>
                 	<div class="col-md-4"><input id = "selfOwned" type="file" file-model="trainingPartner.selfOwnedAnnexureFile" accept="application/pdf" /></div>
                 	<div class="col-md-2"><button ng-click="uploadFileselfOwnedAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
@@ -1208,9 +1259,12 @@
                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution > '0'">
                 
                 <form>
-                <div class="form-horizontal">
+                <div class="form-horizontal div-center">
+                <div class="col-md-12">
+                <label>Franchisee Model</label>
+                </div>
                 <div class="form-group">
-                	<div class="col-md-6"><label>Franchisee Model</label></div>
+                	<div class="col-md-6"><small class="fine-print">Please download format of annexure <a href="/Annexures/TrainingPartner/Annexure_Franchisee_centres.docx" target="_blank" class="here-txt">here</a></small></div>
                 	<div class="col-md-4"><input id = "frnachisee" type="file" file-model="trainingPartner.franchiseeAnnexureFile" accept="application/pdf" /></div>
                 	<div class="col-md-2"><button ng-click="uploadFilefranchiseeAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
@@ -1221,9 +1275,10 @@
                 <!-- Mobile Model -->
                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution > '0'">
                  <form>
-                <div class="form-horizontal">
+                <div class="form-horizontal div-center">
+                <div class="col-md-12"><label>Mobile Model</label></div>
                 <div class="form-group">
-                	<div class="col-md-6"><label>Mobile Model</label></div>
+                	<div class="col-md-6"><small class="fine-print">Please download format of annexure <a href="/Annexures/TrainingPartner/Annexure_mobile_centre.docx" target="_blank">here</a></small></div>
                 	<div class="col-md-4"><input id = "mobile" type="file" file-model="trainingPartner.mobileFile" accept="application/pdf" /></div>
                 	<div class="col-md-2"><button ng-click="uploadFilemobileAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
