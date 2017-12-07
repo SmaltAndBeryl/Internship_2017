@@ -231,16 +231,25 @@ ProfileCreationTrainingPartner:
   UPDATE scgj.TrainingPartnerOrganizationDetails SET tanNumberPath = :tanNumberPath where applicationId = :applicationId;
  
  updateNSDCCertificatePath: >
-  UPDATE scgj.TrainingPartnerOrganizationDetails SET nSDCFunded = :nSDCFunded , nSDCFundedCertificatePath = :nSDCFundedCertificatePath where applicationId = :applicationId;
+  UPDATE scgj.TrainingPartnerOrganizationDetails SET nSDCFunded = :nSDCFunded , nSDCFundedCertificatePath = :nSDCFundedCertificatePath where applicationId = :applicationId and isActive=1;
   
  updateSelfOwnedAnnexurePath: >
-  UPDATE scgj.TrainingPartnerOrganizationDetails SET selfOwnedInstitutionAnnexurePath = :selfOwnedInstitutionAnnexurePath where applicationId = :applicationId;
+  UPDATE scgj.TrainingPartnerOrganizationDetails SET selfOwnedInstitutionAnnexurePath = :selfOwnedInstitutionAnnexurePath where applicationId = :applicationId and isActive=1;
 
  updateFranchiseeAnnexurePath: >
-  UPDATE scgj.TrainingPartnerOrganizationDetails SET franchiseOwnedInstitutionAnnexurePath = :franchiseeAnnexurePath where applicationId = :applicationId;
+  UPDATE scgj.TrainingPartnerOrganizationDetails SET franchiseOwnedInstitutionAnnexurePath = :franchiseeAnnexurePath where applicationId = :applicationId and isActive=1;
  
  updateMobileAnnexurePath: > 
-  UPDATE scgj.TrainingPartnerOrganizationDetails SET mobileTrainingInstitutionAnnexurePath = :  mobileTrainingInstitutionAnnexurePath where applicationId = :applicationId;
+  UPDATE scgj.TrainingPartnerOrganizationDetails SET mobileTrainingInstitutionAnnexurePath = :mobileTrainingInstitutionAnnexurePath where applicationId = :applicationIdand isActive=1;
+ 
+ updateTrainingStaffEducationCertificatePath: >
+  UPDATE scgj.TrainingPartnerTrainingStaffDetails SET certificatePath =:certificatePath where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive=1;
+ 
+ updateTrainingStaffCvPath: >
+  UPDATE scgj.TrainingPartnerTrainingStaffDetails SET cVPath =:cVPath where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive=1;
+ 
+ updateManagementCvPath: > 
+  UPDATE scgj.TrainingPartnerManagementAndStaffAndOfficialsDetails SET cVPath =:cVPath where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive=1;
  
  deleteFromTrainingPartnerInstituteGrant: >
   DELETE FROM `scgj`.`trainingpartnerinstitutegrant` WHERE `instituteGrantId`=:instituteGrantId;
