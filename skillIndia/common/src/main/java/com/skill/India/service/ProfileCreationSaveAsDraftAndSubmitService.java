@@ -702,6 +702,29 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		}
 		return trainingPartnerManagementStaffCvPath;
 	}
+	
+	/*
+	 * Method to save Operation Head Cv*/
+	public int saveOperationHeadCv(MultipartFile operationHeadCv)
+	{
+		int panPathUpdated = 0;
+		int applicationId = getApplicationId();
+		String panPath = "";
+
+//		try
+//		{
+//			panPath = saveFile(key, applicationId, assessmentBodyPan, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+//			LOGGER.debug("Pan path is " + panPath);
+//		}
+//		catch(Exception e)
+//		{
+//			LOGGER.error("An exception occured while saving file " + e);
+//		}
+		
+		panPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updatePanPath(panPath, applicationId );
+		return panPathUpdated;
+	}
+	
 	/*Method to save PAN of Assessment Body*/
 	public int saveABPAN(MultipartFile assessmentBodyPan, String key)
 	{
@@ -836,6 +859,71 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 
 	}
 	
+	/*
+	 * Method to save file with multiple folders inside*/
+	private String saveFile(String key, int applicationId, MultipartFile file, String pathToFolder,String[] insideFolders)
+	{
+		int folderCreated = 0;	
+		String pathTillApplicationId = "";
+		String pathOfUploadedFile = "";
+		if(!file.isEmpty())
+		{	
+			String fileName=file.getOriginalFilename();
+			int indexOfDot=fileName.indexOf(".");
+			try
+			{
+				pathTillApplicationId = pathToFolder+ applicationId+ "//";
+				for(String item : insideFolders)
+				{
+					pathTillApplicationId = pathTillApplicationId + item + "//";
+				}
+				File folder = new File (pathTillApplicationId);
+				if(!folder.exists())
+				{
+						if(folder.mkdirs() || folder.canWrite())
+						{
+							folderCreated = 1;
+							LOGGER.debug("File name is " + file.getOriginalFilename());
+							LOGGER.debug("Directory "+ folder + " to store files created successfully");
+						}
+						else
+						{
+							folderCreated = -1;
+							LOGGER.debug("Could not create or write to directory "+ pathTillApplicationId);
+						}
+				}
+				byte[] bytes = file.getBytes();		                  
+		         String fileNameToBeSaved= key + fileName.substring(indexOfDot);	
+		         LOGGER.debug("fileNameToBeSaved" + fileNameToBeSaved);
+		         
+		         Path path = Paths.get( pathTillApplicationId + fileNameToBeSaved);       
+		         LOGGER.debug( " pathToFolder + fileNameToBeSaved " +pathTillApplicationId + fileNameToBeSaved);
+		         
+		         //pathOfUploadedFile = pathToFolder + fileNameToBeSaved;
+		         pathOfUploadedFile = path.toAbsolutePath().toString();
+		         
+		         LOGGER.debug(pathOfUploadedFile);
+		         
+		         Files.write(path, bytes);
+			}
+			
+			catch(IOException e)
+			{
+				folderCreated = -1;
+				LOGGER.error("An excpetion occured while saving file to location "+ pathTillApplicationId);
+			}
+			catch(Exception e)
+			{
+				folderCreated = -2;
+				LOGGER.error("An exception occured while saving file to the disk at location " + pathTillApplicationId);
+			}
+	}
+		return pathOfUploadedFile;
+
+	}
+	
+	/*
+	 * Method to find application id of logged in user*/
 	private int getApplicationId()
 	{
 		int applicationId = -10;

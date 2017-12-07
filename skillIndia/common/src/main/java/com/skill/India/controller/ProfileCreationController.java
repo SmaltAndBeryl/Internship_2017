@@ -175,6 +175,37 @@ public class ProfileCreationController {
 	}
 	
 	/*
+	 * Method to save Operation Head Cv*/
+	@RequestMapping(value="/fileUploadOperationHeadCv", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileOperationHead(@RequestParam(value="operationHeadCv") MultipartFile file)
+	{
+		int status = 0;
+		
+		//status = profileCreationSaveAsDraftAndSubmitService.
+		return status;
+	}
+	
+	
+	/*
+	 * Method to save Affiliation Coordinator Cv*/
+	@RequestMapping(value="/fileUploadAffiliationCoordinatorCv", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
+	public int saveFileAffiliationcoordinator(@RequestParam(value="affiliationCoordinatorCv")MultipartFile file)
+	{
+		int status = 0;
+		//status = profileCreationSaveAsDraftAndSubmitService.
+		return status;
+	}
+	
+	/*
+	 * Method to save SPOC Cv*/
+	@RequestMapping(value="/fileUploadSPOCCv")
+	public int saveFileSPOCCv(@RequestParam(value="SPOCCv")MultipartFile file)
+	{
+		int status = 0;
+		//status = profileCreationSaveAsDraftAndSubmitService.
+		return status;
+	}
+	/*
 	 * Method to upload Pan Card pdf of Assessment Body*/
 	
 	@RequestMapping(value="/fileUploadABPAN", method = RequestMethod.POST, consumes=MediaType.ALL_VALUE)
