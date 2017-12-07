@@ -56,6 +56,9 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateSelfOwnedAnnexurePath;
 	private String updateFranchiseeAnnexurePath;
 	private String updateMobileAnnexurePath;
+	private String updateTrainingStaffEducationCertificatePath;
+	private String updateManagementCvPath;
+	private String updateTrainingStaffCvPath;
 	
 	/**
 	 * @return the updatePathsIntoTrainingPartnerCenterLevelDetails
@@ -515,6 +518,25 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	public void setInsertIntoTrainingPartnerTrainingStaff(
 			String insertIntoTrainingPartnerTrainingStaff) {
 		this.insertIntoTrainingPartnerTrainingStaff = insertIntoTrainingPartnerTrainingStaff;
+	}
+	public String getUpdateTrainingStaffEducationCertificatePath() {
+		return updateTrainingStaffEducationCertificatePath;
+	}
+	public void setUpdateTrainingStaffEducationCertificatePath(
+			String updateTrainingStaffEducationCertificatePath) {
+		this.updateTrainingStaffEducationCertificatePath = updateTrainingStaffEducationCertificatePath;
+	}
+	public String getUpdateManagementCvPath() {
+		return updateManagementCvPath;
+	}
+	public void setUpdateManagementCvPath(String updateManagementCvPath) {
+		this.updateManagementCvPath = updateManagementCvPath;
+	}
+	public String getUpdateTrainingStaffCvPath() {
+		return updateTrainingStaffCvPath;
+	}
+	public void setUpdateTrainingStaffCvPath(String updateTrainingStaffCvPath) {
+		this.updateTrainingStaffCvPath = updateTrainingStaffCvPath;
 	}
 
 

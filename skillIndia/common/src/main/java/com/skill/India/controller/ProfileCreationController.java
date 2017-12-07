@@ -148,7 +148,7 @@ public class ProfileCreationController {
 	public int saveFileEducationCertificateTp(@RequestParam(value = "fileuploadTPEducationCertificate")MultipartFile file)
 	{
 		int status = 0;
-		//status = profileCreationSaveAsDraftAndSubmitService.;
+		status = profileCreationSaveAsDraftAndSubmitService.saveTrainingStaffEducationCertificate(file, "TrainingStaffEducationCertificate");
 		return status ;
 	}
 	
@@ -159,7 +159,7 @@ public class ProfileCreationController {
 	public int saveFileTrainingStaffCv(@RequestParam(value = "fileuploadTrainingStaffCv")MultipartFile file)
 	{
 		int status = 0;
-		//status = profileCreationSaveAsDraftAndSubmitService.;
+		status = profileCreationSaveAsDraftAndSubmitService.saveTrainingStaffCv(file, "TrainingStaffCv");
 		return status ;
 	}
 	
@@ -170,7 +170,7 @@ public class ProfileCreationController {
 	public int saveFileManagementStaffCv(@RequestParam(value="fileUploadTpManagementCv") MultipartFile file)
 	{
 		int status = 0;
-		//status = profileCreationSaveAsDraftAndSubmitService.;
+		status = profileCreationSaveAsDraftAndSubmitService.saveTrainingPartnerManagementStaff(file, "TrainingPartnerManagementCv");
 		return status ;
 	}
 	
@@ -197,18 +197,6 @@ public class ProfileCreationController {
 		return status;
 	}
 	
-	//Save CV of TrainingPartner Management Staff
-//		@RequestMapping(value="/fileUploadTpMgmtCv" , method  =RequestMethod.POST , consumes=MediaType.ALL_VALUE)
-//		public int saveFileTpManagementCv(@RequestParam(value="TrainingPartnerManagementCV") MultipartFile file)
-//		{
-//			int status = 0;
-//			LOGGER.debug("File has been received from front end " + file);
-//			status = profileCreationSaveAsDraftAndSubmitService.(file, "TrainingPartnerManagementCV");
-//			return status;
-//		}
-	
-		
-		
 		
 	//Save Cv of Assessment Body Management Staff
 	

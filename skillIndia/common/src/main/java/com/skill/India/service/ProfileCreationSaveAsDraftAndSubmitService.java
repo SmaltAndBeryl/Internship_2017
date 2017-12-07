@@ -639,8 +639,69 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	}
 	
 	/*
-	 * */
+	 * Method to save cv of training Staff*/
+	public int saveTrainingStaffCv(MultipartFile trainingStaffCv, String key)
+	{
+		int trainingStaffPathUpdated =  0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistartionId = getTrainingPartnerRegistrationId(applicationId);
+		String trainingStaffCvPath = "";
+		try
+		{
+			trainingStaffCvPath = saveFile(key, applicationId, trainingStaffCv, readApplicationConstants.getProfileCreationTrainingPartnerFolder());
+			trainingStaffPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updateTrainingStaffCvPath(trainingStaffCvPath, trainingPartnerRegistartionId);
+		}
+		catch(Exception e)
+		{
+			trainingStaffPathUpdated = -2;
+			LOGGER.error("An error occured while uploading training staff cv path");
+		}
+		return trainingStaffPathUpdated;
+	}
 	
+	/*Method to save education certificate of training staff*/
+	public int saveTrainingStaffEducationCertificate(MultipartFile trainingStaffEducationCertificate, String key)
+	{
+	
+		int trainingStaffEducationCertificatePathUpdated =  0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistartionId = getTrainingPartnerRegistrationId(applicationId);
+		String trainingStaffEducationCertificatePath = "";
+		try
+		{
+			trainingStaffEducationCertificatePath = saveFile(key, applicationId,trainingStaffEducationCertificate ,readApplicationConstants.getProfileCreationTrainingPartnerFolder());
+			trainingStaffEducationCertificatePathUpdated = profileCreationTrainingPartnerUpdateDataDao.updateTrainingStaffEducationCertificatePath(trainingStaffEducationCertificatePath, trainingPartnerRegistartionId);
+					
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while updating training staff education certificate " + e);
+		}
+		
+		return trainingStaffEducationCertificatePathUpdated;
+	}
+	
+	
+	/*
+	 * Method to save Cv of Training Partner Management Staff
+	 */
+	public int saveTrainingPartnerManagementStaff(MultipartFile managementCv, String key)
+	{
+		int trainingPartnerManagementStaffCvPath =  0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistartionId = getTrainingPartnerRegistrationId(applicationId);
+		String ManagementCvPath = "";
+		try
+		{
+			ManagementCvPath = saveFile(key, applicationId,managementCv, readApplicationConstants.getProfileCreationTrainingPartnerFolder());
+			trainingPartnerManagementStaffCvPath = profileCreationTrainingPartnerUpdateDataDao.updateTrainingPartnerManagementCvPath(ManagementCvPath, trainingPartnerRegistartionId);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occurred while updating tarining partner management cv path in database " + e);
+		}
+		return trainingPartnerManagementStaffCvPath;
+	}
 	/*Method to save PAN of Assessment Body*/
 	public int saveABPAN(MultipartFile assessmentBodyPan, String key)
 	{

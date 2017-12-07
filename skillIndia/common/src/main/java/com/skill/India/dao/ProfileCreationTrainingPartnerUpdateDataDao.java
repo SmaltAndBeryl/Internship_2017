@@ -514,7 +514,68 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			return status;
 		}
 		
+		/*
+		 * Method to update Training Staff Cv path*/
+		public int updateTrainingStaffCvPath(String PathToBeUpdated, String trainingPartnerRegistrationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("cVPath" , PathToBeUpdated);
+				parameters.put("trainingPartnerRegistrationId" , trainingPartnerRegistrationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateTrainingStaffCvPath(), parameters);
+				LOGGER.debug("Training Staff cv path has been updated in database successfully" + status);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating cv path of training staff in database " + e);
+			}
+			return status;
+		}
 		
+		/*
+		 * Method to update Training Staff Education Certificate path*/
+		public int updateTrainingStaffEducationCertificatePath(String PathToBeUpdated, String trainingPartnerRegistrationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("certificatePath" , PathToBeUpdated);
+				parameters.put("trainingPartnerRegistrationId" , trainingPartnerRegistrationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateTrainingStaffEducationCertificatePath(), parameters);
+				LOGGER.debug("Training Staff education certificate path has been updated in database successfully" + status);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating education certificate path of training staff in database " + e);
+			}
+			return status;
+		}
 		
+
+		/*
+		 * Method to update Training Partner Management Staff Cv path*/
+		public int updateTrainingPartnerManagementCvPath(String PathToBeUpdated, String trainingPartnerRegistrationId)
+		{
+			int status = 0;
+			try
+			{
+				Map<String, Object> parameters = new HashMap<String, Object>();
+				parameters.put("cVPath" , PathToBeUpdated);
+				parameters.put("trainingPartnerRegistrationId" , trainingPartnerRegistrationId);
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateManagementCvPath(), parameters);
+				LOGGER.debug("Training PArtner Management Staff cv path has been updated in database successfully" + status);
+			}
+			catch(Exception e)
+			{
+				status = -2;
+				LOGGER.error("An exception occured while updating cv path of training partner management staff in database " + e);
+			}
+			return status;
+		}
 	
 }
