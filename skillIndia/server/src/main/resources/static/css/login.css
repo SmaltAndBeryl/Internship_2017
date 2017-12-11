@@ -12,15 +12,15 @@
 {
 	display: inline;
     color: red;
-    padding-left: 1em;
-    font-size: larger;
+    padding-left: 0.5em;
+    font-size: medium;
 }
 .successMessageLoginPage
 {
 	display: inline;
     color: green;
-    padding-left: 1em;
-    font-size: larger;
+    padding-left: 0.5em;
+    font-size: medium;
 }
 
 .panel-login {
