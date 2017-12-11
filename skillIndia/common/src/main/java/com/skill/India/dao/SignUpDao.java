@@ -76,7 +76,8 @@ public class SignUpDao extends AbstractTransactionalDao {
 	}
 	
 	
-	public Collection<SignUpInsertedUserDto> getUserData(int Id){
+	public Collection<SignUpInsertedUserDto> getUserData(int Id)
+	{
 		LOGGER.debug("Request Received from Service");
 		LOGGER.debug("In SignUpDao - getUserData");
 		LOGGER.debug("Parameters Received from Service are - 'Id': " +Id);

@@ -58,21 +58,9 @@ public class ProfileCreationController {
 	}
 	
 	/*
-	 * Method to implement save as draft and submit functionalities
+	 * Method to implement save as draft and submit functionalities for Assessment Body
 	 * */
-	
-	
-	@RequestMapping(value="/saveAsDraftAndSubmit" , method = RequestMethod.POST, consumes =MediaType.ALL_VALUE )
-	public void saveAsDraftAndSubmitController(@RequestBody ProfileCreationABTPDto profileCreationABTPDto)
-	{
-		
-		LOGGER.debug("User type received from front end is"+ profileCreationABTPDto.getType().toString());
-		LOGGER.debug("User type received from front end is"+ profileCreationABTPDto.getUserData().toString());
 
-		LOGGER.debug("User type received from front end is"+ profileCreationABTPDto.getUserDeletes().toString());
-		
-		
-	}
 	
 	@RequestMapping(value="/saveAsDraftAndSubmitAB", method = RequestMethod.POST)
 	public int saveAsDraftABController(@RequestBody ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
@@ -82,6 +70,9 @@ public class ProfileCreationController {
 		return status;
 		
 	}
+	/*
+	 * Method to implement save as draft and submit functionalities for Training Partner
+	 * */
 	@RequestMapping(value="/saveAsDraftAndSubmitTP", method = RequestMethod.POST)
 	public int saveAsDraftTP(@RequestBody ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
 	{

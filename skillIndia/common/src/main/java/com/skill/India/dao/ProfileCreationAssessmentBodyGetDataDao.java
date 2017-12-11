@@ -339,7 +339,26 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		}
  	}
 	
-	/* To check presence of Affiliation data of Assesment body*/
+	/*
+	 * To find if applicationId exists in assessment body table*/
+	
+//	public int isApplicationIdPresent(int applicationId)
+//	{
+//		int status = 0;
+//		try
+//		{
+//			Map<String,Object> parameters = new HashMap<String, Object>();
+//			parameters.put("applicationId", applicationId);
+//			status = getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.,parameters, Integer.class);
+//		}
+//		catch(Exception e)
+//		{
+//			LOGGER.error("An exception occured while finding if application Id exists in assessment body organisation details database table " + e);
+//		}
+//		return status;
+//	}
+	
+	/* To check presence of Affiliation data of Assessment body*/
 	public int isAffiliationPresent(String assessmentBodyRegistrationId, String nameOfSectorSkillCouncil)
 	{
 		int status = 0;
@@ -363,6 +382,8 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		
 		return status;
 	}
+	/*
+	 * IF Assessment body management is present */
 	public int isManagementPresent(String assessmentBodyRegistrationId, String email)
 	{
 		int status = 0;
@@ -388,6 +409,8 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		
 	}
 	
+	/*
+	 * */
 	public int isRecognitionPresent(String assessmentBodyRegistrationId, String nameOfRecognizingBody)
 	{
 		int status = 0;
@@ -411,6 +434,8 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		return status;
 	}
 	
+	/*
+	 * */
 	public int isRegionalOfficePresent(String assessmentBodyRegistrationId, String pincode)
 	{
 		int status =0;
@@ -436,6 +461,8 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		return status;
 	}
 	
+	/*
+	 * */
 	public int isExperiencePresent(String assessmentBodyRegistrationId, String domain)
 	{
 		int status =0;
@@ -461,6 +488,8 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		return status;
 	}
 	
+	/*
+	 * */
 	public int isStaffPresent(String assessmentBodyRegistrationId, String emailId)
 	{
 		int status =0;
@@ -486,6 +515,8 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		return status;
 	}
 	
+	/*
+	 * */
 	public static class ProfileCreationAssessmentBodyAffiliationDetailsRowMapper implements RowMapper<ProfileCreationAssessmentBodyAffiliationDetailsDto> {
 
 		@Override

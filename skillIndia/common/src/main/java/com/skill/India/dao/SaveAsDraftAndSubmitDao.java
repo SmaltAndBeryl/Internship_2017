@@ -30,13 +30,17 @@ public class SaveAsDraftAndSubmitDao extends AbstractTransactionalDao {
 		java.sql.Date date=new java.sql.Date(millis);
 		Map<String, Object> parameters=new HashMap<String, Object>();
 		
-		if(type.equalsIgnoreCase("SaveAsDraft"))
+		if(type.equalsIgnoreCase("Draft"))
 		{
 			parameters.put("applicationState","Draft");
 		}
 		else if(type.equalsIgnoreCase("Submit"))
 		{
 		parameters.put("applicationState","Submit");
+		}
+		else
+		{
+			parameters.put("applicationState", "Draft");
 		}
 		parameters.put("userId",userId);
 		parameters.put("activeFlag","1");
