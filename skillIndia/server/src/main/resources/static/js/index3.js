@@ -37,7 +37,7 @@ hello.config(function($routeProvider, $httpProvider) {
 
 });
 
-hello.controller('navigation', function($rootScope, $http, $location, $route) {
+hello.controller('navigation', function($rootScope, $http, $location, $route,$scope) {
     var self = this;
     var spock;
     self.tab = function(route) {
@@ -175,18 +175,17 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 			
 			}).then(function(response)
 				{
-			     console.log(response.data);
-		     var signupAction=response.data;
+			     console.log(response);
+		     var signupAction=response;
 		     var userName=signupAction.userId;
 		     if(userName=="null" || signupAction.organizationName=="null" || signupAction.sPOCName=="null")
 		     {
-		    	
 		    	$scope.errorMessagesForSignUp = "Organisation name is already in use."
-		    	 }
-		     else
+		    }
+		     else if (response.status == "200")
 		     {
 		    	 //alert("User created with userId - "+self.newUser.userId); 
-		    	 $scope.errorMessagesForSignUp = "User created successfully.Please login now."
+		    	 $scope.errorMessagesForSignUp = "User created successfully.Please login now.";
 		    	 window.location.href ="/";
 		     }
 		     //window.location.href ="/";
@@ -194,7 +193,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route) {
 			  },
 			  function(errorResponse)
 			  {
-				  $scope.errorMessagesForSignUp = "Could not create your account as of now .Please try later"
+				  $scope.successMessagesForSignUp = "Could not create your account as of now .Please try later"
 			  });
     }
     self.login = function() {
