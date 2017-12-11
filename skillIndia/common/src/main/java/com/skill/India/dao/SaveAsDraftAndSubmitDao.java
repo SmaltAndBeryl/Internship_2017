@@ -2,7 +2,8 @@ package com.skill.India.dao;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,9 +20,11 @@ public class SaveAsDraftAndSubmitDao extends AbstractTransactionalDao {
 
 	@Autowired
 	private ProfileCreationConfigSql profileCreationConfigSql;
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(SaveAsDraftAndSubmitDao.class);
+	
 	public int insertIntoApplication(String userId,String type)
 	{
+		int status =0;
 		try{
 		long millis=System.currentTimeMillis();
 		java.sql.Date date=new java.sql.Date(millis);
@@ -38,13 +41,15 @@ public class SaveAsDraftAndSubmitDao extends AbstractTransactionalDao {
 		parameters.put("userId",userId);
 		parameters.put("activeFlag","1");
 		parameters.put("dateOfSubmission",date);
-		return getJdbcTemplate().update(profileCreationConfigSql.getInsertDataInApplication(), parameters);
+		status = getJdbcTemplate().update(profileCreationConfigSql.getInsertDataInApplication(), parameters);
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
-			return -1;
+			LOGGER.error("An exception occured while creating an application "  + e);
+			//e.printStackTrace();
+			status = -1;
 		}
+		return status;
 	}
 
 	public int updateIntoApplication(ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerDto,String type)

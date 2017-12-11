@@ -1,6 +1,7 @@
 package com.skill.India.controller;
 
 import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill.India.common.SessionUserUtility;
@@ -47,56 +49,56 @@ public class LoginController {
     @RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
 	{	
-    	LOGGER.info("In LoginController - getLoginDto");
-		LOGGER.info("Request Received from front end to Validate User For the login process");
-		LOGGER.info("Parameters Received from front end are - 'loginReceiveDataDto': "+ loginReceiveDataDto);
-		LOGGER.info("Sending Request to service");
+    	LOGGER.debug("In LoginController - getLoginDto");
+		LOGGER.debug("Request Received from front end to Validate User For the login process");
+		LOGGER.debug("Parameters Received from front end are - 'loginReceiveDataDto': "+ loginReceiveDataDto);
+		LOGGER.debug("Sending Request to service");
 		return loginService.checkUser(loginReceiveDataDto);
 		
 	}	
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-	public SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto){
-		LOGGER.info("In LoginController - signUp");
-		LOGGER.info("Request Received from front end to Validate User For the SignUp process");
-		LOGGER.info("Parameters Received from front end are - 'signUpReceiveDataDto': "+signUpReceiveDataDto);
-		LOGGER.info("Sending Request to service");
+	public @ResponseBody SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto)
+	{
+		LOGGER.debug("Sending Request to service");
 		return signUpService.signUp(signUpReceiveDataDto);
 	  
 	}
 	
 	@RequestMapping("/getSPOCName")
-	public String getSPOCName()  {
-		LOGGER.info("In LoginController - getSPOCName");
-		LOGGER.info("Request Received from front end to get SPOC Name of the Validated User");
+	public String getSPOCName() 
+	{
+		LOGGER.debug("In LoginController - getSPOCName");
+		LOGGER.debug("Request Received from front end to get SPOC Name of the Validated User");
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
-		LOGGER.info("Sending Request to service");
+		LOGGER.debug("Sending Request to service");
 		return getSPOCNameService.getSPOCNameService(userId); 
 	}
 	
 	@RequestMapping("/getApplicationState")
 	public ApplicationDto getApplicationState()  {
-		LOGGER.info("In LoginController - getApplicationState");
-		LOGGER.info("Request Received from front end to get Application state of the Validated User ");
+		LOGGER.debug("In LoginController - getApplicationState");
+		LOGGER.debug("Request Received from front end to get Application state of the Validated User ");
 		String userId=sessionUserUtility
 				.getSessionMangementfromSession().getUsername();
-		LOGGER.info("Sending Request to service");
+		LOGGER.debug("Sending Request to service");
 		return getApplicationStateService.getApplicationStateService(userId) ; 
 	}
 	
 	
 	@RequestMapping("/getUserDetails")
 	public Principal user(Principal user) {
-		LOGGER.info("In LoginController - user");
-		LOGGER.info("Parameters Received from front end are - 'user': "+user);
+		LOGGER.debug("In LoginController - user");
+		LOGGER.debug("Parameters Received from front end are - 'user': "+user);
 		try{
-		System.out.println("hey  : " +user);
+		//System.out.println("hey  : " +user);
 		return user;
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.error("An exception occured while finding user details " + e );
+			//e.printStackTrace();
 			return null;
 		}
 	}

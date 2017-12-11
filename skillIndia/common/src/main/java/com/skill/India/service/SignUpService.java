@@ -28,40 +28,36 @@ public class SignUpService {
 	private int userExistStatus;
 	private int id;
 
-	public SignUpInsertedUserDto signUp(SignUpReceiveDataDto signUpReceiveDataDto){
+	public SignUpInsertedUserDto signUp(SignUpReceiveDataDto signUpReceiveDataDto)
+	{
+		int status = 10;
 		
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In SignUpService - signUp");
-		LOGGER.info("Parameters Received from front end are - 'SignUpReceiveDataDto': "+signUpReceiveDataDto);
-		LOGGER.info("Check the existence of new user in the record");
-		LOGGER.info("Making a Request to Dao");
-		userExistStatus=signUpDao.checkUserExistence(signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getOrganizationName());
-		LOGGER.info("Response received from Dao");
-		if(userExistStatus==0)
+		try
 		{
-			LOGGER.info("User does not exist in the record");
-			LOGGER.info("Inserting user details - SignUp process");
-			LOGGER.info("Making a Request to Dao");
-			id = signUpDao.insertSignUpData(signUpReceiveDataDto.getOrganizationName(),signUpReceiveDataDto.getSPOCName(),signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getPassword(),signUpReceiveDataDto.getUserRole());
-			LOGGER.info("Response received from Dao");
-			if(id >-1)
+			LOGGER.debug("Trying to find out users existence ");
+			
+			userExistStatus=signUpDao.checkUserExistence(signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getOrganizationName());
+			
+			if(userExistStatus == 0)
 			{
-			 LOGGER.info("Saving the details of user");
-			 LOGGER.info("Inserting data into application table");
-			 LOGGER.info("Making a Request to Dao");
-			 saveAsDraftAndSubmitDao.insertIntoApplication(signUpReceiveDataDto.getUserId(), "Draft");
+				LOGGER.debug("User is a new user. Trying to insert values in database");
+				id = signUpDao.insertSignUpData(signUpReceiveDataDto.getOrganizationName(),signUpReceiveDataDto.getSPOCName(),signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getPassword(),signUpReceiveDataDto.getUserRole());
+
+				 status = saveAsDraftAndSubmitDao.insertIntoApplication(signUpReceiveDataDto.getUserId(), "Draft");				
 			}
-					
+			else if(userExistStatus == 1)
+			{
+				status = -1 ; 
+				LOGGER.debug("User already exist in the record");
+				
+			}
 		}
-		else
+		catch(Exception e)
 		{
-			LOGGER.info("User already exist in the record");
-			LOGGER.info("Initializing blank Dto to return to controller");
-			signUpInsertedUserDto= new SignUpInsertedUserDto(null, null, null);
-			LOGGER.info("Successfully Initialized");
+			LOGGER.error("An exception occured while creating user " + e);
+			status = -2;
 		}
 		
-		LOGGER.info("Returning response to Controller");
 		return signUpInsertedUserDto;
 		
 	}
