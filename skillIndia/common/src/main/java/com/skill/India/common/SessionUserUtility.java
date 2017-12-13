@@ -19,18 +19,18 @@ public class SessionUserUtility {
 	
 	
 	 public int getApplicationId(String userId) 
-		{	LOGGER.info("Application Id is -" + userIdtoApplicationIdService.getApplicationId(userId));
-		 	LOGGER.info("Request Received to get Application Id");
-		 	LOGGER.info("In UserIdtoApplicationIdService - getApplicationId");
-		 	LOGGER.info("Request Received are - 'userId': ",userId);
-		 	LOGGER.info("Sending Request to service");
+		{	LOGGER.debug("Application Id is -" + userIdtoApplicationIdService.getApplicationId(userId));
+		 	LOGGER.debug("Request Received to get Application Id");
+		 	LOGGER.debug("In UserIdtoApplicationIdService - getApplicationId");
+		 	LOGGER.debug("Request Received are - 'userId': ",userId);
+		 	LOGGER.debug("Sending Request to service");
 			return userIdtoApplicationIdService.getApplicationId(userId);
 		}	
 	 
 	 public SessionManagementDto getSessionMangementfromSession(){
-		 	LOGGER.info("Request Received to get Session");
-		 	LOGGER.info("In UserIdtoApplicationIdService - getSessionMangementfromSession");
-		 	LOGGER.info("Sending Request to get SessionManagementDto");
+		 	LOGGER.debug("Request Received to get Session");
+		 	LOGGER.debug("In UserIdtoApplicationIdService - getSessionMangementfromSession");
+		 	LOGGER.debug("Sending Request to get SessionManagementDto");
 		 return (SessionManagementDto)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	 }
 		

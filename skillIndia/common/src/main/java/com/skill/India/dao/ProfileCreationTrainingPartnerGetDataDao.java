@@ -46,10 +46,15 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 		parameters.put("applicationId",applicationId);
 		trainingPartnerRegistrationId =  getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getGetTrainingPartnerRegistrationIdUsingApplicationId(), parameters, String.class);
 		}
+		catch (EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("Training Partner registartion Id does not exists");
+			return "-1";
+		}
 		catch(Exception e)
 		{
 			LOGGER.error("An exception occured while finding training partner registration id using application Id "+ e);
-			
+			return "-2";
 		}
 		return trainingPartnerRegistrationId;
  	}

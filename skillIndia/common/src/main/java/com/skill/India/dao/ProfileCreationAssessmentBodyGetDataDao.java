@@ -46,6 +46,11 @@ public class ProfileCreationAssessmentBodyGetDataDao extends AbstractTransaction
 		parameters.put("applicationId",applicationId);
 		return getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getGetAssessmentBodyRegistrationIdUsingApplicationId(), parameters, String.class);
 		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("Assessment Body registartion Id does not exists");
+			return "-1";
+		}
 		catch(Exception e)
 		{
 			LOGGER.error("An xception occured "+ e);
@@ -53,7 +58,7 @@ public class ProfileCreationAssessmentBodyGetDataDao extends AbstractTransaction
 		}
  	}
 	
-	
+
 
 	/*
 	 * Getting data from table 1 ProfileCreationAssessmentBodyRegistrationDetails 
@@ -339,24 +344,6 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		}
  	}
 	
-	/*
-	 * To find if applicationId exists in assessment body table*/
-	
-//	public int isApplicationIdPresent(int applicationId)
-//	{
-//		int status = 0;
-//		try
-//		{
-//			Map<String,Object> parameters = new HashMap<String, Object>();
-//			parameters.put("applicationId", applicationId);
-//			status = getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.,parameters, Integer.class);
-//		}
-//		catch(Exception e)
-//		{
-//			LOGGER.error("An exception occured while finding if application Id exists in assessment body organisation details database table " + e);
-//		}
-//		return status;
-//	}
 	
 	/* To check presence of Affiliation data of Assessment body*/
 	public int isAffiliationPresent(String assessmentBodyRegistrationId, String nameOfSectorSkillCouncil)

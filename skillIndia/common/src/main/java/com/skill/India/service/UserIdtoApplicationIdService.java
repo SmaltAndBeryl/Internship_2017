@@ -16,10 +16,10 @@ public class UserIdtoApplicationIdService {
 	
 	public int getApplicationId(String userId){
 		
-		LOGGER.info("Request Received to get application Id");
-		LOGGER.info("In UserIdtoApplicationIdService - getApplicationId");
-		LOGGER.info("Parameters Received from Controller are - 'userId': "+userId);
-		LOGGER.info("Getting Application id against received userId");
+		LOGGER.debug("Request Received to get application Id");
+		LOGGER.debug("In UserIdtoApplicationIdService - getApplicationId");
+		LOGGER.debug("Parameters Received from Controller are - 'userId': "+userId);
+		LOGGER.debug("Getting Application id against received userId");
 		return userIdtoApplicationIdDao.getApplicationId(userId);
 	}
 

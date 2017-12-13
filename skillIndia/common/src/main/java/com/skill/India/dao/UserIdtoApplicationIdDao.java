@@ -23,9 +23,9 @@ public class UserIdtoApplicationIdDao extends AbstractTransactionalDao {
 
 	public Integer getApplicationId(String userId){
 		
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In UserIdtoApplicationIdDao - getApplicationId");
-		LOGGER.info("Parameters Received from Service are - 'userId': " +userId);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In UserIdtoApplicationIdDao - getApplicationId");
+		LOGGER.debug("Parameters Received from Service are - 'userId': " +userId);
 		
 		try
 		{

@@ -85,6 +85,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		if (userExists == -1)
 		{
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
+			
 			status=profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
 
 			//Once applicationId has been created
@@ -149,12 +150,16 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		else
 		{
 			applicationTableStatus=profileCreationTPABCommonDao.updateIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
-			if()
+			applicationIdAfterInsertion = getAssessmentBodyRegistrationId(getApplicationId());
+			LOGGER.debug("Value of assessment body regsitration is " +applicationIdAfterInsertion );
+			if(applicationIdAfterInsertion == "-1")
 			{
+				LOGGER.debug("Assessment Body registration Id is empty");
 				status=profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
 			}
 			else
 			{
+				LOGGER.debug("Assessment Body registartion Id is not empty");
 				status = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
 			}
 			
@@ -949,6 +954,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		{
 			trainingPartnerRegistrationId = profileCreationTrainingPartnerGetDataDao.profileCreationGetTrainingPartnerRegistrationIdUsingApplicationId(applicationId);
 		}
+		
 		catch(Exception e)
 		{
 			LOGGER.error("An exception occured while finding registration Id for training partner " + e);
