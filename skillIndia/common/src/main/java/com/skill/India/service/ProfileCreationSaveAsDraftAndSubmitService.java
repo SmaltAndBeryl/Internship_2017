@@ -157,9 +157,13 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 				LOGGER.debug("Assessment Body registration Id is empty");
 				status=profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
 			}
+			else if(applicationIdAfterInsertion == "-2")
+			{
+				LOGGER.debug("An exception occured while finding if assessment body is present or not");
+			}
 			else
 			{
-				LOGGER.debug("Assessment Body registartion Id is not empty");
+				LOGGER.debug("Assessment Body registartion Id is " + applicationIdAfterInsertion);
 				status = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
 			}
 			
@@ -172,9 +176,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 					 int affiliationPresent = profileCreationAssessmentBodyGetDataDao.isAffiliationPresent(item.getAssessmentBodyRegistrationId(), item.getNameOfSectorSkillCouncil());
 					if(affiliationPresent == 0)
 					{
-						LOGGER.debug("AffiliationId" + item.getAffiliationId());
-						LOGGER.debug("abregId" + item.getAssessmentBodyRegistrationId());
-						LOGGER.debug("sector skil council" + item.getNameOfSectorSkillCouncil());
+						
 						profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyAffiliationDetails(item, applicationIdAfterInsertion);
 					}
 					else if (affiliationPresent == 1)
@@ -215,8 +217,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 			{
 				for(ProfileCreationAssessmentBodyRecognitionsDto item : profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRecognitionsDto())
 				{
-					LOGGER.debug("recognitionID" + item.getAssessmentBodyRecognitionId());
-					LOGGER.debug("registrationId" + item.getAssessmentBodyRegistrationId());
+					
 					int recognitionABStatus = profileCreationAssessmentBodyGetDataDao.isRecognitionPresent(item.getAssessmentBodyRegistrationId(), item.getNameOfRecognitionBody());
 					if(recognitionABStatus == 0)
 					{
@@ -317,6 +318,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		if(userExists == -1)
 		{
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
+			
 			status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
 			
 			//get applicationId once it is created
@@ -384,10 +386,22 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		/*Old User*/
 		else 
 		{
-			applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
-			LOGGER.debug("Training Partner RegistrationId in else part "+ applicationIdAfterCreation);
 			applicationTableStatus = profileCreationTPABCommonDao.updateIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
-			status = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+			applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
+			if(applicationIdAfterCreation == "-1")
+			{
+				status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+			}
+			else if (applicationIdAfterCreation == "-2")
+			{
+				LOGGER.debug("Some exception occured while finding if training partner registartion id is present or not");
+			}
+			else
+			{
+				LOGGER.debug("Training Partner RegistrationId is "+ applicationIdAfterCreation);
+				status = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+			}
+			
 			/*
 			 * Training Center Details*/
 			if(!profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerCenterDetailsDto().isEmpty())
