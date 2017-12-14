@@ -16,6 +16,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUp
         });
     $scope.states = ["UP", "Uttarakhand", "MP", "Bihar"];
     $scope.type = ["regular", "visiting"];
+    $scope.buildingTypes = ["Own" , "Rented", "Lease"];
     $scope.pctpCenterDetails = [];
     
     $scope.pctpInstituteGrantDetail = [];

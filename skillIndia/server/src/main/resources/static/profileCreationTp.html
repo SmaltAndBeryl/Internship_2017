@@ -473,12 +473,7 @@
                                             <td><input ng-model="trainingStaff.designation" class="form-control" placeholder="Designation" required /></td>
                                             <td><input ng-model="trainingStaff.emailId" class="form-control" placeholder="emailId" required /></td>
                                             <td>
-                                            <label class="radio-inline">
-                                    <input type="radio" ng-model="trainingStaff.regularOrVisiting" value="regular" ng-click="uploadNSDCCertificate()" />Regular
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" ng-model="trainingStaff.regularOrVisiting" value="visiting" ng-click="updateNoInNSDCCertifiacte()" checked />Visiting
-                                </label>
+                                            <select ng-options="x for x in type" ng-model="trainingStaff.regularOrVisiting" class="form-control"></select>
                                             </td>                                            
                                             <td><input ng-model="trainingStaff.educationalQualification" placeholder="Education Qualification" class="form-control" required /></td>
                                             <td><input ng-model="trainingStaff.experience" class="form-control"  placeholder="Experience" required /></td>
@@ -668,6 +663,17 @@
                     </div>
                     <div class="col-md-6">
                     	<input type="text" ng-model="trainingCenter.areaOfInstitute" class="form-control" placeholder = "area of institute premises in sq. ft." />sq.ft.
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Building type -->
+                    <div class="form-horizontal">
+                    	<div class="form-group">
+                    	<div class="col-md-6">
+                    <label>Building type</label>
+                    </div>
+                    <div class="col-md-6">
+                    <select ng-model="trainingCenter.buildingType" ng-options="x for x in buildingTypes" class="form-control"></select>
                     </div>
                     </div>
                     </div>

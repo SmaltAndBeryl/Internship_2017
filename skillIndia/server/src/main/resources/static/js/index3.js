@@ -178,11 +178,16 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
 			     console.log(response);
 		     var signupAction=response;
 		     var userName=signupAction.userId;
-		     if(userName=="null" || signupAction.organizationName=="null" || signupAction.sPOCName=="null")
+		     
+		     if(response.data == -1)
 		     {
 		    	$scope.errorMessagesForSignUp = "Organisation name is already in use."
 		    }
-		     else if (response.status == "200")
+		     else if(response.data == -2)
+		    	 {
+		    	 	$scope.errorMessagesForSignUp = "Could not create your account as of now .Please try later"
+		    	 }
+		     else 
 		     {
 		    	 //alert("User created with userId - "+self.newUser.userId); 
 		    	 $scope.successMessagesForSignUp = "User created successfully.Please login now.";
