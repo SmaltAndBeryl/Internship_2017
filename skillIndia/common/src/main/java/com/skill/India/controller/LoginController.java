@@ -58,10 +58,13 @@ public class LoginController {
 	}	
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody SignUpInsertedUserDto signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto)
+	public @ResponseBody int signUp(@RequestBody SignUpReceiveDataDto signUpReceiveDataDto)
 	{
+		int status =0;
 		LOGGER.debug("Sending Request to service");
-		return signUpService.signUp(signUpReceiveDataDto);
+		status = signUpService.signUp(signUpReceiveDataDto);
+		LOGGER.debug("Status is " + status);
+		return status;
 	  
 	}
 	

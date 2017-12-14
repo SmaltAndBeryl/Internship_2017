@@ -28,7 +28,7 @@ public class SignUpService {
 	private int userExistStatus;
 	private int id;
 
-	public SignUpInsertedUserDto signUp(SignUpReceiveDataDto signUpReceiveDataDto)
+	public int signUp(SignUpReceiveDataDto signUpReceiveDataDto)
 	{
 		int status = 10;
 		
@@ -58,7 +58,7 @@ public class SignUpService {
 			status = -2;
 		}
 		
-		return signUpInsertedUserDto;
+		return status;
 		
 	}
 	
