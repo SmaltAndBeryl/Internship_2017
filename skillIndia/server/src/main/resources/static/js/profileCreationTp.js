@@ -423,28 +423,33 @@ $scope.removeManagement = function(){
 
     // Remove all functionality for all the tables
 
-    $scope.removeAll = function() {
+    $scope.removeAll = function()
+    {
         console.log("Removing all the details..!");
         angular.forEach
         $scope.trainingPartner.PriorExperienceDetails = [];
-    }
+    };
 
-    $scope.removeAllRecognition = function() {
+    $scope.removeAllRecognition = function() 
+    {
         console.log("Removing all the details..!");
         $scope.trainingPartner.InstituteRecognitionDetails = [];
-    }
+    };
 
-    $scope.removeAllGrant = function() {
+    $scope.removeAllGrant = function() 
+    {
         console.log("Removing all the details..!");
         $scope.trainingPartner.InstituteGrantDetails = [];
     };
 
-    $scope.saveAccordionOne = function() {
+    $scope.saveAccordionOne = function()
+    {
         console.log("Button Working " + JSON.stringify($scope.trainingPartner));
     };
 
     //Upload PAN
-    $scope.uploadFilePan = function() {
+    $scope.uploadFilePan = function()
+    {
         var file = $scope.trainingPartner.pan;
         console.log("File is " + file);
 
@@ -459,18 +464,18 @@ $scope.removeManagement = function(){
     	console.log("File is "+ file);
     	var uploadTAN = "/fileUploadTPTAN";
     	fileUpload.uploadFileToUrl(file, uploadTAN, "tan");
-    }
+    };
 //Upload NSDC Certificate
     $scope.uploadNSDCCertificate = function()
     {
     	
-    }
+    };
     
     //Update no in nsdc funded
     $scope.updateNoInNSDCCertifiacte = function()
     {
     	$scope.trainingPartner.TrainingPartnerOrganizationDetails.nsdcFunded = "no";
-    }
+    };
     
     $scope.uploadFileNSDCCertificate = function()
     {
@@ -478,7 +483,7 @@ $scope.removeManagement = function(){
     	console.log("File is "+ file);
     	var uploadNSDCCertificate = "/fileUploadTPNSDC";
     	fileUpload.uploadFileToUrl(file, uploadNSDCCertificate, "nsdcCertificate");
-    }
+    };
     
     //Upload self owned annexure
     $scope.uploadFileselfOwnedAnnexure = function()
@@ -488,7 +493,7 @@ $scope.removeManagement = function(){
     	var uploadSelfOwnedAnnexure = "/fileuploadTPSelfOwned";
     	
     	fileUpload.uploadFileToUrl(file, uploadSelfOwnedAnnexure, "selfOwnedAnnexure");
-    }
+    };
     
     
     //Upload franchisee model annexure
@@ -498,7 +503,7 @@ $scope.removeManagement = function(){
     	console.log("File is "+ file);
     	var uploadFranchisee = "/fileuploadTPFranchisee";
     	fileUpload.uploadFileToUrl(file, uploadFranchisee, "fileuploadTPFranchisee");
-    }
+    };
     
     //Upload Mobile Model Annexure 
     $scope.uploadFilemobileAnnexure = function()
@@ -506,7 +511,7 @@ $scope.removeManagement = function(){
     	var file = $scope.trainingPartner.mobileFile;
     	var uploadMobile = "/fileUploadTPMobile"
     		fileUpload.uploadFileToUrl(file, uploadFranchisee, "fileuploadTPFranchisee");
-    }
+    };
     
     //Upload Education certificates
     $scope.uploadFileCertificatesQP = function()
@@ -515,7 +520,7 @@ $scope.removeManagement = function(){
     	var uploadEducationCertificates = "/fileUploadTpEducationCertificates";
     	fileUpload.uploadFileToUrl(file, uploadEducationCertificates, "fileuploadTPEducationCertificate");
     	
-    }
+    };
     
     //Upload Training Staff Cvs
     $scope.uploadFileTrainingStaffCV = function()
@@ -523,7 +528,7 @@ $scope.removeManagement = function(){
     	var file = $scope.trainingPartner.trainingStaffCV;
     	var uploadTrainingStaffCvUrl = "/fileUploadTrainingStaffCv";
     	fileUpload.uploadFileToUrl(file, uploadTrainingStaffCvUrl, "fileuploadTrainingStaffCv");
-    }
+    };
     
     
     //Upload Cv of Training Partner Management Staff
@@ -531,21 +536,18 @@ $scope.removeManagement = function(){
    {
 	   var file = $scope.trainingPartner.managementStaffCV;
 	   var uploadTpManagementStaffCvUrl = "/fileUploadManagementStaffCv";
-	   fileUpload.uploadFileToUrl(file, uploadUrl, "fileUploadTpManagementCv");
+	   fileUpload.uploadFileToUrl(file, uploadTpManagementStaffCvUrl, "fileUploadTpManagementCv");
 		  
-   }
+   };
    
    //Upload Operation Head Cv
    $scope.uploadFileOperationHeadCv = function(selected)
    {
 	   var file = $scope.trainingPartner.OperationHeadCv;
 	   var uploadUrl = "/fileUploadOperationHeadCv";
-	   console.log("Clicked name of center is " + selected.nameOfCenter);
-//	   var fd = new FormData();
-//       fd.append("file", file)
-//       fd.append($scope.)
-	   //fileUpload.uploadFileToUrl(file, uploadUrl, "operationHeadCv");
-   }
+	   console.log("Clicked name of center is " );
+
+   };
    
    //Upload AffiliationCoordinator Cv
    $scope.uploadFileAffiliationCoordinatorCv = function()
@@ -553,7 +555,7 @@ $scope.removeManagement = function(){
 	   var file = $scope.trainingPartner.affiliationCoordinatorCv;
 	   var uploadUrl = "/fileUploadAffiliationCoordinatorCv";
 	   fileUpload.uploadFileToUrl(file, uploadUrl, "affiliationCoordinatorCv");
-   }
+   };
    
    //Upload SPOC Cv
    $scope.uploadFileSPOCCv = function()
@@ -561,7 +563,15 @@ $scope.removeManagement = function(){
 	   var file = $scope.trainingPartner.trainingPartner.SPOCCv;
 	   var uploadUrl = "/fileUploadSPOCCv";
 	   fileUpload.uploadFileToUrl(file, uploadUrl, "SPOCCv");
-   }
+   };
+   //Upload ClassroomPics path
+   $scope.uploadClassRoomPics = function(trainingcenter)
+   {
+	   console.log(trainingcenter)
+	   var file = $scope.trainingPartner.fileSizeOfClassrooms;
+	   var fileUploadUrl = "/fileUploadClassroomImage";
+	   fileUpload.uploadFileWithKey(file,fileUploadUrl,"fileClassroomPic", "centerName",trainingcenter.nameOfCenter)
+   };
 
     $scope.grantTable = {
         enableGridMenus: false,
@@ -709,45 +719,7 @@ $scope.removeManagement = function(){
             },
         ]
     };
-    //response is the string that contains the nature of the button
-    /*$scope.submit = function(response){
-        alert("Application filled successfully! " + response);
-        //POST function to post the data into backend
-
-    };*/
     
-    
-    //Save Center details
-//    $scope.saveCenter = function()
-//    {
-//    	console.log("Inside save center function");
-//    	console.log("Training Partner cenetr is " +  $scope.trainingPartner.TrainingPartnerCenterDetails);
-//    	$scope.postValue = {
-//                'type' : 'Draft',
-//                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
-//                'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
-//                'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
-//                'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.pctpRecognition,
-//                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-//                'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
-//                'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
-//            }
-//    	
-//    	console.log("post data is " + $scope.postValue)
-//    	var saveUrl = '/saveAsDraftAndSubmitTP';
-//        var saveMethod = 'POST';
-//        $http({
-//        	url : saveUrl,
-//        	method  : saveMethod,
-//        	data : angular.toJson($scope.postValue)
-//        }).then(function(){
-//        	console.log("Successful");
-//        },
-//        function(){
-//        	console.log("Not successful");
-//        })
-//    }
-
     
     //Method to be called on save button
     $scope.save = function(response) {

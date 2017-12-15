@@ -269,7 +269,7 @@ ProfileCreationTrainingPartner:
  updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails: >
   UPDATE `scgj`.`trainingpartnermanagementandstaffandofficialsdetails` SET `cVPath`=:cVPath, `certificatePath`=:certificatePath WHERE `managementAndStaffId`=:managementAndStaffId;
       
- updatePathsIntoTrainingPartnerCenterLevelDetails: >
-  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `classroomPicsPath`=:classroomPicsPath, `labPicsPath`=:labPicsPath, `workshopPicsPath`=:workshopPicsPath, `mandatoryToolKitAnnexurePath`=:mandatoryToolKitAnnexurePath, `mandatoryToolKitPicsPath`=:mandatoryToolKitPicsPath WHERE `trainingPartnerCenterId`=:trainingPartnerCenterId;
+ updatePathsClassRoomImagePath: >
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `classroomPicsPath`=:classroomPicsPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
       
    

@@ -1184,47 +1184,92 @@
                     </div>
                     </form>
                     </div>
-                    <!-- Operation head cv -->
-                    
+                    <!-- CVs of center head -->
                     
                     <div class="upload-button div-center" ng-repeat="trainingcenter in trainingPartner.TrainingPartnerCenterDetails">
-                    <div class="form-horizontal form-group">
-                    <label>{{trainingcenter.nameOfCenter}}</label>
-                    </div>
-                  	<div class="form-horizontal" ng-show="trainingcenter.nameOperationHead.length">
-                	<div class="form-group col-md-12">
-                		<label>{{trainingcenter.nameOperationHead}}</label>
-                	</div>
-                	<div class="form-group">
-                		<div class="col-md-8"><input id ="OperationHeadCv" type="file" file-model="trainingPartner.OperationHeadCv" accept="application/pdf" /></div>
-                		<div class="col-md-4"><button ng-click="uploadFileOperationHeadCv()" class="btn btn-pc-upload">Upload Cv</button></div>
-                	</div>
-               		</div>
-               		<div class="form-horizontal" ng-show="trainingcenter.nameAffiliationCoordinator.length">
-                	<div class="form-group col-md-12">
-                		<label>{{trainingcenter.nameAffiliationCoordinator}}</label>
-                	</div>
-                	<div class="form-group">
-                		<div class="col-md-8"><input id ="affiliationCoordinatorCv" type="file" file-model="trainingPartner.affiliationCoordinatorCv" accept="application/pdf" /></div>
-                		<div class="col-md-4"><button ng-click="" class="btn btn-pc-upload">Upload Cv</button></div>
-                	</div>
-               		</div>
-               		<div class="form-horizontal" ng-show="trainingcenter.nameSPOC.length">
-                	<div class="form-group col-md-12">
-                		<label>{{trainingcenter.nameSPOC}}</label>
-                	</div>
-                	<div class="form-group">
-                		<div class="col-md-8"><input id ="SPOCCv" type="file" file-model="trainingPartner.SPOCCv" accept="application/pdf" /></div>
-                		<div class="col-md-4"><button ng-click="" class="btn btn-pc-upload">Upload Cv</button></div>
-                	</div>
-               		</div>
-               		</div>
+	                    <div class="form-horizontal form-group">
+	                    <label>{{trainingcenter.nameOfCenter}}</label>
+	                    </div>
+                    <!-- Operation head cv -->
+                    
+	                  	<div class="form-horizontal" ng-show="trainingcenter.nameOperationHead.length">
+	                	<form>
+	                	<div class="form-group col-md-12">
+	                		<label>{{trainingcenter.nameOperationHead}}</label>
+	                	</div>
+	                	<div class="form-group">
+	                		<div class="col-md-8"><input id ="OperationHeadCv" type="file" file-model="trainingPartner.OperationHeadCv" accept="application/pdf" /></div>
+	                		<div class="col-md-4"><button ng-click="uploadFileOperationHeadCv()" class="btn btn-pc-upload">Upload Cv</button></div>
+	                	</div>
+	                	</form>
+	               		</div>
+	               		
+               		<!-- Affiliation Coordinator cv -->
+	               		<div class="form-horizontal" ng-show="trainingcenter.nameAffiliationCoordinator.length">
+	                	<form>
+	                	<div class="form-group col-md-12">
+	                		<label>{{trainingcenter.nameAffiliationCoordinator}}</label>
+	                	</div>
+	                	<div class="form-group">
+	                		<div class="col-md-8"><input id ="affiliationCoordinatorCv" type="file" file-model="trainingPartner.affiliationCoordinatorCv" accept="application/pdf" /></div>
+	                		<div class="col-md-4"><button ng-click="" class="btn btn-pc-upload">Upload Cv</button></div>
+	                	</div>
+	                	</form>
+	               		</div>
+               		<!-- SPOC cv -->
+	               		<div class="form-horizontal" ng-show="trainingcenter.nameSPOC.length">
+	                	<form>
+	                	<div class="form-group col-md-12">
+	                		<label>{{trainingcenter.nameSPOC}}</label>
+	                	</div>
+	                	<div class="form-group">
+	                		<div class="col-md-8"><input id ="SPOCCv" type="file" file-model="trainingPartner.SPOCCv" accept="application/pdf" /></div>
+	                		<div class="col-md-4"><button ng-click="uploadFileSPOCCv()" class="btn btn-pc-upload">Upload Cv</button></div>
+	                	</div>
+	                	</form>
+	               		</div>
+               		<!-- Size of Classrooms -->
+               		<div class="form-horizontal">
+               		<form>
+               			<div class="form-group">
+               				<div class="col-md-6">
+               					<label>Size of Classrooms</label>
+               				</div>
+               				<div class="col-md-6">
+               					<input type="text" ng-model="trainingcenter.sizeOfClassrooms" class="form-control"/>
+               				</div>
+               			</div>
+               			<div class="form-group" ng-show="trainingcenter.sizeOfClassrooms > '0' ">
+               				<div class="col-md-8">
+               					<input type="file" file-model="trainingPartner.fileSizeOfClassrooms" accept="application/pdf"/>
+               				</div>
+               				<div class="col-md-4">
+               					<button ng-click="uploadClassRoomPics(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
+               				</div>
+               				</form>
+               			</div>
+               			<!-- Size of Labs -->
+               			<div class="form-horizontal">
+               			<form>
+               			<div class="form-group">
+               				<div class="col-md-6">
+               					<label>Size of labs</label>
+               				</div>
+               				<div class="col-md-6">
+               					<input type="text" ng-model="trainingcenter.sizeOfLabs" class="form-control"/>
+               				</div>
+               			</div>
+               			<div class="form-group" ng-show="trainingcenter.sizeOfLabs > '0' ">
+               				<div class="col-md-8">
+               					<input type="file" file-model="trainingcenter.fileSizeOfLabs" accept="application/pdf"/>
+               				</div>
+               				<div class="col-md-4">
+               					<button ng-click="" class="btn btn-pc-upload">Upload Images</button></div>
+               				</div>
+               				</form>
+               			</div>
                		
-                    
-               		
-                    
-                    <!-- Upload Cvs of Training center heads -->
-                    
+               		</div>
                 </div>
             </accordion-group>
             
