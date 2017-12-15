@@ -47,6 +47,8 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String isInstituteGrantPresent;
 	private String isRecognitnionPresent;
 	private String isTrainingStaffPresent;
+	
+	
 	private String isTrainingExperiencePresent;
 	private String isTrainingPartnerStaffTrainingStaffPresent;
 	
@@ -59,8 +61,29 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateTrainingStaffEducationCertificatePath;
 	private String updateManagementCvPath;
 	private String updateTrainingStaffCvPath;
+	private String updateOperationHeadCvPath;
+	private String updatePathsAffiliationCoordinatorCvPath;
+	private String updatePathsSPOC;
 	
-	
+	public String getUpdateOperationHeadCvPath() {
+		return updateOperationHeadCvPath;
+	}
+	public void setUpdateOperationHeadCvPath(String updateOperationHeadCvPath) {
+		this.updateOperationHeadCvPath = updateOperationHeadCvPath;
+	}
+	public String getUpdatePathsAffiliationCoordinatorCvPath() {
+		return updatePathsAffiliationCoordinatorCvPath;
+	}
+	public void setUpdatePathsAffiliationCoordinatorCvPath(
+			String updatePathsAffiliationCoordinatorCvPath) {
+		this.updatePathsAffiliationCoordinatorCvPath = updatePathsAffiliationCoordinatorCvPath;
+	}
+	public String getUpdatePathsSPOC() {
+		return updatePathsSPOC;
+	}
+	public void setUpdatePathsSPOC(String updatePathsSPOC) {
+		this.updatePathsSPOC = updatePathsSPOC;
+	}
 
 	/**
 	 * @return the updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails

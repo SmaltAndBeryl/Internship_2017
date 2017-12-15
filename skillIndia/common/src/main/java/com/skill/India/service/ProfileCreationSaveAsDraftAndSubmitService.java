@@ -730,30 +730,12 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return trainingPartnerManagementStaffCvPath;
 	}
 	
-	/*
-	 * Method to save Operation Head Cv*/
-	public int saveOperationHeadCv(MultipartFile operationHeadCv, String key)
-	{
-		int panPathUpdated = 0;
-		int applicationId = getApplicationId();
-		String panPath = "";
-
-//		try
-//		{
-//			panPath = saveFile(key, applicationId, assessmentBodyPan, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
-//			LOGGER.debug("Pan path is " + panPath);
-//		}
-//		catch(Exception e)
-//		{
-//			LOGGER.error("An exception occurred while saving file " + e);
-//		}
-		
-		panPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updatePanPath(panPath, applicationId );
-		return panPathUpdated;
-	}
 	
 	/**
 	 * 
+	 * @param key
+	 * @param classRoomImages
+	 * @param nameOfCenter
 	 * @return
 	 */
 	public int saveClassRoomImagesTP(String key , MultipartFile classRoomImages, String nameOfCenter)
@@ -771,10 +753,92 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		}
 		catch(Exception e)
 		{
+			classroomImagePathUpdated =-2;
 			LOGGER.error("An exception occured while saving classroom images for center " + nameOfCenter+" "+ e);
 		}
 		
 		return classroomImagePathUpdated;
+	}
+	
+	/**
+	 * Method to save Operation head cv and update path in database
+	 * @param key
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
+	public int saveOperationHeadCv(String key, MultipartFile file, String nameOfCenter)
+	{
+		int operationHeadCvPathUpdated = 0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistrationId = getTrainingPartnerRegistrationId(applicationId);
+		String operationHeadCvPath ="";
+		String[] insideFolders = {nameOfCenter}; 
+		try
+		{
+			operationHeadCvPath = saveFile(key,applicationId, file,readApplicationConstants.getProfileCreationTrainingPartnerFolder(),insideFolders);
+			operationHeadCvPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updateOperationHeadCvPath(trainingPartnerRegistrationId, operationHeadCvPath);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while saving operation head cv file " + e);
+			operationHeadCvPathUpdated =-2;
+		}
+		return operationHeadCvPathUpdated;
+	}
+	
+	/**
+	 * Method to save affiliation coordinator cv file and update path in database
+	 * @param key
+	 * @param file
+	 * @param nameofCenter
+	 * @return
+	 */
+	public int saveAffiliationCoordinatorCv(String key, MultipartFile file, String nameOfCenter)
+	{
+		int affiliationCoordinatorCvUpdated =0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistrationId = getTrainingPartnerRegistrationId(applicationId);
+		String affiliationCoordinatorCvPath ="";
+		String[] insideFolders = {nameOfCenter};
+		try
+		{
+			affiliationCoordinatorCvPath = saveFile(key,applicationId, file,readApplicationConstants.getProfileCreationTrainingPartnerFolder(),insideFolders);
+			affiliationCoordinatorCvUpdated = profileCreationTrainingPartnerUpdateDataDao.updateOperationHeadCvPath(trainingPartnerRegistrationId, affiliationCoordinatorCvPath);
+		}
+		catch(Exception e)
+		{
+			affiliationCoordinatorCvUpdated = -2;
+			LOGGER.error("An exception occured while updating path of affiliation co ordinator " + e);
+		}
+		return affiliationCoordinatorCvUpdated;
+	}
+	
+	/**
+	 * Method to save spoc cv file and update path in database
+	 * @param key
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
+	public int saveSPOCCv(String key, MultipartFile file, String nameOfCenter)
+	{
+		int spocCvPathUpdated = 0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistrationId = getTrainingPartnerRegistrationId(applicationId);
+		String spocCvPath ="";
+		String[] insideFolders = {nameOfCenter};
+		try
+		{
+			spocCvPath = saveFile(key,applicationId, file,readApplicationConstants.getProfileCreationTrainingPartnerFolder(),insideFolders);
+			spocCvPathUpdated = profileCreationTrainingPartnerUpdateDataDao.updateOperationHeadCvPath(trainingPartnerRegistrationId, spocCvPath);
+		}
+		catch(Exception e)
+		{
+			spocCvPathUpdated = -2;
+			LOGGER.error("An exception occured while updating spoc cv path " +e);
+		}
+		return spocCvPathUpdated; 
 	}
 	
 	/*Method to save PAN of Assessment Body*/

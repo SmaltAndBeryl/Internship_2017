@@ -168,11 +168,11 @@ public class ProfileCreationController {
 	/*
 	 * Method to save Operation Head Cv*/
 	@RequestMapping(value="/fileUploadOperationHeadCv", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
-	public int saveFileOperationHead(@RequestParam(value="operationHeadCv") MultipartFile file)
+	public int saveFileOperationHead(@RequestParam(value="operationHeadCv") MultipartFile file, @RequestParam(value="centerName")String nameOfCenter)
 	{
 		int status = 0;
 		
-		//status = profileCreationSaveAsDraftAndSubmitService.
+		status = profileCreationSaveAsDraftAndSubmitService.saveOperationHeadCv("OperationHeadCv", file, nameOfCenter);
 		return status;
 	}
 	
@@ -180,30 +180,31 @@ public class ProfileCreationController {
 	/*
 	 * Method to save Affiliation Coordinator Cv*/
 	@RequestMapping(value="/fileUploadAffiliationCoordinatorCv", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
-	public int saveFileAffiliationcoordinator(@RequestParam(value="affiliationCoordinatorCv")MultipartFile file)
+	public int saveFileAffiliationcoordinator(@RequestParam(value="affiliationCoordinatorCv")MultipartFile file  , @RequestParam(value="centerName")String nameOfCenter)
 	{
 		int status = 0;
-		//status = profileCreationSaveAsDraftAndSubmitService.
+		status = profileCreationSaveAsDraftAndSubmitService.saveAffiliationCoordinatorCv("AffiliationCoordinatorCv", file, nameOfCenter);
 		return status;
 	}
 	
 	/*
 	 * Method to save SPOC Cv*/
 	@RequestMapping(value="/fileUploadSPOCCv")
-	public int saveFileSPOCCv(@RequestParam(value="SPOCCv")MultipartFile file)
+	public int saveFileSPOCCv(@RequestParam(value="SPOCCv")MultipartFile file,  @RequestParam(value="centerName")String nameOfCenter)
 	{
 		int status = 0;
-		//status = profileCreationSaveAsDraftAndSubmitService.
+		status = profileCreationSaveAsDraftAndSubmitService.saveSPOCCv("SPOCCv", file, nameOfCenter);
 		return status;
 	}
 	
 	/*
 	 * Method to save Classroom Images*/
 	@RequestMapping(value="/fileUploadClassroomImage")
-	public int saveFileSPOCCv(@RequestParam(value="fileClassroomPic")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
+	public int saveFileClassRoomImage(@RequestParam(value="fileClassroomPic")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
 	{
 		int status = 0;
-		
+		LOGGER.debug("File of classroom pictures is  " + file);
+		LOGGER.debug("Name of Center is " + nameOfCenter);
 		status = profileCreationSaveAsDraftAndSubmitService.saveClassRoomImagesTP("classroomImage", file, nameOfCenter);
 		return status;
 	}

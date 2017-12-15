@@ -387,6 +387,77 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			return status;
 		}
 		
+		/**
+		 * Method to update path of operation Head
+		 * @param trainingPartnerRegistrationId
+		 * @param operationHeadCvPath
+		 * @return integer value
+		 */
+		public int updateOperationHeadCvPath(String trainingPartnerRegistrationId, String operationHeadCvPath)
+		{
+			int status = 0;
+			try{
+				Map<String, String> parameters = new HashMap<String, String>();
+				parameters.put("cvOperationHeadPath", operationHeadCvPath);
+				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateOperationHeadCvPath(), parameters);
+				}
+				catch(Exception e)
+				{
+					LOGGER.error("An exception occured while updating Operation Head Cv path" + e);
+					status = -1;
+				}
+			return status;
+		}
+		
+		/**
+		 * Method to save Affiliation coordinator cv path
+		 * @param trainingPartnerRegistrationId
+		 * @param affiliationCoordinatorCvPath
+		 * @return
+		 */
+		public int updateAffiliationCoordinatorCvPath(String trainingPartnerRegistrationId, String affiliationCoordinatorCvPath)
+		{
+			int status = 0;
+			try{
+				Map<String, String> parameters = new HashMap<String, String>();
+				parameters.put("cvAffiliationCoordinatorPath", affiliationCoordinatorCvPath);
+				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsAffiliationCoordinatorCvPath(), parameters);
+				}
+				catch(Exception e)
+				{
+					LOGGER.error("An exception occured while updating Affiliation coordinator Cv path " + e);
+					status = -1;
+				}
+			return status;
+		}
+		
+		/**
+		 * Method to save SPOC cv path
+		 * @param trainingPartnerRegistrationId
+		 * @param spocCvPath
+		 * @return
+		 */
+		public int updateSPOCCoordinatorPath(String trainingPartnerRegistrationId, String spocCvPath)
+		{
+			int status;
+			try{
+				Map<String, String> parameters = new HashMap<String, String>();
+				parameters.put("cvSPOCPath", spocCvPath);
+				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsSPOC(), parameters);
+				}
+				catch(Exception e)
+				{
+					LOGGER.error("An exception occured while updating Spoc Cv path " + e);
+					status = -1;
+				}
+			return status; 
+		}
 		/*Method to update pan number path*/
 		
 		public int updatePanPath(String panPath, int applicationId)
