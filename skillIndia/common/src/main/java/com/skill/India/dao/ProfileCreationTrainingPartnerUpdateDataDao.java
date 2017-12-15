@@ -458,6 +458,104 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 				}
 			return status; 
 		}
+		
+		/**
+		 * 
+		 * @param trainingPartnerRegistrationId
+		 * @param labImagePath
+		 * @return
+		 */
+		public int updateLabsImagePath(String trainingPartnerRegistrationId, String labImagePath)
+		{
+			int status = 0;
+			try{
+				Map<String, String> parameters = new HashMap<String, String>();
+				parameters.put("labPicsPath", labImagePath);
+				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatelabImagesPath() , parameters);
+				}
+				catch(Exception e)
+				{
+					LOGGER.error("An exception occured while updating images of labs " + e);
+					status = -1;
+				}
+			return status ;
+			
+		}
+		
+		/**
+		 * 
+		 * @param trainingPartnerRegistrationId
+		 * @param workshopImagePath
+		 * @return
+		 */
+		public int updateWorkshopImagePath(String trainingPartnerRegistrationId, String workshopImagePath)
+		{
+			int status = 0;
+			try{
+				Map<String, String> parameters = new HashMap<String, String>();
+				parameters.put("workshopPicsPath", workshopImagePath);
+				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateWorkshopImagesPath(), parameters);
+				}
+				catch(Exception e)
+				{
+					LOGGER.error("An exception occured while updating workshop images path " + e);
+					status = -1;
+				}
+			return status;
+		}
+		
+		/**
+		 * 
+		 * @param trainingPartnerRegistrationId
+		 * @param mandatoryToolkitImagePath
+		 * @return
+		 */
+		public int updateMandatoryToolkitImagePath(String trainingPartnerRegistrationId, String mandatoryToolkitImagePath)
+		{
+			int status = 0;
+			try{
+				Map<String, String> parameters = new HashMap<String, String>();
+				parameters.put("mandatoryToolKitPicsPath", mandatoryToolkitImagePath);
+				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateMandatoryToolkitImagePath(), parameters);
+				}
+				catch(Exception e)
+				{
+					LOGGER.error("An exception occured while updating manadatory toolkit image path" + e);
+					status = -1;
+				}
+			return status;
+		}
+		/**
+		 * 
+		 * @param trainingPartnerRegistrationId
+		 * @param mandatoryToolkitAnnexurePath
+		 * @return
+		 */
+		public int updateMandatoryToolkitAnnexurePath(String trainingPartnerRegistrationId, String mandatoryToolkitAnnexurePath)
+		{
+			int status = 0;
+			try{
+				Map<String, String> parameters = new HashMap<String, String>();
+				parameters.put("mandatoryToolKitAnnexurePath", mandatoryToolkitAnnexurePath);
+				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+				
+				status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdateMandatoryToolkitAnnexurePath(), parameters);
+				}
+				catch(Exception e)
+				{
+					LOGGER.error("An exception occured while updating mandatory toolkit annexure path " + e);
+					status = -1;
+				}
+			return status;
+		}
+		
+		
 		/*Method to update pan number path*/
 		
 		public int updatePanPath(String panPath, int applicationId)

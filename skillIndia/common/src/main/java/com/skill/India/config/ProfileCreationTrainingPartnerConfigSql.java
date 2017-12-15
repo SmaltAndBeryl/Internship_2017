@@ -64,7 +64,38 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateOperationHeadCvPath;
 	private String updatePathsAffiliationCoordinatorCvPath;
 	private String updatePathsSPOC;
+	private String updatelabImagesPath;
+	private String updateWorkshopImagesPath;
+	private String updateMandatoryToolkitImagePath;
+	private String updateMandatoryToolkitAnnexurePath;
 	
+	
+	public String getUpdatelabImagesPath() {
+		return updatelabImagesPath;
+	}
+	public void setUpdatelabImagesPath(String updatelabImagesPath) {
+		this.updatelabImagesPath = updatelabImagesPath;
+	}
+	public String getUpdateWorkshopImagesPath() {
+		return updateWorkshopImagesPath;
+	}
+	public void setUpdateWorkshopImagesPath(String updateWorkshopImagesPath) {
+		this.updateWorkshopImagesPath = updateWorkshopImagesPath;
+	}
+	public String getUpdateMandatoryToolkitImagePath() {
+		return updateMandatoryToolkitImagePath;
+	}
+	public void setUpdateMandatoryToolkitImagePath(
+			String updateMandatoryToolkitImagePath) {
+		this.updateMandatoryToolkitImagePath = updateMandatoryToolkitImagePath;
+	}
+	public String getUpdateMandatoryToolkitAnnexurePath() {
+		return updateMandatoryToolkitAnnexurePath;
+	}
+	public void setUpdateMandatoryToolkitAnnexurePath(
+			String updateMandatoryToolkitAnnexurePath) {
+		this.updateMandatoryToolkitAnnexurePath = updateMandatoryToolkitAnnexurePath;
+	}
 	public String getUpdateOperationHeadCvPath() {
 		return updateOperationHeadCvPath;
 	}

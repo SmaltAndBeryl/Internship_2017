@@ -177,8 +177,12 @@ public class ProfileCreationController {
 	}
 	
 	
-	/*
-	 * Method to save Affiliation Coordinator Cv*/
+	/**
+	 * 
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
 	@RequestMapping(value="/fileUploadAffiliationCoordinatorCv", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
 	public int saveFileAffiliationcoordinator(@RequestParam(value="affiliationCoordinatorCv")MultipartFile file  , @RequestParam(value="centerName")String nameOfCenter)
 	{
@@ -187,8 +191,12 @@ public class ProfileCreationController {
 		return status;
 	}
 	
-	/*
-	 * Method to save SPOC Cv*/
+	/**
+	 * 
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
 	@RequestMapping(value="/fileUploadSPOCCv")
 	public int saveFileSPOCCv(@RequestParam(value="SPOCCv")MultipartFile file,  @RequestParam(value="centerName")String nameOfCenter)
 	{
@@ -197,18 +205,58 @@ public class ProfileCreationController {
 		return status;
 	}
 	
-	/*
-	 * Method to save Classroom Images*/
+	/**
+	 * 
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
 	@RequestMapping(value="/fileUploadClassroomImage")
 	public int saveFileClassRoomImage(@RequestParam(value="fileClassroomPic")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
 	{
 		int status = 0;
-		LOGGER.debug("File of classroom pictures is  " + file);
-		LOGGER.debug("Name of Center is " + nameOfCenter);
+		
 		status = profileCreationSaveAsDraftAndSubmitService.saveClassRoomImagesTP("classroomImage", file, nameOfCenter);
 		return status;
 	}
 	
+	/**
+	 * 
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
+	@RequestMapping(value="/fileUploadLabImage")
+	public int saveLabImages(@RequestParam(value="fileLabImage")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
+	{
+		int status =0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveLabImages("LabImage", file, nameOfCenter);
+		return status;
+	}
+	
+	@RequestMapping(value="/fileUploadWorkshopImage")
+	public int saveWorkshopImages(@RequestParam(value="fileWorkshopImage")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
+	{
+		int status =0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveWorkshopImages("WorkshopImage", file, nameOfCenter);
+		return status;
+	}
+	
+	@RequestMapping(value="/fileUploadMandatoryToolkitImage")
+	public int saveMandatoryToolkitImages(@RequestParam(value="fileManadatoryToolkitImage")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
+	{
+		int status =0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveMandatoryToolkitImages("MandatoryToolkitImage", file, nameOfCenter);
+		return status;
+	}
+	
+	@RequestMapping(value="/fileUploadMandatoryToolkitAnnexure")
+	public int saveMandatorytoolkitAnnexure(@RequestParam(value="fileMandatoryToolkitAnnexure")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
+	{
+		int status =0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveMandatoryToolkitAnnexurePath("mandatoryToolkitAnnexure", file, nameOfCenter);
+		return status;
+	}
 	/*
 	 * Method to upload Pan Card pdf of Assessment Body*/
 	

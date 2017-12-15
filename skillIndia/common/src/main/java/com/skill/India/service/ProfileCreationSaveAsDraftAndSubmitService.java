@@ -841,6 +841,113 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return spocCvPathUpdated; 
 	}
 	
+	/**
+	 * 
+	 * @param key
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
+	public int saveLabImages(String key, MultipartFile file, String nameOfCenter)
+	{
+		int labImagesUpdated = 0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistrationId = getTrainingPartnerRegistrationId(applicationId);
+		String labImagePath ="";
+		String[] insideFolders = {nameOfCenter};
+		try
+		{
+			labImagePath = saveFile(key,applicationId, file,readApplicationConstants.getProfileCreationTrainingPartnerFolder(),insideFolders);
+			labImagesUpdated = profileCreationTrainingPartnerUpdateDataDao.updateLabsImagePath(trainingPartnerRegistrationId, labImagePath);
+		}
+		catch(Exception e)
+		{
+			labImagesUpdated = -2;
+			LOGGER.error("An exception occured while saving lab images " +e);
+		}
+		return labImagesUpdated;
+	}
+	
+	/**
+	 * 
+	 * @param key
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
+	public int saveWorkshopImages(String key, MultipartFile file, String nameOfCenter)
+	{
+		int workshopImages = 0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistrationId = getTrainingPartnerRegistrationId(applicationId);
+		String workshopImagePath ="";
+		String[] insideFolders = {nameOfCenter};
+		try
+		{
+			workshopImagePath = saveFile(key,applicationId, file,readApplicationConstants.getProfileCreationTrainingPartnerFolder(),insideFolders);
+			workshopImages = profileCreationTrainingPartnerUpdateDataDao.updateWorkshopImagePath(trainingPartnerRegistrationId, workshopImagePath);
+		}
+		catch(Exception e)
+		{
+			workshopImages = -2;
+			LOGGER.error("An exception occured while saving workshop images " +e);
+		}
+		return workshopImages;
+	}
+	
+	/**
+	 * 
+	 * @param key
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
+	public int saveMandatoryToolkitImages(String key, MultipartFile file, String nameOfCenter)
+	{
+		int mandatoryToolkitImage = 0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistrationId = getTrainingPartnerRegistrationId(applicationId);
+		String mandatoryToolkitImagePath ="";
+		String[] insideFolders = {nameOfCenter};
+		try
+		{
+			mandatoryToolkitImagePath = saveFile(key,applicationId, file,readApplicationConstants.getProfileCreationTrainingPartnerFolder(),insideFolders);
+			mandatoryToolkitImage = profileCreationTrainingPartnerUpdateDataDao.updateMandatoryToolkitImagePath(trainingPartnerRegistrationId, mandatoryToolkitImagePath);
+		}
+		catch(Exception e)
+		{
+			mandatoryToolkitImage = -2;
+			LOGGER.error("An exception occured while saving mandatory toolkit images " +e);
+		}
+		return mandatoryToolkitImage;
+	}
+	
+	/**
+	 * 
+	 * @param key
+	 * @param file
+	 * @param nameOfCenter
+	 * @return
+	 */
+	public int saveMandatoryToolkitAnnexurePath(String key, MultipartFile file, String nameOfCenter)
+	{
+		int mandatoryToolkitannexurePath = 0;
+		int applicationId = getApplicationId();
+		String trainingPartnerRegistrationId = getTrainingPartnerRegistrationId(applicationId);
+		String mandatoryToolkitAnnexurePath ="";
+		String[] insideFolders = {nameOfCenter};
+		try
+		{
+			mandatoryToolkitAnnexurePath = saveFile(key,applicationId, file,readApplicationConstants.getProfileCreationTrainingPartnerFolder(),insideFolders);
+			mandatoryToolkitannexurePath = profileCreationTrainingPartnerUpdateDataDao.updateMandatoryToolkitAnnexurePath(trainingPartnerRegistrationId, mandatoryToolkitAnnexurePath);
+		}
+		catch(Exception e)
+		{
+			mandatoryToolkitannexurePath = -2;
+			LOGGER.error("An exception occured while saving Mandatory Toolkit Annexure " +e);
+		}
+		return mandatoryToolkitannexurePath;
+	}
 	/*Method to save PAN of Assessment Body*/
 	public int saveABPAN(MultipartFile assessmentBodyPan, String key)
 	{
