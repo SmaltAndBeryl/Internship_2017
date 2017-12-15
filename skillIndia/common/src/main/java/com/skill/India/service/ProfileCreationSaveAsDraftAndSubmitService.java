@@ -732,7 +732,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	
 	/*
 	 * Method to save Operation Head Cv*/
-	public int saveOperationHeadCv(MultipartFile operationHeadCv)
+	public int saveOperationHeadCv(MultipartFile operationHeadCv, String key)
 	{
 		int panPathUpdated = 0;
 		int applicationId = getApplicationId();
@@ -745,11 +745,36 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 //		}
 //		catch(Exception e)
 //		{
-//			LOGGER.error("An exception occured while saving file " + e);
+//			LOGGER.error("An exception occurred while saving file " + e);
 //		}
 		
 		panPathUpdated = profileCreationAssessmentBodyUpdateDataDao.updatePanPath(panPath, applicationId );
 		return panPathUpdated;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public int saveClassRoomImagesTP(String key , MultipartFile classRoomImages, String nameOfCenter)
+	{
+		int classroomImagePathUpdated = 0;
+		String classRoomImagePath ="";
+		String[] insideFolders = {nameOfCenter};
+		int applicationId = getApplicationId();
+		String TrainingPartnerRegistrationId = getTrainingPartnerRegistrationId(applicationId);
+		try
+		{
+			classRoomImagePath = saveFile(key,applicationId, classRoomImages,readApplicationConstants.getProfileCreationTrainingPartnerFolder(),insideFolders);
+			LOGGER.debug("Classroom images path "+ classRoomImagePath);
+			classroomImagePathUpdated = profileCreationTrainingPartnerUpdateDataDao.updatePathsClassroomImage(TrainingPartnerRegistrationId, classRoomImagePath);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while saving classroom images for center " + nameOfCenter+" "+ e);
+		}
+		
+		return classroomImagePathUpdated;
 	}
 	
 	/*Method to save PAN of Assessment Body*/
@@ -792,9 +817,17 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	{
 		int abManagementCvUpdated = 0, status =0;
 		int applicationId = getApplicationId();
-		String assessmentBodyRegisterId = getAssessmentBodyRegistrationId(applicationId);
+		try
+		{
+			String assessmentBodyRegisterId = getAssessmentBodyRegistrationId(applicationId);
 			String abManagementCvPath = saveFile(key, applicationId, assessmentBodyManagementCv, readApplicationConstants.getProfileCreationAssessmentBodyFolder());
 			abManagementCvUpdated = profileCreationAssessmentBodyUpdateDataDao.updatePathAssessmentManagementCv(abManagementCvPath,assessmentBodyRegisterId);
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while saving cv of management staff of assessment body " + e);
+		}
+		
 		
 		return abManagementCvUpdated;
 	}
@@ -888,7 +921,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	
 	/*
 	 * Method to save file with multiple folders inside*/
-	private String saveFile(String key, int applicationId, MultipartFile file, String pathToFolder,String[] insideFolders)
+	private String saveFile(String key, int applicationId, MultipartFile file, String pathToFolder, String[] insideFolders)
 	{
 		int folderCreated = 0;	
 		String pathTillApplicationId = "";

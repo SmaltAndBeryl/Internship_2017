@@ -366,25 +366,22 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 
 	
 		/*
-		 * Update Path's in TrainingPartnerManagementAndStaffAndOfficialsDetails
-		 */
+		 * Update Classroom Images path for a training Center
+		 * 		 */
 	
-		public int updatePathsIntoTrainingPartnerCenterLevelDetails(HashMap<String, String> setPaths,int trainingPartnerCenterId)
+		public int updatePathsClassroomImage(String trainingPartnerRegistrationId, String classRoomImagePath)
 		{
 			int status = 0;
 			try{
 			Map<String, String> parameters = new HashMap<String, String>();
-			parameters.put("classroomPicsPath", setPaths.get("classroomPicsPath"));
-			parameters.put("labPicsPath", setPaths.get("labPicsPath"));
-			parameters.put("workshopPicsPath", setPaths.get("workshopPicsPath"));
-			parameters.put("mandatoryToolKitAnnexurePath", setPaths.get("mandatoryToolKitAnnexurePath"));
-			parameters.put("mandatoryToolKitPicsPath", setPaths.get("mandatoryToolKitPicsPath"));
-			parameters.put("trainingPartnerCenterId", String.valueOf(trainingPartnerCenterId));
-			status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsIntoTrainingPartnerCenterLevelDetails(), parameters);
+			parameters.put("classroomPicsPath", classRoomImagePath);
+			parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
+			LOGGER.debug("Thios is the SQL "+ profileCreationTrainingPartnerConfigSql.getUpdatePathsClassRoomImagePath());
+			status = getJdbcTemplate().update(profileCreationTrainingPartnerConfigSql.getUpdatePathsClassRoomImagePath(), parameters);
 			}
 			catch(Exception e)
 			{
-				LOGGER.error("An exception occured while updating path of training partner management staff details");
+				LOGGER.error("An exception occured while updating Classroom Image path " + e);
 				status = -1;
 			}
 			return status;

@@ -196,6 +196,18 @@ public class ProfileCreationController {
 		//status = profileCreationSaveAsDraftAndSubmitService.
 		return status;
 	}
+	
+	/*
+	 * Method to save Classroom Images*/
+	@RequestMapping(value="/fileUploadClassroomImage")
+	public int saveFileSPOCCv(@RequestParam(value="fileClassroomPic")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
+	{
+		int status = 0;
+		
+		status = profileCreationSaveAsDraftAndSubmitService.saveClassRoomImagesTP("classroomImage", file, nameOfCenter);
+		return status;
+	}
+	
 	/*
 	 * Method to upload Pan Card pdf of Assessment Body*/
 	

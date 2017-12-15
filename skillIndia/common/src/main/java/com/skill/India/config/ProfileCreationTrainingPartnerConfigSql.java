@@ -32,7 +32,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
 	private String updateIntoTrainingStaff;
 	private String updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails;
-	private String updatePathsIntoTrainingPartnerCenterLevelDetails;
+	private String updatePathsClassRoomImagePath;
 	
 	private String deleteFromTrainingPartnerInstituteGrant;
 	private String deleteFromTrainingPartnerInstituteRecognition;
@@ -60,19 +60,8 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String updateManagementCvPath;
 	private String updateTrainingStaffCvPath;
 	
-	/**
-	 * @return the updatePathsIntoTrainingPartnerCenterLevelDetails
-	 */
-	public String getUpdatePathsIntoTrainingPartnerCenterLevelDetails() {
-		return updatePathsIntoTrainingPartnerCenterLevelDetails;
-	}
-	/**
-	 * @param updatePathsIntoTrainingPartnerCenterLevelDetails the updatePathsIntoTrainingPartnerCenterLevelDetails to set
-	 */
-	public void setUpdatePathsIntoTrainingPartnerCenterLevelDetails(
-			String updatePathsIntoTrainingPartnerCenterLevelDetails) {
-		this.updatePathsIntoTrainingPartnerCenterLevelDetails = updatePathsIntoTrainingPartnerCenterLevelDetails;
-	}
+	
+
 	/**
 	 * @return the updatePathsIntoTrainingPartnerManagementAndStaffAndOfficialsDetails
 	 */
@@ -537,6 +526,13 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	}
 	public void setUpdateTrainingStaffCvPath(String updateTrainingStaffCvPath) {
 		this.updateTrainingStaffCvPath = updateTrainingStaffCvPath;
+	}
+	public String getUpdatePathsClassRoomImagePath() {
+		return updatePathsClassRoomImagePath;
+	}
+	public void setUpdatePathsClassRoomImagePath(
+			String updatePathsClassRoomImagePath) {
+		this.updatePathsClassRoomImagePath = updatePathsClassRoomImagePath;
 	}
 
 

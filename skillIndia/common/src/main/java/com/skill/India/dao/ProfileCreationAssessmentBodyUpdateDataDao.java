@@ -261,6 +261,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			return -1;
 		}
 	}
+	
 	public int updatePanPath(String panPath, int applicationId)
 	{
 		int status = 0;
