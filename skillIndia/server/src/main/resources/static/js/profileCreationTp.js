@@ -572,7 +572,38 @@ $scope.removeManagement = function(){
 	   var fileUploadUrl = "/fileUploadClassroomImage";
 	   fileUpload.uploadFileWithKey(file,fileUploadUrl,"fileClassroomPic", "centerName",trainingcenter.nameOfCenter)
    };
-
+   //Upload Lab images
+   $scope.uploadLabImage = function(trainingcenter)
+   {
+	   var file = $scope.trainingPartner.fileLab;
+	   var uploadUrl = "/fileUploadLabImage";
+	   fileUpload.uploadFileWithKey(file,uploadUrl,"fileLabImage", "centerName",trainingcenter.nameOfCenter)
+   }
+   
+   //Upload workshop images
+	$scope.uploadWorkshopIamges = function(trainingcenter)
+	{
+		var file = $scope.trainingPartner.fileWorkshop;
+		   var uploadUrl = "/fileUploadWorkshopImage";
+		   fileUpload.uploadFileWithKey(file,uploadUrl,"fileWorkshopImage", "centerName",trainingcenter.nameOfCenter)
+	}
+	
+	//Upload Mandatory Toolkit Images
+	$scope.uploadMandatoryToolkitImages = function (trainingcenter)
+	{
+		var file = $scope.trainingPartner.fileMandatoryToolkitImage;
+		   var uploadUrl = "/fileUploadMandatoryToolkitImage";
+		   fileUpload.uploadFileWithKey(file,uploadUrl,"fileManadatoryToolkitImage", "centerName",trainingcenter.nameOfCenter)
+	}
+	
+	//Upload Mandatory Toolkit Annexure 
+	$scope.uploadMandatoryToolkitAnnexure = function(trainingcenter)
+	{
+		var file = $scope.trainingPartner.fileMandatoryToolkitAnnexure;
+		   var uploadUrl = "/fileUploadMandatoryToolkitAnnexure";
+		   fileUpload.uploadFileWithKey(file,uploadUrl,"fileMandatoryToolkitAnnexure", "centerName",trainingcenter.nameOfCenter)
+	}
+	
     $scope.grantTable = {
         enableGridMenus: false,
         enableSorting: false,

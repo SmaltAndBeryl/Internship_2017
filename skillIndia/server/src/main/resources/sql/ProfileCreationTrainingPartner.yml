@@ -279,4 +279,16 @@ ProfileCreationTrainingPartner:
   UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `cvAffiliationCoordinatorPath`=:cvAffiliationCoordinatorPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
   
  updatePathsSPOC: >
-  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `cvSPOCPath`=:cvSPOCPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;    
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `cvSPOCPath`=:cvSPOCPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
+ 
+ updatelabImagesPath: >
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `labPicsPath`=:labPicsPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
+ 
+ updateWorkshopImagesPath: >
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `workshopPicsPath`=:workshopPicsPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
+ 
+ updateMandatoryToolkitImagePath: >
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `mandatoryToolKitPicsPath`=:mandatoryToolKitPicsPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
+ 
+ updateMandatoryToolkitAnnexurePath: >
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `mandatoryToolKitAnnexurePath`=:mandatoryToolKitAnnexurePath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;

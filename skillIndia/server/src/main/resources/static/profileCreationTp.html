@@ -1261,14 +1261,60 @@
                			</div>
                			<div class="form-group" ng-show="trainingcenter.sizeOfLabs > '0' ">
                				<div class="col-md-8">
-               					<input type="file" file-model="trainingcenter.fileSizeOfLabs" accept="application/pdf"/>
+               					<input type="file" file-model="trainingPartner.fileLab" accept="application/pdf"/>
                				</div>
                				<div class="col-md-4">
-               					<button ng-click="" class="btn btn-pc-upload">Upload Images</button></div>
+               					<button ng-click="uploadLabImage(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
                				</div>
                				</form>
                			</div>
-               		
+               			<!-- Size of Workshop -->
+               			<div class="form-horizontal">
+               			<form>
+               			<div class="form-group">
+               				<div class="col-md-6">
+               					<label>Size of WorkShop</label>
+               				</div>
+               				<div class="col-md-6">
+               					<input type="text" ng-model="trainingcenter.sizeOfWorkshops" class="form-control"/>
+               				</div>
+               			</div>
+               			<div class="form-group" ng-show="trainingcenter.sizeOfWorkshops > '0' ">
+               				<div class="col-md-8">
+               					<input type="file" file-model="trainingPartner.fileWorkshop" accept="application/pdf"/>
+               				</div>
+               				<div class="col-md-4">
+               					<button ng-click="uploadWorkshopIamges(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
+               				</div>
+               				</form>
+               			</div>
+               		<!-- Presence of Mandatory Toolkit -->
+               			<div class="form-horizontal">
+               			<form>
+               			<div class="form-group">
+               				<div class="col-md-6">
+               					<label>Is mandatory toolkit present</label>
+               				</div>
+               				<div class="col-md-6">
+               				<label class="radio-inline">
+                                    <input type="radio" ng-model="trainingcenter.mandatoryToolKitpresent" value="Yes" ng-click="addNewGrant()"> Yes
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="trainingcenter.mandatoryToolKitpresent" value="No" ng-click="removeAllGrant()" checked> No
+                                </label>
+               					
+               				</div>
+               			</div>
+               			<div class="form-group" ng-show="trainingcenter.mandatoryToolKitpresent == 'Yes' ">
+               				<div class="col-md-8">
+               					<input type="file" file-model="trainingPartner.fileMandatoryToolkitImage" accept="application/pdf"/>
+               				</div>
+               				<div class="col-md-4">
+               					<button ng-click="uploadMandatoryToolkitImages(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
+               				</div>
+               				
+               				</form>
+               			</div>
                		</div>
                 </div>
             </accordion-group>
@@ -1336,6 +1382,29 @@
                 </div>
                 </form>
                 </div>
+                
+                <!-- Mandatory Toolkit Annexure -->
+                <div>
+                </div>
+                <div  ng-show="trainingcenter.mandatoryToolKitpresent == 'Yes' ">
+                <form>
+                <div class="form-horizontal div-center">
+                <div class="col-md-12"><label>Mandatory Toolkit Annexure</label></div>
+                <div class="form-group">
+                	<div class="col-md-6"><small class="fine-print">Please download format of annexure <a href="/Annexures/TrainingPartner/Annexure_mobile_centre.docx" target="_blank">here</a></small></div>
+                	<div class="col-md-4"><input id = "mobile" type="file" file-model="trainingPartner.mobileFile" accept="application/pdf" /></div>
+                	<div class="col-md-2"><button ng-click="uploadMandatoryToolkitAnnexure(trainingcenter)" class="btn btn-pc-upload">Upload</button></div>
+                </div>
+                <div>
+                </div>
+                </div>
+                </form>
+               				<div class="col-md-8">
+               					<input type="file" file-model="trainingPartner.fileMandatoryToolkitAnnexure" accept="application/pdf"/>
+               				</div>
+               				<div class="col-md-4">
+               					<button ng-click="uploadMandatoryToolkitAnnexure(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
+               				</div>
                
                 </div>
             </accordion-group>
