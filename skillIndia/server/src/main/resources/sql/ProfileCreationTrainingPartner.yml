@@ -272,4 +272,11 @@ ProfileCreationTrainingPartner:
  updatePathsClassRoomImagePath: >
   UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `classroomPicsPath`=:classroomPicsPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
       
-   
+ updateOperationHeadCvPath: >
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `cvOperationHeadPath`=:cvOperationHeadPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
+
+ updatePathsAffiliationCoordinatorCvPath: >
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `cvAffiliationCoordinatorPath`=:cvAffiliationCoordinatorPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;
+  
+ updatePathsSPOC: >
+  UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `cvSPOCPath`=:cvSPOCPath WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId and isActive=1;    

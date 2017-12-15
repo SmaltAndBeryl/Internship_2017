@@ -541,28 +541,28 @@ $scope.removeManagement = function(){
    };
    
    //Upload Operation Head Cv
-   $scope.uploadFileOperationHeadCv = function(selected)
+   $scope.uploadFileOperationHeadCv = function(trainingcenter)
    {
 	   var file = $scope.trainingPartner.OperationHeadCv;
 	   var uploadUrl = "/fileUploadOperationHeadCv";
 	   console.log("Clicked name of center is " );
-
+	   fileUpload.uploadFileWithKey(file, uploadUrl, "operationHeadCv","centerName",trainingcenter.nameOfCenter)
    };
    
    //Upload AffiliationCoordinator Cv
-   $scope.uploadFileAffiliationCoordinatorCv = function()
+   $scope.uploadFileAffiliationCoordinatorCv = function(trainingcenter)
    {
 	   var file = $scope.trainingPartner.affiliationCoordinatorCv;
 	   var uploadUrl = "/fileUploadAffiliationCoordinatorCv";
-	   fileUpload.uploadFileToUrl(file, uploadUrl, "affiliationCoordinatorCv");
+	   fileUpload.uploadFileWithKey(file, uploadUrl, "affiliationCoordinatorCv","centerName",trainingcenter.nameOfCenter);
    };
    
    //Upload SPOC Cv
-   $scope.uploadFileSPOCCv = function()
+   $scope.uploadFileSPOCCv = function(trainingcenter)
    {
-	   var file = $scope.trainingPartner.trainingPartner.SPOCCv;
+	   var file = $scope.trainingPartner.SPOCCv;
 	   var uploadUrl = "/fileUploadSPOCCv";
-	   fileUpload.uploadFileToUrl(file, uploadUrl, "SPOCCv");
+	   fileUpload.uploadFileWithKey(file, uploadUrl, "SPOCCv","centerName",trainingcenter.nameOfCenter);
    };
    //Upload ClassroomPics path
    $scope.uploadClassRoomPics = function(trainingcenter)
