@@ -1,6 +1,6 @@
 var profileCreationAb = angular.module('hello');
 
-profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileUpload){
+profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location ,fileUpload){
 
 
     $scope.assessmentBody = {
@@ -501,6 +501,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, fileU
             		function(response)
             		{
             		 console.log("SUCCESS");
+            		 $location.path("/assessmentBody");
           
             		},
             		function(errorResponse, status)

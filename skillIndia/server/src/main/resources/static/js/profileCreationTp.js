@@ -1,6 +1,6 @@
 var profileCreationTp = angular.module('hello');
 
-profileCreationTp.controller('profileCreationTp', function($scope, $http, fileUpload) {
+profileCreationTp.controller('profileCreationTp', function($scope, $http, $location, fileUpload) {
 
 
     $http.get('/getDataNewUserProfileCreation')
@@ -600,7 +600,6 @@ $scope.removeManagement = function(){
 	$scope.uploadMandatoryToolkitAnnexure = function(trainingcenter)
 	{
 		var file = $scope.trainingPartner.fileMandatoryToolkitAnnexure;
-		   var uploadUrl = "/fileUploadMandatoryToolkitAnnexure";
 		   fileUpload.uploadFileWithKey(file,uploadUrl,"fileMandatoryToolkitAnnexure", "centerName",trainingcenter.nameOfCenter)
 	}
 	
@@ -813,6 +812,7 @@ $scope.removeManagement = function(){
     		data : angular.toJson($scope.postValue)
     	}).then(function(response){
     		console.log(response);
+    		$location.path("/trainingPartner");
     	},
     	function(errorResponse){
     		console.log(errorResponse);
