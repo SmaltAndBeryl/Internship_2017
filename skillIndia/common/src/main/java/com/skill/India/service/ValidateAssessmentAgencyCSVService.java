@@ -44,64 +44,64 @@ public class ValidateAssessmentAgencyCSVService {
 	
 	public String validateAssessmentAgencyCSV(String assessmentAgencyCSVFileName,String type,String userId,String fileNameToBeSaved) throws IOException{
 		
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In ValidateAssessmentAgencyCSVService - validateAssessmentAgencyCSV");
-		LOGGER.info("Parameters Received from Controller are - 'assessmentAgencyCSVFileName': "+assessmentAgencyCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In ValidateAssessmentAgencyCSVService - validateAssessmentAgencyCSV");
+		LOGGER.debug("Parameters Received from Controller are - 'assessmentAgencyCSVFileName': "+assessmentAgencyCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
 		
 		CSVReader assessmentAgencyCSVReader=null;
 		/*
 		 *Create Array List to store the data of csv read (in Hashmap's) 
 		 */
-		LOGGER.info("Creating ArrayList object");
+		LOGGER.debug("Creating ArrayList object");
 		ArrayList<Map<String,Object>> arrayOfRecords= new ArrayList<Map<String,Object>>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
 		try{
-			LOGGER.info("In TRY block");
+			LOGGER.debug("In TRY block");
 			
-			LOGGER.info("Creating ColumnPositionMappingStrategy object");
+			LOGGER.debug("Creating ColumnPositionMappingStrategy object");
 			ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
-			LOGGER.info("Successfully created and initialized");
+			LOGGER.debug("Successfully created and initialized");
 			
-			LOGGER.info("Setting type of object to ValidateAssessmentAgencyCSVDto");
+			LOGGER.debug("Setting type of object to ValidateAssessmentAgencyCSVDto");
 			strategy.setType(ValidateAssessmentAgencyCSVDto.class);
 		String [] assessmentAgencyCSVColumns=new String[]{"agencyId","applicationId","agencyName"};
 		
-		LOGGER.info("Setting ColumnMapping of object");
+		LOGGER.debug("Setting ColumnMapping of object");
 		strategy.setColumnMapping(assessmentAgencyCSVColumns);
 	//	String assessmentAgencyCSVFileName = "D:\\EclipseWorkspace\\Assessment_Agency.csv";
 		
-		LOGGER.info("Creating CSVReader object ");
+		LOGGER.debug("Creating CSVReader object ");
 		assessmentAgencyCSVReader=new CSVReader(new FileReader(assessmentAgencyCSVFileName),',','"',2);
-		LOGGER.info("Successfully created and initialized");
+		LOGGER.debug("Successfully created and initialized");
 		
-		LOGGER.info("Creating CsvToBean object ");
+		LOGGER.debug("Creating CsvToBean object ");
 		CsvToBean<ValidateAssessmentAgencyCSVDto> assessmentAgencyCSVToBean=new CsvToBean<ValidateAssessmentAgencyCSVDto>();
-		LOGGER.info("Successfully created and initialized");
+		LOGGER.debug("Successfully created and initialized");
 		
-		LOGGER.info("Creating List object of type ValidateAssessmentAgencyCSVDto");
+		LOGGER.debug("Creating List object of type ValidateAssessmentAgencyCSVDto");
 		List<ValidateAssessmentAgencyCSVDto> assessmentAgencyCSVDataList= assessmentAgencyCSVToBean.parse(strategy,assessmentAgencyCSVReader);
-		LOGGER.info("Successfully created and initialized");
+		LOGGER.debug("Successfully created and initialized");
 		
 		int recordCount=0;
 		int errorExist=0;
 		String errorListAllRecords="";	
 		
-		LOGGER.info("Iterating List Object");
+		LOGGER.debug("Iterating List Object");
 		for(ValidateAssessmentAgencyCSVDto assessmentAgencyCSVData :assessmentAgencyCSVDataList)
 		{
 			/*
 			 * Map to store data of each row of csv read and then added to arraylist
 			 */
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String,Object> record=new HashMap<String, Object>();
-			LOGGER.info("Successfully created");
+			LOGGER.debug("Successfully created");
 			
 			recordCount++;
 			int errorStatus=0;
 			String errorString="";
 			
-			LOGGER.info("Fetching data from each row");		
+			LOGGER.debug("Fetching data from each row");		
 			String agencyId=assessmentAgencyCSVData.getAgencyId().trim();
 			String agencyName=assessmentAgencyCSVData.getAgencyName().trim();
 			String applicationId=assessmentAgencyCSVData.getApplicationId().trim();
@@ -109,7 +109,7 @@ public class ValidateAssessmentAgencyCSVService {
 			/*
 			 * Checking for error in agencyId column 
 			 */
-			LOGGER.info("Checking Validations of agencyId");
+			LOGGER.debug("Checking Validations of agencyId");
 			if(!ValidationUtils.numbersCheck(agencyId) || agencyId.equals(""))
 			{
 				errorStatus=1;
@@ -119,7 +119,7 @@ public class ValidateAssessmentAgencyCSVService {
 			/*
 			 * checking for error in applicationId column 
 			 */
-			LOGGER.info("Checking Validations of applicationId");
+			LOGGER.debug("Checking Validations of applicationId");
 			if(!(ValidationUtils.numbersCheck(applicationId)) || applicationId.equals(""))
 			{
 				errorStatus=1;
@@ -128,17 +128,17 @@ public class ValidateAssessmentAgencyCSVService {
 			/*
 			 * Checking for error in agencyName column 
 			 */
-			LOGGER.info("Checking Validations of agencyName");
+			LOGGER.debug("Checking Validations of agencyName");
 			if(ValidationUtils.numbersCheck(agencyName) || agencyName.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in 'agencyName' column ";
 			}
 			
-			LOGGER.info("Fetching Errors in records and making error String if found any");
+			LOGGER.debug("Fetching Errors in records and making error String if found any");
 			if(errorStatus==1)
 			{
-				LOGGER.info("Error Exists in CSV");
+				LOGGER.debug("Error Exists in CSV");
 				errorExist=1;
 				errorString="Error in Record "+recordCount + "." + errorString;
 				errorListAllRecords=errorListAllRecords+errorString;
@@ -146,15 +146,15 @@ public class ValidateAssessmentAgencyCSVService {
 			}
 			else 
 			{
-				LOGGER.info("Converting all values to lower Case");
+				LOGGER.debug("Converting all values to lower Case");
 				agencyName=agencyName.toLowerCase();
 				
-				LOGGER.info("Inserting values into HashMap Object");
+				LOGGER.debug("Inserting values into HashMap Object");
 				record.put("agencyId",agencyId);
 				record.put("agencyName",agencyName);
 				record.put("applicationId",applicationId);
 				
-				LOGGER.info("Adding HashMap object into ArrayList");
+				LOGGER.debug("Adding HashMap object into ArrayList");
 				arrayOfRecords.add(record);
 			}
 		}  // end of for 
@@ -165,39 +165,39 @@ public class ValidateAssessmentAgencyCSVService {
 		
 		if(errorExist==1)
 			{
-			LOGGER.info("Closing CSV reader");
+			LOGGER.debug("Closing CSV reader");
 			assessmentAgencyCSVReader.close();
-			LOGGER.info("Successfully closed");
+			LOGGER.debug("Successfully closed");
 			
-			LOGGER.info("Creating File object");
+			LOGGER.debug("Creating File object");
 			File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
-			LOGGER.info("Successfully created and initialized");
+			LOGGER.debug("Successfully created and initialized");
 			
-			LOGGER.info("deleting Saved file from system");
+			LOGGER.debug("deleting Saved file from system");
 		    deleteUploadedFile.delete();
-		    LOGGER.info("Successfully deleted");
+		    LOGGER.debug("Successfully deleted");
 		    
-		    LOGGER.info("returning Error list as String");
+		    LOGGER.debug("returning Error list as String");
 			return errorListAllRecords;
 			}
 		} // end of try 	
 		catch(Exception e)
 		{
-			LOGGER.info("In CATCH block");
+			LOGGER.debug("In CATCH block");
 			
-			LOGGER.info("Closing CSV reader");
+			LOGGER.debug("Closing CSV reader");
 			assessmentAgencyCSVReader.close();
-			LOGGER.info("Successfully closed");
+			LOGGER.debug("Successfully closed");
 			
-			LOGGER.info("Creating File object");
+			LOGGER.debug("Creating File object");
 			File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
-			LOGGER.info("Successfully created and initialized");
+			LOGGER.debug("Successfully created and initialized");
 			
-			LOGGER.info("deleting Saved file from system");
+			LOGGER.debug("deleting Saved file from system");
 		    deleteUploadedFile.delete();
-		    LOGGER.info("Successfully deleted");
+		    LOGGER.debug("Successfully deleted");
 		    
-		    LOGGER.info("returning Error list as String");
+		    LOGGER.debug("returning Error list as String");
 //			e.printStackTrace();
 			return "Error Occurred while Uploading the File";
 		}
@@ -212,19 +212,19 @@ public class ValidateAssessmentAgencyCSVService {
 		String errorListAllRecords="";
 
 	try{
-		LOGGER.info("In TRY block");
+		LOGGER.debug("In TRY block");
 		
-		LOGGER.info("Iterating Array List object"); 
+		LOGGER.debug("Iterating Array List object"); 
 		for(Map<String, Object> getRecord:arrayOfRecords)
 		{	
 			String errorString="";
 			int errorStatus=0;
 			recordCount++;
 			
-			LOGGER.info("Checking if record details already exists in database");
-			LOGGER.info("Making a Request to Dao to get data");
+			LOGGER.debug("Checking if record details already exists in database");
+			LOGGER.debug("Making a Request to Dao to get data");
 			status=dataImportAssessmentAgencyDao.dataImportAssessmentAgencyForeignKeyConstraintCheck(getRecord);
-			LOGGER.info("Response received from Dao");
+			LOGGER.debug("Response received from Dao");
 			
 			if(status==0 || status==2)
 			{
@@ -242,19 +242,19 @@ public class ValidateAssessmentAgencyCSVService {
 		}
 		if(errorExist==1)
 		{
-			LOGGER.info("Closing CSV reader");
+			LOGGER.debug("Closing CSV reader");
 			assessmentAgencyCSVReader.close();
-			LOGGER.info("Successfully closed");
+			LOGGER.debug("Successfully closed");
 			
-			LOGGER.info("Creating File object");
+			LOGGER.debug("Creating File object");
 			File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
-			LOGGER.info("Successfully created and initialized");
+			LOGGER.debug("Successfully created and initialized");
 			
-			LOGGER.info("deleting Saved file from system");
+			LOGGER.debug("deleting Saved file from system");
 		    deleteUploadedFile.delete();
-		    LOGGER.info("Successfully deleted");
+		    LOGGER.debug("Successfully deleted");
 		    
-		    LOGGER.info("returning Error list as String");
+		    LOGGER.debug("returning Error list as String");
 		    return errorListAllRecords;
 		}
 		
@@ -262,18 +262,18 @@ public class ValidateAssessmentAgencyCSVService {
 	}
 	catch(Exception e)
 	{
-		LOGGER.info("In CATCH block");
+		LOGGER.debug("In CATCH block");
 //		e.printStackTrace();
 		
-		LOGGER.info("Creating File object");
+		LOGGER.debug("Creating File object");
 		File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
-		LOGGER.info("Successfully created and initialized");
+		LOGGER.debug("Successfully created and initialized");
 		
-		LOGGER.info("deleting Saved file from system");
+		LOGGER.debug("deleting Saved file from system");
 	    deleteUploadedFile.delete();
-	    LOGGER.info("Successfully deleted");
+	    LOGGER.debug("Successfully deleted");
 	    
-	    LOGGER.info("returning Error list as String");
+	    LOGGER.debug("returning Error list as String");
 	    return "Error checking Foreign key constraint . Kindly try again .";
 		
 	}
@@ -283,26 +283,26 @@ public class ValidateAssessmentAgencyCSVService {
 		 */
 		
 			  try{	
-				  LOGGER.info("In TRY block");
+				  LOGGER.debug("In TRY block");
 				 
-				  LOGGER.info("Iterating ArrayList object");
+				  LOGGER.debug("Iterating ArrayList object");
 				for(Map<String, Object> getRecord:arrayOfRecords)
 				{
-					LOGGER.info("Checking for foreign key constraint");
-					LOGGER.info("Making a Request to Dao to get data");
+					LOGGER.debug("Checking for foreign key constraint");
+					LOGGER.debug("Making a Request to Dao to get data");
 				status=dataImportAssessmentAgencyDao.dataImportAssessmentAgencyPrimaryKeyConstraintCheck(getRecord);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(status==0)
 				{
 					/*
 					 * If primary key doesn't exists in DB then run insert query
 					 */
-					LOGGER.info("Record Doesn't exist in Database");
-					LOGGER.info("Inserting data into Database");
-					LOGGER.info("Making a Request to Dao to get data");
+					LOGGER.debug("Record Doesn't exist in Database");
+					LOGGER.debug("Inserting data into Database");
+					LOGGER.debug("Making a Request to Dao to get data");
 					int insertDataStatus=dataImportAssessmentAgencyDao.insertDataInAssessmentAgency(getRecord);
-					LOGGER.info("Response received from Dao");
+					LOGGER.debug("Response received from Dao");
 				
 					if(!(insertDataStatus>0))
 					{
@@ -314,11 +314,11 @@ public class ValidateAssessmentAgencyCSVService {
 					/*
 					 * If primary key exists in DB then run update query
 					 */
-					LOGGER.info("Record exist in Database");
-					LOGGER.info("Updating data into Database");
-					LOGGER.info("Making a Request to Dao to get data");
+					LOGGER.debug("Record exist in Database");
+					LOGGER.debug("Updating data into Database");
+					LOGGER.debug("Making a Request to Dao to get data");
 					int updateDataStatus=dataImportAssessmentAgencyDao.updateDataInAssessmentAgency(getRecord);
-					LOGGER.info("Response received from Dao");
+					LOGGER.debug("Response received from Dao");
 					
 					if(!(updateDataStatus>0))
 					{
@@ -331,65 +331,65 @@ public class ValidateAssessmentAgencyCSVService {
 					
 				}	// end of for loop 
 				
-				LOGGER.info("Closing CSV reader");
+				LOGGER.debug("Closing CSV reader");
 				assessmentAgencyCSVReader.close();
-				LOGGER.info("Successfully closed");
+				LOGGER.debug("Successfully closed");
 				/*
 				 * Inserting data in csvUploaded  Table
 				 */		
-				LOGGER.info("Creating date object");
+				LOGGER.debug("Creating date object");
 				Date date=new Date(System.currentTimeMillis());
-				LOGGER.info("Successfully created and initialized");
+				LOGGER.debug("Successfully created and initialized");
 				
-				LOGGER.info("Creating HashMap object");
+				LOGGER.debug("Creating HashMap object");
 				Map<String,Object> uploadedFileInfo= new HashMap<String, Object>();
-				LOGGER.info("Successfully created");
+				LOGGER.debug("Successfully created");
 				
-				LOGGER.info("Initializing HashMap object");
+				LOGGER.debug("Initializing HashMap object");
 				uploadedFileInfo.put("csvType",type);
 				uploadedFileInfo.put("csvName",fileNameToBeSaved);
 				uploadedFileInfo.put("csvUploadDate",date);
 				uploadedFileInfo.put("csvUploadUserId",userId);
-				LOGGER.info("Successfully initialized");
+				LOGGER.debug("Successfully initialized");
 				/*
 				 * Checking for valid UserId (Foreign key constraint)
 				 */
 				
-				LOGGER.info("Checking if UserId exists");
-				LOGGER.info("Making a Request to Dao to get data");
+				LOGGER.debug("Checking if UserId exists");
+				LOGGER.debug("Making a Request to Dao to get data");
 				status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(status==0 || status==2)
 				{
-					LOGGER.info("Creating File object");
+					LOGGER.debug("Creating File object");
 					File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
-					LOGGER.info("Successfully created and initialized");
+					LOGGER.debug("Successfully created and initialized");
 					
-					LOGGER.info("deleting Saved file from system");
+					LOGGER.debug("deleting Saved file from system");
 				    deleteUploadedFile.delete();	
-				    LOGGER.info("Successfully deleted");
+				    LOGGER.debug("Successfully deleted");
 				    
-				    LOGGER.info("returning Error list as String");
+				    LOGGER.debug("returning Error list as String");
 					return "Invalid User Id . Action Aborted";	
 				}
 			
-				LOGGER.info("Inserting data in database");
-				LOGGER.info("Making a Request to Dao to get data");
+				LOGGER.debug("Inserting data in database");
+				LOGGER.debug("Making a Request to Dao to get data");
 				int insertDataStatus=dataImportCSVUploadTableDao.insertDataInCSVUpload(uploadedFileInfo);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(!(insertDataStatus>0))
 				{
-					LOGGER.info("Creating File object");
+					LOGGER.debug("Creating File object");
 					File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
-					LOGGER.info("Successfully created and initialized");
+					LOGGER.debug("Successfully created and initialized");
 					
-					LOGGER.info("deleting Saved file from system");
+					LOGGER.debug("deleting Saved file from system");
 				    deleteUploadedFile.delete();
-				    LOGGER.info("Successfully deleted");
+				    LOGGER.debug("Successfully deleted");
 				    
-				    LOGGER.info("returning Error list as String");
+				    LOGGER.debug("returning Error list as String");
 					return "Some Error occured while inserting data in csvUploaded By details table . Kindly try again ."; 
 				}
 							
@@ -397,23 +397,23 @@ public class ValidateAssessmentAgencyCSVService {
 				}	// end of try
 				catch(Exception e)
 				{
-					LOGGER.info("In CATCH block");
+					LOGGER.debug("In CATCH block");
 		        	
 					LOGGER.error("ERROR: Encountered an Exception - "+e);
 		   			
-		        	LOGGER.info("Closing CSV reader");
+		        	LOGGER.debug("Closing CSV reader");
 					assessmentAgencyCSVReader.close();
-					LOGGER.info("Successfully closed");
+					LOGGER.debug("Successfully closed");
 					
-					LOGGER.info("Creating File object");
+					LOGGER.debug("Creating File object");
 					File deleteUploadedFile = new File(assessmentAgencyCSVFileName);
-					LOGGER.info("Successfully created and initialized");;
+					LOGGER.debug("Successfully created and initialized");;
 					
-					LOGGER.info("deleting Saved file from system");
+					LOGGER.debug("deleting Saved file from system");
 				    deleteUploadedFile.delete();
-				    LOGGER.info("Successfully deleted");
+				    LOGGER.debug("Successfully deleted");
 				    
-				    LOGGER.info("returning Error list as String");
+				    LOGGER.debug("returning Error list as String");
 //					e.printStackTrace();
 					return "Error Inserting or Updating data .Kindly try again .";
 				}		

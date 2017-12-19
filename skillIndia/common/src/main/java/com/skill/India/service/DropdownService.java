@@ -22,9 +22,9 @@ public class DropdownService {
     private DropdownDao dropdownDao;
 
     public Collection<DropdownDto> getCollection(){
-    	LOGGER.info("Request Received from Controller");
-		LOGGER.info("In DropdownService - getCollection");
-		LOGGER.info("Making a Request to Dao to get data");
+    	LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In DropdownService - getCollection");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return dropdownDao.getCollection();
     }
 }

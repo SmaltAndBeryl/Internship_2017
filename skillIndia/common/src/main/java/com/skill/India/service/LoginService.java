@@ -24,20 +24,20 @@ public class LoginService {
 
 	public LoginDto checkUser(LoginReceiveDataDto loginReceiveDataDto)
 	{
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In LoginService - checkUser");
-		//LOGGER.info(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
-		LOGGER.info("Application have to verify the user existence");
-		LOGGER.info("Parameters Received from front end are - 'loginReceiveDataDto': "+loginReceiveDataDto);
-		LOGGER.info("Making a Request to Dao to check if user exists or not");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In LoginService - checkUser");
+		//LOGGER.debug(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
+		LOGGER.debug("Application have to verify the user existence");
+		LOGGER.debug("Parameters Received from front end are - 'loginReceiveDataDto': "+loginReceiveDataDto);
+		LOGGER.debug("Making a Request to Dao to check if user exists or not");
 		userExistenceValidation=loginDao.userExistence(loginReceiveDataDto.getUserId(),loginReceiveDataDto.getPassword());
-		LOGGER.info("Response received from Dao");
+		LOGGER.debug("Response received from Dao");
 		if(userExistenceValidation==1){
-			LOGGER.info("User exist in the Record");
-			LOGGER.info("Making a Request to Dao to verify credentials");
+			LOGGER.debug("User exist in the Record");
+			LOGGER.debug("Making a Request to Dao to verify credentials");
 			Collection<LoginDto> login=loginDao.getValidateLoginUser(loginReceiveDataDto.getUserId(), loginReceiveDataDto.getPassword());
-			LOGGER.info("Response received from Dao");
-			LOGGER.info("Data Captured in LoginDto");
+			LOGGER.debug("Response received from Dao");
+			LOGGER.debug("Data Captured in LoginDto");
 			for(LoginDto l:login)
 			{
 				return l;
@@ -45,11 +45,11 @@ public class LoginService {
 		}
 	
 		else{
-			LOGGER.info("Wrong credentials");
-			LOGGER.info("Initializing Blank LoginDto");
+			LOGGER.debug("Wrong credentials");
+			LOGGER.debug("Initializing Blank LoginDto");
 					loginDto = new LoginDto(null, null, null);
 			}
-		LOGGER.info("Sending the response back to Controller");
+		LOGGER.debug("Sending the response back to Controller");
 		return loginDto;
 	}
 	

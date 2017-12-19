@@ -18,24 +18,24 @@ public class GetApplicationStateService {
 	
 	public ApplicationDto getApplicationStateService(String userId)
 	{
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In GetApplicationStateService - getApplicationStateService");
-		LOGGER.info("Parameters Received from front end are - 'userId': "+userId);
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In GetApplicationStateService - getApplicationStateService");
+		LOGGER.debug("Parameters Received from front end are - 'userId': "+userId);
 		try
 		{
-			LOGGER.info("In TRY block");
-			LOGGER.info("Getting application state of the received userId");
-			LOGGER.info("Sending request to Dao");
+			LOGGER.debug("In TRY block");
+			LOGGER.debug("Getting application state of the received userId");
+			LOGGER.debug("Sending request to Dao");
 //			System.out.println(getApplicationStateDao.getApplicationState(userId));
-			LOGGER.info("Sending response back to Controller");
+			LOGGER.debug("Sending response back to Controller");
 			return getApplicationStateDao.getApplicationState(userId);
 		}
 		catch(Exception e)
 		{
-			LOGGER.info("In catch Block");
-			LOGGER.info("ERROR: Encountered Exception - "+e);
+			LOGGER.debug("In catch Block");
+			LOGGER.debug("ERROR: Encountered Exception - "+e);
 			e.printStackTrace();
-			LOGGER.info("Sending response back to Controller");
+			LOGGER.debug("Sending response back to Controller");
 			return  null;
 		}
 	}

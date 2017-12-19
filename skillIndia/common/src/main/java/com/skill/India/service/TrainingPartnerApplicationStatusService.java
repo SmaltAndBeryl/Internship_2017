@@ -19,10 +19,10 @@ public class TrainingPartnerApplicationStatusService {
 	private TrainingPartnerApplicationStatusDao updateDao;
 	
 	public Collection<TrainingPartnerApplicationStatusDto> getUpdateRowMapper(int applicationId){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In TrainingPartnerApplicationStatusService - getUpdateRowMapper");
-		LOGGER.info("Parameters Received from front end are - 'applicationId': "+applicationId);
-		LOGGER.info("Making a Request to Dao");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In TrainingPartnerApplicationStatusService - getUpdateRowMapper");
+		LOGGER.debug("Parameters Received from front end are - 'applicationId': "+applicationId);
+		LOGGER.debug("Making a Request to Dao");
 		return updateDao.getUpateRowMapper(applicationId) ;
 	}
 }

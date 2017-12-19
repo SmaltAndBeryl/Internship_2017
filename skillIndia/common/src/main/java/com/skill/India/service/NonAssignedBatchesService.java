@@ -40,29 +40,29 @@ public class NonAssignedBatchesService {
 
 
     public Collection<NonAssignedBatchesDto> getCollection() {
-        LOGGER.info("Request Received from Controller");
-        LOGGER.info("In NonAssignedBatchesService - getCollection");
+        LOGGER.debug("Request Received from Controller");
+        LOGGER.debug("In NonAssignedBatchesService - getCollection");
         
         String recommendedAB = "Default";
         
-        LOGGER.info("Creating ArrayList object");
+        LOGGER.debug("Creating ArrayList object");
 
         ArrayList<String> rec = new ArrayList<>();
 
-        LOGGER.info("Successfully created");
+        LOGGER.debug("Successfully created");
         
-        LOGGER.info("Creating Collection object");
-        LOGGER.info("Making a Request to Dao to get data for Non assigned batches");
+        LOGGER.debug("Creating Collection object");
+        LOGGER.debug("Making a Request to Dao to get data for Non assigned batches");
         String recommendedAgency = "";
 
         Collection<NonAssignedBatchesDto> nonAssignedBatchesDtos = updateDao.getCollection();
         Collection<NonAssignedBatchesDto> nonAssignedBatchesDtoCollection = new ArrayList<>();
-        LOGGER.info("Received Response from Dao");
-        LOGGER.info("Successfully initialized");
+        LOGGER.debug("Received Response from Dao");
+        LOGGER.debug("Successfully initialized");
 
 
         for(NonAssignedBatchesDto beanDto : nonAssignedBatchesDtos){
-            LOGGER.info("The state and district for >>>>>>>>>>>>>>>>>>>>>>>>>>" + beanDto.getBatchID() + " are " +beanDto.getState() + " " + beanDto.getDistrict());
+            LOGGER.debug("The state and district for >>>>>>>>>>>>>>>>>>>>>>>>>>" + beanDto.getBatchID() + " are " +beanDto.getState() + " " + beanDto.getDistrict());
             String batchId = beanDto.getBatchID();
             String stateBatch = beanDto.getState();
             String districtBatch = beanDto.getDistrict();
@@ -73,32 +73,32 @@ public class NonAssignedBatchesService {
 
             if(!algorithmDtos.isEmpty()){
                 for(AlgorithmDto algorithmDto : algorithmDtos){
-                    LOGGER.info("The agencies who have shown interest are >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + algorithmDto.getAgencyId() + " " + algorithmDto.getState() + " " + algorithmDto.getDistrict());
+                    LOGGER.debug("The agencies who have shown interest are >>>>>>>>>>>>>>>>>>>>>>>>>>>>>> " + algorithmDto.getAgencyId() + " " + algorithmDto.getState() + " " + algorithmDto.getDistrict());
                 }
 
                 recommendedAgency = recommendationAlgorithm.getAgencyShowInterest(stateBatch, districtBatch, algorithmDtos);
-                LOGGER.info("recommended agency is "+ recommendedAgency);
+                LOGGER.debug("recommended agency is "+ recommendedAgency);
             }
 
             else {
-                LOGGER.info("No one has shown INTEREST -*-*-*-*-*-*-*-* ");
+                LOGGER.debug("No one has shown INTEREST -*-*-*-*-*-*-*-* ");
                 //Proceed to next step
                 Collection<Algorithm2Dto> algorithm2Dtos = algorithm2Dao.getAgencyIdCollection();
 
                 for (Algorithm2Dto algorithm2Dto : algorithm2Dtos){
-                    LOGGER.info("Displaying all agencies cause no one has shown interest" + algorithm2Dto.getAgencyId() + " " + algorithm2Dto.getState() + " " + algorithm2Dto.getDistrict());
+                    LOGGER.debug("Displaying all agencies cause no one has shown interest" + algorithm2Dto.getAgencyId() + " " + algorithm2Dto.getState() + " " + algorithm2Dto.getDistrict());
                 }
 
 
                 recommendedAgency = recommendationAlgorithm.getAgency(stateBatch, districtBatch, algorithm2Dtos);
-                LOGGER.info("recommended agency is "+ recommendedAgency);
+                LOGGER.debug("recommended agency is "+ recommendedAgency);
             }
 
-            LOGGER.info("The agency name is " + String.valueOf(algorithm3Dao.getAssessorIdCollection(recommendedAgency)));
+            LOGGER.debug("The agency name is " + String.valueOf(algorithm3Dao.getAssessorIdCollection(recommendedAgency)));
             String recommendedAgencyName = "";
             for(Algorithm3Dto dto : algorithm3Dao.getAssessorIdCollection(recommendedAgency)){
                 recommendedAgencyName = dto.getAgencyName();
-                LOGGER.info("RECOMMENDED AGENCY IS " + recommendedAgencyName);
+                LOGGER.debug("RECOMMENDED AGENCY IS " + recommendedAgencyName);
             }
 
             nonAssignedBatchesDtoCollection.add(new NonAssignedBatchesDto(batchId, stateBatch, districtBatch, beanDto.getBatchEndDate(), beanDto.getAssessmentDate(), recommendedAgencyName));

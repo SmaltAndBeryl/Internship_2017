@@ -16,13 +16,13 @@ import com.skill.India.dao.ManageRegistrationDao;
 			
 			public String putUpdateRowMapper(int id)
 			{	
-				LOGGER.info("Request Received from controller");
-				LOGGER.info("In ManageRegistrationService - putUpdateRowMapper");
-				LOGGER.info("Parameters Received from Controller are - 'id': "+id);
+				LOGGER.debug("Request Received from controller");
+				LOGGER.debug("In ManageRegistrationService - putUpdateRowMapper");
+				LOGGER.debug("Parameters Received from Controller are - 'id': "+id);
 				
-				 LOGGER.info("Making a Request to Dao to get data");
+				 LOGGER.debug("Making a Request to Dao to get data");
 				 int i = updateDao.putUpdateRowMapper(id);
-				 LOGGER.info("Response received from Dao");
+				 LOGGER.debug("Response received from Dao");
 				if(i>0)
 					return "success";
 				else

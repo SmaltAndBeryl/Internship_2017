@@ -22,9 +22,9 @@ public class DataImportServices {
 	private DataImportHistoryDao dataImportHistoryDao;
 	
 	public Collection<DataImportHistoryDto> getUpdateHistory(){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In DataImportServices - getUpdateHistory");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In DataImportServices - getUpdateHistory");
+		LOGGER.debug("Making a Request to Dao to get data");
 //	Collection<DataImportHistoryDto> dtoobj=dataImportHistoryDao.getUpdateHistory();
 //	String Path=null;
 //	 for(DataImportHistoryDto x:dtoobj)

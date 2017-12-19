@@ -38,60 +38,60 @@ public class AssessmentBodyBatchesService {
 	
 	public HashMap<String, ArrayList<AssessmentBodyBatchesDto>> getUpdateRowMapper(){
 		//System.out.println("LIST 1 Code reached");
-		LOGGER.info("Request Received from controller");
-		LOGGER.info("In AssessmentBodyBatchesService - getUpdateRowMapper");
+		LOGGER.debug("Request Received from controller");
+		LOGGER.debug("In AssessmentBodyBatchesService - getUpdateRowMapper");
 			
-		LOGGER.info("Creating ArrayList object for past batches");
+		LOGGER.debug("Creating ArrayList object for past batches");
 		ArrayList<AssessmentBodyBatchesDto> pastBatches= new ArrayList<AssessmentBodyBatchesDto>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
-		LOGGER.info("Creating ArrayList object for upcoming batches");
+		LOGGER.debug("Creating ArrayList object for upcoming batches");
 		ArrayList<AssessmentBodyBatchesDto> upcomingBatches= new ArrayList<AssessmentBodyBatchesDto>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
-		LOGGER.info("Creating collection object");
-		LOGGER.info("Initializing object");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Creating collection object");
+		LOGGER.debug("Initializing object");
+		LOGGER.debug("Making a Request to Dao to get data");
 		Collection<AssessmentBodyBatchesDto> ab= updateDao.getUpdateRowMapper();
-		LOGGER.info("Response received from Dao");
+		LOGGER.debug("Response received from Dao");
 		
 		
 		for(AssessmentBodyBatchesDto x:ab)
 		{
-			LOGGER.info("Iterating collection object");
-			LOGGER.info("Creating and initializing date object");
+			LOGGER.debug("Iterating collection object");
+			LOGGER.debug("Creating and initializing date object");
 			Date da=x.getAssessmentDate();
-			LOGGER.info("Successfully initialized");
-			LOGGER.info("Creating and initializing date object with present date");
+			LOGGER.debug("Successfully initialized");
+			LOGGER.debug("Creating and initializing date object with present date");
 			Date d=new Date();
-			LOGGER.info("Successfully initialized");
+			LOGGER.debug("Successfully initialized");
 			if(d.after(da))
 			{
-				LOGGER.info("Inserting data into past batches");
+				LOGGER.debug("Inserting data into past batches");
 				pastBatches.add(x);
-				LOGGER.info("Successfully inserted");
+				LOGGER.debug("Successfully inserted");
 			}
 			else
 			{
 				//upcoming 
-				LOGGER.info("Inserting data into Upcoming batches");
+				LOGGER.debug("Inserting data into Upcoming batches");
 				upcomingBatches.add(x);
-				LOGGER.info("Successfully inserted");
+				LOGGER.debug("Successfully inserted");
 			}
 		}
 		
-		LOGGER.info("Creating HashMap object");	
+		LOGGER.debug("Creating HashMap object");	
 		HashMap<String, ArrayList<AssessmentBodyBatchesDto>> hmap= new HashMap<String, ArrayList<AssessmentBodyBatchesDto>>();
-		LOGGER.info("Successfully created");
-		LOGGER.info("Inserting data into HashMap object");
-		LOGGER.info("Inserting data of past batches");
+		LOGGER.debug("Successfully created");
+		LOGGER.debug("Inserting data into HashMap object");
+		LOGGER.debug("Inserting data of past batches");
 		hmap.put("pastBatches", pastBatches);
-		LOGGER.info("Successfully inserted");
-		LOGGER.info("Inserting data of Upcoming batches");
+		LOGGER.debug("Successfully inserted");
+		LOGGER.debug("Inserting data of Upcoming batches");
 		hmap.put("upcomingBatches", upcomingBatches);
-		LOGGER.info("Successfully inserted");
+		LOGGER.debug("Successfully inserted");
 		
-		LOGGER.info("Returning HashMap object");
+		LOGGER.debug("Returning HashMap object");
 		return hmap;
 		
 		

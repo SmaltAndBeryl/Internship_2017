@@ -43,67 +43,67 @@ public class DashboardService  {
 	
 	
 	public Integer getTotalCandidatesEnrolled() {
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In DashboardService - getTotalCandidatesEnrolled");
-		LOGGER.info("Making a Request to Dao to get data"); 
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In DashboardService - getTotalCandidatesEnrolled");
+		LOGGER.debug("Making a Request to Dao to get data"); 
 		return dashboardPanelsDao.getTotalCandidateEnrolled();
 	}
 	
 	public Integer getTotalCandidatesAccessed() {
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In DashboardService - getTotalCandidatesAccessed");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In DashboardService - getTotalCandidatesAccessed");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return dashboardPanelsDao.getTotalCandidateAccessed();
 	}
 	
 	public Integer getTotalCandidatesCertified() {
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In DashboardService - getTotalCandidatesCertified");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In DashboardService - getTotalCandidatesCertified");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return dashboardPanelsDao.getTotalCandidateCertified();
 	}
 	
 	public Integer getTotalTrainingCentersInIndia() {
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In DashboardService - getTotalTrainingCentersInIndia");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In DashboardService - getTotalTrainingCentersInIndia");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return dashboardPanelsDao.getTotalTrainingCentersInIndia();
 	}
 	
 	public Integer getTotalTrainingPartners() {
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In DashboardService - getTotalTrainingPartners");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In DashboardService - getTotalTrainingPartners");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return dashboardPanelsDao.getTotalTrainingPartners();
 	}
 	
 	public Collection<DashboardTotalBatchesAccordingToJobRoleDto> getTotalBatchesAccordingToJobRole() {
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In DashboardService - getTotalBatchesAccordingToJobRole");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In DashboardService - getTotalBatchesAccordingToJobRole");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return dashboardPieChartDao.getTotalBatchesAccordingToJobRole();
 	}
 	
 	
 public Collection<DashboardTopStatesWithMaxTrainingCentersDto> getTopStatesWithMaxTrainingCenters() {
-	LOGGER.info("Request Received from Controller");
-	LOGGER.info("In DashboardService - getTopStatesWithMaxTrainingCenters");
-	LOGGER.info("Making a Request to Dao to get data");
+	LOGGER.debug("Request Received from Controller");
+	LOGGER.debug("In DashboardService - getTopStatesWithMaxTrainingCenters");
+	LOGGER.debug("Making a Request to Dao to get data");
 	return dashboardTopStatesDao.getTopStatesWithMaxTrainingCenters();
 }
 
 public Collection<DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto> getTotalCandidatesCertifiedWithModeInLastThreeYears() {
-	LOGGER.info("Request Received from Controller");
-	LOGGER.info("In DashboardService - getTotalCandidatesCertifiedWithModeInLastThreeYears");
-	LOGGER.info("Making a Request to Dao to get data");
+	LOGGER.debug("Request Received from Controller");
+	LOGGER.debug("In DashboardService - getTotalCandidatesCertifiedWithModeInLastThreeYears");
+	LOGGER.debug("Making a Request to Dao to get data");
 	return dashboardStackedColumnChartDao.getTotalCandidatesCertifiedWithModeInLastThreeYears();
 	
 }
 
 public Collection<DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto> getTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
-	LOGGER.info("Request Received from Controller");
-	LOGGER.info("In DashboardService - getTotalCandidatesTrainedWithBatchTypeInLastThreeYears");
-	LOGGER.info("Making a Request to Dao to get data");
+	LOGGER.debug("Request Received from Controller");
+	LOGGER.debug("In DashboardService - getTotalCandidatesTrainedWithBatchTypeInLastThreeYears");
+	LOGGER.debug("Making a Request to Dao to get data");
 	return dashboardColumnChartDao.getTotalCandidatesTrainedWithBatchTypeInLastThreeYears();
 }
 

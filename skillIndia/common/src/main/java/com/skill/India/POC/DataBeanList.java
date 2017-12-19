@@ -15,11 +15,11 @@ public class DataBeanList {
         ArrayList<DataBean> dataBeanList = new ArrayList<DataBean>();
 
         if(!arrayList.isEmpty()){
-            LOGGER.info("The array list received in the DataBeanList is not empty " + arrayList.get(1));
+            LOGGER.debug("The array list received in the DataBeanList is not empty " + arrayList.get(1));
         }
 
         else {
-            LOGGER.info("Empty");
+            LOGGER.debug("Empty");
         }
 
         int index = 0;
@@ -77,7 +77,7 @@ public class DataBeanList {
     }
 
     private DataBean produce(String s, String s1, String s2, String s3, String s4) {
-        LOGGER.info("Bean called..");
+        LOGGER.debug("Bean called..");
         DataBean dataBean = new DataBean();
         dataBean.setAddress(s);
         dataBean.setCity(s1);

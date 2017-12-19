@@ -20,10 +20,10 @@ public class NonAssignedUpdateAgencyService {
 
     public int putAgencyId(String agencyId, String batchId, String responseType){
     	
-    	LOGGER.info("Request Received from Controller");
-		LOGGER.info("In NonAssignedUpdateAgencyService - putAgencyId");
-		LOGGER.info("Parameters Received from Controller are - 'agencyId': "+agencyId+" 'batchId': "+batchId+" 'responseType': "+responseType);
-		LOGGER.info("Making a Request to Dao");
+    	LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In NonAssignedUpdateAgencyService - putAgencyId");
+		LOGGER.debug("Parameters Received from Controller are - 'agencyId': "+agencyId+" 'batchId': "+batchId+" 'responseType': "+responseType);
+		LOGGER.debug("Making a Request to Dao");
 		return nonAssignedUpdateAgencyDao.putAgencyId(agencyId, batchId, responseType);
     }
 }

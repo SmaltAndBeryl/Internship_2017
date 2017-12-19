@@ -43,41 +43,41 @@ public class UserRoleApplicationIdService {
         for(UserRoleApplicationIdDto userRoleApplicationIdDto : userRoleApplicationIdDtos){
             String userRole = userRoleApplicationIdDto.getUserRole();
 
-            LOGGER.info("THE USER ROLE IS "+ userRole + " AND APPLICATION ID IS " + applicationId);
+            LOGGER.debug("THE USER ROLE IS "+ userRole + " AND APPLICATION ID IS " + applicationId);
 
             if(userRole.equalsIgnoreCase("TP")){
-                LOGGER.info("PRINTING THE trainingPartnerRegistrationId for each user of the Training Partner");
+                LOGGER.debug("PRINTING THE trainingPartnerRegistrationId for each user of the Training Partner");
                 if(!trainingPartnerRegistrationIdDtos.isEmpty()){
-                    LOGGER.info("THE trainingPartnerRegistrationIdDtos are not empty and have a size " + trainingPartnerRegistrationIdDtos.size());
+                    LOGGER.debug("THE trainingPartnerRegistrationIdDtos are not empty and have a size " + trainingPartnerRegistrationIdDtos.size());
                     for(TrainingPartnerRegistrationIdDto beanDto : trainingPartnerRegistrationIdDtos){
                         String trainingPartnerRegistrationId = beanDto.getTrainingPartnerRegistrationId();
-                        LOGGER.info("TRAINING PARTNER ID IS " + beanDto.getTrainingPartnerRegistrationId());
+                        LOGGER.debug("TRAINING PARTNER ID IS " + beanDto.getTrainingPartnerRegistrationId());
                         success = dataBeanService.dataBeanDtoCollection(trainingPartnerRegistrationId);
                     }
                 }
                 else {
-                    LOGGER.info("THE training partner registration ID Dtos are empty with size " + trainingPartnerRegistrationIdDtos.size());
+                    LOGGER.debug("THE training partner registration ID Dtos are empty with size " + trainingPartnerRegistrationIdDtos.size());
                     success = 2;
                 }
             }
 
             else if(userRole.equalsIgnoreCase("AB")){
-                LOGGER.info("THE USER IS ASSESSMENT BODY");
+                LOGGER.debug("THE USER IS ASSESSMENT BODY");
                 if(!assessmentBodyRegistrationIdDtos.isEmpty()){
                     for(AssessmentBodyRegistrationIdDto beanDto : assessmentBodyRegistrationIdDtos){
                         String assessmentBodyRegistrationId = beanDto.getAssessmentBodyRegistrationId();
-                        LOGGER.info("ASSESSMENT BODY REGISTRATION ID IS " + beanDto.getAssessmentBodyRegistrationId());
+                        LOGGER.debug("ASSESSMENT BODY REGISTRATION ID IS " + beanDto.getAssessmentBodyRegistrationId());
                         success = assessmentBodyPdfService.dataBeanCollection(assessmentBodyRegistrationId);
                     }
                 }
                 else {
-                    LOGGER.info("The assessment body Id dtos are empty with size " + assessmentBodyRegistrationIdDtos.size());
+                    LOGGER.debug("The assessment body Id dtos are empty with size " + assessmentBodyRegistrationIdDtos.size());
                     success = 2;
                 }
             }
 
         }
-        LOGGER.info("THE success value being returned is "+ success);
+        LOGGER.debug("THE success value being returned is "+ success);
         return success;
     }
 }

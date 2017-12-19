@@ -21,9 +21,9 @@ public class AssessmentBodyUpcomingBatchService {
 	
 	public Collection<AssessmentBodyUpcomingBatchDto> getUpdateRowMapper(){
 		
-		LOGGER.info("Request Received from controller");
-		LOGGER.info("In AssessmentBodyUpcomingBatchService - getUpdateRowMapper");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from controller");
+		LOGGER.debug("In AssessmentBodyUpcomingBatchService - getUpdateRowMapper");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return updateDao.getUpateRowMapper() ;
 	}
 

@@ -26,20 +26,20 @@ public class SaveAsDraftAndSubmitService {
 
 	public String saveAsDraftAndSubmit(ProfileCreationTrainingPartnerDto profileCreationTrainingPartnerDto,String type)
 	{
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In SaveAsDraftAndSubmitService - saveAsDraftAndSubmit");
-		LOGGER.info("Parameters Received from front end are - 'type': "+type+" 'profileCreationTrainingPartnerDto':",profileCreationTrainingPartnerDto);
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In SaveAsDraftAndSubmitService - saveAsDraftAndSubmit");
+		LOGGER.debug("Parameters Received from front end are - 'type': "+type+" 'profileCreationTrainingPartnerDto':",profileCreationTrainingPartnerDto);
 		try{
-			LOGGER.info("Inside TRY block");
+			LOGGER.debug("Inside TRY block");
 			
 		if(type.equalsIgnoreCase("submit"))
 		{
 			throw new Exception();
 		}
-		LOGGER.info("Checking Existense of Training Partner");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Checking Existense of Training Partner");
+		LOGGER.debug("Making a Request to Dao to get data");
 		int userIdExists=userIdCheckInTrainingPartnerRegistration.userIdCheckInTrainingPartnerRegistration(profileCreationTrainingPartnerDto.getUserId());
-		LOGGER.info("Response received from Dao");
+		LOGGER.debug("Response received from Dao");
 		//System.out.println("UserId status : "+userIdExists);
 		if(userIdExists==0)
 		{
@@ -51,10 +51,10 @@ public class SaveAsDraftAndSubmitService {
 			 *  3) Set data in TPREG table(insert query)
 			 */
 			try{
-				LOGGER.info("Inserting data in Application Table");
-				LOGGER.info("Making a Request to Dao");
+				LOGGER.debug("Inserting data in Application Table");
+				LOGGER.debug("Making a Request to Dao");
 				int statusOfInsertIntoApplication=saveAsDraftAndSubmitDao.insertIntoApplication(profileCreationTrainingPartnerDto.getUserId(),type);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				/*
 				 *  -1 is returned if an exception occurs
 				 */
@@ -69,24 +69,24 @@ public class SaveAsDraftAndSubmitService {
 					catch(Exception e)
 					{
 
-						LOGGER.info("Inside CATCH block");
+						LOGGER.debug("Inside CATCH block");
 						LOGGER.error("ERROR: Exception is - ",e);
-						LOGGER.info("Returning NULL");
+						LOGGER.debug("Returning NULL");
 //						e.printStackTrace();
 						return null;
 					}
 					try{
-						LOGGER.info("Inserting data in Training Partner Registration table");
-						LOGGER.info("Making a Request to Dao");
+						LOGGER.debug("Inserting data in Training Partner Registration table");
+						LOGGER.debug("Making a Request to Dao");
 					int statusOfInsertIntoTrainingPartnerRegistration=saveAsDraftAndSubmitDao.insertIntoTrainingPartnerRegistration(profileCreationTrainingPartnerDto);
-					LOGGER.info("Response received from Dao");
+					LOGGER.debug("Response received from Dao");
 					if(statusOfInsertIntoTrainingPartnerRegistration>0)
 					{
 						return "Success";
 					}
 					else
 					{
-						LOGGER.info("Data Not Inserted in TP REG");
+						LOGGER.debug("Data Not Inserted in TP REG");
 						return null;
 					}
 
@@ -94,9 +94,9 @@ public class SaveAsDraftAndSubmitService {
 					catch(Exception e)
 					{
 
-						LOGGER.info("Inside CATCH block");
+						LOGGER.debug("Inside CATCH block");
 						LOGGER.error("ERROR: Exception is - ",e);
-						LOGGER.info("Returning NULL");
+						LOGGER.debug("Returning NULL");
 //						e.printStackTrace();
 						return null;
 					}
@@ -104,18 +104,18 @@ public class SaveAsDraftAndSubmitService {
 				}
 				else
 				{
-					LOGGER.info("Data Not Inserted in Application");
+					LOGGER.debug("Data Not Inserted in Application");
 					return null;
 				}
 
 			}
 			catch(Exception e)
 			{
-//				LOGGER.info("inside CATCH block");
+//				LOGGER.debug("inside CATCH block");
 
-				LOGGER.info("Inside CATCH block");
+				LOGGER.debug("Inside CATCH block");
 				LOGGER.error("ERROR: Exception is - ",e);
-				LOGGER.info("Returning NULL");
+				LOGGER.debug("Returning NULL");
 //				e.printStackTrace();
 				return null;
 			}
@@ -131,24 +131,24 @@ public class SaveAsDraftAndSubmitService {
 			try{
 				if(type.equalsIgnoreCase("Submit"))
 				{
-					LOGGER.info("Updating data in Application Table");
-					LOGGER.info("Making a Request to Dao");
+					LOGGER.debug("Updating data in Application Table");
+					LOGGER.debug("Making a Request to Dao");
 					int statusOfUpdateIntoApplication=saveAsDraftAndSubmitDao.updateIntoApplication(profileCreationTrainingPartnerDto,type);
-					LOGGER.info("Response received from Dao");
+					LOGGER.debug("Response received from Dao");
 					if(statusOfUpdateIntoApplication > 0)
 					{
 						try{
-							LOGGER.info("Updating data in Application Table");
-							LOGGER.info("Making a Request to Dao");
+							LOGGER.debug("Updating data in Application Table");
+							LOGGER.debug("Making a Request to Dao");
 						int statusOfUpdateIntoTrainingPartnerRegistration=saveAsDraftAndSubmitDao.updateIntoTrainingPartnerRegistration(profileCreationTrainingPartnerDto);
-						LOGGER.info("Response received from Dao");
+						LOGGER.debug("Response received from Dao");
 						if(statusOfUpdateIntoTrainingPartnerRegistration>0)
 						{
 							return "Success";
 						}
 						else
 						{
-							LOGGER.info("Data Not Updated in TP REG");
+							LOGGER.debug("Data Not Updated in TP REG");
 							return null;
 						}
 						}
@@ -160,7 +160,7 @@ public class SaveAsDraftAndSubmitService {
 					}
 					else
 					{
-						LOGGER.info("Data Not Updated in Application");
+						LOGGER.debug("Data Not Updated in Application");
 						return null;
 					}
 				}
@@ -169,27 +169,27 @@ public class SaveAsDraftAndSubmitService {
 				else
 				{
 					try{
-						LOGGER.info("Updating data in Training Partner Registration table");
-						LOGGER.info("Making a Request to Dao");
+						LOGGER.debug("Updating data in Training Partner Registration table");
+						LOGGER.debug("Making a Request to Dao");
 						int statusOfUpdateIntoTrainingPartnerRegistration=saveAsDraftAndSubmitDao.updateIntoTrainingPartnerRegistration(profileCreationTrainingPartnerDto);
-						LOGGER.info("Response received from Dao");
+						LOGGER.debug("Response received from Dao");
 						if(statusOfUpdateIntoTrainingPartnerRegistration>0)
 						{
-							LOGGER.info("IN UPDATE RETURNING SUCCESS");
+							LOGGER.debug("IN UPDATE RETURNING SUCCESS");
 							return "Success";
 						}
 						else
 						{
-							LOGGER.info("Data Not Updated in TP REG");
+							LOGGER.debug("Data Not Updated in TP REG");
 							return null;
 						}
 						}
 						catch(Exception e)
 						{
 
-							LOGGER.info("Inside CATCH block");
+							LOGGER.debug("Inside CATCH block");
 							LOGGER.error("ERROR: Exception is - ",e);
-							LOGGER.info("Returning NULL");
+							LOGGER.debug("Returning NULL");
 							
 //							e.printStackTrace();
 							return null;
@@ -200,9 +200,9 @@ public class SaveAsDraftAndSubmitService {
 			catch(Exception e)
 			{
 
-				LOGGER.info("Inside CATCH block");
+				LOGGER.debug("Inside CATCH block");
 				LOGGER.error("ERROR: Exception is - ",e);
-				LOGGER.info("Returning NULL");
+				LOGGER.debug("Returning NULL");
 //				e.printStackTrace();
 				return null;
 			}
@@ -212,9 +212,9 @@ public class SaveAsDraftAndSubmitService {
 	}
 		catch(Exception e)
 		{
-			LOGGER.info("Inside CATCH block");
+			LOGGER.debug("Inside CATCH block");
 			LOGGER.error("ERROR: Exception is - ",e);
-			LOGGER.info("Returning NULL");
+			LOGGER.debug("Returning NULL");
 //			e.printStackTrace();
 			return null;
 		}

@@ -18,19 +18,19 @@ public class DownloadExcelService {
 	@Autowired
 	private DownloadExcelDao updateDao;
 	public String getUpdateRowMapper(){
-		LOGGER.info("Request Received from controller");
-		LOGGER.info("In DownloadExcelService - getUpdateRowMapper");
+		LOGGER.debug("Request Received from controller");
+		LOGGER.debug("In DownloadExcelService - getUpdateRowMapper");
 		
-		LOGGER.info("Creating Collection object");
-		LOGGER.info("Initializing object");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Creating Collection object");
+		LOGGER.debug("Initializing object");
+		LOGGER.debug("Making a Request to Dao to get data");
 		Collection<DownloadExcelDto> dtoobj= updateDao.getUpateRowMapper() ;
-		LOGGER.info("Response received from Dao");
+		LOGGER.debug("Response received from Dao");
 		
 	for(DownloadExcelDto x:dtoobj)
 		
 	{
-		LOGGER.info("Iterating object data");
+		LOGGER.debug("Iterating object data");
 		String abc=x.getCSVLocation();
 	}
 	

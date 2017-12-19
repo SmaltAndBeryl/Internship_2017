@@ -27,54 +27,54 @@ public class ApproveRejectTableService {
 	
 	public HashMap<String, ArrayList<ApproveRejectTableDto>> getUpdateRowMapper(){
 		
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In ApproveRejectTableService - getUpdateRowMapper");
-		LOGGER.info("Creating row mapper for application table : "  );
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In ApproveRejectTableService - getUpdateRowMapper");
+		LOGGER.debug("Creating row mapper for application table : "  );
+		LOGGER.debug("Making a Request to Dao to get data");
 		return approveRejectTableDao.getUpdateRowMapper();
 	}
 	
 	public String editUserApplication(int applicationId, String comment, String applicationState) throws SQLException
 	{
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In ApproveRejectTableService - editUserApplication");
-		LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment':"+comment+" 'applicationState':"+applicationState);
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In ApproveRejectTableService - editUserApplication");
+		LOGGER.debug("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment':"+comment+" 'applicationState':"+applicationState);
 		try
 		{
-			LOGGER.info("Inside TRY block");
-			LOGGER.info("Checking If a comment exists");
-			LOGGER.info("Making a Request to Dao");
+			LOGGER.debug("Inside TRY block");
+			LOGGER.debug("Checking If a comment exists");
+			LOGGER.debug("Making a Request to Dao");
 			int commentsExists = manageRegistrationActionDao.checkCommentExistence(applicationId);
-			LOGGER.info("Response received from Dao");
+			LOGGER.debug("Response received from Dao");
 			System.out.println("commentExists = " + commentsExists);
 			if(commentsExists == 1)
 			{
-				LOGGER.info("Comment Already Exists");
-				LOGGER.info("Setting the FLAG for old commment as False");
-				LOGGER.info("Making a Request to Dao");
+				LOGGER.debug("Comment Already Exists");
+				LOGGER.debug("Setting the FLAG for old commment as False");
+				LOGGER.debug("Making a Request to Dao");
 				int i=manageRegistrationActionDao.updateCommentsOnAction(applicationId);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				System.out.println("I IS "+i);
 			}
-			LOGGER.info("Inserting Comment");
-			LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment': "+comment);
-			LOGGER.info("Making a Request to Dao");
+			LOGGER.debug("Inserting Comment");
+			LOGGER.debug("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment': "+comment);
+			LOGGER.debug("Making a Request to Dao");
 			int insertSuccessful=manageRegistrationActionDao.insertCommentsOnAction(applicationId, comment);
-			LOGGER.info("Response received from Dao");
-			LOGGER.info("Successfully inserted");
+			LOGGER.debug("Response received from Dao");
+			LOGGER.debug("Successfully inserted");
 			System.out.println("insertApplicationId:"+insertSuccessful);
-			LOGGER.info("Now Updating Application State");
-			LOGGER.info("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'applicationState': "+applicationState);
-			LOGGER.info("Making a Request to Dao");
+			LOGGER.debug("Now Updating Application State");
+			LOGGER.debug("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'applicationState': "+applicationState);
+			LOGGER.debug("Making a Request to Dao");
 			manageRegistrationActionDao.updateApplicationStateonAction(applicationId,applicationState);
-			LOGGER.info("Response received from Dao");
-			LOGGER.info("Exiting TRY block");
+			LOGGER.debug("Response received from Dao");
+			LOGGER.debug("Exiting TRY block");
 			return "Comment Captured Successful";
 		}
 		catch(Exception ex)
 		{
-			LOGGER.info("Inside CATCH block");
-			LOGGER.info("Error: Encountered Exception - "+ex);
+			LOGGER.debug("Inside CATCH block");
+			LOGGER.debug("Error: Encountered Exception - "+ex);
 			return "Failed to Insert Comment ";
 		}
 		
@@ -82,10 +82,10 @@ public class ApproveRejectTableService {
 	
 	public int updateAffilationOfAApplicant(ManageRegistrationApplicationDto manageRegistrationApplicationDto)
 	{
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In ApproveRejectTableService - updateAffilationOfAApplicant");
-		LOGGER.info("Parameters Received from Controller are - 'manageRegistrationApplicationDto': "+manageRegistrationApplicationDto);
-		LOGGER.info("Making a Request to Dao");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In ApproveRejectTableService - updateAffilationOfAApplicant");
+		LOGGER.debug("Parameters Received from Controller are - 'manageRegistrationApplicationDto': "+manageRegistrationApplicationDto);
+		LOGGER.debug("Making a Request to Dao");
 		return manageRegistrationActionDao.updateAffilationOfAApplicant(manageRegistrationApplicationDto);
 	
 	}

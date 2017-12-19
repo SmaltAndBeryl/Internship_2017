@@ -42,49 +42,49 @@ public class DataBeanService {
     public int dataBeanDtoCollection(String trainingPartnerRegistrationId) throws JRException, IOException {
         final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(com.skill.India.service.DataBeanService.class);
 
-        LOGGER.info("Reached the inside of DataBeanService...");
-        LOGGER.info("Creating collection for storing value from Dtos");
+        LOGGER.debug("Reached the inside of DataBeanService...");
+        LOGGER.debug("Creating collection for storing value from Dtos");
         Collection<DataBeanDto> dataBeanDtos = dataBeanListDao.dataBeanDtoCollection(trainingPartnerRegistrationId);
-        LOGGER.info("Size of Collection dataBeanDtos is " + dataBeanDtos.size());
+        LOGGER.debug("Size of Collection dataBeanDtos is " + dataBeanDtos.size());
 
         Collection<CenterLevelDto> centerLevelDtos = centerLevelDao.centerLevelDtos(trainingPartnerRegistrationId);
-        LOGGER.info("Size of Collection centerLevelDtos is " + centerLevelDtos.size());
+        LOGGER.debug("Size of Collection centerLevelDtos is " + centerLevelDtos.size());
         Collection<InstitutionGrantDto> institutionGrantDtos = institutionGrantDao.dataBeanDtoCollectionInstitutionGrant(trainingPartnerRegistrationId);
-        LOGGER.info("Size of Collection institutionGrantDtos is " + institutionGrantDtos.size());
+        LOGGER.debug("Size of Collection institutionGrantDtos is " + institutionGrantDtos.size());
         Collection<InstitutionRecognitionDto> institutionRecognitionDtos = institutionRecognitionDao.dataBeanDtoCollectionInstitutionRecognition(trainingPartnerRegistrationId);
-        LOGGER.info("Size of Collection institutionRecognitionDtos is " + institutionRecognitionDtos.size());
+        LOGGER.debug("Size of Collection institutionRecognitionDtos is " + institutionRecognitionDtos.size());
         Collection<PriorExperienceDto> priorExperienceDtos = priorExperienceDao.dataBeanDtoCollectionPriorExperience(trainingPartnerRegistrationId);
-        LOGGER.info("Size of Collection priorExperienceDtos is " + priorExperienceDtos.size());
+        LOGGER.debug("Size of Collection priorExperienceDtos is " + priorExperienceDtos.size());
         Collection<DirectorDto> directorDtos = directorDao.dataBeanDtoCollectionDirector(trainingPartnerRegistrationId);
-        LOGGER.info("Size of Collection directorDtos is " + directorDtos.size());
+        LOGGER.debug("Size of Collection directorDtos is " + directorDtos.size());
 
         String nameOfOrganization = null;
 
         if(!dataBeanDtos.isEmpty()){
-            LOGGER.info("Fetching the organization name and storing it to use as PDF name");
+            LOGGER.debug("Fetching the organization name and storing it to use as PDF name");
             for (DataBeanDto beanDto : dataBeanDtos){
                 nameOfOrganization = beanDto.getOrganizationName();
             }
-            LOGGER.info("The name of pdf file is " + nameOfOrganization);
+            LOGGER.debug("The name of pdf file is " + nameOfOrganization);
         }
         else {
-            LOGGER.info("The received DataBean is empty");
+            LOGGER.debug("The received DataBean is empty");
         }
 
 
-        LOGGER.info("Creating the data source..");
+        LOGGER.debug("Creating the data source..");
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(dataBeanDtos, false);
         JRBeanCollectionDataSource centerLevelDataSource = new JRBeanCollectionDataSource(centerLevelDtos, false);
         JRBeanCollectionDataSource institutionGrantDataSource = new JRBeanCollectionDataSource(institutionGrantDtos, false);
         JRBeanCollectionDataSource institutionRecognitionDataSource = new JRBeanCollectionDataSource(institutionRecognitionDtos, false);
         JRBeanCollectionDataSource priorExperienceDataSource = new JRBeanCollectionDataSource(priorExperienceDtos, false);
         JRBeanCollectionDataSource directorDataSource = new JRBeanCollectionDataSource(directorDtos, false);
-        LOGGER.info("Successfully created the JRBeanDataSources");
+        LOGGER.debug("Successfully created the JRBeanDataSources");
 
 
         //Method to add two JRBeanDataSource
         Map parameters = new HashMap();
-        LOGGER.info("Creating HashMap to pass JRBeanDatSource into the PDF as parameters");
+        LOGGER.debug("Creating HashMap to pass JRBeanDatSource into the PDF as parameters");
         parameters.put("organizationLevel", beanCollectionDataSource);
         parameters.put("centerLevel", centerLevelDataSource);
         parameters.put("institutionGrant", institutionGrantDataSource);
@@ -92,7 +92,7 @@ public class DataBeanService {
         parameters.put("priorExperience", priorExperienceDataSource);
         parameters.put("director", directorDataSource);
 
-        LOGGER.info("Starting pdf generation.....");
+        LOGGER.debug("Starting pdf generation.....");
 
         //Normal input stream without the need to use ClassPathResource
         //Use this if the below stream doesn't work
@@ -103,48 +103,48 @@ public class DataBeanService {
 
         File desktop = new File("D://SCGJ.SDMS//NewApplicationTPAB" + File.separator + nameOfOrganization + ".pdf");
         String dest2 = desktop.getAbsolutePath();
-        LOGGER.info("the output file on desktop is " + dest2);
+        LOGGER.debug("the output file on desktop is " + dest2);
         InputStream inputStream = resource.getInputStream();
 
-//        LOGGER.info("the output file is " + dest);
+//        LOGGER.debug("the output file is " + dest);
 //
 //        File newFile = new File("server/src/main/resources/TrainingPartnerPDF/"+ nameOfOrganization.trim() + ".pdf");
 //        String destFileName = newFile.getAbsolutePath();
-//        LOGGER.info("THE DESTINATION FILE NAME IS " + destFileName);
+//        LOGGER.debug("THE DESTINATION FILE NAME IS " + destFileName);
 
         int success = 0;
         try{
-            LOGGER.info("Creating the jrprint file..");
+            LOGGER.debug("Creating the jrprint file..");
             JasperPrint printFileName = JasperFillManager.fillReport(inputStream,parameters, new JREmptyDataSource());
-            LOGGER.info("Successfuly created the jrprint file >> " + printFileName);
+            LOGGER.debug("Successfuly created the jrprint file >> " + printFileName);
 
             OutputStream outputStream = new FileOutputStream(new File(dest2));
 
             if(printFileName!=null){
-                LOGGER.info("Exporting the file to pdf..");
+                LOGGER.debug("Exporting the file to pdf..");
                 JasperExportManager.exportReportToPdfStream(printFileName,outputStream);
                 success = 1;
             }
             else {
-                LOGGER.info("jrprint file is empty..");
+                LOGGER.debug("jrprint file is empty..");
                 success = -1;
             }
 
 //            success++;
             if(success == 1){
-                LOGGER.info("Pdf generated successfully....!!!");
-                LOGGER.info("Success code = "+ success);
+                LOGGER.debug("Pdf generated successfully....!!!");
+                LOGGER.debug("Success code = "+ success);
             }
 
             else {
-                LOGGER.info("Error in PDF generation due to error in Jrprint file");
+                LOGGER.debug("Error in PDF generation due to error in Jrprint file");
             }
             outputStream.close();
 
 
 
         } catch (JRException e) {
-            LOGGER.info("Exception caught.., an error occured in PDF generation");
+            LOGGER.debug("Exception caught.., an error occured in PDF generation");
             e.printStackTrace();
         }
         return success;

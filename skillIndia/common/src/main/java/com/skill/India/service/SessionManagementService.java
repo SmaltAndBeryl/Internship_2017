@@ -30,21 +30,21 @@ public class SessionManagementService implements UserDetailsService {
 	public SessionManagementDto loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		
-		LOGGER.info("Request Received from controller");
-		LOGGER.info("In SessionManagementService - loadUserByUsername");
-		LOGGER.info("Parameters Received from Controller are - 'username': "+username);
+		LOGGER.debug("Request Received from controller");
+		LOGGER.debug("In SessionManagementService - loadUserByUsername");
+		LOGGER.debug("Parameters Received from Controller are - 'username': "+username);
 		
-		LOGGER.info("Creating Collection object");
+		LOGGER.debug("Creating Collection object");
 		Collection<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-		LOGGER.info("Successfully initialized");
+		LOGGER.debug("Successfully initialized");
 		
 		/*
 		 * Check for user existence here
 		 */
 		
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Making a Request to Dao to get data");
 		int status = userIdPasswordAndRoleDao.userExistence(username);
-		LOGGER.info("Response received from Dao");
+		LOGGER.debug("Response received from Dao");
 		if (status == 0) {
 			authorities.add(new SimpleGrantedAuthority(null));
 			return new SessionManagementDto(null, null, null);

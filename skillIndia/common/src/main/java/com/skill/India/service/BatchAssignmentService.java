@@ -20,23 +20,23 @@ public class BatchAssignmentService {
 	private BatchAssignmentDao batchAssignmentDao;
 	
 	public Collection<BatchAssignmentDto> getproposedBatchesBatchAssignmentRowMapper(){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In BatchAssignmentService - getproposedBatchesBatchAssignmentRowMapper");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In BatchAssignmentService - getproposedBatchesBatchAssignmentRowMapper");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return batchAssignmentDao.getproposedBatchesBatchAssignmentRowMapper();
 	}
 	
 	public Collection<BatchAssignmentDto> getapprovedBatchesBatchAssignmentRowMapper (){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In BatchAssignmentService - getapprovedBatchesBatchAssignmentRowMapper");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In BatchAssignmentService - getapprovedBatchesBatchAssignmentRowMapper");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return batchAssignmentDao.getapprovedBatchesBatchAssignmentRowMapper();
 	}
 	
 	public Collection<BatchAssignmentDto> getrejectedBatchesBatchAssignmentRowMapper(){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In BatchAssignmentService - getrejectedBatchesBatchAssignmentRowMapper");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In BatchAssignmentService - getrejectedBatchesBatchAssignmentRowMapper");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return batchAssignmentDao.getrejectedBatchesBatchAssignmentRowMapper();
 	}
 

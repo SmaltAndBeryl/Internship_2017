@@ -21,10 +21,10 @@ public class AssessmentBodyApplicationStatusService {
 	private AssessmentBodyApplicationStatusDao updateDao;
 	
 	public Collection<AssessmentBodyApplicationStatusDto> getUpdateRowMapper(int applicationId){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In AssessmentBodyApplicationStatusService - getUpdateRowMapper");
-		LOGGER.info("Parameters Received from front end are - 'applicationId': "+applicationId);
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In AssessmentBodyApplicationStatusService - getUpdateRowMapper");
+		LOGGER.debug("Parameters Received from front end are - 'applicationId': "+applicationId);
+		LOGGER.debug("Making a Request to Dao to get data");
 		return updateDao.getUpateRowMapper(applicationId) ;
 	}
 

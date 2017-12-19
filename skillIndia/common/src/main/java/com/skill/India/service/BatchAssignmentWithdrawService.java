@@ -19,10 +19,10 @@ public class BatchAssignmentWithdrawService {
     private BatchAssignmentWithdrawDao batchAssignmentWithdrawDao;
 
     public int putUpdateBatches(String batchId){
-    	LOGGER.info("Request Received from Controller");
-		LOGGER.info("In BatchAssignmentWithdrawService - putUpdateBatches");
-		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
-		LOGGER.info("Making a Request to Dao to get data");
+    	LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In BatchAssignmentWithdrawService - putUpdateBatches");
+		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);
+		LOGGER.debug("Making a Request to Dao to get data");
 		return batchAssignmentWithdrawDao.putUpdateBatches(batchId);
     }
 }

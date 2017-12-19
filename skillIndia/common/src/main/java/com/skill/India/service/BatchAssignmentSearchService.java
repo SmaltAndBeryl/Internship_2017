@@ -20,10 +20,10 @@ public class BatchAssignmentSearchService {
 	private BatchAssignmentSearchDao updateDao;
 	
 	public Collection<BatchAssignmentSearchDto> getBatchDataForAssignmentService(int batchId){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In BatchAssignmentSearchService - getBatchDataForAssignmentService");
-		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In BatchAssignmentSearchService - getBatchDataForAssignmentService");
+		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);
+		LOGGER.debug("Making a Request to Dao to get data");
 		return updateDao.executeSearch(batchId);
 	}
 

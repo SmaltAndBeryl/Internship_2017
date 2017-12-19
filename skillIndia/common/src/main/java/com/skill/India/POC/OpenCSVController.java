@@ -39,9 +39,9 @@ public class OpenCSVController {
 			CsvToBean<CSVData> csv = new CsvToBean<CSVData>();
 			List<CSVData> csvDataList = csv.parse(strategy, csvReader);	
 			for(CSVData csvdata: csvDataList){
-				System.out.println("Candidate Id -"+csvdata.getCandidateID());
-				System.out.println("Candidate Enrollment Number -"+csvdata.getCandidateEnrollmentNumber());
-				System.out.println("Candidate Name"+csvdata.getCandidateName());
+				//System.out.println("Candidate Id -"+csvdata.getCandidateID());
+				//System.out.println("Candidate Enrollment Number -"+csvdata.getCandidateEnrollmentNumber());
+				//System.out.println("Candidate Name"+csvdata.getCandidateName());
 				//System.out.println("Candidate Gender"+ csvdata.getCandidateGender());
 			return "ID: "+csvdata.getCandidateID();
 		}

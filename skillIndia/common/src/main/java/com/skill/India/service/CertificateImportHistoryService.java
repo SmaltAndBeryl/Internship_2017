@@ -26,9 +26,9 @@ public class CertificateImportHistoryService {
 	@Autowired
 	private CertificateImportHistorydao certificateImportHistoryDao;
 	public Collection<CertificateImportHistorydto> getUpdateHistory(){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In CertificateImportHistoryService - getUpdateHistory");
-		LOGGER.info("Sending Request to service");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In CertificateImportHistoryService - getUpdateHistory");
+		LOGGER.debug("Sending Request to service");
 		return certificateImportHistoryDao.getUpdateHistory();
 	}
 }

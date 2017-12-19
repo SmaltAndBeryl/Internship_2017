@@ -28,7 +28,7 @@ public class JasperFill {
 //        dataList = dataBeanList.getDataBeanList();
         String printFileName = null;
 
-        LOGGER.info("Creating the data source..");
+        LOGGER.debug("Creating the data source..");
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(dataList);
 
         Map parameters = new HashMap();
@@ -36,22 +36,22 @@ public class JasperFill {
         String rndm = String.valueOf(Math.random()).substring(4,8);
         String destFileName = "D://Jasper/" + rndm + ".pdf";
         try{
-            LOGGER.info("Creating jrprint file..");
+            LOGGER.debug("Creating jrprint file..");
             printFileName = JasperFillManager.fillReportToFile(sourceFileName,parameters,beanCollectionDataSource);
 
             if(printFileName!=null){
-                LOGGER.info("Exporting to pdf..");
+                LOGGER.debug("Exporting to pdf..");
                 JasperExportManager.exportReportToPdfFile(printFileName,destFileName);
             }
 
 
             else {
-                LOGGER.info("Exporting failed..");
+                LOGGER.debug("Exporting failed..");
             }
 
             System.out.println("Pdf generated successfully....!!!");
         } catch (JRException e) {
-            LOGGER.info("Exception caught");
+            LOGGER.debug("Exception caught");
         }
     }
 }

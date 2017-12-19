@@ -19,10 +19,10 @@ public class FindBatchUsingBatchIdService {
 	private DataImportFindBatchUsingBatchId dataImportFindBatchUsingBatchId;
 	
 	public Collection<DataImportGetBatchInfoDto> findBatchUsingBatchId(String batchId){
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In FindBatchUsingBatchIdService - findBatchUsingBatchId");
-		LOGGER.info("Parameters Received from front end are - 'batchId': "+batchId);
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In FindBatchUsingBatchIdService - findBatchUsingBatchId");
+		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);
+		LOGGER.debug("Making a Request to Dao to get data");
 		return dataImportFindBatchUsingBatchId.getDataOfBatchUsingBatchId(batchId);
 		
 	}

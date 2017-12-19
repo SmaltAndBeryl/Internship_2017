@@ -42,68 +42,68 @@ public class ValidateBatchCSVService {
 	
 	public String validateBatchCSV(String BatchCSVFileName,String type,String userId,String fileNameToBeSaved) throws IOException{
 		
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In ValidateBatchCSVService - validateBatchCSV");
-		LOGGER.info("Parameters Received from Controller are - 'BatchCSVFileName': "+BatchCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In ValidateBatchCSVService - validateBatchCSV");
+		LOGGER.debug("Parameters Received from Controller are - 'BatchCSVFileName': "+BatchCSVFileName+" 'type': "+type+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
 		
 		
 		CSVReader BatchCSVReader=null;
 		/*
 		 * Create Array List to store the data of csv read (in Hashmap's) 
 		 */
-		LOGGER.info("Creating ArrayList object");
+		LOGGER.debug("Creating ArrayList object");
 		ArrayList<Map<String,Object>> arrayOfRecords=new ArrayList<Map<String,Object>>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
 		try{
-			LOGGER.info("In TRY block");
+			LOGGER.debug("In TRY block");
 			
-			LOGGER.info("Creating ColumnPositionMappingStrategy object");
+			LOGGER.debug("Creating ColumnPositionMappingStrategy object");
 		ColumnPositionMappingStrategy strategy=new ColumnPositionMappingStrategy();
-		LOGGER.info("Successfully created and initialized");
+		LOGGER.debug("Successfully created and initialized");
 		
-		LOGGER.info("Setting type of object to ValidateBatchCSVDto");
+		LOGGER.debug("Setting type of object to ValidateBatchCSVDto");
 		strategy.setType(ValidateBatchCSVDto.class);
 		
 		String [] BatchCSVColumns=new String[]{"batchId","batchName","batchType",
 					"trainingPartnerId","centreId","trainerId","totalCandidatesInBatch","batchMode","batchStartDate","batchEndDate","jobRole","jobRoleCode","maximumMarksTheory","maximumMarksPractical","level","resultApproved","resultApprovedOnDate","totalPass","totalFail","totalNotAppeared","totalCertified","batchAssignmentDate","assessmentDate","agencyId","assessorId"};
 		
-		LOGGER.info("Setting ColumnMapping of object");
+		LOGGER.debug("Setting ColumnMapping of object");
 		strategy.setColumnMapping(BatchCSVColumns);
 		
 		//String BatchCSVFileName = "D:\\EclipseWorkspace\\Batch.csv";
 		
-		LOGGER.info("Creating CSVReader object ");
+		LOGGER.debug("Creating CSVReader object ");
 		BatchCSVReader=new CSVReader(new FileReader(BatchCSVFileName),',','"',2);
-		LOGGER.info("Successfully created and initialized");
+		LOGGER.debug("Successfully created and initialized");
 		
-		LOGGER.info("Creating CsvToBean object ");
+		LOGGER.debug("Creating CsvToBean object ");
 		CsvToBean<ValidateBatchCSVDto> BatchCSVToBean=new CsvToBean<ValidateBatchCSVDto>();
-		LOGGER.info("Successfully created and initialized");
+		LOGGER.debug("Successfully created and initialized");
 		
-		LOGGER.info("Creating List object of type ValidateBatchCSVDto");
+		LOGGER.debug("Creating List object of type ValidateBatchCSVDto");
 		List<ValidateBatchCSVDto> BatchCSVDataList= BatchCSVToBean.parse(strategy,BatchCSVReader);
-		LOGGER.info("Successfully created and initialized");
+		LOGGER.debug("Successfully created and initialized");
 		
 		int recordCount=0;
 		int errorExist=0;
 		String errorListAllRecords="";
 		
-		LOGGER.info("Iterating List Object");
+		LOGGER.debug("Iterating List Object");
 		for(ValidateBatchCSVDto BatchCSVData :BatchCSVDataList)
 		{
 			/*
 			 *  Map to store data of each row of csv read and then added to arraylist
 			 */
 			
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String ,Object> record=new HashMap<String, Object>();
-			LOGGER.info("Successfully created");
+			LOGGER.debug("Successfully created");
 			
 			recordCount++;
 			int errorStatus=0;
 			
-			LOGGER.info("Fetching data from each row");		
+			LOGGER.debug("Fetching data from each row");		
 			String errorString="";
 			
 			String batchId=BatchCSVData.getBatchId().trim();
@@ -137,7 +137,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in batchId column
 			 */
 			
-			LOGGER.info("Checking Validations of batchId");
+			LOGGER.debug("Checking Validations of batchId");
 			if(!ValidationUtils.numbersCheck(batchId) || batchId.equals(""))
 			{
 				errorStatus=1;
@@ -148,7 +148,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in batchName column
 			 */
 			
-			LOGGER.info("Checking Validations of batchName");
+			LOGGER.debug("Checking Validations of batchName");
 			if(batchName.equals(""))
 			{
 				errorStatus=1;
@@ -159,7 +159,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in batchType column
 			 */
 			
-			LOGGER.info("Checking Validations of batchType");
+			LOGGER.debug("Checking Validations of batchType");
 			if(ValidationUtils.numbersCheck(batchType) || batchType.equals(""))
 			{
 				errorStatus=1;
@@ -170,7 +170,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in trainingPartnerId column
 			 */
 			
-			LOGGER.info("Checking Validations of trainingPartnerId");
+			LOGGER.debug("Checking Validations of trainingPartnerId");
 			if(trainingPartnerId.equals(""))
 			{
 				errorStatus=1;
@@ -181,7 +181,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in centreId column
 			 */
 			
-			LOGGER.info("Checking Validations of centreId");
+			LOGGER.debug("Checking Validations of centreId");
 			if(!ValidationUtils.numbersCheck(centreId) || centreId.equals(""))
 			{
 				errorStatus=1;
@@ -192,7 +192,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in trainerId column
 			 */
 			
-			LOGGER.info("Checking Validations of trainerId");
+			LOGGER.debug("Checking Validations of trainerId");
 			if(!(ValidationUtils.numbersCheck(trainerId) || trainerId.equals("")))
 			{
 				errorStatus=1;
@@ -203,7 +203,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in totalCandidatesInBatch column
 			 */
 			
-			LOGGER.info("Checking Validations of totalCandidatesInBatch");
+			LOGGER.debug("Checking Validations of totalCandidatesInBatch");
 			if(!ValidationUtils.numbersCheck(totalCandidatesInBatch) || totalCandidatesInBatch.equals(""))
 			{
 				errorStatus=1;
@@ -214,7 +214,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in batchMode column
 			 */
 			
-			LOGGER.info("Checking Validations of batchMode");
+			LOGGER.debug("Checking Validations of batchMode");
 			if(ValidationUtils.numbersCheck(batchMode) || batchMode.equals(""))
 			{
 				errorStatus=1;
@@ -225,7 +225,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in batchStartDate column
 			 */
 			
-			LOGGER.info("Checking Validations of batchStartDate");
+			LOGGER.debug("Checking Validations of batchStartDate");
 			if(!ValidationUtils.dateFormatCheck(batchStartDate) || batchStartDate.equals(""))
 			{
 				errorStatus=1;
@@ -237,7 +237,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in batchEndDate column
 			 */
 			
-			LOGGER.info("Checking Validations of batchEndDate");
+			LOGGER.debug("Checking Validations of batchEndDate");
 			if(!ValidationUtils.dateFormatCheck(batchEndDate) || batchEndDate.equals(""))
 			{
 				errorStatus=1;
@@ -248,7 +248,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in jobRole column
 			 */
 			
-			LOGGER.info("Checking Validations of jobRole");
+			LOGGER.debug("Checking Validations of jobRole");
 			if(ValidationUtils.numbersCheck(jobRole) || jobRole.equals(""))
 			{
 				errorStatus=1;
@@ -258,13 +258,13 @@ public class ValidateBatchCSVService {
 			 * Checking for error in jobRoleCode column
 			 */
 			
-			LOGGER.info("Checking Validations of jobRoleCode (No validations )");
+			LOGGER.debug("Checking Validations of jobRoleCode (No validations )");
 
 			/*
 			 * Checking for error in maximumMarksTheory column
 			 */
 			
-			LOGGER.info("Checking Validations of maximumMarksTheory");
+			LOGGER.debug("Checking Validations of maximumMarksTheory");
 			if(!(ValidationUtils.numbersWithDecimalCheck(maximumMarksTheory) || maximumMarksTheory.equals("")))
 			{
 				errorStatus=1;
@@ -275,7 +275,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in maximumMarksPractical column
 			 */
 			
-			LOGGER.info("Checking Validations of maximumMarksPractical");
+			LOGGER.debug("Checking Validations of maximumMarksPractical");
 			if(!(ValidationUtils.numbersWithDecimalCheck(maximumMarksPractical) || maximumMarksPractical.equals("")))
 			{
 				errorStatus=1;
@@ -286,7 +286,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in level column
 			 */
 			
-			LOGGER.info("Checking Validations of level");
+			LOGGER.debug("Checking Validations of level");
 			if(!(ValidationUtils.numbersCheck(level) || level.equals("")))
 			{
 				errorStatus=1;
@@ -297,7 +297,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in resultApproved column
 			 */
 			
-			LOGGER.info("Checking Validations of resultApproved");
+			LOGGER.debug("Checking Validations of resultApproved");
 			if(!(ValidationUtils.lettersCheck(resultApproved) || resultApproved.equals("")))
 			{
 				errorStatus=1;
@@ -308,7 +308,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in resultApprovedOnDate column
 			 */
 			
-			LOGGER.info("Checking Validations of resultApprovedOnDate");
+			LOGGER.debug("Checking Validations of resultApprovedOnDate");
 			if(!(ValidationUtils.dateFormatCheck(resultApprovedOnDate) || resultApprovedOnDate.equals("")))
 			{
 				errorStatus=1;
@@ -319,7 +319,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in totalPass column
 			 */
 			
-			LOGGER.info("Checking Validations of totalPass");
+			LOGGER.debug("Checking Validations of totalPass");
 			if(!(ValidationUtils.numbersCheck(totalPass) || totalPass.equals("")))
 			{
 				errorStatus=1;
@@ -330,7 +330,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in totalFail column
 			 */
 			
-			LOGGER.info("Checking Validations of totalFail");
+			LOGGER.debug("Checking Validations of totalFail");
 			if(!(ValidationUtils.numbersCheck(totalFail) || totalFail.equals("")))
 			{
 				errorStatus=1;
@@ -341,7 +341,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in totalNotAppeared column
 			 */
 			
-			LOGGER.info("Checking Validations of totalNotAppeared");
+			LOGGER.debug("Checking Validations of totalNotAppeared");
 			if(!(ValidationUtils.numbersCheck(totalNotAppeared) || totalNotAppeared.equals("")))
 			{
 				errorStatus=1;
@@ -352,7 +352,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in totalCertified column
 			 */
 			
-			LOGGER.info("Checking Validations of totalCertified");
+			LOGGER.debug("Checking Validations of totalCertified");
 			if(!(ValidationUtils.numbersCheck(totalCertified) || totalCertified.equals("")))
 			{
 				errorStatus=1;
@@ -363,7 +363,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in batchAssignmentDate column
 			 */
 			
-			LOGGER.info("Checking Validations of batchAssignmentDate");
+			LOGGER.debug("Checking Validations of batchAssignmentDate");
 			if(!(ValidationUtils.dateFormatCheck(batchAssignmentDate) || batchAssignmentDate.equals("")))
 			{
 				errorStatus=1;
@@ -374,7 +374,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in assessmentDate column
 			 */
 			
-			LOGGER.info("Checking Validations of assessmentDate");
+			LOGGER.debug("Checking Validations of assessmentDate");
 			if(!ValidationUtils.dateFormatCheck(assessmentDate) || assessmentDate.equals(""))
 			{
 				errorStatus=1;
@@ -385,7 +385,7 @@ public class ValidateBatchCSVService {
 			 * Checking for error in agencyId column
 			 */
 			
-			LOGGER.info("Checking Validations of agencyId");
+			LOGGER.debug("Checking Validations of agencyId");
 			if(!(ValidationUtils.numbersCheck(agencyId) || agencyId.equals("")))
 			{
 				errorStatus=1;
@@ -396,17 +396,17 @@ public class ValidateBatchCSVService {
 			 * Checking for error in assessorId column
 			 */
 			
-			LOGGER.info("Checking Validations of assessorId");
+			LOGGER.debug("Checking Validations of assessorId");
 			if(!(ValidationUtils.numbersCheck(assessorId) || assessorId.equals("")))
 			{
 				errorStatus=1;
 				errorString=errorString + "Error in 'assessorId' column .";
 			}
 			
-			LOGGER.info("Fetching Errors in records and making error String if found any");
+			LOGGER.debug("Fetching Errors in records and making error String if found any");
 			if(errorStatus==1)
 			{
-				LOGGER.info("Error Exists in CSV");
+				LOGGER.debug("Error Exists in CSV");
 				errorExist=1;
 				errorString="Error in Record "+recordCount + "." + errorString;
 				errorListAllRecords=errorListAllRecords+errorString;	
@@ -417,7 +417,7 @@ public class ValidateBatchCSVService {
 				 * Keeping database consistent by inserting only lowercase values in it
 				 */
 				
-					LOGGER.info("Converting all values to lower Case");
+					LOGGER.debug("Converting all values to lower Case");
 				 batchName=batchName.toLowerCase();
 				batchType=batchType.toLowerCase();
 				batchMode=batchMode.toLowerCase();
@@ -428,7 +428,7 @@ public class ValidateBatchCSVService {
 				/*
 				 * Setting value of empty fields 
 				 */
-				LOGGER.info("Setting blank fields to null");
+				LOGGER.debug("Setting blank fields to null");
 				if(trainerId.equals(""))
 				{
 					trainerId=null;
@@ -497,7 +497,7 @@ public class ValidateBatchCSVService {
 				/*
 				 * setting values in HashMap
 				 */
-				LOGGER.info("Inserting values into HashMap Object");
+				LOGGER.debug("Inserting values into HashMap Object");
 				record.put("batchId",batchId);
 				record.put("batchName",batchName);
 				record.put("batchType",batchType);
@@ -524,26 +524,26 @@ public class ValidateBatchCSVService {
 				record.put("agencyId",agencyId);
 				record.put("assessorId",assessorId);
 				
-				LOGGER.info("Adding HashMap object into ArrayList");
+				LOGGER.debug("Adding HashMap object into ArrayList");
 				arrayOfRecords.add(record);
 			}
 			
 		}
 		
 			if(errorExist==1){
-				LOGGER.info("Closing CSV reader");
+				LOGGER.debug("Closing CSV reader");
 				BatchCSVReader.close();
-				LOGGER.info("Successfully closed");
+				LOGGER.debug("Successfully closed");
 				
-				LOGGER.info("Creating File object");
+				LOGGER.debug("Creating File object");
 				File deleteUploadedFile = new File(BatchCSVFileName);
-				LOGGER.info("Successfully created and initialized");
+				LOGGER.debug("Successfully created and initialized");
 				
-				LOGGER.info("deleting Saved file from system");
+				LOGGER.debug("deleting Saved file from system");
 			    deleteUploadedFile.delete();
-			    LOGGER.info("Successfully deleted");
+			    LOGGER.debug("Successfully deleted");
 			    
-			    LOGGER.info("returning Error list as String");
+			    LOGGER.debug("returning Error list as String");
 				return errorListAllRecords;	
 			}
 			
@@ -551,21 +551,21 @@ public class ValidateBatchCSVService {
 		}
 		catch(Exception e)
 		{
-			LOGGER.info("In CATCH block");
+			LOGGER.debug("In CATCH block");
 			
-			LOGGER.info("Closing CSV reader");
+			LOGGER.debug("Closing CSV reader");
 			BatchCSVReader.close();
-			LOGGER.info("Successfully closed");
+			LOGGER.debug("Successfully closed");
 			
-			LOGGER.info("Creating File object");
+			LOGGER.debug("Creating File object");
 			File deleteUploadedFile = new File(BatchCSVFileName);
-			LOGGER.info("Successfully created and initialized");
+			LOGGER.debug("Successfully created and initialized");
 			
-			LOGGER.info("deleting Saved file from system");
+			LOGGER.debug("deleting Saved file from system");
 		    deleteUploadedFile.delete();
-		    LOGGER.info("Successfully deleted");
+		    LOGGER.debug("Successfully deleted");
 		    
-		    LOGGER.info("returning Error list as String");
+		    LOGGER.debug("returning Error list as String");
 //		    e.printStackTrace();
 			return "Error parsing Batch CSV File. Kindly try again. ";
 		}
@@ -582,27 +582,27 @@ public class ValidateBatchCSVService {
 			String errorListAllRecords="";
 	
 		try{
-			LOGGER.info("In TRY block");
+			LOGGER.debug("In TRY block");
 			
-			LOGGER.info("Iterating Array List object");
+			LOGGER.debug("Iterating Array List object");
 			for(Map<String, Object> getRecord:arrayOfRecords)
 			{	
 				String errorString="";
 				int errorStatus=0;
 				recordCount++;
-				LOGGER.info("Checking if record details already exists in database");
-				LOGGER.info("Making a Request to Dao to get data");
+				LOGGER.debug("Checking if record details already exists in database");
+				LOGGER.debug("Making a Request to Dao to get data");
 				status=dataImportBatchDao.dataImportBatchTrainingPartnerIdCheck(getRecord);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(status==0 || status==2)
 				{
 					errorStatus=1;
 					errorString=errorString+ "trainingPartnerId key mismatch .";
 				}
-				LOGGER.info("Making a Request to Dao to get data");
+				LOGGER.debug("Making a Request to Dao to get data");
 				status=dataImportBatchDao.dataImportBatchCentreIdCheck(getRecord);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(status==0 || status==2)
 				{
@@ -613,9 +613,9 @@ public class ValidateBatchCSVService {
 				
 				if(!(getRecord.get("trainerId")==null))
 				{
-				LOGGER.info("Making a Request to Dao to get data");
+				LOGGER.debug("Making a Request to Dao to get data");
 				status=dataImportBatchDao.dataImportBatchTrainerIdCheck(getRecord);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(status==0 || status==2)
 				{
@@ -625,9 +625,9 @@ public class ValidateBatchCSVService {
 				}	
 				if(!(getRecord.get("agencyId")==null))
 				{
-					LOGGER.info("Making a Request to Dao to get data");
+					LOGGER.debug("Making a Request to Dao to get data");
 					status=dataImportBatchDao.dataImportBatchAgencyIdCheck(getRecord);
-					LOGGER.info("Response received from Dao");
+					LOGGER.debug("Response received from Dao");
 				
 					if(status==0 || status==2)
 				{
@@ -637,9 +637,9 @@ public class ValidateBatchCSVService {
 				}
 				if(!(getRecord.get("assessorId")==null))
 				{
-					LOGGER.info("Making a Request to Dao to get data");
+					LOGGER.debug("Making a Request to Dao to get data");
 				status=dataImportBatchDao.dataImportBatchAssessorIdCheck(getRecord);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(status==0 || status==2)
 				{
@@ -658,19 +658,19 @@ public class ValidateBatchCSVService {
 			}
 			if(errorExist==1)
 			{
-				LOGGER.info("Closing CSV reader");
+				LOGGER.debug("Closing CSV reader");
 				BatchCSVReader.close();
-				LOGGER.info("Successfully closed");
+				LOGGER.debug("Successfully closed");
 				
-				LOGGER.info("Creating File object");
+				LOGGER.debug("Creating File object");
 				File deleteUploadedFile = new File(BatchCSVFileName);
-				LOGGER.info("Successfully created and initialized");
+				LOGGER.debug("Successfully created and initialized");
 				
-				LOGGER.info("deleting Saved file from system");
+				LOGGER.debug("deleting Saved file from system");
 			    deleteUploadedFile.delete();
-			    LOGGER.info("Successfully deleted");
+			    LOGGER.debug("Successfully deleted");
 			    
-			    LOGGER.info("returning Error list as String");
+			    LOGGER.debug("returning Error list as String");
 				return errorListAllRecords;
 			}
 			
@@ -678,18 +678,18 @@ public class ValidateBatchCSVService {
 		}
 		catch(Exception e)
 		{
-			LOGGER.info("In CATCH block");
+			LOGGER.debug("In CATCH block");
 			
 //			e.printStackTrace();
-			LOGGER.info("Creating File object");
+			LOGGER.debug("Creating File object");
 			File deleteUploadedFile = new File(BatchCSVFileName);
-			LOGGER.info("Successfully created and initialized");
+			LOGGER.debug("Successfully created and initialized");
 			
-			LOGGER.info("deleting Saved file from system");
+			LOGGER.debug("deleting Saved file from system");
 		    deleteUploadedFile.delete();
-		    LOGGER.info("Successfully deleted");
+		    LOGGER.debug("Successfully deleted");
 		    
-		    LOGGER.info("returning Error list as String");
+		    LOGGER.debug("returning Error list as String");
 			return "Error checking Foreign key constraint . Kindly try again .";
 			
 		}
@@ -700,25 +700,25 @@ public class ValidateBatchCSVService {
 		 */
 		
 			  try{				
-				  LOGGER.info("In TRY block");
+				  LOGGER.debug("In TRY block");
 				 
-				  LOGGER.info("Iterating ArrayList object");
+				  LOGGER.debug("Iterating ArrayList object");
 				for(Map<String, Object> getRecord:arrayOfRecords)
 				{			
-					LOGGER.info("Making a Request to Dao to get data");
+					LOGGER.debug("Making a Request to Dao to get data");
 			    status=dataImportBatchDao.dataImportBatchPrimaryKeyConstraintCheck(getRecord);
-			    LOGGER.info("Response received from Dao");
+			    LOGGER.debug("Response received from Dao");
 				
 			    if(status==0)
 				{
 					/*
 					 * If primary key doesn't exists in DB then run insert query
 					 */
-					LOGGER.info("Record Doesn't exist in Database");
-					LOGGER.info("Inserting data into Database");
-					LOGGER.info("Making a Request to Dao to get data");
+					LOGGER.debug("Record Doesn't exist in Database");
+					LOGGER.debug("Inserting data into Database");
+					LOGGER.debug("Making a Request to Dao to get data");
 					int insertDataStatus=dataImportBatchDao.insertDataInBatch(getRecord);
-					LOGGER.info("Response received from Dao");
+					LOGGER.debug("Response received from Dao");
 					
 					if(!(insertDataStatus>0))
 					{
@@ -730,11 +730,11 @@ public class ValidateBatchCSVService {
 					/*
 					 * If primary key exists in DB then run update query
 					 */
-					LOGGER.info("Record exist in Database");
-					LOGGER.info("Updating data into Database");
-					LOGGER.info("Making a Request to Dao to get data");
+					LOGGER.debug("Record exist in Database");
+					LOGGER.debug("Updating data into Database");
+					LOGGER.debug("Making a Request to Dao to get data");
 					int updateDataStatus=dataImportBatchDao.updateDataInBatch(getRecord);
-					LOGGER.info("Response received from Dao");
+					LOGGER.debug("Response received from Dao");
 					
 					if(!(updateDataStatus>0))
 					{
@@ -746,64 +746,64 @@ public class ValidateBatchCSVService {
 					throw new Exception();
 					
 				}	// end of for loop 
-				LOGGER.info("Closing CSV reader");
+				LOGGER.debug("Closing CSV reader");
 				BatchCSVReader.close();
-				LOGGER.info("Successfully closed");
+				LOGGER.debug("Successfully closed");
 				
 				/*
 				 * Inserting data in csvUploaded  Table
 				 */		
-				LOGGER.info("Creating date object");
+				LOGGER.debug("Creating date object");
 				Date date=new Date(System.currentTimeMillis());
-				LOGGER.info("Successfully created and initialized");
+				LOGGER.debug("Successfully created and initialized");
 				
-				LOGGER.info("Creating HashMap object");		
+				LOGGER.debug("Creating HashMap object");		
 				Map<String,Object> uploadedFileInfo= new HashMap<String, Object>();
-				LOGGER.info("Successfully created");
+				LOGGER.debug("Successfully created");
 				
-				LOGGER.info("Initializing HashMap object");	
+				LOGGER.debug("Initializing HashMap object");	
 				uploadedFileInfo.put("csvType",type);
 				uploadedFileInfo.put("csvName",fileNameToBeSaved);
 				uploadedFileInfo.put("csvUploadDate",date);
 				uploadedFileInfo.put("csvUploadUserId",userId);
-				LOGGER.info("Successfully initialized");
+				LOGGER.debug("Successfully initialized");
 				/*
 				 * Checking for valid UserId (Foreign key constraint)
 				 */
-				LOGGER.info("Checking if UserId exists");
-				LOGGER.info("Making a Request to Dao to get data");
+				LOGGER.debug("Checking if UserId exists");
+				LOGGER.debug("Making a Request to Dao to get data");
 				status=dataImportCSVUploadTableDao.dataImportCSVUploadForeignKeyConstraintCheck(uploadedFileInfo);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(status==0 || status==2)
 				{
-					LOGGER.info("Creating File object");
+					LOGGER.debug("Creating File object");
 				File deleteUploadedFile = new File(BatchCSVFileName);
-				LOGGER.info("Successfully created and initialized");
+				LOGGER.debug("Successfully created and initialized");
 				
-				LOGGER.info("deleting Saved file from system");
+				LOGGER.debug("deleting Saved file from system");
 			    deleteUploadedFile.delete();	
-			    LOGGER.info("Successfully deleted");
+			    LOGGER.debug("Successfully deleted");
 			    
-			    LOGGER.info("returning Error list as String");
+			    LOGGER.debug("returning Error list as String");
 				return "Invalid User Id . Action Aborted";	
 				}
-				LOGGER.info("Inserting data in database");
-				LOGGER.info("Making a Request to Dao to get data");
+				LOGGER.debug("Inserting data in database");
+				LOGGER.debug("Making a Request to Dao to get data");
 				int insertDataStatus=dataImportCSVUploadTableDao.insertDataInCSVUpload(uploadedFileInfo);
-				LOGGER.info("Response received from Dao");
+				LOGGER.debug("Response received from Dao");
 				
 				if(!(insertDataStatus>0))
 				{
-					LOGGER.info("Creating File object");
+					LOGGER.debug("Creating File object");
 					File deleteUploadedFile = new File(BatchCSVFileName);
-					LOGGER.info("Successfully created and initialized");
+					LOGGER.debug("Successfully created and initialized");
 				
-					LOGGER.info("deleting Saved file from system");
+					LOGGER.debug("deleting Saved file from system");
 				    deleteUploadedFile.delete();
-				    LOGGER.info("Successfully deleted");
+				    LOGGER.debug("Successfully deleted");
 				    
-				    LOGGER.info("returning Error list as String");
+				    LOGGER.debug("returning Error list as String");
 					return "Some Error occured while inserting data in csvUploaded By details table . Kindly try again ."; 
 				}
 				
@@ -813,22 +813,22 @@ public class ValidateBatchCSVService {
 			  }	// end of try
 				catch(Exception e)
 				{
-					LOGGER.info("In CATCH block");
+					LOGGER.debug("In CATCH block");
 		        	
 					LOGGER.error("ERROR: Encountered an Exception - "+e);
-		   			LOGGER.info("Closing CSV reader");
+		   			LOGGER.debug("Closing CSV reader");
 					BatchCSVReader.close();
-					LOGGER.info("Successfully closed");
+					LOGGER.debug("Successfully closed");
 					
-					LOGGER.info("Creating File object");
+					LOGGER.debug("Creating File object");
 					File deleteUploadedFile = new File(BatchCSVFileName);
-					LOGGER.info("Successfully created and initialized");
+					LOGGER.debug("Successfully created and initialized");
 					
-					LOGGER.info("deleting Saved file from system");
+					LOGGER.debug("deleting Saved file from system");
 				    deleteUploadedFile.delete();
-				    LOGGER.info("Successfully deleted");
+				    LOGGER.debug("Successfully deleted");
 				    
-				    LOGGER.info("returning Error list as String");
+				    LOGGER.debug("returning Error list as String");
 //					e.printStackTrace();
 					return "Error Inserting or Updating data .Kindly try again .";
 				}		

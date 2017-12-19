@@ -22,9 +22,9 @@ public class AssignedBatchesService {
 	
 	public Collection<AssignedBatchesDto> getUpdateRowMapper()
 	{
-		LOGGER.info("Request Received from Controller");
-		LOGGER.info("In AssignedBatchesService - getUpdateRowMapper");
-		LOGGER.info("Making a Request to Dao to get data");
+		LOGGER.debug("Request Received from Controller");
+		LOGGER.debug("In AssignedBatchesService - getUpdateRowMapper");
+		LOGGER.debug("Making a Request to Dao to get data");
 		return updateDao.getupdateRowMapper();
 	}
 	
