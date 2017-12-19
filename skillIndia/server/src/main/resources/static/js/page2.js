@@ -12,9 +12,11 @@ $scope.gridOptions = {
     enableSorting: false,
     enableFiltering: false,
     enableCellEdit: false,
+    enableCellEditOnFocus: false,
     enableColumnMenus: false,
-    paginationPageSizes: [10, 2, 50],
-    paginationPageSize: 2,
+    paginationPageSizes: [5, 10, 20, 30],
+    paginationPageSize: 10,
+    useExternalPagination: true,
     useExternalPagination: true,
     columnDefs: [{
             name: 'applicationId',
@@ -53,6 +55,7 @@ $scope.gridOptions = {
             name: 'Comments',
             displayName: 'Comments',
             enableCellEdit: true,
+            enableCellEditOnFocus: true,
             headerCellClass: 'Institution-Name',
             cellClass: 'va'
         },
@@ -66,6 +69,7 @@ $scope.gridOptions = {
 
     ]
 };
+
 
 //Grid for approved application
 $scope.gridOptionsApproved = {

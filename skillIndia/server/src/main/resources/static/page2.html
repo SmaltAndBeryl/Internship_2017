@@ -5,7 +5,6 @@
         <h4 class="title">Approve/Reject Forms</h4>
         <div class="approveReject">
             <div data-loading></div>
-            <div  ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid"></div>
             <div style=" color : {{successTextColor}}; margin: 10px ">
                 {{successText}}
                 <div ng-show="rolling">
@@ -13,7 +12,7 @@
                     {{generating}}
                 </div>
             </div>
-
+            <div  ui-grid="gridOptions" ui-grid-edit ui-grid-cellNav class="grid"></div>
         </div>
     </div>
 

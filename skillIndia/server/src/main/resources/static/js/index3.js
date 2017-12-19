@@ -4,7 +4,8 @@ var hello = angular.module('hello', ['ngRoute',
                                          'ui.grid.edit',
                                           'ui.grid.cellNav',
                                           'ui.grid.autoResize',
-                                          'ui.bootstrap']);
+                                          'ui.bootstrap',
+                                          'ui.grid.pagination']);
 
 console.log("Module initialized successfully..");
 hello.config(function($routeProvider, $httpProvider) {

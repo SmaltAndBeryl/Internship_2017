@@ -1,6 +1,6 @@
 var page3 = angular.module('hello');
 
-page3.controller('page3',function($scope, $http, fileUpload, zipCertificateUpload) {
+page3.controller('page3',function($scope, $http, fileUploadDataImport, zipCertificateUpload) {
     $scope.dataImportHistory = {
     	  enableGridMenus : false,
     	  enableSorting: false,
@@ -29,9 +29,9 @@ page3.controller('page3',function($scope, $http, fileUpload, zipCertificateUploa
          $http.get("/importHistory")
           .then(function(response){
         	  $scope.dataImportHistory.data = response.data;
-        	  var obj = $scope.dataImportHistory.data[0].csvname;
-        	  var str = JSON.stringify(obj)
-        	  console.log(Object.values(obj)+ "     sasas    "+ str);
+//        	  var obj = $scope.dataImportHistory.data[0].csvname;
+//        	  var str = JSON.stringify(obj)
+//        	  console.log(Object.values(obj)+ "     sasas    "+ str);
         });
 
 $scope.optionValues = [{
@@ -67,7 +67,7 @@ $scope.optionValues = [{
      	var csvType = $scope.csvType;
 
          var uploadUrl = "/upload";
-         fileUpload.uploadFileToUrl(file, csvType, uploadUrl);
+         fileUploadDataImport.uploadFileToUrl(file, csvType, uploadUrl);
 
      };
      /*
