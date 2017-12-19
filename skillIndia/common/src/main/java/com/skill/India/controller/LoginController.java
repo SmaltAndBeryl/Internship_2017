@@ -49,10 +49,10 @@ public class LoginController {
     @RequestMapping(value="/loginUrl", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public LoginDto getLoginDto(@RequestBody LoginReceiveDataDto loginReceiveDataDto) 
 	{	
-    	LOGGER.debug("In LoginController - getLoginDto");
+    	
 		LOGGER.debug("Request Received from front end to Validate User For the login process");
 		LOGGER.debug("Parameters Received from front end are - 'loginReceiveDataDto': "+ loginReceiveDataDto);
-		LOGGER.debug("Sending Request to service");
+		
 		return loginService.checkUser(loginReceiveDataDto);
 		
 	}	

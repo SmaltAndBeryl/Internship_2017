@@ -28,16 +28,16 @@ public class DataImportHistoryDao extends AbstractTransactionalDao{
 	private static final DataImportHistoryRowMapper ROW_MAPPER = new  DataImportHistoryRowMapper();
 
 	public Collection<DataImportHistoryDto> getUpdateHistory() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportHistoryDao - getUpdateHistory");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportHistoryDao - getUpdateHistory");
 		
-		LOGGER.info("Getting Data Import History details ");
+		LOGGER.debug("Getting Data Import History details ");
 				
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
 	    return getJdbcTemplate().query(config.getSelectSql(), parameters,
 				ROW_MAPPER);
 	}

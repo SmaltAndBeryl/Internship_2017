@@ -26,31 +26,31 @@ public class DataImportCertificateDao extends AbstractTransactionalDao {
 		/*
 		 * checking for foreign key constraint on userId & batchId  column in User & Batch Table 
 		 */
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCertificateDao - dataImportCertificateForeignKeyConstraintCheck");
-		LOGGER.info("Parameters Received from Service are - HashMap 'getRecord' ");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCertificateDao - dataImportCertificateForeignKeyConstraintCheck");
+		LOGGER.debug("Parameters Received from Service are - HashMap 'getRecord' ");
 				   	
-		LOGGER.info("checking for foreign key constraint userId,batchId ");
+		LOGGER.debug("checking for foreign key constraint userId,batchId ");
 				
 		try{				
 		
-			LOGGER.info("Inside TRY block");
+			LOGGER.debug("Inside TRY block");
 			
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<>();
-			LOGGER.info("object created successfully");
+			LOGGER.debug("object created successfully");
 			
-			LOGGER.info("Inserting parameters to HashMap object");
+			LOGGER.debug("Inserting parameters to HashMap object");
 			parameters.put("userId",getRecord.get("userId"));
 			parameters.put("batchId",getRecord.get("batchId"));
-			LOGGER.info("Parameters inserted");
+			LOGGER.debug("Parameters inserted");
 					
-			LOGGER.info("Executing SQL query and returning response");
+			LOGGER.debug("Executing SQL query and returning response");
 		    return getJdbcTemplate().queryForObject(dataImportConfigSql.getUserIdBatchIdExistsForCertificate(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
 		{
-			LOGGER.info("Inside CATCH block");
+			LOGGER.debug("Inside CATCH block");
 			
 			LOGGER.error("ERROR: Encountered Exception - "+e);
 //			e.printStackTrace();
@@ -64,12 +64,12 @@ public class DataImportCertificateDao extends AbstractTransactionalDao {
 	
 	public int insertDataInCertificate(Map<String , Object> recordToInsert)
 	{
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCertificateDao - insertDataInCertificate");
-		LOGGER.info("Parameters Received from Service are  - HashMap 'recordToInsert'");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCertificateDao - insertDataInCertificate");
+		LOGGER.debug("Parameters Received from Service are  - HashMap 'recordToInsert'");
 				   	
-		LOGGER.info("Inserting data in certificate Table");
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Inserting data in certificate Table");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().update(dataImportConfigSql.getInsertIntoCertificate(), recordToInsert);	
 	}
 }

@@ -30,17 +30,17 @@ public class DataBeanListDao extends AbstractTransactionalDao{
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
     public Collection<DataBeanDto> dataBeanDtoCollection(String trainingPartnerRegistrationId){
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataBeanListDao - dataBeanDtoCollection");
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataBeanListDao - dataBeanDtoCollection");
 				   	
-		LOGGER.info("getting data for the PDF generation");
+		LOGGER.debug("getting data for the PDF generation");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
 		parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectSql(), parameters, ROW_MAPPER);
     }
 

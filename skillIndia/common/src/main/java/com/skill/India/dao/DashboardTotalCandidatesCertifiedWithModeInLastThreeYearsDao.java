@@ -27,16 +27,16 @@ public class DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDao extend
 	private static final DashboardRowSelectRowMapper ROW_MAPPER = new DashboardRowSelectRowMapper();
 
 	public Collection<DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDto> getTotalCandidatesCertifiedWithModeInLastThreeYears() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDao - getTotalCandidatesCertifiedWithModeInLastThreeYears");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DashboardTotalCandidatesCertifiedWithModeInLastThreeYearsDao - getTotalCandidatesCertifiedWithModeInLastThreeYears");
 				   	
-		LOGGER.info("getting total candidates certified with mode in last three years");
+		LOGGER.debug("getting total candidates certified with mode in last three years");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(config.getSelectSqlTotalCandidatesTrainedWithModeInLastThreeYears(), parameters,
 				ROW_MAPPER);
 	}

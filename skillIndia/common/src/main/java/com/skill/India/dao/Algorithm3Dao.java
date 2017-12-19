@@ -30,17 +30,17 @@ public class Algorithm3Dao extends AbstractTransactionalDao {
     private static Algorithm3DaoRowMapper ROW_MAPPER = new Algorithm3DaoRowMapper();
 
     public Collection<Algorithm3Dto> getAssessorIdCollection(String recommendedAgency){
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In Algorithm3Dao - getAssessorIdCollection");
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In Algorithm3Dao - getAssessorIdCollection");
 				   	
-		LOGGER.info("Getting assessor parameters");
+		LOGGER.debug("Getting assessor parameters");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
 		parameters.put("agencyId", recommendedAgency);
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(nonAssignedBatchesConfigSql.getSelectSqlAgencyName(), parameters, ROW_MAPPER);
     }
 

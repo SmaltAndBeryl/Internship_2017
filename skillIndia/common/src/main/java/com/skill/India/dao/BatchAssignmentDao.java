@@ -28,46 +28,46 @@ public class BatchAssignmentDao extends AbstractTransactionalDao {
 	private static final BatchAssignmentRowSelectRowMapper ROW_MAPPER = new BatchAssignmentRowSelectRowMapper();
 
 	public Collection<BatchAssignmentDto> getproposedBatchesBatchAssignmentRowMapper() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In BatchAssignmentDao - getproposedBatchesBatchAssignmentRowMapper");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In BatchAssignmentDao - getproposedBatchesBatchAssignmentRowMapper");
 				   	
-		LOGGER.info("fetching Proposed batches details");
+		LOGGER.debug("fetching Proposed batches details");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(BatchAssignmentConfigSql.getSelectSqlproposedBatchesBatchAssignment(), parameters,
 				ROW_MAPPER);
 	}
 	
 	public Collection<BatchAssignmentDto> getapprovedBatchesBatchAssignmentRowMapper() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In BatchAssignmentDao - getapprovedBatchesBatchAssignmentRowMapper");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In BatchAssignmentDao - getapprovedBatchesBatchAssignmentRowMapper");
 				   	
-		LOGGER.info("fetching Approved batches details");
+		LOGGER.debug("fetching Approved batches details");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(BatchAssignmentConfigSql.getSelectSqlapprovedBatchesBatchAssignment(), parameters,
 				ROW_MAPPER);
 	}	
 	
 	public Collection<BatchAssignmentDto> getrejectedBatchesBatchAssignmentRowMapper() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In BatchAssignmentDao - getrejectedBatchesBatchAssignmentRowMapper");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In BatchAssignmentDao - getrejectedBatchesBatchAssignmentRowMapper");
 				   	
-		LOGGER.info("fetching Rejected batches details");
+		LOGGER.debug("fetching Rejected batches details");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(BatchAssignmentConfigSql.getSelectSqlrejectedBatchesBatchAssignment(), parameters,
 				ROW_MAPPER);
 	}

@@ -45,10 +45,10 @@ public class ManageRegistrationsController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping("/approve")
 	public HashMap<String, ArrayList<ApproveRejectTableDto>> approveRejectTableDtos() {
-		LOGGER.info("In ManageRegistrationsController - approveRejectTableDtos");
-		LOGGER.info("Request Received from front end to get data for Approve/Reject Table for Manage Registration");
-		LOGGER.info("Trying to get Data from Application table");
-		LOGGER.info("Sending Request to service");
+		LOGGER.debug("In ManageRegistrationsController - approveRejectTableDtos");
+		LOGGER.debug("Request Received from front end to get data for Approve/Reject Table for Manage Registration");
+		LOGGER.debug("Trying to get Data from Application table");
+		LOGGER.debug("Sending Request to service");
 		return approveRejectTableService.getUpdateRowMapper();
 	}
 
@@ -56,35 +56,35 @@ public class ManageRegistrationsController {
 	@RequestMapping(value = "/affiliationActionOfAnApplicant", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody MessageDto setAfflilationOfBody(
 			@RequestBody ManageRegistrationApplicationDto manageRegistrationApplicationDto) {
-		LOGGER.info("In ManageRegistrationsController - setAfflilationOfBody");
-		LOGGER.info("Request Received from front end to set Affiliation of a Body");
-		LOGGER.info("Parameters Received from front end are - 'manageRegistrationApplicationDto': "+manageRegistrationApplicationDto);
-		LOGGER.info("Setting the UserId For the Affilation of a Body");
+		LOGGER.debug("In ManageRegistrationsController - setAfflilationOfBody");
+		LOGGER.debug("Request Received from front end to set Affiliation of a Body");
+		LOGGER.debug("Parameters Received from front end are - 'manageRegistrationApplicationDto': "+manageRegistrationApplicationDto);
+		LOGGER.debug("Setting the UserId For the Affilation of a Body");
 		manageRegistrationApplicationDto.setUserId(sessionUser.getSessionMangementfromSession().getUsername());
 		MessageDto approveRegistartionMessage = new MessageDto();
-		LOGGER.info("Trying to Affilate an Applicant.");
+		LOGGER.debug("Trying to Affilate an Applicant.");
 		int updatedAffilationOfAApplicant = 0;
-		LOGGER.info("Sending Request to service");
+		LOGGER.debug("Sending Request to service");
 		updatedAffilationOfAApplicant = approveRejectTableService
 				.updateAffilationOfAApplicant(manageRegistrationApplicationDto);
 		if (updatedAffilationOfAApplicant > 0)
 		{
 
-			LOGGER.info("Success");
-			LOGGER.info("Setting up the Success Message");
-			LOGGER.info("Sending request to Dao");
+			LOGGER.debug("Success");
+			LOGGER.debug("Setting up the Success Message");
+			LOGGER.debug("Sending request to Dao");
 			approveRegistartionMessage.setSuccessMessage("Success");
-			LOGGER.info("Response received from Dao");
+			LOGGER.debug("Response received from Dao");
 		}
 		else
 		{
-			LOGGER.info("Error");
-			LOGGER.info("Setting up the Success Message");
-			LOGGER.info("Sending request to Dao");
+			LOGGER.debug("Error");
+			LOGGER.debug("Setting up the Success Message");
+			LOGGER.debug("Sending request to Dao");
 			approveRegistartionMessage.setErrorMessage("Error");
-			LOGGER.info("Response received from Dao");
+			LOGGER.debug("Response received from Dao");
 		}
-		LOGGER.info("Sending Response back to Front End");
+		LOGGER.debug("Sending Response back to Front End");
 		return approveRegistartionMessage;
 
 	}
@@ -92,26 +92,26 @@ public class ManageRegistrationsController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value = "/setManageRegistrationsComment", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody MessageDto setComment(@RequestBody CommentDto commentDto) {
-		LOGGER.info("In ManageRegistrationsController - setComment");
-		LOGGER.info("Request Received from front end to set comments for the process of Affiliation of a Body");
-		LOGGER.info("Parameters Received from front end are - 'commentDto': "+commentDto);
+		LOGGER.debug("In ManageRegistrationsController - setComment");
+		LOGGER.debug("Request Received from front end to set comments for the process of Affiliation of a Body");
+		LOGGER.debug("Parameters Received from front end are - 'commentDto': "+commentDto);
 		LOGGER.debug("Initializing a MessageDto");
 		MessageDto approveRegistartionMessage = new MessageDto();
-		LOGGER.info("Successfully initialized");
+		LOGGER.debug("Successfully initialized");
 		try {
-			LOGGER.info("Sending Request to service");
+			LOGGER.debug("Sending Request to service");
 			String commentResult = approveRejectTableService
 					.editUserApplication(commentDto.getApplicationId(),
 							commentDto.getComment(),
 							commentDto.getApplicationState());
 			approveRegistartionMessage
 					.setSuccessMessage("Changes made successfully");
-			LOGGER.info("Result of inserting comments in Database is -"
+			LOGGER.debug("Result of inserting comments in Database is -"
 					+ commentResult);
 		} catch (Exception e) {
 			approveRegistartionMessage
 					.setErrorMessage("Exception inserting comments in Database");
-			LOGGER.info("Exception in inserting comments to Database "+ e);
+			LOGGER.debug("Exception in inserting comments to Database "+ e);
 
 		}
 		return approveRegistartionMessage;
@@ -127,10 +127,10 @@ public class ManageRegistrationsController {
 //    @Privilege(value={"SCGJ"})
 //    @RequestMapping("/cityData")
 //    public Collection<AssessmentBodyRegistrationDetailsDto> dataBeanDtoCollection() throws IOException {
-//    	LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
-//    	LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
-//    	LOGGER.info("Creating Collection to collect data for PDF creation");
-//    	LOGGER.info("Sending Request to Service");
+//    	LOGGER.debug("In ManageRegistrationsController - dataBeanDtoCollection");
+//    	LOGGER.debug("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
+//    	LOGGER.debug("Creating Collection to collect data for PDF creation");
+//    	LOGGER.debug("Sending Request to Service");
 //
 //        return assessmentBodyPdfService.dataBeanCollection();
 //    }
@@ -153,10 +153,10 @@ public class ManageRegistrationsController {
 //	@Privilege(value={"SCGJ"})
 //	@RequestMapping(value = "/getUserRoleApplicationId", method = RequestMethod.POST)
 //	public int userRoleApplicationId(@RequestParam("applicationId") String applicationId, HttpServletResponse response) throws IOException, JRException {
-//		LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
-//		LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
-//		LOGGER.info("Creating Collection to collect data for PDF creation");
-//		LOGGER.info("Sending Request to Service");
+//		LOGGER.debug("In ManageRegistrationsController - dataBeanDtoCollection");
+//		LOGGER.debug("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
+//		LOGGER.debug("Creating Collection to collect data for PDF creation");
+//		LOGGER.debug("Sending Request to Service");
 //
 //
 //		return userRoleApplicationIdService.userRoleApplicationIdDtos(applicationId);
@@ -165,11 +165,11 @@ public class ManageRegistrationsController {
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value = "/getUserRoleApplicationId", method = RequestMethod.POST)
 	public int userRoleApplicationId(@RequestParam("applicationId") String applicationId, HttpServletResponse response) throws IOException, JRException {
-		LOGGER.info("In ManageRegistrationsController - dataBeanDtoCollection");
-		LOGGER.info("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
-		LOGGER.info("Creating Collection to collect data for PDF creation");
-		LOGGER.info("Sending Request to Service");
-		LOGGER.info("Calling method to download file");
+		LOGGER.debug("In ManageRegistrationsController - dataBeanDtoCollection");
+		LOGGER.debug("Request Received from front end to generate Collection from beans and get the required data for PDF creation");
+		LOGGER.debug("Creating Collection to collect data for PDF creation");
+		LOGGER.debug("Sending Request to Service");
+		LOGGER.debug("Calling method to download file");
 //		manageRegistrationsController.download(response);
 
 		return userRoleApplicationIdService.userRoleApplicationIdDtos(applicationId);
@@ -187,9 +187,9 @@ public class ManageRegistrationsController {
 //	@Privilege(value={"SCGJ"})
 //    @RequestMapping("/generatePdf")
 //    public int pdfBeanArrayList(HttpServletResponse response) throws IOException, JRException {
-//    	LOGGER.info("In ManageRegistrationsController - pdfBeanArrayList");
-//    	LOGGER.info("Request Received from front end to generate PDF for the process of Affiliation of a Body");
-//    	LOGGER.info("Sending Request to Service");
+//    	LOGGER.debug("In ManageRegistrationsController - pdfBeanArrayList");
+//    	LOGGER.debug("Request Received from front end to generate PDF for the process of Affiliation of a Body");
+//    	LOGGER.debug("Sending Request to Service");
 //
 //		Path paths = Paths.get("server/src/main/resources/static/2151.pdf");
 //		byte[] data = Files.readAllBytes(paths);

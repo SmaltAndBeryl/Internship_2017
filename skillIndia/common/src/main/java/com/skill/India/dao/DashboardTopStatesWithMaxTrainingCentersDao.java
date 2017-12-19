@@ -28,16 +28,16 @@ public class DashboardTopStatesWithMaxTrainingCentersDao extends AbstractTransac
 	private static final DashboardRowSelectRowMapper ROW_MAPPER = new DashboardRowSelectRowMapper();
 
 	public Collection<DashboardTopStatesWithMaxTrainingCentersDto> getTopStatesWithMaxTrainingCenters() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DashboardTopStatesWithMaxTrainingCentersDao - getTopStatesWithMaxTrainingCenters");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DashboardTopStatesWithMaxTrainingCentersDao - getTopStatesWithMaxTrainingCenters");
 				   	
-		LOGGER.info("Getting Top states on bases of training centers");
+		LOGGER.debug("Getting Top states on bases of training centers");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(config.getSelectSqlTopStatesWithMaxTrainingCenters(), parameters,
 				ROW_MAPPER);
 	}

@@ -23,20 +23,20 @@ public class BatchAssignmentWithdrawDao extends AbstractTransactionalDao{
     public BatchAssignmentConfigSql batchAssignmentConfigSql;
 
     public int putUpdateBatches(String from){
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In BatchAssignmentWithdrawDao - putUpdateBatches");
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In BatchAssignmentWithdrawDao - putUpdateBatches");
 				   	
-		LOGGER.info("Withdrawing Batch with batch Id");
+		LOGGER.debug("Withdrawing Batch with batch Id");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("batchId",from);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().update(batchAssignmentConfigSql.getUpdateSqlBatchAssignment(),parameters);
     }
 }

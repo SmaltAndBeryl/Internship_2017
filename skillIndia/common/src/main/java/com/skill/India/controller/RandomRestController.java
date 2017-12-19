@@ -21,35 +21,35 @@ public class RandomRestController {
 	@RequestMapping(value = "/a", method = { RequestMethod.GET, RequestMethod.POST },consumes=MediaType.ALL_VALUE)
 	public String singleFileUpload123(@RequestParam("uplo") MultipartFile[] file) 
 	{
-		LOGGER.info("In RandomRestController - singleFileUpload123");
-		LOGGER.info("Request received from front end ");
-		LOGGER.info("Parameters Received from front end are - 'MultipartFile': "+file);
+		LOGGER.debug("In RandomRestController - singleFileUpload123");
+		LOGGER.debug("Request received from front end ");
+		LOGGER.debug("Parameters Received from front end are - 'MultipartFile': "+file);
 		
 		try{
-			LOGGER.info("Inside TRY block");
+			LOGGER.debug("Inside TRY block");
 			int i=0;
 		for(MultipartFile m:file)
 		{
-			 LOGGER.info("Iterating file array to get all files");
-			 LOGGER.info("Creating byte array object");
+			 LOGGER.debug("Iterating file array to get all files");
+			 LOGGER.debug("Creating byte array object");
 			 byte[] bytes = m.getBytes();
-			 LOGGER.info("Successfully created and initialized");
+			 LOGGER.debug("Successfully created and initialized");
 //			 System.out.println(m.getName());
-			 LOGGER.info("Creating Path object");
+			 LOGGER.debug("Creating Path object");
 			 Path path = Paths.get("D://"+m.getOriginalFilename()+i+".csv");
-			 LOGGER.info("Successfully created and initialized");
+			 LOGGER.debug("Successfully created and initialized");
 			 i++;
-			 LOGGER.info("Writing the file on path");
+			 LOGGER.debug("Writing the file on path");
 			 Files.write(path, bytes);
-			 LOGGER.info("Successfully completed");
+			 LOGGER.debug("Successfully completed");
 //		System.out.println("LOL"+file);
 		}
 		}
 		catch(Exception e)
 		{
-			LOGGER.info("In CATCH block");
+			LOGGER.debug("In CATCH block");
 			LOGGER.error("ERROR: Encountered an exception.");
-			LOGGER.error("Exception is :"+e);
+			LOGGER.error("Exception is : "+e);
 //			e.printStackTrace();
 		}
 		return "Here In Controller";

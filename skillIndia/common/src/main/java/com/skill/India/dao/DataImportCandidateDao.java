@@ -29,30 +29,30 @@ public class DataImportCandidateDao extends AbstractTransactionalDao {
 		/*
 		 * checking for foreign key constraint on batchId column in Batch Table 
 		 */
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCandidateDao - dataImportCandidateBatchIdCheck");
-		LOGGER.info("Parameters Received from Service are - HashMap 'getRecord' ");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCandidateDao - dataImportCandidateBatchIdCheck");
+		LOGGER.debug("Parameters Received from Service are - HashMap 'getRecord' ");
 				   	
-		LOGGER.info("checking for foreign key constraint batchId ");
+		LOGGER.debug("checking for foreign key constraint batchId ");
 		
 		try
 		{				
-			LOGGER.info("Inside TRY block");
+			LOGGER.debug("Inside TRY block");
 			
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<>();
-			LOGGER.info("object created successfully");
+			LOGGER.debug("object created successfully");
 			
-			LOGGER.info("Inserting parameters to HashMap object");
+			LOGGER.debug("Inserting parameters to HashMap object");
 			parameters.put("batchId",getRecord.get("batchId"));
-			LOGGER.info("Parameters inserted");
+			LOGGER.debug("Parameters inserted");
 			
-			LOGGER.info("Executing SQL query and returning response");
+			LOGGER.debug("Executing SQL query and returning response");
 	        return getJdbcTemplate().queryForObject(dataImportConfigSql.getBatchIdExistsForCandidate(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
 		{
-			LOGGER.info("Inside CATCH block");
+			LOGGER.debug("Inside CATCH block");
 			
 			LOGGER.error("ERROR: Encountered Exception - "+e);
 //			e.printStackTrace();
@@ -66,31 +66,31 @@ public class DataImportCandidateDao extends AbstractTransactionalDao {
 		 * checking for foreign key constraint on batchId column in Batch Table 
 		 */
 		
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCandidateDao - dataImportCandidateEmployerIdCheck");
-		LOGGER.info("Parameters Received from Service are - HashMap 'getRecord' ");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCandidateDao - dataImportCandidateEmployerIdCheck");
+		LOGGER.debug("Parameters Received from Service are - HashMap 'getRecord' ");
 		
-		LOGGER.info("checking for foreign key constraint batchId ");
+		LOGGER.debug("checking for foreign key constraint batchId ");
 		
 		try
 		{				
-			LOGGER.info("Inside TRY block");
+			LOGGER.debug("Inside TRY block");
 			
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<>();
-			LOGGER.info("object created successfully");
+			LOGGER.debug("object created successfully");
 			
-			LOGGER.info("Inserting parameters to HashMap object");
+			LOGGER.debug("Inserting parameters to HashMap object");
 			parameters.put("employerId",getRecord.get("employerId"));
-			LOGGER.info("Parameters inserted");
+			LOGGER.debug("Parameters inserted");
 			
-			LOGGER.info("Executing SQL query and returning response");
+			LOGGER.debug("Executing SQL query and returning response");
 //	        System.out.println(parameters + dataImportConfigSql.getEmployerIdExistsForCandidate());
 			return getJdbcTemplate().queryForObject(dataImportConfigSql.getEmployerIdExistsForCandidate(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
 		{
-			LOGGER.info("Inside CATCH block");
+			LOGGER.debug("Inside CATCH block");
 			
 			LOGGER.error("ERROR: Encountered Exception - "+e);
 //			e.printStackTrace();
@@ -105,30 +105,30 @@ public class DataImportCandidateDao extends AbstractTransactionalDao {
 	
 	public int dataImportCandidatePrimaryKeyConstraintCheck(Map<String,Object> getRecord)
 	{
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCandidateDao.java - dataImportCandidatePrimaryKeyConstraintCheck");
-		LOGGER.info("Parameters Received from Service are - HashMap 'getRecord' ");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCandidateDao.java - dataImportCandidatePrimaryKeyConstraintCheck");
+		LOGGER.debug("Parameters Received from Service are - HashMap 'getRecord' ");
 		
-		LOGGER.info("checking for primary key constraint for candidateDetailsId ");
+		LOGGER.debug("checking for primary key constraint for candidateDetailsId ");
 		
 		try
 		{							
-			LOGGER.info("Inside TRY block");
+			LOGGER.debug("Inside TRY block");
 			
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<>();
-			LOGGER.info("object created successfully");
+			LOGGER.debug("object created successfully");
 			
-			LOGGER.info("Inserting parameters to HashMap object");
+			LOGGER.debug("Inserting parameters to HashMap object");
 			parameters.put("candidateDetailsId",getRecord.get("candidateDetailsId"));
-			LOGGER.info("Parameters inserted");
+			LOGGER.debug("Parameters inserted");
 			
-			LOGGER.info("Executing SQL query and returning response");
+			LOGGER.debug("Executing SQL query and returning response");
 	        return getJdbcTemplate().queryForObject(dataImportConfigSql.getCandidateDeatilsIdExistsForCandidate(), parameters,Integer.class );					
 		}
 			catch(Exception e)
 			{
-				LOGGER.info("Inside CATCH block");
+				LOGGER.debug("Inside CATCH block");
 				
 				LOGGER.error("ERROR: Encountered Exception - "+e);
 //				e.printStackTrace();
@@ -142,12 +142,12 @@ public class DataImportCandidateDao extends AbstractTransactionalDao {
 	
 	public int insertDataInCandidate(Map<String , Object> recordToInsert)
 	{
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCandidateDao - insertDataInCandidate");
-		LOGGER.info("Parameters Received from Service are  - HashMap 'recordToInsert'");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCandidateDao - insertDataInCandidate");
+		LOGGER.debug("Parameters Received from Service are  - HashMap 'recordToInsert'");
 				   	
-		LOGGER.info("Inserting data in Candidate Table");
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Inserting data in Candidate Table");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().update(dataImportConfigSql.getInsertIntoCandidateSql(), recordToInsert);	
 	}
 	
@@ -157,12 +157,12 @@ public class DataImportCandidateDao extends AbstractTransactionalDao {
 	
 	public int updateDataInCandidate(Map<String , Object> recordToInsert)
 	{
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCandidateDao - updateDataInCandidate");
-		LOGGER.info("Parameters Received from Service are  - HashMap 'recordToInsert'");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCandidateDao - updateDataInCandidate");
+		LOGGER.debug("Parameters Received from Service are  - HashMap 'recordToInsert'");
 				   	
-		LOGGER.info("Updating data in Candidate Table");
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Updating data in Candidate Table");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().update(dataImportConfigSql.getUpdateIntoCandidateSql(), recordToInsert);
 	}	
 	

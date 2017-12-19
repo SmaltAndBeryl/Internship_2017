@@ -36,16 +36,16 @@ public class CertificateImportHistorydao extends AbstractTransactionalDao{
 	private static final CertificateImportHistoryRowMapper ROW_MAPPER = new CertificateImportHistoryRowMapper();
 
 	public Collection<CertificateImportHistorydto> getUpdateHistory() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In CertificateImportHistorydao - getUpdateHistory");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In CertificateImportHistorydao - getUpdateHistory");
 				   	
-		LOGGER.info("Getting Certificate upload history");
+		LOGGER.debug("Getting Certificate upload history");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(config.getSelectSql(), parameters,
 				ROW_MAPPER);
 	}

@@ -30,21 +30,21 @@ public class Algorithm2Dao extends AbstractTransactionalDao{
     private static Algorithm2DaoRowMapper ROW_MAPPER = new Algorithm2DaoRowMapper();
 
     public Collection<Algorithm2Dto> getAgencyIdCollection(){
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In Algorithm2Dao - getAgencyIdCollection");
-//		LOGGER.info("Parameters Received from Service are - 'batchId': " +batchId);
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In Algorithm2Dao - getAgencyIdCollection");
+//		LOGGER.debug("Parameters Received from Service are - 'batchId': " +batchId);
 				   	
-		LOGGER.info("Getting all agency which have shown interest ");
+		LOGGER.debug("Getting all agency which have shown interest ");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 //		parameters.put("batchId", batchId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(nonAssignedBatchesConfigSql.getSelectSqlAgencyIdAll(), parameters, ROW_MAPPER);
     }
 

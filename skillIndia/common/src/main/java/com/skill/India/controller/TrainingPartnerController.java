@@ -41,9 +41,9 @@ public class TrainingPartnerController {
 	@Privilege(value={"TP"})
 	@RequestMapping("/trainingPartnerPastBatches")
 	public HashMap<String, ArrayList<TrainingPartnerBatchesDto>> getTrainingPartnerPastTableDto () {
-			LOGGER.info("In TrainingPartnerController - getTrainingPartnerPastTableDto");
-			LOGGER.info("Request Received from front end to get data for Past Batches For Training Partner");
-	    	LOGGER.info("Sending Request to service");	    	
+			LOGGER.debug("In TrainingPartnerController - getTrainingPartnerPastTableDto");
+			LOGGER.debug("Request Received from front end to get data for Past Batches For Training Partner");
+	    	LOGGER.debug("Sending Request to service");	    	
 			return trainingPartnerPastTableService.getUpdateRowMapper(sessionUserUtility
 					.getApplicationId(sessionUserUtility
 							.getSessionMangementfromSession().getUsername()));
@@ -56,9 +56,9 @@ public class TrainingPartnerController {
 	@Privilege(value={"TP"})
 	@RequestMapping("/trainingPartnerApplicationStatus")
 	public Collection<TrainingPartnerApplicationStatusDto> gettrainingPartnerApplicationStatusDto() {
-		LOGGER.info("In TrainingPartnerController - gettrainingPartnerApplicationStatusDto");
-		LOGGER.info("Request Received from front end to get data for Application status table for Training Partner");
-		LOGGER.info("Sending Request to service");
+		LOGGER.debug("In TrainingPartnerController - gettrainingPartnerApplicationStatusDto");
+		LOGGER.debug("Request Received from front end to get data for Application status table for Training Partner");
+		LOGGER.debug("Sending Request to service");
 		return trainingPartnerApplicationStatusService
 				.getUpdateRowMapper(sessionUserUtility
 						.getApplicationId(sessionUserUtility

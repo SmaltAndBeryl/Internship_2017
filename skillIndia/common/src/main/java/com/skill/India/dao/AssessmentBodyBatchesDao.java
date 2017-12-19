@@ -41,7 +41,7 @@ public class AssessmentBodyBatchesDao extends AbstractTransactionalDao{
     
     
     public Collection<AssessmentBodyBatchesDto> getUpdateRowMapper() {
-    	LOGGER.info("Code reached");
+    	LOGGER.debug("Code reached");
         Map<String, Object> parameters = new HashMap<>();
         //return getJdbcTemplate().query
       

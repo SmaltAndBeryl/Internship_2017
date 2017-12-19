@@ -27,16 +27,16 @@ public class DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDao ext
 	private static final DashboardRowSelectRowMapper ROW_MAPPER = new DashboardRowSelectRowMapper();
 
 	public Collection<DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDto> getTotalCandidatesTrainedWithBatchTypeInLastThreeYears() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDao - getTotalCandidatesTrainedWithBatchTypeInLastThreeYears");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DashboardTotalCandidatesTrainedWithBatchTypeInLastThreeYearsDao - getTotalCandidatesTrainedWithBatchTypeInLastThreeYears");
 				   	
-		LOGGER.info("getting total candidates trained with batch type in last three years");
+		LOGGER.debug("getting total candidates trained with batch type in last three years");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(config.getSelectSqlTotalCandidatesTrainedWithBatchTypeInLastThreeYears(), parameters,
 				ROW_MAPPER);
 	}

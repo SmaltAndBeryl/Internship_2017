@@ -31,31 +31,31 @@ public class DataImportCSVUploadTableDao extends AbstractTransactionalDao{
 		/*
 		 * checking for foreign key constraint on userId  column in User Table 
 		 */
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCSVUploadTableDao - dataImportCSVUploadForeignKeyConstraintCheck");
-		LOGGER.info("Parameters Received from Service are - HashMap 'getRecord' ");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCSVUploadTableDao - dataImportCSVUploadForeignKeyConstraintCheck");
+		LOGGER.debug("Parameters Received from Service are - HashMap 'getRecord' ");
 				   	
-		LOGGER.info("checking for foreign key constraint userId ");
+		LOGGER.debug("checking for foreign key constraint userId ");
 		
 		try
 		{				
 		
-			LOGGER.info("Inside TRY block");
+			LOGGER.debug("Inside TRY block");
 			
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<>();
-			LOGGER.info("object created successfully");
+			LOGGER.debug("object created successfully");
 			
-			LOGGER.info("Inserting parameters to HashMap object");
+			LOGGER.debug("Inserting parameters to HashMap object");
 			parameters.put("userId",getRecord.get("csvUploadUserId"));
-			LOGGER.info("Parameters inserted");
+			LOGGER.debug("Parameters inserted");
 		
-			LOGGER.info("Executing SQL query and returning response");
+			LOGGER.debug("Executing SQL query and returning response");
 			return getJdbcTemplate().queryForObject(dataImportConfigSql.getUserIdExistsForCSVUploaded(), parameters,Integer.class );					
 		}	// end of try
 		catch(Exception e)
 		{
-			LOGGER.info("Inside CATCH block");
+			LOGGER.debug("Inside CATCH block");
 			
 			LOGGER.error("ERROR: Encountered Exception - "+e);
 //			e.printStackTrace();
@@ -69,12 +69,12 @@ public class DataImportCSVUploadTableDao extends AbstractTransactionalDao{
 	
 	public int insertDataInCSVUpload(Map<String , Object> recordToInsert)
 	{
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportCSVUploadTableDao - insertDataInCSVUpload");
-		LOGGER.info("Parameters Received from Service are  - HashMap 'recordToInsert'");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportCSVUploadTableDao - insertDataInCSVUpload");
+		LOGGER.debug("Parameters Received from Service are  - HashMap 'recordToInsert'");
 				   	
-		LOGGER.info("Inserting data in csvuploaded Table");
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Inserting data in csvuploaded Table");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().update(dataImportConfigSql.getInsertIntoCSVUploaded(), recordToInsert);	
 	}
 }

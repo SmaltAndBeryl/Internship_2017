@@ -30,20 +30,20 @@ public class BatchAssignmentSearchDao extends AbstractTransactionalDao{
 	
 	public Collection<BatchAssignmentSearchDto> executeSearch(int batchId)
 	{
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In BatchAssignmentSearchDao - executeSearch");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In BatchAssignmentSearchDao - executeSearch");
 				   	
-		LOGGER.info("Searching Batch with batch Id");
+		LOGGER.debug("Searching Batch with batch Id");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("batchId", batchId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(batchAssignmentSelectSql.getSelectSqlInformationOfTheBatchId(), parameters , ROW_MAPPER );
 	}
 	

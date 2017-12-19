@@ -29,89 +29,89 @@ public class ApproveRejectTableDao extends AbstractTransactionalDao {
 	private static final ApproveRejectSelectRowMapper ROW_MAPPER = new ApproveRejectSelectRowMapper();
 	
 	public HashMap<String, ArrayList<ApproveRejectTableDto>> getUpdateRowMapper() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In ApproveRejectTableDao - getUpdateRowMapper");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In ApproveRejectTableDao - getUpdateRowMapper");
 		
-		LOGGER.info("Creating ArrayList object for approved Applications");
+		LOGGER.debug("Creating ArrayList object for approved Applications");
 		ArrayList<ApproveRejectTableDto> approvedApplications = new ArrayList<ApproveRejectTableDto>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
-		LOGGER.info("Creating ArrayList object for rejected Applications");
+		LOGGER.debug("Creating ArrayList object for rejected Applications");
 		ArrayList<ApproveRejectTableDto> rejectedApplications = new ArrayList<ApproveRejectTableDto>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
-		LOGGER.info("Creating ArrayList object for Submitted Applications");
+		LOGGER.debug("Creating ArrayList object for Submitted Applications");
 		ArrayList<ApproveRejectTableDto> submittedApplications = new ArrayList<ApproveRejectTableDto>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
-		LOGGER.info("Creating ArrayList object for incomplete Applications");
+		LOGGER.debug("Creating ArrayList object for incomplete Applications");
 		ArrayList<ApproveRejectTableDto> incompleteApplications = new ArrayList<ApproveRejectTableDto>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Creating Collection object of type ApproveRejectTableDto");
-		LOGGER.info("Initializing the object");
+		LOGGER.debug("Creating Collection object of type ApproveRejectTableDto");
+		LOGGER.debug("Initializing the object");
 		
-		LOGGER.info("Executing SQL query");
+		LOGGER.debug("Executing SQL query");
         Collection<ApproveRejectTableDto> manageRegistrationsTable =  getJdbcTemplate().query(config.getSelectSql(), parameters,
 				ROW_MAPPER);
-        LOGGER.info("Response received and initialized in object");
+        LOGGER.debug("Response received and initialized in object");
         
        
 		for(ApproveRejectTableDto rowWiseData:manageRegistrationsTable)
 		{
-			 LOGGER.info("Iterating the object");
+			 LOGGER.debug("Iterating the object");
 		switch (rowWiseData.getapplicationState())
 		{
 			case "Approved" :
 			{
-				LOGGER.info("Inside Approved case");
-				LOGGER.info("Adding data into approved ArrayList object");
+				LOGGER.debug("Inside Approved case");
+				LOGGER.debug("Adding data into approved ArrayList object");
 				approvedApplications.add(rowWiseData);
-				LOGGER.info("Successfully added");
+				LOGGER.debug("Successfully added");
 				break;
 			}
 			case "Rejected":
 			{
-				LOGGER.info("Inside Rejected case");
-				LOGGER.info("Adding data into rejected ArrayList object");
+				LOGGER.debug("Inside Rejected case");
+				LOGGER.debug("Adding data into rejected ArrayList object");
 				rejectedApplications.add(rowWiseData);
-				LOGGER.info("Successfully added");
+				LOGGER.debug("Successfully added");
 				break;
 			}
 			case "Submit":
 			{
-				LOGGER.info("Inside Submit case");
-				LOGGER.info("Adding data into Submitted ArrayList object");
+				LOGGER.debug("Inside Submit case");
+				LOGGER.debug("Adding data into Submitted ArrayList object");
 				submittedApplications.add(rowWiseData);
-				LOGGER.info("Successfully added");
+				LOGGER.debug("Successfully added");
 				break;
 			}
 			case "Incomplete":
 			{
-				LOGGER.info("Inside Incomplete case");
-				LOGGER.info("Adding data into incomplete ArrayList object");
+				LOGGER.debug("Inside Incomplete case");
+				LOGGER.debug("Adding data into incomplete ArrayList object");
 				incompleteApplications.add(rowWiseData);
-				LOGGER.info("Successfully added");
+				LOGGER.debug("Successfully added");
 				break;
 			}
 		}
 	}
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		HashMap<String,ArrayList<ApproveRejectTableDto>> manageRegistrationsDataMap = new HashMap<String,ArrayList<ApproveRejectTableDto>>();
-		LOGGER.info("Successfully created");
+		LOGGER.debug("Successfully created");
 		
-		LOGGER.info("Initializing the object");
+		LOGGER.debug("Initializing the object");
 		manageRegistrationsDataMap.put("submitted", submittedApplications);
 		manageRegistrationsDataMap.put("approved", approvedApplications);
 		manageRegistrationsDataMap.put("rejected", rejectedApplications);
 		manageRegistrationsDataMap.put("incomplete", incompleteApplications);
-		LOGGER.info("Successfully initialized");
+		LOGGER.debug("Successfully initialized");
 		
-		LOGGER.info("Returning response");
+		LOGGER.debug("Returning response");
 		return manageRegistrationsDataMap;
 	}
 

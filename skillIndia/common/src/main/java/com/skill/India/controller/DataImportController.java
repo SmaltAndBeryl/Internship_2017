@@ -65,9 +65,9 @@ public class DataImportController{
 @Privilege(value={"SCGJ"})
 @RequestMapping("/importHistory")
 public Collection<DataImportHistoryDto> getdataImportHistorydto(){
-LOGGER.debug("In DataImportController - getdataImportHistorydto");
+
 LOGGER.debug("Request Received from front end to get Data for Import History Table in Data Import");
-LOGGER.debug("Sending Request to service");
+
 return dataImportServices.getUpdateHistory();
 }
 	
@@ -76,10 +76,10 @@ return dataImportServices.getUpdateHistory();
 @RequestMapping(value = "/downloadCertificate/{file_name}", method = RequestMethod.GET)
 public void getCertificateFile(@PathVariable("file_name") String fileName, 
     HttpServletResponse response) {
-	LOGGER.debug("In DataImportController - getCertificateFile");
+	
 	LOGGER.debug("Request Received from front end to download Certificate For a particular Batch in Data Import");
 	LOGGER.debug("Parameters Received from front end are - 'file_name': "+fileName+" 'response':"+response);
-	LOGGER.debug("Sending Request to service");
+	
 	dataImportDownloadCertificateService.dataImportDownloadCertificate(response, fileName);
     
 }
@@ -88,22 +88,22 @@ public void getCertificateFile(@PathVariable("file_name") String fileName,
 @RequestMapping(value = "/downloadCSVFile/{file_name}", method = RequestMethod.GET)
 public void getFile(@PathVariable("file_name") String fileName, 
     HttpServletResponse response) {
-	LOGGER.debug("In DataImportController - getFile");
+	
 	LOGGER.debug("Request Received from front end to download uploaded CSV file in Data Import");
 	LOGGER.debug("Parameters Received from front end are - 'file_name': "+fileName+" 'response':"+response);
 //	System.out.println(fileName);
-	LOGGER.debug("Sending Request to service");
+	
 	dataImportCSVDownloadService.DataImportCSVDownload(response, fileName);
 }
 
 @Privilege(value={"SCGJ"})
 @RequestMapping(value="/findBatch",method=RequestMethod.POST)
 public Collection<DataImportGetBatchInfoDto> dataImportFindBatch(@RequestParam("batchId") Integer batchId){
-	LOGGER.debug("In DataImportController - dataImportFindBatch");
+	
 	LOGGER.debug("Request Received from front end to find information about a particular Batch in Data Import");
 	LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);
 //	System.out.println("HELLO" + batchId);
-	LOGGER.debug("Sending Request to service");
+	
 	return findBatchUsingBatchIdService.findBatchUsingBatchId(batchId.toString());
 	
 }
@@ -111,13 +111,13 @@ public Collection<DataImportGetBatchInfoDto> dataImportFindBatch(@RequestParam("
 @Privilege(value={"SCGJ"})
 @RequestMapping(value = "/uploadCertificate", method = { RequestMethod.GET, RequestMethod.POST },consumes=MediaType.ALL_VALUE)
 public String singleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("batchId") Integer batchId){
-	LOGGER.debug("In DataImportController - singleFileUpload");
+	
 	LOGGER.debug("Request Received from front end to Upload Certificate For a particular Batch in Data Import");
 	LOGGER.debug("Parameters Received from front end are - 'file': "+file+" 'batchId':"+batchId);
 	LOGGER.debug("Sending Request to get User Id from Session");
 	String userId=sessionUserUtility
 			.getSessionMangementfromSession().getUsername();
-	LOGGER.debug("Response received");
+	LOGGER.debug("User Logged in is : "+ userId);
 	LOGGER.debug("Sending Request to service to upload the CSV file");
 	return saveCertificateFileService.saveUploadedFile(file, batchId, userId);
 	
@@ -128,13 +128,13 @@ public String singleFileUpload(@RequestParam("file") MultipartFile file,@Request
 @RequestMapping(value = "/upload", method = { RequestMethod.GET, RequestMethod.POST },consumes=MediaType.ALL_VALUE)
    public String singleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("csvType") String type) 
 {
-	LOGGER.debug("In DataImportController - singleFileUpload");
+	
 	LOGGER.debug("Request Received from front end to Upload Csv File in Data Import");
 	LOGGER.debug("Parameters Received from front end are - 'file': "+file+" 'csvType':"+type);
 	LOGGER.debug("Sending Request to get User Id from Session");
 	String userId=sessionUserUtility
 			.getSessionMangementfromSession().getUsername();
-	LOGGER.debug("Response received");
+	LOGGER.debug("User Logged in is : "+ userId);
 	LOGGER.debug("Sending Request to service to upload the CSV file");
   return saveUploadedFileService.saveUploadedFile(file,type,userId);
 }
@@ -146,9 +146,9 @@ public String singleFileUpload(@RequestParam("file") MultipartFile file,@Request
 @Privilege(value={"SCGJ"})
 @RequestMapping("/certificateImportHistory")
 public Collection<CertificateImportHistorydto> getcertificateImportHistorydto(){
-	LOGGER.debug("In DataImportController - getcertificateImportHistorydto");
+	
 	LOGGER.debug("Request Received from front end to get data for Certificate Import History Table in Data Import");
-	LOGGER.debug("Sending Request to service");
+	
 	return certificateImportHistoryService.getUpdateHistory();
 }
 

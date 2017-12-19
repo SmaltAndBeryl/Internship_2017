@@ -26,21 +26,21 @@ public class AlgorithmDao extends AbstractTransactionalDao {
     private static AlgorithmDaoRowMapper ROW_MAPPER = new AlgorithmDaoRowMapper();
 
     public Collection<AlgorithmDto> algorithmDtoCollection(int batchId){
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In AlgorithmDao - algorithmDtoCollection");
-		LOGGER.info("Parameters Received from Service are - 'batchId': " +batchId);
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In AlgorithmDao - algorithmDtoCollection");
+		LOGGER.debug("Parameters Received from Service are - 'batchId': " +batchId);
 				   	
-		LOGGER.info("Adding values to arraylist of show interest for batch ID " + batchId);
+		LOGGER.debug("Adding values to arraylist of show interest for batch ID " + batchId);
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("batchId", batchId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(nonAssignedBatchesConfigSql.getSelectSqlAgencyId(), parameters, ROW_MAPPER);
     }
 
@@ -50,7 +50,7 @@ public class AlgorithmDao extends AbstractTransactionalDao {
             int agencyId = resultSet.getInt("agencyId");
             String state = resultSet.getString("state");
             String district = resultSet.getString("district");
-            LOGGER.info("The district is >>> " + agencyId);
+            LOGGER.debug("The district is >>> " + agencyId);
             return new AlgorithmDto(agencyId, state, district);
         }
     }

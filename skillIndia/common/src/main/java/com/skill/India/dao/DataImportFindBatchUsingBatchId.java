@@ -27,21 +27,21 @@ public class DataImportFindBatchUsingBatchId extends AbstractTransactionalDao {
 	private static final DataImportRowSelectRowMapper ROW_MAPPER = new DataImportRowSelectRowMapper();
 	
 	public Collection<DataImportGetBatchInfoDto> getDataOfBatchUsingBatchId(String batchId){
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DataImportFindBatchUsingBatchId - getDataOfBatchUsingBatchId");
-		LOGGER.info("Parameters Received from Service are - 'batchId': "+ batchId);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DataImportFindBatchUsingBatchId - getDataOfBatchUsingBatchId");
+		LOGGER.debug("Parameters Received from Service are - 'batchId': "+ batchId);
 		
-		LOGGER.info("Getting batch details for a particular batch Id ");
+		LOGGER.debug("Getting batch details for a particular batch Id ");
 				
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("batchId",batchId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
 	    return getJdbcTemplate().query(dataImportConfigSql.getBatchInfoUsingBatchId(), parameters,
 			ROW_MAPPER);
 		

@@ -27,16 +27,16 @@ public class DashboardTotalBatchesAccordingToJobRoleDao extends AbstractTransact
 	private static final DashboardRowSelectRowMapper ROW_MAPPER = new DashboardRowSelectRowMapper();
 
 	public Collection<DashboardTotalBatchesAccordingToJobRoleDto> getTotalBatchesAccordingToJobRole() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DashboardTotalBatchesAccordingToJobRoleDao - getTotalBatchesAccordingToJobRole");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DashboardTotalBatchesAccordingToJobRoleDao - getTotalBatchesAccordingToJobRole");
 				   	
-		LOGGER.info("Getting total batches according to batch role");
+		LOGGER.debug("Getting total batches according to batch role");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(config.getSelectSqlTotalBatchesAccordingToJobRole(), parameters,ROW_MAPPER);
 	}
 

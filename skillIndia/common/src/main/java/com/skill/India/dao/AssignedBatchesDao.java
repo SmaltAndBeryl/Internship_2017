@@ -29,16 +29,16 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AssignedBatchesDao.
 	private static final UpdateRowSelectRowMapper ROW_MAPPER = new UpdateRowSelectRowMapper();
 
 	public Collection<AssignedBatchesDto> getupdateRowMapper() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In AssignedBatchesDao - getupdateRowMapper");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In AssignedBatchesDao - getupdateRowMapper");
 				   	
-		LOGGER.info("fetching Assigned batches details");
+		LOGGER.debug("fetching Assigned batches details");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters,
 				ROW_MAPPER);
 	}
