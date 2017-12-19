@@ -92,13 +92,11 @@
                                 <form role="form" style="display: block;" data-toggle="validator" ng-submit="nav.login()" id="login-form">
                                     <div class="form-group input-group">
                                         <div>
-                                            <input type="email" pattern="[a-zA-Z0-9-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value=" " ng-model="nav.credentials.username" />
+                                            <input type="email" pattern="[a-zA-Z0-9-.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" name="username"  tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value=" " ng-model="nav.credentials.username" required />
                                         </div>
                                         <div class="help-block with-errors"> </div>
-                                        <span class=" input-group-addon" style="background-color:white;
-                                 border:none;
-                                 border-bottom:0px solid #ccc; ">
-                              <i id="username" class="fa fa-user" ></i>
+                                        <span class=" input-group-addon user-icon-bckgrnd" >
+                              <i class="glyphicon glyphicon-user"></i>
                               </span>
                                     </div>
                                     <div class="wrraper">
@@ -116,7 +114,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="button" name="login-submit" id="login-submit" tabindex="4" class="form-control button" value="LOGIN" type="submit" />
+                                                <input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control button" value="LOGIN" />
                                             </div>
                                         </div>
                                     </div>
@@ -125,7 +123,7 @@
 
                                 <!-- SIGN UP FORM -->
 								<div style="display: none;" data-toggle="validator" id="register-form">
-                                <form role="form"  >
+                                <form role="form"  ng-submit="nav.signup()">
                                     <div class="form-group col-xs-6">
                                         <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="nav.newUser.organizationName" />
                                     </div>
@@ -136,10 +134,6 @@
                                         <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="nav.newUser.userId" />
                                         <div class="help-block with-errors">
                                         </div>
-                                        <span class=" input-group-addon" style="background-color:white;
-                                 border:none;
-                                 border-bottom:0px solid #ccc; ">
-                              </span>
                                         
                                     </div>
                                     <div class="form-group col-xs-12">
@@ -148,7 +142,7 @@
                                         </div>
                                     <div class="wrraper">
                                         <div class="form-group input-group">
-                                            <input type="password" data-minlength="6" name="registerPassword" id="registerPassword" tabindex="2" data-error="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.newUser.password" />
+                                            <input type="password" minlength=6 name="registerPassword" id="registerPassword" tabindex="2" data-error-message="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.newUser.password" />
                                             <div class="help-block with-errors"></div>
                                             <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">
                                     <div>
@@ -162,7 +156,7 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="button" name="signup" id="signup" tabindex="4" class="form-control button" value="SIGNUP" ng-click="nav.signup()" />
+                                                <input type="submit" name="signup" id="signup" tabindex="4" class="form-control button" value="SIGNUP" />
                                             </div>
                                         </div>
                                     </div>

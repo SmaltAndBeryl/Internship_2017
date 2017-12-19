@@ -49,29 +49,29 @@ window.onload = function(){
 	});
 	
 	//check for blank email
-	$('.button').click(function(){
-        if ($('input#userId').val() == "")
-        {
-            alert('Please fill the Email');
-        }
-    
-    
-    });
+//	$('.button').click(function(){
+//        if ($('input#userId').val() == "")
+//        {
+//            alert('Please fill the Email');
+//        }
+//    
+//    
+//    });
 	//check for blank password
-	$('#login-submit').click(function(){
-        if ($('input#password').val() == "")
-        {
-            alert('Please fill the password');
-        }
-    
-    
-    });
-	$('#signup').click(function(){
-        if ($('input#registerPassword').val() == "")
-        {
-            alert('Please fill the password');
-        }
-    
-    
-    });
+//	$('#login-submit').click(function(){
+//        if ($('input#password').val() == "")
+//        {
+//            alert('Please fill the password');
+//        }
+//    
+//    
+//    });
+//	$('#signup').click(function(){
+//        if ($('input#registerPassword').val() == "")
+//        {
+//            alert('Please fill the password');
+//        }
+//    
+//    
+//    });
 }

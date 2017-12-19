@@ -8,6 +8,12 @@
 .login-row{
 	padding-top:5em;
 }
+.user-icon-bckgrnd
+{
+	background-color:white;
+	border:none;
+	border-bottom:0px solid #ccc;
+}
 .errorMessageLoginPage
 {
 	display: inline;

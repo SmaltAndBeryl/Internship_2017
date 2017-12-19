@@ -163,7 +163,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
     self.credentials = {};
     self.newUser ={};
     self.signup = function (){
-    	alert(JSON.stringify(self.newUser));
+    	//alert(JSON.stringify(self.newUser));
     	
 		$http({
 			url : "/signup",
