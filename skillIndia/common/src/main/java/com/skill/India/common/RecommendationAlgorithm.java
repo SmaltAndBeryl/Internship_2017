@@ -38,7 +38,7 @@ public class RecommendationAlgorithm {
 
         Integer maxValue = getMaxValue(map);
         Object maxKey = getKeyByValue(map, maxValue);
-        LOGGER.info("MAXIMUM VALUE IS ////// "+ maxValue + "MAXIMUM KEY IS ''''' " + maxKey);
+        LOGGER.debug("MAXIMUM VALUE IS ////// "+ maxValue + "MAXIMUM KEY IS ''''' " + maxKey);
         return String.valueOf(maxKey);
     }
 
@@ -69,7 +69,7 @@ public class RecommendationAlgorithm {
         printMultiMap(map);
         Integer maxValue = getMaxValue(map);
         Object maxKey = getKeyByValue(map, maxValue);
-        LOGGER.info("MAXIMUM VALUE IS ////// "+ maxValue + "MAXIMUM KEY IS ''''' " + maxKey);
+        LOGGER.debug("MAXIMUM VALUE IS ////// "+ maxValue + "MAXIMUM KEY IS ''''' " + maxKey);
 
         return String.valueOf(maxKey);
     }
@@ -90,7 +90,7 @@ public class RecommendationAlgorithm {
 
     private <K,V> void printMultiMap(Map<Integer, Integer> multiMap) {
         for(Map.Entry<Integer, Integer> entry:multiMap.entrySet()){
-            LOGGER.info("VALUES FROM THE MULTIMAP ARE " + entry.getKey() + " " + entry.getValue());
+            LOGGER.debug("VALUES FROM THE MULTIMAP ARE " + entry.getKey() + " " + entry.getValue());
         }
     }
 

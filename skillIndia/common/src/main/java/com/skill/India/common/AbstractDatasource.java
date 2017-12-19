@@ -89,7 +89,7 @@ public abstract class AbstractDatasource {
            
         }
 
-        LOGGER.info("Setting up datasource for user:{} and databaseUrl:{}", databaseUsername, databaseUrl);
+        LOGGER.debug("Setting up datasource for user:{} and databaseUrl:{}", databaseUsername, databaseUrl);
         DataSource datasource = new DataSource();
         datasource.setPoolProperties(pooledDataSource);
         return datasource;

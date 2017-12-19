@@ -1,4 +1,3 @@
-
 package com.skill.India.common;
 
 import org.springframework.beans.factory.annotation.Autowired;

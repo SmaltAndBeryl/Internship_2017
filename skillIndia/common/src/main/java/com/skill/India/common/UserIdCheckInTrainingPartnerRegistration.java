@@ -19,7 +19,7 @@ public class UserIdCheckInTrainingPartnerRegistration {
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			return 2;
+			return -2;
 		}
 	}
 }
