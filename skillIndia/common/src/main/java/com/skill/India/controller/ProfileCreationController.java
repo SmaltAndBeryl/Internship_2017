@@ -86,7 +86,7 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		LOGGER.debug("File has been received from front end " + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveTPPAN(file, "pan" );
+		status = profileCreationSaveAsDraftAndSubmitService.saveTPPAN(file, "PAN" );
 		return status;
 	}
 	
@@ -95,7 +95,7 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		LOGGER.debug("File has been received from front end " + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveTPTAN(file, "tan");
+		status = profileCreationSaveAsDraftAndSubmitService.saveTPTAN(file, "TAN");
 		return status;
 	}
 	
@@ -104,17 +104,16 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		LOGGER.debug("Trying to upload nsdc certifiacte" + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveTPNSDCCertificate(file, "nsdcCertificate");
+		status = profileCreationSaveAsDraftAndSubmitService.saveTPNSDCCertificate(file, "NSDCCertificate");
 		return status;
 	}
 	
 	@RequestMapping(value="/fileuploadTPSelfOwned", method = RequestMethod.POST, consumes = MediaType.ALL_VALUE)
-	public int saveFileSelfOwnedAnnexure(@RequestParam(value = "selfOwnedAnnexure")MultipartFile file , @RequestParam(value = "postvalue") ProfileCreationTrainingPartnerWrapperDto profileCreationTrainingPartnerWrapperDto)
+	public int saveFileSelfOwnedAnnexure(@RequestParam(value = "selfOwnedAnnexure")MultipartFile file )
 	{
 		int status = 0;
-		LOGGER.debug("Received file is " + file);
-		LOGGER.debug("Received object is" + profileCreationTrainingPartnerWrapperDto );
-		//status = profileCreationSaveAsDraftAndSubmitService.saveSelfOwnedAnnexure(file, "selfOwnedAnnexure");
+		
+		status = profileCreationSaveAsDraftAndSubmitService.saveSelfOwnedAnnexure(file, "TPSelfOwnedModelAnnexure");
 		return status ;
 	}
 	
@@ -122,7 +121,7 @@ public class ProfileCreationController {
 	public int saveFileFrnachiseeAnnexure(@RequestParam(value = "fileuploadTPFranchisee")MultipartFile file)
 	{
 		int status = 0;
-		status = profileCreationSaveAsDraftAndSubmitService.saveFranchiseeAnnexure(file, "fileuploadTPFranchisee");
+		status = profileCreationSaveAsDraftAndSubmitService.saveFranchiseeAnnexure(file, "TPFranchiseeModelAnnexure");
 		return status ;
 	}
 
@@ -130,7 +129,7 @@ public class ProfileCreationController {
 	public int saveFileMobileAnnexure(@RequestParam(value = "fileuploadTPMobile")MultipartFile file)
 	{
 		int status = 0;
-		status = profileCreationSaveAsDraftAndSubmitService.saveMobileAnnexure(file, "fileuploadTPMobile");
+		status = profileCreationSaveAsDraftAndSubmitService.saveMobileAnnexure(file, "TPMobileModelAnnexure");
 		return status ;
 	}
 	/*
@@ -178,6 +177,7 @@ public class ProfileCreationController {
 	
 	
 	/**
+	 * Method to upload cv of affiliation coordinator
 	 * 
 	 * @param file
 	 * @param nameOfCenter
@@ -192,7 +192,7 @@ public class ProfileCreationController {
 	}
 	
 	/**
-	 * 
+	 * Upload Cv of Spoc
 	 * @param file
 	 * @param nameOfCenter
 	 * @return
@@ -216,12 +216,12 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		
-		status = profileCreationSaveAsDraftAndSubmitService.saveClassRoomImagesTP("classroomImage", file, nameOfCenter);
+		status = profileCreationSaveAsDraftAndSubmitService.saveClassRoomImagesTP("ClassroomImage", file, nameOfCenter);
 		return status;
 	}
 	
 	/**
-	 * 
+	 * Method to upload images of training partners lab
 	 * @param file
 	 * @param nameOfCenter
 	 * @return
@@ -254,7 +254,7 @@ public class ProfileCreationController {
 	public int saveMandatorytoolkitAnnexure(@RequestParam(value="fileMandatoryToolkitAnnexure")MultipartFile file , @RequestParam(value="centerName")String nameOfCenter)
 	{
 		int status =0;
-		status = profileCreationSaveAsDraftAndSubmitService.saveMandatoryToolkitAnnexurePath("mandatoryToolkitAnnexure", file, nameOfCenter);
+		status = profileCreationSaveAsDraftAndSubmitService.saveMandatoryToolkitAnnexurePath("MandatoryToolkitAnnexure", file, nameOfCenter);
 		return status;
 	}
 	/*
@@ -265,7 +265,7 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		LOGGER.debug("File has been received from front end " + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveABPAN(file, "pan");
+		status = profileCreationSaveAsDraftAndSubmitService.saveABPAN(file, "PAN");
 		return status;
 	}
 	
@@ -276,7 +276,7 @@ public class ProfileCreationController {
 	{
 		int status = 0;
 		LOGGER.debug("File has been received from front end " + file);
-		status = profileCreationSaveAsDraftAndSubmitService.saveABTan(file, "tan");
+		status = profileCreationSaveAsDraftAndSubmitService.saveABTan(file, "TAN");
 		return status;
 	}
 	
