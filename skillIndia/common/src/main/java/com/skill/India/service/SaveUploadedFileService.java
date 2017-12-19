@@ -5,6 +5,7 @@ package com.skill.India.service;
  * 				  hard coded (name of file is changed, timestamp appended). 
  * 
  */
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -69,7 +70,18 @@ public class SaveUploadedFileService {
 	                  
            String fileNameToBeSaved=fileNameArray[0]+"-"+ year+ "-" + month + "-" + day + 
         		   "-" + hours + "-" + minutes + "-" + seconds +fileNameArray[1];
-           
+           File folder = new File (UPLOADED_FOLDER);
+           if(!folder.exists())
+           {
+        	   if(folder.mkdirs() || folder.canWrite())
+        	   {
+        		   LOGGER.debug("Directory "+ folder + " to store files created successfully");
+        	   }
+        	   else
+        	   {
+        		   LOGGER.error("Could not create folder to save uploaded csv");
+        	   }
+           }
            Path path = Paths.get(UPLOADED_FOLDER +fileNameToBeSaved);
            
            String pathOfUploadedFile=UPLOADED_FOLDER+fileNameToBeSaved;
