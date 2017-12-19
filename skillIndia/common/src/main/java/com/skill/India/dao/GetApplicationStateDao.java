@@ -26,35 +26,35 @@ public class GetApplicationStateDao extends AbstractTransactionalDao {
 	private static final ApplicationRowMapper ROW_MAPPER = new ApplicationRowMapper();
 
 	public ApplicationDto getApplicationState(String userId) {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In GetApplicationStateDao - getApplicationState");
-		LOGGER.info("Parameters Received from Service are - 'userId': " +userId);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In GetApplicationStateDao - getApplicationState");
+		LOGGER.debug("Parameters Received from Service are - 'userId': " +userId);
 	   	
 		try 
 		{
-			LOGGER.info("Inside TRY block");
-			LOGGER.info("getting Application State for Application Id");
+			LOGGER.debug("Inside TRY block");
+			LOGGER.debug("getting Application State for Application Id");
 		
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			LOGGER.info("object created successfully");
+			LOGGER.debug("object created successfully");
 			
-			LOGGER.info("Inserting parameters to HashMap object");
+			LOGGER.debug("Inserting parameters to HashMap object");
 			parameters.put("userId", userId);
-			LOGGER.info("Parameters inserted");
+			LOGGER.debug("Parameters inserted");
 			
-			LOGGER.info("Executing SQL query and returning response");
+			LOGGER.debug("Executing SQL query and returning response");
 	        return getJdbcTemplate().queryForObject(
 					loginConfig.getGetApplicationState(), parameters,
 					ROW_MAPPER);// query for multiple rows from database
 		} 
 		catch (Exception e) 
 		{
-			LOGGER.info("Inside CATCH block");
+			LOGGER.debug("Inside CATCH block");
 			
 			LOGGER.error("ERROR: Encountered Exception - "+e);
 			
-			LOGGER.info("Returning NULL");
+			LOGGER.debug("Returning NULL");
 //			e.printStackTrace();
 			return null;
 		}

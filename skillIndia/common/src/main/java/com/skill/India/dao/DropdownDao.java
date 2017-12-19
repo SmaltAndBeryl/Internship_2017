@@ -30,16 +30,16 @@ public class DropdownDao extends AbstractTransactionalDao{
     private static DropdownRowMapper ROW_MAPPER = new DropdownRowMapper();
 
     public Collection<DropdownDto> getCollection(){
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In DropdownDao - getCollection");
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DropdownDao - getCollection");
 				   	
-		LOGGER.info("getting list of all agency");
+		LOGGER.debug("getting list of all agency");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(dropdownConfigSql.getSelectSql(), parameters, ROW_MAPPER);
     }
     private static class DropdownRowMapper implements RowMapper<DropdownDto> {

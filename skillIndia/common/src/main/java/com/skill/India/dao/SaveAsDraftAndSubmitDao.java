@@ -86,7 +86,7 @@ public class SaveAsDraftAndSubmitDao extends AbstractTransactionalDao {
 			parameters.put("city",profileCreationTrainingPartnerDto.getCity());
 			parameters.put("state",profileCreationTrainingPartnerDto.getState());
 			parameters.put("pincode",profileCreationTrainingPartnerDto.getPincode());
-			System.out.println(profileCreationTrainingPartnerDto.getPincode());
+			//System.out.println(profileCreationTrainingPartnerDto.getPincode());
 			parameters.put("mobileNumber",profileCreationTrainingPartnerDto.getMobileNumber());
 			parameters.put("alternateMobileNumber",profileCreationTrainingPartnerDto.getAlternateMobileNumber());
 			parameters.put("landlineNumber",profileCreationTrainingPartnerDto.getLandlineNumber());
@@ -115,7 +115,7 @@ public class SaveAsDraftAndSubmitDao extends AbstractTransactionalDao {
 			parameters.put("city",profileCreationTrainingPartnerDto.getCity());
 			parameters.put("state",profileCreationTrainingPartnerDto.getState());
 			parameters.put("pincode",profileCreationTrainingPartnerDto.getPincode());
-			System.out.println(profileCreationTrainingPartnerDto.getPincode());
+			//System.out.println(profileCreationTrainingPartnerDto.getPincode());
 			parameters.put("mobileNumber",profileCreationTrainingPartnerDto.getMobileNumber());
 			parameters.put("alternateMobileNumber",profileCreationTrainingPartnerDto.getAlternateMobileNumber());
 			parameters.put("landlineNumber",profileCreationTrainingPartnerDto.getLandlineNumber());

@@ -43,8 +43,8 @@ public class ProfileCreationTrainingPartnerDao extends AbstractTransactionalDao{
 	public Collection<ProfileCreationTrainingPartnerDto> profileCreationGetDataFromTrainingPartnerRegistration(String userId)
 	{
 		try{
-			LOGGER.info("Trying to fetch data saved by user earlier");
-			LOGGER.info("Trying to request database to fetch data");
+			LOGGER.debug("Trying to fetch data saved by user earlier");
+			LOGGER.debug("Trying to request database to fetch data");
 			Map<String, Object> parameters = new HashMap<String, Object>();
 			parameters.put("userId",userId);
 //		
@@ -63,7 +63,7 @@ public class ProfileCreationTrainingPartnerDao extends AbstractTransactionalDao{
 		@Override
 		public ProfileCreationTrainingPartnerDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
-			LOGGER.info("Trying to map database table columns to object");
+			LOGGER.debug("Trying to map database table columns to object");
 			String organizationName = resultSet.getString("organizationName");
 			String sPOCName = resultSet.getString("sPOCName");
 			String address = resultSet.getString("address");
@@ -86,7 +86,7 @@ public class ProfileCreationTrainingPartnerDao extends AbstractTransactionalDao{
 	{
 		try{
 			
-			LOGGER.info("Trying to fetch information from user table");
+			LOGGER.debug("Trying to fetch information from user table");
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("userId",userId);
 		return getJdbcTemplate().query(profileCreationConfigSql.getGetTrainingPartnerDataByUserIdFronUser(),parameters,ROW_MAPPER_USER);

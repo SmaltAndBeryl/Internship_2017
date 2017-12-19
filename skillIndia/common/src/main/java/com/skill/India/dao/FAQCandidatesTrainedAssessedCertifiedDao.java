@@ -27,35 +27,35 @@ public class FAQCandidatesTrainedAssessedCertifiedDao extends AbstractTransactio
 	private static final FAQRowMapper fAQRowMapper = new FAQRowMapper();
 	
 		public Collection<FAQCandidatesTrainedAssessedCertifiedDto> getTotalCandidatesTrainedAssessedCertified() {
-			LOGGER.info("Request Received from Service");
-			LOGGER.info("In FAQCandidatesTrainedAssessedCertifiedDao - getTotalCandidatesTrainedAssessedCertified");
+			LOGGER.debug("Request Received from Service");
+			LOGGER.debug("In FAQCandidatesTrainedAssessedCertifiedDao - getTotalCandidatesTrainedAssessedCertified");
 					   	
-			LOGGER.info("getting total candidates trained,assessed,certified");
+			LOGGER.debug("getting total candidates trained,assessed,certified");
 			
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<> ();
-			LOGGER.info("object created successfully");
+			LOGGER.debug("object created successfully");
 			
-			LOGGER.info("Executing SQL query and returning response");
+			LOGGER.debug("Executing SQL query and returning response");
 			return getJdbcTemplate().query(fAQConfigSql.getSelectSqlCountTotalCandidatesTrainedAssessedCertified(), parameters, fAQRowMapper);
 	}
 	
 	public Collection<FAQCandidatesTrainedAssessedCertifiedDto> getTotalCandidatesTrainedAssessedCertifiedSchemeWise(String batchType) {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In FAQCandidatesTrainedAssessedCertifiedDao - getTotalCandidatesTrainedAssessedCertifiedSchemeWise");
-		LOGGER.info("Parameters Received from Service are - 'batchType': " +batchType);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In FAQCandidatesTrainedAssessedCertifiedDao - getTotalCandidatesTrainedAssessedCertifiedSchemeWise");
+		LOGGER.debug("Parameters Received from Service are - 'batchType': " +batchType);
 				   	
-		LOGGER.info("getting total candidates trained,assessed,certified scheme wise");
+		LOGGER.debug("getting total candidates trained,assessed,certified scheme wise");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameter = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameter.put("batchType", batchType);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
 		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlTotalCandidatesTrainedAssessedCertifiedSchemeWise(), parameter, fAQRowMapper);
 	}
 	

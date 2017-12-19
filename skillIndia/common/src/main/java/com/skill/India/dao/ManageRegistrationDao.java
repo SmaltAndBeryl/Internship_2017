@@ -20,21 +20,21 @@ public class ManageRegistrationDao extends AbstractTransactionalDao {
 	public ManageRegistrationConfig config;
 
 		public int putUpdateRowMapper(int id) {
-			LOGGER.info("Request Received from Service");
-			LOGGER.info("In ManageRegistrationDao - putUpdateRowMapper");
-			LOGGER.info("Parameters Received from Service are - 'id': " +id);
+			LOGGER.debug("Request Received from Service");
+			LOGGER.debug("In ManageRegistrationDao - putUpdateRowMapper");
+			LOGGER.debug("Parameters Received from Service are - 'id': " +id);
 			   	
-			LOGGER.info("Setting application state to draft corresponding to application Id");
+			LOGGER.debug("Setting application state to draft corresponding to application Id");
 			
-			LOGGER.info("Creating HashMap object");
+			LOGGER.debug("Creating HashMap object");
 			Map<String, Object> parameters = new HashMap<>();
-			LOGGER.info("object created successfully");
+			LOGGER.debug("object created successfully");
 			
-			LOGGER.info("Inserting parameters to HashMap object");
+			LOGGER.debug("Inserting parameters to HashMap object");
 			parameters.put("app_state", "pending");
-			LOGGER.info("Parameters inserted");
+			LOGGER.debug("Parameters inserted");
 			
-			LOGGER.info("Executing SQL query and returning response");
+			LOGGER.debug("Executing SQL query and returning response");
 	        return getJdbcTemplate().update(config.getUpdateSql(), parameters);
 			
 		}	

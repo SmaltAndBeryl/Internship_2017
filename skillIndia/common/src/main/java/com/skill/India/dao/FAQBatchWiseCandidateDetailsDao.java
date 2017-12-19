@@ -34,21 +34,21 @@ public class FAQBatchWiseCandidateDetailsDao extends AbstractTransactionalDao {
 	private static BatchWiseCandidateDetailsDaoRowMapper ROW_MAPPER = new BatchWiseCandidateDetailsDaoRowMapper(); 
 	
 	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(Integer batchId) {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In FAQBatchWiseCandidateDetailsDao - getBatchWiseCandidatesDetails");
-		LOGGER.info("Parameters Received from Service are - 'batchId': " +batchId);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In FAQBatchWiseCandidateDetailsDao - getBatchWiseCandidatesDetails");
+		LOGGER.debug("Parameters Received from Service are - 'batchId': " +batchId);
 				   	
-		LOGGER.info("getting candidate details of a particular batch");
+		LOGGER.debug("getting candidate details of a particular batch");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("batchId", batchId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
 		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlBatchWiseCandidatesDetails(), parameters,ROW_MAPPER);
 	}
 

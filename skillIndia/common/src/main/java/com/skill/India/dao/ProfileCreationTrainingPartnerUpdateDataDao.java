@@ -35,7 +35,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 	{
 		int updateStaus = 0;
 		try{
-			LOGGER.info("Trying to construct database query to update data of organisation details in Training Partner");
+			LOGGER.debug("Trying to construct database query to update data of organisation details in Training Partner");
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
 			parameters.put("applicationId",profileCreationTrainingPartnerOrganizationDetailsDto.getApplicationId());

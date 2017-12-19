@@ -35,18 +35,18 @@ public class NonAssignedBatchesDao extends AbstractTransactionalDao{
 
 //    public Collection<NonAssignedBatchesDto> getCollection(ArrayList<String> rec) {
     public Collection<NonAssignedBatchesDto> getCollection() {
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In NonAssignedBatchesDao - getCollection");
-//		LOGGER.info("Parameters Received from Service are - 'rec': " +rec);
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In NonAssignedBatchesDao - getCollection");
+//		LOGGER.debug("Parameters Received from Service are - 'rec': " +rec);
 		   	
-		LOGGER.info("Select those batches which haven't been proposed and assigned to any agency ");
+		LOGGER.debug("Select those batches which haven't been proposed and assigned to any agency ");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 
 
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(nonAssignedBatchesConfigSql.getSelectSqlNonAssignedBatches(), parameters, ROW_MAPPER);
     }
 
@@ -64,7 +64,7 @@ public class NonAssignedBatchesDao extends AbstractTransactionalDao{
             String assessmentDate = resultSet.getString("assessmentDate");
             String recommendedAB = "No Recommendations";
 
-            LOGGER.info("Getting agencyID show interest ");
+            LOGGER.debug("Getting agencyID show interest ");
 
             return new NonAssignedBatchesDto(batchID, state, district, batchEndDate, assessmentDate, recommendedAB);
 

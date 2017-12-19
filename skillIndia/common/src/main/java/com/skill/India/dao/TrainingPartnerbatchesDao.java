@@ -34,22 +34,22 @@ public class TrainingPartnerbatchesDao extends AbstractTransactionalDao {
     
     public Collection<TrainingPartnerBatchesDto> getUpdateRowMapper(int applicationId) {
     	
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In TrainingPartnerbatchesDao - getUpdateRowMapper");
-		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In TrainingPartnerbatchesDao - getUpdateRowMapper");
+		LOGGER.debug("Parameters Received from Service are - 'applicationId': " +applicationId);
 		   	
-		LOGGER.info("Getting All batches of Training Partner");
+		LOGGER.debug("Getting All batches of Training Partner");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("applicationId", applicationId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		//return getJdbcTemplate().query
 				
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSqlOfBatches(), parameters, 
         		ROW_MAPPER); 
     }

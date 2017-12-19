@@ -29,44 +29,44 @@ public class LoginDao extends AbstractTransactionalDao {
 	
 	
 	public Integer userExistence(String userId, String password){
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In LoginDao - userExistence");
-		LOGGER.info("Parameters Received from Service are - 'userId': " +userId+" 'password': ");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In LoginDao - userExistence");
+		LOGGER.debug("Parameters Received from Service are - 'userId': " +userId+" 'password': ");
 		   	
-		LOGGER.info("Checking Existense of User");
+		LOGGER.debug("Checking Existense of User");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("userId", userId);
 		parameters.put("password", password);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().queryForObject(loginconfig.getCheckUserSql(), parameters, Integer.class);
 		
 	}
 	
 	public Collection<LoginDto> getValidateLoginUser(String userId, String password) {
-//		LOGGER.info("After successful existence, validate the user against entered credentials");
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In LoginDao - getValidateLoginUser");
-		LOGGER.info("Parameters Received from Service are - 'userId': " +userId+" 'password': ");
+//		LOGGER.debug("After successful existence, validate the user against entered credentials");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In LoginDao - getValidateLoginUser");
+		LOGGER.debug("Parameters Received from Service are - 'userId': " +userId+" 'password': ");
 		   	
-		LOGGER.info("Getting UserRole,UserStatus of User ");
+		LOGGER.debug("Getting UserRole,UserStatus of User ");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("userId", userId);
 		parameters.put("password", password);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(loginconfig.getSelectSql(),parameters, ROW_MAPPER);//query for multiple rows from database
 	}
 	

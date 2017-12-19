@@ -34,16 +34,16 @@ public class FAQTrainingCentresNotTakingAnyBatchesDao extends AbstractTransactio
 	private static final FAQTrainingCentresNotTakingAnyBatchesRowMapper ROW_MAPPER = new FAQTrainingCentresNotTakingAnyBatchesRowMapper();
 	
 	public Collection<FAQTrainingCentresNotTakingAnyBatchesDto> getTotalTrainingCentresNotTakingAnyBatches() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In FAQTrainingCentresNotTakingAnyBatchesDao - getTotalTrainingCentresNotTakingAnyBatches");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In FAQTrainingCentresNotTakingAnyBatchesDao - getTotalTrainingCentresNotTakingAnyBatches");
 				   	
-		LOGGER.info("getting Number of training centers not taking any batches");
+		LOGGER.debug("getting Number of training centers not taking any batches");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(fAQConfigSql.getSelectSqTrainingCentresNotTakingAnyBatches(), parameters, ROW_MAPPER);
 	}
 	

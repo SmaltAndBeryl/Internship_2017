@@ -28,32 +28,32 @@ public ShowInterestUpcomingBatchesConfigSql insertConfigSql;
 
 public int insertShowInterestUpcomingBatches(int id) {
 	
-	LOGGER.info("Request Received from Service");
-	LOGGER.info("In ShowInterestUpcomingBatchesDao - insertShowInterestUpcomingBatches");
-	LOGGER.info("Parameters Received from Service are - 'id': " +id);
+	LOGGER.debug("Request Received from Service");
+	LOGGER.debug("In ShowInterestUpcomingBatchesDao - insertShowInterestUpcomingBatches");
+	LOGGER.debug("Parameters Received from Service are - 'id': " +id);
 	   	
-	LOGGER.info("Marking the Show Interest for Batch Id with Agency Id with TimeStamp");
+	LOGGER.debug("Marking the Show Interest for Batch Id with Agency Id with TimeStamp");
 	
 	//Map<String, Object> parameters = new HashMap<>();
 	//parameters.put("batch",27);
 	//parameters.put("batch_id", "BA_27");
 
 	
-	LOGGER.info("Creating HashMap object");
+	LOGGER.debug("Creating HashMap object");
 	Map<String, Object> parameters = new HashMap<>();
-	LOGGER.info("object created successfully");
+	LOGGER.debug("object created successfully");
 	
 	
-	LOGGER.info("Creating TimeStamp object");
+	LOGGER.debug("Creating TimeStamp object");
 	Timestamp timeStamp=new Timestamp(System.currentTimeMillis());
-	LOGGER.info("Successfully created and initialized");
+	LOGGER.debug("Successfully created and initialized");
 	
-	LOGGER.info("Inserting parameters to HashMap object");
+	LOGGER.debug("Inserting parameters to HashMap object");
 	parameters.put("batch_id",id);
 	parameters.put("time_stamp", timeStamp);
-	LOGGER.info("Parameters inserted");
+	LOGGER.debug("Parameters inserted");
 	
-	LOGGER.info("Executing SQL query and returning response");
+	LOGGER.debug("Executing SQL query and returning response");
 	return getJdbcTemplate().update(insertConfigSql.getinsertSql(), parameters);
 //	return new ShowInterestUpcomingBatchesDto(id, batch_id);
 

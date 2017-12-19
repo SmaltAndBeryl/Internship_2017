@@ -106,7 +106,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 			int status =0;
 			
 			try{
-				LOGGER.info("Trying to construct database query to insert center level registration data of training partner");
+				LOGGER.debug("Trying to construct database query to insert center level registration data of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 		
 				parameters.put("trainingPartnerRegistrationId",trainingPartnerRegistrationId);
@@ -203,7 +203,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		{
 			int status = 0;
 			try{
-				LOGGER.info("Trying to construct database query to insert details of institution grant of training partner");
+				LOGGER.debug("Trying to construct database query to insert details of institution grant of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				
 				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
@@ -234,7 +234,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		{
 			int status =0;
 			try{
-				LOGGER.info("Trying to construct database query to insert details of institution recognition of training partner");
+				LOGGER.debug("Trying to construct database query to insert details of institution recognition of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				
 				/*
@@ -271,7 +271,7 @@ public class ProfileCreationTrainingPartnerInsertDataDao extends AbstractTransac
 		{
 			int status =0;
 			try{
-				LOGGER.info("Trying to construct database query to insert details of prior experience of training partner");
+				LOGGER.debug("Trying to construct database query to insert details of prior experience of training partner");
 				Map<String, Object> parameters=new HashMap<String, Object>();
 				parameters.put("trainingPartnerRegistrationId", trainingPartnerRegistrationId);
 				parameters.put("courseName",profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto.getCourseName().toUpperCase());

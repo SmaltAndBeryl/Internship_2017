@@ -26,21 +26,21 @@ public class GetUserIdPasswordAndRoleDao extends AbstractTransactionalDao {
 	
 	public Integer userExistence(String userId){
 		
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In GetUserIdPasswordAndRoleDao - userExistence");
-		LOGGER.info("Parameters Received from Service are - 'userId': " +userId);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In GetUserIdPasswordAndRoleDao - userExistence");
+		LOGGER.debug("Parameters Received from Service are - 'userId': " +userId);
 		   	
-		LOGGER.info("Checking Existense of User with User Id");
+		LOGGER.debug("Checking Existense of User with User Id");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("userId", userId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().queryForObject(sessionManagementConfigSql.getCheckUserSql(), parameters, Integer.class);
 		
 	}
@@ -50,21 +50,21 @@ public class GetUserIdPasswordAndRoleDao extends AbstractTransactionalDao {
 	
 	public  SessionManagementDto getUserIdPasswordAndRole(String userId)
 	{
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In GetUserIdPasswordAndRoleDao - getUserIdPasswordAndRole");
-		LOGGER.info("Parameters Received from Service are - 'userId': " +userId);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In GetUserIdPasswordAndRoleDao - getUserIdPasswordAndRole");
+		LOGGER.debug("Parameters Received from Service are - 'userId': " +userId);
 		   	
-		LOGGER.info("Getting UserId , UserRole and Password for User with User Id");
+		LOGGER.debug("Getting UserId , UserRole and Password for User with User Id");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String,Object> parameters=new HashMap<String, Object>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("userId",userId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(sessionManagementConfigSql.getGetUserIdPasswordRole(), parameters,sessionRowMapper).iterator().next();
 	}
 	

@@ -34,21 +34,21 @@ public class FAQTotalBatchesWithTotalCandidatesEnrolledYearWiseDao extends Abstr
 	private static TotalBatchesWithTotalCandidatesEnrolledRowMapper ROW_MAPPER = new TotalBatchesWithTotalCandidatesEnrolledRowMapper();
 	
 	public Collection<FAQTotalBatchesWithTotalCandidatesEnrolledMonthWiseDto> getTotalBatchesWithTotalCandidatesEnrolledYearWise(int year) {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In FAQTotalBatchesWithTotalCandidatesEnrolledYearWiseDao - getTotalBatchesWithTotalCandidatesEnrolledYearWise");
-		LOGGER.info("Parameters Received from Service are - 'year': " +year);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In FAQTotalBatchesWithTotalCandidatesEnrolledYearWiseDao - getTotalBatchesWithTotalCandidatesEnrolledYearWise");
+		LOGGER.debug("Parameters Received from Service are - 'year': " +year);
 				   	
-		LOGGER.info("getting total batches with Total candidates enrolled in a year");
+		LOGGER.debug("getting total batches with Total candidates enrolled in a year");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("year", year);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
 		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlTotalBatchesWithTotalCandidatesEnrolledYearWise(), parameters, ROW_MAPPER);	
 	}
 	

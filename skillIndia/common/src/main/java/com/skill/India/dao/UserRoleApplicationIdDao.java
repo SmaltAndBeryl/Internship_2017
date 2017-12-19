@@ -24,7 +24,7 @@ public class UserRoleApplicationIdDao extends AbstractTransactionalDao{
     private static PdfDataDaoRowMapper ROW_MAPPER = new PdfDataDaoRowMapper();
 
     public Collection<UserRoleApplicationIdDto> dataBeanCollectionUserRoleApplicationId(String applicationId){
-    	LOGGER.info("Trying to get user role based on application id");
+    	LOGGER.debug("Trying to get user role based on application id");
         Map<String,Object> parameters = new HashMap<>();
         parameters.put("applicationId", applicationId);
         return getJdbcTemplate().query(pdfDataConfigSql.getSelectUserRoleApplicationId(), parameters, ROW_MAPPER);

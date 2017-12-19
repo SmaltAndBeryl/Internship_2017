@@ -28,17 +28,17 @@ public class DownloadExcelDao extends AbstractTransactionalDao{
 	
 	private static final UpdateRowSelectRowMapper ROW_MAPPER = new UpdateRowSelectRowMapper();
 	public Collection<DownloadExcelDto> getUpateRowMapper() {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In DownloadExcelDao - getUpateRowMapper");
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In DownloadExcelDao - getUpateRowMapper");
 				   	
-		LOGGER.info("getting CSV location stored at machine");
+		LOGGER.debug("getting CSV location stored at machine");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 				
       //return getJdbcTemplate().query
-        LOGGER.info("Executing SQL query and returning response");
+        LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 
         		ROW_MAPPER);
 }

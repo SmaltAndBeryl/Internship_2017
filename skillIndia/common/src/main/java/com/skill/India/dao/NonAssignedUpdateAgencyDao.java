@@ -21,24 +21,24 @@ public class NonAssignedUpdateAgencyDao extends AbstractTransactionalDao{
     private static final Logger LOGGER = LoggerFactory.getLogger(NonAssignedUpdateAgencyDao.class);
     public int putAgencyId(String agencyId, String batchId, String responseType){
     	
-    	LOGGER.info("Request Received from Service");
-    	LOGGER.info("In NonAssignedUpdateAgencyDao - putAgencyId");
-    	LOGGER.info("Parameters Received from Service are - 'agencyId': " +agencyId+" 'batchId': "+batchId+" 'responseType': "+responseType);
+    	LOGGER.debug("Request Received from Service");
+    	LOGGER.debug("In NonAssignedUpdateAgencyDao - putAgencyId");
+    	LOGGER.debug("Parameters Received from Service are - 'agencyId': " +agencyId+" 'batchId': "+batchId+" 'responseType': "+responseType);
 		   	
-    	LOGGER.info("Update the Response and Agency for a particular Batch");
+    	LOGGER.debug("Update the Response and Agency for a particular Batch");
     	
-    	LOGGER.info("Creating HashMap object");
+    	LOGGER.debug("Creating HashMap object");
 		Map<String,Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("agencyId", agencyId);
         parameters.put("batchId", batchId);
         parameters.put("responseType", responseType);
-        LOGGER.info("Parameters inserted");
-//        LOGGER.info("Parameters used while assigning agency to batch are " + parameters.toString());
+        LOGGER.debug("Parameters inserted");
+//        LOGGER.debug("Parameters used while assigning agency to batch are " + parameters.toString());
       
-        LOGGER.info("Executing SQL query and returning response");
+        LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().update(configSql.getUpdateSqlProposeAgency(), parameters);
     }
 }

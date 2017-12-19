@@ -28,21 +28,21 @@ public class FAQStatusOfAParticularBatchWithIdDao extends AbstractTransactionalD
 	public static final FAQStatusOfAParticularBatchWithIdRowMapper ROW_MAPPER = new FAQStatusOfAParticularBatchWithIdRowMapper(); 
 	
 	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(Integer batchId) {
-		LOGGER.info("Request Received from Service");
-		LOGGER.info("In FAQStatusOfAParticularBatchWithIdDao - getStatusOfAParticularBatchWithId");
-		LOGGER.info("Parameters Received from Service are - 'batchId': " +batchId);
+		LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In FAQStatusOfAParticularBatchWithIdDao - getStatusOfAParticularBatchWithId");
+		LOGGER.debug("Parameters Received from Service are - 'batchId': " +batchId);
 				   	
-		LOGGER.info("getting status of a batch with Batch Id");
+		LOGGER.debug("getting status of a batch with Batch Id");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
 		Map<String, Object> parameters = new HashMap<>();
-		LOGGER.info("object created successfully");
+		LOGGER.debug("object created successfully");
 		
-		LOGGER.info("Inserting parameters to HashMap object");
+		LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("batchId", batchId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
 		return getJdbcTemplate().query(fAQConfigSql.getSelectSqlStatusOfAParticularBatchWithId(), parameters, ROW_MAPPER);
 						
 	}

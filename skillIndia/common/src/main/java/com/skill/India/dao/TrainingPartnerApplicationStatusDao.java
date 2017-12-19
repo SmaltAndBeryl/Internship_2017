@@ -33,22 +33,22 @@ private static final Logger LOGGER = LoggerFactory.getLogger(TrainingPartnerAppl
     
     
     public Collection<TrainingPartnerApplicationStatusDto> getUpateRowMapper(int applicationId) {
-    	LOGGER.info("Request Received from Service");
-		LOGGER.info("In TrainingPartnerApplicationStatusDao - getUpateRowMapper");
-		LOGGER.info("Parameters Received from Service are - 'applicationId': " +applicationId);
+    	LOGGER.debug("Request Received from Service");
+		LOGGER.debug("In TrainingPartnerApplicationStatusDao - getUpateRowMapper");
+		LOGGER.debug("Parameters Received from Service are - 'applicationId': " +applicationId);
 		
-		LOGGER.info("Getting Training Partner Application status");
+		LOGGER.debug("Getting Training Partner Application status");
 		
-		LOGGER.info("Creating HashMap object");
+		LOGGER.debug("Creating HashMap object");
         Map<String, Object> parameters = new HashMap<>();
-        LOGGER.info("object created successfully");
+        LOGGER.debug("object created successfully");
 		
-        LOGGER.info("Inserting parameters to HashMap object");
+        LOGGER.debug("Inserting parameters to HashMap object");
 		parameters.put("applicationId",applicationId);
-		LOGGER.info("Parameters inserted");
+		LOGGER.debug("Parameters inserted");
 		//return getJdbcTemplate().query
 		
-		LOGGER.info("Executing SQL query and returning response");
+		LOGGER.debug("Executing SQL query and returning response");
         return getJdbcTemplate().query(updateConfigSql.getSelectSql(), parameters, 
         		ROW_MAPPER);       
     }
