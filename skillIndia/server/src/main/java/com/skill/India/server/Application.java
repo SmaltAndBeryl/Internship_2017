@@ -32,7 +32,7 @@ public class Application
          
          app.addListeners(new ApplicationPidFileWriter(APPLICATION_PID));
          app.run(args);
-         LOGGER.info("Time Zone set to {} ....", TimeZone.getDefault().getDisplayName());
+         LOGGER.debug("Time Zone set to {} ....", TimeZone.getDefault().getDisplayName());
          
     }
 }
