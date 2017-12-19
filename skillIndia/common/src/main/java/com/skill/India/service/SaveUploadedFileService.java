@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.skill.India.common.ReadApplicationConstants;
@@ -32,7 +33,7 @@ public class SaveUploadedFileService {
 	@Autowired
 	private ReadApplicationConstants readApplicationConstants;
 
-	public String saveUploadedFile(MultipartFile file,String type,String userId)
+	public @ResponseBody String saveUploadedFile(MultipartFile file,String type,String userId)
 	{	 
 		LOGGER.debug("Request Received from Controller");
 		LOGGER.debug("In SaveUploadedFileService - saveUploadedFile");
