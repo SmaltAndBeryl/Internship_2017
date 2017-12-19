@@ -66,7 +66,7 @@ public class ValidateTrainingPartnerCSVService {
 			
 			LOGGER.debug("Setting type of object to ValidateTrainingPartnerCSVDto");
 			strategy.setType(ValidateTrainingPartnerCSVDto.class);
-		String [] trainingPartnerCSVColumns=new String[]{"trainingPartnerId","applicationId","trainingPartnerName","batchType"};
+		String [] trainingPartnerCSVColumns=new String[]{"trainingPartnerId","applicationId","trainingPartnerName"};
 		
 		LOGGER.debug("Setting ColumnMapping of object");
 		strategy.setColumnMapping(trainingPartnerCSVColumns);
@@ -106,7 +106,6 @@ public class ValidateTrainingPartnerCSVService {
 			String trainingPartnerId=trainingPartnerCSVData.getTrainingPartnerId().trim();
 			String applicationId=trainingPartnerCSVData.getApplicationId().trim();
 			String trainingPartnerName=trainingPartnerCSVData.getTrainingPartnerName().trim();
-			String batchType = trainingPartnerCSVData.getBatchType().trim();
 			/*
 			 * Checking for error in trainingPartnerId column 
 			 */
@@ -138,18 +137,6 @@ public class ValidateTrainingPartnerCSVService {
 				errorString=errorString+ "Error in 'trainingPartnerName' column ";
 			}
 			
-			/*
-			 * Checking for error in batchType column
-			 */
-			
-			LOGGER.debug("Checking Validations of batchType");
-			if(ValidationUtils.numbersCheck(batchType) || batchType.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString +"Error in 'batchType' column .";
-			}
-			
-			
 			LOGGER.debug("Fetching Errors in records and making error String if found any");
 			if(errorStatus==1)
 			{
@@ -166,7 +153,6 @@ public class ValidateTrainingPartnerCSVService {
 				LOGGER.debug("Converting all values to lower Case");
 				trainingPartnerName=trainingPartnerName.toLowerCase();
 				trainingPartnerId=trainingPartnerId.toLowerCase();
-				batchType=batchType.toLowerCase();
 				 /*
 				  * Inserting row wise data in HashMap
 				  */
@@ -175,7 +161,6 @@ public class ValidateTrainingPartnerCSVService {
 				record.put("trainingPartnerId",trainingPartnerId);
 				record.put("applicationId",applicationId);
 				record.put("trainingPartnerName",trainingPartnerName);
-				record.put("batchType",batchType);
 				
 				LOGGER.debug("Adding HashMap object into ArrayList");
 				 arrayOfRecords.add(record);
