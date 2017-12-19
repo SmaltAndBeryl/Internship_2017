@@ -2,9 +2,10 @@ page3.service('fileUploadDataImport', ['$http', function ($http) {
     this.uploadFileToUrl = function (file, csvType, uploadUrl) {
         var fd = new FormData();
         console.log('File is :'+file);
-        var file = document.getElementById('csvFile').files[0];
+        //var file = document.getElementById('csvFile').files[0];
         fd.append('csvType', csvType);
-        fd.append('file',  document.getElementById('csvFile').files[0]);
+        fd.append('file', file);
+        //fd.append('file',  document.getElementById('csvFile').files[0]);
         console.log('CSVType:---'+csvType);
         console.log('FILE-----'+file);
                 
@@ -15,22 +16,25 @@ page3.service('fileUploadDataImport', ['$http', function ($http) {
             headers: {'Content-Type': undefined},
             
             transformRequest: angular.identity,
-            transformResponse: [function (data) {
+            transformResponse: function (data) {
             	console.log(data);
             	thisIsResponse=data;
             	console.log(thisIsResponse);
             	return data;
-            }]
+            }
         }).then(function(response) {
             
         	console.log("response of success -----");
         	console.log(thisIsResponse);
         	responseOfUpload(thisIsResponse);
+        	 
             return response.data;
+           
             
         }, function errorCallback(response) {
         	console.log("Error in receiving response from backend------" +response);
             console.log('Error: '+response);
+            return response.data;
          });
         
     }

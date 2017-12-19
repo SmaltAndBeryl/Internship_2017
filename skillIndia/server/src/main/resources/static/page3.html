@@ -4,7 +4,7 @@
 <div ng-controller="page3">
     <div class="dataImport-container" ng-controller="page3">
         <h3 class="import">Import</h3>
-        <div class="upload" ng-include="'partials/dataImportCSV.html'"></div>
+        <div class="upload " ng-include="'partials/dataImportCSV.html'"></div>
         <div class="historytable">
             <h4 class="title">Import History</h4>
             <div>
@@ -20,13 +20,13 @@
             </form>
             
             <div>
-                <div ui-grid="searchBatch" ui-grid-auto-resize class="grid1"></div>
+                <div ui-grid="searchBatch" ui-grid-auto-resize ui-grid-cellNav class="grid1"></div>
             </div>
         </div>
         <div class="historytable">
             <h5 class="title">Certificate Upload History</h5>
             <div>
-                <div ui-grid="certificateImportHistory" ui-grid-auto-resize class="grid "></div>
+                <div ui-grid="certificateImportHistory" ui-grid-auto-resize ui-grid-cellNav class="grid "></div>
             </div>
         </div>
     </div>

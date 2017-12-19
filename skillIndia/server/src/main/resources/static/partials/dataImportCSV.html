@@ -1,6 +1,6 @@
 
 <div ng-controller="page3">
-    <div class="container col-md-12" id="uploadDiv">
+    <div class="container col-md-12 form-horizontal" id="uploadDiv">
         <form name="myform">
             <div class="row" id="uploadDivRow">
                 <div class="col-md-3" id="csvTypeDiv">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-md-5" id="csvFileDiv">
                     <div class="form-group">
-                        <input type="file" id="csvFile" accept=".csv" class="file" file-model="uploadCsvFile" />
+                        <input type="file" id="csvFile" accept=".csv" class="file" file-model="dataImport.uploadCsvFile" />
                         <div class="input-group col-xs-12">
                             <input type="text" id="csvFileName" ng-model="csvName" class="form-control input" data-error="Please enter .csv file" placeholder="Upload .csv File Here" required/>
                             <span class="input-group-btn">
@@ -24,8 +24,8 @@
                 </div>
 
             </div>
-
+<div id="responseOfUpload" class="form-horizontal col-md-12"></div>
         </form>
-        <div id="responseOfUpload"></div>
+        
     </div>
 </div>

@@ -2,6 +2,7 @@
 {
  width:100%;
  background-color:#ECF0F1;
+ padding:1em;
     }
 .grid{
 	margin-left: 20px;
@@ -30,28 +31,22 @@
   padding:1em;
 }
 .upload{ 
-  height: 91px;
-  margin-left: 21px;
-   margin-right: 21px;
-  background-color: #fffefe;
+
+  max-width: 100%;
+    max-height: 100%;
+    background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1);
 }
 .historytable{
-  max-height: 420px; 
-  margin-left: 21px;
-   margin-right: 21px;
-  margin-top: 10px;
-  margin-bottom:10px;
+
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1); 
   overflow: scroll;
 }
 .title{ 
-  height: 15px;
+
   font-size: 14px;
-  padding-top: 30px;
-  padding-left: 20px;
-  padding-bottom: 15px;
+
   font-weight: 600;
   text-align: left;
   color: #676a6c;
@@ -63,40 +58,20 @@
     visibility: hidden;
     position: absolute;
 }
-#uploadDiv
-{
-    max-width: 100%;
-    max-height: 100%;
-}
+
 #uploadDivRow
 {
-    padding-top: 2em;
+/*     padding-top: 2em; */
     background-color: white;
 }
-#csvTypeDiv
-{
-    padding-left: 2em;
-}
-#csvFileDiv
-{
-    padding-left: 2em;
-}
-#uploadButtonDiv
-{
-    padding-left: 1em;
-    padding-right: 1em;
-}
+
 #uploadButton
 {
     max-width: 100%;
 }
-#responseOfUpload
-{
-	padding-left: 1em;
-	overflow: hidden;
-}
+
 .sno{
-  height: 246px;
+/*   height: 246px; */
   background-color:#fffefe;
   border: solid 1px #e7e7e7;
 
@@ -106,7 +81,7 @@
   color:(--slate-grey);}
   
 .fname{
-  height: 11px;
+/*   height: 11px; */
 	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -117,7 +92,7 @@
   color:(--slate-grey);}
   
 .type{
-  height: 36px;
+/*   height: 36px; */
 	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -128,7 +103,7 @@
   color:(--slate-grey);}
   
 .date{
-  height: 36px;
+/*   height: 36px; */
 object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -139,7 +114,7 @@ object-position: center;
   color: (--slate-grey);}
   
 .uby{
-  height: 36px;
+/*   height: 36px; */
 	object-position: center;
   background-color: #ffffff;
   border: solid 1px #e7e7e7;
@@ -150,7 +125,7 @@ object-position: center;
   }
   
   .vub{
-  height: 36px;
+/*   height: 36px; */
 	padding-top: 7px;
 	text-align: center;
 	vertical-align: middle;
@@ -163,7 +138,7 @@ object-position: center;
   }
   .layer {
   
-  height: 10px;
+/*   height: 10px; */
 
   font-size: 13px;
   font-weight: bold;
@@ -173,7 +148,7 @@ object-position: center;
  
 }.File-Name {
    
-  height: 11px;
+/*   height: 11px; */
  
   font-size: 13px;
   font-weight: bold;
@@ -184,7 +159,7 @@ object-position: center;
 }
 .Type {
   
-  height: 13px;
+/*   height: 13px; */
   
   font-size: 13px;
   font-weight: bold;
@@ -194,7 +169,7 @@ object-position: center;
 }
 .Date {
 
-  height: 11px;
+/*   height: 11px; */
 
   font-size: 13px;
   font-weight: bold;
@@ -205,7 +180,7 @@ object-position: center;
 }
 .Uploaded-By {
 
-  height: 13px;
+/*   height: 13px; */
 
   font-size: 13px;
   font-weight: bold;
@@ -216,7 +191,7 @@ object-position: center;
 }
 .View-Uploaded-File {
 
-  height: 13px;
+/*   height: 13px; */
 
   font-size: 13px;
   font-weight: bold;
@@ -226,16 +201,16 @@ object-position: center;
 }
  
 .certificate{ 
-  height: 150px; 
-  margin-left: 21px;
-   margin-right: 21px;
-  margin-top: 10px;
+/*   height: 150px;  */
+/*   margin-left: 21px; */
+/*    margin-right: 21px; */
+/*   margin-top: 10px; */
   background-color: #fffefe;
   box-shadow: 0px 1px 0 0 rgba(0, 0, 0, 0.1); 
   
 }
 .Search-Batch-ID {
-  height: 12px;
+/*   height: 12px; */
   font-size: 13px;
   text-align: left;
   color: #676a6c;
@@ -243,30 +218,30 @@ object-position: center;
     margin-left: 24px;
 }
 .text{
-    width:270px;
-    height:30px;
-    margin-top:18px;
-    margin-left:10px;
+/*     width:270px; */
+/*     height:30px; */
+/*     margin-top:18px; */
+/*     margin-left:10px; */
     border: 1px solid #ccc;
     border-radius: 1px;
 }
 .button{
     font-size:10pt;
-    width:76px; 
-    height:34px;
+/*     width:76px;  */
+/*     height:34px; */
     color:white;
     background-color:#1ab394;
     border:0px solid #336600;
     border-radius:4px;
-    padding:4px;
-   margin-left:10px;
+/*     padding:4px; */
+/*    margin-left:10px; */
 } 
   
 #responseMessage
 {
 	display:inline;
 	color:red;
-	padding-left: 1em;
+/* 	padding-left: 1em; */
     	font-size: larger;
 }
 

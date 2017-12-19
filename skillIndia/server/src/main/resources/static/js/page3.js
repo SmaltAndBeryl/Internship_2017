@@ -8,6 +8,7 @@ page3.controller('page3',function($scope, $http, fileUploadDataImport, zipCertif
     	  enableCellEdit : false,
     	  enableColumnMenus : false,
        enableHorizontalScrollbar:0,
+       enableVerticalScroll:1,
 
     columnDefs:[
     	  { name: 'SNo',           displayName: 'SNo.',              cellClass:'sno',  headerCellClass:'layer', cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' },
@@ -19,6 +20,7 @@ page3.controller('page3',function($scope, $http, fileUploadDataImport, zipCertif
     	       ]
       };
 
+$scope.dataImport={};
 
       $scope.download = function(rowData){
     	  var  fileName = rowData.entity.csvname;
@@ -29,9 +31,7 @@ page3.controller('page3',function($scope, $http, fileUploadDataImport, zipCertif
          $http.get("/importHistory")
           .then(function(response){
         	  $scope.dataImportHistory.data = response.data;
-//        	  var obj = $scope.dataImportHistory.data[0].csvname;
-//        	  var str = JSON.stringify(obj)
-//        	  console.log(Object.values(obj)+ "     sasas    "+ str);
+
         });
 
 $scope.optionValues = [{
@@ -62,12 +62,17 @@ $scope.optionValues = [{
 
      $scope.uploadCSV = function(){
 
-     	var file = $scope.uploadCsvFile;
+     	var file = $scope.dataImport.uploadCsvFile;
      	console.log('File selected is :'+file);
      	var csvType = $scope.csvType;
 
          var uploadUrl = "/upload";
-         fileUploadDataImport.uploadFileToUrl(file, csvType, uploadUrl);
+       fileUploadDataImport.uploadFileToUrl(file, csvType, uploadUrl);
+       $http.get("/importHistory")
+       .then(function(response){
+     	  $scope.dataImportHistory.data = response.data;
+
+     });
 
      };
      /*
@@ -81,6 +86,7 @@ enableFiltering: false,
 enableCellEdit : false,
 enableColumnMenus : false,
 enableHorizontalScrollbar:0,
+enableVerticalScroll:1,
 
 columnDefs:[
 { name: 'SNo',             displayName: 'SNo',                cellClass:'sno',   headerCellClass:'layer', cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' },
