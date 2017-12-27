@@ -79,9 +79,9 @@
                                 <div class="col-xs-1">
                                     <a href="#" class="active" id="login-form-link">Login</a>
                                 </div>
-                                <div class="col-xs-1 col-xs-offset-1">
-                                    <a href="#" id="register-form-link">SignUp</a>
-                                </div>
+<!--                                 <div class="col-xs-1 col-xs-offset-1"> -->
+<!--                                     <a href="#" id="register-form-link">SignUp</a> -->
+<!--                                 </div> -->
                             </div>
                         </div>
                         <div class="panel-body">
@@ -122,50 +122,50 @@
 
 
                                 <!-- SIGN UP FORM -->
-								<div style="display: none;" data-toggle="validator" id="register-form">
-                                <form role="form"  ng-submit="nav.signup()">
-                                    <div class="form-group col-xs-6">
-                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="nav.newUser.organizationName" />
-                                    </div>
-                                    <div class="form-group col-xs-6">
-                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="nav.newUser.sPOCName">
-                                    </div>
-                                    <div class="form-group col-xs-6">
-                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="nav.newUser.userId" />
-                                        <div class="help-block with-errors">
-                                        </div>
+<!-- 								<div style="display: none;" data-toggle="validator" id="register-form"> -->
+<!--                                 <form role="form"  ng-submit="nav.signup()"> -->
+<!--                                     <div class="form-group col-xs-6"> -->
+<!--                                         <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="nav.newUser.organizationName" /> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group col-xs-6"> -->
+<!--                                         <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="nav.newUser.sPOCName"> -->
+<!--                                     </div> -->
+<!--                                     <div class="form-group col-xs-6"> -->
+<!--                                         <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="nav.newUser.userId" /> -->
+<!--                                         <div class="help-block with-errors"> -->
+<!--                                         </div> -->
                                         
-                                    </div>
-                                    <div class="form-group col-xs-12">
-                                            <label><input type="radio" ng-model="nav.newUser.userRole" value="TP" name="" />Training Partner</label>
-                                            &nbsp; &nbsp; &nbsp; <label><input type="radio" ng-model="nav.newUser.userRole" value="AB" name="" />Assessment Body</label>
-                                        </div>
-                                    <div class="wrraper">
-                                        <div class="form-group input-group">
-                                            <input type="password" minlength=6 name="registerPassword" id="registerPassword" tabindex="2" data-error-message="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.newUser.password" />
-                                            <div class="help-block with-errors"></div>
-                                            <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">
-                                    <div>
-                                       <button id="signUptoggleBtn" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button>
-                                    </div>
-                                 </span>
-                                        </div>
-                                    </div>
-                                    <div class="errorMessageLoginPage">{{errorMessagesForSignUp}}</div>
-                                    <div class="successMessageLoginPage">{{successMessagesForSignUp}}</div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-sm-offset-3">
-                                                <input type="submit" name="signup" id="signup" tabindex="4" class="form-control button" value="SIGNUP" />
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                     </div> -->
+<!--                                     <div class="form-group col-xs-12"> -->
+<!--                                             <label><input type="radio" ng-model="nav.newUser.userRole" value="TP" name="" />Training Partner</label> -->
+<!--                                             &nbsp; &nbsp; &nbsp; <label><input type="radio" ng-model="nav.newUser.userRole" value="AB" name="" />Assessment Body</label> -->
+<!--                                         </div> -->
+<!--                                     <div class="wrraper"> -->
+<!--                                         <div class="form-group input-group"> -->
+<!--                                             <input type="password" minlength=6 name="registerPassword" id="registerPassword" tabindex="2" data-error-message="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.newUser.password" /> -->
+<!--                                             <div class="help-block with-errors"></div> -->
+<!--                                             <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc"> -->
+<!--                                     <div> -->
+<!--                                        <button id="signUptoggleBtn" class="glyphicon glyphicon-eye-open toggler-ico" type="button">&nbsp;</button> -->
+<!--                                     </div> -->
+<!--                                  </span> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                     <div class="errorMessageLoginPage">{{errorMessagesForSignUp}}</div> -->
+<!--                                     <div class="successMessageLoginPage">{{successMessagesForSignUp}}</div> -->
+<!--                                     <div class="form-group"> -->
+<!--                                         <div class="row"> -->
+<!--                                             <div class="col-sm-6 col-sm-offset-3"> -->
+<!--                                                 <input type="submit" name="signup" id="signup" tabindex="4" class="form-control button" value="SIGNUP" /> -->
+<!--                                             </div> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
                                     
-                                </form>
-                                <div class ="signup-footer">
-                                        &nbsp; &nbsp; &nbsp; By clicking signup,you agree to the SCGJ'S &nbsp;<b>"User Agreement</b>, <b>privacy policy,</b> and <b><br/>cookie policy"	</b>
-                                    </div>
-                                </div>
+<!--                                 </form> -->
+<!--                                 <div class ="signup-footer"> -->
+<!--                                         &nbsp; &nbsp; &nbsp; By clicking signup,you agree to the SCGJ'S &nbsp;<b>"User Agreement</b>, <b>privacy policy,</b> and <b><br/>cookie policy"	</b> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
                                 
                             </div>
                         </div>
