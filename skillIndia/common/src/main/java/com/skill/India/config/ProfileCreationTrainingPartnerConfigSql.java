@@ -320,7 +320,6 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	 */
 	public void setInsertIntoTrainingPartnerOrganizationDetails(
 			String insertIntoTrainingPartnerOrganizationDetails) {
-		System.out.println("In tpconfig : " +insertIntoTrainingPartnerOrganizationDetails);
 		this.insertIntoTrainingPartnerOrganizationDetails = insertIntoTrainingPartnerOrganizationDetails;
 	}
 	/**

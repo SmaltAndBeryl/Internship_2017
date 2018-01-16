@@ -29,7 +29,7 @@ public class SessionUserUtility {
 	 
 	 public SessionManagementDto getSessionMangementfromSession(){
 		 	LOGGER.debug("Request Received to get Session");
-		 	LOGGER.debug("In UserIdtoApplicationIdService - getSessionMangementfromSession");
+		 	
 		 	LOGGER.debug("Sending Request to get SessionManagementDto");
 		 return (SessionManagementDto)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	 }
