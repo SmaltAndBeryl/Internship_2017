@@ -4,7 +4,7 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 
 	
 	private String assessmentBodyRegistrationId;
-	private String applicationId;
+	private int applicationId;
 	private String organizationName;
 	private String sPOCName;
 	private String address;
@@ -64,7 +64,7 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 	 * @param affiliatedToAnySectorSkillCouncil
 	 */
 	public ProfileCreationAssessmentBodyRegistrationDetailsDto(
-			String assessmentBodyRegistrationId, String applicationId,
+			String assessmentBodyRegistrationId, int applicationId,
 			String organizationName, String sPOCName, String address,
 			String city, String state, String pincode, String mobileNumber,
 			String alternateMobileNumber, String landlineNumber,
@@ -116,13 +116,13 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 	/**
 	 * @return the applicationId
 	 */
-	public String getApplicationId() {
+	public int getApplicationId() {
 		return applicationId;
 	}
 	/**
 	 * @param applicationId the applicationId to set
 	 */
-	public void setApplicationId(String applicationId) {
+	public void setApplicationId(int applicationId) {
 		this.applicationId = applicationId;
 	}
 	/**

@@ -43,6 +43,7 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	private String insertDataInApplication;
 	private String updateDataInApplication;
 	
+	private String isApplicationIdPresentInTrainingPartner;
 	private String isTrainingCenterPresent;
 	private String isInstituteGrantPresent;
 	private String isRecognitnionPresent;
@@ -586,6 +587,13 @@ public class ProfileCreationTrainingPartnerConfigSql {
 	public void setUpdatePathsClassRoomImagePath(
 			String updatePathsClassRoomImagePath) {
 		this.updatePathsClassRoomImagePath = updatePathsClassRoomImagePath;
+	}
+	public String getIsApplicationIdPresentInTrainingPartner() {
+		return isApplicationIdPresentInTrainingPartner;
+	}
+	public void setIsApplicationIdPresentInTrainingPartner(
+			String isApplicationIdPresentInTrainingPartner) {
+		this.isApplicationIdPresentInTrainingPartner = isApplicationIdPresentInTrainingPartner;
 	}
 
 

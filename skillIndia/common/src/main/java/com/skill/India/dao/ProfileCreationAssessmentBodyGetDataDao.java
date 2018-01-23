@@ -86,7 +86,7 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 		public ProfileCreationAssessmentBodyRegistrationDetailsDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
 			String assessmentBodyRegistrationId = resultSet.getString("assessmentBodyRegistrationId");
-			String applicationId = resultSet.getString("applicationId");
+			int applicationId = resultSet.getInt("applicationId");
 			String organizationName = resultSet.getString("organizationName");
 			String sPOCName = resultSet.getString("sPOCName");
 			String address = resultSet.getString("address");
@@ -344,6 +344,35 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 		}
  	}
 	
+	
+	
+	/**
+	 * 
+	 * @param applicationId
+	 * @return
+	 */
+	public int isApplicationIdPresentInAssessmentBody(int applicationId)
+	{
+		int status = 0;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("applicationId", applicationId);
+			status =  getJdbcTemplate().queryForObject(profileCreationAssessmentBodyConfigSql.getIsApplicationIdPresentInAssessmentBody(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("An excpetion occured " +e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured " +e);
+			status = -2;
+		}
+		
+		return status;
+	}
 	
 	/* To check presence of Affiliation data of Assessment body*/
 	public int isAffiliationPresent(String assessmentBodyRegistrationId, String nameOfSectorSkillCouncil)

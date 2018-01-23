@@ -86,7 +86,7 @@ public class ProfileCreationTrainingPartnerGetDataDao  extends AbstractTransacti
 		public ProfileCreationTrainingPartnerOrganizationDetailsDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
 			String trainingPartnerRegistrationId = resultSet.getString("trainingPartnerRegistrationId");
-			String applicationId = resultSet.getString("applicationId");
+			int applicationId = resultSet.getInt("applicationId");
 			String organizationName = resultSet.getString("organizationName");
 			String sPOCName = resultSet.getString("sPOCName");
 			String address = resultSet.getString("address");
@@ -448,6 +448,45 @@ private static final ProfileCreationTrainingPartnerPriorExperienceInSkillTrainin
 		return status;
 	}
 	
+	
+	
+	
+	
+
+	/**
+	 * 
+	 * @param applicationId
+	 * @return
+	 */
+	public int isApplicationIdPresentinTrainingPartner(int applicationId)
+	{
+		int status = 10;
+		try
+		{
+			Map<String, Object> parameters = new HashMap<String, Object>();
+			parameters.put("applicationId", applicationId);
+			
+			status = getJdbcTemplate().queryForObject(profileCreationTrainingPartnerConfigSql.getIsApplicationIdPresentInTrainingPartner(), parameters, Integer.class);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.error("Could not find applicationId in Training partner organisation details, returnig : -1" + e);
+			status = -1;
+		}
+		catch (Exception e)
+		{
+			LOGGER.error("An excpetion occured while finding if applicationId exists in Training Partner Organisation details" +e);
+			status = -2;
+		}
+		return status;
+	}
+	
+	/**
+	 * 
+	 * @param trainingPartnerRegistrationId
+	 * @param email
+	 * @return
+	 */
 	public int isTrainingPartnerManagementStaffPresent(String trainingPartnerRegistrationId, String email)
 	{
 		int status = 10;

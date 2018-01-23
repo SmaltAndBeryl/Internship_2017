@@ -39,7 +39,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
 			parameters.put("applicationId",profileCreationTrainingPartnerOrganizationDetailsDto.getApplicationId());
-			parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerOrganizationDetailsDto.getTrainingPartnerRegistrationId());
+			//parameters.put("trainingPartnerRegistrationId",profileCreationTrainingPartnerOrganizationDetailsDto.getTrainingPartnerRegistrationId());
 			parameters.put("organizationName",profileCreationTrainingPartnerOrganizationDetailsDto.getOrganizationName());
 			parameters.put("sPOCName",profileCreationTrainingPartnerOrganizationDetailsDto.getsPOCName());
 			parameters.put("address",profileCreationTrainingPartnerOrganizationDetailsDto.getAddress());

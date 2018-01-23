@@ -26,6 +26,7 @@ import com.skill.India.dto.ProfileCreationAssessmentBodyAffiliationDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyRecognitionsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyRegionalOfficeDetailsDto;
+import com.skill.India.dto.ProfileCreationAssessmentBodyRegistrationDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentBodyWrapperDto;
 import com.skill.India.dto.ProfileCreationAssessmentStaffDetailsDto;
 import com.skill.India.dto.ProfileCreationAssessmentsExperienceInTechnicalDomainDto;
@@ -33,6 +34,7 @@ import com.skill.India.dto.ProfileCreationTrainingPartnerCenterDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteGrantDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerInstituteRecognitionDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto;
+import com.skill.India.dto.ProfileCreationTrainingPartnerOrganizationDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerTrainingStaffDetailsDto;
 import com.skill.India.dto.ProfileCreationTrainingPartnerWrapperDto;
@@ -151,20 +153,27 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		{
 			applicationTableStatus=profileCreationTPABCommonDao.updateIntoApplication(profileCreationAssessmentBodyWrapperDto.getType());
 			applicationIdAfterInsertion = getAssessmentBodyRegistrationId(getApplicationId());
-			LOGGER.debug("Value of assessment body regsitration is " +applicationIdAfterInsertion );
-			if(applicationIdAfterInsertion == "-1")
+			int getIfApplicationIdIsPresentInAssessmentBody = profileCreationAssessmentBodyGetDataDao.isApplicationIdPresentInAssessmentBody(userExists);
+			
+			ProfileCreationAssessmentBodyRegistrationDetailsDto profileCreationAssessmentBodyRegistrationDetailsDto = profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto();
+			profileCreationAssessmentBodyRegistrationDetailsDto.setApplicationId(userExists);
+			
+			//LOGGER.debug("Value of assessment body registration is " +applicationIdAfterInsertion );
+			if(getIfApplicationIdIsPresentInAssessmentBody == 0)
 			{
 				LOGGER.debug("Assessment Body registration Id is empty");
-				status=profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
+				
+				
+				status=profileCreationAssessmentBodyInsertDataDao.insertIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyRegistrationDetailsDto);
 			}
-			else if(applicationIdAfterInsertion == "-2")
+			else if(getIfApplicationIdIsPresentInAssessmentBody == -2 || getIfApplicationIdIsPresentInAssessmentBody == -1)
 			{
 				LOGGER.debug("An exception occured while finding if assessment body is present or not");
 			}
-			else
+			else if(getIfApplicationIdIsPresentInAssessmentBody == 1)
 			{
 				LOGGER.debug("Assessment Body registartion Id is " + applicationIdAfterInsertion);
-				status = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
+				status = profileCreationAssessmentBodyUpdateDataDao.updateIntoAssessmentBodyRegistrationDetails(profileCreationAssessmentBodyRegistrationDetailsDto);
 			}
 			
 			applicationIdAfterInsertion = getAssessmentBodyRegistrationId(getApplicationId());
@@ -313,13 +322,16 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 	{
 		int status =0 , applicationTableStatus =0, trainingPartnerCenterDetails = 0, trainingPartnerInstituteGrant =0,trainingPartnerRecognition =0, managementStaff =0, experienceInTraining =0, trainer = 0;
 		int userExists = getApplicationId();
+		
 		String applicationIdAfterCreation = null;
 		//New User
 		if(userExists == -1)
 		{
 			applicationTableStatus = profileCreationTPABCommonDao.insertIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
-			
-			status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+			LOGGER.debug("I am inside user exists = -1 in training partner service");
+			ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganitzationDetailsDto = profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto();
+			profileCreationTrainingPartnerOrganitzationDetailsDto.setApplicationId(userExists);
+			status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerOrganitzationDetailsDto);
 			
 			//get applicationId once it is created
 			applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
@@ -386,20 +398,29 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		/*Old User*/
 		else 
 		{
+			LOGGER.debug("I am inside user exists = other than -1 and -2 in training partner service");
+			
+			
+			int applicationIdInTrainingPartnerOrganisationDetails = profileCreationTrainingPartnerGetDataDao.isApplicationIdPresentinTrainingPartner(getApplicationId());
+			LOGGER.debug("The result of if application id is present in training partner organisation detials is:" + applicationIdInTrainingPartnerOrganisationDetails);
 			applicationTableStatus = profileCreationTPABCommonDao.updateIntoApplication(profileCreationTrainingPartnerWrapperDto.getType());
-			applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
-			if(applicationIdAfterCreation == "-1")
+			ProfileCreationTrainingPartnerOrganizationDetailsDto profileCreationTrainingPartnerOrganitzationDetailsDto = profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto();
+			profileCreationTrainingPartnerOrganitzationDetailsDto.setApplicationId(userExists);
+			if(applicationIdInTrainingPartnerOrganisationDetails == 0)
 			{
-				status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+				
+				LOGGER.debug("Organisation details" + profileCreationTrainingPartnerOrganitzationDetailsDto.getApplicationId());
+				status = profileCreationTrainingPartnerInsertDataDao.insertIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerOrganitzationDetailsDto);
 			}
-			else if (applicationIdAfterCreation == "-2")
+			else if (applicationIdInTrainingPartnerOrganisationDetails == -2)
 			{
 				LOGGER.debug("Some exception occured while finding if training partner registartion id is present or not");
 			}
-			else
+			else if (applicationIdInTrainingPartnerOrganisationDetails == 1)
 			{
+				applicationIdAfterCreation = getTrainingPartnerRegistrationId(getApplicationId());
 				LOGGER.debug("Training Partner RegistrationId is "+ applicationIdAfterCreation);
-				status = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerWrapperDto.getProfileCreationTrainingPartnerOrganizationDetailsDto());
+				status = profileCreationTrainingPartnerUpdateDataDao.updateIntoTrainingPartnerOrganizationDetails(profileCreationTrainingPartnerOrganitzationDetailsDto);
 			}
 			
 			/*
@@ -1162,6 +1183,7 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return applicationId;
 
 	}
+	
 	/*
 	 * Get training partner registration id*/
 	private String getTrainingPartnerRegistrationId(int applicationId)

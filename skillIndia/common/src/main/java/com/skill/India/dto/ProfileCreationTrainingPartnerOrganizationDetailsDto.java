@@ -1,7 +1,7 @@
 package com.skill.India.dto;
 
 public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
-	private String applicationId;
+	private int applicationId;
 	private String trainingPartnerRegistrationId;
 	private String organizationName;
 	private String sPOCName;
@@ -83,7 +83,7 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	 * @param trainingStaffDetailsAnnexurePath
 	 */
 	public ProfileCreationTrainingPartnerOrganizationDetailsDto(
-			String trainingPartnerRegistrationId,String applicationId,
+			String trainingPartnerRegistrationId,int applicationId,
 			String organizationName, String sPOCName, String address,
 			String city, String state, String pincode, String mobileNumber,
 			String alternateMobileNumber, String landlineNumber,
@@ -198,7 +198,7 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	 * @param trainingStaffDetailsAnnexurePath
 	 */
 	public ProfileCreationTrainingPartnerOrganizationDetailsDto(String trainingPartnerRegistrationId,
-			String applicationId,String organizationName,
+			int applicationId,String organizationName,
 			String sPOCName, String address, String city, String state,
 			String pincode, String mobileNumber, String alternateMobileNumber,
 			String landlineNumber, String alternateLandlineNumber,
@@ -266,13 +266,13 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	/**
 	 * @return the applicationId
 	 */
-	public String getApplicationId() {
+	public int getApplicationId() {
 		return applicationId;
 	}
 	/**
 	 * @param applicationId the applicationId to set
 	 */
-	public void setApplicationId(String applicationId) {
+	public void setApplicationId(int applicationId) {
 		this.applicationId = applicationId;
 	}
 	/**

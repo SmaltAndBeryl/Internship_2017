@@ -49,6 +49,7 @@ public class ProfileCreationAssessmentBodyConfigSql {
     private String isRegionalOfficePresent;
     private String isAssessmentExperiencePresent;
     private String isAssessmentStaffPresent;
+    private String isApplicationIdPresentInAssessmentBody;
 	
 	
 	
@@ -529,6 +530,13 @@ public class ProfileCreationAssessmentBodyConfigSql {
 	public void setUpdateAssessmentStaffEducationCertificatePath(
 			String updateAssessmentStaffEducationCertificatePath) {
 		this.updateAssessmentStaffEducationCertificatePath = updateAssessmentStaffEducationCertificatePath;
+	}
+	public String getIsApplicationIdPresentInAssessmentBody() {
+		return isApplicationIdPresentInAssessmentBody;
+	}
+	public void setIsApplicationIdPresentInAssessmentBody(
+			String isApplicationIdPresentInAssessmentBody) {
+		this.isApplicationIdPresentInAssessmentBody = isApplicationIdPresentInAssessmentBody;
 	}
 	
 	
