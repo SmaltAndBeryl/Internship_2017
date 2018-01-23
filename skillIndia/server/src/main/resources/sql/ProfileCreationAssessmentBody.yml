@@ -24,6 +24,9 @@ ProfileCreationAssessmentBody:
  getDataFromAssessmentBodyAffiliationDetails: >
   select * from AssessmentBodyAffiliationDetails where assessmentBodyRegistrationId=:assessmentBodyRegistrationId and isActive = 1;
  
+ isApplicationIdPresentInAssessmentBody: >
+  SELECT EXISTS(SELECT * FROM scgj.assessmentbodyregistrationdetails WHERE applicationId=:applicationId);
+ 
  isAffiliationPresent: >
   SELECT EXISTS(SELECT * FROM scgj.AssessmentBodyAffiliationDetails WHERE assessmentBodyRegistrationId=:assessmentBodyRegistrationId and nameOfSectorSkillCouncil=:nameOfSectorSkillCouncil and isActive=1);
  
@@ -104,7 +107,7 @@ ProfileCreationAssessmentBody:
   `numberOfTechnicalAssessors`=:numberOfTechnicalAssessors,
   `numberOfNonTechnicalAssessors`=:numberOfNonTechnicalAssessors,
   `affiliatedToAnySectorSkillCouncil`=:affiliatedToAnySectorSkillCouncil 
-  WHERE `assessmentBodyRegistrationId`=:assessmentBodyRegistrationId;
+  WHERE `applicationId`=:applicationId;
 
 
 

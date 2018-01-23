@@ -20,7 +20,10 @@ ProfileCreationTrainingPartner:
 
  getDataFromTrainingPartnerManagementAndStaffAndOfficialsDetails: >
   select * from TrainingPartnerManagementAndStaffAndOfficialsDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1;
- 
+  
+ isApplicationIdPresentInTrainingPartner: >
+  SELECT EXISTS(SELECT * FROM scgj.trainingpartnerorganizationdetails WHERE applicationId=:applicationId);
+   
  getDataFromTrainingPartnerTrainingStaffDetails: >
   select * from TrainingPartnerTrainingStaffDetails where trainingPartnerRegistrationId=:trainingPartnerRegistrationId and isActive =1
 
@@ -101,7 +104,7 @@ ProfileCreationTrainingPartner:
   `instituteReceivedAnyRecognition`=:instituteReceivedAnyRecognition,
   `priorExperienceOfInstitutionInSkillDevelopment`=:priorExperienceOfInstitutionInSkillDevelopment,
   `anyPriorExperienceOfInstitutionInSkillTraining`=:anyPriorExperienceOfInstitutionInSkillTraining
-  WHERE `trainingPartnerRegistrationId`=:trainingPartnerRegistrationId;  
+  WHERE `applicationId`=:applicationId;  
 
  updateIntoTrainingPartnerCenterLevelDetails: >
   UPDATE `scgj`.`trainingpartnercenterleveldetails` SET `nameOperationHead` =:nameOperationHead,
