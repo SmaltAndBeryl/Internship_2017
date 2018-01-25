@@ -130,7 +130,7 @@ public class ValidateCandidateCSVService {
 			 * Checking for error in candidateDetailsId column
 			 */
 			LOGGER.debug("Checking Validations of candidateDetailsId");
-			if(!ValidationUtils.numbersCheck(candidateDetailsId) || candidateDetailsId.equals(""))
+			if(candidateDetailsId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString+"Error in  'candidateDetailsId' column .";
@@ -147,16 +147,9 @@ public class ValidateCandidateCSVService {
 			}
 			
 			/*
-			 * Checking for error in enrollmentNumber column
+			 * Validation for enrollment number removed 
 			 */
-			LOGGER.debug("Checking Validations of enrollmentNumber");
-			if(enrollmentNumber.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString +"Error in  'enrollmentNumber' column .";
-			}
-			
-			
+		
 			/*
 			 * Checking for error in gender column
 			 */
@@ -349,7 +342,10 @@ public class ValidateCandidateCSVService {
 			  * Setting some default values in fields which were not filled by user 
 			  */
 				 LOGGER.debug("Setting blank fields to null");
-					
+			if(enrollmentNumber.equals(""))
+			{
+				enrollmentNumber=null;	
+			}
 			 if(aadharNumber.equals(""))
 			 {
 				 aadharNumber=null;
