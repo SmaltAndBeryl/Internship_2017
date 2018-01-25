@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="wrraper">
                                         <div class="form-group input-group">
-                                            <input type="password" data-minlength="6" name="password" id="password" tabindex="2" data-error="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.credentials.password" required/>
+                                            <input type="password" data-minlength="6" name="password" id="password" tabindex="2" data-error="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.credentials.password" />
                                             <div class="help-block with-errors"></div>
                                             <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">
                                     <div>
@@ -125,24 +125,24 @@
 								<div style="display: none;" data-toggle="validator" id="register-form">
                                 <form role="form"  ng-submit="nav.signup()">
                                     <div class="form-group col-xs-6">
-                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="nav.newUser.organizationName" />
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="organizationName" id="organizationName" tabindex="1" class="form-control" placeholder="Organization Name" value="" ng-model="nav.newUser.organizationName" required />
                                     </div>
                                     <div class="form-group col-xs-6">
-                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="nav.newUser.sPOCName">
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[0-9]/g, '')" name="sPOCName" id="sPOCName" tabindex="2" class="form-control" placeholder="SPOC Name" ng-model="nav.newUser.sPOCName" required />
                                     </div>
                                     <div class="form-group col-xs-6">
-                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="username" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="nav.newUser.userId" />
+                                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" name="registerusername" id="username" tabindex="1" class="form-control" data-error="Invalid Email" placeholder="Email ID" value="" ng-model="nav.newUser.userId" required />
                                         <div class="help-block with-errors">
                                         </div>
                                         
                                     </div>
                                     <div class="form-group col-xs-12">
-                                            <label><input type="radio" ng-model="nav.newUser.userRole" value="TP" name="" />Training Partner</label>
-                                            &nbsp; &nbsp; &nbsp; <label><input type="radio" ng-model="nav.newUser.userRole" value="AB" name="" />Assessment Body</label>
+                                            <label><input type="radio" ng-model="nav.newUser.userRole" value="TP" name="role" required/>Training Partner</label>
+                                            &nbsp; &nbsp; &nbsp; <label><input type="radio" ng-model="nav.newUser.userRole" value="AB" name="role" />Assessment Body</label>
                                         </div>
                                     <div class="wrraper">
                                         <div class="form-group input-group">
-                                            <input type="password" minlength=6 name="registerPassword" id="registerPassword" tabindex="2" data-error-message="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.newUser.password" />
+                                            <input type="password" minlength=6 name="registerPassword" id="registerPassword" tabindex="2" data-error-message="Minimum 6 Character" class="form-control" placeholder="Password" ng-model="nav.newUser.password" required/>
                                             <div class="help-block with-errors"></div>
                                             <span class="input-group-addon" style="background-color:white; border:none; border-bottom:0px solid #ccc">
                                     <div>
