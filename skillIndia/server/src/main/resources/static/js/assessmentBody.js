@@ -28,7 +28,19 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
             {
                 name: 'applicationState',
                 displayName: 'Status',
-                cellClass: 'statuscell',
+                cellClass: function (grid, row, col, rowIndex, colIndex) {
+                    var val = grid.getCellValue(row, col);
+                    if (val === 'Approved') {
+                      return 'statuscellgreen';
+                    }
+                    else if (val === 'Incomplete') {
+                      return 'statuscellred';
+                    }
+                    else
+                    	{
+                    	return '';
+                    	}
+                  },
                 headerCellClass: 'Status'
             },
             {
