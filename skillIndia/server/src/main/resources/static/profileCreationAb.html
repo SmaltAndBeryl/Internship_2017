@@ -185,15 +185,14 @@
                                         <tr>
                                             <!--<th><input type="checkbox" ng-model="selectedAllExperience" ng-click="checkAllExperience()"></th>-->
                                             <!--<th class="sno-pd-lft">S.no</th>-->
-                                            <th>Domain/Sector</th>
-                                            <th>No. of Assessments carried out</th>
+                                            
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr ng-repeat="experience in assessmentBody.AssessmentsExperienceInTechnicalDomain">
-                                            <td><input ng-model="experience.domain" class="form-control" required></td>
-                                            <td><input ng-model="experience.numberOfAssessmentsDone" class="form-control" required></td>
-                                            <td class="btn-checkbox"><input type="checkbox" ng-model="experience.selected"></td>
+                                            <td><input ng-model="experience.domain" class="form-control" placeholder="Domain/Sector" required /></td>
+                                            <td><input ng-model="experience.numberOfAssessmentsDone" placeholder = "No. of Assessments" class="form-control" required/></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="experience.selected" /></td>
                                         </tr>
                                         </tbody>
                                     </table>
