@@ -207,49 +207,7 @@ $scope.removeManagement = function(){
     }
 
 
-    // Remove prior experience
-
-    $scope.remove = function() {
-        var newDataList = [];
-        //        $scope.selectedAll = false;
-        angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(selected) {
-            if (selected.selected) {
-            	console.log("Name of selected center" + selected.nameOfCenter)
-                selected.isActive = 0;
-                var url = '/saveAsDraftAndSubmitTP';
-                var method = 'POST';
-                $scope.postValue = {
-                        'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
-                        'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
-                        'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
-                        'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
-                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
-                    }
-                $http({
-                	url : url,
-                	method : method,
-                	data  : angular.toJson($scope.postValue)
-                }).then(function(response){
-                	console.log("response success " + response)
-                	$http.get('/getDataNewUserProfileCreation')
-                    .then(function(response) {
-                        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
-                        $scope.trainingPartner = response.data;
-                        console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
-                        $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
-
-
-                    });
-                },function(errorResponse){
-                	console.log("error response" + errorResponse)
-                })
-            }
-        });
-        $scope.trainingPartner.PriorExperienceDetails = newDataList;
-    };
+    
     //remove from prior experience
     $scope.remove = function() {
         var newDataList = [];
@@ -445,6 +403,58 @@ $scope.removeManagement = function(){
     $scope.saveAccordionOne = function()
     {
         console.log("Button Working " + JSON.stringify($scope.trainingPartner));
+        
+        
+        var url = '/saveAsDraftAndSubmitTP';
+        var method = 'POST';
+        $scope.postValue = {
+                'type' : 'Draft',
+                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
+                'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
+                'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
+                'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
+                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
+                'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
+            }
+        $http({
+        	url : url,
+        	method : method,
+        	data  : angular.toJson($scope.postValue)
+        }).then(function(response){
+        	console.log("response success " + response)
+        	if(response.data == 1){
+                $scope.successText = "PDF generated successfully";
+                $scope.successTextColor = "green";
+                $scope.rolling = false;
+            }
+            else if(response.data == -1){
+                $scope.successText = "PDF could not be generated successfully due to some error";
+                $scope.successTextColor = "orange";
+                $scope.rolling = false;
+            }
+            else if(response.data == 0){
+                $scope.successText = "PDF could not be generated successfully";
+                $scope.successTextColor = "red";
+                $scope.rolling = false;
+            }
+            else if(response.data == 2){
+                $scope.successText = "PDF could not be generated due to SQL tables being empty";
+                $scope.successTextColor = "blue";
+                $scope.rolling = false;
+            }
+        	$http.get('/getDataNewUserProfileCreation')
+            .then(function(response) {
+                console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                $scope.trainingPartner = response.data;
+                console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
+                $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+
+            });
+        },function(errorResponse){
+        	console.log("error response" + errorResponse)
+        })
     };
 
     //Upload PAN

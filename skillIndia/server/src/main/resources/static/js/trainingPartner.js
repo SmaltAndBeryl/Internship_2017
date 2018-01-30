@@ -1,7 +1,8 @@
 var trainingPartner = angular.module("hello");
 
-trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScope,$location){
+trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScope,$location,$window){
     $scope.message = "Hi Training Partner";
+    $scope.applicationStatus = "";
     $scope.tpAppStatus = {
         enableColumnMenus: false,
         enableSorting: false,
@@ -69,13 +70,14 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
     $scope.editApplication = function(rowData) {
         var appState = rowData.entity.applicationState;
         if (appState == "Incomplete") {
-            $location.path('/profileCreationTp');
+        	$scope.applicationStatus =appState;
+        	$location.path('/profileCreationTp');
             console.log("Please Edit the Form");
 
         } 
         else
         {
-            window.alert("Invalid Access");
+            window.alert("You can edit the application only if it is Incomplete");
         }
         console.log("Click is working" + appState);
     };
@@ -177,18 +179,40 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
         console.log("the row value is >>>" + rowData.entity.batchId);
         var urldata = "/downloadCertificate/" + fileName;
 
-        window.open(urldata);
+        $window.open(urldata);
     };
 
     if($rootScope.authenticated){
           $rootScope.$on("$locationChangeStart", function(event,next,current){
-            if($rootScope.type == '"TP"'){
-                event.preventDefault();
-                alert("Not allowed");
-            }
-            else{
-                alert("Logging out..!");
-            }
+        	  
+        	  console.log($scope.applicationStatus);
+        	  console.log(next);	
+        	  
+        	  if($scope.applicationStatus != "Incomplete")
+        		  {
+        		  console.log($scope.applicationStatus);
+        		  alert("not allowed");
+        		  event.preventDefault();
+        		  	
+        		  }
+        	  else if(next != "http://localhost:8080/#/profileCreationTp")
+        		  {
+        		  console.log("inside else");
+        		  alert("not allowed");
+        		  event.preventDefault();
+        		  }
+        	  else 
+        		  {
+        		  	$location.path('/profileCreationTp')
+        		  }
+//            if($rootScope.type == '"TP"'){
+//            	
+//                //event.preventDefault();
+//                alert("Not allowed");
+//            }
+//            else{
+//                alert("Logging out..!");
+//            }
           });
       }
 });
