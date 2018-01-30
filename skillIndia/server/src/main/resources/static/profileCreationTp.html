@@ -70,35 +70,35 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row row-margin">
-                                    <div class="col-md-4">UserId</div>
+                                    <div class="col-md-4"><label>UserId</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.trainingPartnerRegistrationId" readonly>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">City</div>
+                                    <div class="col-md-4"><label>City</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.city">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">State</div>
+                                    <div class="col-md-4"><label>State</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.state">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Mobile Number</div>
+                                    <div class="col-md-4"><label>Mobile Number</label></div>
                                     <div class="col-md-8" >
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileNumber" ng-required="true" />
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Alternate Mobile Number</div>
+                                    <div class="col-md-4"><label>Alternate Mobile Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" ng-required="true" />
                                     </div>
@@ -107,28 +107,28 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Landline Number</div>
+                                    <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Alternate Landline Number</div>
+                                    <div class="col-md-4"><label>Alternate Landline Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateLandlineNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Fax Number</div>
+                                    <div class="col-md-4"><label>Fax Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.faxNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Website</div>
+                                    <div class="col-md-4"><label>Website</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.websites">
                                     </div>
@@ -167,13 +167,13 @@
                         <!--accordion content to come here -->
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Year of Establishment</div>
+                            <div class="col-md-4"><label>Year of Establishment</label></div>
                             <div class="col-md-8">
                                 <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment" placeholder="year"/>
                             </div>
                         </div>
                         <div class="row row-margin">
-                            <div class="col-md-4">Qualification Pack<br>
+                            <div class="col-md-4"><label>Qualification Pack</label><br>
                             <small class="fine-print">Please refer Guideliness for available QPs</small></div>
                             <div class="col-md-8">
                                 <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.qualificationPacks" placeholder="multile Qps separated by comma"/>
@@ -182,7 +182,7 @@
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Medium of instruction</div>
+                            <div class="col-md-4"><label>Medium of instruction</label></div>
                             <div class="col-md-8">
                                 <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mediumOfInstructions">
                                 <small class="fine-print">For multiple languages, use commas to separate them</small>
@@ -236,23 +236,23 @@
 
 
                         <div class="row row-margin">
-                            <div class="col-md-4">PAN</div>
+                            <div class="col-md-4"><label>PAN</label></div>
                             <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.panNumber"></div>
                         </div>
 
 
                         <div class="row row-margin">
-                            <div class="col-md-4">TAN</div>
+                            <div class="col-md-4"><label>TAN</label></div>
                             <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.tanNumber"></div>
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Turnover of the institute</div>
+                            <div class="col-md-4"><label>Turnover of the institute</label></div>
                             <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.turnOverOfInstitution"></div>
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Does the institution received any grant?</div>
+                            <div class="col-md-4"><label>Does the institution received any grant?</label></div>
 
                             <div class="col-md-8">
                                 <label class="radio-inline">
@@ -265,19 +265,12 @@
                             <form ng-submit="addNewGrant()" class="col-md-8 col-md-offset-4 table-top">
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant == 'Yes'">
                                     <table>
-                                        <thead>
-                                        <tr>
-                                            <th>Name of Ministry</th>
-                                            <th>Nature of Work</th>
-                                            <th>Remarks</th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
                                         <tr ng-repeat="grants in trainingPartner.InstituteGrantDetails">
 
-                                            <td><input ng-model="grants.nameOfMinistry" class="form-control" required></td>
-                                            <td><input ng-model="grants.natureOfWork" class="form-control" required></td>
-                                            <td><input ng-model="grants.remarks" class="form-control" required></td>
+                                            <td><input ng-model="grants.nameOfMinistry" placeholder ="Name of Ministry" class="form-control" required /></td>
+                                            <td><input ng-model="grants.natureOfWork" placeholder ="Nature of work" class="form-control" required /></td>
+                                            <td><input ng-model="grants.remarks" placeholder ="Remarks" class="form-control" required /></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="grants.selected"></td>
                                         </tr>
                                         </tbody>
@@ -289,11 +282,8 @@
                                 </div>
                             </form>
                         </div>
-
-
-
                         <div class="row row-margin">
-                            <div class="col-md-4">Is the institute recognized with any bodies?</div>
+                            <div class="col-md-4"><label>Is the institute recognized with any bodies?</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
@@ -305,19 +295,12 @@
                             <form ng-submit="addNewRecognition()" class="col-md-8 col-md-offset-4 table-top">
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition == 'Yes'">
                                     <table>
-                                        <thead>
-                                        <tr>
-                                            <th>Name of Recognizing body</th>
-                                            <th>Recognition Number</th>
-                                            <th>Validity of Recognition</th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
                                         <tr ng-repeat="recognition in trainingPartner.InstituteRecognitionDetails">
 
-                                            <td><input ng-model="recognition.nameOfRecognizingBody" class="form-control" required></td>
-                                            <td><input ng-model="recognition.recognitionNumber" class="form-control" required></td>
-                                            <td><input ng-model="recognition.validityOfRecognition" class="form-control" required></td>
+                                            <td><input ng-model="recognition.nameOfRecognizingBody" placeholder ="Name of Recognizing body" class="form-control" required></td>
+                                            <td><input ng-model="recognition.recognitionNumber" class="form-control" placeholder ="Recognition Number" required></td>
+                                            <td><input ng-model="recognition.validityOfRecognition" class="form-control" placeholder ="Validity of Recognition" required></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="recognition.selected"></td>
                                         </tr>
                                         </tbody>
@@ -333,13 +316,13 @@
 
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Does the institute have any prior experience in skill development?</div>
+                            <div class="col-md-4"><label>Does the institute have any prior experience in skill development?</label></div>
                             <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.priorExperienceOfInstitutionInSkillDevelopment"></div>
                         </div>
 
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Prior experience of institution in skill training(Related to QP)?</div>
+                            <div class="col-md-4"><label>Prior experience of institution in skill training(Related to QP)?</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="Yes" ng-click="addNew()"> Yes
@@ -351,18 +334,11 @@
                             <form ng-submit="addNew()" class="col-md-8 col-md-offset-4 table-top">
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining == 'Yes'">
                                     <table>
-                                        <thead>
-                                        <tr>
-                                            <th>Name of Course</th>
-                                            <th>Number of Batches per year</th>
-                                            <th>Number of Students in each Batch</th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
                                         <tr ng-repeat="experience in trainingPartner.PriorExperienceDetails">
-                                            <td><input ng-model="experience.courseName" class="form-control" required></td>
-                                            <td><input ng-model="experience.numberOfBatchesPerYear" class="form-control" required></td>
-                                            <td><input ng-model="experience.numberOfStudentsInEachBatch" class="form-control" required></td>
+                                            <td><input ng-model="experience.courseName" placeholder ="Name of course" class="form-control" required></td>
+                                            <td><input ng-model="experience.numberOfBatchesPerYear"  placeholder ="Number of batches per year" class="form-control" required></td>
+                                            <td><input ng-model="experience.numberOfStudentsInEachBatch" placeholder ="Number of students in each batch" class="form-control" required></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="experience.selected"></td>
                                         </tr>
                                         </tbody>
@@ -410,16 +386,6 @@
                     
                     <div class="col-md-12" >
                                     <table>
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
                                         <tr ng-repeat="managementStaff in trainingPartner.ManagementAndStaffAndOfficialDetails">
                                             <td><input ng-model="managementStaff.name" class="form-control" placeholder ="Name" required /></td>
@@ -457,16 +423,6 @@
                     
                     <div class="col-md-12" >
                                     <table>
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
                                         <tr ng-repeat="trainingStaff in trainingPartner.TrainingStaff">
                                             <td><input ng-model="trainingStaff.name" class="form-control" placeholder ="Name" required /></td>

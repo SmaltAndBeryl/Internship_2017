@@ -67,35 +67,35 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="row row-margin">
-                                    <div class="col-md-4">UserId</div>
+                                    <div class="col-md-4"><label>UserId</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.assessmentBodyRegistrationId" readonly>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">City</div>
+                                    <div class="col-md-4"><label>City</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.city">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">State</div>
+                                    <div class="col-md-4"><label>State</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.state">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Mobile Number</div>
+                                    <div class="col-md-4"><label>Mobile Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber" />
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Alternate Mobile Number</div>
+                                    <div class="col-md-4"><label>Alternate Mobile Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateMobileNumber">
                                     </div>
@@ -104,28 +104,28 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Landline Number</div>
+                                    <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.landlineNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Alternate Landline Number</div>
+                                    <div class="col-md-4"><label>Alternate Landline Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateLandlineNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Fax Number</div>
+                                    <div class="col-md-4"><label>Fax Number</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.faxNumber">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
-                                    <div class="col-md-4">Website</div>
+                                    <div class="col-md-4"><label>Website</label></div>
                                     <div class="col-md-8">
                                         <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.websites">
                                     </div>
@@ -162,14 +162,14 @@
                     <div class="container">
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Year of Establishment</div>
+                            <div class="col-md-4"><label>Year of Establishment</label></div>
                             <div class="col-md-8">
                                 <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.yearOfEstablishment">
                             </div>
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Assessment experience in any technical domain or renewable energy</div>
+                            <div class="col-md-4"><label>Assessment experience in any technical domain or renewable energy</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience" value="Yes" ng-click="addNewExperience()"> Yes
@@ -181,13 +181,6 @@
                             <form class="col-md-8 col-md-offset-4 table-top">
                                 <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience.length >'0'">
                                     <table>
-                                        <thead>
-                                        <tr>
-                                            <!--<th><input type="checkbox" ng-model="selectedAllExperience" ng-click="checkAllExperience()"></th>-->
-                                            <!--<th class="sno-pd-lft">S.no</th>-->
-                                            
-                                        </tr>
-                                        </thead>
                                         <tbody>
                                         <tr ng-repeat="experience in assessmentBody.AssessmentsExperienceInTechnicalDomain">
                                             <td><input ng-model="experience.domain" class="form-control" placeholder="Domain/Sector" required /></td>
@@ -203,29 +196,22 @@
                                 </div>
                             </form>
                         </div>
-
-
-
-
-
-
-
                         <div class="row row-margin">
-                            <div class="col-md-4">PAN</div>
+                            <div class="col-md-4"><label>PAN</label></div>
                             <div class="col-md-8">
                                 <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.panNumber" required>
                             </div>
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-md-4">TAN</div>
+                            <div class="col-md-4"><label>TAN</label></div>
                             <div class="col-md-8">
                                 <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.tanNumber" required>
                             </div>
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-md-4">Recognized with any Govt./Pvt. Agency</div>
+                            <div class="col-md-4"><label>Recognized with any Govt./Pvt. Agency</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
@@ -237,21 +223,12 @@
                             <form ng-submit="addNewRecognition()" class="col-md-8 col-md-offset-4 table-top">
                                 <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition == 'Yes'">
                                     <table>
-                                        <thead>
-                                        <tr>
-                                            <th>Name of Recognizing Body</th>
-                                            <th>Recognition No.</th>
-                                            <th>Year of Recognition</th>
-                                            <th>Validity of Recognition</th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
                                         <tr ng-repeat="recognition in assessmentBody.AssessmentBodyRecognitions">
-
-                                            <td><input ng-model = "recognition.name" class="form-control" required></td>
-                                            <td><input ng-model = "recognition.number" class="form-control" required></td>
-                                            <td><input ng-model = "recognition.year" class="form-control" required></td>
-                                            <td><input ng-model = "recognition.validity" class="form-control" required></td>
+                                            <td><input ng-model = "recognition.name" placeholder="Name of recognising body" class="form-control" required></td>
+                                            <td><input ng-model = "recognition.number" placeholder="recognition no." class="form-control" required></td>
+                                            <td><input ng-model = "recognition.year" placeholder="Year of Recognition" class="form-control" required></td>
+                                            <td><input ng-model = "recognition.validity" placeholder = "Validity of recognition" class="form-control" required></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="recognition.selected"></td>
                                         </tr>
                                         </tbody>
@@ -263,12 +240,8 @@
                                 </div>
                             </form>
                         </div>
-
-
-
-
                         <div class="row row-margin">
-                            <div class="col-md-4">Whether affiliated with any Sector Skill Council</div>
+                            <div class="col-md-4"><label>Whether affiliated with any Sector Skill Council</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil" value="Yes" ng-click="addNewAffiliation()"> Yes
@@ -280,17 +253,10 @@
                             <form ng-submit="addNewAffiliation()" class="col-md-8 col-md-offset-4 table-top">
                                 <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil == 'Yes'">
                                     <table>
-                                        <thead>
-                                        <tr>
-                                            <!--<th><input type="checkbox" ng-model="selectedAllExperience" ng-click="checkAllExperience()"></th>-->
-                                            <!--<th class="sno-pd-lft">S.no</th>-->
-                                            <th>Name of SSC</th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
                                         <tr ng-repeat="affiliation in assessmentBody.AssessmentBodyAffiliationDetails">
 
-                                            <td><input ng-model="affiliation.nameOfSectorSkillCouncil" class="form-control" required></td>
+                                            <td><input ng-model="affiliation.nameOfSectorSkillCouncil" placeholder="Name of SSC" class="form-control" required></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="affiliation.selected"></td>
                                         </tr>
                                         </tbody>
@@ -329,31 +295,18 @@
                 <div class="container">
                     <!--                 accordion content to come here -->
                     <div class="row row-margin">
-                        <div class="row row-margin">Details of directors and management team members</div>
+                        <div class="row row-margin"><label>Details of directors and management team members</label></div>
                         <div class="row row-margin">
                             <form ng-submit="addNewDirectors()" class="col-md-12">
                                 <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Designation</th>
-                                            <th>Contact Number</th>
-                                            <th>Email Id</th>
-                                            <th>Educational Qualification</th>
-                                            <th>Experience</th>
-                                            <!--<th>CV</th>-->
-                                        </tr>
-                                    </thead>
-
                                     <tbody>
                                         <tr ng-repeat="directors in assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails">
-                                            <td><input ng-model="directors.name" class="form-control" required></td>
-                                            <td><input ng-model="directors.designation" class="form-control" required></td>
-                                            <td><input ng-model="directors.contactNumber" class="form-control" required></td>
-                                            <td><input ng-model="directors.emailId" class="form-control" required></td>
-                                            <td><input ng-model="directors.educationalQualification" class="form-control" required></td>
-                                            <td><input ng-model="directors.experience" class="form-control" required></td>
-                                            <!--<td><button type="button">Upload CV</button></td>-->
+                                            <td><input ng-model="directors.name" class="form-control" placeholder="Name" required /></td>
+                                            <td><input ng-model="directors.designation" class="form-control" placeholder="Designation" required /></td>
+                                            <td><input ng-model="directors.contactNumber" class="form-control" placeholder="Contact Number" required /></td>
+                                            <td><input ng-model="directors.emailId" class="form-control" placeholder="Email Id" required /></td>
+                                            <td><input ng-model="directors.educationalQualification" placeholder="Educational Qualification" class="form-control" required /></td>
+                                            <td><input ng-model="directors.experience" class="form-control" placeholder="Experience" required /></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="directors.selected"></td>
                                         </tr>
                                     </tbody>
@@ -389,16 +342,16 @@
                 <div class="container">
                     <!--                 accordion content to come here -->
                     <div class="row">
-                        Number of Assessors
+                        <label>Number of Assessors</label>
 
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-md-4">Technical Sector</div>
                             <div class="col-md-8">
                                 <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfTechnicalAssessors" required>
                             </div>
                         </div>
 
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-md-4">Non-Technical Sector</div>
                             <div class="col-md-8">
                                 <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfNonTechnicalAssessors" required>
@@ -409,36 +362,22 @@
 
 
                     <div class="row">
-                        <div class="row row-margin">SCGJ Certified Assessors</div>
+                        <div class="row row-margin"><label>SCGJ Certified Assessors</label></div>
                         <div class="row row-margin">
                             <form ng-submit="addNewAssessor()" class="col-md-12">
                                 <table>
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Job Role Code</th>
-                                        <th>Designation</th>
-                                        <th>Contact No.</th>
-                                        <th>Email Id</th>
-                                        <th>State</th>
-                                        <th>City</th>
-                                        <th>Educational Qualification</th>
-                                        <th>Experience</th>
-                                    </tr>
-                                    </thead>
-
                                     <tbody>
                                     <tr ng-repeat="assessor in assessmentBody.AssessmentStaffDetails">
 
-                                        <td><input ng-model="assessor.name" class="form-control" required></td>
-                                        <td><input ng-model="assessor.jobRoleCode" class="form-control" required></td>
-                                        <td><input ng-model="assessor.designation" class="form-control" required></td>
-                                        <td><input ng-model="assessor.contactNumber" class="form-control" required></td>
-                                        <td><input ng-model="assessor.emailId" class="form-control" required></td>
-                                        <td><input ng-model="assessor.state" class="form-control" required></td>
-                                        <td><input ng-model="assessor.city" class="form-control" required></td>
-                                        <td><input ng-model="assessor.educationalQualification" class="form-control" required></td>
-                                        <td><input ng-model="assessor.experience" class="form-control" required></td>
+                                        <td><input ng-model="assessor.name" class="form-control" placeholder ="Name" required /></td>
+                                        <td><input ng-model="assessor.jobRoleCode" placeholder ="Job Role Code" class="form-control" required></td>
+                                        <td><input ng-model="assessor.designation" placeholder ="Designation" class="form-control" required></td>
+                                        <td><input ng-model="assessor.contactNumber" placeholder ="Contact no." class="form-control" required></td>
+                                        <td><input ng-model="assessor.emailId" placeholder ="Email Id" class="form-control" required></td>
+                                        <td><input ng-model="assessor.state" placeholder ="State" class="form-control" required></td>
+                                        <td><input ng-model="assessor.city" placeholder ="City" class="form-control" required></td>
+                                        <td><input ng-model="assessor.educationalQualification" placeholder ="Educational Qualification" class="form-control" required></td>
+                                        <td><input ng-model="assessor.experience" placeholder ="Experience" class="form-control" required></td>
                                         <td class="btn-checkbox"><input type="checkbox" ng-model="assessor.selected"></td>
                                     </tr>
                                     </tbody>
@@ -452,29 +391,18 @@
                     </div>
 
                     <div class="row">
-                        <div class="row row-margin">Regional Office Details</div>
+                        <div class="row row-margin"><label>Regional Office Details</label></div>
                         <div class="row row-margin">
                             <form ng-submit="addNewOffice()" class="col-md-12">
                                 <table>
-                                    <thead>
-                                    <tr>
-
-                                        <th>Address</th>
-                                        <th>State</th>
-                                        <th>Pincode</th>
-                                        <th>Contact No.</th>
-                                        <th>Alternate Contact No.</th>
-                                    </tr>
-                                    </thead>
-
                                     <tbody>
                                     <tr ng-repeat="office in assessmentBody.AssessmentBodyRegionalOfficeDetails">
 
-                                        <td><input ng-model="office.address" class="form-control" required></td>
-                                        <td><input ng-model="office.state" class="form-control" required></td>
-                                        <td><input ng-model="office.pincode" class="form-control" required></td>
-                                        <td><input ng-model="office.contactNumber" class="form-control" required></td>
-                                        <td><input ng-model="office.alternateContactNumber" class="form-control" required></td>
+                                        <td><input ng-model="office.address" placeholder ="Address" class="form-control" required></td>
+                                        <td><input ng-model="office.state" placeholder ="State" class="form-control" required></td>
+                                        <td><input ng-model="office.pincode" placeholder ="Pincode" class="form-control" required></td>
+                                        <td><input ng-model="office.contactNumber" placeholder ="Contact No." class="form-control" required></td>
+                                        <td><input ng-model="office.alternateContactNumber" placeholder ="Alternate Contact no." class="form-control" required></td>
                                         <td class="btn-checkbox"><input type="checkbox" ng-model="office.selected"></td>
                                     </tr>
                                     </tbody>
