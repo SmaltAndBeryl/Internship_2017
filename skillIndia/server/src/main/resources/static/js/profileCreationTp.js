@@ -18,7 +18,7 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, $locat
     $scope.type = ["regular", "visiting"];
     $scope.buildingTypes = ["Own" , "Rented", "Lease"];
     $scope.pctpCenterDetails = [];
-    
+    $scope.center="";
     $scope.pctpInstituteGrantDetail = [];
     $scope.pctpRecognition = [];
     $scope.pctpTrainingStaff = [];
@@ -61,7 +61,10 @@ $scope.removeTrainer = function(){
         if (selected.selected) {
             console.log("Is active" + selected.isActive)
             selected.isActive = false;
-            console.log("Is active center" + selected.isActive)
+            console.log("Is active center" + selected.isActive);
+            
+        }
+    }); 
             var url = '/saveAsDraftAndSubmitTP';
             var method = 'POST';
             $scope.postValue = {
@@ -91,9 +94,8 @@ $scope.removeTrainer = function(){
                 });
             },function(errorResponse){
             	console.log("error response" + errorResponse)
-            })
-        }
-    });     
+            });
+    
 }
 
 
@@ -109,7 +111,13 @@ $scope.removeManagement = function(){
         if (selected.selected) {
             console.log("Is active" + selected.isActive)
             selected.isActive = false;
-            console.log("Is active center" + selected.isActive)
+            console.log("Is active center" + selected.isActive);
+        }
+        else
+        	{
+        	console.log("inside else");
+        	}
+    });  
             var url = '/saveAsDraftAndSubmitTP';
             var method = 'POST';
             $scope.postValue = {
@@ -140,53 +148,63 @@ $scope.removeManagement = function(){
             },function(errorResponse){
             	console.log("error response" + errorResponse)
             })
-        }
-    });     
+   
 }
 
 	//Remove training partner center
 	$scope.RemoveCenter = function(){
-		console.log("Inside remove training center function");
-		
-		
-        angular.forEach($scope.trainingPartner.TrainingPartnerCenterDetails, function(selected) {
-        	console.log("Inside function" + selected.nameOfCenter);
-            if (selected.selected) {
-                console.log("Is active" + selected.isActive)
-                selected.isActive = false;
-                console.log("Is active center" + selected.isActive)
-                var url = '/saveAsDraftAndSubmitTP';
-                var method = 'POST';
-                $scope.postValue = {
-                        'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
-                        'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
-                        'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
-                        'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
-                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
-                    }
-                $http({
-                	url : url,
-                	method : method,
-                	data  : angular.toJson($scope.postValue)
-                }).then(function(response){
-                	console.log("response success " + response)
-                	$http.get('/getDataNewUserProfileCreation')
-                    .then(function(response) {
-                        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
-                        $scope.trainingPartner = response.data;
-                        console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
-                        $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
-
-
-                    });
-                },function(errorResponse){
-                	console.log("error response" + errorResponse)
-                })
+		console.log("Inside remove training center function");	
+		console.log($scope.trainingPartner.TrainingPartnerCenterDetails);
+		console.log($scope.trainingPartner.TrainingPartnerCenterDetails.selected);
+        angular.forEach($scope.trainingPartner.TrainingPartnerCenterDetails, function(TrainingPartnerCenterDetails, key) {
+        	console.log("key is " + key);
+        	console.log("Inside function" + TrainingPartnerCenterDetails.nameOfCenter);
+        	console.log(TrainingPartnerCenterDetails);
+        	console.log(TrainingPartnerCenterDetails.select);
+           if (TrainingPartnerCenterDetails.select)
+           {
+        	   console.log("runnig for " + TrainingPartnerCenterDetails.nameOfCenter);
+                console.log("Is active" + TrainingPartnerCenterDetails.isActive);
+                TrainingPartnerCenterDetails.isActive = false;
+                console.log("Is active center" + TrainingPartnerCenterDetails.isActive);
+                
             }
-        });       
+           else
+        	   {
+        	   console.log("Inside else");
+        	   }
+        });  
+           var url = '/saveAsDraftAndSubmitTP';
+           var method = 'POST';
+           $scope.postValue = {
+                   'type' : 'Draft',
+                   'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
+                   'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
+                   'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
+                   'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
+                   'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
+                   'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                   'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
+               }
+           $http({
+           	url : url,
+           	method : method,
+           	data  : angular.toJson($scope.postValue)
+           }).then(function(response){
+           	console.log("response success " + response)
+           	$http.get('/getDataNewUserProfileCreation')
+               .then(function(response) {
+                   console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                   $scope.trainingPartner = response.data;
+                   console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
+                   $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+
+               });
+           },function(errorResponse){
+           	console.log("error response" + errorResponse)
+           });
+             
 		
 	};
 	//Add new recognition in table
@@ -205,49 +223,47 @@ $scope.removeManagement = function(){
             'remarks': ""
         });
     }
-
-
-    
     //remove from prior experience
     $scope.remove = function() {
         var newDataList = [];
         //        $scope.selectedAll = false;
         angular.forEach($scope.trainingPartner.PriorExperienceDetails, function(selected) {
-            if (!selected.selected) {
+            if (selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
                 selected.isActive = 0;
-                var url = '/saveAsDraftAndSubmitTP';
-                var method = 'POST';
-                $scope.postValue = {
-                        'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
-                        'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
-                        'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
-                        'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
-                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
-                    }
-                $http({
-                	url : url,
-                	method : method,
-                	data  : angular.toJson($scope.postValue)
-                }).then(function(response){
-                	console.log("response success " + response)
-                	$http.get('/getDataNewUserProfileCreation')
-                    .then(function(response) {
-                        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
-                        $scope.trainingPartner = response.data;
-                        console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
-                        $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
-
-
-                    });
-                },function(errorResponse){
-                	console.log("error response" + errorResponse)
-                })
             }
         });
+            var url = '/saveAsDraftAndSubmitTP';
+            var method = 'POST';
+            $scope.postValue = {
+                    'type' : 'Draft',
+                    'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
+                    'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
+                    'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
+                    'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
+                    'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
+                    'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                    'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
+                }
+            $http({
+            	url : url,
+            	method : method,
+            	data  : angular.toJson($scope.postValue)
+            }).then(function(response){
+            	console.log("response success " + response)
+            	$http.get('/getDataNewUserProfileCreation')
+                .then(function(response) {
+                    console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                    $scope.trainingPartner = response.data;
+                    console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
+                    $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+
+                });
+            },function(errorResponse){
+            	console.log("error response" + errorResponse)
+            });
+        
        
     };
 
@@ -255,52 +271,54 @@ $scope.removeManagement = function(){
         var newDataList = [];
         //        $scope.selectedAll = false;
         angular.forEach($scope.trainingPartner.ManagementAndStaffAndOfficialDetails, function(selected) {
-            if (!selected.selected) {
+            if (selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
                 selected.isActive = 0;
-                var url = '/saveAsDraftAndSubmitTP';
-                var method = 'POST';
-                $scope.postValue = {
-                        'type' : 'Draft',
-                        'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
-                        'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
-                        'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
-                        'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                        'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                        'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
-                        'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
-                    }
-                $http({
-                	url : url,
-                	method : method,
-                	data  : angular.toJson($scope.postValue)
-                }).then(function(response){
-                	console.log("response success " + response)
-                	$http.get('/getDataNewUserProfileCreation')
-                    .then(function(response) {
-                        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
-                        $scope.trainingPartner = response.data;
-                        console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
-                        $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
-
-
-                    });
-                },function(errorResponse){
-                	console.log("error response" + errorResponse)
-                })
             }
+            
         });
-       
+        var url = '/saveAsDraftAndSubmitTP';
+        var method = 'POST';
+        $scope.postValue = {
+                'type' : 'Draft',
+                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
+                'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
+                'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
+                'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
+                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
+                'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
+                'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
+            }
+        $http({
+        	url : url,
+        	method : method,
+        	data  : angular.toJson($scope.postValue)
+        }).then(function(response){
+        	console.log("response success " + response)
+        	$http.get('/getDataNewUserProfileCreation')
+            .then(function(response) {
+                console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                $scope.trainingPartner = response.data;
+                console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
+                $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+
+            });
+        },function(errorResponse){
+        	console.log("error response" + errorResponse)
+        })
     };
 
     
     $scope.removeRecognition = function() {
         var newDataList = [];
-        //        $scope.selectedAllRecognition = false;
         angular.forEach($scope.trainingPartner.InstituteRecognitionDetails, function(selected) {
-            if (!selected.selected) {
+            if (selected.selected)
+            {
             	console.log("Name of selected center" + selected.nameOfCenter)
                 selected.isActive = 0;
+            }
+        });
                 var url = '/saveAsDraftAndSubmitTP';
                 var method = 'POST';
                 $scope.postValue = {
@@ -330,9 +348,8 @@ $scope.removeManagement = function(){
                     });
                 },function(errorResponse){
                 	console.log("error response" + errorResponse)
-                })
-            }
-        });
+                });
+      
         
     };
 
@@ -344,6 +361,8 @@ $scope.removeManagement = function(){
             if (selected.selected) {
             	console.log("Name of selected center" + selected.nameOfCenter)
                 selected.isActive = 0;
+            }
+        });
                 var url = '/saveAsDraftAndSubmitTP';
                 var method = 'POST';
                 $scope.postValue = {
@@ -374,8 +393,7 @@ $scope.removeManagement = function(){
                 },function(errorResponse){
                 	console.log("error response" + errorResponse)
                 })
-            }
-        });
+  
         
     };
 
@@ -400,62 +418,6 @@ $scope.removeManagement = function(){
         $scope.trainingPartner.InstituteGrantDetails = [];
     };
 
-    $scope.saveAccordionOne = function()
-    {
-        console.log("Button Working " + JSON.stringify($scope.trainingPartner));
-        
-        
-        var url = '/saveAsDraftAndSubmitTP';
-        var method = 'POST';
-        $scope.postValue = {
-                'type' : 'Draft',
-                'profileCreationTrainingPartnerOrganizationDetailsDto':  $scope.trainingPartner.TrainingPartnerOrganizationDetails,
-                'profileCreationTrainingPartnerCenterDetailsDto' :  $scope.trainingPartner.TrainingPartnerCenterDetails,
-                'profileCreationTrainingPartnerInstituteGrantDto' : $scope.trainingPartner.InstituteGrantDetails,
-                'profileCreationTrainingPartnerInstituteRecognitionDto' :$scope.trainingPartner.InstituteRecognitionDetails,
-                'profileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto': $scope.trainingPartner.ManagementAndStaffAndOfficialDetails,
-                'profileCreationTrainingPartnerPriorExperienceInSkillTrainingDto' : $scope.trainingPartner.PriorExperienceDetails,
-                'profileCreationTrainingPartnerTrainingStaffDetailsDto' : $scope.trainingPartner.TrainingStaff
-            }
-        $http({
-        	url : url,
-        	method : method,
-        	data  : angular.toJson($scope.postValue)
-        }).then(function(response){
-        	console.log("response success " + response)
-        	if(response.data == 1){
-                $scope.successText = "PDF generated successfully";
-                $scope.successTextColor = "green";
-                $scope.rolling = false;
-            }
-            else if(response.data == -1){
-                $scope.successText = "PDF could not be generated successfully due to some error";
-                $scope.successTextColor = "orange";
-                $scope.rolling = false;
-            }
-            else if(response.data == 0){
-                $scope.successText = "PDF could not be generated successfully";
-                $scope.successTextColor = "red";
-                $scope.rolling = false;
-            }
-            else if(response.data == 2){
-                $scope.successText = "PDF could not be generated due to SQL tables being empty";
-                $scope.successTextColor = "blue";
-                $scope.rolling = false;
-            }
-        	$http.get('/getDataNewUserProfileCreation')
-            .then(function(response) {
-                console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
-                $scope.trainingPartner = response.data;
-                console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
-                $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
-
-
-            });
-        },function(errorResponse){
-        	console.log("error response" + errorResponse)
-        })
-    };
 
     //Upload PAN
     $scope.uploadFilePan = function()
@@ -788,12 +750,27 @@ $scope.removeManagement = function(){
                 function successCallback(response) {
                     console.log("SUCCESS 123");
                     console.log("RESPONSE COMING FROM SERVER IS  : " + JSON.stringify(response));
-
+                    
                     console.log("RESPONSE COMING FROM SERVER IS  : " + JSON.stringify(response.data));
                     if (response.data == "") {
                         console.log("NULL DATA I.E. ERROR");
                     } else
-                        console.log("ELSE");
+                    	{
+                    	console.log("ELSE");
+                    	$http.get('/getDataNewUserProfileCreation')
+                        .then(function(response) {
+                            console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                            //            $scope.trainingPartner = response.data;
+
+                            $scope.trainingPartner = response.data;
+                            console.log("this is $scope.trainingPartner  " +  JSON.stringify($scope.trainingPartner));
+                            $scope.TrainingPartnerOrganizationDetails = $scope.trainingPartner.TrainingPartnerOrganizationDetails;
+
+
+                        });
+                    	console.log("ELSE");
+                    	}
+                        
 
                 },
                 function errorCallBack(response) {

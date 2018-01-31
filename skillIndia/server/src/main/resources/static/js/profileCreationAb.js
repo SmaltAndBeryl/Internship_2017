@@ -85,12 +85,13 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
 
     //Remove functionality
     $scope.removeExperience = function(){
-        
-        
+       
         angular.forEach($scope.assessmentBody.AssessmentsExperienceInTechnicalDomain, function(selected){
             if(selected.selected){
             	console.log(selected.domain);
             	selected.isActive = 0;
+            }
+        });
             	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
                 var RequestMethod = "POST";
                 $scope.profileCreationABTPDto = {
@@ -124,12 +125,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 		},
                 		function(errorResponse, status)
                 		{
-                			console.log("Failed "+ errorResponse)
-                		}
-                		)
-            }
-        });
-        //$scope.assessmentBody.AssessmentsExperienceInTechnicalDomain = newDataList;
+                			console.log("Failed "+ errorResponse);
+                		});
     };
 
     $scope.removeRecognition = function(){
@@ -140,6 +137,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             	selected.isActive = 0;
             	console.log(selected.domain);
             	selected.isActive = 0;
+            }
+        });
             	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
                 var RequestMethod = "POST";
                 $scope.profileCreationABTPDto = {
@@ -175,9 +174,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 		{
                 			console.log("Failed "+ errorResponse)
                 		}
-                		)
-            }
-        });
+                		);
+
     };
 
     $scope.removeAffiliation = function(){
@@ -187,6 +185,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             	selected.isActive = 0;
             	console.log(selected.domain);
             	selected.isActive = 0;
+            }
+        });
             	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
                 var RequestMethod = "POST";
                 $scope.profileCreationABTPDto = {
@@ -222,9 +222,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 		{
                 			console.log("Failed "+ errorResponse)
                 		}
-                		)
-            }
-        });
+                		);
+
         
     };
 
@@ -235,6 +234,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             	selected.isActive = 0;
             	console.log(selected.domain);
             	selected.isActive = 0;
+            }
+        });
             	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
                 var RequestMethod = "POST";
                 $scope.profileCreationABTPDto = {
@@ -270,9 +271,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 		{
                 			console.log("Failed "+ errorResponse)
                 		}
-                		)
-            }
-        });
+                		);
+        
     };
 
     $scope.removeOffice = function(){
@@ -283,6 +283,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             	selected.isActive = 0;
             	console.log(selected.domain);
             	selected.isActive = 0;
+        	  }
+        });
             	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
                 var RequestMethod = "POST";
                 $scope.profileCreationABTPDto = {
@@ -318,9 +320,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 		{
                 			console.log("Failed "+ errorResponse)
                 		}
-                		)
-            }
-        });
+                		);
+          
     };
 
     $scope.removeAssessor = function(){
@@ -330,6 +331,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             	selected.isActive = 0;
             	console.log(selected.domain);
             	selected.isActive = 0;
+        	 }
+        });
             	var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
                 var RequestMethod = "POST";
                 $scope.profileCreationABTPDto = {
@@ -365,9 +368,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 		{
                 			console.log("Failed "+ errorResponse)
                 		}
-                		)
-            }
-        });
+                		);
+           
     };
 
     //Remove all functionality

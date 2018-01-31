@@ -471,11 +471,10 @@
                     </div>
                 </accordion-heading>
                 <div>
-                  <!--     accordion content to come here -->
                   
                 <div ng-repeat="trainingCenter in trainingPartner.TrainingPartnerCenterDetails" class="div-center">
                 <div class="form-horizontal form-group">
-                  <input type="checkbox" ng-model="center.selected" />Click to select training center
+                  <label><input type="checkbox" ng-model="trainingCenter.select" >Click to select training center</label>
                   </div>
                 	 <!-- Name of Center -->
                 	<div class="form-horizontal">
@@ -783,13 +782,13 @@
                     <label>Number of Technical Books</label>
                     </div>
                     <div class="col-md-3">
-                    	<input type="text" ng-model="trainingCenter.numberOfTechnicalBooks" />
+                    	<input type="text" ng-model="trainingCenter.numberOfTechnicalBooks" class="form-control" />
                     </div>
                     <div class="col-md-3">
                     <label>Number of non-technical Books</label>
                     </div>
                     <div class="col-md-3">
-                    	<input type="text" ng-model="trainingCenter.numberOfNonTechnicalBooks" />
+                    	<input type="text" ng-model="trainingCenter.numberOfNonTechnicalBooks"  class="form-control"/>
                     </div>
                     </div>
                     <div class="form-group">
@@ -797,13 +796,13 @@
                     <label>Number of Magzines</label>
                     </div>
                     <div class="col-md-3">
-                    	<input type="text" ng-model="trainingCenter.numberOfMagazines" />
+                    	<input type="text" ng-model="trainingCenter.numberOfMagazines" class="form-control" />
                     </div>
                     <div class="col-md-3">
                     <label>Number of Dailies</label>
                     </div>
                     <div class="col-md-3">
-                    	<input type="text" ng-model="trainingCenter.numberOfDailies" />
+                    	<input type="text" ng-model="trainingCenter.numberOfDailies"  class="form-control"/>
                     </div>
                     </div>
                     
@@ -882,7 +881,7 @@
                     <label>Any Remarks on Learning enviornment</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.remarksOnLearningEnviornment">
+                    	<input type="text" ng-model="trainingCenter.remarksOnLearningEnviornment" class="form-control" />
                     </div>
                     </div>
                     </div>
@@ -906,7 +905,7 @@
                     <div class="form-horizontal">
                     	<div class="form-group">
                     	<div class="col-md-6">
-                    <label>Are documented poicies and procedures for admission present?</label>
+                    <label>Are documented policies and procedures for admission present?</label>
                     </div>
                     <div class="col-md-6">
                     	<label class="radio-inline">
@@ -973,7 +972,7 @@
                     <label>Any Remarks on Students Admission process</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.remarksOnStudentAdmissionDetails">
+                    	<input type="text" ng-model="trainingCenter.remarksOnStudentAdmissionDetails" class="form-control"/>
                     </div>
                     </div>
                     </div>
@@ -985,6 +984,7 @@
                             <div class="col-md-6 form-group">
                                 <button type="button" class="btn btn-pc-submit" ng-click="AddCenter()">Add Center</button>
                             </div>
+                            
                             <div class="col-md-6 form-group">
                                 <button type="button" class="btn btn-danger" ng-click="RemoveCenter()">Remove Center</button>
                             </div>
@@ -1399,7 +1399,7 @@
         
         
         <div class="form-group form-horizontal col-md-offset-8">
-            <!--<button type="button" ng-click="save('save')" class="btn btn-warning">Save as Draft</button>-->
+            
             <div class="col-md-2">
             <button type="button" ng-click="save()" class="btn btn-pc-save" tooltip="Click this if you want to save the details and fill rest of the details later">Save as Draft</button>
             </div>
