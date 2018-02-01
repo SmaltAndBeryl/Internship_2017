@@ -1,5 +1,7 @@
 package com.skill.India.dto;
 
+import java.util.Date;
+
 import com.skill.India.common.BaseDto;
 
 public class TrainingPartnerApplicationStatusDto extends BaseDto
@@ -7,13 +9,13 @@ public class TrainingPartnerApplicationStatusDto extends BaseDto
 	private static final long serialVersionUID = 1L;
 
     private final String applicationID;
-    private final String dateOfSubmission;
+    private final Date dateOfSubmission;
     private final String trainingPartnerName;
     private final String applicationState;
     private final String comment;
     	    
     
-    public TrainingPartnerApplicationStatusDto(String applicationID, String dateOfSubmission, String trainingPartnerName, String applicationState, String comment) {
+    public TrainingPartnerApplicationStatusDto(String applicationID, Date dateOfSubmission, String trainingPartnerName, String applicationState, String comment) {
         super();
         this.applicationID = applicationID;
         this.dateOfSubmission = dateOfSubmission;
@@ -30,7 +32,7 @@ public class TrainingPartnerApplicationStatusDto extends BaseDto
     }
 
     
-    public String getDateOfSubmission() {
+    public Date getDateOfSubmission() {
         return dateOfSubmission;
     }
     

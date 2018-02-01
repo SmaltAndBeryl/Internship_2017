@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.slf4j.Logger;
@@ -59,7 +60,7 @@ private static final Logger LOGGER = LoggerFactory.getLogger(AssessmentBodyAppli
         public AssessmentBodyApplicationStatusDto mapRow(ResultSet resultSet, int rowNum)
                 throws SQLException {
             String applicationID = resultSet.getString("applicationID");
-            String dateOfSubmission = resultSet.getString("dateOfSubmission");
+            Date dateOfSubmission = resultSet.getDate("dateOfSubmission");
             String assessmentAgencyName = resultSet.getString("organizationName");
             String applicationState = resultSet.getString("applicationState");
             String comment = resultSet.getString("comment");
