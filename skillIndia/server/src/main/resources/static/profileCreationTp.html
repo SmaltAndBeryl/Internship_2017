@@ -504,7 +504,7 @@
                   
                 <div ng-repeat="trainingCenter in trainingPartner.TrainingPartnerCenterDetails" class="div-center">
                 <div class="form-horizontal form-group">
-                  <label><input type="checkbox" ng-model="trainingCenter.select" >Click to select training center</label>
+                  <label><input type="checkbox" ng-model="trainingCenter.select" ng-checked="trainingCenter.checked" >Click to select training center</label>
                   </div>
                 	 <!-- Name of Center -->
                 	<div class="form-horizontal">

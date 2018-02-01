@@ -191,8 +191,9 @@ $scope.removeManagement = function(){
 	$scope.RemoveCenter = function(){
 		console.log("Inside remove training center function");	
 		console.log($scope.trainingPartner.TrainingPartnerCenterDetails);
-		console.log($scope.trainingPartner.TrainingPartnerCenterDetails.selected);
+		console.log($scope.trainingPartner.TrainingPartnerCenterDetails.selected);		
         angular.forEach($scope.trainingPartner.TrainingPartnerCenterDetails, function(TrainingPartnerCenterDetails, key) {
+        	console.log($scope.trainingPartner.TrainingPartnerCenterDetails.checked);
         	console.log("key is " + key);
         	console.log("Inside function" + TrainingPartnerCenterDetails.nameOfCenter);
         	console.log(TrainingPartnerCenterDetails);
