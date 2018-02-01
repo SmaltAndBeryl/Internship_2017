@@ -12,23 +12,27 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
                 name: 'applicationID',
                 displayName: 'Application ID',
                 cellClass: 'commoncell',
+                width : "10%",
                 headerCellClass: 'Application-ID'
             },
             {
                 name: 'dateOfSubmission',
                 displayName: 'Date of Submission',
                 cellClass: 'commoncell',
+                width : "11%",
                 headerCellClass: 'Date-of-Submission'
             },
             {
                 name: 'trainingPartnerName',
                 displayName: 'Submitted By',
+                width : "20%",
                 cellClass: 'commoncell',
                 headerCellClass: 'Submitted-By'
             },
             {
                 name: 'applicationState',
                 displayName: 'Status',
+                width : "10%",
                 cellClass: function (grid, row, col, rowIndex, colIndex) {
                     var val = grid.getCellValue(row, col);
                     if (val === 'Approved') {
@@ -48,7 +52,7 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
                 name: 'Action',
                 displayName: 'Action',
                 cellClass: 'Prostokt-2-kopia-2-copy-14',
-                width: 76,
+                width: "5%",
                 headerCellClass: 'Action-copy',
                 cellTemplate: '<img src="icon/indexpageIcons/edit1.png" ng-show="1" ng-click="grid.appScope.editApplication(row)">'
             },
@@ -57,7 +61,8 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
                 displayName: 'Comment',
                 cellClass: 'comment',
                 headerCellClass: 'Comment',
-                cellTemplate: '<center ng-click=grid.appScope.myfunction1(row)>Click to View'
+                width : "44%"
+                //cellTemplate: '<center ng-click=grid.appScope.myfunction1(row)>'
             }
         ]
     };
@@ -85,6 +90,7 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
     $http.get('/trainingPartnerApplicationStatus')
         .then(function(response) {
                 $scope.tpAppStatus.data = response.data;
+                console.log(response.data);
             },
             function(errorResponse) {
                 console.log("inside error function application status table");

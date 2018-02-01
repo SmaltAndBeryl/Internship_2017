@@ -11,12 +11,12 @@ page3.controller('page3',function($scope, $http, fileUploadDataImport, zipCertif
        enableVerticalScroll:1,
 
     columnDefs:[
-    	  { name: 'SNo',           displayName: 'SNo.',              cellClass:'sno',  headerCellClass:'layer', cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' },
-          { name: 'csvname',            displayName: 'File Name',          cellClass:'fname',headerCellClass:'File-Name'},
-    	  { name: 'csvtype',            displayName: 'Type',               cellClass:'type', headerCellClass:'Type'},
-    	  { name: 'csv_Upload_Date',    displayName: 'Date',               cellClass:'date', headerCellClass:'Date', cellFilter: 'date:\'dd/MM/yyyy\''},
-    	  { name: 'csv_Upload_UserId',  displayName: 'Uploaded By',        cellClass:'uby',  headerCellClass:'Uploaded-By'},
-    	  { name: 'View Uploaded File', displayName: 'View Uploaded File', cellClass:'vub',  headerCellClass:'View-Uploaded-File', cellTemplate: '<img src="/images/CSVDownloadIcon.png" ng-click=grid.appScope.download(row)>'}
+    	  { name: 'SNo',           displayName: 'SNo.',              cellClass:'sno',  headerCellClass:'layer', width : "5%" , cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' },
+          { name: 'csvname',            displayName: 'File Name',          cellClass:'fname',headerCellClass:'File-Name', width: "40%"},
+    	  { name: 'csvtype',            displayName: 'Type',               cellClass:'type', headerCellClass:'Type', width: "15%"},
+    	  { name: 'csv_Upload_Date',    displayName: 'Date',               cellClass:'date', headerCellClass:'Date',width:"10%", cellFilter: 'date:\'dd/MM/yyyy\''},
+    	  { name: 'csv_Upload_UserId',  displayName: 'Uploaded By',        cellClass:'uby',  headerCellClass:'Uploaded-By', width:"20%"},
+    	  { name: 'View Uploaded File', displayName: 'View Uploaded File', cellClass:'vub',  headerCellClass:'View-Uploaded-File', width:"10%",cellTemplate: '<img src="/images/CSVDownloadIcon.png" ng-click=grid.appScope.download(row)>'}
     	       ]
       };
 
