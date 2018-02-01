@@ -72,35 +72,35 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>UserId</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.trainingPartnerRegistrationId" readonly>
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.trainingPartnerRegistrationId" readonly class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>City</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.city">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.city" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>State</label></div>
                                     <div class="col-md-8">
-                                    <select ng-model="trainingPartner.TrainingPartnerOrganizationDetails.state"  ng-options="state for state in states" >{{state}}</select>
+                                    <select ng-model="trainingPartner.TrainingPartnerOrganizationDetails.state"  ng-options="state for state in states"  class="form-control">{{state}}</select>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Mobile Number</label></div>
                                     <div class="col-md-8" >
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileNumber" ng-required="true" />
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileNumber" ng-required="true" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" ng-required="true" />
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" ng-required="true" class="form-control" />
                                     </div>
                                 </div>
 
@@ -109,28 +109,28 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateLandlineNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateLandlineNumber" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Fax Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.faxNumber">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.faxNumber" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Website</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.websites">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.websites" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -169,8 +169,9 @@
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Year of Establishment</label></div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment" placeholder="year"/>
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment" class="form-control" placeholder="yyyy"/>
                             </div>
+                            
                         </div>
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Qualification Pack</label><br>
@@ -184,9 +185,12 @@
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Medium of instruction</label></div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mediumOfInstructions">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mediumOfInstructions" class="form-control">
+                                </div>
+                                <div class="col-md-12">
+                                </div>
                                 <small class="fine-print">For multiple languages, use commas to separate them</small>
-                            </div>
+                            
                         </div>
 
                         <div class="row row-margin">
@@ -200,7 +204,7 @@
                                 Self Owned Institution
                             </div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution" class="form-control">
 
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution > '0'" class="upload-btn">
                                     <p class="upload-annexure-msg">We will ask you to upload Annexure later in coming sections below</p>
@@ -214,7 +218,7 @@
                                 Franchise Owned Institution
                             </div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution" class="form-control">
 
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution > '0'" class="upload-btn">
                                     <p class="upload-annexure-msg">We will ask you to upload Annexure later in coming sections below</p>
@@ -227,7 +231,7 @@
                                 Mobile Owned Institution
                             </div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution" class="form-control">
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution > '0'" class="upload-btn">
                                 <p class="upload-annexure-msg">We will ask you to upload Annexure later in coming sections below</p>
                                 </div>
@@ -237,18 +241,18 @@
 
                         <div class="row row-margin">
                             <div class="col-md-4"><label>PAN</label></div>
-                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.panNumber"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.panNumber" class="form-control"></div>
                         </div>
 
 
                         <div class="row row-margin">
                             <div class="col-md-4"><label>TAN</label></div>
-                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.tanNumber"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.tanNumber" class="form-control"></div>
                         </div>
 
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Turnover of the institute</label></div>
-                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.turnOverOfInstitution"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.turnOverOfInstitution" class="form-control"></div>
                         </div>
 
                         <div class="row row-margin">
@@ -333,7 +337,7 @@
                         </div>
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Does the institute have any prior experience in skill development?</label></div>
-                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.priorExperienceOfInstitutionInSkillDevelopment"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.priorExperienceOfInstitutionInSkillDevelopment" class="form-control"></div>
                         </div>
 
 

@@ -25,6 +25,43 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
 
             }
     ];
+    $scope.states = ["Andaman and Nicobar Islands",
+                     "Andhra Pradesh", 
+                     "Arunachal Pradesh", 
+                     "Assam",
+                     "Bihar",
+                     "Chandigarh",
+                     "Chhattisgarh",
+                     "Dadra and Nagar Haveli",
+                     "Daman and Diu",
+                     "NCR",
+                     "Goa",
+                     "Gujarat",
+                     "Haryana",
+                     "Himachal Pradesh",
+                     "Jammu and Kashmir",
+                     "Jharkhand",
+                     "Karnataka",
+                     "Kerala",
+                     "Lakshadweep",
+                     "Madhya Pradesh",
+                     "Maharashtra",
+                     "Manipur",
+                     "Meghalaya",
+                     "Mizoram",
+                     "Nagaland",
+                     "Odisha",
+                     "Puduchery",
+                     "Punjab",
+                     "Rajasthan",
+                     "Sikkim",
+                     "Tamil Nadu",
+                     "Telagana",
+                     "Tripura",
+                     "Uttar Pradesh",
+                     "Uttarakhand",
+                     "West Bengal"
+                     ];
 
     //Get the data from backend
     $http.get('/getDataNewUserProfileCreation')

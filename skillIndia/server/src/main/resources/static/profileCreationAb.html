@@ -69,35 +69,36 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>UserId</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.assessmentBodyRegistrationId" readonly />
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.assessmentBodyRegistrationId" readonly class="form-control"/>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>City</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.city" />
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.city" class="form-control"/>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>State</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.state">
+                                    <select ng-model="assessmentBody.AssessmentBodyRegistrationDetails.state"  ng-options="state for state in states"  class="form-control">{{state}}</select>
+                                        
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber" />
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber" class="form-control"/>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateMobileNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateMobileNumber" class="form-control">
                                     </div>
                                 </div>
 
@@ -106,28 +107,28 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.landlineNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.landlineNumber" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateLandlineNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateLandlineNumber" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Fax Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.faxNumber">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.faxNumber" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Website</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.websites">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.websites" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +165,7 @@
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Year of Establishment</label></div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.yearOfEstablishment">
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.yearOfEstablishment" class="form-control">
                             </div>
                         </div>
 
@@ -199,14 +200,14 @@
                         <div class="row row-margin">
                             <div class="col-md-4"><label>PAN</label></div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.panNumber" required>
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.panNumber" required class="form-control">
                             </div>
                         </div>
 
                         <div class="row row-margin">
                             <div class="col-md-4"><label>TAN</label></div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.tanNumber" required>
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.tanNumber" required class="form-control">
                             </div>
                         </div>
 
