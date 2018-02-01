@@ -14,7 +14,13 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, $locat
 
 
         });
-    $scope.states = ["UP", "Uttarakhand", "MP", "Bihar"];
+    $scope.states = ["Andaman and Nicobar Islands",
+                     "Andhra Pradesh", 
+                     "Arunachal Pradesh", 
+                     "Assam",
+                     "Bihar",
+                     "Chandigarh"
+                     ];
     $scope.type = ["regular", "visiting"];
     $scope.buildingTypes = ["Own" , "Rented", "Lease"];
     $scope.pctpCenterDetails = [];
