@@ -19,7 +19,8 @@ profileCreationTp.controller('profileCreationTp', function($scope, $http, $locat
                      "Arunachal Pradesh", 
                      "Assam",
                      "Bihar",
-                     "Chandigarh"
+                     "Chandigarh",
+                     "Chhattisgarh"
                      ];
     $scope.type = ["regular", "visiting"];
     $scope.buildingTypes = ["Own" , "Rented", "Lease"];
