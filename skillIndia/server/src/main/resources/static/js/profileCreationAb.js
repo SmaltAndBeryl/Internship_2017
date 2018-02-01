@@ -1,12 +1,6 @@
 var profileCreationAb = angular.module('hello');
 
 profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location ,fileUpload){
-
-
-    $scope.assessmentBody = {
-    		
-    };
-
     $scope.names = [
         {
             name : "JSS",
@@ -173,8 +167,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 		function(errorResponse, status)
                 		{
                 			console.log("Failed "+ errorResponse)
-                		}
-                		);
+                		});
 
     };
 
@@ -431,10 +424,9 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     }
     
     //Save as draft function
-    $scope.save = function(response){
-       
+    $scope.save = function(){    
 
-        var saveDraftAndSubmit = "/saveAsDraftAndSubmitAB";
+        var url = "/saveAsDraftAndSubmitAB";
         var RequestMethod = "POST";
         $scope.profileCreationABTPDto = {
         		'type' : 'Draft',
@@ -445,18 +437,17 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         		'profileCreationAssessmentBodyRegionalOfficeDetailsDto' : $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails,
         		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
         		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
-        }  
+        };
         
         $http({
-        	url: saveDraftAndSubmit,
+        	url: url,
         	method : RequestMethod,
         	data :  angular.toJson( $scope.profileCreationABTPDto)
         
         }).then(
         		function(response)
         		{
-        			console.log("Success " + response)
-        			//Get the data from backend
+        			console.log("Success " + response);
         		    $http.get('/getDataNewUserProfileCreation')
         		    .then(function(response){
         		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
@@ -470,8 +461,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         		function(errorResponse, status)
         		{
         			console.log("Failed "+ errorResponse)
-        		}
-        		)
+        		});
         };
    
         $scope.submit = function(response){
