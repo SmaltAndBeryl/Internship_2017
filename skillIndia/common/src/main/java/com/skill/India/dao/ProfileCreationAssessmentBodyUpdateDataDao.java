@@ -36,6 +36,7 @@ public class ProfileCreationAssessmentBodyUpdateDataDao extends AbstractTransact
 			Map<String, Object> parameters=new HashMap<String, Object>();
 			
 			//parameters.put("assessmentBodyRegistrationId",profileCreationAssessmentBodyRegistrationDetailsDto.getAssessmentBodyRegistrationId());
+			parameters.put("applicationId", profileCreationAssessmentBodyRegistrationDetailsDto.getApplicationId());
 			parameters.put("organizationName",profileCreationAssessmentBodyRegistrationDetailsDto.getOrganizationName());
 			parameters.put("sPOCName",profileCreationAssessmentBodyRegistrationDetailsDto.getsPOCName());
 			parameters.put("address",profileCreationAssessmentBodyRegistrationDetailsDto.getAddress());

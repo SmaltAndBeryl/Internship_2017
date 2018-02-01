@@ -65,7 +65,7 @@ public class ProfileCreationController {
 	@RequestMapping(value="/saveAsDraftAndSubmitAB", method = RequestMethod.POST)
 	public int saveAsDraftABController(@RequestBody ProfileCreationAssessmentBodyWrapperDto profileCreationAssessmentBodyWrapperDto)
 	{
-		LOGGER.debug("Response fro organisation as received from front end " + profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
+		LOGGER.debug("Response for organisation as received from front end " + profileCreationAssessmentBodyWrapperDto.getProfileCreationAssessmentBodyRegistrationDetailsDto());
 		int status = profileCreationSaveAsDraftAndSubmitService.SaveAssessmentBody(profileCreationAssessmentBodyWrapperDto);
 		return status;
 		
