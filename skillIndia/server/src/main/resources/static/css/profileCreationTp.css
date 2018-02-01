@@ -40,15 +40,40 @@
 }
 .btn-pc-save
 {
-	text-align: left;
+	text-align: center;
   color: #ffffff;
   background: #f49417;
+  width: 100%;
 }
 .btn-pc-submit
 {
-	text-align: left;
-  color: #ffffff;
-	 background: #1ab394;
+	text-align: center;
+    color: #ffffff;
+	background: #1ab394;
+	width : 100%;
+	 
+}
+.btn-pc-add
+{
+	background-color : #26b4ce;
+	text-align : center;
+	color : white;
+	width : 100%;	
+}
+.btn-pc-remove 
+{
+	background-color : #d9534f;
+	border-color : #d43f3a;
+	text-align : center;
+	width : 100%;
+	color : white;
+}
+.btn-pc-next
+{
+	background-color : #1ab394;
+	color : white;
+	text-align : center;
+	width : 100%;
 }
 .table-top{
     margin-top : 20px;
@@ -84,4 +109,30 @@ th{
 
 .welcome-desc{
     margin-top : 15px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: black;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltiptext:hover  {
+    visibility: visible;
 }

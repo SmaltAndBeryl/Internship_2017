@@ -133,9 +133,9 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="save()">Next</button>
+                        <div class="row row-margin">
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()">Next</button>
                             </div>
                         </div>
 
@@ -269,9 +269,9 @@
                             </form>
                         </div>
                         <!-- Next button -->
-                        <div class="form-horizontal">
-                            <div class="form-group col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="save()" >Next</button>
+                        <div class="form-horizontal col-md-offset-10 col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()" >Next</button>
                             </div>
                         </div>
                     </div>
@@ -318,9 +318,9 @@
                             </form>
                         </div>
                     </div>
-                    <div class="form-horizontal">
-                            <div class="form-group col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="save()" >Next</button>
+                    <div class="form-horizontal col-md-offset-10 col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()" >Next</button>
                             </div>
                         </div>
                 </div>
@@ -414,9 +414,9 @@
                             </form>
                         </div>
                     </div>
-                    <div class="form-horizontal">
-                            <div class="form-group col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="save()" >Next</button>
+                    <div class="form-horizontal  col-md-offset-10 col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()" >Next</button>
                             </div>
                         </div>
                 </div>
@@ -501,15 +501,25 @@
                 	</div>
                 </div>
                 </form>
-                <div class="form-horizontal">
-                            <div class="form-group col-lg-12">
-                                <button type="button" class="btn btn-primary next" ng-click="save()" >Next</button>
+                <div class="form-horizontal col-md-offset-10  col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()" >Next</button>
                             </div>
                         </div>
             </div>
             </accordion-group>
         </accordion>
     </div>
-    <button type="button" ng-click="save()" class="btn btn-warning" tooltip="Click this if you want to save the details and fill rest of the details later">Save as Draft</button>
-    <input type="submit" ng-click="submit()" class="btn btn-success"  value="Submit" name="Submit"/>
+    <div class="form-horizontal">
+    <div class="form-group">
+    <div class="col-md-2  col-md-offset-8">
+    	<button type="button" ng-click="save()" class="btn btn-pc-draft">Save as Draft</button>
+    </div>
+    <div class="col-md-2">
+    	<input type="submit" ng-click="submit()" class="btn btn-pc-sumbit"  value="Submit" name="Submit"/>
+    </div>
+    </div>
+    
+    </div>
+    
 </div>

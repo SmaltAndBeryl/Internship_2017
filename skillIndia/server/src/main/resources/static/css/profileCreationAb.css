@@ -45,3 +45,24 @@ th{
 .welcome-desc{
     margin-top : 15px;
 }
+.btn-pc-next
+{
+	background-color : #1ab394;
+	color : white;
+	text-align: center;
+	width : 100%;
+}
+.btn-pc-draft
+{
+	background-color : #f49417;
+	color : white;
+	text-align : center;
+	width : 100%;
+}
+.btn-pc-sumbit
+{
+	background-color : #1ab394;
+	color : white;
+	text-align : center;
+	width : 100%;
+}

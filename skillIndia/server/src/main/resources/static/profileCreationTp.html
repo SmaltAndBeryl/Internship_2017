@@ -136,9 +136,9 @@
                             </div>
                         </div>
                     <!-- Next Button -->
-                    <div class="form-horizontal">
-                            <div class="col-lg-12 form-group">
-                                <button type="button" class="btn btn-pc-submit" ng-click="save()">Next</button>
+                    <div class="form-horizontal col-md-offset-10">
+                            <div class="col-md-2 form-group">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()">Next</button>
                             </div>
                         </div>
 
@@ -176,7 +176,7 @@
                             <div class="col-md-4"><label>Qualification Pack</label><br>
                             <small class="fine-print">Please refer Guideliness for available QPs</small></div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.qualificationPacks" placeholder="multile Qps separated by comma"/>
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.qualificationPacks" placeholder="multiple Qps separated by comma" class="form-control"/>
                                 
                             </div>
                         </div>
@@ -252,7 +252,8 @@
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-md-4"><label>Does the institution received any grant?</label></div>
+                        <div class="form-group">
+                        <div class="col-md-4"><label>Does the institution received any grant?</label></div>
 
                             <div class="col-md-8">
                                 <label class="radio-inline">
@@ -262,9 +263,12 @@
                                     <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant" value="No" ng-click="removeAllGrant()" checked> No
                                 </label>
                             </div>
-                            <form ng-submit="addNewGrant()" class="col-md-8 col-md-offset-4 table-top">
+                        </div>
+                            <div class="form-horizontal">
+                            	<form ng-submit="addNewGrant()">
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant == 'Yes'">
-                                    <table>
+                                <div class="form-group col-md-12">
+                                	<table>
                                         <tbody>
                                         <tr ng-repeat="grants in trainingPartner.InstituteGrantDetails">
 
@@ -275,15 +279,24 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.InstituteGrantDetails.length" type="button" class="btn btn-danger" ng-click="removeGrant()" value="Remove Selected">
-                                        <input type="submit" class="btn btn-primary addNewGrant" value="Add New">
+                                </div>
+                                    
+                                    <div class="form-group">
+                                    <div class="col-md-2">
+                                    <input type="submit" class="btn btn-primary btn-pc-add" value="Add New">
+                                    </div>
+                                    <div class="col-md-2 col-md-offset-2 ">
+                                    <input ng-hide="!trainingPartner.InstituteGrantDetails.length" type="button" class="btn btn-pc-remove" ng-click="removeGrant()" value="Remove Selected">
+                                    </div>
                                     </div>
                                 </div>
                             </form>
+                            </div>
+                            
                         </div>
                         <div class="row row-margin">
-                            <div class="col-md-4"><label>Is the institute recognized with any bodies?</label></div>
+                        <div class="form-group">
+                        	<div class="col-md-4"><label>Is the institute recognized with any bodies?</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
@@ -292,9 +305,12 @@
                                     <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()" checked> No
                                 </label>
                             </div>
-                            <form ng-submit="addNewRecognition()" class="col-md-8 col-md-offset-4 table-top">
+                        </div>
+                        
+                        	<form ng-submit="addNewRecognition()" >
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition == 'Yes'">
-                                    <table>
+                                <div class="form-group col-md-12">
+                                	<table>
                                         <tbody>
                                         <tr ng-repeat="recognition in trainingPartner.InstituteRecognitionDetails">
 
@@ -305,16 +321,16 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.InstituteRecognitionDetails.length" type="button" class="btn btn-danger" ng-click="removeRecognition()" value="Remove Selected">
-                                        <input type="submit" class="btn btn-primary addNewRecognition" value="Add New">
+                                </div>
+                                    
+                                    <div class="form-group">
+                                    <div class="col-md-2"><input type="submit" class="btn btn-primary btn-pc-add" value="Add New"></div>
+                                    <div class="col-md-offset-2 col-md-2"><input ng-hide="!trainingPartner.InstituteRecognitionDetails.length" type="button" class="btn btn-pc-remove " ng-click="removeRecognition()" value="Remove Selected"></div>
                                     </div>
                                 </div>
                             </form>
+                        
                         </div>
-
-
-
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Does the institute have any prior experience in skill development?</label></div>
                             <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.priorExperienceOfInstitutionInSkillDevelopment"></div>
@@ -322,7 +338,8 @@
 
 
                         <div class="row row-margin">
-                            <div class="col-md-4"><label>Prior experience of institution in skill training(Related to QP)?</label></div>
+                        <div class="form-group">
+                        	<div class="col-md-4"><label>Prior experience of institution in skill training(Related to QP)?</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
                                     <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="Yes" ng-click="addNew()"> Yes
@@ -331,9 +348,12 @@
                                     <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="No" ng-click="removeAll()" checked> No
                                 </label>
                             </div>
-                            <form ng-submit="addNew()" class="col-md-8 col-md-offset-4 table-top">
+                        </div>
+                            
+                            <form ng-submit="addNew()">
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining == 'Yes'">
-                                    <table>
+                                <div class="form-group col-md-12">
+                                	<table>
                                         <tbody>
                                         <tr ng-repeat="experience in trainingPartner.PriorExperienceDetails">
                                             <td><input ng-model="experience.courseName" placeholder ="Name of course" class="form-control" required></td>
@@ -344,17 +364,19 @@
                                         </tbody>
 
                                     </table>
-                                    <div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.PriorExperienceDetails.length" type="button" class="btn btn-danger" ng-click="remove()" value="Remove Selected">
-                                        <input type="submit" class="btn btn-primary addNew" value="Add New">
+                                </div>
+                                    <div class="form-group">
+                                    <div class="col-md-2"> <input type="submit" class="btn btn-primary btn-pc-add" value="Add New"></div>
+                                    <div class="col-md-offset-2 col-md-2" ><input ng-hide="!trainingPartner.PriorExperienceDetails.length" type="button" class="btn btn-pc-remove" ng-click="remove()" value="Remove Selected"></div>
+                                        
                                     </div>
                                 </div>
                             </form>
                         </div>
 
                         <div class="row row-margin">
-                            <div class="col-lg-12">
-                                <button type="button" class="btn btn-pc-submit" ng-click="save()">Next</button>
+                            <div class="col-md-offset-10 col-md-2">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()">Next</button>
                             </div>
                         </div>
 
@@ -382,9 +404,9 @@
                 </accordion-heading>
                 <div class="form-horizontal">
                     <div class="row-margin">
-                     <div class="col-md-12"><label>Details of Directors and Management Team Members</label></div>
+                     <div class="form-group col-md-12"><label>Details of Directors and Management Team Members</label></div>
                     
-                    <div class="col-md-12" >
+                    <div class="form-group col-md-12" >
                                     <table>
                                         <tbody>
                                         <tr ng-repeat="managementStaff in trainingPartner.ManagementAndStaffAndOfficialDetails">
@@ -399,21 +421,21 @@
                                         </tbody>
 
                                     </table>
-                                    <div class="form-horizontal">
+                                    </div>
+                                    <div class="form-group col-md-12">
                                     	<p ng-show = "trainingPartner.ManagementAndStaffAndOfficialDetails.length > '0' " class="upload-annexure-msg">We would ask you to upload CVs for all these management team members later in Upload document section</p>
                                     </div>
-                                    <div class="form-horizontal">
-                                    	<div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.ManagementAndStaffAndOfficialDetails.length" type="button" class="btn btn-danger" ng-click="removeManagement()" value="Remove Selected" />
-                                        <input type="button" class="btn btn-primary addNew" value="Add New" ng-click="addManagement()"/>
+                                    <div class="form-group">
+                                    	<div class="col-md-2">
+                                        
+                                        <input type="button" class="btn btn-primary btn-pc-add" value="Add New" ng-click="addManagement()"/>
+                                    </div>
+                                    <div class="col-md-offset-2 col-md-2">
+                                    	<input ng-hide="!trainingPartner.ManagementAndStaffAndOfficialDetails.length" type="button" class="btn btn-pc-remove" ng-click="removeManagement()" value="Remove Selected" />
                                     </div>
                                     </div>
-                                    <div class="form-horizontal">
-                            <div class="col-lg-12 form-group">
-                                <button type="button" class="btn btn-pc-submit" ng-click="save()">Next</button>
-                            </div>
-                        </div>
-                                </div>
+
+                                
                     </div>
                 </div>
                 <!-- Training Staff -->
@@ -438,21 +460,25 @@
                                         </tbody>
 
                                     </table>
-                                    <div class="form-horizontal">
+                                    </div>
+                                    <div class="form-group col-md-12">
                                     	<p ng-show = "trainingPartner.TrainingStaff.length > '0' " class="upload-annexure-msg">We would ask you to upload CVs for all these management team members later in Upload document section</p>
                                     </div>
-                                    <div class="form-horizontal">
-                                    	<div class="form-group add-btn">
-                                        <input ng-hide="!trainingPartner.TrainingStaff.length" type="button" class="btn btn-danger" ng-click="removeTrainer()" value="Remove Selected" />
-                                        <input type="button" class="btn btn-primary addNew" value="Add New Trainer" ng-click="addTrainer()"/>
+                                    <div class="form-group">
+                                    	<div class="col-md-2">
+                                       
+                                        <input type="button" class="btn btn-primary btn-pc-add" value="Add New Trainer" ng-click="addTrainer()"/>
+                                    </div>
+                                    <div class="col-md-2 col-md-offset-2">
+                                     <input ng-hide="!trainingPartner.TrainingStaff.length" type="button" class="btn btn-pc-remove" ng-click="removeTrainer()" value="Remove Selected" />
                                     </div>
                                     </div>
-                                    <div class="form-horizontal">
-                            <div class="col-lg-12 form-group">
-                                <button type="button" class="btn btn-pc-submit" ng-click="save()">Next</button>
+                                    <div class="form-horizontal col-md-offset-10 col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()">Next</button>
                             </div>
                         </div>
-                </div>
+                
                 </div>
                 </div>
             </accordion-group>
@@ -981,18 +1007,21 @@
      
                   <!-- Add new center button -->
                   <div class="form-horizontal">
-                            <div class="col-md-6 form-group">
-                                <button type="button" class="btn btn-pc-submit" ng-click="AddCenter()">Add Center</button>
+                  	<div class="form-group ">
+                            <div class="col-md-2 ">
+                                <button type="button" class="btn btn-pc-add" ng-click="AddCenter()">Add Center</button>
                             </div>
                             
-                            <div class="col-md-6 form-group">
-                                <button type="button" class="btn btn-danger" ng-click="RemoveCenter()">Remove Center</button>
+                            <div class="col-md-2 col-md-offset-2">
+                                <button type="button" class="btn btn-pc-remove" ng-click="RemoveCenter()">Remove Center</button>
                             </div>
                         </div>
+                  </div>
+                  
                     <!-- Next Button -->
                     <div class="form-horizontal">
-                            <div class="col-md-12 form-group">
-                                <button type="button" class="btn btn-pc-submit" ng-click="save()">Next</button>
+                            <div class="col-md-offset-10 col-md-2 form-group">
+                                <button type="button" class="btn btn-pc-next" ng-click="save()">Next</button>
                             </div>
                         </div>
                 </div>
@@ -1396,17 +1425,15 @@
            
         </accordion>
         <!--  ------------------------ACCORDION ENDS HERE ------------------  -->
-        
-        
-        <div class="form-group form-horizontal col-md-offset-8">
-            
-            <div class="col-md-2">
-            <button type="button" ng-click="save()" class="btn btn-pc-save" tooltip="Click this if you want to save the details and fill rest of the details later">Save as Draft</button>
+        <div class=" form-horizontal">            
+            <div class="form-group">
+            <div class="col-md-2 col-md-offset-8">
+            	<button type="button" ng-click="save()" class="btn btn-pc-save" >Save as Draft</button>
             </div>
-            <div class="col-md-2 col-md-offset-4">
+            <div class="col-md-2">
             	<input type="submit" class="btn btn-pc-submit" value="Submit" name="Submit" ng-click="submit()"/>
             </div>
-            
+            </div>
         </div>
     </div>
 
