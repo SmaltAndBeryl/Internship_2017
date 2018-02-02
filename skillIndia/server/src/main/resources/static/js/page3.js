@@ -67,7 +67,14 @@ $scope.optionValues = [{
      	var csvType = $scope.csvType;
 
          var uploadUrl = "/upload";
-       fileUploadDataImport.uploadFileToUrl(file, csvType, uploadUrl);
+       var fileuploaded = fileUploadDataImport.uploadFileToUrl(file, csvType, uploadUrl);
+       
+       fileuploaded.then(function(response){
+    	   console.log("aa gya yahan pe");
+       },
+       function(errorResponse){
+    	   
+       });
        $http.get("/importHistory")
        .then(function(response){
      	  $scope.dataImportHistory.data = response.data;
@@ -176,6 +183,13 @@ $scope.searchBatch = {
 //	 console.log("File is "+file);
      var url = '/uploadCertificate';
      zipCertificateUpload.uploadZip(batchId,url);
+     $http.get("/certificateImportHistory")
+     .then(function(response){
+      $scope.certificateImportHistory.data = response.data;
+     },
+     function(errorResponse){
+    	 console.log("error");
+     });
  };
 
 
