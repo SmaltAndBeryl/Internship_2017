@@ -20,18 +20,18 @@ public class AssessmentBodyHomepageService {
 	private AssessmentBodyHomepageDao assessmentBodyHomepageDao;
 	
 	public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper(int applicationId){
-		LOGGER.debug("Request Received from Controller");
+		
 		LOGGER.debug("In AssessmentBodyHomepageService - getpastBatchesAssessmentBodyHomepageRowMapper");
 		LOGGER.debug("Parameters Received from front end are - 'applicationId': "+applicationId);
-		LOGGER.debug("Making a Request to Dao to get data");
+		
 		return assessmentBodyHomepageDao.getpastBatchesAssessmentBodyHomepageRowMapper(applicationId);
 	}
 	
 	public Collection<AssessmentBodyHomepageDto> getupcomingBatchesAssessmentBodyHomepageRowMapper(int applicationId){
-		LOGGER.debug("Request Received from Controller");
+		
 		LOGGER.debug("In AssessmentBodyHomepageService - getupcomingBatchesAssessmentBodyHomepageRowMapper");
 		LOGGER.debug("Parameters Received from front end are - 'applicationId': "+applicationId);
-		LOGGER.debug("Making a Request to Dao to get data");
+		
 		return assessmentBodyHomepageDao.getupcomingBatchesAssessmentBodyHomepageRowMapper(applicationId);
 	}
 	

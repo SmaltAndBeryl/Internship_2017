@@ -9,6 +9,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -28,49 +29,75 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 	private static final AssessmentBodyHomepageSelectRowMapper ROW_MAPPER = new AssessmentBodyHomepageSelectRowMapper();
 	private static final AssessmentBodyHomepageAgencyRowMapper ROW_MAPPER_AGENCY_ID = new AssessmentBodyHomepageAgencyRowMapper();
 	
+	/**
+	 * 
+	 * @param applicationId
+	 * @return
+	 */
 	public Collection<AssessmentBodyHomepageDto> getpastBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
 		Integer agencyId = getAgencyId(applicationId);
-		LOGGER.debug("Request Received from Service");
-		LOGGER.debug("In AssessmentBodyHomepageDao - getpastBatchesAssessmentBodyHomepageRowMapper");
-		LOGGER.debug("Parameters Received from Service are - 'applicationId': " +applicationId);
+		try
+		{
+			LOGGER.debug("Trying to get details of past batches for agency");
+			
+			Map<String,Object> parameters = new HashMap<>();
+
+			parameters.put("agencyId",agencyId);
+			
+			LOGGER.debug("Trying to execute SQL query and returning response");
+	        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlpastBatchesAssessmentBodyHomepage(),parameters,
+					ROW_MAPPER);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("No past batches found");
+			return null;
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while finding past batches " + e);
+			return null;
+		}
 		
-		LOGGER.debug("Agency Id for application Id :"+ applicationId+"is :"+agencyId);
-		LOGGER.debug("Getting details of past batches for agency");
-		
-		LOGGER.debug("Creating HashMap object");
-		Map<String,Object> parameters = new HashMap<>();
-		LOGGER.debug("Object created successfully");
-		
-		LOGGER.debug("Inserting parameters to HashMap object");
-		parameters.put("agencyId",agencyId);
-		LOGGER.debug("Parameters inserted");
-		
-		LOGGER.debug("Executing SQL query and returning response");
-        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlpastBatchesAssessmentBodyHomepage(),parameters,
-				ROW_MAPPER);
 	}	
 	
+	/**
+	 * 
+	 * @param applicationId
+	 * @return
+	 */
 	public Collection<AssessmentBodyHomepageDto> getupcomingBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
-		LOGGER.debug("Request Received from Service");
-		LOGGER.debug("In AssessmentBodyHomepageDao - getupcomingBatchesAssessmentBodyHomepageRowMapper");
-		LOGGER.debug("Parameters Received from Service are - 'agencyId': " +applicationId);
-				   	
-		LOGGER.debug("Getting details of upcoming batches for agency");
+		try
+		{
+			LOGGER.debug("trying to get data of upcoming batches");
+			Map<String,Object> parameters = new HashMap<>();
+			
+			parameters.put("agencyId" ,getAgencyId(applicationId));		
+			LOGGER.debug("Executing SQL to fetch past batches of assessment body and trying to returning response");
+			
+	        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlupcomingBatchesAssessmentBodyHomepage(),parameters,
+					ROW_MAPPER);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("No upcoming batches found to show");
+			return null;
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while finding upcoming batches");
+			return null;
+		}
+				
 		
-		LOGGER.debug("Creating HashMap object");
-		Map<String,Object> parameters = new HashMap<>();
 		
-		LOGGER.debug("object created successfully");
-		
-		LOGGER.debug("Inserting parameters to HashMap object");
-		parameters.put("agencyId" ,getAgencyId(applicationId));
-		LOGGER.debug("Parameters inserted are:"+parameters.toString());
-		
-		LOGGER.debug("Executing SQL query and returning response");
-		LOGGER.debug("Query formed is:"+ assessmentBodyHomepageConfigSql.getSelectSqlupcomingBatchesAssessmentBodyHomepage().toString());
-        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlupcomingBatchesAssessmentBodyHomepage(),parameters,
-				ROW_MAPPER);
 	}
+	
+	/**
+	 * Method to get Assessmentbody Id given Application id
+	 * @param applicationId
+	 * @return assessmentbody id
+	 */
 	private int getAgencyId(int applicationId)
 	{
 		int agencyId=0;
@@ -81,65 +108,109 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 		LOGGER.debug("Agency Id for applicationId :"+applicationId+"is :"+agencyId);
 		return agencyId;
 	}
+	
+	
+	/**
+	 * Method to get batches where assessmnet body has shown interest
+	 * @param applicationId
+	 * @return details of batches 
+	 */
 	public Collection<AssessmentBodyHomepageDto> getshownInterestAssessmentBodyHomepageRowMapper(int applicationId) {
-		LOGGER.debug("Request Received from Service");
-		Integer agencyId= getAgencyId(applicationId);
-		LOGGER.debug("In AssessmentBodyHomepageDao - getshownInterestAssessmentBodyHomepageRowMapper");
-		LOGGER.debug("Parameters Received from Service are - 'applicationId': " +applicationId);
-				   	
-		LOGGER.debug("Getting details of shown interest batches by agency");
+		try
+		{
+			Integer agencyId= getAgencyId(applicationId);
+		   	
+			LOGGER.debug("Trying to get details of shown interest batches by agency");
+			
+			Map<String,Object> parameters = new HashMap<>();
+			
+			parameters.put("agencyId",agencyId);
+			LOGGER.debug("Parameters inserted");
+			
+			LOGGER.debug("Trying to execute SQL query and returning response");
+	        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlShownInterestBatchesAssessmentBodyHomepage(),parameters,
+					ROW_MAPPER);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("No shown interest batches found");
+			return null;
+		}
+		catch(Exception e)
+		{
+			LOGGER.debug("An exception occured while finding bathces in which interest has been showed by this assessment body");
+			return null;
+		}	
 		
-		LOGGER.debug("Creating HashMap object");
-		Map<String,Object> parameters = new HashMap<>();
-		LOGGER.debug("object created successfully");
 		
-		LOGGER.debug("Inserting parameters to HashMap object");
-		parameters.put("agencyId",agencyId);
-		LOGGER.debug("Parameters inserted");
-		
-		LOGGER.debug("Executing SQL query and returning response");
-        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlShownInterestBatchesAssessmentBodyHomepage(),parameters,
-				ROW_MAPPER);
 	}
+	
+	/**
+	 * Method to find assigned batches of assessment body
+	 * @param applicationId
+	 * @return collection of all the assigned batches of assessment body
+	 */
 	public Collection<AssessmentBodyHomepageDto> getassignedBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
-		LOGGER.debug("Request Received from Service");
-		Integer agencyId = getAgencyId(applicationId);
-		LOGGER.debug("In AssessmentBodyHomepageDao - getassignedBatchesAssessmentBodyHomepageRowMapper");
-		LOGGER.debug("Parameters Received from Service are - 'applicationId': " +applicationId);
-				   	
-		LOGGER.debug("Getting details of proposed batches to agency");
-		
-		LOGGER.debug("Creating HashMap object");
-		Map<String,Object> parameters = new HashMap<>();
-		LOGGER.debug("object created successfully");
-		
-		LOGGER.debug("Inserting parameters to HashMap object");
-		parameters.put("agencyId",agencyId);
-		LOGGER.debug("Parameters inserted");
-		
-		LOGGER.debug("Executing SQL query and returning response");
-        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlassignedBatchesAssessmentBodyHomepage(),parameters,
-				ROW_MAPPER);
+		try
+		{
+			Integer agencyId = getAgencyId(applicationId);
+					   	
+			LOGGER.debug("Trying to get details of assigned batches to agency");
+			
+			Map<String,Object> parameters = new HashMap<>();
+
+			parameters.put("agencyId",agencyId);
+			
+			LOGGER.debug("Trying to execute SQL query and returning response");
+	        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlassignedBatchesAssessmentBodyHomepage(),parameters,
+					ROW_MAPPER);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("No assigned bathces found for this assessment body");
+			return null;
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while finding assigned batches");
+			return null;
+			
+		}
+
 	}	
+	
+	/**
+	 * Method to find confirmed bathces of assessment body
+	 * @param applicationId
+	 * @return Collection of confirmed batches by assessment body
+	 */
 	public Collection<AssessmentBodyHomepageDto> getconfirmedBatchesAssessmentBodyHomepageRowMapper(int applicationId) {
-		Integer agencyId = getAgencyId(applicationId);
-		LOGGER.debug("Request Received from Service");
-		LOGGER.debug("In AssessmentBodyHomepageDao - getconfirmedBatchesAssessmentBodyHomepageRowMapper");
-		LOGGER.debug("Parameters Received from Service are - 'applicationId': " +applicationId);
+		try
+		{
+			Integer agencyId = getAgencyId(applicationId);
 				   	
-		LOGGER.debug("Getting details of confirmed batches to agency");
-		
-		LOGGER.debug("Creating HashMap object");
-		Map<String,Object> parameters = new HashMap<>();
-		LOGGER.debug("object created successfully");
-		
-		LOGGER.debug("Inserting parameters to HashMap object");
-		parameters.put("agencyId",agencyId);
-		LOGGER.debug("Parameters inserted");
-		
-		LOGGER.debug("Executing SQL query and returning response");
-        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlconfirmedBatchesAssessmentBodyHomepage(),parameters,
-				ROW_MAPPER);
+			LOGGER.debug("Trying to get details of confirmed batches to agency");
+			
+			Map<String,Object> parameters = new HashMap<>();
+
+			parameters.put("agencyId",agencyId);
+
+			LOGGER.debug("Trying to execute SQL query and returning response");
+	        return getJdbcTemplate().query(assessmentBodyHomepageConfigSql.getSelectSqlconfirmedBatchesAssessmentBodyHomepage(),parameters,
+					ROW_MAPPER);
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("Could not find batches confirmed by this assessment body");
+			return null;
+			
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while finding batches confirmed by assessment body");
+			return null;
+		}
+
 	}
 	
 	
