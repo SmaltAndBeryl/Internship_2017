@@ -1,7 +1,8 @@
 <head>
     <link rel="stylesheet" href="css/profileCreationAb.css">
 </head>
-<div ng-controller="profileCreationAb">
+<form id="profileCreationAssessmentBody" name="profileCreationAssessmentBody" ng-submit="profileCreationAssessmentBody.$valid && submit()"  ng-controller="profileCreationAb">
+<div >
     <script type="text/ng-template">
         <div class="panel-heading">
             <h4 class="panel-title" style="background-color:aqua">
@@ -26,7 +27,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="welcome-text">
-                    <h3>Welcome <b>{{spockName}}</b></h3>
+                    <h3><b>{{assessmentBody.AssessmentBodyRegistrationDetails.organizationName}}</b></h3>
                 </div>
                 <div class="welcome-desc">
                     Please fill out the following application form in order to apply as a Assessment Body
@@ -56,10 +57,10 @@
 
                         <div class="row">
                             <div class="col-md-3">
-                                <h2>{{assessmentBody.AssessmentBodyRegistrationDetails.organizationName}}</h2>
+                                <h2>{{assessmentBody.AssessmentBodyRegistrationDetails.sPOCName}}</h2>
                             </div>
                             <div class="col-md-3 col-md-offset-3">
-                                <h2>{{assessmentBody.AssessmentBodyRegistrationDetails.sPOCName}}</h2>
+                                <h2></h2>
                             </div>
                         </div>
 
@@ -76,22 +77,21 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>City</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.city" class="form-control"/>
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.city" class="form-control" ng-required="true"/>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>State</label></div>
                                     <div class="col-md-8">
-                                    <select ng-model="assessmentBody.AssessmentBodyRegistrationDetails.state"  ng-options="state for state in states"  class="form-control">{{state}}</select>
-                                        
+                                    <select ng-model="assessmentBody.AssessmentBodyRegistrationDetails.state"  ng-options="state for state in states"  class="form-control" ng-required="true">{{state}}</select>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber" class="form-control"/>
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber" class="form-control" ng-required="true"/>
                                     </div>
                                 </div>
 
@@ -107,7 +107,7 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.landlineNumber" class="form-control">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.landlineNumber" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
@@ -121,14 +121,14 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Fax Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.faxNumber" class="form-control">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.faxNumber" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Website</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.websites" class="form-control">
+                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.websites" class="form-control" ng-required="true">
                                     </div>
                                 </div>
                             </div>
@@ -165,7 +165,7 @@
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Year of Establishment</label></div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.yearOfEstablishment" class="form-control">
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.yearOfEstablishment" class="form-control" ng-required="true">
                             </div>
                         </div>
 
@@ -176,12 +176,12 @@
                                     <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience" value="Yes" ng-click="addNewExperience()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience" value="No" ng-click="removeAllExperience()" checked> No
+                                    <input type="radio" name="priorAssessmentExperience" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience" value="No" ng-click="removeAllExperience()" checked ng-required="true"> No
                                 </label>
                             </div>
-                            <form class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience.length >'0'">
-                                    <table>
+                            
+                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.priorAssessmentExperience.length >'0'" class="col-md-12">
+                                    <table class="ab-table">
                                         <tbody>
                                         <tr ng-repeat="experience in assessmentBody.AssessmentsExperienceInTechnicalDomain">
                                             <td><input ng-model="experience.domain" class="form-control" placeholder="Domain/Sector" required /></td>
@@ -195,19 +195,19 @@
                                         <input ng-show = "assessmentBody.AssessmentsExperienceInTechnicalDomain.length > '0' " type="button" class="btn btn-primary addNewExperience" value="Add New" ng-click="addNewExperience()" />
                                     </div>
                                 </div>
-                            </form>
+                            
                         </div>
                         <div class="row row-margin">
                             <div class="col-md-4"><label>PAN</label></div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.panNumber" required class="form-control">
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.panNumber" required class="form-control" ng-required="true">
                             </div>
                         </div>
 
                         <div class="row row-margin">
                             <div class="col-md-4"><label>TAN</label></div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.tanNumber" required class="form-control">
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.tanNumber" required class="form-control" ng-required="true">
                             </div>
                         </div>
 
@@ -218,42 +218,42 @@
                                     <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()"checked> No
+                                    <input type="radio" name="insituteReceivedAnyRecognition" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()"checked ng-required="true"> No
                                 </label>
                             </div>
-                            <form ng-submit="addNewRecognition()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition == 'Yes'">
-                                    <table>
+                            
+                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.insituteReceivedAnyRecognition == 'Yes'" class="col-md-12">
+                                    <table class="ab-table">
                                         <tbody>
                                         <tr ng-repeat="recognition in assessmentBody.AssessmentBodyRecognitions">
-                                            <td><input ng-model = "recognition.name" placeholder="Name of recognising body" class="form-control" required></td>
-                                            <td><input ng-model = "recognition.number" placeholder="recognition no." class="form-control" required></td>
+                                            <td><input ng-model = "recognition.name" placeholder="Name of Recognising body" class="form-control" required></td>
+                                            <td><input ng-model = "recognition.number" placeholder="Recognition no." class="form-control" required></td>
                                             <td><input ng-model = "recognition.year" placeholder="Year of Recognition" class="form-control" required></td>
-                                            <td><input ng-model = "recognition.validity" placeholder = "Validity of recognition" class="form-control" required></td>
+                                            <td><input ng-model = "recognition.validity" placeholder = "Validity of Recognition" class="form-control" required></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="recognition.selected"></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                     <div class="form-group add-btn">
                                         <input ng-hide="!assessmentBody.AssessmentBodyRecognitions.length" type="button" class="btn btn-danger" ng-click="removeRecognition()" value="Remove Selected">
-                                        <input type="submit" class="btn btn-primary addNewRecognition" value="Add New">
+                                        <input type="button" class="btn btn-primary addNewRecognition" value="Add New" ng-click="addNewRecognition()">
                                     </div>
                                 </div>
-                            </form>
+                            
                         </div>
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Whether affiliated with any Sector Skill Council</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil" value="Yes" ng-click="addNewAffiliation()"> Yes
+                                    <input type="radio" name="affiliation" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil" value="Yes" ng-click="addNewAffiliation()"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil" value="No" ng-click="removeAllAffiliation()" checked> No
+                                    <input type="radio" name="affiliation" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil" value="No" ng-click="removeAllAffiliation()" checked ng-required="true"> No
                                 </label>
                             </div>
-                            <form ng-submit="addNewAffiliation()" class="col-md-8 col-md-offset-4 table-top">
-                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil == 'Yes'">
-                                    <table>
+                            
+                                <div ng-show="assessmentBody.AssessmentBodyRegistrationDetails.affiliatedToAnySectorSkillCouncil == 'Yes'" class="col-md-12">
+                                    <table class="ab-table">
                                         <tbody>
                                         <tr ng-repeat="affiliation in assessmentBody.AssessmentBodyAffiliationDetails">
 
@@ -264,10 +264,10 @@
                                     </table>
                                     <div class="form-group add-btn">
                                         <input ng-hide="!assessmentBody.AssessmentBodyAffiliationDetails.length" type="button" class="btn btn-danger" ng-click="removeAffiliation()" value="Remove Selected">
-                                        <input type="submit" class="btn btn-primary" value="Add New">
+                                        <input type="button" class="btn btn-primary" value="Add New" ng-click="addNewAffiliation()">
                                     </div>
                                 </div>
-                            </form>
+                            
                         </div>
                         <!-- Next button -->
                         <div class="form-horizontal col-md-offset-10 col-md-2">
@@ -298,7 +298,7 @@
                     <div class="row row-margin">
                         <div class="row row-margin"><label>Details of directors and management team members</label></div>
                         <div class="row row-margin">
-                            <form ng-submit="addNewDirectors()" class="col-md-12">
+                            <div class="form-group">
                                 <table>
                                     <tbody>
                                         <tr ng-repeat="directors in assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails">
@@ -312,11 +312,12 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                </div>
                                 <div class="form-group add-btn">
                                     <input ng-hide="!assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails.length" type="button" class="btn btn-danger" ng-click="removeDirectors()" value="Remove Selected">
-                                    <input type="submit" class="btn btn-primary addNewDirectors" value="Add New">
+                                    <input type="button" class="btn btn-primary addNewDirectors" value="Add New" ng-click="addNewDirectors()">
                                 </div>
-                            </form>
+                            
                         </div>
                     </div>
                     <div class="form-horizontal col-md-offset-10 col-md-2">
@@ -348,14 +349,14 @@
                         <div class="row form-group">
                             <div class="col-md-4">Technical Sector</div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfTechnicalAssessors" required>
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfTechnicalAssessors" ng-required="true" class="form-control">
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-4">Non-Technical Sector</div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfNonTechnicalAssessors" required>
+                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfNonTechnicalAssessors" ng-required="true" class="form-control">
                             </div>
                         </div>
 
@@ -365,7 +366,7 @@
                     <div class="row">
                         <div class="row row-margin"><label>SCGJ Certified Assessors</label></div>
                         <div class="row row-margin">
-                            <form ng-submit="addNewAssessor()" class="col-md-12">
+                            
                                 <table>
                                     <tbody>
                                     <tr ng-repeat="assessor in assessmentBody.AssessmentStaffDetails">
@@ -385,16 +386,14 @@
                                 </table>
                                 <div class="form-group add-btn">
                                     <input ng-hide="!assessmentBody.AssessmentStaffDetails.length" type="button" class="btn btn-danger" ng-click="removeAssessor()" value="Remove Selected">
-                                    <input type="submit" class="btn btn-primary addNewAssessor" value="Add New">
+                                    <input type="button" class="btn btn-primary addNewAssessor" value="Add New" ng-click="addNewAssessor()">
                                 </div>
-                            </form>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="row row-margin"><label>Regional Office Details</label></div>
                         <div class="row row-margin">
-                            <form ng-submit="addNewOffice()" class="col-md-12">
                                 <table>
                                     <tbody>
                                     <tr ng-repeat="office in assessmentBody.AssessmentBodyRegionalOfficeDetails">
@@ -410,9 +409,8 @@
                                 </table>
                                 <div class="form-group add-btn">
                                     <input ng-hide="!assessmentBody.AssessmentBodyRegionalOfficeDetails.length" type="button" class="btn btn-danger" ng-click="removeOffice()" value="Remove Selected">
-                                    <input type="submit" class="btn btn-primary addNewOffice" value="Add New">
+                                    <input type="button" class="btn btn-primary addNewOffice" value="Add New" ng-click="addNewOffice()">
                                 </div>
-                            </form>
                         </div>
                     </div>
                     <div class="form-horizontal  col-md-offset-10 col-md-2">
@@ -436,7 +434,7 @@
                     </div>
             </accordion-heading>
             <div>
-            <form>
+            
                   <div class="upload-btn">
                  <div class="form-horizontal">
                  <div class="form-group">                   
@@ -453,8 +451,7 @@
                         </div>
                  </div>
                              </div>
-                                </form>
-                  <form>
+                  
                   <div class="upload-btn">
                  <div class="form-horizontal">
                  <div class="form-group">                   
@@ -473,7 +470,6 @@
                  </div>
                 </form>
                 <!-- Management staff CV -->
-                <form>                
                 <div class="form-horizontal">
                 	<div class="form-group">
                 		<div class="col-md-5"><label>Upload zip file of Managment staff's CV</label></div>
@@ -481,9 +477,7 @@
                 		<div class="col-md-2"><button ng-click="uploadCvMgmt()" class="btn btn-pc-upload">Upload CV</button></div>
                 	</div>
                 </div>
-                </form>
                 <!-- Assessment staff CV -->
-                <form>                
                 <div class="form-horizontal">
                 	<div class="form-group">
                 		<div class="col-md-5"><label>Upload zip file of Assessors' CV</label></div>
@@ -491,7 +485,6 @@
                 		<div class="col-md-2"><button ng-click="uploadCvAssessor()" class="btn btn-pc-upload">Upload CV</button></div>
                 	</div>
                 </div>
-                </form>
                 <!-- Assessment staff Certificate -->
                 <form>                
                 <div class="form-horizontal">
@@ -520,3 +513,4 @@
     </div>
     
 </div>
+</form>

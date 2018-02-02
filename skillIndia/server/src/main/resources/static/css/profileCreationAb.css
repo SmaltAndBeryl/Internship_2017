@@ -9,7 +9,10 @@
 .table-top{
     margin-top : 20px;
 }
-
+.ab-table
+{
+	width:100%;
+}
 .btn-checkbox{
     padding-left : 20px;
 }
