@@ -91,14 +91,14 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber" class="form-control" ng-required="true"/>
+                                        <input type="number" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.mobileNumber" class="form-control" ng-required="true"/>
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateMobileNumber" class="form-control">
+                                        <input type="number" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateMobileNumber" class="form-control">
                                     </div>
                                 </div>
 
@@ -107,21 +107,21 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.landlineNumber" class="form-control" ng-required="true">
+                                        <input type="number" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.landlineNumber" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateLandlineNumber" class="form-control">
+                                        <input type="number" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.alternateLandlineNumber" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Fax Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.faxNumber" class="form-control" ng-required="true">
+                                        <input type="number" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.faxNumber" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
@@ -185,7 +185,7 @@
                                         <tbody>
                                         <tr ng-repeat="experience in assessmentBody.AssessmentsExperienceInTechnicalDomain">
                                             <td><input ng-model="experience.domain" class="form-control" placeholder="Domain/Sector" required /></td>
-                                            <td><input ng-model="experience.numberOfAssessmentsDone" placeholder = "No. of Assessments" class="form-control" required/></td>
+                                            <td><input type="number" ng-model="experience.numberOfAssessmentsDone" placeholder = "No. of Assessments" class="form-control" required/></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="experience.selected" /></td>
                                         </tr>
                                         </tbody>
@@ -227,7 +227,7 @@
                                         <tbody>
                                         <tr ng-repeat="recognition in assessmentBody.AssessmentBodyRecognitions">
                                             <td><input ng-model = "recognition.name" placeholder="Name of Recognising body" class="form-control" required></td>
-                                            <td><input ng-model = "recognition.number" placeholder="Recognition no." class="form-control" required></td>
+                                            <td><input type="number" ng-model = "recognition.number" placeholder="Recognition no." class="form-control" required></td>
                                             <td><input ng-model = "recognition.year" placeholder="Year of Recognition" class="form-control" required></td>
                                             <td><input ng-model = "recognition.validity" placeholder = "Validity of Recognition" class="form-control" required></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="recognition.selected"></td>
@@ -304,7 +304,7 @@
                                         <tr ng-repeat="directors in assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails">
                                             <td><input ng-model="directors.name" class="form-control" placeholder="Name" required /></td>
                                             <td><input ng-model="directors.designation" class="form-control" placeholder="Designation" required /></td>
-                                            <td><input ng-model="directors.contactNumber" class="form-control" placeholder="Contact Number" required /></td>
+                                            <td><input type="number" ng-model="directors.contactNumber" class="form-control" placeholder="Contact Number" required /></td>
                                             <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"   ng-model="directors.emailId" class="form-control" placeholder="Email Id" required /></td>
                                             <td><input ng-model="directors.educationalQualification" placeholder="Educational Qualification" class="form-control" required /></td>
                                             <td><input ng-model="directors.experience" class="form-control" placeholder="Experience" required /></td>
@@ -349,14 +349,14 @@
                         <div class="row form-group">
                             <div class="col-md-4">Technical Sector</div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfTechnicalAssessors" ng-required="true" class="form-control">
+                                <input type="number" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfTechnicalAssessors" ng-required="true" class="form-control">
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-4">Non-Technical Sector</div>
                             <div class="col-md-8">
-                                <input ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfNonTechnicalAssessors" ng-required="true" class="form-control">
+                                <input type="number" ng-model="assessmentBody.AssessmentBodyRegistrationDetails.numberOfNonTechnicalAssessors" ng-required="true" class="form-control">
                             </div>
                         </div>
 
@@ -374,7 +374,7 @@
                                         <td><input ng-model="assessor.name" class="form-control" placeholder ="Name" required /></td>
                                         <td><input ng-model="assessor.jobRoleCode" placeholder ="Job Role Code" class="form-control" required></td>
                                         <td><input ng-model="assessor.designation" placeholder ="Designation" class="form-control" required></td>
-                                        <td><input ng-model="assessor.contactNumber" placeholder ="Contact no." class="form-control" required></td>
+                                        <td><input type="number" ng-model="assessor.contactNumber" placeholder ="Contact no." class="form-control" required></td>
                                         <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"   ng-model="assessor.emailId" placeholder ="Email Id" class="form-control" required></td>
                                         <td><input ng-model="assessor.state" placeholder ="State" class="form-control" required></td>
                                         <td><input ng-model="assessor.city" placeholder ="City" class="form-control" required></td>
@@ -401,8 +401,8 @@
                                         <td><input ng-model="office.address" placeholder ="Address" class="form-control" required></td>
                                         <td><input ng-model="office.state" placeholder ="State" class="form-control" required></td>
                                         <td><input ng-model="office.pincode" placeholder ="Pincode" class="form-control" required></td>
-                                        <td><input ng-model="office.contactNumber" placeholder ="Contact No." class="form-control" required></td>
-                                        <td><input ng-model="office.alternateContactNumber" placeholder ="Alternate Contact no." class="form-control" required></td>
+                                        <td><input type="number" ng-model="office.contactNumber" placeholder ="Contact No." class="form-control" required></td>
+                                        <td><input type="number" ng-model="office.alternateContactNumber" placeholder ="Alternate Contact no." class="form-control" required></td>
                                         <td class="btn-checkbox"><input type="checkbox" ng-model="office.selected"></td>
                                     </tr>
                                     </tbody>
