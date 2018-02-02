@@ -93,14 +93,14 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Mobile Number</label></div>
                                     <div class="col-md-8" >
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileNumber" ng-required="true" class="form-control" />
+                                        <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.mobileNumber" ng-required="true" class="form-control" />
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" class="form-control" />
+                                        <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" class="form-control" />
                                     </div>
                                 </div>
 
@@ -109,21 +109,21 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber" class="form-control" ng-required="true">
+                                        <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateLandlineNumber" class="form-control">
+                                        <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateLandlineNumber" class="form-control">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Fax Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.faxNumber" class="form-control" ng-required="true">
+                                        <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.faxNumber" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
@@ -354,8 +354,8 @@
                                         <tbody>
                                         <tr ng-repeat="experience in trainingPartner.PriorExperienceDetails">
                                             <td><input ng-model="experience.courseName" placeholder ="Name of course" class="form-control" required></td>
-                                            <td><input ng-model="experience.numberOfBatchesPerYear"  placeholder ="Number of batches per year" class="form-control" required></td>
-                                            <td><input ng-model="experience.numberOfStudentsInEachBatch" placeholder ="Number of students in each batch" class="form-control" required></td>
+                                            <td><input type="number" ng-model="experience.numberOfBatchesPerYear"  placeholder ="Number of batches per year" class="form-control" required></td>
+                                            <td><input type="number" ng-model="experience.numberOfStudentsInEachBatch" placeholder ="Number of students in each batch" class="form-control" required></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="experience.selected"></td>
                                         </tr>
                                         </tbody>
@@ -408,8 +408,8 @@
                                         <tr ng-repeat="managementStaff in trainingPartner.ManagementAndStaffAndOfficialDetails">
                                             <td><input ng-model="managementStaff.name" class="form-control" placeholder ="Name" required /></td>
                                             <td><input ng-model="managementStaff.designation" class="form-control" placeholder="Designation" required /></td>
-                                            <td><input ng-model="managementStaff.emailId" class="form-control" placeholder="emailId" required /></td>
-                                            <td><input ng-model="managementStaff.contactNumber" class="form-control" placeholder="Contact Number" required /></td>                                            
+                                            <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ng-model="managementStaff.emailId" class="form-control" placeholder="emailId" required /></td>
+                                            <td><input type="number" ng-model="managementStaff.contactNumber" class="form-control" placeholder="Contact Number" required /></td>                                            
                                             <td><input ng-model="managementStaff.educationalQualification" placeholder="Education Qualification" class="form-control" required /></td>
                                             <td><input ng-model="managementStaff.experience" class="form-control"  placeholder="Experience" required /></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="management.selected" /></td>
@@ -445,7 +445,7 @@
                                         <tr ng-repeat="trainingStaff in trainingPartner.TrainingStaff">
                                             <td><input ng-model="trainingStaff.name" class="form-control" placeholder ="Name" required /></td>
                                             <td><input ng-model="trainingStaff.designation" class="form-control" placeholder="Designation" required /></td>
-                                            <td><input ng-model="trainingStaff.emailId" class="form-control" placeholder="emailId" required /></td>
+                                            <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  ng-model="trainingStaff.emailId" class="form-control" placeholder="emailId" required /></td>
                                             <td>
                                             <select ng-options="x for x in type" ng-model="trainingStaff.regularOrVisiting" class="form-control"></select>
                                             </td>                                            
@@ -521,24 +521,24 @@
                     	<tr>
                     			<td><input type="text" ng-model="trainingCenter.nameOperationHead" class="form-control" placeholder = "Operation Head Name" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.designationOperationHead" class="form-control" placeholder = "desgination(OH)" required/></td>
-                    			<td><input type="text" ng-model="trainingCenter.emailOperationHead" class="form-control" placeholder = "email(OH)" required/></td>
-                    			<td><input type="text" ng-model="trainingCenter.contactNumberOperationHead" class="form-control" placeholder = "contact number(OH)" required/></td>
+                    			<td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  ng-model="trainingCenter.emailOperationHead" class="form-control" placeholder = "email(OH)" required/></td>
+                    			<td><input type="number" ng-model="trainingCenter.contactNumberOperationHead" class="form-control" placeholder = "contact number(OH)" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.educationalQualificationOperationHead" class="form-control" placeholder = "education qualification(OH)" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.experienceOperationHead" class="form-control" placeholder = "experience (OH)" required/></td>
                     		</tr>
                     		<tr>
                     			<td><input type="text" ng-model="trainingCenter.nameAffiliationCoordinator" class="form-control" placeholder = "Name (AC)" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.designationAffiliationCoordinator" class="form-control" placeholder = "desgination(AC)" required/></td>
-                    			<td><input type="text" ng-model="trainingCenter.emailAffiliationCoordinator" class="form-control" placeholder = "email(AC)" required/></td>
-                    			<td><input type="text" ng-model="trainingCenter.contactNumberAffiliationCoordinator" class="form-control" placeholder = "contact number(AC)" required/></td>
+                    			<td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"  ng-model="trainingCenter.emailAffiliationCoordinator" class="form-control" placeholder = "email(AC)" required/></td>
+                    			<td><input type="number" ng-model="trainingCenter.contactNumberAffiliationCoordinator" class="form-control" placeholder = "contact number(AC)" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.educationalQualificationAffiliationCoordinator" class="form-control" placeholder = "education qualification(AC)" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.experienceAffiliationCoordinator" class="form-control" placeholder = "experience (AC)" required/></td>
                     		</tr>
                     		<tr>
                     			<td><input type="text" ng-model="trainingCenter.nameSPOC" class="form-control" placeholder = "Name (SPOC)" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.designationSPOC" class="form-control" placeholder = "desgination(SPOC)" required/></td>
-                    			<td><input type="text" ng-model="trainingCenter.emailSPOC" class="form-control" placeholder = "email(SPOC)" required/></td>
-                    			<td><input type="text" ng-model="trainingCenter.contactNumberSPOC" class="form-control" placeholder = "contact number(SPOC)" required/></td>
+                    			<td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ng-model="trainingCenter.emailSPOC" class="form-control" placeholder = "email(SPOC)" required/></td>
+                    			<td><input type="number" ng-model="trainingCenter.contactNumberSPOC" class="form-control" placeholder = "contact number(SPOC)" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.educationalQualificationSPOC" class="form-control" placeholder = "education qualification(SPOC)" required/></td>
                     			<td><input type="text" ng-model="trainingCenter.experienceSPOC" class="form-control" placeholder = "experience (SPOC)" required/></td>
                     		</tr>
@@ -560,10 +560,10 @@
                     		<p>Office Manager</p>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfPermanentOfficeManager" placeholder="Total permanent Office Manager" class="form-control"/>
+                    		<input type="number" ng-model="trainingCenter.numberOfPermanentOfficeManager" placeholder="Total permanent Office Manager" class="form-control"/>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOftemporaryOfficeManager" placeholder="Total temporary Office Managers"  class="form-control"/>
+                    		<input type="number" ng-model="trainingCenter.numberOftemporaryOfficeManager" placeholder="Total temporary Office Managers"  class="form-control"/>
                     		</div>
                     	</div>
                     </div>
@@ -573,10 +573,10 @@
                     		<p>Office Staff</p>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfPermanentOfficeStaff" placeholder="Total permanent Office Staff" class="form-control"/>
+                    		<input type="number" ng-model="trainingCenter.numberOfPermanentOfficeStaff" placeholder="Total permanent Office Staff" class="form-control"/>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfTemporaryOfficeStaff" placeholder="Total temporary Office Staff" class="form-control" />
+                    		<input type="number" ng-model="trainingCenter.numberOfTemporaryOfficeStaff" placeholder="Total temporary Office Staff" class="form-control" />
                     		</div>
                     	</div>
                     </div>
@@ -586,10 +586,10 @@
                     		<p>Lab Attendants</p>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfPermanentLabAssistants" placeholder="Total permanent Lab Attendants" class="form-control"/>
+                    		<input type="number" ng-model="trainingCenter.numberOfPermanentLabAssistants" placeholder="Total permanent Lab Attendants" class="form-control"/>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfTemporaryLabAssistants" placeholder="Total temporaray Lab Attendants" class="form-control" />
+                    		<input type="number" ng-model="trainingCenter.numberOfTemporaryLabAssistants" placeholder="Total temporaray Lab Attendants" class="form-control" />
                     		</div>
                     	</div>
                     </div>
@@ -599,10 +599,10 @@
                     		<p>Accountants</p>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfPermanentAccountants" placeholder="Total permanent Accountants" class="form-control"/>
+                    		<input type="number" ng-model="trainingCenter.numberOfPermanentAccountants" placeholder="Total permanent Accountants" class="form-control"/>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfTemporaryAccountants" placeholder="Total temporaray Accountants" class="form-control" />
+                    		<input type="number" ng-model="trainingCenter.numberOfTemporaryAccountants" placeholder="Total temporaray Accountants" class="form-control" />
                     		</div>
                     	</div>
                     </div>
@@ -612,10 +612,10 @@
                     		<p>Support Staff</p>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfPermanentSupportStaff" placeholder="Total permanent Support Staff" class="form-control"/>
+                    		<input type="number" ng-model="trainingCenter.numberOfPermanentSupportStaff" placeholder="Total permanent Support Staff" class="form-control"/>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfTemporarySupportStaff" placeholder="Total temporaray Support Staff" class="form-control"/>
+                    		<input type="number" ng-model="trainingCenter.numberOfTemporarySupportStaff" placeholder="Total temporaray Support Staff" class="form-control"/>
                     		</div>
                     	</div>
                     </div>
@@ -625,10 +625,10 @@
                     		<p>Others</p>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfPermanentOtherEmployees" placeholder="Other permanent Staff" class="form-control"/>
+                    		<input type="number" ng-model="trainingCenter.numberOfPermanentOtherEmployees" placeholder="Other permanent Staff" class="form-control"/>
                     		</div>
                     		<div class="col-md-4">
-                    		<input type="text" ng-model="trainingCenter.numberOfTemporaryOtherEmployees" placeholder="Total temporaray Staff" class="form-control" />
+                    		<input type="number" ng-model="trainingCenter.numberOfTemporaryOtherEmployees" placeholder="Total temporaray Staff" class="form-control" />
                     		</div>
                     	</div>
                     </div>
@@ -661,7 +661,7 @@
                     <label>Number of Classrooms</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.numberOfClassrooms" class="form-control" />
+                    	<input type="number" ng-model="trainingCenter.numberOfClassrooms" class="form-control" />
                     </div>
                     </div>
                     </div>
@@ -672,7 +672,7 @@
                     <label>Number of Labs</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.numberOfLabs" class="form-control" />
+                    	<input type="number" ng-model="trainingCenter.numberOfLabs" class="form-control" />
                     </div>
                     </div>
                     </div>
@@ -683,7 +683,7 @@
                     <label>Number of Work shops</label>
                     </div>
                     <div class="col-md-6">
-                    	<input type="text" ng-model="trainingCenter.numberOfWorkshops" class="form-control" />
+                    	<input type="number" ng-model="trainingCenter.numberOfWorkshops" class="form-control" />
                     </div>
                     </div>
                     </div>
@@ -804,13 +804,13 @@
                     <label>Number of Technical Books</label>
                     </div>
                     <div class="col-md-3">
-                    	<input type="text" ng-model="trainingCenter.numberOfTechnicalBooks" class="form-control" />
+                    	<input type="number" ng-model="trainingCenter.numberOfTechnicalBooks" class="form-control" />
                     </div>
                     <div class="col-md-3">
                     <label>Number of non-technical Books</label>
                     </div>
                     <div class="col-md-3">
-                    	<input type="text" ng-model="trainingCenter.numberOfNonTechnicalBooks"  class="form-control"/>
+                    	<input type="number" ng-model="trainingCenter.numberOfNonTechnicalBooks"  class="form-control"/>
                     </div>
                     </div>
                     <div class="form-group">
@@ -818,13 +818,13 @@
                     <label>Number of Magzines</label>
                     </div>
                     <div class="col-md-3">
-                    	<input type="text" ng-model="trainingCenter.numberOfMagazines" class="form-control" />
+                    	<input type="number" ng-model="trainingCenter.numberOfMagazines" class="form-control" />
                     </div>
                     <div class="col-md-3">
                     <label>Number of Dailies</label>
                     </div>
                     <div class="col-md-3">
-                    	<input type="text" ng-model="trainingCenter.numberOfDailies"  class="form-control"/>
+                    	<input type="number" ng-model="trainingCenter.numberOfDailies"  class="form-control"/>
                     </div>
                     </div>
                     

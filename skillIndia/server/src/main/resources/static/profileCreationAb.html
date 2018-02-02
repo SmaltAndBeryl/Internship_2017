@@ -305,7 +305,7 @@
                                             <td><input ng-model="directors.name" class="form-control" placeholder="Name" required /></td>
                                             <td><input ng-model="directors.designation" class="form-control" placeholder="Designation" required /></td>
                                             <td><input ng-model="directors.contactNumber" class="form-control" placeholder="Contact Number" required /></td>
-                                            <td><input ng-model="directors.emailId" class="form-control" placeholder="Email Id" required /></td>
+                                            <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"   ng-model="directors.emailId" class="form-control" placeholder="Email Id" required /></td>
                                             <td><input ng-model="directors.educationalQualification" placeholder="Educational Qualification" class="form-control" required /></td>
                                             <td><input ng-model="directors.experience" class="form-control" placeholder="Experience" required /></td>
                                             <td class="btn-checkbox"><input type="checkbox" ng-model="directors.selected"></td>
@@ -375,7 +375,7 @@
                                         <td><input ng-model="assessor.jobRoleCode" placeholder ="Job Role Code" class="form-control" required></td>
                                         <td><input ng-model="assessor.designation" placeholder ="Designation" class="form-control" required></td>
                                         <td><input ng-model="assessor.contactNumber" placeholder ="Contact no." class="form-control" required></td>
-                                        <td><input ng-model="assessor.emailId" placeholder ="Email Id" class="form-control" required></td>
+                                        <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"   ng-model="assessor.emailId" placeholder ="Email Id" class="form-control" required></td>
                                         <td><input ng-model="assessor.state" placeholder ="State" class="form-control" required></td>
                                         <td><input ng-model="assessor.city" placeholder ="City" class="form-control" required></td>
                                         <td><input ng-model="assessor.educationalQualification" placeholder ="Educational Qualification" class="form-control" required></td>
