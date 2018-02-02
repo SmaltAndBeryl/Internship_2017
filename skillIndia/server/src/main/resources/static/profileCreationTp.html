@@ -79,14 +79,14 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>City</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.city" class="form-control">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.city" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>State</label></div>
                                     <div class="col-md-8">
-                                    <select ng-model="trainingPartner.TrainingPartnerOrganizationDetails.state"  ng-options="state for state in states"  class="form-control">{{state}}</select>
+                                    <select ng-model="trainingPartner.TrainingPartnerOrganizationDetails.state"  ng-options="state for state in states"  class="form-control" ng-required="true">{{state}}</select>
                                     </div>
                                 </div>
 
@@ -100,7 +100,7 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" ng-required="true" class="form-control" />
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" class="form-control" />
                                     </div>
                                 </div>
 
@@ -109,7 +109,7 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber" class="form-control">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
@@ -123,14 +123,14 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Fax Number</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.faxNumber" class="form-control">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.faxNumber" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Website</label></div>
                                     <div class="col-md-8">
-                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.websites" class="form-control">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.websites" class="form-control" ng-required="true">
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Year of Establishment</label></div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment" class="form-control" placeholder="yyyy"/>
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.yearOfEstablishment" class="form-control" placeholder="yyyy" />
                             </div>
                             
                         </div>
@@ -177,8 +177,7 @@
                             <div class="col-md-4"><label>Qualification Pack</label><br>
                             <small class="fine-print">Please refer Guideliness for available QPs</small></div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.qualificationPacks" placeholder="multiple Qps separated by comma" class="form-control"/>
-                                
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.qualificationPacks" placeholder="you can add multiple QPs separated by comma" class="form-control" ng-required="true"/>
                             </div>
                         </div>
 
@@ -218,7 +217,7 @@
                                 Franchise Owned Institution
                             </div>
                             <div class="col-md-8">
-                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution" class="form-control">
+                                <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution" class="form-control" >
 
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution > '0'" class="upload-btn">
                                     <p class="upload-annexure-msg">We will ask you to upload Annexure later in coming sections below</p>
@@ -241,18 +240,18 @@
 
                         <div class="row row-margin">
                             <div class="col-md-4"><label>PAN</label></div>
-                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.panNumber" class="form-control"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.panNumber" class="form-control" ng-required="true"></div>
                         </div>
 
 
                         <div class="row row-margin">
                             <div class="col-md-4"><label>TAN</label></div>
-                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.tanNumber" class="form-control"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.tanNumber" class="form-control" ng-required="true"></div>
                         </div>
 
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Turnover of the institute</label></div>
-                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.turnOverOfInstitution" class="form-control"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.turnOverOfInstitution" class="form-control" ng-required="true"></div>
                         </div>
 
                         <div class="row row-margin">
@@ -261,15 +260,15 @@
 
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant" value="Yes" ng-click="addNewGrant()"> Yes
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant" value="Yes" ng-click="addNewGrant()" name="grant"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant" value="No" ng-click="removeAllGrant()" checked> No
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant" value="No" ng-click="removeAllGrant()" name="grant"  ng-required="true" checked> No
                                 </label>
                             </div>
                         </div>
                             <div class="form-horizontal">
-                            	<form ng-submit="addNewGrant()">
+                            	
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyGrant == 'Yes'">
                                 <div class="form-group col-md-12">
                                 	<table>
@@ -287,14 +286,14 @@
                                     
                                     <div class="form-group">
                                     <div class="col-md-2">
-                                    <input type="submit" class="btn btn-primary btn-pc-add" value="Add New">
+                                    <input type="button" class="btn btn-primary btn-pc-add" value="Add New" ng-click="addNewGrant()">
                                     </div>
                                     <div class="col-md-2 col-md-offset-2 ">
                                     <input ng-hide="!trainingPartner.InstituteGrantDetails.length" type="button" class="btn btn-pc-remove" ng-click="removeGrant()" value="Remove Selected">
                                     </div>
                                     </div>
                                 </div>
-                            </form>
+                            
                             </div>
                             
                         </div>
@@ -303,15 +302,13 @@
                         	<div class="col-md-4"><label>Is the institute recognized with any bodies?</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()"> Yes
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="Yes" ng-click="addNewRecognition()" name="recognition"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()" checked> No
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition" value="No" ng-click="removeAllRecognition()" checked ng-required="true" name="recognition"> No
                                 </label>
                             </div>
                         </div>
-                        
-                        	<form ng-submit="addNewRecognition()" >
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.instituteReceivedAnyRecognition == 'Yes'">
                                 <div class="form-group col-md-12">
                                 	<table>
@@ -328,16 +325,14 @@
                                 </div>
                                     
                                     <div class="form-group">
-                                    <div class="col-md-2"><input type="submit" class="btn btn-primary btn-pc-add" value="Add New"></div>
+                                    <div class="col-md-2"><input type="button" class="btn btn-primary btn-pc-add" value="Add New" ng-click="addNewRecognition()"></div>
                                     <div class="col-md-offset-2 col-md-2"><input ng-hide="!trainingPartner.InstituteRecognitionDetails.length" type="button" class="btn btn-pc-remove " ng-click="removeRecognition()" value="Remove Selected"></div>
                                     </div>
                                 </div>
-                            </form>
-                        
                         </div>
                         <div class="row row-margin">
                             <div class="col-md-4"><label>Does the institute have any prior experience in skill development?</label></div>
-                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.priorExperienceOfInstitutionInSkillDevelopment" class="form-control"></div>
+                            <div class="col-md-8"><input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.priorExperienceOfInstitutionInSkillDevelopment" class="form-control" ng-required="true"></div>
                         </div>
 
 
@@ -346,15 +341,13 @@
                         	<div class="col-md-4"><label>Prior experience of institution in skill training(Related to QP)?</label></div>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="Yes" ng-click="addNew()"> Yes
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="Yes" ng-click="addNew()" name="experience"> Yes
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="No" ng-click="removeAll()" checked> No
+                                    <input type="radio" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining" value="No" ng-click="removeAll()" checked ng-required="true" name="experience"> No
                                 </label>
                             </div>
                         </div>
-                            
-                            <form ng-submit="addNew()">
                                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.anyPriorExperienceOfInstitutionInSkillTraining == 'Yes'">
                                 <div class="form-group col-md-12">
                                 	<table>
@@ -370,12 +363,11 @@
                                     </table>
                                 </div>
                                     <div class="form-group">
-                                    <div class="col-md-2"> <input type="submit" class="btn btn-primary btn-pc-add" value="Add New"></div>
+                                    <div class="col-md-2"> <input type="button" class="btn btn-primary btn-pc-add" value="Add New" ng-click="addNew()"></div>
                                     <div class="col-md-offset-2 col-md-2" ><input ng-hide="!trainingPartner.PriorExperienceDetails.length" type="button" class="btn btn-pc-remove" ng-click="remove()" value="Remove Selected"></div>
                                         
                                     </div>
                                 </div>
-                            </form>
                         </div>
 
                         <div class="row row-margin">
@@ -492,7 +484,7 @@
                     <div class="container acc-heading">
                         <div class="row">
                             <div class="col-md-11">
-                                STEP 4 :CENTRE LEVEL - INFORMATION
+                                STEP 4 :CENTER LEVEL - INFORMATION
                             </div>
                             <div class="col-md-1">
                                 <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open4, 'glyphicon-plus': !status.open4}"></i>
@@ -1016,7 +1008,7 @@
                                 <button type="button" class="btn btn-pc-add" ng-click="AddCenter()">Add Center</button>
                             </div>
                             
-                            <div class="col-md-2 col-md-offset-2">
+                            <div class="col-md-2 col-md-offset-2" ng-show="trainingPartner.TrainingPartnerCenterDetails > '0'">
                                 <button type="button" class="btn btn-pc-remove" ng-click="RemoveCenter()">Remove Center</button>
                             </div>
                         </div>
@@ -1049,7 +1041,7 @@
                 </accordion-heading>
                 <div>
                <!-- Upload PAN -->
-                <form>
+
                   <div class="upload-btn div-center">
                  <div class="form-horizontal">
                  <div class="form-group">                   
@@ -1066,9 +1058,9 @@
                         </div>
                  </div>
                              </div>
-                                </form>
+
                 <!-- Uplaod TAN -->
-                <form>
+
                   <div class="upload-btn div-center">
                   <div class="form-horizontal">
                   <div class="form-group">                   
@@ -1086,9 +1078,8 @@
                   </div>
                       
                                     </div>
-                                </form>
+
                 <!-- UPLOAD NSDC Certificate -->
-                    <form>
                     <div class="upload-btn div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
@@ -1121,9 +1112,8 @@
                         </div>
                         </div>
                     </div>
-                    </form>
+
                     <!-- Upload balance sheet of last 3 years -->
-                    <form>
                     <div class="upload-button div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
@@ -1139,10 +1129,8 @@
                     		</div>
                     	</div>
                     </div>
-                    </form>
                     <!-- Upload training staff education certificate zip file -->
                     <div ng-show="trainingPartner.TrainingStaff > '0'">
-                    <form>
                     <div class="upload-button div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
@@ -1164,7 +1152,6 @@
                     
                     <!-- Upload CVs of Training Staffs -->
                     <div ng-show="trainingPartner.TrainingStaff > '0'">
-                    <form>
                     <div class="upload-button div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
@@ -1181,13 +1168,11 @@
                     		</div>
                     	</div>
                     </div>
-                    </form>
                     </div>
                     
                     
                     <!-- Upload CVs of Management staff -->
                     <div ng-show="trainingPartner.ManagementAndStaffAndOfficialDetails > '0'">
-                    <form>
                     <div class="upload-button div-center">
                     	<div class="form-horizontal">
                     		<div class="form-group">
@@ -1204,7 +1189,6 @@
                     		</div>
                     	</div>
                     </div>
-                    </form>
                     </div>
                     <!-- CVs of center head -->
                     
@@ -1215,7 +1199,6 @@
                     <!-- Operation head cv -->
                     
 	                  	<div class="form-horizontal" ng-show="trainingcenter.nameOperationHead.length">
-	                	<form>
 	                	<div class="form-group col-md-12">
 	                		<label>{{trainingcenter.nameOperationHead}}</label>
 	                	</div>
@@ -1223,12 +1206,11 @@
 	                		<div class="col-md-8"><input id ="OperationHeadCv" type="file" file-model="trainingPartner.OperationHeadCv" accept="application/pdf" /></div>
 	                		<div class="col-md-4"><button ng-click="uploadFileOperationHeadCv(trainingcenter)" class="btn btn-pc-upload">Upload Cv</button></div>
 	                	</div>
-	                	</form>
 	               		</div>
 	               		
                		<!-- Affiliation Coordinator cv -->
 	               		<div class="form-horizontal" ng-show="trainingcenter.nameAffiliationCoordinator.length">
-	                	<form>
+
 	                	<div class="form-group col-md-12">
 	                		<label>{{trainingcenter.nameAffiliationCoordinator}}</label>
 	                	</div>
@@ -1236,11 +1218,9 @@
 	                		<div class="col-md-8"><input id ="affiliationCoordinatorCv" type="file" file-model="trainingPartner.affiliationCoordinatorCv" accept="application/pdf" /></div>
 	                		<div class="col-md-4"><button ng-click="uploadFileAffiliationCoordinatorCv(trainingcenter)" class="btn btn-pc-upload">Upload Cv</button></div>
 	                	</div>
-	                	</form>
 	               		</div>
                		<!-- SPOC cv -->
 	               		<div class="form-horizontal" ng-show="trainingcenter.nameSPOC.length">
-	                	<form>
 	                	<div class="form-group col-md-12">
 	                		<label>{{trainingcenter.nameSPOC}}</label>
 	                	</div>
@@ -1248,11 +1228,9 @@
 	                		<div class="col-md-8"><input id ="SPOCCv" type="file" file-model="trainingPartner.SPOCCv" accept="application/pdf" /></div>
 	                		<div class="col-md-4"><button ng-click="uploadFileSPOCCv(trainingcenter)" class="btn btn-pc-upload">Upload Cv</button></div>
 	                	</div>
-	                	</form>
 	               		</div>
                		<!-- Size of Classrooms -->
                		<div class="form-horizontal">
-               		<form>
                			<div class="form-group">
                				<div class="col-md-6">
                					<label>Size of Classrooms</label>
@@ -1268,11 +1246,9 @@
                				<div class="col-md-4">
                					<button ng-click="uploadClassRoomPics(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
                				</div>
-               				</form>
                			</div>
                			<!-- Size of Labs -->
                			<div class="form-horizontal">
-               			<form>
                			<div class="form-group">
                				<div class="col-md-6">
                					<label>Size of labs</label>
@@ -1288,11 +1264,9 @@
                				<div class="col-md-4">
                					<button ng-click="uploadLabImage(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
                				</div>
-               				</form>
                			</div>
                			<!-- Size of Workshop -->
                			<div class="form-horizontal">
-               			<form>
                			<div class="form-group">
                				<div class="col-md-6">
                					<label>Size of WorkShop</label>
@@ -1308,11 +1282,9 @@
                				<div class="col-md-4">
                					<button ng-click="uploadWorkshopIamges(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
                				</div>
-               				</form>
                			</div>
                		<!-- Presence of Mandatory Toolkit -->
                			<div class="form-horizontal">
-               			<form>
                			<div class="form-group">
                				<div class="col-md-6">
                					<label>Is mandatory toolkit present</label>
@@ -1334,8 +1306,6 @@
                				<div class="col-md-4">
                					<button ng-click="uploadMandatoryToolkitImages(trainingcenter)" class="btn btn-pc-upload">Upload Images</button></div>
                				</div>
-               				
-               				</form>
                			</div>
                		</div>
                 </div>
@@ -1360,7 +1330,6 @@
                 <!--                 accordion content to come here -->
                 <!-- Self Owned Model -->
                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.selfOwnedInstitution > '0'">
-                <form>
                 <div class="form-horizontal div-center">
                 <div class="form-group col-md-12">
                 <label>Self-Owned Model</label>
@@ -1371,13 +1340,11 @@
                 	<div class="col-md-2"><button ng-click="uploadFileselfOwnedAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
                 </div>
-                </form>
                 </div>
                 
                 <!-- Franchisee Model -->
                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.franchiseOwnedInstitution > '0'">
                 
-                <form>
                 <div class="form-horizontal div-center">
                 <div class="col-md-12">
                 <label>Franchisee Model</label>
@@ -1388,12 +1355,10 @@
                 	<div class="col-md-2"><button ng-click="uploadFilefranchiseeAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
                 </div>
-                </form>
                 </div>
                 
                 <!-- Mobile Model -->
                 <div ng-show="trainingPartner.TrainingPartnerOrganizationDetails.mobileTrainingInstitution > '0'">
-                 <form>
                 <div class="form-horizontal div-center">
                 <div class="col-md-12"><label>Mobile Model</label></div>
                 <div class="form-group">
@@ -1402,14 +1367,12 @@
                 	<div class="col-md-2"><button ng-click="uploadFilemobileAnnexure()" class="btn btn-pc-upload">Upload</button></div>
                 </div>
                 </div>
-                </form>
                 </div>
                 
                 <!-- Mandatory Toolkit Annexure -->
              
                 <div class="upload-button div-center" ng-repeat="trainingcenter in trainingPartner.TrainingPartnerCenterDetails">
                 <div  ng-show="trainingcenter.mandatoryToolKitpresent == 'Yes' ">
-                <form>
                 <div class="form-horizontal">
                 <div class="col-md-12"><label>Mandatory Toolkit Annexure</label></div>
                 <div class="form-group">
@@ -1419,9 +1382,7 @@
                 </div>
                 <div>
                 </div>
-                </div>
-                </form>
-               	
+                </div>              	
                	</div>
                 </div>
                 </div>
@@ -1435,7 +1396,7 @@
             	<button type="button" ng-click="save()" class="btn btn-pc-save" >Save as Draft</button>
             </div>
             <div class="col-md-2">
-            	<input type="submit" class="btn btn-pc-submit" value="Submit" name="Submit" ng-click="submit()"/>
+            	<input type="submit" class="btn btn-pc-submit" value="Submit" name="Submit"/>
             </div>
             </div>
         </div>
