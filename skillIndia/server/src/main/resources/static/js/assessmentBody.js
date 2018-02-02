@@ -416,15 +416,27 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
         })
 
     //Confirmed Batch table ends
-    if($rootScope.authenticated){
-              $rootScope.$on("$locationChangeStart", function(event,next,current){
-                if($rootScope.type == '"AB"'){
-                    event.preventDefault();
-                    alert("Not allowed");
-                }
-                else{
-                    alert("Logging out..!");
-                }
-              });
-          }
+        if($rootScope.authenticated){
+            $rootScope.$on("$locationChangeStart", function(event,next,current)
+          		  {
+          	  //event.preventDefault();
+          	  var indexOfSlash = next.lastIndexOf("/");
+        	    var lengthOfNext = next.length;
+        	    var absoluteUrl = next.substr(indexOfSlash,lengthOfNext);
+        	    console.log(absoluteUrl);
+          	    
+          	  if(absoluteUrl == '/profileCreationAb')
+          		  {
+          		   console.log("inside if");
+          		  
+          		  $location.path('/profileCreationAb');
+          		  }
+          	  else
+          		  {
+          		  event.preventDefault();
+          		  
+          		  }
+
+            });
+        }
 });

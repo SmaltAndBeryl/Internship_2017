@@ -3,6 +3,7 @@ var trainingPartner = angular.module("hello");
 trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScope,$location,$window){
     $scope.message = "Hi Training Partner";
     $scope.applicationStatus = "";
+    var appState = "Submit";
     $scope.tpAppStatus = {
         enableColumnMenus: false,
         enableSorting: false,
@@ -73,7 +74,8 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
 
     }
     $scope.editApplication = function(rowData) {
-        var appState = rowData.entity.applicationState;
+    	
+        appState = rowData.entity.applicationState;
         if (appState == "Incomplete") {
         	$scope.applicationStatus =appState;
         	$location.path('/profileCreationTp');
@@ -189,36 +191,28 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
     };
 
     if($rootScope.authenticated){
-          $rootScope.$on("$locationChangeStart", function(event,next,current){
-        	  
-        	  console.log($scope.applicationStatus);
-        	  console.log(next);	
-        	  
-        	  if($scope.applicationStatus != "Incomplete")
+          $rootScope.$on("$locationChangeStart", function(event,next,current)
         		  {
-        		  console.log($scope.applicationStatus);
-        		  alert("not allowed");
+        	  //event.preventDefault();
+        	  console.log("Inside it and next is " + next);
+        	  console.log("Printing value outside if " +appState);
+        	  var indexOfSlash = next.lastIndexOf("/");
+      	    var lengthOfNext = next.length;
+      	    var absoluteUrl = next.substr(indexOfSlash,lengthOfNext);
+      	    console.log(absoluteUrl);
+        	    
+        	  if(absoluteUrl == '/profileCreationTp')
+        		  {
+        		   console.log("inside if");
+        		  
+        		  $location.path('/profileCreationTp');
+        		  }
+        	  else
+        		  {
         		  event.preventDefault();
-        		  	
+        		  
         		  }
-        	  else if(next != "http://localhost:8080/#/profileCreationTp")
-        		  {
-        		  console.log("inside else");
-        		  alert("not allowed");
-        		  event.preventDefault();
-        		  }
-        	  else 
-        		  {
-        		  	$location.path('/profileCreationTp')
-        		  }
-//            if($rootScope.type == '"TP"'){
-//            	
-//                //event.preventDefault();
-//                alert("Not allowed");
-//            }
-//            else{
-//                alert("Logging out..!");
-//            }
+
           });
       }
 });
