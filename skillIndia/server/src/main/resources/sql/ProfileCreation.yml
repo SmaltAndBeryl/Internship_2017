@@ -22,12 +22,14 @@ ProfileCreation:
     where userId=:userId      
      
  insertDataInTrainingPartnerRegistration: >
-   insert into TrainingPartnerOrganizationDetails(applicationId,organizationName,sPOCName,address,city,state,pincode,mobileNumber,alternateMobileNumber,landlineNumber,alternateLandlineNumber,faxNumber,websites,userId) 
-    values(:applicationId,:organizationName,:sPOCName,:address,:city,:state,:pincode,:mobileNumber,:alternateMobileNumber,:landlineNumber,:alternateLandlineNumber,:faxNumber,:websites,:userId)
+   insert into TrainingPartnerOrganizationDetails(applicationId,organizationName,sPOCName) 
+    values(:applicationId,:organizationName,:sPOCName);
    
  updateDataInTrainingPartnerRegistration: >
    update TrainingPartnerOrganizationDetails set
      organizationName=:organizationName,sPOCName=:sPOCName,address=:address,city=:city,state=:state,pincode=:pincode,mobileNumber=:mobileNumber,alternateMobileNumber=:alternateMobileNumber,landlineNumber=:landlineNumber,alternateLandlineNumber=:alternateLandlineNumber,faxNumber=:faxNumber,websites=:websites
        where userId=:userId
         
-    
+ insertDataInAssessmentBodyRegistration: >
+   insert into assessmentbodyregistrationdetails(applicationId,organizationName,sPOCName) 
+    values(:applicationId,:organizationName,:sPOCName);
