@@ -17,6 +17,7 @@ public class ProfileCreationConfigSql {
 	private String insertDataInApplication;
 	private String insertDataInTrainingPartnerRegistration;
 	private String updateDataInTrainingPartnerRegistration;
+	private String insertDataInAssessmentBodyRegistration;
 	
 	
 	private String updateDataInApplication;
@@ -125,6 +126,15 @@ public class ProfileCreationConfigSql {
 	public void setGetTrainingPartnerDataByUserId(
 			String getTrainingPartnerDataByUserId) {
 		this.getTrainingPartnerDataByUserId = getTrainingPartnerDataByUserId;
+	}
+
+	public String getInsertDataInAssessmentBodyRegistration() {
+		return insertDataInAssessmentBodyRegistration;
+	}
+
+	public void setInsertDataInAssessmentBodyRegistration(
+			String insertDataInAssessmentBodyRegistration) {
+		this.insertDataInAssessmentBodyRegistration = insertDataInAssessmentBodyRegistration;
 	}
 	
 }

@@ -16,7 +16,6 @@ public class SignUpInsertedUserDto extends BaseDto{
 		this.userId = userId;
 		this.organizationName = organizationName;
 		this.sPOCName = sPOCName;
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * @return the userId

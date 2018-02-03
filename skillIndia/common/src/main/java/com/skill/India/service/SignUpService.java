@@ -31,7 +31,8 @@ public class SignUpService {
 	public int signUp(SignUpReceiveDataDto signUpReceiveDataDto)
 	{
 		int status = 10;
-		
+		int statusTP = 0;
+		int statusAB = 0;
 		try
 		{
 			LOGGER.debug("Trying to find out users existence ");
@@ -43,7 +44,18 @@ public class SignUpService {
 				LOGGER.debug("User is a new user. Trying to insert values in database");
 				id = signUpDao.insertSignUpData(signUpReceiveDataDto.getOrganizationName(),signUpReceiveDataDto.getSPOCName(),signUpReceiveDataDto.getUserId(),signUpReceiveDataDto.getPassword(),signUpReceiveDataDto.getUserRole());
 
-				 status = saveAsDraftAndSubmitDao.insertIntoApplication(signUpReceiveDataDto.getUserId(), "Draft");				
+				 status = saveAsDraftAndSubmitDao.insertIntoApplication(signUpReceiveDataDto.getUserId(), "Draft", signUpReceiveDataDto.getUserRole(),  signUpReceiveDataDto.getOrganizationName(), signUpReceiveDataDto.getSPOCName());	
+//				 if(signUpReceiveDataDto.getUserRole() == "TP")
+//				 {
+//					 LOGGER.debug("Inside TP " + signUpReceiveDataDto.getUserRole());
+//					 statusTP = saveAsDraftAndSubmitDao.insertIntoTrainingPartnerRegistration(signUpReceiveDataDto.getUserId(), signUpReceiveDataDto.getOrganizationName(), signUpReceiveDataDto.getSPOCName());
+//				 }
+//				 else if(signUpReceiveDataDto.getUserRole() == "AB")
+//				 {
+//					 LOGGER.debug("Inside AB " + signUpReceiveDataDto.getUserRole());
+//					 statusAB = saveAsDraftAndSubmitDao.insertIntoAssessmentBodyOrganisation(signUpReceiveDataDto.getUserId(), signUpReceiveDataDto.getOrganizationName(), signUpReceiveDataDto.getSPOCName());
+//				 }
+				 
 			}
 			else if(userExistStatus == 1)
 			{
