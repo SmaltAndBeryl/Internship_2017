@@ -1,0 +1,1 @@
+alter table AssessmentBodyRegistrationDetails modify column tanNumber varchar(200);
