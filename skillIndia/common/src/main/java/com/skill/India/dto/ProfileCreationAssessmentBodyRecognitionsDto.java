@@ -6,7 +6,7 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 	private String assessmentBodyRegistrationId;
 	private String nameOfRecognitionBody;
 	private String recognitionNumber;
-	private String yearOfRecognition;
+	private int yearOfRecognition;
 	private String validityOfRecognition;
 	private Boolean isActive;
 	
@@ -29,7 +29,7 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 	public ProfileCreationAssessmentBodyRecognitionsDto(
 			String assessmentBodyRecognitionId,
 			String assessmentBodyRegistrationId, String nameOfRecognitionBody,
-			String recognitionNumber, String yearOfRecognition,
+			String recognitionNumber, int yearOfRecognition,
 			String validityOfRecognition, Boolean isActive) {
 		super();
 		this.assessmentBodyRecognitionId = assessmentBodyRecognitionId;
@@ -69,7 +69,7 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 	 */
 	
 	
-	public String getYearOfRecognition() {
+	public int getYearOfRecognition() {
 		return yearOfRecognition;
 	}
 	/**
@@ -99,7 +99,7 @@ public class ProfileCreationAssessmentBodyRecognitionsDto {
 	/**
 	 * @param yearOfRecognition the yearOfRecognition to set
 	 */
-	public void setYearOfRecognition(String yearOfRecognition) {
+	public void setYearOfRecognition(int yearOfRecognition) {
 		this.yearOfRecognition = yearOfRecognition;
 	}
 	/**

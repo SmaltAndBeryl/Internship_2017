@@ -92,22 +92,22 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 			String address = resultSet.getString("address");
 			String city = resultSet.getString("city");
 			String state = resultSet.getString("state");
-		    String pincode = resultSet.getString("pincode");
-			String mobileNumber = resultSet.getString("mobileNumber");
-			String alternateMobileNumber = resultSet.getString("alternateMobileNumber");
-			String landlineNumber = resultSet.getString("landlineNumber");
-			String alternateLandlineNumber = resultSet.getString("alternateLandlineNumber");
-			String faxNumber = resultSet.getString("faxNumber");
+		    Long pincode = resultSet.getLong("pincode");
+			Long mobileNumber = resultSet.getLong("mobileNumber");
+			Long alternateMobileNumber = resultSet.getLong("alternateMobileNumber");
+			Long landlineNumber = resultSet.getLong("landlineNumber");
+			Long alternateLandlineNumber = resultSet.getLong("alternateLandlineNumber");
+			Long faxNumber = resultSet.getLong("faxNumber");
 			String websites = resultSet.getString("websites");
-			String yearOfEstablishment = resultSet.getString("yearOfEstablishment");
+			int yearOfEstablishment = resultSet.getInt("yearOfEstablishment");
 			String priorAssessmentExperience = resultSet.getString("priorAssessmentExperience");
 			String panNumber = resultSet.getString("panNumber");
 			String panNumberPath = resultSet.getString("panNumberPath");
 			String tanNumber = resultSet.getString("tanNumber");
 			String tanNumberPath = resultSet.getString("tanNumberPath");
 			String insituteReceivedAnyRecognition = resultSet.getString("insituteReceivedAnyRecognition");
-			String numberOfTechnicalAssessors = resultSet.getString("numberOfTechnicalAssessors");
-			String numberOfNonTechnicalAssessors = resultSet.getString("numberOfNonTechnicalAssessors");
+			int numberOfTechnicalAssessors = resultSet.getInt("numberOfTechnicalAssessors");
+			int numberOfNonTechnicalAssessors = resultSet.getInt("numberOfNonTechnicalAssessors");
 			String affiliatedToAnySectorSkillCouncil=resultSet.getString("affiliatedToAnySectorSkillCouncil");
 			return new ProfileCreationAssessmentBodyRegistrationDetailsDto(assessmentBodyRegistrationId,applicationId,organizationName,sPOCName,address,city,state,pincode,mobileNumber,
 				alternateMobileNumber,landlineNumber,alternateLandlineNumber,faxNumber,websites,yearOfEstablishment,priorAssessmentExperience,panNumber,panNumberPath,tanNumber,tanNumberPath,
@@ -146,7 +146,7 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 			String assessmentBodyRegistrationId = resultSet.getString("assessmentBodyRegistrationId");
 			String nameOfRecognitionBody = resultSet.getString("nameOfRecognitionBody");
 			String recognitionNumber = resultSet.getString("recognitionNumber");
-			String yearOfRecognition = resultSet.getString("yearOfRecognition");
+			int yearOfRecognition = resultSet.getInt("yearOfRecognition");
 			String validityOfRecognition = resultSet.getString("validityOfRecognition");
 			Boolean isActive = resultSet.getBoolean("isActive");
 				return new ProfileCreationAssessmentBodyRecognitionsDto(assessmentBodyRecognitionId,assessmentBodyRegistrationId,nameOfRecognitionBody,
@@ -185,7 +185,7 @@ private static final ProfileCreationAssessmentBodyRegistrationDetailsRowMapper R
 			String assessmentExperienceId = resultSet.getString("assessmentExperienceId");
 			String assessmentBodyRegistrationId = resultSet.getString("assessmentBodyRegistrationId");
 			String domain = resultSet.getString("domain");
-			String numberOfAssessmentsDone = resultSet.getString("numberOfAssessmentsDone");
+			int numberOfAssessmentsDone = resultSet.getInt("numberOfAssessmentsDone");
 			Boolean isActive = resultSet.getBoolean("isActive");
 				return new ProfileCreationAssessmentsExperienceInTechnicalDomainDto(assessmentExperienceId,assessmentBodyRegistrationId,
 						domain,numberOfAssessmentsDone, isActive);
@@ -266,12 +266,12 @@ private static final ProfileCreationAssessmentStaffDetailsRowMapper ROW_MAPPER_A
 			String name = resultSet.getString("name");
 			String jobRoleCode = resultSet.getString("jobRoleCode");
 			String designation = resultSet.getString("designation");
-			String contactNumber = resultSet.getString("contactNumber");
+			Long contactNumber = resultSet.getLong("contactNumber");
 			String emailId = resultSet.getString("emailId");
 			String state = resultSet.getString("state");
 			String city = resultSet.getString("city");
 			String educationalQualification = resultSet.getString("educationalQualification");
-			String experience = resultSet.getString("experience");
+			int experience = resultSet.getInt("experience");
 			String cVPath = resultSet.getString("cVPath");
 			String certificatePath = resultSet.getString("certificatePath");
 			Boolean isActive = resultSet.getBoolean("isActive");
@@ -314,9 +314,9 @@ private static final ProfileCreationAssessmentBodyRegionalOfficeDetailsRowMapper
 			String assessmentBodyRegistrationId = resultSet.getString("assessmentBodyRegistrationId");
 			String address = resultSet.getString("address");
 			String state = resultSet.getString("state");
-			String pincode = resultSet.getString("pincode");
-			String contactNumber = resultSet.getString("contactNumber");
-			String alternateContactNumber = resultSet.getString("alternateContactNumber");
+			Long pincode = resultSet.getLong("pincode");
+			Long contactNumber = resultSet.getLong("contactNumber");
+			Long alternateContactNumber = resultSet.getLong("alternateContactNumber");
 			Boolean isActive = resultSet.getBoolean("isActive");
 			return new ProfileCreationAssessmentBodyRegionalOfficeDetailsDto(regionalOfficeId,assessmentBodyRegistrationId,
 					address,state,pincode,contactNumber,alternateContactNumber, isActive);
@@ -452,7 +452,7 @@ private static final ProfileCreationAssessmentBodyAffiliationDetailsRowMapper RO
 	
 	/*
 	 * */
-	public int isRegionalOfficePresent(String assessmentBodyRegistrationId, String pincode)
+	public int isRegionalOfficePresent(String assessmentBodyRegistrationId, Long pincode)
 	{
 		int status =0;
 		try

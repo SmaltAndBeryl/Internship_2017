@@ -8,7 +8,7 @@ public class ProfileCreationTrainingPartnerTrainingStaffDetailsDto {
 	private String emailId;
 	private String educationalQualification;
 	private String regularOrVisiting;
-	private String experience;
+	private int experience;
 	private String cVPath;
 	private String certificatePath;
 	private Boolean isActive;
@@ -21,7 +21,7 @@ public class ProfileCreationTrainingPartnerTrainingStaffDetailsDto {
 	
 	public ProfileCreationTrainingPartnerTrainingStaffDetailsDto (String trainingStaffId,String trainingPartnerRegistrationId, 
 			String name, String designation, String emailId, String educationalQualification,
-			String regularOrVisiting , String experience, String cVPath, String certificatePath,
+			String regularOrVisiting , int experience, String cVPath, String certificatePath,
 			Boolean isActive)
 			{
 				super();
@@ -81,10 +81,10 @@ public class ProfileCreationTrainingPartnerTrainingStaffDetailsDto {
 	public void setRegularOrVisiting(String regularOrVisiting) {
 		this.regularOrVisiting = regularOrVisiting;
 	}
-	public String getExperience() {
+	public int getExperience() {
 		return experience;
 	}
-	public void setExperience(String experience) {
+	public void setExperience(int experience) {
 		this.experience = experience;
 	}
 	public String getcVPath() {

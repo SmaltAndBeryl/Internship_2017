@@ -7,10 +7,10 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	private String name;
 	private String designation;
 	private String emailId;
-	private String contactNumber;
+	private Long contactNumber;
 	private String educationalQualification;
 	//private String regularOrVisiting;
-	private String experience;
+	private int experience;
 	private String cVPath;
 	private Boolean isActive;
 	
@@ -38,8 +38,8 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	 */
 	public ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetailsDto(
 			String managementAndStaffId,String trainingPartnerRegistrationId, String name, String designation, String emailId,
-			String contactNumber, String educationalQualification,
-			 String experience, String cVPath,
+			Long contactNumber, String educationalQualification,
+			 int experience, String cVPath,
 			Boolean isActive) {
 		super();
 		this.managementAndStaffId=managementAndStaffId;
@@ -147,13 +147,13 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	/**
 	 * @return the contactNumber
 	 */
-	public String getContactNumber() {
+	public Long getContactNumber() {
 		return contactNumber;
 	}
 	/**
 	 * @param contactNumber the contactNumber to set
 	 */
-	public void setContactNumber(String contactNumber) {
+	public void setContactNumber(Long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	/**
@@ -183,13 +183,13 @@ public class ProfileCreationTrainingPartnerManagementAndStaffAndOfficialsDetails
 	/**
 	 * @return the experience
 	 */
-	public String getExperience() {
+	public int getExperience() {
 		return experience;
 	}
 	/**
 	 * @param experience the experience to set
 	 */
-	public void setExperience(String experience) {
+	public void setExperience(int experience) {
 		this.experience = experience;
 	}
 	/**

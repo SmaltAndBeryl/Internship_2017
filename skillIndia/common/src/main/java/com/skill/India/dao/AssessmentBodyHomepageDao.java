@@ -100,13 +100,27 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 	 */
 	private int getAgencyId(int applicationId)
 	{
-		int agencyId=0;
-		LOGGER.debug("trying to get agency Id for application Id"+ applicationId);
-		Map<String,Object> parameters = new HashMap<>();
-		parameters.put("applicationId", applicationId);
-		agencyId = getJdbcTemplate().queryForObject(assessmentBodyHomepageConfigSql.getGetAgencyId(), parameters,ROW_MAPPER_AGENCY_ID);
-		LOGGER.debug("Agency Id for applicationId :"+applicationId+"is :"+agencyId);
-		return agencyId;
+		try
+		{
+			int agencyId=0;
+			LOGGER.debug("trying to get agency Id for application Id"+ applicationId);
+			Map<String,Object> parameters = new HashMap<>();
+			parameters.put("applicationId", applicationId);
+			agencyId = getJdbcTemplate().queryForObject(assessmentBodyHomepageConfigSql.getGetAgencyId(), parameters,ROW_MAPPER_AGENCY_ID);
+			LOGGER.debug("Agency Id for applicationId :"+applicationId+"is :"+agencyId);
+			return agencyId;
+		}
+		catch(EmptyResultDataAccessException e)
+		{
+			LOGGER.debug("Could not find any agency Id");
+			return -1;
+		}
+		catch(Exception e)
+		{
+			LOGGER.error("An exception occured while finding agency Id");
+			return -2;
+		}
+		
 	}
 	
 	

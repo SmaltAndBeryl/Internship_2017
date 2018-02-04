@@ -6,7 +6,7 @@ public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
 	private String trainingPartnerRegistrationId;
 	private String nameOfRecognizingBody;
 	private String recognitionNumber;
-	private String yearOfRecognition;
+	private int yearOfRecognition;
 	private String validityOfRecognition;
 	private Boolean isActive;
 	
@@ -26,7 +26,7 @@ public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
 	public ProfileCreationTrainingPartnerInstituteRecognitionDto(
 			String instituteRecognitionId, String trainingPartnerRegistrationId,
 			String nameOfRecognizingBody, String recognitionNumber,
-			String yearOfRecognition, String validityOfRecognition, Boolean isActive) {
+			int yearOfRecognition, String validityOfRecognition, Boolean isActive) {
 		super();
 		this.instituteRecognitionId=instituteRecognitionId;
 		this.trainingPartnerRegistrationId=trainingPartnerRegistrationId;
@@ -91,13 +91,13 @@ public class ProfileCreationTrainingPartnerInstituteRecognitionDto {
 	/**
 	 * @return the yearOfRecognition
 	 */
-	public String getYearOfRecognition() {
+	public int getYearOfRecognition() {
 		return yearOfRecognition;
 	}
 	/**
 	 * @param yearOfRecognition the yearOfRecognition to set
 	 */
-	public void setYearOfRecognition(String yearOfRecognition) {
+	public void setYearOfRecognition(int yearOfRecognition) {
 		this.yearOfRecognition = yearOfRecognition;
 	}
 	/**

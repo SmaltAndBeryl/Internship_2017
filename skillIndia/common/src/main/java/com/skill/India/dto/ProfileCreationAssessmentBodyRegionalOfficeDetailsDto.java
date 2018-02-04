@@ -6,9 +6,9 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 	private String assessmentBodyRegistrationId;
 	private String address;
 	private String state;
-	private String pincode;
-	private String contactNumber;
-	private String alternateContactNumber;
+	private Long pincode;
+	private Long contactNumber;
+	private Long alternateContactNumber;
 	private Boolean isActive;
 	
 	
@@ -30,8 +30,8 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 	 */
 	public ProfileCreationAssessmentBodyRegionalOfficeDetailsDto(
 			String regionalOfficeId, String assessmentBodyRegistrationId,
-			String address, String state, String pincode, String contactNumber,
-			String alternateContactNumber, Boolean isActive) {
+			String address, String state, Long pincode, Long contactNumber,
+			Long alternateContactNumber, Boolean isActive) {
 		super();
 		this.regionalOfficeId = regionalOfficeId;
 		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
@@ -93,37 +93,37 @@ public class ProfileCreationAssessmentBodyRegionalOfficeDetailsDto {
 	/**
 	 * @return the pincode
 	 */
-	public String getPincode() {
+	public Long getPincode() {
 		return pincode;
 	}
 	/**
 	 * @param pincode the pincode to set
 	 */
-	public void setPincode(String pincode) {
+	public void setPincode(Long pincode) {
 		this.pincode = pincode;
 	}
 	/**
 	 * @return the contactNumber
 	 */
-	public String getContactNumber() {
+	public Long getContactNumber() {
 		return contactNumber;
 	}
 	/**
 	 * @param contactNumber the contactNumber to set
 	 */
-	public void setContactNumber(String contactNumber) {
+	public void setContactNumber(Long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	/**
 	 * @return the alternateContactNumber
 	 */
-	public String getAlternateContactNumber() {
+	public Long getAlternateContactNumber() {
 		return alternateContactNumber;
 	}
 	/**
 	 * @param alternateContactNumber the alternateContactNumber to set
 	 */
-	public void setAlternateContactNumber(String alternateContactNumber) {
+	public void setAlternateContactNumber(Long alternateContactNumber) {
 		this.alternateContactNumber = alternateContactNumber;
 	}
 	public Boolean getIsActive() {

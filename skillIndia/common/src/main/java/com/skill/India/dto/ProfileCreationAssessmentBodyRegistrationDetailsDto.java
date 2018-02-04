@@ -10,22 +10,22 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 	private String address;
 	private String city;
 	private String state;
-	private String pincode;
-	private String mobileNumber;
-	private String alternateMobileNumber;
-	private String landlineNumber;
-	private String alternateLandlineNumber;
-	private String faxNumber;
+	private Long pincode;
+	private Long mobileNumber;
+	private Long alternateMobileNumber;
+	private Long landlineNumber;
+	private Long alternateLandlineNumber;
+	private Long faxNumber;
 	private String websites;
-	private String yearOfEstablishment;
+	private int yearOfEstablishment;
 	private String priorAssessmentExperience;
 	private String panNumber;
 	private String panNumberPath;
 	private String tanNumber;
 	private String tanNumberPath;
 	private String insituteReceivedAnyRecognition;
-	private String numberOfTechnicalAssessors;
-	private String numberOfNonTechnicalAssessors;
+	private int numberOfTechnicalAssessors;
+	private int numberOfNonTechnicalAssessors;
 	private String affiliatedToAnySectorSkillCouncil;
 	
 	
@@ -66,14 +66,14 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 	public ProfileCreationAssessmentBodyRegistrationDetailsDto(
 			String assessmentBodyRegistrationId, int applicationId,
 			String organizationName, String sPOCName, String address,
-			String city, String state, String pincode, String mobileNumber,
-			String alternateMobileNumber, String landlineNumber,
-			String alternateLandlineNumber, String faxNumber, String websites,
-			String yearOfEstablishment, String priorAssessmentExperience,
+			String city, String state, Long pincode, Long mobileNumber,
+			Long alternateMobileNumber, Long landlineNumber,
+			Long alternateLandlineNumber, Long faxNumber, String websites,
+			int yearOfEstablishment, String priorAssessmentExperience,
 			String panNumber, String panNumberPath, String tanNumber,
 			String tanNumberPath, String insituteReceivedAnyRecognition,
-			String numberOfTechnicalAssessors,
-			String numberOfNonTechnicalAssessors,
+			int numberOfTechnicalAssessors,
+			int numberOfNonTechnicalAssessors,
 			String affiliatedToAnySectorSkillCouncil) {
 		super();
 		this.assessmentBodyRegistrationId = assessmentBodyRegistrationId;
@@ -188,73 +188,73 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 	/**
 	 * @return the pincode
 	 */
-	public String getPincode() {
+	public Long getPincode() {
 		return pincode;
 	}
 	/**
 	 * @param pincode the pincode to set
 	 */
-	public void setPincode(String pincode) {
+	public void setPincode(Long pincode) {
 		this.pincode = pincode;
 	}
 	/**
 	 * @return the mobileNumber
 	 */
-	public String getMobileNumber() {
+	public Long getMobileNumber() {
 		return mobileNumber;
 	}
 	/**
 	 * @param mobileNumber the mobileNumber to set
 	 */
-	public void setMobileNumber(String mobileNumber) {
+	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	/**
 	 * @return the alternateMobileNumber
 	 */
-	public String getAlternateMobileNumber() {
+	public Long getAlternateMobileNumber() {
 		return alternateMobileNumber;
 	}
 	/**
 	 * @param alternateMobileNumber the alternateMobileNumber to set
 	 */
-	public void setAlternateMobileNumber(String alternateMobileNumber) {
+	public void setAlternateMobileNumber(Long alternateMobileNumber) {
 		this.alternateMobileNumber = alternateMobileNumber;
 	}
 	/**
 	 * @return the landlineNumber
 	 */
-	public String getLandlineNumber() {
+	public Long getLandlineNumber() {
 		return landlineNumber;
 	}
 	/**
 	 * @param landlineNumber the landlineNumber to set
 	 */
-	public void setLandlineNumber(String landlineNumber) {
+	public void setLandlineNumber(Long landlineNumber) {
 		this.landlineNumber = landlineNumber;
 	}
 	/**
 	 * @return the alternateLandlineNumber
 	 */
-	public String getAlternateLandlineNumber() {
+	public Long getAlternateLandlineNumber() {
 		return alternateLandlineNumber;
 	}
 	/**
 	 * @param alternateLandlineNumber the alternateLandlineNumber to set
 	 */
-	public void setAlternateLandlineNumber(String alternateLandlineNumber) {
+	public void setAlternateLandlineNumber(Long alternateLandlineNumber) {
 		this.alternateLandlineNumber = alternateLandlineNumber;
 	}
 	/**
 	 * @return the faxNumber
 	 */
-	public String getFaxNumber() {
+	public Long getFaxNumber() {
 		return faxNumber;
 	}
 	/**
 	 * @param faxNumber the faxNumber to set
 	 */
-	public void setFaxNumber(String faxNumber) {
+	public void setFaxNumber(Long faxNumber) {
 		this.faxNumber = faxNumber;
 	}
 	/**
@@ -272,13 +272,13 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 	/**
 	 * @return the yearOfEstablishment
 	 */
-	public String getYearOfEstablishment() {
+	public int getYearOfEstablishment() {
 		return yearOfEstablishment;
 	}
 	/**
 	 * @param yearOfEstablishment the yearOfEstablishment to set
 	 */
-	public void setYearOfEstablishment(String yearOfEstablishment) {
+	public void setYearOfEstablishment(int yearOfEstablishment) {
 		this.yearOfEstablishment = yearOfEstablishment;
 	}
 	/**
@@ -357,26 +357,26 @@ public class ProfileCreationAssessmentBodyRegistrationDetailsDto {
 	/**
 	 * @return the numberOfTechnicalAssessors
 	 */
-	public String getNumberOfTechnicalAssessors() {
+	public int getNumberOfTechnicalAssessors() {
 		return numberOfTechnicalAssessors;
 	}
 	/**
 	 * @param numberOfTechnicalAssessors the numberOfTechnicalAssessors to set
 	 */
-	public void setNumberOfTechnicalAssessors(String numberOfTechnicalAssessors) {
+	public void setNumberOfTechnicalAssessors(int numberOfTechnicalAssessors) {
 		this.numberOfTechnicalAssessors = numberOfTechnicalAssessors;
 	}
 	/**
 	 * @return the numberOfNonTechnicalAssessors
 	 */
-	public String getNumberOfNonTechnicalAssessors() {
+	public int getNumberOfNonTechnicalAssessors() {
 		return numberOfNonTechnicalAssessors;
 	}
 	/**
 	 * @param numberOfNonTechnicalAssessors the numberOfNonTechnicalAssessors to set
 	 */
 	public void setNumberOfNonTechnicalAssessors(
-			String numberOfNonTechnicalAssessors) {
+			int numberOfNonTechnicalAssessors) {
 		this.numberOfNonTechnicalAssessors = numberOfNonTechnicalAssessors;
 	}
 	/**

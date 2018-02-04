@@ -8,12 +8,12 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	private String address;
 	private String city;
 	private String state;
-	private String pincode;
-	private String mobileNumber;
-	private String alternateMobileNumber;
-	private String landlineNumber;
-	private String alternateLandlineNumber;
-	private String faxNumber;
+	private Long pincode;
+	private Long mobileNumber;
+	private Long alternateMobileNumber;
+	private Long landlineNumber;
+	private Long alternateLandlineNumber;
+	private Long faxNumber;
 	private String websites;
 	private String yearOfEstablishment;
 	private String qualificationPacks;
@@ -85,9 +85,9 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	public ProfileCreationTrainingPartnerOrganizationDetailsDto(
 			String trainingPartnerRegistrationId,int applicationId,
 			String organizationName, String sPOCName, String address,
-			String city, String state, String pincode, String mobileNumber,
-			String alternateMobileNumber, String landlineNumber,
-			String alternateLandlineNumber, String faxNumber, String websites,
+			String city, String state, Long pincode, Long mobileNumber,
+			Long alternateMobileNumber, Long landlineNumber,
+			Long alternateLandlineNumber, Long faxNumber, String websites,
 			String yearOfEstablishment, String qualificationPacks,
 			String qualificationPacksAnnexurePath, String nSDCFunded,
 			String nSDCFundedCertificatePath, String mediumOfInstructions,
@@ -200,9 +200,9 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	public ProfileCreationTrainingPartnerOrganizationDetailsDto(String trainingPartnerRegistrationId,
 			int applicationId,String organizationName,
 			String sPOCName, String address, String city, String state,
-			String pincode, String mobileNumber, String alternateMobileNumber,
-			String landlineNumber, String alternateLandlineNumber,
-			String faxNumber, String websites, String yearOfEstablishment,
+			Long pincode, Long mobileNumber, Long alternateMobileNumber,
+			Long landlineNumber, Long alternateLandlineNumber,
+			Long faxNumber, String websites, String yearOfEstablishment,
 			String qualificationPacks, String qualificationPacksAnnexurePath,
 			String nSDCFunded, String nSDCFundedCertificatePath,
 			String mediumOfInstructions, String selfOwnedInstitution,
@@ -364,73 +364,73 @@ public class ProfileCreationTrainingPartnerOrganizationDetailsDto {
 	/**
 	 * @return the pincode
 	 */
-	public String getPincode() {
+	public Long getPincode() {
 		return pincode;
 	}
 	/**
 	 * @param pincode the pincode to set
 	 */
-	public void setPincode(String pincode) {
+	public void setPincode(Long pincode) {
 		this.pincode = pincode;
 	}
 	/**
 	 * @return the mobileNumber
 	 */
-	public String getMobileNumber() {
+	public Long getMobileNumber() {
 		return mobileNumber;
 	}
 	/**
 	 * @param mobileNumber the mobileNumber to set
 	 */
-	public void setMobileNumber(String mobileNumber) {
+	public void setMobileNumber(Long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 	/**
 	 * @return the alternateMobileNumber
 	 */
-	public String getAlternateMobileNumber() {
+	public Long getAlternateMobileNumber() {
 		return alternateMobileNumber;
 	}
 	/**
 	 * @param alternateMobileNumber the alternateMobileNumber to set
 	 */
-	public void setAlternateMobileNumber(String alternateMobileNumber) {
+	public void setAlternateMobileNumber(Long alternateMobileNumber) {
 		this.alternateMobileNumber = alternateMobileNumber;
 	}
 	/**
 	 * @return the landlineNumber
 	 */
-	public String getLandlineNumber() {
+	public Long getLandlineNumber() {
 		return landlineNumber;
 	}
 	/**
 	 * @param landlineNumber the landlineNumber to set
 	 */
-	public void setLandlineNumber(String landlineNumber) {
+	public void setLandlineNumber(Long landlineNumber) {
 		this.landlineNumber = landlineNumber;
 	}
 	/**
 	 * @return the alternateLandlineNumber
 	 */
-	public String getAlternateLandlineNumber() {
+	public Long getAlternateLandlineNumber() {
 		return alternateLandlineNumber;
 	}
 	/**
 	 * @param alternateLandlineNumber the alternateLandlineNumber to set
 	 */
-	public void setAlternateLandlineNumber(String alternateLandlineNumber) {
+	public void setAlternateLandlineNumber(Long alternateLandlineNumber) {
 		this.alternateLandlineNumber = alternateLandlineNumber;
 	}
 	/**
 	 * @return the faxNumber
 	 */
-	public String getFaxNumber() {
+	public Long getFaxNumber() {
 		return faxNumber;
 	}
 	/**
 	 * @param faxNumber the faxNumber to set
 	 */
-	public void setFaxNumber(String faxNumber) {
+	public void setFaxNumber(Long faxNumber) {
 		this.faxNumber = faxNumber;
 	}
 	/**

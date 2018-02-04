@@ -7,12 +7,12 @@ public class ProfileCreationAssessmentStaffDetailsDto {
 	private String name;
 	private String jobRoleCode;
 	private String designation;
-	private String contactNumber;
+	private Long contactNumber;
 	private String emailId;
 	private String state;
 	private String city;
 	private String educationalQualification;
-	private String experience;
+	private int experience;
 	private String cVPath;
 	private String certificatePath;
 	private Boolean isActive;
@@ -43,9 +43,9 @@ public class ProfileCreationAssessmentStaffDetailsDto {
 	 */
 	public ProfileCreationAssessmentStaffDetailsDto(String assessmentStaffId,
 			String assessmentBodyRegistrationId, String name,
-			String jobRoleCode, String designation, String contactNumber,
+			String jobRoleCode, String designation, Long contactNumber,
 			String emailId, String state, String city,
-			String educationalQualification, String experience, String cVPath,
+			String educationalQualification, int experience, String cVPath,
 			String certificatePath, Boolean isActive) {
 		super();
 		this.assessmentStaffId = assessmentStaffId;
@@ -126,13 +126,13 @@ public class ProfileCreationAssessmentStaffDetailsDto {
 	/**
 	 * @return the contactNumber
 	 */
-	public String getContactNumber() {
+	public Long getContactNumber() {
 		return contactNumber;
 	}
 	/**
 	 * @param contactNumber the contactNumber to set
 	 */
-	public void setContactNumber(String contactNumber) {
+	public void setContactNumber(Long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	/**
@@ -186,13 +186,13 @@ public class ProfileCreationAssessmentStaffDetailsDto {
 	/**
 	 * @return the experience
 	 */
-	public String getExperience() {
+	public int getExperience() {
 		return experience;
 	}
 	/**
 	 * @param experience the experience to set
 	 */
-	public void setExperience(String experience) {
+	public void setExperience(int experience) {
 		this.experience = experience;
 	}
 	/**

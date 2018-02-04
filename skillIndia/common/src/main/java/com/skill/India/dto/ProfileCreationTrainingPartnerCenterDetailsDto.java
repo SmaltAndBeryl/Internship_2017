@@ -8,47 +8,47 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	private String nameOperationHead;
 	private String designationOperationHead;
 	private String emailOperationHead;
-	private String contactNumberOperationHead;
+	private Long contactNumberOperationHead;
 	private String educationalQualificationOperationHead;
 	private String experienceOperationHead;
 	private String cvOperationHeadPath;
 	private String nameAffiliationCoordinator;
 	private String designationAffiliationCoordinator;
 	private String emailAffiliationCoordinator;
-	private String contactNumberAffiliationCoordinator;
+	private Long contactNumberAffiliationCoordinator;
 	private String educationalQualificationAffiliationCoordinator;
 	private String experienceAffiliationCoordinator;
 	private String cvAffiliationCoordinatorPath;
 	private String nameSPOC;
 	private String designationSPOC;
 	private String emailSPOC;
-	private String contactNumberSPOC;
+	private Long contactNumberSPOC;
 	private String educationalQualificationSPOC;
 	private String experienceSPOC;
 	private String cvSPOCPath;
-	private String numberOfPermanentOfficeManager;
-	private String numberOftemporaryOfficeManager;
-	private String numberOfPermanentOfficeStaff;
-	private String numberOfTemporaryOfficeStaff;
-	private String numberOfPermanentLabAssistants;
-	private String numberOfTemporaryLabAssistants;
-	private String numberOfPermanentAccountants;
-	private String numberOfTemporaryAccountants;
-	private String numberOfPermanentSupportStaff;
-	private String numberOfTemporarySupportStaff;
-	private String numberOfPermanentOtherEmployees;
-	private String numberOfTemporaryOtherEmployees;
-	private String areaOfInstitute;
+	private int numberOfPermanentOfficeManager;
+	private int numberOftemporaryOfficeManager;
+	private int numberOfPermanentOfficeStaff;
+	private int numberOfTemporaryOfficeStaff;
+	private int numberOfPermanentLabAssistants;
+	private int numberOfTemporaryLabAssistants;
+	private int numberOfPermanentAccountants;
+	private int numberOfTemporaryAccountants;
+	private int numberOfPermanentSupportStaff;
+	private int numberOfTemporarySupportStaff;
+	private int numberOfPermanentOtherEmployees;
+	private int numberOfTemporaryOtherEmployees;
+	private int areaOfInstitute;
 	private String buildingType;
-	private String sizeOfClassrooms;
+	private int sizeOfClassrooms;
 	private String classroomPicsPath;
-	private String numberOfClassrooms;
-	private String sizeOfLabs;
+	private int numberOfClassrooms;
+	private int sizeOfLabs;
 	private String labPicsPath;
-	private String numberOfLabs;
-	private String sizeOfWorkshops;
+	private int numberOfLabs;
+	private int sizeOfWorkshops;
 	private String workshopPicsPath;
-	private String numberOfWorkshops;
+	private int numberOfWorkshops;
 	private String mandatoryToolKitpresent;
 	private String mandatoryToolKitAnnexurePath;
 	private String mandatoryToolKitPicsPath;
@@ -58,10 +58,10 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	private String transportFacility;
 	private String fireSafety;
 	private String presenceOfLibrary;
-	private String numberOfTechnicalBooks;
-	private String numberOfNonTechnicalBooks;
-	private String numberOfMagazines;
-	private String numberOfDailies;
+	private int numberOfTechnicalBooks;
+	private int numberOfNonTechnicalBooks;
+	private int numberOfMagazines;
+	private int numberOfDailies;
 	private String remarksOnInfrastructureDetails;
 	private String sufficientClassroomIlluminationLevel;
 	private String sufficientClassroomVentilationLevel;
@@ -142,47 +142,47 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 			 String nameOperationHead,
 			 String designationOperationHead,
 			 String emailOperationHead,
-			 String contactNumberOperationHead,
+			 Long contactNumberOperationHead,
 			 String educationalQualificationOperationHead,
 			 String experienceOperationHead,
 			 String cvOperationHeadPath,
 			 String nameAffiliationCoordinator,
 			 String designationAffiliationCoordinator,
 			 String emailAffiliationCoordinator,
-			 String contactNumberAffiliationCoordinator,
+			 Long contactNumberAffiliationCoordinator,
 			 String educationalQualificationAffiliationCoordinator,
 			 String experienceAffiliationCoordinator,
 			 String cvAffiliationCoordinatorPath,
 			 String nameSPOC,
 			 String designationSPOC,
 			 String emailSPOC,
-			 String contactNumberSPOC,
+			 Long contactNumberSPOC,
 			 String educationalQualificationSPOC,
 			 String experienceSPOC,
 			 String cvSPOCPath,
-			String numberOfPermanentOfficeManager,
-			String numberOftemporaryOfficeManager,
-			String numberOfPermanentOfficeStaff,
-			String numberOfTemporaryOfficeStaff,
-			String numberOfPermanentLabAssistants,
-			String numberOfTemporaryLabAssistants,
-			String numberOfPermanentAccountants,
-			String numberOfTemporaryAccountants,
-			String numberOfPermanentSupportStaff,
-			String numberOfTemporarySupportStaff,
-			String numberOfPermanentOtherEmployees,
-			String numberOfTemporaryOtherEmployees, String areaOfInstitute,
-			String buildingType, String sizeOfClassrooms,
-			String classroomPicsPath, String numberOfClassrooms,
-			String sizeOfLabs, String labPicsPath, String numberOfLabs,
-			String sizeOfWorkshops, String workshopPicsPath,
-			String numberOfWorkshops, String mandatoryToolKitpresent,
+			int numberOfPermanentOfficeManager,
+			int numberOftemporaryOfficeManager,
+			int numberOfPermanentOfficeStaff,
+			int numberOfTemporaryOfficeStaff,
+			int numberOfPermanentLabAssistants,
+			int numberOfTemporaryLabAssistants,
+			int numberOfPermanentAccountants,
+			int numberOfTemporaryAccountants,
+			int numberOfPermanentSupportStaff,
+			int numberOfTemporarySupportStaff,
+			int numberOfPermanentOtherEmployees,
+			int numberOfTemporaryOtherEmployees, int areaOfInstitute,
+			String buildingType, int sizeOfClassrooms,
+			String classroomPicsPath, int numberOfClassrooms,
+			int sizeOfLabs, String labPicsPath, int numberOfLabs,
+			int sizeOfWorkshops, String workshopPicsPath,
+			int numberOfWorkshops, String mandatoryToolKitpresent,
 			String mandatoryToolKitAnnexurePath,
 			String mandatoryToolKitPicsPath, String safeDrinkingWater,
 			String powerBackup, String separateToilets,
 			String transportFacility, String fireSafety, String presenceOfLibrary,
-			String numberOfTechnicalBooks, String numberOfNonTechnicalBooks,
-			String numberOfMagazines, String numberOfDailies,
+			int numberOfTechnicalBooks, int numberOfNonTechnicalBooks,
+			int numberOfMagazines, int numberOfDailies,
 			String remarksOnInfrastructureDetails,
 			String sufficientClassroomIlluminationLevel,
 			String sufficientClassroomVentilationLevel,
@@ -314,165 +314,165 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	/**
 	 * @return the numberOfPermanentOfficeManager
 	 */
-	public String getNumberOfPermanentOfficeManager() {
+	public int getNumberOfPermanentOfficeManager() {
 		return numberOfPermanentOfficeManager;
 	}
 	/**
 	 * @param numberOfPermanentOfficeManager the numberOfPermanentOfficeManager to set
 	 */
 	public void setNumberOfPermanentOfficeManager(
-			String numberOfPermanentOfficeManager) {
+			int numberOfPermanentOfficeManager) {
 		this.numberOfPermanentOfficeManager = numberOfPermanentOfficeManager;
 	}
 	/**
 	 * @return the numberOftemporaryOfficeManager
 	 */
-	public String getNumberOftemporaryOfficeManager() {
+	public int getNumberOftemporaryOfficeManager() {
 		return numberOftemporaryOfficeManager;
 	}
 	/**
 	 * @param numberOftemporaryOfficeManager the numberOftemporaryOfficeManager to set
 	 */
 	public void setNumberOftemporaryOfficeManager(
-			String numberOftemporaryOfficeManager) {
+			int numberOftemporaryOfficeManager) {
 		this.numberOftemporaryOfficeManager = numberOftemporaryOfficeManager;
 	}
 	/**
 	 * @return the numberOfPermanentOfficeStaff
 	 */
-	public String getNumberOfPermanentOfficeStaff() {
+	public int getNumberOfPermanentOfficeStaff() {
 		return numberOfPermanentOfficeStaff;
 	}
 	/**
 	 * @param numberOfPermanentOfficeStaff the numberOfPermanentOfficeStaff to set
 	 */
-	public void setNumberOfPermanentOfficeStaff(String numberOfPermanentOfficeStaff) {
+	public void setNumberOfPermanentOfficeStaff(int numberOfPermanentOfficeStaff) {
 		this.numberOfPermanentOfficeStaff = numberOfPermanentOfficeStaff;
 	}
 	/**
 	 * @return the numberOfTemporaryOfficeStaff
 	 */
-	public String getNumberOfTemporaryOfficeStaff() {
+	public int getNumberOfTemporaryOfficeStaff() {
 		return numberOfTemporaryOfficeStaff;
 	}
 	/**
 	 * @param numberOfTemporaryOfficeStaff the numberOfTemporaryOfficeStaff to set
 	 */
-	public void setNumberOfTemporaryOfficeStaff(String numberOfTemporaryOfficeStaff) {
+	public void setNumberOfTemporaryOfficeStaff(int numberOfTemporaryOfficeStaff) {
 		this.numberOfTemporaryOfficeStaff = numberOfTemporaryOfficeStaff;
 	}
 	/**
 	 * @return the numberOfPermanentLabAssistants
 	 */
-	public String getNumberOfPermanentLabAssistants() {
+	public int getNumberOfPermanentLabAssistants() {
 		return numberOfPermanentLabAssistants;
 	}
 	/**
 	 * @param numberOfPermanentLabAssistants the numberOfPermanentLabAssistants to set
 	 */
 	public void setNumberOfPermanentLabAssistants(
-			String numberOfPermanentLabAssistants) {
+			int numberOfPermanentLabAssistants) {
 		this.numberOfPermanentLabAssistants = numberOfPermanentLabAssistants;
 	}
 	/**
 	 * @return the numberOfTemporaryLabAssistants
 	 */
-	public String getNumberOfTemporaryLabAssistants() {
+	public int getNumberOfTemporaryLabAssistants() {
 		return numberOfTemporaryLabAssistants;
 	}
 	/**
 	 * @param numberOfTemporaryLabAssistants the numberOfTemporaryLabAssistants to set
 	 */
 	public void setNumberOfTemporaryLabAssistants(
-			String numberOfTemporaryLabAssistants) {
+			int numberOfTemporaryLabAssistants) {
 		this.numberOfTemporaryLabAssistants = numberOfTemporaryLabAssistants;
 	}
 	/**
 	 * @return the numberOfPermanentAccountants
 	 */
-	public String getNumberOfPermanentAccountants() {
+	public int getNumberOfPermanentAccountants() {
 		return numberOfPermanentAccountants;
 	}
 	/**
 	 * @param numberOfPermanentAccountants the numberOfPermanentAccountants to set
 	 */
-	public void setNumberOfPermanentAccountants(String numberOfPermanentAccountants) {
+	public void setNumberOfPermanentAccountants(int numberOfPermanentAccountants) {
 		this.numberOfPermanentAccountants = numberOfPermanentAccountants;
 	}
 	/**
 	 * @return the numberOfTemporaryAccountants
 	 */
-	public String getNumberOfTemporaryAccountants() {
+	public int getNumberOfTemporaryAccountants() {
 		return numberOfTemporaryAccountants;
 	}
 	/**
 	 * @param numberOfTemporaryAccountants the numberOfTemporaryAccountants to set
 	 */
-	public void setNumberOfTemporaryAccountants(String numberOfTemporaryAccountants) {
+	public void setNumberOfTemporaryAccountants(int numberOfTemporaryAccountants) {
 		this.numberOfTemporaryAccountants = numberOfTemporaryAccountants;
 	}
 	/**
 	 * @return the numberOfPermanentSupportStaff
 	 */
-	public String getNumberOfPermanentSupportStaff() {
+	public int getNumberOfPermanentSupportStaff() {
 		return numberOfPermanentSupportStaff;
 	}
 	/**
 	 * @param numberOfPermanentSupportStaff the numberOfPermanentSupportStaff to set
 	 */
 	public void setNumberOfPermanentSupportStaff(
-			String numberOfPermanentSupportStaff) {
+			int numberOfPermanentSupportStaff) {
 		this.numberOfPermanentSupportStaff = numberOfPermanentSupportStaff;
 	}
 	/**
 	 * @return the numberOfTemporarySupportStaff
 	 */
-	public String getNumberOfTemporarySupportStaff() {
+	public int getNumberOfTemporarySupportStaff() {
 		return numberOfTemporarySupportStaff;
 	}
 	/**
 	 * @param numberOfTemporarySupportStaff the numberOfTemporarySupportStaff to set
 	 */
 	public void setNumberOfTemporarySupportStaff(
-			String numberOfTemporarySupportStaff) {
+			int numberOfTemporarySupportStaff) {
 		this.numberOfTemporarySupportStaff = numberOfTemporarySupportStaff;
 	}
 	/**
 	 * @return the numberOfPermanentOtherEmployees
 	 */
-	public String getNumberOfPermanentOtherEmployees() {
+	public int getNumberOfPermanentOtherEmployees() {
 		return numberOfPermanentOtherEmployees;
 	}
 	/**
 	 * @param numberOfPermanentOtherEmployees the numberOfPermanentOtherEmployees to set
 	 */
 	public void setNumberOfPermanentOtherEmployees(
-			String numberOfPermanentOtherEmployees) {
+			int numberOfPermanentOtherEmployees) {
 		this.numberOfPermanentOtherEmployees = numberOfPermanentOtherEmployees;
 	}
 	/**
 	 * @return the numberOfTemporaryOtherEmployees
 	 */
-	public String getNumberOfTemporaryOtherEmployees() {
+	public int getNumberOfTemporaryOtherEmployees() {
 		return numberOfTemporaryOtherEmployees;
 	}
 	/**
 	 * @param numberOfTemporaryOtherEmployees the numberOfTemporaryOtherEmployees to set
 	 */
 	public void setNumberOfTemporaryOtherEmployees(
-			String numberOfTemporaryOtherEmployees) {
+			int numberOfTemporaryOtherEmployees) {
 		this.numberOfTemporaryOtherEmployees = numberOfTemporaryOtherEmployees;
 	}
 	/**
 	 * @return the areaOfInstitute
 	 */
-	public String getAreaOfInstitute() {
+	public int getAreaOfInstitute() {
 		return areaOfInstitute;
 	}
 	/**
 	 * @param areaOfInstitute the areaOfInstitute to set
 	 */
-	public void setAreaOfInstitute(String areaOfInstitute) {
+	public void setAreaOfInstitute(int areaOfInstitute) {
 		this.areaOfInstitute = areaOfInstitute;
 	}
 	/**
@@ -490,13 +490,13 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	/**
 	 * @return the sizeOfClassrooms
 	 */
-	public String getSizeOfClassrooms() {
+	public int getSizeOfClassrooms() {
 		return sizeOfClassrooms;
 	}
 	/**
 	 * @param sizeOfClassrooms the sizeOfClassrooms to set
 	 */
-	public void setSizeOfClassrooms(String sizeOfClassrooms) {
+	public void setSizeOfClassrooms(int sizeOfClassrooms) {
 		this.sizeOfClassrooms = sizeOfClassrooms;
 	}
 	/**
@@ -514,25 +514,25 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	/**
 	 * @return the numberOfClassrooms
 	 */
-	public String getNumberOfClassrooms() {
+	public int getNumberOfClassrooms() {
 		return numberOfClassrooms;
 	}
 	/**
 	 * @param numberOfClassrooms the numberOfClassrooms to set
 	 */
-	public void setNumberOfClassrooms(String numberOfClassrooms) {
+	public void setNumberOfClassrooms(int numberOfClassrooms) {
 		this.numberOfClassrooms = numberOfClassrooms;
 	}
 	/**
 	 * @return the sizeOfLabs
 	 */
-	public String getSizeOfLabs() {
+	public int getSizeOfLabs() {
 		return sizeOfLabs;
 	}
 	/**
 	 * @param sizeOfLabs the sizeOfLabs to set
 	 */
-	public void setSizeOfLabs(String sizeOfLabs) {
+	public void setSizeOfLabs(int sizeOfLabs) {
 		this.sizeOfLabs = sizeOfLabs;
 	}
 	/**
@@ -550,25 +550,25 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	/**
 	 * @return the numberOfLabs
 	 */
-	public String getNumberOfLabs() {
+	public int getNumberOfLabs() {
 		return numberOfLabs;
 	}
 	/**
 	 * @param numberOfLabs the numberOfLabs to set
 	 */
-	public void setNumberOfLabs(String numberOfLabs) {
+	public void setNumberOfLabs(int numberOfLabs) {
 		this.numberOfLabs = numberOfLabs;
 	}
 	/**
 	 * @return the sizeOfWorkshops
 	 */
-	public String getSizeOfWorkshops() {
+	public int getSizeOfWorkshops() {
 		return sizeOfWorkshops;
 	}
 	/**
 	 * @param sizeOfWorkshops the sizeOfWorkshops to set
 	 */
-	public void setSizeOfWorkshops(String sizeOfWorkshops) {
+	public void setSizeOfWorkshops(int sizeOfWorkshops) {
 		this.sizeOfWorkshops = sizeOfWorkshops;
 	}
 	/**
@@ -586,13 +586,13 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	/**
 	 * @return the numberOfWorkshops
 	 */
-	public String getNumberOfWorkshops() {
+	public int getNumberOfWorkshops() {
 		return numberOfWorkshops;
 	}
 	/**
 	 * @param numberOfWorkshops the numberOfWorkshops to set
 	 */
-	public void setNumberOfWorkshops(String numberOfWorkshops) {
+	public void setNumberOfWorkshops(int numberOfWorkshops) {
 		this.numberOfWorkshops = numberOfWorkshops;
 	}
 	/**
@@ -694,49 +694,49 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	/**
 	 * @return the numberOfTechnicalBooks
 	 */
-	public String getNumberOfTechnicalBooks() {
+	public int getNumberOfTechnicalBooks() {
 		return numberOfTechnicalBooks;
 	}
 	/**
 	 * @param numberOfTechnicalBooks the numberOfTechnicalBooks to set
 	 */
-	public void setNumberOfTechnicalBooks(String numberOfTechnicalBooks) {
+	public void setNumberOfTechnicalBooks(int numberOfTechnicalBooks) {
 		this.numberOfTechnicalBooks = numberOfTechnicalBooks;
 	}
 	/**
 	 * @return the numberOfNonTechnicalBooks
 	 */
-	public String getNumberOfNonTechnicalBooks() {
+	public int getNumberOfNonTechnicalBooks() {
 		return numberOfNonTechnicalBooks;
 	}
 	/**
 	 * @param numberOfNonTechnicalBooks the numberOfNonTechnicalBooks to set
 	 */
-	public void setNumberOfNonTechnicalBooks(String numberOfNonTechnicalBooks) {
+	public void setNumberOfNonTechnicalBooks(int numberOfNonTechnicalBooks) {
 		this.numberOfNonTechnicalBooks = numberOfNonTechnicalBooks;
 	}
 	/**
 	 * @return the numberOfMagazines
 	 */
-	public String getNumberOfMagazines() {
+	public int getNumberOfMagazines() {
 		return numberOfMagazines;
 	}
 	/**
 	 * @param numberOfMagazines the numberOfMagazines to set
 	 */
-	public void setNumberOfMagazines(String numberOfMagazines) {
+	public void setNumberOfMagazines(int numberOfMagazines) {
 		this.numberOfMagazines = numberOfMagazines;
 	}
 	/**
 	 * @return the numberOfDailies
 	 */
-	public String getNumberOfDailies() {
+	public int getNumberOfDailies() {
 		return numberOfDailies;
 	}
 	/**
 	 * @param numberOfDailies the numberOfDailies to set
 	 */
-	public void setNumberOfDailies(String numberOfDailies) {
+	public void setNumberOfDailies(int numberOfDailies) {
 		this.numberOfDailies = numberOfDailies;
 	}
 	/**
@@ -914,10 +914,10 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	public void setEmailOperationHead(String emailOperationHead) {
 		this.emailOperationHead = emailOperationHead;
 	}
-	public String getContactNumberOperationHead() {
+	public Long getContactNumberOperationHead() {
 		return contactNumberOperationHead;
 	}
-	public void setContactNumberOperationHead(String contactNumberOperationHead) {
+	public void setContactNumberOperationHead(Long contactNumberOperationHead) {
 		this.contactNumberOperationHead = contactNumberOperationHead;
 	}
 	public String getEducationalQualificationOperationHead() {
@@ -959,11 +959,11 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 			String designationAffiliationCoordinator) {
 		this.designationAffiliationCoordinator = designationAffiliationCoordinator;
 	}
-	public String getContactNumberAffiliationCoordinator() {
+	public Long getContactNumberAffiliationCoordinator() {
 		return contactNumberAffiliationCoordinator;
 	}
 	public void setContactNumberAffiliationCoordinator(
-			String contactNumberAffiliationCoordinator) {
+			Long contactNumberAffiliationCoordinator) {
 		this.contactNumberAffiliationCoordinator = contactNumberAffiliationCoordinator;
 	}
 	public String getEducationalQualificationAffiliationCoordinator() {
@@ -1005,10 +1005,10 @@ public class ProfileCreationTrainingPartnerCenterDetailsDto {
 	public void setEmailSPOC(String emailSPOC) {
 		this.emailSPOC = emailSPOC;
 	}
-	public String getContactNumberSPOC() {
+	public Long getContactNumberSPOC() {
 		return contactNumberSPOC;
 	}
-	public void setContactNumberSPOC(String contactNumberSPOC) {
+	public void setContactNumberSPOC(Long contactNumberSPOC) {
 		this.contactNumberSPOC = contactNumberSPOC;
 	}
 	public String getEducationalQualificationSPOC() {

@@ -5,8 +5,8 @@ public class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto {
 	private String priorExperienceInSkillTrainingId;
 	private String trainingPartnerRegistrationId;
 	private String courseName;
-	private String numberOfBatchesPerYear;
-	private String numberOfStudentsInEachBatch;
+	private Long numberOfBatchesPerYear;
+	private int numberOfStudentsInEachBatch;
 	private Boolean isActive;
 	
 	
@@ -25,8 +25,8 @@ public class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto {
 	public ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto(
 			String priorExperienceInSkillTrainingId,
 			String trainingPartnerRegistrationId,
-			String courseName, String numberOfBatchesPerYear,
-			String numberOfStudentsInEachBatch, Boolean isActive) {
+			String courseName, Long numberOfBatchesPerYear,
+			int numberOfStudentsInEachBatch, Boolean isActive) {
 		super();
 		this.courseName = courseName;
 		this.numberOfBatchesPerYear = numberOfBatchesPerYear;
@@ -79,25 +79,25 @@ public class ProfileCreationTrainingPartnerPriorExperienceInSkillTrainingDto {
 	/**
 	 * @return the numberOfBatchesPerYear
 	 */
-	public String getNumberOfBatchesPerYear() {
+	public Long getNumberOfBatchesPerYear() {
 		return numberOfBatchesPerYear;
 	}
 	/**
 	 * @param numberOfBatchesPerYear the numberOfBatchesPerYear to set
 	 */
-	public void setNumberOfBatchesPerYear(String numberOfBatchesPerYear) {
+	public void setNumberOfBatchesPerYear(Long numberOfBatchesPerYear) {
 		this.numberOfBatchesPerYear = numberOfBatchesPerYear;
 	}
 	/**
 	 * @return the numberOfStudentsInEachBatch
 	 */
-	public String getNumberOfStudentsInEachBatch() {
+	public int getNumberOfStudentsInEachBatch() {
 		return numberOfStudentsInEachBatch;
 	}
 	/**
 	 * @param numberOfStudentsInEachBatch the numberOfStudentsInEachBatch to set
 	 */
-	public void setNumberOfStudentsInEachBatch(String numberOfStudentsInEachBatch) {
+	public void setNumberOfStudentsInEachBatch(int numberOfStudentsInEachBatch) {
 		this.numberOfStudentsInEachBatch = numberOfStudentsInEachBatch;
 	}
 	public Boolean getIsActive() {
