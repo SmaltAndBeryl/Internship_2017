@@ -75,7 +75,12 @@
                                         <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.trainingPartnerRegistrationId" readonly class="form-control">
                                     </div>
                                 </div>
-
+								<div class="row row-margin">
+                                    <div class="col-md-4"><label>Address</label></div>
+                                    <div class="col-md-8">
+                                        <input ng-model="trainingPartner.TrainingPartnerOrganizationDetails.address" class="form-control">
+                                    </div>
+                                </div>
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>City</label></div>
                                     <div class="col-md-8">
@@ -100,7 +105,7 @@
                                 <div class="row row-margin">
                                     <div class="col-md-4"><label>Alternate Mobile Number</label></div>
                                     <div class="col-md-8">
-                                        <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" class="form-control" />
+                                        <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" class="form-control" value="trainingPartner.TrainingPartnerOrganizationDetails.alternateMobileNumber" />
                                     </div>
                                 </div>
 
@@ -110,6 +115,14 @@
                                     <div class="col-md-4"><label>Landline Number</label></div>
                                     <div class="col-md-8">
                                         <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.landlineNumber" class="form-control" ng-required="true">
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="row row-margin">
+                                    <div class="col-md-4"><label>Pincode</label></div>
+                                    <div class="col-md-8">
+                                        <input type="number" ng-model="trainingPartner.TrainingPartnerOrganizationDetails.pincode" class="form-control" ng-required="true">
                                     </div>
                                 </div>
 
