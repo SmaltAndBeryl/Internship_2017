@@ -609,7 +609,16 @@ $scope.removeManagement = function(){
 	$scope.uploadMandatoryToolkitAnnexure = function(trainingcenter)
 	{
 		var file = $scope.trainingPartner.fileMandatoryToolkitAnnexure;
+		var uploadUrl = "/fileUploadMandatoryToolkitAnnexure";
 		   fileUpload.uploadFileWithKey(file,uploadUrl,"fileMandatoryToolkitAnnexure", "centerName",trainingcenter.nameOfCenter)
+	}
+	//Upload Undertaking
+	$scope.uploadLetterofDeclaration = function()
+	{
+		var file = $scope.trainingPartner.undertaking;
+		var uploadUrl = "/fileUploadUndertakingTrainingPartner";
+		var key = "undertakingTP";
+		   fileUpload.uploadFileToUrl(file,uploadUrl,key);
 	}
 	
     $scope.grantTable = {

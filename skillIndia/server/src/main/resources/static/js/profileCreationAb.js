@@ -430,7 +430,12 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         var uploadPAN = "/fileUploadABPAN";
         fileUpload.uploadFileToUrl(file, uploadPAN, "pan");
     };
-    
+    $scope.uploadUndertakingAB = function()
+    {
+    	var file = $scope.assessmentbody.undertaking;
+    	var uploadUrl = "fileUploadUndertakingAssessmentBody";
+    	fileUpload.uploadFileToUrl(file, uploadUrl, "undertakingAB");
+    }
     //Upload tan number
     $scope.uploadFileTan = function()
     {
