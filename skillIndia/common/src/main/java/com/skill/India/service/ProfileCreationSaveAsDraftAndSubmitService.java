@@ -1038,8 +1038,12 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return abAssessmnetStaffCv;
 	}
 	
-	/*
-	 * Method to save Assessment body Assessment staff education certificates Cv */
+	/**
+	 * 
+	 * @param assessmentBodyAssessmentStaffCertificates
+	 * @param key
+	 * @return
+	 */
 	public int saveAbAssessmentStaffEducationCertificates(MultipartFile assessmentBodyAssessmentStaffCertificates , String key)
 	{
 		int abAssessmentStaffEducationCertificate = 0, status =0;
@@ -1052,8 +1056,59 @@ public class ProfileCreationSaveAsDraftAndSubmitService {
 		return abAssessmentStaffEducationCertificate;
 	}
 	
+	/**
+	 * Method to save letter of declaration of training partner
+	 * @param undertakingTrainingPartner
+	 * @param key
+	 * @return
+	 */
+	public int saveUndertakingTrainingPartner(MultipartFile undertakingTrainingPartner, String key)
+	{
+		int status =0;
+		try
+		{
+			int applicationId = getApplicationId();
+			String fileSaved =  saveFile(key, applicationId, undertakingTrainingPartner , readApplicationConstants.getProfileCreationTrainingPartnerFolder());
+			LOGGER.debug("Undertaking for application id : "+applicationId+ " has been saved at path " +fileSaved);
+		}
+		catch(Exception e)
+		{
+			LOGGER.debug("An exception occured whlie saving undertaking for training partner" + e);
+		}
+		
+		return status;
+	}
 	
-	/*Method to save file */
+	/**
+	 * Method to save letter of declaration of assessment body
+	 * @param undertakingAssessmentBody
+	 * @param key
+	 * @return
+	 */
+	public int saveUndertakingAssessmentBody(MultipartFile undertakingAssessmentBody, String key)
+	{
+		int status = 0;
+		try
+		{
+			int applicationId = getApplicationId();
+			String assessmentBodyUndertakingPath = saveFile(key,applicationId,undertakingAssessmentBody,readApplicationConstants.getProfileCreationAssessmentBodyFolder());
+			LOGGER.debug("Undertaking for application Id " + applicationId+ " has been saved at "+ assessmentBodyUndertakingPath);
+		}
+		catch(Exception e)
+		{
+			LOGGER.debug("An exception occured while saving undertaking of assessment body "+ e);
+		}
+		return status;
+	}
+	
+	/**
+	 * 
+	 * @param key
+	 * @param applicationId
+	 * @param file
+	 * @param pathToFolder
+	 * @return
+	 */
 	private String saveFile(String key, int applicationId, MultipartFile file, String pathToFolder)
 	{
 		int folderCreated = 0;	

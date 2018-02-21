@@ -311,5 +311,20 @@ public class ProfileCreationController {
 		status = profileCreationSaveAsDraftAndSubmitService.saveAbAssessmentStaffEducationCertificates(file,"AssessmentBodyAssessmentStaffEducationCertificate");
 		return status;
 	}
+	
+	@RequestMapping(value="/fileUploadUndertakingTrainingPartner", method  =RequestMethod.POST , consumes=MediaType.ALL_VALUE)
+	public int saveFileUndertakingTrainingPartner(@RequestParam(value="undertakingTP") MultipartFile file)
+	{
+		int status = 0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveUndertakingTrainingPartner(file,"LetterOfDeclarationTP");
+		return status;
+	}
+	@RequestMapping(value="/fileUploadUndertakingAssessmentBody", method = RequestMethod.POST,consumes=MediaType.ALL_VALUE )
+	public int saveUndertakingAssessmentBody(@RequestParam(value="undertakingAB") MultipartFile file)
+	{
+		int status = 0;
+		status = profileCreationSaveAsDraftAndSubmitService.saveUndertakingAssessmentBody(file, "LetterofDeclaration");
+		return status;
+	}
 }
 

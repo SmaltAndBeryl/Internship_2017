@@ -680,6 +680,8 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			return status;
 		}
 		
+	
+		
 		/*
 		 * Method to update Training Staff Cv path*/
 		public int updateTrainingStaffCvPath(String PathToBeUpdated, String trainingPartnerRegistrationId)
