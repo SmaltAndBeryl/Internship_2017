@@ -1,15 +1,19 @@
 package com.skill.India.service;
 
+import com.skill.India.common.ReadApplicationConstants;
 import com.skill.India.dao.*;
 import com.skill.India.dto.*;
+
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -38,7 +42,10 @@ public class DataBeanService {
 
     @Autowired
     private DirectorDao directorDao;
-
+    
+    @Autowired
+	private ReadApplicationConstants readApplicationConstants;
+    
     public int dataBeanDtoCollection(String trainingPartnerRegistrationId) throws JRException, IOException {
         final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(com.skill.India.service.DataBeanService.class);
 
@@ -101,7 +108,7 @@ public class DataBeanService {
 
         ClassPathResource resource = new ClassPathResource("/static/January.jasper");
 
-        File desktop = new File("D://SCGJ.SDMS//NewApplicationTPAB" + File.separator + nameOfOrganization + ".pdf");
+        File desktop = new File(readApplicationConstants.getProfileCreationTrainingPartnerFolder() + File.separator + nameOfOrganization + ".pdf");
         String dest2 = desktop.getAbsolutePath();
         LOGGER.debug("the output file on desktop is " + dest2);
         InputStream inputStream = resource.getInputStream();

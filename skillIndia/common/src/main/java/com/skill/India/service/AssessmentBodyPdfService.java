@@ -1,5 +1,6 @@
 package com.skill.India.service;
 
+import com.skill.India.common.ReadApplicationConstants;
 import com.skill.India.dao.*;
 import com.skill.India.dto.*;
 
@@ -36,6 +37,9 @@ public class AssessmentBodyPdfService {
     private RegionalOfficeDetailsDao regionalOfficeDetailsDao;
 
     @Autowired AssessmentBodyAffiliationDao assessmentBodyAffiliationDao;
+    
+    @Autowired
+	private ReadApplicationConstants readApplicationConstants;
 
     public int dataBeanCollection(String assessmentBodyRegistrationId) throws IOException {
 
@@ -87,7 +91,7 @@ public class AssessmentBodyPdfService {
 //        LOGGER.debug("THE SOURCE FILE NAME IS " + sourceFileName);
 
         ClassPathResource resource = new ClassPathResource("/static/February.jasper");
-        File desktop = new File("D://SCGJ.SDMS//NewApplicationTPAB" + File.separator + organizationName + ".pdf");
+        File desktop = new File(readApplicationConstants.getProfileCreationAssessmentBodyFolder() + File.separator + organizationName + ".pdf");
         String dest = desktop.getAbsolutePath();
         LOGGER.debug("THE OUTPUT FILE IS "+ dest);
         LOGGER.debug("Getting input stream");
