@@ -1,4 +1,4 @@
-console.log("code reached to faq.js");
+//console.log("code reached to faq.js");
 var page4 = angular.module('hello');
 
 page4.controller('page4',function($scope, $http) {
@@ -515,19 +515,19 @@ page4.controller('page4',function($scope, $http) {
 
         $http.get('/getFAQTotalCandidatesTrainedAssessedCertified')
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
                 $scope.gridOptions.data = response.data;
             });
     };
 
 
     $scope.getDataOfScheme = function() {
-        console.log("Selected Scheme is -" + $scope.selectedScheme.scheme);
+        //console.log("Selected Scheme is -" + $scope.selectedScheme.scheme);
         //var scheme = $scope.selectedScheme;
         $http.post('/getFAQTotalCandidatesTrainedAssessedCertifiedSchemeWise?batchType=' + $scope.selectedScheme.scheme)
             .then(function(response) {
 
-                console.log(response);
+                //console.log(response);
                 $scope.gridOptionsSelectedScheme.data = response.data;
             });
     };
@@ -535,13 +535,13 @@ page4.controller('page4',function($scope, $http) {
     $scope.getDataOfCandidatesMonthWise = function() {
 
         var candidatesType = $scope.candidatesSelected.candidate;
-        console.log('CANDIDATES  :' + candidatesType);
+        //console.log('CANDIDATES  :' + candidatesType);
 
         var url = '/getFAQCandidatesEnrolledAssessedCertifiedMonthWise?year=' + $scope.year.selectedYear + '&candidates=' + $scope.candidatesSelected.candidate;
-        console.log(url);
+        //console.log(url);
         $http.post(url)
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
                 $scope.gridOptionsSelectCandidates.data = response.data;
             });
     };
@@ -549,14 +549,14 @@ page4.controller('page4',function($scope, $http) {
     $scope.getDataOfCandidatesSchemeAndMonthWise = function() {
 
         var candidatesType = $scope.candidatesSelected.candidateEnrolledInMonth;
-        console.log('CANDIDATES  :' + candidatesType);
+        //console.log('CANDIDATES  :' + candidatesType);
         var selectedYear = $scope.year.selectedYearForCondidate;
         var selectedscheme = $scope.selectedScheme.schemeForMonth;
         var url = '/getFAQCandidatesEnrolledAssessedCertifiedMonthAndSchemeWise?year=' + selectedYear + '&candidates=' + candidatesType + '&batchType=' + selectedscheme;
-        console.log('YE HAI URL' + url);
+        //console.log('YE HAI URL' + url);
         $http.post(url)
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
                 $scope.gridOptionsSelectCandidatesSchemeWise.data = response.data;
             });
     };
@@ -564,11 +564,11 @@ page4.controller('page4',function($scope, $http) {
     $scope.getTotalBatchesAndAllCandidatesInAState = function() {
 
 
-        console.log('State is :' + $scope.selectedState.state);
+        //console.log('State is :' + $scope.selectedState.state);
         var url = '/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularState?state=' + $scope.selectedState.state;
         $http.post(url)
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
                 $scope.gridTotalBatchesAndTotalCandidatesInState.data = response.data;
             });
     };
@@ -576,11 +576,11 @@ page4.controller('page4',function($scope, $http) {
     $scope.getTotalBatchesAndAllCandidatesInAScheme = function() {
 
         var selectedBatchScheme = $scope.selectedScheme.selectedBatchType;
-        console.log('SELECTED SCHEME IS:' + selectedBatchScheme);
+        //console.log('SELECTED SCHEME IS:' + selectedBatchScheme);
         var url = '/getFAQCountOfTotalNumberOfBatchesAndTotalEnrolledInAParticularScheme?batchType=' + selectedBatchScheme;
         $http.post(url)
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
                 $scope.getTotalBatchesAndTotalCandidatesInAScheme.data = response.data;
             });
     };
@@ -588,11 +588,11 @@ page4.controller('page4',function($scope, $http) {
     $scope.getTotalCandidatesToBeAssessedForMonth = function() {
 
         var selectedMonth = $scope.year.selectMonth;
-        console.log(selectedMonth);
+        //console.log(selectedMonth);
         var url = '/getFAQCountOfCandidatesAssessmentUpcomingForAMonth?month=' + selectedMonth;
         $http.post(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.candidatesAssessmentForUpcomingMonth = "Candidates assessed will be : " + response.data;
                 //             $scope.getTotalCandidatesToBeAssessedForUpcomingMonth = response.data;
             });
@@ -601,11 +601,11 @@ page4.controller('page4',function($scope, $http) {
     $scope.getTotalTrainingCentresInAState = function() {
 
         var state = $scope.selectedState.selectedStateForTrainingCentres;
-        console.log(state);
+        //console.log(state);
         var url = '/getFAQTotalTrainingCentresInAState?state=' + state;
         $http.post(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.NumberOfTrainingCentres = response.data;
             });
     };
@@ -613,11 +613,11 @@ page4.controller('page4',function($scope, $http) {
     $scope.getTotalBatchesAndCandidatesEnrolledMonthWiseForAYear = function() {
 
         var year = $scope.year.yearOfEnrollment;
-        console.log(year);
+        //console.log(year);
         var url = '/getFAQTotalBatchesWithTotalCandidatesEnrolledYearWise?year=' + year;
         $http.post(url)
             .then(function(response) {
-                console.log(response);
+                //console.log(response);
                 $scope.gridOptionsForSelectedStateShowingTotalBatchesAndCandidatesEnrolled.data = response.data;
             });
     };
@@ -627,7 +627,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getFAQCountOfTotalTrainingCentresConductingTraining';
         $http.get(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.trainingCenter.CountOfTrainingCentresConductingTraining = response.data;
                 //            Return Output here
             });
@@ -638,7 +638,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getFAQTrainingCentresNotTakingAnyBatches';
         $http.get(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.gridOptionForNamesOfTrainingCentresNotConductingTraining.data = response.data;
             });
     };
@@ -648,7 +648,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getDashboardTotalTrainingCentersInIndia';
         $http.get(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.trainingCenter.totalTrainingCentresWeHave = response.data;
                 //var totalTrainingCentresWeHave = "We have total "+response.data+" training centers";
             });
@@ -663,11 +663,11 @@ page4.controller('page4',function($scope, $http) {
             method: 'POST',
             url: url,
             transformResponse: [function (data)  {
-	        console.log(data);
+	        //console.log(data);
     	    agencyName=data;
         	return data;}]
         }).then(function(response) {
-            console.log(response)
+            //console.log(response)
             if (agencyName) {
                 $scope.AgencyNameForParticularBatchWithId = 'Batch : ' + batchId + ' is assigned to agency : ' + agencyName;
             } else {
@@ -684,7 +684,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getFAQStatusOfAParticularBatchWithId?batchId=' + batchId;
         $http.post(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.gridOptionsBatchStausOfAParticularBatchWithBatchId.data = response.data;
             });
     };
@@ -696,7 +696,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getFAQTotalCountOfBatchesAssignedToAAssessmentAgency?agencyName=' + agencyName;
         $http.post(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 if (response.data == 0) {
                     $scope.batchesAssignedToAssessmentAgency = 'No records found for agency : ' + agencyName;
                 } else {
@@ -722,7 +722,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getFAQCountBatchesForWhichResultIsPending';
         $http.get(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.countOfBatchesForWhichResultUploadIsPending = 'Result Pending : ' + response.data;
             });
     };
@@ -732,7 +732,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getFAQCountTotalNonAssignedBatches';
         $http.get(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.countOfTotalNonAssignedbatches = 'Non-Assigned Batches :' + response.data;
             });
     };
@@ -743,7 +743,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getFAQBatchWiseCandidatesDetails?batchId=' + batchId;
         $http.post(url)
             .then(function(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.gridOptionsBatchWiseCandidateDetails.data = response.data;
             });
 

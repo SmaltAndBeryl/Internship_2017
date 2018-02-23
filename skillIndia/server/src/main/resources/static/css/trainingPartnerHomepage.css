@@ -15,6 +15,10 @@
   color: #676a6c;
   color: var(--slate-grey);;
 }
+.pointer 
+{
+	cursor:pointer;
+}
 .tpMainDiv{
 	background-color: #EAEEEF;
 	padding:1em;

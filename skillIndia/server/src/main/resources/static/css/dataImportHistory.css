@@ -132,6 +132,11 @@ object-position: center;
   color:(--slate-grey);
   }
   
+ .pointer 
+{
+	    cursor: pointer;
+}
+  
   .vub{
 /*   height: 36px; */
 	padding-top: 7px;

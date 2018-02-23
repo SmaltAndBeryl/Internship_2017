@@ -17,6 +17,9 @@
   color: #676a6c;
   
   }
+  .pointer{
+  cursor:pointer;
+  }
   .grid-heading-text{
   color: #676a6c;
   font-size:14px;

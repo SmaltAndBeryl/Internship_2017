@@ -18,9 +18,9 @@ app.controller('MainCtrl', ['$scope', '$http', '$log', function ($scope, $http, 
   	})
   		
     $scope.confirmfunction = function(){
-  		console.log("Function Reached");
+  		//console.log("Function Reached");
   		$http.get('/ShowInterestupcomingtable').success(function(data){
-  			console.log("data populated");
+  			//console.log("data populated");
   		})
     }
   	
@@ -28,8 +28,8 @@ app.controller('MainCtrl', ['$scope', '$http', '$log', function ($scope, $http, 
 
 function confirmfunction2()
 {
-  console.log("button Code reached");
-  console.log("Cnf Function reached");
+  //console.log("button Code reached");
+  //console.log("Cnf Function reached");
   
 	if (confirm("Do you want to confirm interest?")==true)
 	    txt = "Your Interest is Confirmed!";

@@ -2,7 +2,9 @@
 <div ng-controller="assessmentBody" ng-show="authenticated" class="ab-background">    
 
     <div class="welcome"> Welcome {{spockName}}</div>
-
+<div style=" color : {{successTextColor}}; margin: 10px ">
+                {{successText}}
+            </div>
     <div class="mainboundary">
         <div class="title">Application Status</div>
         
@@ -16,14 +18,19 @@
             <div ui-grid="gridOptions1" ui-grid-auto-resize></div>
         
     </div>
-
+ 
+<div style=" color : {{successTextUpColor}}; margin: 10px ">
+                {{successUpText}}
+            </div>
     <div class="mainboundary" >
         <h3 class="heading">Upcoming Batch(es)</h3>
         
             <div ui-grid="gridOptions2" ui-grid-auto-resize></div>
         
     </div>
-
+<div style=" color : {{successTextAssignColor}}; margin: 10px ">
+                {{successAssignText}}
+            </div>
     <div  class="mainboundary" >
         <h3 class="heading">Assigned Batch(es)</h3>
         

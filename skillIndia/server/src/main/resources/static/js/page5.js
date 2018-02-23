@@ -1,4 +1,4 @@
-console.log("working page 5");
+//console.log("working page 5");
 var page5 = angular.module('hello');
 
 page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
@@ -54,13 +54,13 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
                 displayName: 'Withdraw',
                 cellClass: '',
                 headerCellClass: '',
-                cellTemplate: '<center><label><img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.withdrawFunctionForProposedBatches(row)></label></center>'
+                cellTemplate: '<center><label><img src="icon/indexPageIcons/close.png" class="pointer" ng-click=grid.appScope.withdrawFunctionForProposedBatches(row)></label></center>'
             }
         ]
     };
     $http.get('/getProposedBatchesBatchAssignment')
         .then(function(response) {
-            console.log("get successful");
+            //console.log("get successful");
             $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
         });
 
@@ -182,7 +182,7 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
 
         //Extract first cell value
         var withdraw = rowData.entity.batchId;
-        console.log("Row Data is " + withdraw);
+        //console.log("Row Data is " + withdraw);
 
 
         //Code for query update
@@ -200,14 +200,14 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
                 //refresh non assigned batches table
                 $http.get('/non')
                 .then(function(response) {
-                    console.log("Get successful" + response.data)
+                    //console.log("Get successful" + response.data)
                     $scope.gridOptions.data = response.data;
                 });
                 
                 //refresh proposed table
                 $http.get('/getProposedBatchesBatchAssignment')
                 .then(function(response) {
-                    console.log("get successful");
+                    //console.log("get successful");
                     $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
                 });
             });
@@ -230,7 +230,7 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
 
         //Extract first cell value
         var withdraw = rowData.entity.batchId;
-        console.log("Row Data is " + withdraw);
+        //console.log("Row Data is " + withdraw);
 
 
         //Code for query update
@@ -248,14 +248,14 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
                 //refresh non assigned batches table
                 $http.get('/non')
                 .then(function(response) {
-                    console.log("Get successful" + response.data)
+                    //console.log("Get successful" + response.data)
                     $scope.gridOptions.data = response.data;
                 });
                 
                 //refresh proposed table
                 $http.get('/getProposedBatchesBatchAssignment')
                 .then(function(response) {
-                    console.log("get successful");
+                    //console.log("get successful");
                     $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
                 });
             });
@@ -309,8 +309,8 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
     $scope.getDataOfBatch = function() {
         $http.post('/getInformationOfTheBatchId?batchId=' + $scope.batchAssignmentSearch)
             .then(function(response) {
-                console.log("inside request method");
-                console.log(response.data);
+                //console.log("inside request method");
+                //console.log(response.data);
                 if(response.data[0] == null)
                 	{
                 	$scope.searchGridOptions.data = response.data;
@@ -371,20 +371,20 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
             {
                 name: 'Assign',
                 displayName: 'Assign',
-                cellTemplate: '<center><label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.pushFunction(row)></label></center>'
+                cellTemplate: '<center><label><img src="icon/indexPageIcons/tick.png" class="pointer" ng-click=grid.appScope.pushFunction(row)></label></center>'
             }
         ]
     };
 
     $http.get('/non')
         .then(function(response) {
-            console.log("get successful")
+            //console.log("get successful")
             $scope.gridOptions.data = response.data;
         })
 
     $http.get('/dropdown')
         .then(function(response) {
-            console.log("get successful")
+            //console.log("get successful")
             $scope.genderTypes = response.data;
         })
 
@@ -394,19 +394,19 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
     //Get dropdown selected value from dropdown
     $scope.drop = function(selectedValue) {
     	
-        console.log("Selected value is " + selectedValue.agencyId);
+        //console.log("Selected value is " + selectedValue.agencyId);
         selectedAgencyId = selectedValue.agencyId;
-        console.log("Select assignment successful" + selectedAgencyId)
+        //console.log("Select assignment successful" + selectedAgencyId)
     }
 
 
     // code to call method which proposes Assessment body
     $scope.pushFunction = function(rowData) {
-    console.log("Inside propose function");
+    //console.log("Inside propose function");
         var batchIdFromRow = rowData.entity.batchID;
         var agencyIdFromRow = 0;
-        console.log("Selected value is " + selectedAgencyId);
-        console.log("Batch and Agency ID are " + batchIdFromRow + " " + selectedAgencyId);
+        //console.log("Selected value is " + selectedAgencyId);
+        //console.log("Batch and Agency ID are " + batchIdFromRow + " " + selectedAgencyId);
 
         // If assessment body is not set, do not update the DB
         if (selectedAgencyId == 0) {
@@ -427,19 +427,19 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
                 })
                 .then(function(response) {
                     $scope.responseMessagesForBatchesProposed = 'Agency Id has been proposed';
-                    console.log("Status changed to proposed.! " + response.data)
+                    //console.log("Status changed to proposed.! " + response.data)
                     
                     //refresh proposed batches table
                     $http.get('/getProposedBatchesBatchAssignment')
                     .then(function(response) {
-                        console.log("get successful");
+                        //console.log("get successful");
                         $scope.proposedBatchesBatchAssignmentGridOptions.data = response.data;
                     });
 
                     //refresh non-assigned batches table
                     $http.get('/non')
                     .then(function(response) {
-                        console.log("Get successful" + response.data)
+                        //console.log("Get successful" + response.data)
                         $scope.gridOptions.data = response.data;
                     });
 

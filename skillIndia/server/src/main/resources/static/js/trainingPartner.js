@@ -1,9 +1,10 @@
 var trainingPartner = angular.module("hello");
 
-trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScope,$location,$window){
+trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScope,$location,$window,$timeout){
     $scope.message = "Hi Training Partner";
     $scope.applicationStatus = "";
     var appState = "Submit";
+    $scope.successText = "";
     $scope.tpAppStatus = {
         enableColumnMenus: false,
         enableSorting: false,
@@ -55,7 +56,7 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
                 cellClass: 'Prostokt-2-kopia-2-copy-14',
                 width: "5%",
                 headerCellClass: 'Action-copy',
-                cellTemplate: '<img src="icon/indexpageIcons/edit1.png" ng-show="1" ng-click="grid.appScope.editApplication(row)">'
+                cellTemplate: '<img src="icon/indexpageIcons/edit1.png" ng-show="1"class="pointer" ng-click="grid.appScope.editApplication(row)">'
             },
             {
                 name: 'comment',
@@ -79,23 +80,27 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
         if (appState == "Incomplete") {
         	$scope.applicationStatus =appState;
         	$location.path('/profileCreationTp');
-            console.log("Please Edit the Form");
+            //console.log("Please Edit the Form");
 
         } 
         else
         {
-            window.alert("You can edit the application only if it is Incomplete");
+        	$scope.successTextColor = "blue";
+        	$scope.successText = "You can edit the application only if it is Incomplete";
+        	 $timeout(function() {
+                 $scope.successText="";
+              }, 2000);
         }
-        console.log("Click is working" + appState);
+        //console.log("Click is working" + appState);
     };
 
     $http.get('/trainingPartnerApplicationStatus')
         .then(function(response) {
                 $scope.tpAppStatus.data = response.data;
-                console.log(response.data);
+                //console.log(response.data);
             },
             function(errorResponse) {
-                console.log("inside error function application status table");
+                //console.log("inside error function application status table");
             })
     //tp status ends
 
@@ -172,7 +177,7 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
                 displayName: 'Download Certificate',
                 cellClass: 'download',
                 headerCellClass: 'downCer',
-                cellTemplate: '<img src="icon/CertificateDownlad/Certificate Download.png" ng-click=grid.appScope.downloadCertificate(row)>'
+                cellTemplate: '<img src="icon/CertificateDownlad/Certificate Download.png" class="pointer" ng-click=grid.appScope.downloadCertificate(row)>'
             }
         ]
     };
@@ -184,7 +189,7 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
 
     $scope.downloadCertificate = function(rowData) {
         var fileName = rowData.entity.batchId;
-        console.log("the row value is >>>" + rowData.entity.batchId);
+        //console.log("the row value is >>>" + rowData.entity.batchId);
         var urldata = "/downloadCertificate/" + fileName;
 
         $window.open(urldata);
@@ -194,16 +199,16 @@ trainingPartner.controller("trainingPartner" , function($scope, $http, $rootScop
           $rootScope.$on("$locationChangeStart", function(event,next,current)
         		  {
         	  //event.preventDefault();
-        	  console.log("Inside it and next is " + next);
-        	  console.log("Printing value outside if " +appState);
+        	  //console.log("Inside it and next is " + next);
+        	  //console.log("Printing value outside if " +appState);
         	  var indexOfSlash = next.lastIndexOf("/");
       	    var lengthOfNext = next.length;
       	    var absoluteUrl = next.substr(indexOfSlash,lengthOfNext);
-      	    console.log(absoluteUrl);
+      	    //console.log(absoluteUrl);
         	    
         	  if(absoluteUrl == '/profileCreationTp')
         		  {
-        		   console.log("inside if");
+        		   //console.log("inside if");
         		  
         		  $location.path('/profileCreationTp');
         		  }

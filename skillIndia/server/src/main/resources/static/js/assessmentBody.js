@@ -1,6 +1,6 @@
 var assessmentBody = angular.module("hello");
 
-assessmentBody.controller("assessmentBody", function($scope, $location, $http, $rootScope) {
+assessmentBody.controller("assessmentBody", function($scope, $location, $http, $rootScope,$timeout) {
     $scope.message = "Hi Assessment Body";
     $scope.abAppStatus = {
         enableColumnMenus: false,
@@ -53,7 +53,7 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
                 cellClass: 'Prostokt-2-kopia-2-copy-14',
                 width: "5%",
                 headerCellClass: 'Action-copy',
-                cellTemplate: '<img src="icon/indexpageIcons/edit1.png" ng-show="1" ng-click="grid.appScope.myfunction(row)">'
+                cellTemplate: '<img src="icon/indexpageIcons/edit1.png" ng-show="1" class="pointer" ng-click="grid.appScope.myfunction(row)">'
             },
             {
                 name: 'comment',
@@ -80,13 +80,18 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
             //window.location = "https://www.google.co.in";
             //$location.path();
             $location.path(profileCreationURL)
-            console.log("Please Edit the Form");
+            ////console.log("Please Edit the Form");
 
         } else
         {
-            window.alert("Invalid Access");
+        	$scope.successTextColor = "blue";
+            $scope.successText = "You can only edit the application when it is incomplete";
+            $timeout(function() {
+                $scope.successText="";
+             }, 2000);
+
         }
-        console.log("Click is working" + appState);
+        //console.log("Click is working" + appState);
     };
 
     $http.get('/assessmentBodyApplicationStatus')
@@ -94,7 +99,7 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
                 $scope.abAppStatus.data = response.data;
             },
             function(errorResponse) {
-                console.log("inside error function application status table");
+               // //console.log("inside error function application status table");
             })
 
     //Application status Ends
@@ -142,7 +147,7 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
                 $scope.gridOptions1.data = response.data;
             },
             function(errorResponse) {
-                console.log("inside error");
+                //console.log("inside error");
             })
 
     //Past Batches table ends
@@ -192,7 +197,7 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
             {
             	name: 'Confirm',
             	displayName: 'Confirm',
-            	cellTemplate : '<div><img src="icon/indexPageIcons/tick.png" class="ab-img-shadow" ng-click=grid.appScope.confirmfinal(row)></div>'
+            	cellTemplate : '<div><img src="icon/indexPageIcons/tick.png" class="ab-img-shadow pointer" ng-click=grid.appScope.confirmfinal(row)></div>'
             }
         ]
     };
@@ -205,7 +210,7 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
     $scope.check = function(rowData) {
         bool = document.getElementById("myCheck").checked
         if (bool == true) {
-            console.log("Interest captured");
+            //console.log("Interest captured");
         }
     }
     $scope.confirmfinal = function(rowData) {
@@ -218,11 +223,17 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
             //let batch id as is
             $http.post(urldata).then(function(response) {
 
-                console.log("batch id for Interest is " + interestid);
+                //console.log("batch id for Interest is " + interestid);
                 
                 $http.get(urlUpcoming)
                 .then(function(responseUpcoming) {
                     $scope.gridOptions2.data = responseUpcoming.data;
+                    $scope.successTextUpColor = "green";
+                    $scope.successUpText = "Your interest has been captured for batch " +interestid;
+                    $timeout(function() {
+                        $scope.successUpText="";
+                     }, 2000);
+                
                 })
                 
                 $http.get(urlShowInterest)
@@ -232,7 +243,7 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
                 
             });
 
-            console.log("Interest Shown");
+            ////console.log("Interest Shown");
         }
     }
 
@@ -325,7 +336,7 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
                 name: 'Action',
                 cellClass: 'check',
                 headerCellClass: 'CommonCell',
-                cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.approve(row)>  &nbsp; &nbsp; &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.reject(row)></label>'
+                cellTemplate: '<label><img src="icon/indexPageIcons/tick.png" class="pointer" ng-click=grid.appScope.approve(row)>  &nbsp; &nbsp; &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" ng-click=grid.appScope.reject(row)></label>'
             }
         ]
     };
@@ -337,8 +348,12 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
         var urlassigned = "/getAssignedBatchesAssessmentBodyHomepage";
         var urlconfirm = "/getConfirmedBatchesAssessmentBodyHomepage";
         $http.post(urldata).then(function(response) {
-            console.log("batch id for Approve is " + approveid);
-            
+            ////console.log("batch id for Approve is " + approveid);
+        	$scope.successTextAssignColor = "green";
+            $scope.successAssignText = "Batch assignment has been accepted";
+            $timeout(function() {
+                $scope.successAssignText="";
+             }, 2000);
             $http.post(urlassigned)
             .then(function(responseAssigned){
             	$scope.gridOptions3.data= responseAssigned.data;
@@ -355,9 +370,14 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
         var urldata = "/rejectAssignment?batchId=" + rejectid;
         var urlAssigned = "/getAssignedBatchesAssessmentBodyHomepage";
         
+    
         $http.post(urldata).then(function(response) {
-            console.log("batch id for Approve is " + rejectid);
-            
+            //console.log("batch id for Approve is " + rejectid);
+        	$scope.successTextAssignColor = "red";
+            $scope.successAssignText = "Batch assignment has been rejected";
+        	$timeout(function() {
+                $scope.successAssignText="";
+             }, 2000);
             $http.post(urlAssigned)
             .then(function(responseAssigned){
             	$scope.gridOptions3.data= responseAssigned.data;
@@ -423,11 +443,11 @@ assessmentBody.controller("assessmentBody", function($scope, $location, $http, $
           	  var indexOfSlash = next.lastIndexOf("/");
         	    var lengthOfNext = next.length;
         	    var absoluteUrl = next.substr(indexOfSlash,lengthOfNext);
-        	    console.log(absoluteUrl);
+        	    //console.log(absoluteUrl);
           	    
           	  if(absoluteUrl == '/profileCreationAb')
           		  {
-          		   console.log("inside if");
+          		   ////console.log("inside if");
           		  
           		  $location.path('/profileCreationAb');
           		  }

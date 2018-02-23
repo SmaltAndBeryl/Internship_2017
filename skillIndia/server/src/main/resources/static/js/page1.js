@@ -2,11 +2,11 @@ var page = angular.module('hello');
 
 page.controller('page' , function($scope,$http){
     $scope.message = "Page loaded...............";
-    console.log("message printed")
+    //console.log("message printed")
 
     $http.get("/getDashboardTotalCandidatesEnrolled")
         .then(function(response) {
-            console.log(response.data);
+            //console.log(response.data);
             $scope.enrolled = response.data;
         });
 
@@ -248,7 +248,7 @@ page.controller('page' , function($scope,$http){
                             for (i = 0; i < data.length; i++) {
                                 processed_json.push([data[i].state, data[i].trainingCenters]);
                             }
-                            console.log("data is" + processed_json);
+                            //console.log("data is" + processed_json);
                             // draw chart
                             Highcharts.chart('columnChart', {
                                 chart: {

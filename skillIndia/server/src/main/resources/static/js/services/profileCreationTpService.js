@@ -10,10 +10,10 @@ var method = "POST";
           headers: {'Content-Type': undefined}
        })
        .then(function(response){
-            console.log("The file was uploaded successfully");
-            console.log(response);
+            //console.log("The file was uploaded successfully");
+            //console.log(response);
        },function errorCallback(response){
-            console.log(JSON.stringify(response.data));
+            //console.log(JSON.stringify(response.data));
        });
       
     }
@@ -30,10 +30,10 @@ var method = "POST";
       headers: {'Content-Type': undefined}
    })
    .then(function(response){
-        console.log("The file was uploaded successfully");
-        console.log(response);
+        //console.log("The file was uploaded successfully");
+        //console.log(response);
    },function errorCallback(response){
-        console.log(JSON.stringify(response.data));
+        //console.log(JSON.stringify(response.data));
    });
     }
  }]);

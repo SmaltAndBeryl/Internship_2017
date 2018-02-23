@@ -1,9 +1,9 @@
-console.log("Working page2");
+//console.log("Working page2");
 var page2 = angular.module('hello');
 
 page2.controller('page2', function($scope, $location, $http) {
 
-console.log("Inside controller");
+//console.log("Inside controller");
 $scope.messagealert = false;
 //refresh();
 //Grid for submitted application
@@ -48,7 +48,7 @@ $scope.gridOptions = {
             displayName: 'View Application',
             cellTemplate: '<img src="icon/indexPageIcons/pdf.png" ng-click=grid.appScope.myfunction(row)>',
             headerCellClass: 'Institution-Name',
-            cellClass: 'va',
+            cellClass: 'va pointer',
             width: 120
         },
         {
@@ -62,7 +62,7 @@ $scope.gridOptions = {
         {
             name: 'Action',
             displayName: 'Action',
-            cellTemplate: '<label><img src="icon/indexPageIcons/edit.png"  ng-click=grid.appScope.myfunctionedit(row) ">&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.myfunctionapprove(row); >  &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png"  ng-click=grid.appScope.myfunctionreject(row) ></label>',
+            cellTemplate: '<label><img src="icon/indexPageIcons/edit.png" class="pointer" ng-click=grid.appScope.myfunctionedit(row) ">&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" class="pointer" ng-click=grid.appScope.myfunctionapprove(row); >  &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" class="pointer" ng-click=grid.appScope.myfunctionreject(row) ></label>',
             headerCellClass: 'Institution-Name',
             cellClass: 'va'
         }
@@ -182,7 +182,7 @@ $scope.gridOptionsRejected = {
 
 $http.get('/approve')
     .then(function(response) {
-        console.log("get successful for part 1");
+        //console.log("get successful for part 1");
         $scope.gridOptions.data = response.data.submitted;
         $scope.gridOptionsRejected.data = response.data.rejected;
         $scope.gridOptionsApproved.data = response.data.approved;
@@ -195,8 +195,8 @@ $http.get('/approve')
 
 $scope.myfunction = function(rowData){
     var applicationId = rowData.entity.applicationId;
-    console.log("The application Id is " + applicationId);
-    console.log("Rolling is " + $scope.rolling);
+    //console.log("The application Id is " + applicationId);
+    //console.log("Rolling is " + $scope.rolling);
     $scope.rolling = true;
     $scope.generating = "Generating your PDF, please wait..."
     $http({
@@ -205,7 +205,7 @@ $scope.myfunction = function(rowData){
         params : { applicationId : applicationId}
     })
         .then(function(response){
-            console.log("Application Id posted successfully");
+            //console.log("Application Id posted successfully");
 
             if(response.data == 1){
                 $scope.successText = "PDF generated successfully";
@@ -235,19 +235,19 @@ $scope.myfunction = function(rowData){
 
 $scope.myfunctionedit = function(rowData) {
     $scope.messagealert = false;
-    console.log("function to get row data");
+    //console.log("function to get row data");
     var editdetailsOfApplication = {
         applicationState: 'Incomplete',
         applicationId: rowData.entity.applicationId,
         comment: rowData.entity.Comments
     }
-    //console.log(dataOfRow[0][0]);
-    console.log(rowData.entity.Comments);
-    console.log(editdetailsOfApplication);
+    ////console.log(dataOfRow[0][0]);
+    //console.log(rowData.entity.Comments);
+    //console.log(editdetailsOfApplication);
    
     var manageControllerURI = "/setManageRegistrationsComment";
-    console.log(manageControllerURI);
-    console.log("click is working");
+    //console.log(manageControllerURI);
+    //console.log("click is working");
     $http({
         url: manageControllerURI,
         method: "POST",
@@ -275,7 +275,7 @@ $scope.myfunctionedit = function(rowData) {
             var failure = $scope.message;
             $scope.successText = "Could not update comment for this application";
     		$scope.successTextColor = "red";
-            console.log('THIS IS THE RESPONSE IN THE COMMENT:' + failure);
+            //console.log('THIS IS THE RESPONSE IN THE COMMENT:' + failure);
             
         }
     )
@@ -291,11 +291,11 @@ $scope.myfunctionapprove = function(rowData) {
         'activeFlag': 'true',
         'userId': rowData.entity.userId
     }
-    console.log(rowData.entity.applicationId);
-    console.log(editDetailsOfApplication);
+    //console.log(rowData.entity.applicationId);
+    //console.log(editDetailsOfApplication);
     var manageControllerURI = "/affiliationActionOfAnApplicant";
-    console.log(manageControllerURI);
-    console.log("click is working");
+    //console.log(manageControllerURI);
+    //console.log("click is working");
     $http({
         url: manageControllerURI,
         method: "POST",
@@ -312,11 +312,11 @@ $scope.myfunctionapprove = function(rowData) {
                     $scope.gridOptionsRejected.data = dataResponse.data.rejected;
 
                     var message = response.data.successMessage;
-                    console.log(response.data);
+                    //console.log(response.data);
                     $scope.message = response.data.successMessage;
                     $scope.messagelert = true;
                     var success = $scope.message;
-                    console.log('THIS IS THE RESPONSE' + success);
+                    //console.log('THIS IS THE RESPONSE' + success);
                     
                 })
         },
@@ -326,7 +326,7 @@ $scope.myfunctionapprove = function(rowData) {
             //$scope.message = response.data.errorMessage;
             //$scope.messagealert = true;
             var failure = $scope.message;
-            console.log('THIS IS THE RESPONSE :' + failure);
+            //console.log('THIS IS THE RESPONSE :' + failure);
 
 
         }
@@ -352,8 +352,8 @@ $scope.myfunctionreject = function(rowData) {
     }
 
     var manageControllerURI = "/affiliationActionOfAnApplicant";
-    console.log(manageControllerURI);
-    console.log("click is working");
+    //console.log(manageControllerURI);
+    //console.log("click is working");
     $http({
         url: manageControllerURI,
         method: "POST",
@@ -362,7 +362,7 @@ $scope.myfunctionreject = function(rowData) {
             
             $scope.successText = "Application rejected";
     		$scope.successTextColor = "green";
-            console.log(response.data.successMessage);
+            //console.log(response.data.successMessage);
 
             $http.get('/approve')
                 .then(function(dataResponse) {
@@ -376,7 +376,7 @@ $scope.myfunctionreject = function(rowData) {
                     //$scope.message = response.data.successMessage;
                     //$scope.messagealert = true;
                     var success = $scope.message;
-                    console.log('THIS IS THE RESPONSE' + success);
+                    //console.log('THIS IS THE RESPONSE' + success);
 
                     
 
@@ -384,14 +384,14 @@ $scope.myfunctionreject = function(rowData) {
                 })
         },
         function(errorResponse, status) {
-            console.log(error.data.errorMessage);
+            //console.log(error.data.errorMessage);
             $scope.successText = "Could not update reject this application";
     		$scope.successTextColor = "red";
     		
             $scope.message = error.data.errorMessage
             $scope.messageAlert = true;
             var failure = $scope.message;
-            console.log('THIS IS THE RESPONSE :' + failure);
+            //console.log('THIS IS THE RESPONSE :' + failure);
             
         }
     )

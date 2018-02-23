@@ -149,6 +149,7 @@
                             </div>
                         </div>
                     <!-- Next Button -->
+                    
                     <div class="form-horizontal col-md-offset-10 ">
                             <div class="form-group">
                                 <button type="button" class="btn btn-pc-next" ng-click="save()">Next</button>
@@ -425,7 +426,7 @@
                                             <td><input type="number" ng-model="managementStaff.contactNumber" class="form-control" placeholder="Contact Number" required /></td>                                            
                                             <td><input ng-model="managementStaff.educationalQualification" placeholder="Education Qualification" class="form-control" required /></td>
                                             <td><input ng-model="managementStaff.experience" class="form-control"  placeholder="Experience" required /></td>
-                                            <td class="btn-checkbox"><input type="checkbox" ng-model="management.selected" /></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="managementStaff.selected" /></td>
                                         </tr>
                                         </tbody>
 
@@ -464,7 +465,7 @@
                                             </td>                                            
                                             <td><input ng-model="trainingStaff.educationalQualification" placeholder="Education Qualification" class="form-control" required /></td>
                                             <td><input ng-model="trainingStaff.experience" class="form-control"  placeholder="Experience" required /></td>
-                                            <td class="btn-checkbox"><input type="checkbox" ng-model="trainer.selected" /></td>
+                                            <td class="btn-checkbox"><input type="checkbox" ng-model="trainingStaff.selected" /></td>
                                         </tr>
                                         </tbody>
 
@@ -1435,6 +1436,14 @@
             </accordion-group>
            
         </accordion>
+        
+        <div style=" color : {{successTextColor}}; margin: 10px ">
+                {{successText}}
+                <div ng-show="rolling">
+                    <img src="gif/Facebook.gif"/>
+                    {{generating}}
+                </div>
+            </div>
         <!--  ------------------------ACCORDION ENDS HERE ------------------  -->
         <div class=" form-horizontal">            
             <div class="form-group">

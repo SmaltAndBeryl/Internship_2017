@@ -18,6 +18,10 @@
   padding-left:10px;
   padding-top:5px;
 }
+.pointer
+{
+	cursor:pointer;
+}
 .statuscellred{
 	
 	color: Red;

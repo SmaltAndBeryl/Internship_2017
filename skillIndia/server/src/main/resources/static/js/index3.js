@@ -1,4 +1,4 @@
-console.log("App.js being executed");
+//console.log("App.js being executed");
 var hello = angular.module('hello', ['ngRoute',
                                         'ui.grid',
                                          'ui.grid.edit',
@@ -7,7 +7,7 @@ var hello = angular.module('hello', ['ngRoute',
                                           'ui.bootstrap',
                                           'ui.grid.pagination']);
 
-console.log("Module initialized successfully..");
+//console.log("Module initialized successfully..");
 hello.config(function($routeProvider, $httpProvider) {
 
 	$routeProvider.when('/master', {
@@ -38,7 +38,7 @@ hello.config(function($routeProvider, $httpProvider) {
 
 });
 
-hello.controller('navigation', function($rootScope, $http, $location, $route,$scope) {
+hello.controller('navigation', function($rootScope, $http, $location, $route,$scope,$timeout) {
     var self = this;
     var spock;
     self.tab = function(route) {
@@ -119,7 +119,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
                    method: 'POST',
                    url: "/getSPOCName",
                    transformResponse: [function (data)  {
-                    console.log(data);
+                    //console.log(data);
 
                     spock = data;
                     return data;
@@ -130,11 +130,11 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
                         $rootScope.spockName = spock ;
                         
                     });
-// console.log("Backend value " + response + "String Format " +
+// //console.log("Backend value " + response + "String Format " +
 // JSON.stringify(response.data.authorities[0].authority));
             
             } else {
-// console.log("Backend value " + response);
+// //console.log("Backend value " + response);
                 $rootScope.authenticated = false;
                 
                 
@@ -142,16 +142,19 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
             $rootScope.authenticated = true;
             $rootScope.type = JSON.stringify(response.data.authorities[0].authority);
             successCallBack($rootScope.authenticated);
-            console.log("USER role is " + $rootScope.type);
+            //console.log("USER role is " + $rootScope.type);
 //         
             
         }, function() {
           if(credentials){
-        	  console.log("Login failed");
+        	  //console.log("Login failed");
               self.error = true;
               $rootScope.authenticated = false;
-              console.log("I AM HERE");
+              //console.log("I AM HERE");
               $rootScope.errorMessagesForLoggingIn = 'Invalid UserName/Password';
+              $timeout(function() {
+            	  $rootScope.errorMessagesForLoggingIn="";
+               }, 2000);
                 
           }
         });
@@ -176,7 +179,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
 			
 			}).then(function(response)
 				{
-			     console.log(response);
+			     //console.log(response);
 		     var signupAction=response;
 		     var userName=signupAction.userId;
 		     
@@ -208,9 +211,9 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
     
     self.logout = function($route) {
         $rootScope.type = "logout"; 	
-        console.log("Logging out./././././././");
+        //console.log("Logging out./././././././");
         $http.post('logout', {}).finally(function() {
-            console.log("Logged out successfully..")
+            //console.log("Logged out successfully..")
             window.location.href ="/";
            // $location.path("/");
         });

@@ -1,6 +1,6 @@
 var profileCreationAb = angular.module('hello');
 
-profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location ,fileUpload){
+profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location ,fileUpload,$timeout){
     $scope.names = [
         {
             name : "JSS",
@@ -66,34 +66,34 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     //Get the data from backend
     $http.get('/getDataNewUserProfileCreation')
     .then(function(response){
-        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+        //console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
         $scope.assessmentBody = response.data;
-        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+        //console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
 
     });
 
     // Add new row functionality for the tables
     $scope.addNewExperience = function(experience){
-        console.log("data added successfully");
+        //console.log("data added successfully");
         $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain.push({
             'domain' : ""
         });
     }
     $scope.addNewRecognition = function(recognition){
-        console.log("data added successfully");
+        //console.log("data added successfully");
         $scope.assessmentBody.AssessmentBodyRecognitions.push({
             'name' : ""
         });
     }
     $scope.addNewAffiliation = function(affiliation){
-        console.log("data added successfully");
+        //console.log("data added successfully");
         $scope.assessmentBody.AssessmentBodyAffiliationDetails.push({
             'nameOfSectorSkillCouncil' : ""
         });
     }
 
     $scope.addNewDirectors = function(directors){
-        console.log("Data added successfully");
+        //console.log("Data added successfully");
         $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails.push({
              'name' : ""
         });
@@ -101,14 +101,14 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
 
 
     $scope.addNewOffice = function(office){
-        console.log("Data added successfully");
+        //console.log("Data added successfully");
         $scope.assessmentBody.AssessmentBodyRegionalOfficeDetails.push({
              'address' : ""
         });
     }
 
     $scope.addNewAssessor = function(assessor){
-        console.log("Data added successfully");
+        //console.log("Data added successfully");
         $scope.assessmentBody.AssessmentStaffDetails.push({
              'name' : ""
         });
@@ -119,7 +119,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
        
         angular.forEach($scope.assessmentBody.AssessmentsExperienceInTechnicalDomain, function(selected){
             if(selected.selected){
-            	console.log(selected.domain);
+            	//console.log(selected.domain);
             	selected.isActive = 0;
             }
         });
@@ -147,16 +147,16 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 			//Get the data from backend
                 		    $http.get('/getDataNewUserProfileCreation')
                 		    .then(function(response){
-                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        //console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
                 		        $scope.assessmentBody = response.data;
-                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+                		        //console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
 
                 		    });
                 
                 		},
                 		function(errorResponse, status)
                 		{
-                			console.log("Failed "+ errorResponse);
+                			//console.log("Failed "+ errorResponse);
                 		});
     };
 
@@ -166,7 +166,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         angular.forEach($scope.assessmentBody.AssessmentBodyRecognitions, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
-            	console.log(selected.domain);
+            	//console.log(selected.domain);
             	selected.isActive = 0;
             }
         });
@@ -194,16 +194,16 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 			//Get the data from backend
                 		    $http.get('/getDataNewUserProfileCreation')
                 		    .then(function(response){
-                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        //console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
                 		        $scope.assessmentBody = response.data;
-                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+                		        //console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
 
                 		    });
                 
                 		},
                 		function(errorResponse, status)
                 		{
-                			console.log("Failed "+ errorResponse)
+                			//console.log("Failed "+ errorResponse)
                 		});
 
     };
@@ -213,7 +213,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         angular.forEach($scope.assessmentBody.AssessmentBodyAffiliationDetails, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
-            	console.log(selected.domain);
+            	//console.log(selected.domain);
             	selected.isActive = 0;
             }
         });
@@ -241,16 +241,16 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 			//Get the data from backend
                 		    $http.get('/getDataNewUserProfileCreation')
                 		    .then(function(response){
-                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        //console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
                 		        $scope.assessmentBody = response.data;
-                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+                		        //console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
 
                 		    });
                 
                 		},
                 		function(errorResponse, status)
                 		{
-                			console.log("Failed "+ errorResponse)
+                			//console.log("Failed "+ errorResponse)
                 		}
                 		);
 
@@ -262,7 +262,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         angular.forEach($scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
-            	console.log(selected.domain);
+            	//console.log(selected.domain);
             	selected.isActive = 0;
             }
         });
@@ -290,16 +290,16 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 			//Get the data from backend
                 		    $http.get('/getDataNewUserProfileCreation')
                 		    .then(function(response){
-                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        //console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
                 		        $scope.assessmentBody = response.data;
-                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+                		        //console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
 
                 		    });
                 
                 		},
                 		function(errorResponse, status)
                 		{
-                			console.log("Failed "+ errorResponse)
+                			//console.log("Failed "+ errorResponse)
                 		}
                 		);
         
@@ -311,7 +311,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         angular.forEach($scope.assessmentBody.AssessmentBodyRegionalOfficeDetails, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
-            	console.log(selected.domain);
+            	//console.log(selected.domain);
             	selected.isActive = 0;
         	  }
         });
@@ -339,16 +339,16 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 			//Get the data from backend
                 		    $http.get('/getDataNewUserProfileCreation')
                 		    .then(function(response){
-                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        //console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
                 		        $scope.assessmentBody = response.data;
-                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+                		        //console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
 
                 		    });
                 
                 		},
                 		function(errorResponse, status)
                 		{
-                			console.log("Failed "+ errorResponse)
+                			//console.log("Failed "+ errorResponse)
                 		}
                 		);
           
@@ -359,7 +359,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         angular.forEach($scope.assessmentBody.AssessmentStaffDetails, function(selected){
         	if(selected.selected){
             	selected.isActive = 0;
-            	console.log(selected.domain);
+            	//console.log(selected.domain);
             	selected.isActive = 0;
         	 }
         });
@@ -387,16 +387,16 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
                 			//Get the data from backend
                 		    $http.get('/getDataNewUserProfileCreation')
                 		    .then(function(response){
-                		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+                		        //console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
                 		        $scope.assessmentBody = response.data;
-                		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+                		        //console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
 
                 		    });
                 
                 		},
                 		function(errorResponse, status)
                 		{
-                			console.log("Failed "+ errorResponse)
+                			//console.log("Failed "+ errorResponse)
                 		}
                 		);
            
@@ -404,28 +404,28 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
 
     //Remove all functionality
     $scope.removeAllExperience = function(){
-        console.log("Removing all the details..!");
+        //console.log("Removing all the details..!");
         $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain = [];
     }
     $scope.removeAllRecognition = function(){
-        console.log("Removing all the details..!");
+        //console.log("Removing all the details..!");
         $scope.assessmentBody.AssessmentBodyRecognitions = [];
     }
 
     $scope.removeAllAffiliation = function(){
-        console.log("Removing all the details..!");
+        //console.log("Removing all the details..!");
         $scope.assessmentBody.AssessmentBodyAffiliationDetails = [];
     }
 
 
     $scope.update = function(){
-        console.log("The updated JSON is " + JSON.stringify($scope.names));
+        //console.log("The updated JSON is " + JSON.stringify($scope.names));
     };
     
     //Upload file
     $scope.uploadFilePan = function() {
         var file = $scope.assessmentBody.pan;
-        console.log("File is " + file);
+        //console.log("File is " + file);
 
         var uploadPAN = "/fileUploadABPAN";
         fileUpload.uploadFileToUrl(file, uploadPAN, "pan");
@@ -467,7 +467,8 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     
     //Save as draft function
     $scope.save = function(){    
-
+    	$scope.rolling = true;
+        $scope.generating = "Trying to save data.Please wait";
         var url = "/saveAsDraftAndSubmitAB";
         var RequestMethod = "POST";
         $scope.profileCreationABTPDto = {
@@ -489,25 +490,39 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
         }).then(
         		function(response)
         		{
-        			console.log("Success " + response);
+        			if(response.status == 200){
+                        $scope.successText = "Your data has been saved successfully";
+                        $scope.successTextColor = "green";
+                        $scope.rolling = false;
+                    }
+        			//console.log("Success " + response);
         		    $http.get('/getDataNewUserProfileCreation')
         		    .then(function(response){
-        		        console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
+        		        //console.log("values fetched successfully from the back end " + JSON.stringify(response.data));
         		        $scope.assessmentBody = response.data;
-        		        console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
+        		        
+        		        //console.log("The response from backend is " + JSON.stringify($scope.assessmentBody));
 
         		    });
-       			
+        		    $timeout(function() {
+                        $scope.successText="";
+                     }, 2000);
         
         		},
         		function(errorResponse, status)
         		{
-        			console.log("Failed "+ errorResponse)
+        			
+                        $scope.successText = "Could not save data please refresh page";
+                        $scope.successTextColor = "red";
+                        $scope.rolling = false;
+                    
+        			//console.log("Failed "+ errorResponse)
         		});
         };
    
         $scope.submit = function(response){
-          
+        	$scope.rolling = true;
+            $scope.generating = "Trying to submit application.Please wait"
             var manageControllerURI = "/saveAsDraftAndSubmitAB";
             $scope.profileCreationABTPDto = {
             		'type' : 'Submit',
@@ -519,12 +534,12 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             		'profileCreationAssessmentsExperienceInTechnicalDomainDto': $scope.assessmentBody.AssessmentsExperienceInTechnicalDomain,
             		'profileCreationAssessmentStaffDetailsDto': $scope.assessmentBody.AssessmentStaffDetails
             }
-            console.log($scope.assessmentBody);
+            //console.log($scope.assessmentBody);
             
           
             //$scope.assessmentBody["type"] = "Submit";
             
-            console.log($scope.assessmentBody);
+            //console.log($scope.assessmentBody);
 
             $http({
             	url : manageControllerURI,
@@ -534,7 +549,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             }).then(
             		function(response)
             		{
-            		 console.log("SUCCESS");
+            		 //console.log("SUCCESS");
             		 $location.path("/assessmentBody");
           
             		},
@@ -544,7 +559,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             			/*$scope.message = response.data.errorMessage;
             			$scope.messagealert= true;
             			var failure=$scope.message;*/
-            			console.log('THIS IS THE RESPONSE IN THE COMMENT:'+failure);	
+            			//console.log('THIS IS THE RESPONSE IN THE COMMENT:'+failure);	
             		  
             			
             		}

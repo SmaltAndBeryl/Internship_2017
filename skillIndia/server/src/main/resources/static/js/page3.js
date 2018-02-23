@@ -16,7 +16,7 @@ page3.controller('page3',function($scope, $http, fileUploadDataImport, zipCertif
     	  { name: 'csvtype',            displayName: 'Type',               cellClass:'type', headerCellClass:'Type', width: "15%"},
     	  { name: 'csv_Upload_Date',    displayName: 'Date',               cellClass:'date', headerCellClass:'Date',width:"10%", cellFilter: 'date:\'dd/MM/yyyy\''},
     	  { name: 'csv_Upload_UserId',  displayName: 'Uploaded By',        cellClass:'uby',  headerCellClass:'Uploaded-By', width:"20%"},
-    	  { name: 'View Uploaded File', displayName: 'View Uploaded File', cellClass:'vub',  headerCellClass:'View-Uploaded-File', width:"10%",cellTemplate: '<img src="/images/CSVDownloadIcon.png" ng-click=grid.appScope.download(row)>'}
+    	  { name: 'View Uploaded File', displayName: 'View Uploaded File', cellClass:'vub',  headerCellClass:'View-Uploaded-File', width:"10%",cellTemplate: '<img src="/images/CSVDownloadIcon.png" class="pointer" ng-click=grid.appScope.download(row)>'}
     	       ]
       };
 
@@ -24,7 +24,7 @@ $scope.dataImport={};
 
       $scope.download = function(rowData){
     	  var  fileName = rowData.entity.csvname;
-   	   console.log("the row value is >>>" + rowData.entity.csvname);
+   	   //console.log("the row value is >>>" + rowData.entity.csvname);
    	  var urldata = "/downloadCSVFile/"+ fileName;
     	  window.open(urldata);
       };
@@ -63,14 +63,14 @@ $scope.optionValues = [{
      $scope.uploadCSV = function(){
 
      	var file = $scope.dataImport.uploadCsvFile;
-     	console.log('File selected is :'+file);
+     	//console.log('File selected is :'+file);
      	var csvType = $scope.csvType;
 
          var uploadUrl = "/upload";
        var fileuploaded = fileUploadDataImport.uploadFileToUrl(file, csvType, uploadUrl);
        
        fileuploaded.then(function(response){
-    	   console.log("aa gya yahan pe");
+    	  // //console.log("aa gya yahan pe");
        },
        function(errorResponse){
     	   
@@ -102,13 +102,13 @@ columnDefs:[
 { name: 'certificateName',      displayName: 'File Name',          cellClass:'fname', headerCellClass:'File-Name'},
 { name: 'userId',      displayName: 'Uploaded By',        cellClass:'uby',   headerCellClass:'Uploaded-By'},
 { name: 'certificateUploadDate',displayName: 'Date',               cellClass:'date',  headerCellClass:'Date'},
-{ name: 'View Uploaded File',  displayName: 'View Uploaded File', cellClass:'vub',   headerCellClass:'View-Uploaded-File', cellTemplate: '<img src="/icon/CertificateDownlad/Certificate Download.png" ng-click=grid.appScope.downloadCertificate(row)>'}
+{ name: 'View Uploaded File',  displayName: 'View Uploaded File', cellClass:'vub',   headerCellClass:'View-Uploaded-File', cellTemplate: '<img src="/icon/CertificateDownlad/Certificate Download.png" class="pointer" ng-click=grid.appScope.downloadCertificate(row)>'}
   ]
 };
 $scope.downloadCertificate = function(rowData){
 
   var  fileName = rowData.entity.certificateName;
-   console.log("the row value is >>>" + rowData.entity.certificateName);
+   //console.log("the row value is >>>" + rowData.entity.certificateName);
    var urldata = "/downloadCertificate/"+ fileName;
 
    window.open(urldata);
@@ -148,23 +148,23 @@ $scope.searchBatch = {
 
  $scope.getDataOfBatch = function()
  {
-	 console.log($scope.dataImportBatchIdSearch);
+	 //console.log($scope.dataImportBatchIdSearch);
   $http.post('/findBatch?batchId='+$scope.dataImportBatchIdSearch)
   .then(function(response) {
-     console.log("inside request method");
-     //console.log(response.data);
+     //console.log("inside request method");
+     ////console.log(response.data);
      var err;
 
      if(response.data[0] == null)
       {
-      //console.log('In the NULL')
+      ////console.log('In the NULL')
       var exists= document.getElementById("responseMessage");
       $scope.searchBatch.data = response.data;
       //exists.style.color = "Red";
       $scope.errorMessage="No Record Found";
-      //console.log('YE AAY ANULL');
+      ////console.log('YE AAY ANULL');
       }
-      //console.log("Error");
+      ////console.log("Error");
 
      else
      {
@@ -178,9 +178,9 @@ $scope.searchBatch = {
  $scope.uploadCertificate = function(rowData){
 
 	 var  batchId = rowData.entity.batchId;
-//	 console.log('Batch Id is:'+batchId);
+//	 //console.log('Batch Id is:'+batchId);
 	 var file = $scope.uploadCertificate;
-//	 console.log("File is "+file);
+//	 //console.log("File is "+file);
      var url = '/uploadCertificate';
      zipCertificateUpload.uploadZip(batchId,url);
      $http.get("/certificateImportHistory")
@@ -188,7 +188,7 @@ $scope.searchBatch = {
       $scope.certificateImportHistory.data = response.data;
      },
      function(errorResponse){
-    	 console.log("error");
+    	 //console.log("error");
      });
  };
 
