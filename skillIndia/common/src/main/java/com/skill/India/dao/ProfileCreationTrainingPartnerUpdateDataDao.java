@@ -317,7 +317,8 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			try{
 				Map<String, Object> parameters=new HashMap<String, Object>();
 
-				//parameters.put("trainingPartnerRegistrationId", profileCreationTrainingPartnerTrainingStaffDetailsDto.getTrainingPartnerRegistrationId());
+				parameters.put("trainingStaffId", profileCreationTrainingPartnerTrainingStaffDetailsDto.getTrainingStaffId());
+				parameters.put("trainingPartnerRegistrationId", profileCreationTrainingPartnerTrainingStaffDetailsDto.getTrainingPartnerRegistrationId());
 				parameters.put("name",profileCreationTrainingPartnerTrainingStaffDetailsDto.getName());
 				parameters.put("designation",profileCreationTrainingPartnerTrainingStaffDetailsDto.getDesignation());
 				parameters.put("emailId",profileCreationTrainingPartnerTrainingStaffDetailsDto.getEmailId().toLowerCase());
@@ -333,7 +334,7 @@ public class ProfileCreationTrainingPartnerUpdateDataDao extends AbstractTransac
 			}
 			catch(Exception e)
 			{
-				LOGGER.error("An exception occured while updating management staff details of training partner " + e);
+				LOGGER.error("An exception occured while updating training staff details of training partner " + e);
 				status = -1;
 			}
 			return status;
