@@ -186,10 +186,16 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
 		     if(response.data == -1)
 		     {
 		    	$scope.errorMessagesForSignUp = "Organisation name is already in use."
+		    		$timeout(function() {
+		            	  $rootScope.errorMessagesForSignUp="";
+		               }, 2000);
 		    }
 		     else if(response.data == -2)
 		    	 {
-		    	 	$scope.errorMessagesForSignUp = "Could not create your account as of now .Please try later"
+		    	 	$scope.errorMessagesForSignUp = "Could not create your account as of now .Please try later";
+		    	 	$timeout(function() {
+		            	  $rootScope.errorMessagesForSignUp="";
+		               }, 2000);
 		    	 }
 		     else 
 		     {
