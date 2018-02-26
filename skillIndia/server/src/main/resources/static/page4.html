@@ -111,7 +111,7 @@
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open8, 'glyphicon-plus': !status.open8}"></i>
                     </div>
                 </accordion-heading>
-                <div class="manage">Total Training Centres In State {{selectedState.selectedStateForTrainingCentres}} : {{NumberOfTrainingCentres}} </div>
+                <div class="manage">Total Training Centers In State {{selectedState.selectedStateForTrainingCentres}} : {{NumberOfTrainingCentres}} </div>
             </accordion-group>
 
 
@@ -133,12 +133,12 @@
                 <accordion-heading>
                     <div ng-click="getTotalTrainingCentresConductingTraining()">
                         <div ng-click="$event.stopPropagation();">
-                            How many Training Centres are conducting Training?
+                            How many Training Centers are conducting Training?
                         </div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open10, 'glyphicon-plus': !status.open10}"></i>
                     </div>
                 </accordion-heading>
-                <div>Training Centres Conducting Training :{{trainingCenter.CountOfTrainingCentresConductingTraining}}</div>
+                <div>Training Centers Conducting Training :{{trainingCenter.CountOfTrainingCentresConductingTraining}}</div>
             </accordion-group>
 
             <!-- QUESTION 11 -->
@@ -146,7 +146,7 @@
                 <accordion-heading>
                     <div ng-click="getNamesOfTrainingCentresNotConductingTraining()">
                         <div ng-click="$event.stopPropagation();">
-                            How many Training Centres are there, where no training has been conducted?
+                            How many Training Centers are there, where no training has been conducted?
                         </div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open11, 'glyphicon-plus': !status.open11}"></i>
                     </div>
@@ -159,12 +159,12 @@
                 <accordion-heading>
                     <div ng-click="getTotalTrainingCentresAllIndia()">
                         <div ng-click="$event.stopPropagation();">
-                            How many Training Centres do we have?
+                            How many Training Centers do we have?
                         </div>
                         <i class="pull-right glyphicon" ng-class="{'glyphicon-minus': status.open12, 'glyphicon-plus': !status.open12}"></i>
                     </div>
                 </accordion-heading>
-                <div class="manage">Total Training Centres :{{trainingCenter.totalTrainingCentresWeHave}}</div>
+                <div class="manage">Total Training Centers :{{trainingCenter.totalTrainingCentresWeHave}}</div>
             </accordion-group>
 
             <!-- QUESTION 13 -->
