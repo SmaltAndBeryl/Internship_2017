@@ -14,8 +14,9 @@
 }
 .here-txt
 {
-	color:black;
+	color:blue;
 	padding:0em;
+	text-decoration : underline;
 }
 .btn-pc-upload
 {
