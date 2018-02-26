@@ -288,7 +288,7 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
             },
             {
                 name: 'state',
-                displayName: 'location'
+                displayName: 'Location'
             },
             {
                 name: 'batchEndDate',
@@ -339,30 +339,35 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
 
         columnDefs: [{
                 name: 'batchID',
-                displayName: 'Batch ID'
+                displayName: 'Batch ID',
+                width: "9%"
+                
             },
             {
                 name: 'state',
-                displayName: 'Location'
+                displayName: 'Location',
+                width: "13%"
             },
             {
                 name: 'batchEndDate',
-                displayName: 'End Date'
+                displayName: 'End Date',
+                width: "12%"
             },
             {
                 name: 'assessmentDate',
-                displayName: 'Assessment Date'
+                displayName: 'Assessment Date',
+                width : "12%"
             },
             {
                 name: 'recommendedAB',
                 displayName: 'Recommended Assessment Body',
                 enableCellEdit: false,
-                width: 100,
+                width: "23%",
             },
             {
                 name: 'assignedAB',
                 displayName: 'Assigned AB',
-                //               width : 80,
+                width : "18%",
                 enableCellEdit: true,
                 cellTemplate: 'partials/dropdown.html'
             },
@@ -371,7 +376,8 @@ page5.controller('page5', function($scope, $http, $log, $location, $timeout) {
             {
                 name: 'Assign',
                 displayName: 'Assign',
-                cellTemplate: '<center><label><img src="icon/indexPageIcons/tick.png" class="pointer" ng-click=grid.appScope.pushFunction(row)></label></center>'
+                cellTemplate: '<center><label><img src="icon/indexPageIcons/tick.png" class="pointer" ng-click=grid.appScope.pushFunction(row)></label></center>',
+                width : "15%"
             }
         ]
     };

@@ -411,12 +411,12 @@ page4.controller('page4',function($scope, $http) {
         enableColumnMenus: false,
         columnDefs: [{
                 name: 'centreId',
-                displayName: 'Centre Id',
+                displayName: 'Center Id',
                 width: 400
             },
             {
                 name: 'centreName',
-                displayName: 'Centre Name',
+                displayName: 'Center Name',
                 width: 400
             }
         ]

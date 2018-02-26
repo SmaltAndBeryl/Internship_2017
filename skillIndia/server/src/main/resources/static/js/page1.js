@@ -255,7 +255,7 @@ page.controller('page' , function($scope,$http){
                                     type: "column"
                                 },
                                 title: {
-                                    text: "Top 5 States having Maximum Training Centres",
+                                    text: "Top 5 States having Maximum Training Centers",
                                     style: {
                                         fontSize: '15px'
                                     }
@@ -269,14 +269,14 @@ page.controller('page' , function($scope,$http){
                                 },
                                 yAxis: {
                                     title: {
-                                        text: "Total Training Centres"
+                                        text: "Total Training Centers"
                                     }
                                 },
                                 credits: {
                                     enabled: false
                                 },
                                 series: [{
-                                    name: 'Training Centres',
+                                    name: 'Training Centers',
                                     data: processed_json
                                 }]
 
