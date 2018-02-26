@@ -134,13 +134,13 @@ $scope.searchBatch = {
        columnDefs : [
 
                      //{ name:'SNo' ,            displayname:'SNo',       cellClass:'batch id',    headerCellClass:'layer' ,     cellTemplate:"1"},
-                     { name:'batchId' ,     displayname:'Batch id' },
-                     { name:'batchName' ,    displayname:'Batch Name'},
-                     { name:'batchStartDate' ,   displayname:'Batch Start date'},
-                     { name:'batchEndDate' ,      displayname:'Batch End date'},
-                     { name:'trainingPartnerName',displayname:'Training Partner Name'},
-                     { name:'view', displayName:'Upload Certificate',cellClass:'fname', headerCellClass:'File-Name',width:200,  cellTemplate:  '<label> <input type="file" id="uploadFile" accept=".zip" file-model/ ng-click=grid.appScope.selectLocation(row)></label>'},
-                     {name:'viewNAme', displayName:'Upload File', cellClass:'fname',headerCellClass:'File-Name',   cellTemplate:  '<label> <img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.uploadCertificate(row)></label>'}
+                     { name:'batchId' ,     displayname:'Batch id' , width: "10%"},
+                     { name:'batchName' ,    displayname:'Batch Name', width:"15%"},
+                     { name:'batchStartDate' ,   displayname:'Batch Start date', width:"12%"},
+                     { name:'batchEndDate' ,      displayname:'Batch End date',width:"12%"},
+                     { name:'trainingPartnerName',displayname:'Training Partner Name',width:"23%"},
+                     { name:'view', displayName:'Upload Certificate',cellClass:'fname', headerCellClass:'File-Name',width:"13%" , cellTemplate:  '<label> <input type="file" id="uploadFile" accept=".zip" file-model/ ng-click=grid.appScope.selectLocation(row)></label>'},
+                     {name:'viewNAme', displayName:'Upload File', cellClass:'fname',headerCellClass:'File-Name',   cellTemplate:  '<label> <img src="icon/indexPageIcons/tick.png" ng-click=grid.appScope.uploadCertificate(row)></label>', width:"15%"}
                    ]
    };
 
