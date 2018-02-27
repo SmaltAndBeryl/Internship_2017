@@ -7,6 +7,13 @@
         <div ng-include="'partials/dataImportCSV.html'"></div>
         <div class="historytable">
             <h4 class="title">Import History</h4>
+            <div style=" color : {{successTextColor}}; margin: 10px ">
+                {{successText}}
+                <div ng-show="rolling">
+                    <img src="gif/Facebook.gif"/>
+                    {{generating}}
+                </div>
+            </div>
             <div>
                 <div ui-grid="dataImportHistory" ui-grid-edit ui-grid-cellNav ui-grid-auto-resize class="grid"></div>
             </div>
