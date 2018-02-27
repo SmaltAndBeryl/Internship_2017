@@ -201,7 +201,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
 		     {
 		    	 //alert("User created with userId - "+self.newUser.userId); 
 		    	 $scope.successMessagesForSignUp = "User created successfully.Please login now.";
-		    	 window.location.href ="/";
+		    	 //window.location.href ="/";
 		     }
 		     //window.location.href ="/";
 		    	 
