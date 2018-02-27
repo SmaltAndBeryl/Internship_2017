@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +27,9 @@ import com.skill.India.service.DataImportServices;
 import com.skill.India.service.FindBatchUsingBatchIdService;
 import com.skill.India.service.SaveCertificateFileService;
 import com.skill.India.service.SaveUploadedFileService;
+import com.skill.India.common.FileExistsUtility;
 import com.skill.India.common.Privilege;
+import com.skill.India.common.ReadApplicationConstants;
 import com.skill.India.common.SessionUserUtility;
 import com.skill.India.dto.CertificateImportHistorydto;
 import com.skill.India.dto.DataImportGetBatchInfoDto;
@@ -36,6 +39,9 @@ import com.skill.India.dto.DataImportHistoryDto;
 public class DataImportController{
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(DataImportController.class);
+	
+	@Autowired
+	private FileExistsUtility fileExistsUtility;
 	
 	@Autowired
 	private DataImportServices dataImportServices;
@@ -61,6 +67,9 @@ public class DataImportController{
 	@Autowired
 	private SessionUserUtility sessionUserUtility; 
 	
+	
+	@Autowired
+	private ReadApplicationConstants readApplicationConstants;
 	
 @Privilege(value={"SCGJ"})
 @RequestMapping("/importHistory")
@@ -89,12 +98,22 @@ public void getCertificateFile(@PathVariable("file_name") String fileName,
 public void getFile(@PathVariable("file_name") String fileName, 
     HttpServletResponse response) {
 	
-	LOGGER.debug("Request Received from front end to download uploaded CSV file in Data Import");
-	LOGGER.debug("Parameters Received from front end are - 'file_name': "+fileName+" 'response':"+response);
-//	System.out.println(fileName);
+	LOGGER.debug("Calling service to download file " + fileName );
 	
 	dataImportCSVDownloadService.DataImportCSVDownload(response, fileName);
 }
+
+@Privilege(value={"SCGJ"})
+@RequestMapping(value = "/checkFile")
+public int checkFile(@RequestParam("file_name") String fileName) {
+	int status = 0;
+	
+	LOGGER.debug("trying to call file exists utility to confirm ist existence" );
+	//dataImportCSVDownloadService.DataImportCSVDownload(response, fileName);
+	status = fileExistsUtility.checkFileExistence(readApplicationConstants.getSaveCSVAtLocation(), fileName);
+	return status;
+}
+
 
 @Privilege(value={"SCGJ"})
 @RequestMapping(value="/findBatch",method=RequestMethod.POST)
