@@ -1,7 +1,7 @@
 //console.log("Working page2");
 var page2 = angular.module('hello');
 
-page2.controller('page2', function($scope, $location, $http) {
+page2.controller('page2', function($scope, $location, $http,$timeout) {
 
 //console.log("Inside controller");
 $scope.messagealert = false;
@@ -20,51 +20,56 @@ $scope.gridOptions = {
     useExternalPagination: true,
     columnDefs: [{
             name: 'applicationId',
-            displayName: '#',
+            displayName: 'Application Id',
             cellClass: 'sno',
             headerCellClass: 'Institution-Name',
-            width: 30
+            width: "10%"
         },
         {
             name: 'organisationName',
             displayName: 'Institution Name',
             cellClass: 'fname',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width : "30%"
         },
         {
             name: 'userRole',
             displayName: 'Type',
             cellClass: 'Type',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width: "5%"
         },
         {
             name: 'dateOfSubmission',
             displayName: 'Date',
             cellClass: 'layer',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width : "10%"
         },
         {
             name: 'userId',
-            displayName: 'View Application',
+            displayName: 'View',
             cellTemplate: '<img src="icon/indexPageIcons/pdf.png" ng-click=grid.appScope.myfunction(row)>',
             headerCellClass: 'Institution-Name',
             cellClass: 'va pointer',
-            width: 120
+            width: "6%"
         },
         {
             name: 'Comments',
-            displayName: 'Comments',
+            displayName: 'Add Comments',
             enableCellEdit: true,
             enableCellEditOnFocus: true,
             headerCellClass: 'Institution-Name',
-            cellClass: 'va'
+            cellClass: 'va',
+            width : "31%"
         },
         {
             name: 'Action',
             displayName: 'Action',
             cellTemplate: '<label><img src="icon/indexPageIcons/edit.png" class="pointer" ng-click=grid.appScope.myfunctionedit(row) ">&nbsp; &nbsp; &nbsp<img src="icon/indexPageIcons/tick.png" class="pointer" ng-click=grid.appScope.myfunctionapprove(row); >  &nbsp; &nbsp; <img src="icon/indexPageIcons/close.png" class="pointer" ng-click=grid.appScope.myfunctionreject(row) ></label>',
             headerCellClass: 'Institution-Name',
-            cellClass: 'va'
+            cellClass: 'va',
+            width : "9%"
         }
 
     ]
@@ -81,28 +86,31 @@ $scope.gridOptionsApproved = {
 
     columnDefs: [{
             name: 'applicationId',
-            displayName: '#',
+            displayName: 'Application Id',
             cellClass: 'sno',
             headerCellClass: 'Institution-Name',
-            width: 30
+            width: "15%"
         },
         {
             name: 'organisationName',
             displayName: 'Institution Name',
             cellClass: 'fname',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width : "45%"
         },
         {
             name: 'userRole',
             displayName: 'Type',
             cellClass: 'Type',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width : "15%"
         },
         {
             name: 'dateOfSubmission',
             displayName: 'Date',
             cellClass: 'layer',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width : "25%"
         }
 
     ]
@@ -118,29 +126,33 @@ $scope.gridOptionsIncomplete = {
 
     columnDefs: [{
             name: 'applicationId',
-            displayName: '#',
+            displayName: 'Application Id',
             cellClass: 'sno',
             headerCellClass: 'Institution-Name',
-            width: 30
+            width: "15%"
         },
         {
             name: 'organisationName',
             displayName: 'Institution Name',
             cellClass: 'fname',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width :"45%"
         },
         {
             name: 'userRole',
             displayName: 'Type',
             cellClass: 'Type',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width : "15%"
         },
         {
             name: 'dateOfSubmission',
             displayName: 'Date',
             cellClass: 'layer',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width :"25%"
         }
+        
     ]
 };
 
@@ -154,28 +166,31 @@ $scope.gridOptionsRejected = {
 
     columnDefs: [{
             name: 'applicationId',
-            displayName: '#',
+            displayName: 'Application Id',
             cellClass: 'sno',
             headerCellClass: 'Institution-Name',
-            width: 30
+            width: "15%"
         },
         {
             name: 'organisationName',
             displayName: 'Institution Name',
             cellClass: 'fname',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width :"45%"
         },
         {
             name: 'userRole',
             displayName: 'Type',
             cellClass: 'Type',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width :"15%"
         },
         {
             name: 'dateOfSubmission',
             displayName: 'Date',
             cellClass: 'layer',
-            headerCellClass: 'Institution-Name'
+            headerCellClass: 'Institution-Name',
+            width :"25%"
         },
     ]
 };
@@ -227,7 +242,9 @@ $scope.myfunction = function(rowData){
                 $scope.successTextColor = "blue";
                 $scope.rolling = false;
             }
-
+            $timeout(function() {
+                $scope.successText="";
+             }, 2000);
 //            alert("the response is "+ JSON.stringify(response.data));
         })
 };
@@ -257,7 +274,9 @@ $scope.myfunctionedit = function(rowData) {
         function(response) {
         	$scope.successText = "Your comments have been captured for this application successfully";
     		$scope.successTextColor = "green";
-        	
+    		$timeout(function() {
+                $scope.successText="";
+             }, 2000);
             $http.get('/approve')
                 .then(function(dataResponse) {
                     
@@ -275,6 +294,9 @@ $scope.myfunctionedit = function(rowData) {
             var failure = $scope.message;
             $scope.successText = "Could not update comment for this application";
     		$scope.successTextColor = "red";
+    		$timeout(function() {
+                $scope.successText="";
+             }, 2000);
             //console.log('THIS IS THE RESPONSE IN THE COMMENT:' + failure);
             
         }
@@ -304,6 +326,9 @@ $scope.myfunctionapprove = function(rowData) {
     	
     	$scope.successText = "Application approved successfully";
 		$scope.successTextColor = "green";
+		$timeout(function() {
+            $scope.successText="";
+         }, 2000);
             $http.get('/approve')
                 .then(function(dataResponse) {
                     $scope.gridOptions.data = dataResponse.data.submitted;
@@ -316,6 +341,9 @@ $scope.myfunctionapprove = function(rowData) {
                     $scope.message = response.data.successMessage;
                     $scope.messagelert = true;
                     var success = $scope.message;
+                    $timeout(function() {
+                        $scope.message="";
+                     }, 2000);
                     //console.log('THIS IS THE RESPONSE' + success);
                     
                 })
@@ -323,6 +351,9 @@ $scope.myfunctionapprove = function(rowData) {
         function(errorResponse, status) {
         	$scope.successText = "Could not approve this application";
     		$scope.successTextColor = "red";
+    		$timeout(function() {
+                $scope.successText="";
+             }, 2000);
             //$scope.message = response.data.errorMessage;
             //$scope.messagealert = true;
             var failure = $scope.message;
@@ -362,6 +393,9 @@ $scope.myfunctionreject = function(rowData) {
             
             $scope.successText = "Application rejected";
     		$scope.successTextColor = "green";
+    		$timeout(function() {
+                $scope.successText="";
+             }, 2000);
             //console.log(response.data.successMessage);
 
             $http.get('/approve')
@@ -387,9 +421,14 @@ $scope.myfunctionreject = function(rowData) {
             //console.log(error.data.errorMessage);
             $scope.successText = "Could not update reject this application";
     		$scope.successTextColor = "red";
-    		
+    		$timeout(function() {
+                $scope.successText="";
+             }, 2000);
             $scope.message = error.data.errorMessage
             $scope.messageAlert = true;
+            $timeout(function() {
+                $scope.message="";
+             }, 2000);
             var failure = $scope.message;
             //console.log('THIS IS THE RESPONSE :' + failure);
             

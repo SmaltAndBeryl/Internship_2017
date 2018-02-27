@@ -1,6 +1,6 @@
 var page3 = angular.module('hello');
 
-page3.controller('page3',function($scope, $http, fileUploadDataImport, zipCertificateUpload) {
+page3.controller('page3',function($scope, $http, $window,$timeout,fileUploadDataImport, zipCertificateUpload) {
     $scope.dataImportHistory = {
     	  enableGridMenus : false,
     	  enableSorting: false,
@@ -8,14 +8,17 @@ page3.controller('page3',function($scope, $http, fileUploadDataImport, zipCertif
     	  enableCellEdit : false,
     	  enableColumnMenus : false,
        enableHorizontalScrollbar:0,
-       enableVerticalScroll:1,
+       enableVerticalScrollbar:1,
+       paginationPageSizes: [5, 10, 20, 30],
+       paginationPageSize: 10,
+       useExternalPagination: true,
+       useExternalPagination: true,
 
     columnDefs:[
-    	  { name: 'SNo',           displayName: 'SNo.',              cellClass:'sno',  headerCellClass:'layer', width : "5%" , cellTemplate: '<div class="ui-grid-cell-contents">{{grid.renderContainers.body.visibleRowCache.indexOf(row)+1}}</div>' },
           { name: 'csvname',            displayName: 'File Name',          cellClass:'fname',headerCellClass:'File-Name', width: "37%"},
     	  { name: 'csvtype',            displayName: 'Type',               cellClass:'type', headerCellClass:'Type', width: "15%"},
-    	  { name: 'csv_Upload_Date',    displayName: 'Date',               cellClass:'date', headerCellClass:'Date',width:"10%", cellFilter: 'date:\'dd/MM/yyyy\''},
-    	  { name: 'csv_Upload_UserId',  displayName: 'Uploaded By',        cellClass:'uby',  headerCellClass:'Uploaded-By', width:"19%"},
+    	  { name: 'csv_Upload_Date',    displayName: 'Date',               cellClass:'date', headerCellClass:'Date',width:"13%", cellFilter: 'date:\'dd/MM/yyyy\''},
+    	  { name: 'csv_Upload_UserId',  displayName: 'Uploaded By',        cellClass:'uby',  headerCellClass:'Uploaded-By', width:"23%"},
     	  { name: 'View Uploaded File', displayName: 'View Uploaded File', cellClass:'vub',  headerCellClass:'View-Uploaded-File', width:"14%",cellTemplate: '<img src="/images/CSVDownloadIcon.png" class="pointer" ng-click=grid.appScope.download(row)>'}
     	       ]
       };
@@ -24,9 +27,48 @@ $scope.dataImport={};
 
       $scope.download = function(rowData){
     	  var  fileName = rowData.entity.csvname;
+    	  
    	   //console.log("the row value is >>>" + rowData.entity.csvname);
-   	  var urldata = "/downloadCSVFile/"+ fileName;
-    	  window.open(urldata);
+    	  var checkFileUrl = "/checkFile?file_name="+ rowData.entity.csvname;
+    	  
+    	  $http.get(checkFileUrl).then(function(response){
+    		  if (response.data == 1)
+    			  {
+    		   	  var urldata = "/downloadCSVFile/"+ fileName;
+    	    	  $window.open(urldata);
+    			  }
+    		  else if(response.data == 0)
+    			  {
+    			  $scope.successText = "Could not find file - " + fileName;
+    	          $scope.successTextColor = "red";
+    	          $scope.rolling = false;
+    			  }
+    		  else if (response.data == -1)
+    			  {
+    			  $scope.successText = "File Name is empty";
+    	          $scope.successTextColor = "red";
+    	          $scope.rolling = false;
+    			  }
+    		  else if (response.data == -2)
+    			  {
+    			  $scope.successText = "An exception occured in downloading csv file - "+ fileName;
+    	          $scope.successTextColor = "red";
+    	          $scope.rolling = false;
+    			  }
+    		  $timeout(function() {
+                  $scope.successText="";
+               }, 2000);
+    	  }, function(errorResponse){
+    		  $scope.successText = errorResponse.data;
+	          $scope.successTextColor = "red";
+	          $scope.rolling = false;
+	          
+	          $timeout(function() {
+                  $scope.successText="";
+               }, 2000);
+    	  }
+    			  );
+
       };
          $http.get("/importHistory")
           .then(function(response){
