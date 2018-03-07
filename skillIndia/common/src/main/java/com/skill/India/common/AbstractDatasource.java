@@ -72,7 +72,8 @@ public abstract class AbstractDatasource {
             pooledDataSource.setValidationQuery(TEST_SQL);
             pooledDataSource.setSuspectTimeout(CONNECTION_WAIT_TIMEOUT_SECS);
             pooledDataSource.setName(poolName);
-                       
+            pooledDataSource.setTestOnBorrow(true);
+            pooledDataSource.setValidationInterval(300000);
 				
             // derive password
             String password = getCustomPassword();
