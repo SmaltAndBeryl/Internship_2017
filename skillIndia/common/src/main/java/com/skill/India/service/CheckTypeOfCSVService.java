@@ -44,26 +44,30 @@ public class CheckTypeOfCSVService {
 	@Autowired
 	private ValidateEmployerCSVService validateEmployerCSVService;
 	
-	
+	/**
+	 * This method will check the type of csv file
+	 * @param type string
+	 * @param pathOfUploadedFile - physical path of the folder where files needs to be saved
+	 * @param userId - user logged in
+	 * @param fileNameToBeSaved - a name with which file will be saved
+	 * @return an error message of type string
+	 */
 	   public String checkTypeOfCSV(String type,String pathOfUploadedFile,String userId,String fileNameToBeSaved) {
 		   
-		   	LOGGER.debug("Request Received from Service");
-			LOGGER.debug("In CheckTypeOfCSVService - checkTypeOfCSV");
+		   	
 			LOGGER.debug("Parameters Received from Controller are - 'type': "+type+" 'pathOfUploadedFile': "+pathOfUploadedFile+" 'userId': "+userId+" 'fileNameToBeSaved': "+fileNameToBeSaved);
 			
 
 	        String line = "";
 	        String cvsSplitBy = ",";
-	        LOGGER.debug("Creating BufferedReader object");
+	        LOGGER.debug("trying to create BufferedReader object");
 	        try (BufferedReader readColumnsOfCsv = new BufferedReader(new FileReader(pathOfUploadedFile))) {
-	        	LOGGER.debug("In TRY block");
 	        	LOGGER.debug("Successfully created and initialized");
 	                // use comma as separator
-	              	LOGGER.debug("Reading CSV line by line");
+	              	LOGGER.debug(" trying to read CSV file line by line");
 	                line = readColumnsOfCsv.readLine(); 
-	                LOGGER.debug("Seperating columns in each line of CSV");
+	                LOGGER.debug("trying to make list of column names");
 	                String[] columns = line.split(cvsSplitBy);
-	                LOGGER.debug("Entering into SWITCH block");
 	            switch (type){
 	            	case "Candidate" :
 	            		LOGGER.debug("CSV is of type Candidate");

@@ -164,21 +164,38 @@ public class ValidateCandidateCSVService {
 			 * Checking for error in dateOfBirth column
 			 */
 			LOGGER.debug("Checking Validations of dateOfBirth");
-			if(!ValidationUtils.dateFormatCheck(dateOfBirth) || dateOfBirth.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString+"Error in  'dateOfBirth' column .";
-			}
-		
+//			if(!ValidationUtils.dateFormatCheck(dateOfBirth) || dateOfBirth.equals(""))
+//			{
+//				errorStatus=1;
+//				errorString=errorString+"Error in  'dateOfBirth' column .";
+//			}
+//			if(!dateOfBirth.equals(""))
+//			{
+//				if(!ValidationUtils.dateFormatCheck(dateOfBirth))
+//				{
+//					errorStatus = 1;
+//					errorString = errorString+"Error in  'dateOfBirth' column .";
+//				}
+//			}
 			/*
 			 * Checking for error in nameOfFatherOrHusband column
 			 */
-			LOGGER.debug("Checking Validations of nameOfFatherOrHusband");
-			if(ValidationUtils.numbersCheck(nameOfFatherOrHusband) || nameOfFatherOrHusband.equals(""))
-			{
-				errorStatus=1;
-				errorString=errorString+ "Error in  'nameOfFatherOrHusband' column .";
-			}
+//			LOGGER.debug("Checking Validations of nameOfFatherOrHusband");
+//			if(ValidationUtils.numbersCheck(nameOfFatherOrHusband) || nameOfFatherOrHusband.equals(""))
+//			{
+//				errorStatus=1;
+//				errorString=errorString+ "Error in  'nameOfFatherOrHusband' column .";
+//			}
+//			LOGGER.debug("Checking Validations of nameOfFatherOrHusband");
+//			if(!nameOfFatherOrHusband.equals(""))
+//			{
+//				if(ValidationUtils.numbersCheck(nameOfFatherOrHusband))
+//				{
+//					errorStatus=1;
+//					errorString=errorString+ "Error in  'nameOfFatherOrHusband' column .";
+//				}
+//				
+//			}
 			
 			/*
 			 * Checking for error in aadharNumber column
@@ -406,6 +423,15 @@ public class ValidateCandidateCSVService {
 			 {
 				 employerId=null;
 			 }
+			 if(dateOfBirth.equals(""))
+			 {
+				 dateOfBirth = null;
+			 }
+			 else
+			 {
+				 dateOfBirth = ValidationUtils.convertUtilToSqlDate(dateOfBirth);
+			 }
+			 if()
 			 
 			 /*
 			  * Inserting row wise data in HashMap
