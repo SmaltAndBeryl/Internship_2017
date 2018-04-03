@@ -431,7 +431,10 @@ public class ValidateCandidateCSVService {
 			 {
 				 dateOfBirth = ValidationUtils.convertUtilToSqlDate(dateOfBirth);
 			 }
-			 if()
+			 if(nameOfFatherOrHusband.equals(""))
+			 {
+				 nameOfFatherOrHusband = null;
+			 }
 			 
 			 /*
 			  * Inserting row wise data in HashMap
