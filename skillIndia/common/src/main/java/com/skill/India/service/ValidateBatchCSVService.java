@@ -192,12 +192,12 @@ public class ValidateBatchCSVService {
 			 * Checking for error in trainerId column
 			 */
 			
-			LOGGER.debug("Checking Validations of trainerId");
-			if(!(ValidationUtils.numbersCheck(trainerId) || trainerId.equals("")))
-			{
-				errorStatus=1;
-				errorString=errorString +"Error in 'trainerId' column .";
-			}
+//			LOGGER.debug("Checking Validations of trainerId");
+//			if(!(ValidationUtils.numbersCheck(trainerId) || trainerId.equals("")))
+//			{
+//				errorStatus=1;
+//				errorString=errorString +"Error in 'trainerId' column .";
+//			}
 			
 			/*
 			 * Checking for error in totalCandidatesInBatch column
@@ -286,12 +286,12 @@ public class ValidateBatchCSVService {
 			 * Checking for error in level column
 			 */
 			
-			LOGGER.debug("Checking Validations of level");
-			if(!(ValidationUtils.numbersCheck(level) || level.equals("")))
-			{
-				errorStatus=1;
-				errorString=errorString + "Error in 'level' column .";
-			}
+			LOGGER.debug("Not checking for validations of level");
+//			if(!(ValidationUtils.numbersCheck(level) || level.equals("")))
+//			{
+//				errorStatus=1;
+//				errorString=errorString + "Error in 'level' column .";
+//			}
 			
 			/*
 			 * Checking for error in resultApproved column
@@ -493,7 +493,10 @@ public class ValidateBatchCSVService {
 				{
 					assessorId=null;
 				}
-				
+				if(trainerId.equals(""))
+				{
+					trainerId = null;
+				}
 				/*
 				 * setting values in HashMap
 				 */
