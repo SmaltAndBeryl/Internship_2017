@@ -493,10 +493,10 @@ public class ValidateBatchCSVService {
 				{
 					assessorId=null;
 				}
-				if(trainerId.equals(""))
-				{
-					trainerId = null;
-				}
+//				if(trainerId.equals(""))
+//				{
+//					trainerId = null;
+//				}
 				/*
 				 * setting values in HashMap
 				 */
@@ -568,7 +568,7 @@ public class ValidateBatchCSVService {
 		    deleteUploadedFile.delete();
 		    LOGGER.debug("Successfully deleted");
 		    
-		    LOGGER.debug("returning Error list as String");
+		    LOGGER.debug("returning Error list as String" + e);
 //		    e.printStackTrace();
 			return "Error parsing Batch CSV File. Kindly try again. ";
 		}
