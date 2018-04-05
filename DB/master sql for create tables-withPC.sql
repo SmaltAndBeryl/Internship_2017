@@ -169,7 +169,7 @@ locationOfEmployerState varchar(50));
 
 create table if not exists batch(
 Id int(10) primary key AUTO_INCREMENT,
-batchId varchar unique key not null,
+batchId varchar(200) unique key not null,
 batchName varchar(200) not null,
 batchType varchar(10) not null,
 trainingPartnerId varchar(20) not null,
@@ -204,7 +204,7 @@ foreign key (assessorId) references assessor(assessorId));
 
 create table if not exists showInterest(
 showIntrestId int(10) primary key auto_increment,
-batchId varchar,
+batchId varchar(200),
 agencyId int(10),
 timeStamp timestamp,
 foreign key (batchId) references batch(batchId),
@@ -214,7 +214,7 @@ foreign key (agencyId) references agency(agencyId));
 
 create table if not exists batchAssignment(
 batchAssignmentid int(10) primary key auto_increment,
-batchId varchar,
+batchId varchar(200),
 agencyId int(10),
 timeStamp timestamp,
 responseType varchar(20),
@@ -227,7 +227,7 @@ create table if not exists certificate(
 certificateId int(10) primary key auto_increment,
 certificateName varchar(50),
 certificateUploadDate date,
-batchId varchar,
+batchId varchar(200),
 userId varchar(200),
 foreign key (batchId) references batch(batchId),
 foreign key (userId) references user(userId));
@@ -255,7 +255,7 @@ certified varchar(5),
 placementStatus varchar(20) not null,
 dateOfJoining date,
 employmentType varchar(50) not null,
-batchId varchar,
+batchId varchar(200),
 employerId int(10),
 foreign key (batchId) references batch(batchId),
 foreign key (employerId) references employer(employerId));
