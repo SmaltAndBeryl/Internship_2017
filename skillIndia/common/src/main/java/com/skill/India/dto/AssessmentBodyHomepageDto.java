@@ -3,7 +3,7 @@ package com.skill.India.dto;
 
 public class AssessmentBodyHomepageDto {
 
-	private Integer batchId;
+	private String batchId;
 	
 	private String trainingPartnerDetails;
 	
@@ -16,14 +16,14 @@ public class AssessmentBodyHomepageDto {
 	/**
 	 * @return the batchId
 	 */
-	public Integer getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 
 	/**
 	 * @param batchId the batchId to set
 	 */
-	public void setBatchId(Integer batchId) {
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
 
@@ -83,7 +83,7 @@ public class AssessmentBodyHomepageDto {
 		this.totalCandidatesInBatch = totalCandidatesInBatch;
 	}
 	
-	public AssessmentBodyHomepageDto(Integer batchId, String trainingPartnerDetails, String assessmentDate, String location, Integer totalCandidatesInBatch ){
+	public AssessmentBodyHomepageDto(String batchId, String trainingPartnerDetails, String assessmentDate, String location, Integer totalCandidatesInBatch ){
 		super();
 		this.batchId = batchId;
 		this.trainingPartnerDetails = trainingPartnerDetails;

@@ -27,7 +27,7 @@ public class FAQStatusOfAParticularBatchWithIdDao extends AbstractTransactionalD
 	
 	public static final FAQStatusOfAParticularBatchWithIdRowMapper ROW_MAPPER = new FAQStatusOfAParticularBatchWithIdRowMapper(); 
 	
-	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(Integer batchId) {
+	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(String batchId) {
 		LOGGER.debug("Request Received from Service");
 		LOGGER.debug("In FAQStatusOfAParticularBatchWithIdDao - getStatusOfAParticularBatchWithId");
 		LOGGER.debug("Parameters Received from Service are - 'batchId': " +batchId);
@@ -52,7 +52,7 @@ public class FAQStatusOfAParticularBatchWithIdDao extends AbstractTransactionalD
 		@Override
 		public FAQStatusOfAParticularBatchWithIdDto mapRow(ResultSet rs,int rowNum) throws SQLException {
 		
-			Integer batchId = rs.getInt("batchId");
+			String batchId = rs.getString("batchId");
 			
 			String trainingPartnerName = rs.getString("trainingPartnerName");
 			

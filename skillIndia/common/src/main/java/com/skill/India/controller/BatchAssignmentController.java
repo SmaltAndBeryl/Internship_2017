@@ -78,7 +78,7 @@ public class BatchAssignmentController {
 	
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value ="/getInformationOfTheBatchId", method=RequestMethod.POST)
-	public Collection<BatchAssignmentSearchDto> getInformationOfTheBatchId(@RequestParam("batchId") Integer batchId)
+	public Collection<BatchAssignmentSearchDto> getInformationOfTheBatchId(@RequestParam("batchId") String batchId)
 	{
 		
 		LOGGER.debug("Request Received from front end to get Information for a particular Batch");

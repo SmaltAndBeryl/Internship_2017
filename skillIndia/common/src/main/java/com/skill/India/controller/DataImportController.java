@@ -129,7 +129,7 @@ public Collection<DataImportGetBatchInfoDto> dataImportFindBatch(@RequestParam("
 
 @Privilege(value={"SCGJ"})
 @RequestMapping(value = "/uploadCertificate", method = { RequestMethod.GET, RequestMethod.POST },consumes=MediaType.ALL_VALUE)
-public String singleFileUpload(@RequestParam("file") MultipartFile file,@RequestParam("batchId") Integer batchId){
+public String singleFileUploadCertificate(@RequestParam("file") MultipartFile file,@RequestParam("batchId") String batchId){
 	
 	LOGGER.debug("Request Received from front end to Upload Certificate For a particular Batch in Data Import");
 	LOGGER.debug("Parameters Received from front end are - 'file': "+file+" 'batchId':"+batchId);

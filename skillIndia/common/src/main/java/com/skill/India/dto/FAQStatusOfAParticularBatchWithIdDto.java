@@ -11,7 +11,7 @@ import java.sql.Date;
  */
 public class FAQStatusOfAParticularBatchWithIdDto {
 	
-	private final Integer batchId;
+	private final String batchId;
 	
 	private final String trainingPartnerName;
 	
@@ -26,7 +26,7 @@ public class FAQStatusOfAParticularBatchWithIdDto {
 	/**
 	 * @return the batchId
 	 */
-	public Integer getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 
@@ -73,7 +73,7 @@ public class FAQStatusOfAParticularBatchWithIdDto {
 	 * @param assessmentDate
 	 * @param resultApproved
 	 */
-	public FAQStatusOfAParticularBatchWithIdDto(Integer batchId,
+	public FAQStatusOfAParticularBatchWithIdDto(String batchId,
 			String trainingPartnerName, Date batchStartDate,
 			Date batchEndDate, Date assessmentDate,
 			String resultApproved) {

@@ -80,7 +80,7 @@ public class BatchAssignmentDao extends AbstractTransactionalDao {
 		@Override
 		public BatchAssignmentDto mapRow(ResultSet rs, int rowNum)
 			throws SQLException {
-			Integer batchId = rs.getInt("batchId");
+			String batchId = rs.getString("batchId");
 			String location = rs.getString("location");
 			String batchEndDate = rs.getString("batchEndDate");
 			String assessmentDate = rs.getString("assessmentDate");

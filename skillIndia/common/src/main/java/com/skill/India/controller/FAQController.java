@@ -145,7 +145,7 @@ public class FAQController {
 	
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQNameOfAgencyToWhichABatchIsAssigned",method=RequestMethod.POST)
-	public String getNameOfAgencyToWhichABatchIsAssigned(@RequestParam("batchId") Integer batchId)throws EmptyResultDataAccessException {
+	public String getNameOfAgencyToWhichABatchIsAssigned(@RequestParam("batchId") String batchId)throws EmptyResultDataAccessException {
 		LOGGER.debug("In FAQController - getNameOfAgencyToWhichABatchIsAssigned");
 		LOGGER.debug("Request Received from front end to get Agency Name to which a Batch is Assigned for FAQ");
 		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);
@@ -256,7 +256,7 @@ public class FAQController {
 	
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQStatusOfAParticularBatchWithId",method=RequestMethod.POST)
-	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(@RequestParam("batchId") Integer batchId) {
+	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(@RequestParam("batchId") String batchId) {
 		LOGGER.debug("In FAQController - getStatusOfAParticularBatchWithId");
 		LOGGER.debug("Request Received from front end to get Status of A Partcular batch for FAQ");
 		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);
@@ -299,7 +299,7 @@ public class FAQController {
 	
 	@Privilege(value={"SCGJ"})
 	@RequestMapping(value="/getFAQBatchWiseCandidatesDetails",method=RequestMethod.POST)
-	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(@RequestParam("batchId") Integer batchId) {
+	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(@RequestParam("batchId") String batchId) {
 		LOGGER.debug("In FAQController - getBatchWiseCandidatesDetails");
 		LOGGER.debug("Request Received from front end to get Batche wise Candidate details for FAQ");
 		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);

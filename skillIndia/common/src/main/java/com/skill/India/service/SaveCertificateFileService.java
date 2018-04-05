@@ -28,7 +28,7 @@ public class SaveCertificateFileService {
 	@Autowired
 	private ReadApplicationConstants readApplicationConstants;
 	
-	public String saveUploadedFile(MultipartFile file,Integer batchId,String userId)
+	public String saveUploadedFile(MultipartFile file,String batchId,String userId)
 	{
 		LOGGER.debug("Request Received from Controller");
 		LOGGER.debug("In SaveCertificateFileService - saveUploadedFile");

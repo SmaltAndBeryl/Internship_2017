@@ -19,7 +19,7 @@ public class FAQBatchWiseCandidateDetailsDto {
 	
 	private final String trainingPartnerName;
 	
-	private final Integer batchId;
+	private final String batchId;
 	
 	private final String batchStartDate;
 	
@@ -63,7 +63,7 @@ public class FAQBatchWiseCandidateDetailsDto {
 	/**
 	 * @return the batchId
 	 */
-	public Integer getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 
@@ -93,7 +93,7 @@ public class FAQBatchWiseCandidateDetailsDto {
 	 */
 	public FAQBatchWiseCandidateDetailsDto(String candidateName,
 			String mobileNumber, String eMailId, String traineeAddress,
-			String trainingPartnerName, Integer batchId, String batchStartDate,
+			String trainingPartnerName, String batchId, String batchStartDate,
 			String batchEndDate) {
 		super();
 		this.candidateName = candidateName;

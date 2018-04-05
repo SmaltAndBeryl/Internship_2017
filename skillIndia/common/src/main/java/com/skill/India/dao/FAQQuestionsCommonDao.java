@@ -81,7 +81,7 @@ public class FAQQuestionsCommonDao extends AbstractTransactionalDao{
 		else return count;
 	}
 	
-	public String getNameOfAgencyToWhichABatchIsAssigned(Integer batchId)throws EmptyResultDataAccessException {
+	public String getNameOfAgencyToWhichABatchIsAssigned(String batchId)throws EmptyResultDataAccessException {
 		LOGGER.debug("Request Received from Service");
 		LOGGER.debug("In FAQQuestionsCommonDao - getNameOfAgencyToWhichABatchIsAssigned");
 		LOGGER.debug("Parameters Received from Service are - 'batchId': " +batchId);

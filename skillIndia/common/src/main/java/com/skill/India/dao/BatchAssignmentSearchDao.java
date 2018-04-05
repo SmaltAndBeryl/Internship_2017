@@ -28,7 +28,7 @@ public class BatchAssignmentSearchDao extends AbstractTransactionalDao{
 	
 	private static SearchBatchRowMapper ROW_MAPPER = new SearchBatchRowMapper();
 	
-	public Collection<BatchAssignmentSearchDto> executeSearch(int batchId)
+	public Collection<BatchAssignmentSearchDto> executeSearch(String batchId)
 	{
 		LOGGER.debug("Request Received from Service");
 		LOGGER.debug("In BatchAssignmentSearchDao - executeSearch");
@@ -55,7 +55,7 @@ public class BatchAssignmentSearchDao extends AbstractTransactionalDao{
 			String state= resultSet.getString("state");
 			String batchEndDate = resultSet.getString("batchEndDate");
 			String assessmentDate = resultSet.getString("assessmentDate");
-			Integer batchId= resultSet.getInt("batchId");
+			String batchId= resultSet.getString("batchId");
 			String agencyName = resultSet.getString("agencyName");
 			
 			return new BatchAssignmentSearchDto(state, batchEndDate, assessmentDate, batchId, agencyName);

@@ -33,7 +33,7 @@ public class FAQBatchWiseCandidateDetailsDao extends AbstractTransactionalDao {
 	
 	private static BatchWiseCandidateDetailsDaoRowMapper ROW_MAPPER = new BatchWiseCandidateDetailsDaoRowMapper(); 
 	
-	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(Integer batchId) {
+	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(String batchId) {
 		LOGGER.debug("Request Received from Service");
 		LOGGER.debug("In FAQBatchWiseCandidateDetailsDao - getBatchWiseCandidatesDetails");
 		LOGGER.debug("Parameters Received from Service are - 'batchId': " +batchId);
@@ -63,7 +63,7 @@ public class FAQBatchWiseCandidateDetailsDao extends AbstractTransactionalDao {
 			String eMailId = rs.getString("emailId");
 			String traineeAddress = rs.getString("traineeAddress");
 			String trainingPartnerName = rs.getString("trainingPartnerName");
-			Integer batchId = rs.getInt("batchId");
+			String batchId = rs.getString("batchId");
 			String batchStartDate = rs.getString("batchStartDate");
 			String batchEndDate = rs.getString("batchEndDate");
 

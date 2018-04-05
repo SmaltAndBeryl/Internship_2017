@@ -8,7 +8,7 @@ public class BatchAssignmentSearchDto {
 	
 	private final String assessmentDate;
 	
-	private final Integer batchId;
+	private final String batchId;
 	
 	private final String agencyName;
 
@@ -36,7 +36,7 @@ public class BatchAssignmentSearchDto {
 	/**
 	 * @return the batchId
 	 */
-	public Integer getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 
@@ -55,7 +55,7 @@ public class BatchAssignmentSearchDto {
 	 * @param assessorName
 	 */
 	public BatchAssignmentSearchDto(String state, String batchEndDate,
-			String assessmentDate, Integer batchId, String agencyName) {
+			String assessmentDate, String batchId, String agencyName) {
 		super();
 		this.state = state;
 		this.batchEndDate = batchEndDate;

@@ -6,7 +6,7 @@ package com.skill.India.dto;
 
 public class BatchAssignmentDto {
 	
-	private Integer batchId;
+	private String batchId;
 	
 	private String location;
 	
@@ -19,14 +19,14 @@ public class BatchAssignmentDto {
 	/**
 	 * @return the batchId
 	 */
-	public Integer getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 
 	/**
 	 * @param batchId the batchId to set
 	 */
-	public void setBatchId(Integer batchId) {
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
 
@@ -86,7 +86,7 @@ public class BatchAssignmentDto {
 		this.agencyName = agencyName;
 	}
 
-	public BatchAssignmentDto(Integer batchId, String location, String batchEndDate, String assessmentDate, String agencyName) {
+	public BatchAssignmentDto(String batchId, String location, String batchEndDate, String assessmentDate, String agencyName) {
 		super();
 		this.batchId = batchId;
 		this.location = location;

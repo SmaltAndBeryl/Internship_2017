@@ -138,7 +138,7 @@ public class ValidateBatchCSVService {
 			 */
 			
 			LOGGER.debug("Checking Validations of batchId");
-			if(!ValidationUtils.numbersCheck(batchId) || batchId.equals(""))
+			if(batchId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString +"Error in 'batchId' column .";

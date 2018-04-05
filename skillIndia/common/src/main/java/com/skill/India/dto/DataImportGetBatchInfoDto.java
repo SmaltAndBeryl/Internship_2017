@@ -1,14 +1,14 @@
 package com.skill.India.dto;
 
 public class DataImportGetBatchInfoDto {
-	private Integer batchId;
+	private String batchId;
 	private String batchName;
 	private String batchStartDate;
 	private String batchEndDate;
 	private String trainingPartnerName;
 	
 	
-	public DataImportGetBatchInfoDto(Integer batchId, String batchName,String batchStartDate,String batchEndDate,String trainingPartnerName) {
+	public DataImportGetBatchInfoDto(String batchId, String batchName,String batchStartDate,String batchEndDate,String trainingPartnerName) {
 		// TODO Auto-generated constructor stub
 	this.batchId=batchId;
 	this.batchName=batchName;
@@ -20,13 +20,13 @@ public class DataImportGetBatchInfoDto {
 	/**
 	 * @return the batchId
 	 */
-	public Integer getBatchId() {
+	public String getBatchId() {
 		return batchId;
 	}
 	/**
 	 * @param batchId the batchId to set
 	 */
-	public void setBatchId(Integer batchId) {
+	public void setBatchId(String batchId) {
 		this.batchId = batchId;
 	}
 	/**

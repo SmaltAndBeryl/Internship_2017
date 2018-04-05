@@ -233,7 +233,7 @@ public class AssessmentBodyHomepageDao extends AbstractTransactionalDao {
 		@Override
 		public AssessmentBodyHomepageDto mapRow(ResultSet rs, int rowNum)
 		throws SQLException {
-		Integer batchId = rs.getInt("batchId");
+		String batchId = rs.getString("batchId");
 		String trainingPartnerDetails = rs.getString("trainingPartnerDetails");
 		String assessmentDate = rs.getString("assessmentdate");
 		String location = rs.getString("location");

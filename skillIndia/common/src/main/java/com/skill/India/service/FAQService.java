@@ -95,7 +95,7 @@ public class FAQService {
 		return fAQQuestionCommonDao.getCountOfCandidatesAssessmentUpcomingForAMonth(month);
 	}
 	
-	public String getNameOfAgencyToWhichABatchIsAssigned(Integer batchId)throws EmptyResultDataAccessException {
+	public String getNameOfAgencyToWhichABatchIsAssigned(String batchId)throws EmptyResultDataAccessException {
 		LOGGER.debug("Request Received from Controller");
 		LOGGER.debug("In FAQService - getNameOfAgencyToWhichABatchIsAssigned");
 		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);
@@ -135,7 +135,7 @@ public class FAQService {
 		return fAQQuestionCommonDao.getCountTotalAssessorsOfAParticularAgencyInAParticularState(agencyName, state);
 	}
 	
-	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(Integer batchId) {
+	public Collection<FAQStatusOfAParticularBatchWithIdDto> getStatusOfAParticularBatchWithId(String batchId) {
 		LOGGER.debug("Request Received from Controller");
 		LOGGER.debug("In FAQService - getStatusOfAParticularBatchWithId");
 		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);
@@ -150,7 +150,7 @@ public class FAQService {
 		return fAQQuestionCommonDao.getCountBatchesForWhichResultIsPending();
 	}
 	
-	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(Integer batchId) {
+	public Collection<FAQBatchWiseCandidateDetailsDto> getBatchWiseCandidatesDetails(String batchId) {
 		LOGGER.debug("Request Received from Controller");
 		LOGGER.debug("In FAQService - getBatchWiseCandidatesDetails");
 		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);

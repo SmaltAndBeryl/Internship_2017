@@ -19,7 +19,7 @@ public class BatchAssignmentSearchService {
 	@Autowired
 	private BatchAssignmentSearchDao updateDao;
 	
-	public Collection<BatchAssignmentSearchDto> getBatchDataForAssignmentService(int batchId){
+	public Collection<BatchAssignmentSearchDto> getBatchDataForAssignmentService(String batchId){
 		LOGGER.debug("Request Received from Controller");
 		LOGGER.debug("In BatchAssignmentSearchService - getBatchDataForAssignmentService");
 		LOGGER.debug("Parameters Received from front end are - 'batchId': "+batchId);

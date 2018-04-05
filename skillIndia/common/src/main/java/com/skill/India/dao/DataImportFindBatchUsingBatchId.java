@@ -52,7 +52,7 @@ public class DataImportFindBatchUsingBatchId extends AbstractTransactionalDao {
 		@Override
 		public DataImportGetBatchInfoDto mapRow(ResultSet resultSet, int rowNum)
 				throws SQLException {
-			Integer batchId = resultSet.getInt("batchId");
+			String batchId = resultSet.getString("batchId");
 			String batchName = resultSet.getString("batchName");
 			String batchStartDate = resultSet.getDate("batchStartDate").toString();
 			String batchEndDate = resultSet.getDate("batchEndDate").toString();
