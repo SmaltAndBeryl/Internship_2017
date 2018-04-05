@@ -312,7 +312,7 @@ public class ValidateCandidateCSVService {
 			 * Checking for error in batchId column
 			 */
 			LOGGER.debug("Checking Validations of batchId");
-			if(!ValidationUtils.numbersCheck(batchId) || batchId.equals(""))
+			if(batchId.equals(""))
 			{
 				errorStatus=1;
 				errorString=errorString + "\nError in  'batchId' column .";
@@ -444,7 +444,7 @@ public class ValidateCandidateCSVService {
 			 record.put("candidateName",candidateName);
 			 record.put("enrollmentNumber",enrollmentNumber);
 			 record.put("gender",gender);
-			 record.put("dateOfBirth",ValidationUtils.convertUtilToSqlDate(dateOfBirth));
+			 record.put("dateOfBirth",dateOfBirth);
 			 record.put("nameOfFatherOrHusband",nameOfFatherOrHusband);
 			 record.put("aadharNumber",aadharNumber);
 			 record.put("mobileNumber",mobileNumber);
@@ -502,9 +502,9 @@ public class ValidateCandidateCSVService {
 		    deleteUploadedFile.delete();
 		    LOGGER.debug("Successfully deleted");
 		    
-		    LOGGER.debug("returning Error list as String");
+		    LOGGER.debug("returning Error list as String" + e);
 //			e.printStackTrace();
-			return "Error parsing Batch CSV File. Kindly try again. ";
+			return "Error parsing Candidate CSV File. Kindly try again. ";
 			
 		}
 		
