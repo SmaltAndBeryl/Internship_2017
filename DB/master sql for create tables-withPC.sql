@@ -236,7 +236,7 @@ foreign key (userId) references user(userId));
 
 create table if not exists candidate(
 Id int(10) primary key AUTO_INCREMENT,
-candidateDetailsId varchar unique key not null,
+candidateDetailsId varchar(200) unique key not null,
 candidateName varchar(200) not null,
 enrollmentNumber varchar(40) not null,
 gender varchar(6) not null,
