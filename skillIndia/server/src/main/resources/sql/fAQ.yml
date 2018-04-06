@@ -44,7 +44,7 @@ faq:
   SELECT agencyName FROM agency A, batch B WHERE A.agencyId = B.agencyId and batchId = :batchId
   
  selectSqlCountTotalOfBatchesAssignedToAAssessmentAgency: >
-  SELECT COUNT(batchId) FROM batch B, agency A WHERE B.agencyId = A.agencyId and A.agencyName = :agencyName
+  SELECT COUNT(batchId) FROM batch B where agencyId = :agencyName
   
  selectSqlCountTotalNumberOfBatchesAndTotalEnrolledInAParticularState: >
   SELECT COUNT(batchId) AS BATCHES,SUM(totalCandidatesInBatch) AS TOTALCANDIDATES 
@@ -55,14 +55,14 @@ faq:
     FROM batch B where B.batchStartDate<=curDate() AND B.batchEndDate>curDate() AND B.batchType=:batchType
   
  selectSqlCountTotalAssessorsOfAParticularAgencyInAParticularState: >
-  SELECT COUNT(assessorId) FROM assessor A, agency B WHERE A.agencyId = B.agencyId and B.agencyName=:agencyName and A.state = :state;
+  SELECT COUNT(assessorId) FROM assessor A, agency B WHERE A.agencyId = B.agencyId and B.agencyId=:agencyName and A.state = :state;
   
  selectSqlStatusOfAParticularBatchWithId: >
   SELECT B.batchId, T.trainingPartnerName, B.batchStartDate, B.batchEndDate, B.assessmentDate, B.resultApproved 
    FROM batch as B, trainingpartner as T WHERE B.batchId = :batchId and B.trainingPartnerId = T.trainingPartnerId
   
  selectSqlCountBatchesForWhichResultIsPending: >
-  SELECT COUNT(batchId) FROM batch WHERE resultApproved = 'Pending';
+  SELECT COUNT(batchId) FROM batch WHERE resultApproved = 'No';
   
  selectSqlCountTotalNonAssignedBatches: >
   SELECT COUNT(batchId) FROM batch where agencyId is null
