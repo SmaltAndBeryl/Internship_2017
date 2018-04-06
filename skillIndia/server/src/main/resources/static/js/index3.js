@@ -225,10 +225,10 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
         });
     }
     
-    $scope.master = function() {
-    	console.log("Image is working");
-    	$location.path("/master");
-    }
+//    $scope.master = function() {
+////    	console.log("Image is working");
+//    	$location.path("/master");
+//    }
     
 });
 
