@@ -1,7 +1,7 @@
 <div ng-show="authenticated" ng-model="loggingOut">
-    <div class="middleWrapper">
+    <div class="middleWrapper col-lg-12 col-md-12 col-sm-12 " style="padding:0;">
 
-        <div class="leftNav col-md-2">
+        <div class="leftNav col-lg-2 col-sm-2 col-md-2">
             <div class="sideBtn" ng-click="page = 'page1'"><img src="icon/indexPageIcons/dashboard.png" class="icons"><div class="side-link">Dashboard</div></div>
           
             <div class="sideBtn" ng-click="page = 'page2'"><img src="icon/indexPageIcons/registrations.png" class="icons"><div class="side-link">Manage Registration</div></div>
@@ -15,7 +15,7 @@
 
 
 
-        <div class="rightArea col-md-10">
+        <div class="rightArea col-lg-10 col-md-10 col-sm-10">
             <div ng-switch on="page">
                 <div ng-switch-when="page1">
 
@@ -40,4 +40,4 @@
             </div>
         </div>
     </div>
-</div>
+    </div>

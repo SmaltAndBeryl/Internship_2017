@@ -175,8 +175,8 @@
             </div>
         </div>
     </div>
-    <header class="one-edge-shadow" ng-show="authenticated">
-        <div class="leftContent">
+    <header class="one-edge-shadow" class="col-lg-12 col-md-12 col-sm-12" style="padding:0;" ng-show="authenticated">
+        <div class="leftContent" ng-click="master()">
             <img src="images/indexPageImages/SCGJLogo.png" alt="" class="image-0">
         </div>
 
@@ -211,7 +211,7 @@
     <!--</li>-->
 </div>
 
-<div ng-view class="container viewDiv">
+<div ng-view class="viewDiv">
     <!--Rendered Views-->
 </div>
 
@@ -233,35 +233,35 @@
 <script type="text/javascript" src="js/directives/dataImportCsvDirective.js"></script>
 <script type="text/javascript" src="js/directives/mobileAnnexureDirective.js"></script>
 </body>
-<footer ng-show="authenticated">
+<footer class="col-lg-12 col-md-12 col-sm-12" style="padding:0;"  ng-show="authenticated">
 <!-- Logo footer edited part -->
  <div class="logoBar">
       <div class="image-wrap">
-        <img src="images/indexPageImages/SkillMinistryLogo.png" alt="" class="image-1">
+        <a href="http://www.skilldevelopment.gov.in/" target="_blank" ><img src="images/indexPageImages/SkillMinistryLogo.png" alt="" class="image-1"></a>
 
 
-        <img src="images/indexPageImages/SkillIndiaLogo.png" alt="" class="image-2">
+        <a href="http://www.skilldevelopment.gov.in/" target="_blank" ><img src="images/indexPageImages/SkillIndiaLogo.png" alt="" class="image-2"></a>
 
 
-        <img src="images/indexPageImages/NSDCLogo.png" alt="" class="image-3">
+        <a href="https://www.nsdcindia.org/" target="_blank" ><img src="images/indexPageImages/NSDCLogo.png" alt="" class="image-3"></a>
 
 
-        <img src="images/indexPageImages/MNRELogo.png" alt="" class="image-4">
+        <a href="https://mnre.gov.in/" target="_blank" ><img src="images/indexPageImages/MNRELogo.png" alt="" class="image-4"></a>
       </div>
     </div>
     <div class="upperFooter">
         <div class="link-wrapper">
-            <a href="http://sscgj.in/about-us/" class="link">About Us</a><span class="vert-bars"> | </span>
-            <a href="http://sscgj.in/operational-standards/" class="link">National Standards</a><span class="vert-bars"> | </span>
-            <a href="http://sscgj.in/affiliation/" class="link">Affiliation</a><span class="vert-bars"> | </span>
-            <a href="http://sscgj.in/publications/" class="link">Publications</a><span class="vert-bars"> | </span>
-            <a href="http://sscgj.in/state-linkages/" class="link">State Linkages</a>
+            <a href="http://sscgj.in/about-us/" target="_blank" class="link">About Us</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/operational-standards/" target="_blank" class="link">National Standards</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/affiliation/" target="_blank" class="link">Affiliation</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/publications/" target="_blank" class="link">Publications</a><span class="vert-bars"> | </span>
+            <a href="http://sscgj.in/state-linkages/" target="_blank" class="link">State Linkages</a>
         </div>
 
     </div>
 
     <div class="lowerFooter">
-        <h5 class="copyright">Copyright &copy 2017 sscgj.in - All Rights Reserved.</h5>
+        <h5 class="copyright">Copyright &copy 2017-2020 sscgj.in - All Rights Reserved.</h5>
     </div>
 </footer>
 </html>

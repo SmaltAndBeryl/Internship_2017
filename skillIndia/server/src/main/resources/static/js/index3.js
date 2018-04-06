@@ -44,7 +44,7 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
     self.tab = function(route) {
         return $route.current && route === $route.current.controller;
     };
-
+         
     
     var checkAndSetState =function(submitRoutingUrl,acceptedRoutingUrl){
         $http({
@@ -224,6 +224,12 @@ hello.controller('navigation', function($rootScope, $http, $location, $route,$sc
            // $location.path("/");
         });
     }
+    
+    $scope.master = function() {
+    	console.log("Image is working");
+    	$location.path("/master");
+    }
+    
 });
 
 

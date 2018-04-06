@@ -78,6 +78,13 @@ header{
   float: right;
   margin-right: 68px;
 }
+@media (max-width:480px){
+	.logout-icon-text-wrap{
+    margin:0;
+    
+
+}
+}
 .logoutText{
   color: grey;
   font-size: 1em;
@@ -155,8 +162,7 @@ footer{
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center;
-  margin-right:15px;
-  margin-left:15px;
+  margin:0px;
 }
 
 .link{
@@ -174,8 +180,7 @@ footer{
   background-color: #1da5be;
   /*height: 30px;*/
   text-align: center;
-  margin-right:15px;
-  margin-left:15px;
+  margin:0px;
 }
 
 
