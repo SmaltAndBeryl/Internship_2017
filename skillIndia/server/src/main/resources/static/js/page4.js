@@ -712,7 +712,7 @@ page4.controller('page4',function($scope, $http) {
         var url = '/getFAQCountTotalAssessorsOfAParticularAgencyInAParticularState?agencyName=' + agencyName + '&state=' + state;
         $http.post(url)
             .then(function(response) {
-                $scope.assessorNumberForSelectedStateAndSelectedAgency = 'Total assessors af agency ' + agencyName + '  in ' + state + ' are :' + response.data;
+                $scope.assessorNumberForSelectedStateAndSelectedAgency = 'Total assessors of agency ' + agencyName + '  in ' + state + ' are :' + response.data;
             });
 
     };
