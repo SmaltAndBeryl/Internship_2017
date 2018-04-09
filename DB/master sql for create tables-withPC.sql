@@ -74,7 +74,7 @@ foreign key (userId) references user(userId));
 create table if not exists csvUploaded(
 csvId int(10) auto_increment Primary key,
 csvType varchar(30) not null,
-csvName varchar(50) not null,
+csvName varchar(200) not null,
 csvUploadDate date,
 csvUploadUserId varchar(200) not null,
 foreign key (csvUploadUserId)
