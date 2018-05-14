@@ -1,7 +1,8 @@
 var profileCreationAb = angular.module('hello');
 
 profileCreationAb.controller('profileCreationAb' , function($scope, $http, $location ,fileUpload,$timeout){
-    $scope.names = [
+	$scope.assessmentbody ={};
+	$scope.names = [
         {
             name : "JSS",
             number : "587",
@@ -432,7 +433,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
     };
     $scope.uploadUndertakingAB = function()
     {
-    	var file = $scope.assessmentbody.undertaking;
+    	var file = $scope.assessmentbody.UndertakingDoc;
     	var uploadUrl = "fileUploadUndertakingAssessmentBody";
     	fileUpload.uploadFileToUrl(file, uploadUrl, "undertakingAB");
     }
@@ -526,7 +527,7 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             var manageControllerURI = "/saveAsDraftAndSubmitAB";
             $scope.profileCreationABTPDto = {
             		'type' : 'Submit',
-            		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.profileCreationAssessmentBodyRegistrationDetailsDto,
+            		'profileCreationAssessmentBodyRegistrationDetailsDto' : $scope.assessmentBody.AssessmentBodyRegistrationDetails,
             		'profileCreationAssessmentBodyAffiliationDetailsDto' : $scope.assessmentBody.AssessmentBodyAffiliationDetails,
             		'profileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto' : $scope.assessmentBody.AssessmentBodyDirectorsAndManagementTeamDetails,
             		'profileCreationAssessmentBodyRecognitionsDto' : $scope.assessmentBody.AssessmentBodyRecognitions,
