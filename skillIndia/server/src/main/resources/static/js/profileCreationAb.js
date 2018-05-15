@@ -551,7 +551,13 @@ profileCreationAb.controller('profileCreationAb' , function($scope, $http, $loca
             		function(response)
             		{
             		 //console.log("SUCCESS");
-            		 $location.path("/assessmentBody");
+            			if(response.status == 200){
+            	            $scope.successText = "Your data has been saved successfully";
+            	            $scope.successTextColor = "green";
+            	            $scope.rolling = false;
+            	            $location.path("/assessmentBody");
+            	            }
+            		 
           
             		},
             		function(errorResponse, status)

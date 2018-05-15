@@ -869,8 +869,14 @@ $scope.removeManagement = function(){
     		method : method,
     		data : angular.toJson($scope.postValue)
     	}).then(function(response){
-    		//console.log(response);
-    		$location.path("/trainingPartner");
+    		
+    		if(response.status == 200){
+            $scope.successText = "Your data has been saved successfully";
+            $scope.successTextColor = "green";
+            $scope.rolling = false;
+            $location.path("/trainingPartner");
+        }
+    		
     	},
     	function(errorResponse){
     		//console.log(errorResponse);
