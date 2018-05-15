@@ -6,7 +6,7 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	private String assessmentBodyRegistrationId;
 	private String name;
 	private String designation;
-	private String contactNumber;
+	private Long contactNumber;
 	private String emailId;
 	private String educationalQualification;
 	private String experience;
@@ -36,7 +36,7 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	public ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto(
 			String directorsAndManagementId,
 			String assessmentBodyRegistrationId, String name,
-			String designation, String contactNumber, String emailId,
+			String designation, Long contactNumber, String emailId,
 			String educationalQualification, String experience, String cVPath, Boolean isActive) {
 		super();
 		this.directorsAndManagementId = directorsAndManagementId;
@@ -101,13 +101,13 @@ public class ProfileCreationAssessmentBodyDirectorsAndManagementTeamDetailsDto {
 	/**
 	 * @return the contactNumber
 	 */
-	public String getContactNumber() {
+	public Long getContactNumber() {
 		return contactNumber;
 	}
 	/**
 	 * @param contactNumber the contactNumber to set
 	 */
-	public void setContactNumber(String contactNumber) {
+	public void setContactNumber(Long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	/**

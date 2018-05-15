@@ -223,7 +223,7 @@ private static final ProfileCreationAssessmentBodyDirectorsAndManagementTeamDeta
 			String assessmentBodyRegistrationId = resultSet.getString("assessmentBodyRegistrationId");
 			String name = resultSet.getString("name");
 			String designation = resultSet.getString("designation");
-			String contactNumber = resultSet.getString("contactNumber");
+			Long contactNumber = resultSet.getLong("contactNumber");
 			String emailId = resultSet.getString("emailId");
 			String educationalQualification = resultSet.getString("educationalQualification");
 			String experience = resultSet.getString("experience");

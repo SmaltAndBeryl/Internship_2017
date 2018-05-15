@@ -46,7 +46,7 @@ public class ApproveRejectTableService {
 			LOGGER.debug("Making a Request to Dao");
 			int commentsExists = manageRegistrationActionDao.checkCommentExistence(applicationId);
 			LOGGER.debug("Response received from Dao");
-			System.out.println("commentExists = " + commentsExists);
+			//System.out.println("commentExists = " + commentsExists);
 			if(commentsExists == 1)
 			{
 				LOGGER.debug("Comment Already Exists");
@@ -54,7 +54,7 @@ public class ApproveRejectTableService {
 				LOGGER.debug("Making a Request to Dao");
 				int i=manageRegistrationActionDao.updateCommentsOnAction(applicationId);
 				LOGGER.debug("Response received from Dao");
-				System.out.println("I IS "+i);
+				//System.out.println("I IS "+i);
 			}
 			LOGGER.debug("Inserting Comment");
 			LOGGER.debug("Parameters Received from Controller are - 'applicationId': "+applicationId+" 'comment': "+comment);
