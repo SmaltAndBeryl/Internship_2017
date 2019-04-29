@@ -14,6 +14,15 @@
 		<version>${global.version}</version>
 	</parent>
 	<dependencies>
-		
+		<dependency>
+			<groupId>com.google.actions</groupId>
+			<artifactId>actions-on-google</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<dependency>
+	      <groupId>com.google.api-client</groupId>
+	      <artifactId>google-api-client</artifactId>
+	      <version>1.28.0</version>
+	    </dependency>
 	</dependencies>
 </project>

@@ -16,18 +16,27 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 	@Configuration
 	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 	public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-		@Override
-		protected void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
-			http
-					.httpBasic().and()
-					.authorizeRequests()
-					.antMatchers("/index3.html", "/home.html", "/login2.html", "/", "/master.html", "/page1.html","/page2.html","/page3.html", "/page4.html", "/page5.html", "/TrainingPartner.html", "/AssessmentBody.html", "/profileCreationTp.html","/signup").permitAll()
-					.anyRequest().authenticated()
-					.and()
-					.csrf()
-					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-			// @formatter:on
-		}
+	//	@Override
+	//	protected void configure(HttpSecurity http) throws Exception {
+//			// @formatter:off
+//			http
+//					.httpBasic().and()
+//					.authorizeRequests()
+//					.antMatchers("/index3.html", "/home.html", "/login2.html", "/", "/master.html", "/page1.html","/page2.html","/page3.html", "/page4.html", "/page5.html", "/TrainingPartner.html", "/AssessmentBody.html", "/profileCreationTp.html","/signup","/voicewebhook").permitAll()
+//					.anyRequest().authenticated()
+//					.and()
+//					.csrf()
+//					.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+//			// @formatter:on
+//			
+//		}
+		
+		
+
+		 @Override
+		    protected void configure(HttpSecurity http) throws Exception {
+		    http.csrf().disable();   
+			 http.authorizeRequests().anyRequest().permitAll();
+		    }
 	}
 

@@ -1,0 +1,4 @@
+voicewebhooksql:
+ candidatesAssessedPmkvy: >
+  SELECT (SUM(totalPass)+ SUM(totalFail)) AS candidatesAssessed
+   FROM batch WHERE batchStartDate <= curdate() AND batchType = "PMKVY"
